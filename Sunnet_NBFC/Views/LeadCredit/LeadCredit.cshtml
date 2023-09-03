@@ -16,25 +16,25 @@
             </div>
             <div class="col-sm-6">
                 @*<ol class="breadcrumb float-sm-right">
-                    @Html.ActionLink("Back to List", "LeadView", "Lead", new { ShortStage_Name = "CreditApprove" }, null)
-                </ol>*@
+                        @Html.ActionLink("Back to List", "LeadView", "Lead", new { ShortStage_Name = "CreditApprove" }, null)
+                    </ol>*@
             </div>
         </div>
     </div><!-- /.container-fluid -->
 </section>
 
 
-    @Html.AntiForgeryToken()
-        @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
+@Html.AntiForgeryToken()
+@*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
 
 
-    <section class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        @using (Html.BeginForm("LeadCredit", "LeadCredit", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                        {
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    @using (Html.BeginForm("LeadCredit", "LeadCredit", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
                         <div class="card-body">
 
                             <div class="form-group">
@@ -49,7 +49,7 @@
                                         @Html.HiddenFor(model => model.ProdId)
 
                                         @Html.HiddenFor(model => model.clsLeadCredit.LeadId)
-                                        @Html.HiddenFor(model => model.clsLeadCredit.CrId)
+                                        @Html.HiddenFor(model => model.clsLeadCredit.CrId, new { @id = "hfCrId" })
 
                                         @Html.LabelFor(model => model.LeadNo, new { @class = "control-label" }) *
                                         @Html.TextBoxFor(model => model.LeadNo, new { @class = "form-control", @required = "true", @readonly = "true" })
@@ -86,6 +86,35 @@
 
                                     <div class="col-md-5">
                                         @Html.TextBoxFor(model => model.clsLeadCredit.CibilRemarks, @getHtmlAttributes(((Model.clsLeadCredit.CIBILVerification ?? "") == "Yes" ? false : true), "form-control"))
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+
+                                    <div class="col-md-3" style="margin-top:3px;">
+                                        @Html.CheckBox("chkCAMVerification", (Model.clsLeadCredit.CamVerification ?? "") == "Yes" ? true : false, new { })
+                                        <span>@Html.LabelFor(model => model.clsLeadCredit.CamVerification, new { @class = "control-label" }) : </span>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <input type="file" name="clsLeadCredit.CAMDocPostedFile" id="CAMDocPostedFile" accept="image/png, image/jpg, image/jpeg" @((Model.clsLeadCredit.CamVerification ?? "") == "Yes" ? "" : "disabled='disabled'") />
+                                        @Html.HiddenFor(model => model.clsLeadCredit.CAMDoc)
+                                        @if (string.IsNullOrEmpty(Model.clsLeadCredit.CAMDoc) == false)
+                                        {
+                                            @Html.ActionLink("Download", "Download", "LeadCredit", new { FileType = Model.clsLeadCredit.CAMDoc, ImageName = Model.clsLeadCredit.CAMDoc }, new { @target = "_blank" })
+                                        }
+
+                                    </div>
+
+                                    <div class="col-md-1">
+                                        <span>Remark:</span>
+                                    </div>
+
+                                    <div class="col-md-5">
+                                        @Html.TextBoxFor(model => model.clsLeadCredit.CAMRemarks, @getHtmlAttributes(((Model.clsLeadCredit.CamVerification ?? "") == "Yes" ? false : true), "form-control"))
                                     </div>
 
                                 </div>
@@ -658,7 +687,7 @@
                                         </div>
                                         <div class="col-md-5">
                                             @Html.TextBoxFor(model => model.clsLeadCredit.LegalReportDate, new { @class = "form-control datestyle", placeholder = "dd/mm/yyyy" })
-					    @*@Html.TextBoxFor(model => model.clsLeadCredit.LegalReportDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "Date" })*@
+                                            @*@Html.TextBoxFor(model => model.clsLeadCredit.LegalReportDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "Date" })*@
                                         </div>
                                     </div>
                                 </div>
@@ -697,8 +726,8 @@
                                             <span>ValueDate:</span>
                                         </div>
                                         <div class="col-md-5">
-                                            @Html.TextBoxFor(model => model.clsLeadCredit.ValueDate, new { @class = "form-control datestyle" , placeholder="dd/mm/yyyy" })
-					    @*@Html.TextBoxFor(model => model.clsLeadCredit.ValueDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "Date" })*@
+                                            @Html.TextBoxFor(model => model.clsLeadCredit.ValueDate, new { @class = "form-control datestyle", placeholder = "dd/mm/yyyy" })
+                                            @*@Html.TextBoxFor(model => model.clsLeadCredit.ValueDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "Date" })*@
                                         </div>
                                     </div>
                                 </div>
@@ -760,29 +789,6 @@
                                 </div>
 
 
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <span>CAMGeneration:</span>
-                                        </div>
-                                        <div class="col-md-5">
-                                            @Html.TextBoxFor(model => model.clsLeadCredit.CAMGeneration, new { @class = "form-control", })
-                                        </div>
-                                    </div>
-                                </div>
-
-
-
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <span>CAMDoc:</span>
-                                        </div>
-                                        <div class="col-md-5">
-                                            @Html.TextBoxFor(model => model.clsLeadCredit.CAMDoc, new { @class = "form-control", })
-                                        </div>
-                                    </div>
-                                </div>
 
                             }
 
@@ -861,7 +867,7 @@
                                             <span>CreditRemarks:</span>
                                         </div>
                                         <div class="col-md-5">
-                                            @Html.TextBoxFor(model => model.clsLeadCredit.CreditRemarks, new { @class = "form-control", })
+                                            @Html.TextBoxFor(model => model.clsLeadCredit.CreditRemarks, new { @class = "form-control",@id="txtCreditRemarks" })
                                         </div>
                                     </div>
                                 </div>
@@ -1056,7 +1062,7 @@
                                     <div class="col-md-6">
 
                                         @*@Html.DropDownListFor(m => m.Status, ViewBag.StatusListDDL, "- Select- ", new { @class = "form-control" })*@
-                                        @Html.DropDownListFor(m => m.Status, new SelectList(ViewBag.StatusListDDL, "Value", "Text", Model.Status), "- Select -", new { @class = "form-control" })
+                                        @Html.DropDownListFor(m => m.Status, new SelectList(ViewBag.StatusListDDL, "Value", "Text", Model.Status), "Select", new { @class = "form-control",@id="ddlStatus" })
                                     </div>
                                 </div>
                             </div>
@@ -1068,7 +1074,7 @@
                                         @Html.LabelFor(m => m.Remarks, new { @class = "control-label" })
                                     </div>
                                     <div class="col-md-6">
-                                        @Html.TextAreaFor(m => m.Remarks, new { @class = "form-control" })
+                                        @Html.TextAreaFor(m => m.Remarks, new { @class = "form-control",@id="txtRemarks" })
                                     </div>
                                 </div>
                             </div>
@@ -1077,7 +1083,7 @@
 
 
                             <div class="card-footer">
-                                <input type="submit" value="Submit" class="btn btn-primary" />
+                                <input type="submit" value="Submit" class="btn btn-primary" onclick="return Validation();" />
                                 @*@Html.ActionLink("Cancel", "LeadView", "Lead", new { ShortStage_Name = "CreditApprove" }, new { @class = "btn btn-danger btn-large" })*@
                                 @Html.ActionLink("Cancel", "GoToStage", "Lead", new { StageName = ViewBag.ComeFrom, ShortStage_Name = "CreditApprove" }, new { @class = "btn btn-danger btn-large" })
                             </div>
@@ -1085,25 +1091,25 @@
 
 
                         </div>
-                                }
-                            </div>
-                        </div>
+                    }
+                </div>
             </div>
         </div>
+    </div>
 
-    </section>
+</section>
 
-    @functions {
-        object getHtmlAttributes(bool ReadOnly, string CssClass)
+@functions {
+    object getHtmlAttributes(bool ReadOnly, string CssClass)
+    {
+        if (ReadOnly)
         {
-            if (ReadOnly)
-            {
-                //return new { @class = CssClass };
-                return new { @class = CssClass, @disabled = "disabled" };
-            }
-            return new { @class = CssClass };
+            //return new { @class = CssClass };
+            return new { @class = CssClass, @disabled = "disabled" };
         }
+        return new { @class = CssClass };
     }
+}
 
 @if (ViewBag.Error != null && ViewBag.Error != "")
 {
@@ -1123,9 +1129,9 @@
     </script>
 }
 
+<script src="~/Scripts/CustomJS/LeadCredit.js"></script>
 
-
-<script>
+@*<script>
 
 
     $(document).ready(function () {
@@ -1139,6 +1145,17 @@
                 } else {
                     $("#clsLeadCredit_CibilRemarks").attr('disabled', 'disabled')
                     $("#CibilDocPostedFile").attr('disabled', 'disabled')
+                }
+            });
+
+        $("#chkCAMVerification").click(
+            function () {
+                if ($(this).is(":checked")) {
+                    $("#clsLeadCredit_CAMRemarks").removeAttr('disabled')
+                    $("#CAMDocPostedFile").removeAttr('disabled')
+                } else {
+                    $("#clsLeadCredit_CAMRemarks").attr('disabled', 'disabled')
+                    $("#CAMDocPostedFile").attr('disabled', 'disabled')
                 }
             });
 
@@ -1263,569 +1280,206 @@
 
 </script>
 
-
-
-
-@*@using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="form-horizontal">
-            <h4>Lead Credit</h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                @Html.LabelFor(model => model.ReqType, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.ReqType, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.ReqType, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.CrId, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.CrId, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.CrId, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.LeadId, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.LeadId, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.LeadId, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.CIBILVerification, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.CIBILVerification, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.CIBILVerification, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.CibilDoc, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.CibilDoc, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.CibilDoc, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.CibilRemarks, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.CibilRemarks, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.CibilRemarks, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.FIVerification, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.FIVerification, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.FIVerification, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.FIDoc, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.FIDoc, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.FIDoc, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.FIRemarks, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.FIRemarks, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.FIRemarks, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.TVRVerification, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.TVRVerification, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.TVRVerification, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.TVRDoc, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.TVRDoc, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.TVRDoc, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.TVRRemarks, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.TVRRemarks, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.TVRRemarks, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.CashFlowVerification, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.CashFlowVerification, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.CashFlowVerification, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.CashFlowDoc, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.CashFlowDoc, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.CashFlowDoc, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.CashFlowRemarks, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.CashFlowRemarks, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.CashFlowRemarks, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.ViechleValVerfication, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.ViechleValVerfication, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.ViechleValVerfication, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.ViechleDoc, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.ViechleDoc, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.ViechleDoc, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.ViechleRemarks, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.ViechleRemarks, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.ViechleRemarks, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.BankStmtVerification, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.BankStmtVerification, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.BankStmtVerification, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.BankStmtDoc, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.BankStmtDoc, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.BankStmtDoc, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.BankStmtRemarks, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.BankStmtRemarks, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.BankStmtRemarks, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.IncomeStmtVerification, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.IncomeStmtVerification, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.IncomeStmtVerification, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.IncomeStmtDoc, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.IncomeStmtDoc, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.IncomeStmtDoc, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.IncomeStmtRemarks, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.IncomeStmtRemarks, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.IncomeStmtRemarks, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.PersonalDiscussVerification, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.PersonalDiscussVerification, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PersonalDiscussVerification, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.PersonalDiscussDoc, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.PersonalDiscussDoc, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PersonalDiscussDoc, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.PersonalDiscusssRemarks, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.PersonalDiscusssRemarks, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PersonalDiscusssRemarks, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Eligiblity, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Eligiblity, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Eligiblity, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.EligiblityDoc, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.EligiblityDoc, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.EligiblityDoc, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.EligiblityRemarks, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.EligiblityRemarks, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.EligiblityRemarks, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Occupation, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Occupation, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Occupation, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.PropertyDocVerification, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.PropertyDocVerification, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PropertyDocVerification, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.PropertyDoc, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.PropertyDoc, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PropertyDoc, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.PropertyDocRemarks, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.PropertyDocRemarks, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PropertyDocRemarks, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.ColletralType, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.ColletralType, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.ColletralType, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.PropertyAddress, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.PropertyAddress, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PropertyAddress, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.PropertySize, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.PropertySize, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PropertySize, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.LandArea, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.LandArea, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.LandArea, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Dimension, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Dimension, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Dimension, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.SecurityValue, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.SecurityValue, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.SecurityValue, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.MarketValue, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.MarketValue, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.MarketValue, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.LandValue, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.LandValue, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.LandValue, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.ConstrutionValue, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.ConstrutionValue, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.ConstrutionValue, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.TotalMarketValue, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.TotalMarketValue, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.TotalMarketValue, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.LTV, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.LTV, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.LTV, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.RelizableValue, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.RelizableValue, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.RelizableValue, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.PropertyVal, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.PropertyVal, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PropertyVal, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.PropertyDocuments, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.PropertyDocuments, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PropertyDocuments, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.PropertyChain, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.PropertyChain, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PropertyChain, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.LegalOpinionBy, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.LegalOpinionBy, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.LegalOpinionBy, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.LegalReportDate, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.LegalReportDate, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.LegalReportDate, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.ValuerName, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.ValuerName, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.ValuerName, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Valuation, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Valuation, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Valuation, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.ValueDate, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.ValueDate, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.ValueDate, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.BussinessName, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.BussinessName, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.BussinessName, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.BussinessVinatage, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.BussinessVinatage, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.BussinessVinatage, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.BussinessAddress, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.BussinessAddress, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.BussinessAddress, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.BussinessProve, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.BussinessProve, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.BussinessProve, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.CAMGeneration, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.CAMGeneration, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.CAMGeneration, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.CAMDoc, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.CAMDoc, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.CAMDoc, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.CAMRemarks, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.CAMRemarks, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.CAMRemarks, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.CreditRemarks, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.CreditRemarks, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.CreditRemarks, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.NegativeRemarks, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.NegativeRemarks, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.NegativeRemarks, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.CompanyId, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.CompanyId, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.CompanyId, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.CreatedBy, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.CreatedBy, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.CreatedBy, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.CreatedDate, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.CreatedDate, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.CreatedDate, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.UpdatedBy, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.UpdatedBy, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.UpdatedBy, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.UpdatedDate, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.UpdatedDate, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.UpdatedDate, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Save" class="btn btn-default" />
-                </div>
-            </div>
-        </div>
+<script>
+    function Validation() {
+        if ($('#chkCIBILVerification').is(":checked") == true) {
+            var filedata = new FormData();
+            var fileUpload = $("#CibilDocPostedFile").get(0);
+            var files = fileUpload.files;
+            debugger;
+            if (files.length <= 0) {
+                swal("TDH", "Please Upload CIBIL File.", "error");
+                return false;
+            }
+            else if ($("#clsLeadCredit_CibilRemarks").val().trim() == "") {
+                swal("TDH", "Please Input CIBIL Remarks.", "error");
+                return false;
+            }
+        }
+        if ($('#chkCAMVerification').is(":checked") == true) {
+            var filedata = new FormData();
+            var fileUpload = $("#CAMDocPostedFile").get(0);
+            var files = fileUpload.files;
+            debugger;
+            if (files.length <= 0) {
+                swal("TDH", "Please Upload CAM File.", "error");
+                return false;
+            }
+            else if ($("#clsLeadCredit_CAMRemarks").val().trim() == "") {
+                swal("TDH", "Please Input CAM Remarks", "error");
+                return false;
+            }
+        }
+
+        if ($('#chkFIVerification').is(":checked") == true) {
+            var filedata = new FormData();
+            var fileUpload = $("#FIDocPostedFile").get(0);
+            var files = fileUpload.files;
+            debugger;
+            if (files.length <= 0) {
+                swal("TDH", "Please Upload FI Verification File.", "error");
+                return false;
+            }
+            else if ($("#clsLeadCredit_FIRemarks").val().trim() == "") {
+                swal("TDH", "Please Input FI Remarks", "error");
+                return false;
+            }
+        }
+
+        if ($('#chkTVRVerification').is(":checked") == true) {
+            var filedata = new FormData();
+            var fileUpload = $("#TVRDocPostedFile").get(0);
+            var files = fileUpload.files;
+            debugger;
+            if (files.length <= 0) {
+                swal("TDH", "Please Upload TVR File.", "error");
+                return false;
+            }
+            else if ($("#clsLeadCredit_TVRRemarks").val().trim() == "") {
+                swal("TDH", "Please Input TVR Remarks.", "error");
+                return false;
+            }
+        }
+
+        if ($('#chkDependentFamilyAssessmentVerification').is(":checked") == true) {
+            var filedata = new FormData();
+            var fileUpload = $("#DependentFamilyAssessmentDocPostedFile").get(0);
+            var files = fileUpload.files;
+            debugger;
+            if (files.length <= 0) {
+                swal("TDH", "Please Upload Depended Assesment File.", "error");
+                return false;
+            }
+            else if ($("#clsLeadCredit_DependentFamilyAssessmentRemarks").val().trim() == "") {
+                swal("TDH", "Please Input Depedent Remarks.", "error");
+                return false;
+            }
+        }
+
+        if ($('#chkCashFlowVerification').is(":checked") == true) {
+            var filedata = new FormData();
+            var fileUpload = $("#CashFlowDocPostedFile").get(0);
+            var files = fileUpload.files;
+            debugger;
+            if (files.length <= 0) {
+                swal("TDH", "Please Upload Cash Flow File.", "error");
+                return false;
+            }
+            else if ($("#clsLeadCredit_CashFlowRemarks").val().trim() == "") {
+                swal("TDH", "Please Input Cash Flow Remarks.", "error");
+                return false;
+            }
+        }
+        if ($('#chkViechleValVerfication').is(":checked") == true) {
+            var filedata = new FormData();
+            var fileUpload = $("#ViechleDocPostedFile").get(0);
+            var files = fileUpload.files;
+            debugger;
+            if (files.length <= 0) {
+                swal("TDH", "Please Upload Viechle File.", "error");
+                return false;
+            }
+            else if ($("#clsLeadCredit_ViechleRemarks").val().trim() == "") {
+                swal("TDH", "Please Input Viechle Remarks.", "error");
+                return false;
+            }
+        }
+
+        if ($('#chkBankStmtVerification').is(":checked") == true) {
+            var filedata = new FormData();
+            var fileUpload = $("#BankStmtDocPostedFile").get(0);
+            var files = fileUpload.files;
+            debugger;
+            if (files.length <= 0) {
+                swal("TDH", "Please Upload Bank Statement File.", "error");
+                return false;
+            }
+            else if ($("#clsLeadCredit_BankStmtRemarks").val().trim() == "") {
+                swal("TDH", "Please Input Bank Remarks.", "error");
+                return false;
+            }
+        }
+
+        if ($('#chkIncomeStmtVerification').is(":checked") == true) {
+            var filedata = new FormData();
+            var fileUpload = $("#IncomeStmtDocPostedFile").get(0);
+            var files = fileUpload.files;
+            debugger;
+            if (files.length <= 0) {
+                swal("TDH", "Please Upload Income Statement File.", "error");
+                return false;
+            }
+            else if ($("#clsLeadCredit_IncomeStmtRemarks").val().trim() == "") {
+                swal("TDH", "Please Input Income Statement Remarks.", "error");
+                return false;
+            }
+        }
+
+        if ($('#chkPersonalDiscussVerification').is(":checked") == true) {
+            var filedata = new FormData();
+            var fileUpload = $("#PersonalDiscussDocPostedFile").get(0);
+            var files = fileUpload.files;
+            debugger;
+            if (files.length <= 0) {
+                swal("TDH", "Please Upload Personal Discussion File.", "error");
+                return false;
+            }
+            else if ($("#clsLeadCredit_PersonalDiscusssRemarks").val().trim() == "") {
+                swal("TDH", "Please Input Personal Discuss Remarks.", "error");
+                return false;
+            }
+        }
+
+        if ($('#chkEligiblity').is(":checked") == true) {
+            var filedata = new FormData();
+            var fileUpload = $("#EligiblityDocPostedFile").get(0);
+            var files = fileUpload.files;
+            debugger;
+            if (files.length <= 0) {
+                swal("TDH", "Please Upload Elegiblity File.", "error");
+                return false;
+            }
+            else if ($("#clsLeadCredit_EligiblityRemarks").val().trim() == "") {
+                swal("TDH", "Please Input Elgiblity Remarks.", "error");
+                return false;
+            }
+        }
+
+        if ($('#chkPropertyDocVerification').is(":checked") == true) {
+            var filedata = new FormData();
+            var fileUpload = $("#PropertyDocPostedFile").get(0);
+            var files = fileUpload.files;
+            debugger;
+            if (files.length <= 0) {
+                swal("TDH", "Please Upload Property File.", "error");
+                return false;
+            }
+            else if ($("#clsLeadCredit_PropertyDocRemarks").val().trim() == "") {
+                swal("TDH", "Please Input Property Remarks.", "error");
+                return false;
+            }
+        }
+        if ($("#hfCrId").val() == "0") {
+            if ($('#chkCIBILVerification').is(":checked") == false) {
+                swal("TDH", "Please Select CIBIL Verification.", "error");
+                return false;
+
+            }
+            else if ($('#chkCAMVerification').is(":checked") == false) {
+                swal("TDH", "Please Select CAM Verification.", "error");
+                return false;
+            }
+        }
+
+        if ($("#ddlStatus :selected").text() == "Select") {
+            swal("TDH", "Please Select Status.", "error");
+        }
+        else {
+             if ($("#txtRemarks").val().trim() == "") {
+                swal("TDH", "Please Input Remarks Before Submit.", "error");
+                return false;
+        }
     }
+</script>*@
 
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>*@
+

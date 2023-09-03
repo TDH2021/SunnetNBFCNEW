@@ -1289,6 +1289,7 @@ public class DataInterface2 : DataInterface, IDisposable
                     cmd.Parameters.Add("@EligiblityRemarks", SqlDbType.VarChar).Value = cls.EligiblityRemarks;
                     cmd.Parameters.Add("@Occupation", SqlDbType.VarChar).Value = cls.Occupation;
                     cmd.Parameters.Add("@PropertyDocVerification", SqlDbType.VarChar).Value = cls.PropertyDocVerification;
+                    cmd.Parameters.Add("@CAmverification", SqlDbType.VarChar).Value = cls.CamVerification;
                     cmd.Parameters.Add("@PropertyDoc", SqlDbType.VarChar).Value = cls.PropertyDoc;
                     cmd.Parameters.Add("@PropertyDocRemarks", SqlDbType.VarChar).Value = cls.PropertyDocRemarks;
                     cmd.Parameters.Add("@ColletralType", SqlDbType.VarChar).Value = cls.ColletralType;

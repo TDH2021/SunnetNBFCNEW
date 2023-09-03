@@ -557,6 +557,9 @@ namespace Sunnet_NBFC.Models
         public string CibilDoc { get; set; }
         public string CibilRemarks { get; set; }
 
+        public string CAMCODE { get { return "CAMCODE"; } }
+        [DisplayName("CAM Generation")]
+        
 
         public string FICode { get { return "FI"; } }
         [DisplayName("FI Verification")]
@@ -683,8 +686,9 @@ namespace Sunnet_NBFC.Models
         public DateTime? CreatedDate { get; set; }
         public int? UpdatedBy { get; set; }
         public DateTime? UpdatedDate { get; set; }
-
+        public string CamVerification { get; set; }
         public HttpPostedFileBase CibilDocPostedFile { get; set; }
+
         public HttpPostedFileBase FIDocPostedFile { get; set; }
         public HttpPostedFileBase TVRDocPostedFile { get; set; }
         public HttpPostedFileBase CashFlowDocPostedFile { get; set; }

@@ -1614,7 +1614,7 @@ public class DataInterface1 : IDisposable
         return dt;
     }
 
-    //=======commom fun
+    //commom fun
     public static T GetItem<T>(DataRow dr)
     {
         Type temp = typeof(T);
@@ -1640,7 +1640,7 @@ public class DataInterface1 : IDisposable
         return obj;
     }
 
-    //======================================= start
+    //==== start
     // Flag: Has Dispose already been called?
     bool disposed = false;
 
@@ -1677,5 +1677,5 @@ public class DataInterface1 : IDisposable
 
 
 
-    //======================================= end
+    //==== end
 }

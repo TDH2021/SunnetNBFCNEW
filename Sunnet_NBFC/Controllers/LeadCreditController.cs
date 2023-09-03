@@ -529,6 +529,24 @@ namespace Sunnet_NBFC.Controllers
                         return RedirectToAction("LeadCredit", "LeadCredit", new { LeadId = M.LeadId, ComeFrom = "CreditApprove" });
                     }
                 }
+
+                if (M.clsLeadCredit.CAMDocPostedFile != null && M.clsLeadCredit.CAMDocPostedFile.ToString() != "")
+                {
+                    if (ClsCommon.CheckFileType(M.clsLeadCredit.CAMDocPostedFile.FileName.ToString()) == true)
+                    {
+                        M.clsLeadCredit.CAMDoc = UploadImage(M.clsLeadCredit.CAMCODE, M.clsLeadCredit.CAMDocPostedFile, M.LeadId);
+                        if (!string.IsNullOrEmpty(M.clsLeadCredit.PropertyDoc))
+                            M.clsLeadCredit.CamVerification = "Yes";
+                        else
+                            M.clsLeadCredit.CamVerification = null;
+                    }
+                    else
+                    {
+                        ViewBag.Error = " Please Upload Photo in jpg,jpeg,png format.";
+                        //return View(M);
+                        return RedirectToAction("LeadCredit", "LeadCredit", new { LeadId = M.LeadId, ComeFrom = "CreditApprove" });
+                    }
+                }
                 //------------------------------Property-------------------------------------------------------------------
 
 
@@ -818,6 +836,11 @@ namespace Sunnet_NBFC.Controllers
                         FolderPath = "/UploadedFiles/LeadCredit/";
                     }
                     else if (FileType == M.PropertyCode)
+                    {
+                        FilePrefix = M.PropertyCode + "_";
+                        FolderPath = "/UploadedFiles/LeadCredit/";
+                    }
+                    else if (FileType == M.CAMCODE)
                     {
                         FilePrefix = M.PropertyCode + "_";
                         FolderPath = "/UploadedFiles/LeadCredit/";

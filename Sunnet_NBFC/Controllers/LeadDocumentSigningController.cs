@@ -190,63 +190,7 @@ namespace Sunnet_NBFC.Controllers
 
             }
         }
-        //public ActionResult LeadView()
-        //{
-
-
-        //    if (Session["UserID"] != null)
-        //    {
-        //        if (String.IsNullOrEmpty(Session["UserID"].ToString()) == true)
-        //        {
-        //            return RedirectToAction("Index", "Login");
-        //        }
-        //        else
-        //        {
-        //            List<clsLeadGenerationMaster> lst = new List<clsLeadGenerationMaster>();
-        //            try
-        //            {
-        //                using (clsLeadGenerationMaster cls = new clsLeadGenerationMaster())
-        //                {
-        //                    cls.ReqType = "GetLeadAllData";
-        //                    cls.CompanyId = 1;
-        //                    cls.LeadNo = "";
-        //                    cls.LeadId = 0;
-        //                    cls.Empid = int.Parse(Session["EmpId"].ToString());
-        //                   cls.ShortStage_Name = "DocSign";
-        //                    using (DataTable dt = DataInterface.GetLeadGenerationData(cls))
-        //                    {
-        //                        if (dt != null)
-        //                        {
-        //                            ViewBag.lst = DataInterface.ConvertDataTable<clsLeadGenerationMaster>(dt);
-        //                        }
-        //                    }
-        //                }
-
-        //            }
-        //            catch (Exception e1)
-        //            {
-        //                using (clsError clsE = new clsError())
-        //                {
-        //                    clsE.ReqType = "Get";
-        //                    clsE.Mode = "WEB";
-        //                    clsE.ErrorDescrption = e1.Message;
-        //                    clsE.FunctionName = "ToBeLeadDocSignView";
-        //                    clsE.Link = "LeadDocumentSigning/ToBeLeadDocSignView";
-        //                    clsE.PageName = "LeadDocumentSigning Controller";
-        //                    clsE.UserId = "1";
-        //                    DataInterface.PostError(clsE);
-        //                }
-        //            }
-
-        //        }
-        //    }
-        //    else
-        //    {
-        //        return RedirectToAction("Index", "Login");
-        //    }
-
-        //    return View();
-        //}
+        
         
         [Sunnet_NBFC.App_Code.SessionAttribute]
         public ActionResult LeadDocumentSigning(int leadid, string ComeFrom = "DocSign")
