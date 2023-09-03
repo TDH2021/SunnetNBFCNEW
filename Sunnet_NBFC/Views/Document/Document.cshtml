@@ -1,0 +1,155 @@
+﻿@model Sunnet_NBFC.Models.clsDocument
+@using Sunnet_NBFC.App_Code
+@using Sunnet_NBFC.Models
+@{
+    ViewBag.Title = "Document";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Document Master</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    @Html.ActionLink("Back to List", "DocumentView")
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+@using (Html.BeginForm("Document", "Document", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        @Html.HiddenFor(model => model.ReqType)
+                                        @Html.HiddenFor(model => model.DocID)
+                                        @Html.HiddenFor(model => model.CompanyID)
+                                        @Html.HiddenFor(model => model.IsDelete)
+
+                                        @*@Html.HiddenFor(model => model.CreateBy)
+                                            @Html.HiddenFor(model => model.UpdateBy)*@
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.DocumentName, new { @class = "control-label" })
+                                        @Html.TextBoxFor(model => model.DocumentName, new { @class = "form-control", @required = "true" })
+                                        @Html.ValidationMessageFor(model => model.DocumentName, "", new { @class = "text-danger" })
+                                    </div>
+
+
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.ProdID, new { @class = "control-label" })
+                                        @Html.DropDownListFor(model => model.ProdID, clsProduct.GetProductDDL(), "- Select -", new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.ProdID, "", new { @class = "text-danger" })
+
+                                        @*ViewBag.StateList = ClsCommon.ToSelectList(DataInterface1.GetState(), "ID", "StateName");*@
+
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.IsRequried, new { @class = "control-label" })
+                                        &nbsp;&nbsp;&nbsp;
+                                        @Html.CheckBoxFor(model => model.IsRequried)
+                                    </div>
+
+
+                                    <div class="col-md-6">
+                                    </div>
+
+                                </div>
+
+
+                                <div class="card-footer">
+                                    @if (Model.DocID != null && Model.DocID != 0)
+                                    {
+                                        <input type="submit" value="Update" class="btn btn-primary" />
+                                    }
+                                    else
+                                    {
+                                        <input type="submit" value="Save" class="btn btn-primary" />
+                                    }
+                                    @Html.ActionLink("Cancel", "DocumentView", "Document", null, new { @class = "btn btn-danger btn-large" })
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+    </section>
+
+}
+
+<script src="~/plugins/jquery/jquery.min.js"></script>
+<script src="~/plugins/jquery/jquery.validate.min.js"></script>
+<script src="~/plugins/jquery/jquery.validate.unobtrusive.min.js"></script>
+
+@if (ViewBag.Error != null && ViewBag.Error != "")
+{
+    <script type="text/javascript">
+
+            window.onload = function () {
+                alert("@ViewBag.Error");
+            };
+    </script>
+}
+@if (ViewBag.Success != null && ViewBag.Success != "")
+{
+    <script type="text/javascript">
+
+            window.onload = function () {
+                alert("@ViewBag.Success");
+            };
+    </script>
+}
+<script>
+
+    //$("#ddlMiscType").change(function () {
+    //    debugger;
+    //    debugger;
+    //    var ddtext = $("#ddlMiscType option:selected").text();
+    //    $("#hfMiscType").val(ddtext);
+
+    //})
+</script>
+
+@*@if (ViewBag.Success != null && ViewBag.Success != "")
+    {
+        <script>
+            $(function () {
+                var Message = '@ViewBag.Success';
+                alert(Message);
+            });
+        </script>
+    }*@
+

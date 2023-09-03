@@ -1,0 +1,133 @@
+﻿@model Sunnet_NBFC.Models.clsChargesType
+@using Sunnet_NBFC.App_Code
+@using Sunnet_NBFC.Models
+@{
+	ViewBag.Title = "ChargesType";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+	<div class="container-fluid">
+		<div class="row mb-2">
+			<div class="col-sm-6">
+				<h1>Charges Type</h1>
+			</div>
+			<div class="col-sm-6">
+				<ol class="breadcrumb float-sm-right">
+					@Html.ActionLink("Back to List", "ChargesTypeView")
+				</ol>
+			</div>
+		</div>
+	</div><!-- /.container-fluid -->
+</section>
+
+@using (Html.BeginForm("ChargesType", "ChargesType", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+	@Html.AntiForgeryToken()
+	@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+	<section class="content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-body">
+
+							<div class="form-group">
+								<div class="row">
+									<div class="col-md-12">
+										@Html.HiddenFor(model => model.ReqType)
+										@Html.HiddenFor(model => model.ChargeTypeID)
+										@Html.HiddenFor(model => model.CompanyID)
+										@Html.HiddenFor(model => model.IsDelete)
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="row">
+									<div class="col-md-6">
+										@Html.LabelFor(model => model.ChargeTypeCode, new { @class = "control-label" })
+										@Html.TextBoxFor(model => model.ChargeTypeCode, new { @class = "form-control" })
+										@Html.ValidationMessageFor(model => model.ChargeTypeCode, "", new { @class = "text-danger" })
+									</div>
+									<div class="col-md-6">
+										@Html.LabelFor(model => model.ChargeTypeName, new { @class = "control-label" })
+										@Html.TextBoxFor(model => model.ChargeTypeName, new { @class = "form-control" })
+										@Html.ValidationMessageFor(model => model.ChargeTypeName, "", new { @class = "text-danger" })
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-md-6">
+										@Html.LabelFor(model => model.KeyID, new { @class = "control-label" })
+										@Html.DropDownListFor(model => model.KeyID, clsKeyDDL.GetKeyDDL(), "Select", new { @class = "form-control", @id = "KeyID" })
+										@Html.ValidationMessageFor(model => model.KeyID, "", new { @class = "text-danger" })
+									</div>
+
+									<div class="col-md-6">
+										@Html.LabelFor(model => model.LedgerID, new { @class = "control-label" })
+										@Html.DropDownListFor(model => model.LedgerID, clsLedgerDDL.GetLedgerDDL(), "Select", new { @class = "form-control", @id = "LedgerID" })
+										@Html.ValidationMessageFor(model => model.LedgerID, "", new { @class = "text-danger" })
+									</div>
+								</div>
+
+							</div>
+
+							<div class="card-footer">
+								@if (Model.ChargeTypeID != null && Model.ChargeTypeID != 0)
+								{
+									<input type="submit" value="Update" class="btn btn-primary" />
+								}
+								else
+								{
+									<input type="submit" value="Save" class="btn btn-primary" />
+								}
+								@Html.ActionLink("Cancel", "ChargesTypeView", "ChargesType", null, new { @class = "btn btn-danger btn-large" })
+							</div>
+
+
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+	</section>
+
+}
+
+<script src="~/Scripts/CustomJS/StageRole.js"></script>
+@if (ViewBag.Error != null && ViewBag.Error != "")
+{
+	<script type="text/javascript">
+
+            window.onload = function () {
+               // alert("@ViewBag.Error");
+				swal("TDH", "@ViewBag.Error", "error");
+				callfillemp();
+            };
+	</script>
+}
+@if (ViewBag.Success != null && ViewBag.Success != "")
+{
+	<script type="text/javascript">
+            window.onload = function () {
+                //alert("@ViewBag.Success");
+				swal("TDH", "@ViewBag.Success", "Success");
+            };
+	</script>
+}
+
+
+
+<script>
+
+	$(document).ready(function () {
+		$('.datepicker').datepicker();
+	});
+</script>
+
+

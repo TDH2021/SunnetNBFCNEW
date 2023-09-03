@@ -1,0 +1,1202 @@
+﻿@model Sunnet_NBFC.Models.clsLeadGenerationMaster
+
+
+<div class="form-group" style="margin-top:20px;">
+    <div class="col-md-12">
+        <h5> Co-Applicant Details</h5>
+    </div>
+    <hr>
+
+    <div class="row">
+
+
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1"> Aadhar No </label>
+            @Html.TextBoxFor(model => model.CO_Adhaar, new
+       {
+           @class = "form-control",
+           @placeholder = "Aadhar No",
+           @name = "CO_AadharNo",
+           @required = "true",
+           @autocomplete = "off",
+           @id = "CO_AadharNo",
+           @onkeypress = "return isNumber(this.value);",
+           @maxlength = "12",
+
+
+
+       })
+            @Html.HiddenFor(model => model.CO_AAdharverfiy, new { @class = "form-control", @id = "hdn_co_aadhar_verify" })
+        </div>
+
+
+        <div class="col-md-1">
+
+
+            @if (ViewBag.AAdharIsAPICheck == "1")
+            {
+                <button style="margin-top: 35px;" onclick="CoApplicantAAdharVerification();" class="btnCoAadharVerify"> Verify </button>
+
+            }
+            else
+            {
+                <button style="margin-top: 35px;" class="btnCoAadharVerify" disabled> Verify </button>
+
+            }
+
+
+        </div>
+
+
+
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1"> Pan No </label>
+            @Html.TextBoxFor(model => model.CO_PAN, new
+       {
+           @class = "form-control",
+           @placeholder = "PanNo",
+           @autocomplete = "off",
+           @name = "CO_PanNo",
+           @required = "true",
+           @id = "CO_PanNo",
+
+       })
+            @Html.HiddenFor(model => model.CO_Panverfiy, new { @class = "form-control", @id = "hdn_co_PanVerify" })
+        </div>
+        <div class="col-md-2">
+
+
+
+            @if (ViewBag.PANIsAPICheck == "1")
+            {
+                <button style="margin-top: 35px;" onclick="CoApplicantPanVerification();" class="btnCoPanVerify"> Verify </button>
+
+            }
+            else
+            {
+                <button style="margin-top: 35px;" disabled class="btnCoPanVerify"> Verify </button>
+
+            }
+
+        </div>
+
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-1">
+            <label class="required" for="exampleInputEmail1">Prefix</label>
+
+            @Html.DropDownListFor(model => model.CO_Prefix,
+      new List<SelectListItem> {
+    new SelectListItem { Value = "" , Text = "- Select Prefix -" },
+    new SelectListItem { Value = "Mr" , Text = "Mr." },
+    new SelectListItem { Value = "Mrs" , Text = "Mrs." },
+    //new SelectListItem { Value = "Smt" , Text = "Smt." }
+    },
+      new { @class = "form-control", @id = "CoPrefix" })
+        </div>
+
+
+
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">First Name</label>
+            @Html.TextBoxFor(model => model.CO_FirstName, new
+       {
+           @class = "form-control",
+           @placeholder = "First Name",
+           @name = "FName",
+           @required = "true",
+           @autocomplete = "off",
+           @maxlength = "50",
+           @id = "CO_FName"
+       })
+
+
+        </div>
+
+        <div class="col-md-3">
+            <label for="exampleInputEmail1">Middle Name</label>
+            @Html.TextBoxFor(model => model.CO_MiddleName, new
+       {
+           @class = "form-control",
+           @placeholder = "Middle Name",
+           @autocomplete = "off",
+           @name = "MName",
+           @required = "true",
+           @id = "CO_MName"
+
+       })
+        </div>
+
+        <div class="col-md-3">
+            <label for="exampleInputEmail1">Last Name</label>
+            @Html.TextBoxFor(model => model.CO_LastName, new
+       {
+           @class = "form-control",
+           @placeholder = "Last Name",
+           @autocomplete = "off",
+           @name = "LName",
+           @required = "true",
+           @id = "CO_LName"
+
+       })
+        </div>
+
+        <div class="col-md-2s">
+            <label class="required" for="exampleInputEmail1">Gender</label>
+            @Html.DropDownListFor(model => model.CO_Gender,
+                 new List<SelectListItem> {
+                                    new SelectListItem { Value = "0" , Text = "- Select Gender -" },
+                                    new SelectListItem { Value = "Male" , Text = "Male" },
+                                    new SelectListItem { Value = "Female" , Text = "Female" },
+                                    new SelectListItem { Value = "Transgender" , Text = "Transgender" }
+                 },
+                 new { @class = "form-control", @id = "CO_Gender" })
+
+
+        </div>
+
+    </div>
+
+
+    <div class="row">
+
+
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">Date of Birth</label>
+            @Html.TextBoxFor(model => model.CO_DOB, new
+       {
+           @class = "form-control datestyle",
+           @placeholder = "Date of Birth",
+           @name = "Dob",
+           @required = "true",
+           @autocomplete = "off",
+           @id = "CO_Dob",
+
+       })
+        </div>
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">Martial Status</label>
+
+
+            @Html.DropDownListFor(model => model.CO_Marital_Status,
+       new List<SelectListItem> {
+  new SelectListItem { Value = "" , Text = "- Select Marital -" },
+  new SelectListItem { Value = "Single" , Text = "Single" },
+  new SelectListItem { Value = "Married" , Text = "Married" },
+   new SelectListItem { Value = "Divorce" , Text = "Divorce" },
+   new SelectListItem { Value = "Widow" , Text = "Widow" }
+   },
+       new { @class = "form-control", @id = "CO_MartialStatus" })
+
+
+        </div>
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">Corrospondance Address</label>
+            @Html.TextBoxFor(model => model.CO_PresentAddress, new
+       {
+           @class = "form-control",
+           @placeholder = "Present Address",
+           @name = "PresentAddress",
+           @required = "true",
+           @id = "CO_PresentAddress",
+           @autocomplete = "off",
+           @onchange = "SetValues_CO();"
+
+       })
+        </div>
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">Corrospondance Pincode</label>
+            @Html.TextBoxFor(model => model.CO_PresentPinCode, new
+       {
+           @class = "form-control",
+           @placeholder = "Present Pincode",
+           @name = "PresentPincode",
+           @required = "true",
+           @autocomplete = "off",
+           @id = "CO_PresentPincode",
+           @onchange = "GetStateCity_PIN(this.value,Co_State,CO_City);",
+           @onkeypress = "return isNumber(this.value);",
+           @maxlength = "10"
+       })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">Corrospondance State</label>
+
+
+            @Html.TextBoxFor(model => model.CO_PresentStateId, new
+       {
+           @class = "form-control",
+           @placeholder = "- Select State -",
+           @name = "- Select State -",
+           @required = "true",
+           @type = "text",
+           @id = "Co_State",
+           @autocomplete = "off",
+           @readonly = "true"
+
+       })
+            @Html.ValidationMessageFor(model => model.CO_PresentStateId, "", new { @class = "text-danger" })
+
+
+        </div>
+
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">Corrospondance City</label>
+            @Html.TextBoxFor(model => model.CO_PresentCityId, new
+       {
+           @class = "form-control",
+           @placeholder = "- Select City -",
+           @name = "- Select City -",
+           @required = "true",
+           @type = "text",
+           @id = "CO_City",
+           @autocomplete = "off",
+           @onchange = "SetValues3_CO();",
+           @readonly = "true"
+
+       })
+
+            @*@Html.DropDownListFor(model => model.CO_PresentCityId, ViewBag.CityList as SelectList, new { @class = "form-control" })*@
+            @Html.ValidationMessageFor(model => model.CO_PresentCityId, "", new { @class = "text-danger" })
+
+
+        </div>
+
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">Corrospondance Village</label>
+            @Html.TextBoxFor(model => model.CO_PresentVillage, new
+       {
+           @class = "form-control",
+           @placeholder = "Present Village",
+           @name = "Present Village",
+           @required = "true",
+           @id = "CO_PresentVillage",
+           @autocomplete = "off",
+           @onchange = "SetValues4_CO();"
+
+       })
+        </div>
+
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">Corrospondance District</label>
+            @Html.TextBoxFor(model => model.CO_PresentDistrict, new
+       {
+           @class = "form-control",
+           @placeholder = "Present District",
+           @name = "Present District",
+           @required = "true",
+           @id = "CO_PresentDistrict",
+           @autocomplete = "off",
+           @onchange = "SetValues5_CO();"
+
+       })
+        </div>
+    </div>
+    <div class="row" style="margin-bottom:10px; margin-top:10px;">
+        <div class="col-md-12">
+            <input type="checkbox" id="co_chlpercorr" name="co_chlpercorr" value="Yes" onchange="Co_Applicantpermascorr();">
+            <label class="required" for="co_chlpercorr"> Permanent Address As Same As Corrospondance Address</label><br>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">Permanent Address</label>
+            @Html.TextBoxFor(model => model.CO_PermanentAddress, new
+       {
+           @class = "form-control",
+           @placeholder = "Permanent Address",
+           @name = "PermanentAddress",
+           @required = "true",
+           @autocomplete = "off",
+           @id = "CO_PermanentAddress"
+
+       })
+        </div>
+
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">Permanent Pincode</label>
+            @Html.TextBoxFor(model => model.CO_PermanentPincode, new
+       {
+           @class = "form-control",
+           @placeholder = "Permanent Pincode",
+           @name = "PermanentPincode",
+           @required = "true",
+           @id = "CO_PermanentPincode",
+           @autocomplete = "off",
+           @onchange = "SetValues6_CO();",
+           @onkeypress = "return isNumber(this.value);",
+           @maxlength = "10",
+
+
+
+       })
+        </div>
+
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">Permanent State</label>
+
+            @Html.TextBoxFor(model => model.CO_PermanentStateId, new
+       {
+           @class = "form-control",
+           @placeholder = "- Select State -",
+           @name = "- Select State -",
+           @required = "true",
+           @type = "text",
+           @autocomplete = "off",
+           @id = "CO_permanentstate",
+           @readonly = "true"
+       })
+
+
+
+
+
+
+            @Html.ValidationMessageFor(model => model.CO_PermanentStateId, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">Permanent City</label>
+
+
+            @Html.TextBoxFor(model => model.CO_PermanentStateId, new
+       {
+           @class = "form-control",
+           @placeholder = "- Select City -",
+           @name = "- Select City -",
+           @required = "true",
+           @type = "text",
+           @id = "CO_permanentcity",
+           @autocomplete = "off",
+           @readonly = "true"
+       })
+
+
+
+            @*@Html.DropDownListFor(model => model.PermanentCityId, ViewBag.CityList as SelectList, new { @class = "form-control" })*@
+            @Html.ValidationMessageFor(model => model.CO_PermanentCityId, "", new { @class = "text-danger" })
+
+
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">Permanent Village</label>
+            @Html.TextBoxFor(model => model.CO_PermanentDistrict, new
+       {
+           @class = "form-control",
+           @placeholder = "Permanent Village",
+           @name = "Permanent Village",
+           @required = "true",
+           @autocomplete = "off",
+           @id = "CO_PermanentVillage"
+
+       })
+        </div>
+
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">Permanent District</label>
+            @Html.TextBoxFor(model => model.CO_PermanentDistrict, new
+       {
+           @class = "form-control",
+           @placeholder = "Permanent District",
+           @name = "Permanent District",
+           @required = "true",
+           @autocomplete = "off",
+           @id = "CO_PermanentDistrict"
+
+       })
+        </div>
+
+
+
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">Mobile No</label>
+            @Html.TextBoxFor(model => model.CO_Mobile_No, new
+       {
+           @class = "form-control",
+           @placeholder = "CO Applicant Mobile No",
+           @name = "CibilScore",
+           @required = "true",
+           @autocomplete = "off",
+           @id = "CO_MObileNO",
+           @onkeypress = "return isNumber(this.value);",
+           @maxlength = "10"
+
+       })
+        </div>
+        <div class="col-md-3">
+            <label for="exampleInputEmail1">Email Id</label>
+            @Html.TextBoxFor(model => model.CO_Email_Id, new
+       {
+           @class = "form-control",
+           @placeholder = "Email Id",
+           @name = "CO_EmailId",
+           @autocomplete = "off",
+           @id = "CO_EmailId"
+
+       })
+        </div>
+
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">
+                Cibil Score
+            </label>
+            @Html.TextBoxFor(model => model.CibilScore, new
+       {
+           @class = "form-control",
+           @placeholder = "Cibil Score",
+           @name = "CO_CibilScore",
+           @required = "true",
+           @id = "CO_CibilScore",
+           @autocomplete = "off",
+           @onkeypress = "return isNumber(this.value);",
+           @maxlength = "4"
+
+       })
+        </div>
+
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">CoApplicant Image</label>
+            <input type="file" id="cofileuploadapplicantimg" accept="image/x-png,image/jpeg" />
+
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="COModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <h4 class="modal-title">OTP Verification</h4>
+            </div>
+            <div class="modal-body">
+                <Center><p>Enter OTP Here</p></Center>
+
+                <div class="row">
+                    <input type="hidden" id="COreferenceId" />
+                    <input type="hidden" id="COresponseCode" />
+
+                    <div class="col-md-2">
+                        @Html.TextBoxFor(model => model.PanNo, new
+                   {
+                       @class = "form-control",
+                       @placeholder = "X",
+                       @name = "OTP1",
+                       @required = "true",
+                       @id = "COOTP1",
+                       @style = "text-align:center",
+                       @maxlength = "1",
+                       @type = "number"
+
+
+
+                   })
+                    </div>
+                    <div class="col-md-2">
+                        @Html.TextBoxFor(model => model.PanNo, new
+                   {
+                       @class = "form-control",
+                       @placeholder = "X",
+                       @name = "OTP2",
+                       @required = "true",
+                       @id = "COOTP2",
+                       @style = "text-align:center",
+                       @maxlength = "1",
+                       @type = "number"
+                   })
+                    </div>
+                    <div class="col-md-2">
+                        @Html.TextBoxFor(model => model.PanNo, new
+                   {
+                       @class = "form-control",
+                       @placeholder = "X",
+                       @name = "OTP3",
+                       @required = "true",
+                       @id = "COOTP3",
+                       @style = "text-align:center",
+                       @maxlength = "1",
+                       @type = "number"
+
+                   })
+                    </div>
+                    <div class="col-md-2">
+                        @Html.TextBoxFor(model => model.PanNo, new
+                   {
+                       @class = "form-control",
+                       @placeholder = "X",
+                       @name = "OTP4",
+                       @required = "true",
+                       @id = "COOTP4",
+                        @style = "text-align:center",
+                       @maxlength = "1",
+                       @type = "number"
+                   })
+                    </div>
+                    <div class="col-md-2">
+                        @Html.TextBoxFor(model => model.PanNo, new
+                   {
+                       @class = "form-control",
+                       @placeholder = "X",
+                       @name = "OT5P5",
+                       @required = "true",
+                       @id = "COOTP5",
+                       @style = "text-align:center",
+                       @maxlength = "1",
+                       @type = "number"
+                   })
+                    </div>
+                    <div class="col-md-2">
+                        @Html.TextBoxFor(model => model.PanNo, new
+                   {
+                       @class = "form-control",
+                       @placeholder = "X",
+                       @name = "COOTP6",
+                       @required = "true",
+                       @id = "OTP6",
+                       @style = "text-align:center",
+                       @maxlength = "1",
+                       @type = "number"
+
+                   })
+                    </div>
+
+                </div>
+
+                <div class="card-footer" style="margin-top:10px;">
+                    <Center><button type="submit" class="btn btn-primary" onclick="CoApplicantChkAadharOTP();"> Verify </button> </Center>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    function CoApplicantAAdharVerification() {
+        debugger
+        var AadharNo = $("#CO_AadharNo").val();
+        var emailid = "";
+
+        if (AadharNo.length != 12) {
+            swal({
+                title: "Error",
+                text: "Please enter correct aadhar no",
+                icon: "error",
+                button: true,
+
+            })
+                .then((willConfirm) => {
+                    if (willConfirm) {
+
+                    }
+                });
+
+        } else {
+            debugger
+            var urlvariable;
+
+            urlvariable = "https://sm-kyc-sandbox.scoreme.in/kyc/external/aadhaarverificationdetails";
+
+            var ItemJSON;
+
+            ItemJSON = '{"aadhaarNumber": "' + AadharNo + '","email":  "' + emailid + '"}';
+            debugger
+            URL = urlvariable;  //Your URL
+
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = callbackFunction(xmlhttp);
+            xmlhttp.open("POST", URL, false);
+            xmlhttp.setRequestHeader("Content-Type", "application/json");
+            xmlhttp.setRequestHeader('ClientId', "9b7f56d730cb292199b7a49620fa80f6");
+            xmlhttp.setRequestHeader('ClientSecret', "60812117e31f68b0475960d167a6fc856a09de16cc89f17f8ece51e29f216b15");
+            xmlhttp.onreadystatechange = callbackFunction(xmlhttp);
+            xmlhttp.send(ItemJSON);
+            debugger
+
+            var data = JSON.parse(xmlhttp.responseText);
+
+            if (data.responseMessage == "OTP successfully sent to mobile number.") {
+                document.getElementById("referenceId").value = data.data.referenceId;
+                swal({
+                    title: "Success",
+                    text: data.responseMessage,
+                    icon: "success",
+                    button: true,
+
+                })
+                    .then((willConfirm) => {
+                        if (willConfirm) {
+
+                            debugger
+
+                            $.ajax({
+                                url: "/LeadGeneration/SetApiResponse",
+                                type: "Get",
+                                dataType: "json",
+                                data: {
+                                    stage: 1,
+                                    OTP: "",
+                                    referenceId: "",
+                                    AadharNo: AadharNo,
+                                    email: emailid,
+                                    urlvariable: urlvariable,
+                                    responseCode: data.responseCode,
+                                    responseMessage: data.responseMessage,
+                                    response: JSON.parse(xmlhttp.responseText)
+                                },
+                                success: function (result) {
+
+                                }
+
+                            });
+
+
+                            $("#COModal").modal()
+                        }
+                    });
+
+            } else if (data.message == "Credits not available.") {
+                swal({
+                    title: "Error",
+                    text: data.message,
+                    icon: "error",
+                    button: true,
+
+                })
+                    .then((willConfirm) => {
+                        if (willConfirm) {
+
+                            $.ajax({
+                                url: "/LeadGeneration/SetApiResponse",
+                                type: "Get",
+                                dataType: "json",
+                                data: {
+                                    stage: 1,
+                                    OTP: "",
+                                    referenceId: "",
+                                    AadharNo: AadharNo,
+                                    email: emailid,
+                                    urlvariable: urlvariable,
+                                    responseCode: data.status,
+                                    responseMessage: data.message,
+                                    response: JSON.parse(xmlhttp.responseText)
+                                },
+                                success: function (result) {
+
+                                }
+
+                            });
+
+                        }
+                    });
+
+            } else {
+                swal({
+                    title: "Error",
+                    text: data.responseMessage,
+                    icon: "error",
+                    button: true,
+
+                })
+                    .then((willConfirm) => {
+                        if (willConfirm) {
+
+                            $.ajax({
+                                url: "/LeadGeneration/SetApiResponse",
+                                type: "Get",
+                                dataType: "json",
+                                data: {
+                                    stage: 1,
+                                    OTP: "",
+                                    referenceId: "",
+                                    AadharNo: AadharNo,
+                                    email: emailid,
+                                    urlvariable: urlvariable,
+                                    responseCode: data.responseCode,
+                                    responseMessage: data.responseMessage,
+                                    response: JSON.parse(xmlhttp.responseText)
+                                },
+                                success: function (result) {
+
+                                }
+
+                            });
+
+                        }
+                    });
+            }
+
+        }
+
+
+    }
+    function CoApplicantcallbackFunction(xmlhttp) {
+        //alert(xmlhttp.responseXML);
+    }
+    function CoApplicantChkAadharOTP() {
+        debugger
+        var OTP = $("#COOTP1").val() + $("#COOTP2").val() + $("#COOTP3").val() + $("#COOTP4").val() + $("#COOTP5").val() + $("#COOTP6").val();
+        if (OTP.length != 6) {
+            swal({
+                title: "Error",
+                text: "Please enter valid OTP",
+                icon: "error",
+                button: true,
+
+            })
+                .then((willConfirm) => {
+                    if (willConfirm) {
+
+                    }
+                });
+
+
+        } else {
+
+
+            debugger
+            var referenceId = $("#COreferenceId").val();
+            var urlvariable;
+
+            urlvariable = "https://sm-kyc-sandbox.scoreme.in/kyc/external/aadhaarotpverification";
+
+            var ItemJSON;
+
+            ItemJSON = '{"otp": "' + OTP + '","referenceId":  "' + referenceId + '"}';
+
+            URL = urlvariable;  //Your URL
+
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = callbackFunction(xmlhttp);
+            xmlhttp.open("POST", URL, false);
+            xmlhttp.setRequestHeader('ClientId', "9b7f56d730cb292199b7a49620fa80f6");
+            xmlhttp.setRequestHeader('ClientSecret', "60812117e31f68b0475960d167a6fc856a09de16cc89f17f8ece51e29f216b15");
+            xmlhttp.onreadystatechange = callbackFunction(xmlhttp);
+            debugger
+
+            xmlhttp.send(ItemJSON);
+
+            var data = JSON.parse(xmlhttp.responseText);
+
+
+            if (data.responseMessage == "Successfully Completed.") {
+
+                swal({
+                    title: "Success",
+                    text: "Aadhar verify successfully",
+                    icon: "success",
+                    button: true,
+
+                })
+                    .then((willConfirm) => {
+                        if (willConfirm) {
+                            debugger
+                            document.getElementById("hdn_co_aadhar_verify").value = "Y";
+
+
+                            $.ajax({
+                                url: "/LeadGeneration/SetApiResponse",
+                                type: "Get",
+                                dataType: "json",
+                                data: {
+                                    stage: 2,
+                                    OTP: OTP,
+                                    referenceId: referenceId,
+                                    AadharNo: "",
+                                    email: "",
+                                    urlvariable: urlvariable,
+                                    responseCode: data.responseCode,
+                                    responseMessage: data.responseMessage,
+                                    response: JSON.parse(xmlhttp.responseText)
+                                },
+                                success: function (result) {
+
+                                }
+
+                            });
+
+                            $("#COModal").modal("hide");
+                        }
+                    });
+
+
+            } else if (data.message == "Credits not available.") {
+                swal({
+                    title: "Error",
+                    text: data.message,
+                    icon: "error",
+                    button: true,
+
+                })
+                    .then((willConfirm) => {
+                        if (willConfirm) {
+
+                            $.ajax({
+                                url: "/LeadGeneration/SetApiResponse",
+                                type: "Get",
+                                dataType: "json",
+                                data: {
+                                    stage: 1,
+                                    OTP: "",
+                                    referenceId: "",
+                                    AadharNo: AadharNo,
+                                    email: emailid,
+                                    urlvariable: urlvariable,
+                                    responseCode: data.status,
+                                    responseMessage: data.message,
+                                    response: JSON.parse(xmlhttp.responseText)
+                                },
+                                success: function (result) {
+
+                                }
+
+                            });
+
+                        }
+                    });
+
+            } else {
+                swal({
+                    title: "Error",
+                    text: data.responseMessage,
+                    icon: "error",
+                    button: true,
+
+                })
+                    .then((willConfirm) => {
+                        if (willConfirm) {
+                            $.ajax({
+                                url: "/LeadGeneration/SetApiResponse",
+                                type: "Get",
+                                dataType: "json",
+                                data: {
+                                    stage: 2,
+                                    OTP: OTP,
+                                    referenceId: referenceId,
+                                    AadharNo: "",
+                                    email: "",
+                                    urlvariable: urlvariable,
+                                    responseCode: data.responseCode,
+                                    responseMessage: data.responseMessage,
+                                    response: JSON.parse(xmlhttp.responseText)
+                                },
+                                success: function (result) {
+
+                                }
+
+                            });
+                        }
+                    });
+
+
+
+            }
+
+
+
+        }
+
+    }
+
+    function CoApplicantPanVerification() {
+        debugger
+
+        var panNumber = $("#CO_PanNo").val();
+        var fullName = $("#CO_FName").val() + " " + $("#CO_MName").val() + " " + $("#CO_LName").val();
+        var dob = moment($("#CO_Dob").val()).format('DD-MMM-YYYY');
+
+        if (fullName.trim().length == 0) {
+            swal({
+                title: "Error",
+                text: "Please enter co applicant full name",
+                icon: "error",
+                button: true,
+
+            })
+                .then((willConfirm) => {
+                    if (willConfirm) {
+
+                    }
+                });
+
+        }
+        else if (panNumber.length != 10) {
+            swal({
+                title: "Error",
+                text: "Please enter correct pan no",
+                icon: "error",
+                button: true,
+
+            })
+                .then((willConfirm) => {
+                    if (willConfirm) {
+
+                    }
+                });
+
+        }
+        else if (dob.length == 0) {
+            swal({
+                title: "Error",
+                text: "Please enter dob",
+                icon: "error",
+                button: true,
+
+            })
+                .then((willConfirm) => {
+                    if (willConfirm) {
+
+                    }
+                });
+
+        } else if (dob == "Invalid date") {
+            swal({
+                title: "Error",
+                text: "Please enter correct dob",
+                icon: "error",
+                button: true,
+
+            })
+                .then((willConfirm) => {
+                    if (willConfirm) {
+
+                    }
+                });
+
+        } else {
+            debugger
+            var urlvariable;
+
+            urlvariable = "https://sm-kyc-sandbox.scoreme.in/kyc/external/panverification";
+
+            var ItemJSON;
+
+            ItemJSON = '{"panNumber": "' + panNumber + '","fullName":  "' + fullName + '", "dateOfBirth":  "' + dob + '", "status":  "' + "individual" + '"}';
+
+            debugger
+            alert(ItemJSON)
+
+            URL = urlvariable;  //Your URL
+
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = callbackFunction(xmlhttp);
+            xmlhttp.open("POST", URL, false);
+            xmlhttp.setRequestHeader("Content-Type", "application/json");
+            xmlhttp.setRequestHeader('ClientId', "9b7f56d730cb292199b7a49620fa80f6");
+            xmlhttp.setRequestHeader('ClientSecret', "60812117e31f68b0475960d167a6fc856a09de16cc89f17f8ece51e29f216b15");
+            xmlhttp.onreadystatechange = callbackFunction(xmlhttp);
+            xmlhttp.send(ItemJSON);
+            debugger
+
+            var data = JSON.parse(xmlhttp.responseText);
+
+            if (data.responseMessage == "Successfully Submitted.") {
+                document.getElementById("referenceId").value = data.data.referenceId;
+                swal({
+                    title: "Success",
+                    text: data.responseMessage,
+                    icon: "success",
+                    button: true,
+
+                })
+                    .then((willConfirm) => {
+                        if (willConfirm) {
+                            debugger
+                            data = JSON.parse(xmlhttp.responseText);
+                            var rid = data.data.referenceId;
+                            debugger
+
+
+                            $.ajax({
+                                url: "/LeadGeneration/SetPANApiResponse",
+                                type: "Get",
+                                dataType: "json",
+                                data: {
+                                    stage: 1,
+                                    ApiName: "PanVerify",
+                                    OTP: "",
+                                    referenceId: "",
+                                    Panno: panNumber,
+                                    email: "",
+                                    urlvariable: urlvariable,
+                                    responseCode: data.responseCode,
+                                    responseMessage: data.responseMessage,
+                                    response: JSON.parse(xmlhttp.responseText)
+                                },
+                                success: function (result) {
+
+                                }
+
+                            });
+
+
+
+                            $.ajax({
+                                url: "https://sm-kyc-sandbox.scoreme.in/kyc/external/getkycrequestresponse?referenceId=" + rid,
+                                type: 'GET',
+                                dataType: 'json',
+                                headers: {
+                                    'ClientId': "9b7f56d730cb292199b7a49620fa80f6",
+                                    'ClientSecret': "60812117e31f68b0475960d167a6fc856a09de16cc89f17f8ece51e29f216b15"
+                                },
+                                contentType: 'application/json; charset=utf-8',
+                                success: function (result) {
+                                    // CallBack(result);
+                                    debugger
+
+                                    if (data.responseMessage == "Successfully Submitted.") {
+
+                                        swal({
+                                            title: "Success",
+                                            text: "Pan verify successfully",
+                                            icon: "success",
+                                            button: true,
+
+                                        })
+                                            .then((willConfirm) => {
+                                                if (willConfirm) {
+                                                    document.getElementById("hdn_co_PanVerify").value = "Y";
+
+                                                    $.ajax({
+                                                        url: "/LeadGeneration/SetPANApiResponse",
+                                                        type: "Get",
+                                                        dataType: "json",
+                                                        data: {
+                                                            stage: 2,
+                                                            ApiName: "PanOTPVerify",
+                                                            OTP: "",
+                                                            referenceId: rid,
+                                                            Panno: panNumber,
+                                                            email: "",
+                                                            urlvariable: urlvariable,
+                                                            responseCode: data.responseCode,
+                                                            responseMessage: data.responseMessage,
+                                                            response: JSON.parse(xmlhttp.responseText)
+                                                        },
+                                                        success: function (result) {
+
+                                                        }
+
+                                                    });
+
+                                                }
+                                            });
+
+
+                                    } else {
+                                        swal({
+                                            title: "Error",
+                                            text: data.responseMessage,
+                                            icon: "error",
+                                            button: true,
+
+                                        })
+                                            .then((willConfirm) => {
+                                                if (willConfirm) {
+                                                    $.ajax({
+                                                        url: "/LeadGeneration/SetPANApiResponse",
+                                                        type: "Get",
+                                                        dataType: "json",
+                                                        data: {
+                                                            stage: 2,
+                                                            ApiName: "PanOTPVerify",
+                                                            OTP: "",
+                                                            referenceId: rid,
+                                                            Panno: panNumber,
+                                                            email: "",
+                                                            urlvariable: urlvariable,
+                                                            responseCode: data.responseCode,
+                                                            responseMessage: data.responseMessage,
+                                                            response: JSON.parse(xmlhttp.responseText)
+                                                        },
+                                                        success: function (result) {
+
+                                                        }
+
+                                                    });
+                                                }
+                                            });
+
+
+
+                                    }
+
+
+
+
+
+                                },
+                                error: function (error) {
+                                    debugger
+                                    alert(error);
+                                }
+                            })
+
+
+
+
+
+                        }
+                    });
+
+            } else {
+                swal({
+                    title: "Error",
+                    text: data.responseMessage,
+                    icon: "error",
+                    button: true,
+
+                })
+                    .then((willConfirm) => {
+                        if (willConfirm) {
+                            $.ajax({
+                                url: "/LeadGeneration/SetPANApiResponse",
+                                type: "Get",
+                                dataType: "json",
+                                data: {
+                                    stage: 1,
+                                    ApiName: "PanVerify",
+                                    OTP: "",
+                                    referenceId: "",
+                                    Panno: panNumber,
+                                    email: "",
+                                    urlvariable: urlvariable,
+                                    responseCode: data.responseCode,
+                                    responseMessage: data.responseMessage,
+                                    response: JSON.parse(xmlhttp.responseText)
+                                },
+                                success: function (result) {
+
+                                }
+
+                            });
+
+                        }
+                    });
+            }
+
+        }
+
+
+    }
+
+
+</script>
+
+

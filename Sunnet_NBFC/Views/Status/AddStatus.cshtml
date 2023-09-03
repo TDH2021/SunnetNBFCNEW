@@ -1,0 +1,181 @@
+﻿@model Sunnet_NBFC.Models.clsStatusMaster
+
+@{
+    ViewBag.Title = "AddStatus";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Add Status</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Add Status</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        <label for="exampleInputEmail1">Status</label>
+                                        @Html.TextBoxFor(model => model.Status, new
+                                   {
+                                       @class = "form-control",
+                                       @placeholder = "Status",
+                                       @name = "Status",
+                                       @required = "true",
+                                       @maxlength = "50",
+                                       @id = "Status",
+                                       @autocomplete = "off"
+                                   })
+
+
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label for="exampleInputEmail1">Status Desc</label>
+                                        @Html.TextAreaFor(model => model.StatusDesc, new
+                                   {
+                                       @class = "form-control",
+                                       @placeholder = "Status Description",
+                                       @name = "Status Description",
+                                       @required = "true",
+                                       @id = "StatusDesc",
+                                       @maxlength = "100"
+                                   })
+                                    </div>
+                                </div>
+                          
+                            <div class="card-footer" style="margin-top:10px;">
+                                <button type="submit" class="btn btn-primary" onclick="Validation();">Submit</button>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.row -->
+            </div>
+        </div>
+
+    </section>
+
+
+<script src="~/plugins/jquery/jquery.min.js"></script>
+<script src="~/plugins/jquery/jquery.validate.min.js"></script>
+<script src="~/plugins/jquery/jquery.validate.unobtrusive.min.js"></script>
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+    </script>
+}
+
+<script type="text/javascript">
+    function Validation() {
+        var regex = /^[a-zA-Z]*$/;
+        var status = $("#Status").val();
+        var StatusDesc = $("#StatusDesc").val();
+        var ReqType = "Insert";
+        var CompanyId = 1;
+        if (status.length == 0) {
+            alert("Please enter status");
+
+        } else if (!regex.test(status)) {
+            alert("Please enter only alphabets")
+
+        } else if (StatusDesc.length == 0) {
+            alert("Please enter StatusDesc");
+
+        } else {
+
+              var filedata = new FormData();
+
+            var AllDataArray = {
+               "Status": status,
+                "StatusDesc": StatusDesc,
+                "ReqType": ReqType,
+                "CompanyID": CompanyId,
+            }
+
+            filedata.append('AllDataArray', JSON.stringify(AllDataArray));
+
+             $.ajax({
+            url: '@Url.Action("AddRequestStatus", "Status")',
+                 type: "POST",
+                 contentType: false,
+                 processData: false,
+                 data: filedata,
+
+            success: function (result) {
+                debugger
+
+                var message = JSON.parse(result)[0].ReturnMessage;
+
+
+
+                if (message == "Record saved succussfully") {
+                    debugger
+                     swal({
+                        title: "Success",
+                        text: message,
+                        icon: "success",
+                        button: true,
+
+                    })
+                        .then((willConfirm) => {
+                            if (willConfirm) {
+                            window.location.href='@Url.Action("StatusView", "Status")'
+
+                            }
+                        });
+
+                } else {
+                    debugger
+                    swal({
+                        title: "Error",
+                        text: message,
+                        icon: "error",
+                        button: true,
+
+                    })
+                        .then((willConfirm) => {
+                            if (willConfirm) {
+                           
+                            }
+                        });
+                }
+
+
+
+
+            }
+
+
+
+       })
+
+
+
+        }
+
+    }
+</script>
+

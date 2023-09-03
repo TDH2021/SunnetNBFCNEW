@@ -1,0 +1,880 @@
+﻿@model Sunnet_NBFC.Models.clsReceipt
+@using Sunnet_NBFC.Models
+@{
+    ViewBag.Title = "AddReceipt";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    #tbl tr td {
+        padding-right: 10px;
+    }
+
+    .Filter {
+        position: absolute;
+        display: none;
+        z-index: 1;
+        /* top: 20%;*/
+        width: 90%;
+    }
+
+    .ClsCSS {
+        border: none;
+    }
+
+    .txtRightAlign {
+        text-align: right;
+    }
+    .Hide{
+        display:none;
+    }
+    .Show {
+        display: block;
+    }
+</style>
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Add Receipt</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    @Html.ActionLink("Back to List", "ReceiptView")
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    @Html.HiddenFor(model => model.ReqType)
+
+                                    @Html.HiddenFor(model => model.ReceiptID)
+                                    @Html.HiddenFor(model => model.CompanyID)
+                                    @Html.HiddenFor(model => model.IsDelete)
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="ReceiptNo">ReceiptNo</label>
+                                    <input type="text" id="ReceiptNo" name="ReceiptNo" class="form-control" value="@ViewBag.ReceiptNo" autocomplete="off" disabled>
+
+
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="ReceiptDate">ReceiptDate</label>
+
+                                    @Html.TextBoxFor(model => model.ReceiptDate, "{0:dd/MM/yyyy}", new
+                               {
+                                   @class = "form-control",
+                                   @placeholder = "ReceiptDate",
+                                   @name = "ReceiptDate",
+                                   @required = "true",
+                                   @id = "ReceiptDate",
+                                   autocomplete = "off"
+                               })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="Branch">Branch</label>
+                                    @Html.DropDownListFor(model => model.BranchID, ViewBag.BranchList as SelectList, "Select Branch", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.BranchID, "", new { @class = "text-danger" })
+
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="PaymentMode">PaymentMode</label>
+                                    @Html.DropDownListFor(model => model.PaymentModeID, ViewBag.PaymentModeList as SelectList, "Select PaymentMode", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.PaymentModeID, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="ChequeNo">ChequeNo</label>
+                                    @Html.TextBoxFor(model => model.ChequeNo, new { @class = "form-control", @id = "ChequeNo", @placeholder = "ChequeNo", @name = "ChequeNo", @requried = "true", autocomplete = "off" })
+                                    @Html.ValidationMessageFor(model => model.ChequeNo, "", new { @class = "text-danger" })
+
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="ChequeDate">ChequeDate</label>
+                                    @Html.TextBoxFor(model => model.ChequeDate, "{0:dd/MM/yyyy}", new
+                               {
+                                   @class = "form-control",
+                                   @placeholder = "ChequeDate",
+                                   @name = "ChequeDate",
+                                   @required = "true",
+                                   @id = "ChequeDate",
+                                   autocomplete = "off"
+                               })
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="Lead">Lead No</label>
+                                    @Html.DropDownListFor(model => model.LeadID, ViewBag.LeadList as SelectList, "Select Lead", new { @id = "LeadID", @class = "form-control" })
+                                    @*@Html.DropDownList("LeadList", ViewBag.LeadList as SelectList, "Select Lead", new { @class = "form-control" })*@
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="Bank">Deposited Bank</label>
+                                    @Html.DropDownListFor(model => model.BankID, ViewBag.BankList as SelectList, "Select Bank", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.BankID, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="row">
+                               
+                                <div class="col-md-6">
+                                    <label for="Remarks">Remarks</label>
+                                    @Html.TextBoxFor(model => model.Remarks, new { @class = "form-control", @id = "Remarks", @placeholder = "Remarks", @name = "Remarks", @requried = "true", autocomplete = "off" })
+                                    @Html.ValidationMessageFor(model => model.Remarks, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+
+
+                        <!----------------------model PopUp------------------------->
+
+                        <div class="Filter" id="Filter">
+                            <div class="row">
+
+                                <div class=" col-sm-2 "></div>
+
+                                <div class=" col-sm-8 ">
+
+                                    <div class="card">
+                                        <div class="boxFilter" style="background-color: azure;">
+
+                                            <div class="card-header bg-transparent header-elements-inline">
+                                                <h3 class="card-title">Sub-Menu Master </h3>
+                                                <div class="header-elements">
+                                                    @*<button class="btn btn-danger closee2" id="btn">Close</button>*@
+                                                    <p class="closee2 btn btn-danger  btn-group">X</p>
+                                                </div>
+                                            </div>
+
+                                            @*------For Only Edit Mode------*@
+                                            <input type="text" id="RowNo" name="RowNo" class="form-control " autocomplete="off" hidden>
+                                            @*------For Only Edit Mode------*@
+
+                                            <div class="card-body">
+                                                <div class="row">
+
+                                                    <table class="meta">
+
+                                                        <tr>
+                                                            <th><span>Name</span></th>
+                                                            <td><input type="text" id="SubMenuName" name="SubMenuName" class="form-control " autocomplete="off"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th><span>Code</span></th>
+                                                            <td><input type="text" id="SubMenuCode" name="SubMenuCode" class="form-control " autocomplete="off"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th><span>Menu</span></th>
+                                                            <td>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+
+
+
+
+
+                                                </div>
+
+
+                                                @*------------------*@
+
+
+                                                <hr />
+                                                <input class="btn btn-primary" id="btnSaveChanges" type="button" value="SaveChanges" />
+                                                <input class="btn btn-primary" id="btnReSet" type="button" value="ReSet" />
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class=" col-sm-2 "></div>
+                            </div>
+                        </div>
+
+                        <!----------------------model PopUp------------------------->
+
+
+                        <div class="d-md-flex flex-md-wrap">
+                            <div class="mb-4 mb-md-2 text-left">
+                            </div>
+                            <div class="mb-2 ml-auto">
+                                <div class="d-flex flex-wrap wmin-md-400">
+                                    <ul class="list list-unstyled text-right mb-0 ml-auto">
+                                        <li>
+                                            <a id="btnAddRecord" class="btn btn-primary" data-target="#myModal" data-toggle="modal"
+                                               style='margin-left:5px'><i class='fa fa-plus'>Add</i></a>
+                                            @*<a id="btnAddData" class="btn btn-primary" style='margin-left:5px'><i class='fa fa-plus'>Add</i></a>*@
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table id="TblRecord" class="table table-lg">
+                                <thead>
+                                    <tr>
+                                        <th>SrNo.</th>
+                                        <th>Charge Type</th>
+                                        <th>Installment</th>
+                                        <th>Amount</th>
+                                        <th>Remarks</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (TempData["ReceiptDetail"] != null)
+                                    {
+                                        int iSrNo = 1;
+                                        foreach (var item in (IEnumerable<clsReceiptChargesDetailsFill>)TempData["ReceiptDetail"])
+                                        {
+                                            <tr>
+                                                <td>@iSrNo</td>
+                                                <td style="display: none"><input type="text" value="@item.ReceiptDtlID" name="txtReceiptDtlID" id="txtReceiptDtlID"></td>
+                                                <td style="display: none"><input type="text" value="@item.ChargeTypeID" name="txtChargeTypeID" id="txtChargeTypeID" autocomplete="off"></td>
+                                                <td style="display: none"><input type="text" class="ClsCSS" value="@item.KeyType" name="txtKeyType" id="txtKeyType" autocomplete="off" disabled></td>
+                                                <td><input type="text" class="ClsCSS" value="@item.ChargeType" name="txtChargeType" id="txtChargeType" autocomplete="off" disabled></td>
+                                                <td style="display: none"><input type="text" class="ClsCSS" value="@item.InstallmentID" name="txtInstallmentID" id="txtInstallmentID" autocomplete="off"></td>
+                                                <td><input type="text" class="ClsCSS" value="@item.Installment" name="txtInstallment" id="txtInstallment" autocomplete="off" disabled></td>
+                                                <td><input type="number" class="ClsCSS" value="@item.Amount" name="txtAmount" id="txtAmount" autocomplete="off" disabled></td>
+                                                <td><input type="text" class="ClsCSS" value="@item.Remarks" name="txtRemarks" id="txtRemarks" autocomplete="off" disabled></td>
+                                                <td><a class="btn btn-primary" onclick="Remove(this)"><i class='fa fa-trash'></i></a></td>
+
+                                            </tr>
+                                            iSrNo = iSrNo + 1;
+                                        }
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                </div>
+                                <div class="col-md-6">
+
+
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <tbody>
+                                                <tr>
+                                                    <th class="text-left">EMI Amount:</th>
+                                                    <td class="text-right"> <input class="form-control txtRightAlign" id="txtEMIAmount" placeholder="0.00" autocomplete="off" disabled></td>
+                                                </tr>
+                                                <tr>
+                                                    <th class="text-left">Penalty Amount:</th>
+                                                    <td class="text-right"> <input class="form-control txtRightAlign" id="txtPenaltyAmount" placeholder="0.00" autocomplete="off" disabled></td>
+                                                </tr>
+                                                <tr>
+                                                    <th class="text-left">Discount Amount:</th>
+                                                    <td class="text-right"> <input class="form-control txtRightAlign" id="txtDiscountAmount" placeholder="0.00" autocomplete="off" disabled></td>
+                                                </tr>
+                                                <tr>
+                                                    <th class="text-left">Other Amount:</th>
+                                                    <td class="text-right"> <input class="form-control txtRightAlign" id="txtOtherAmount" placeholder="0.00" autocomplete="off" disabled></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <th class="text-left">Grand Total:</th>
+                                                    <td class="text-right"> <input class="form-control txtRightAlign" id="txtTotalAmount" placeholder="0.00" autocomplete="off" disabled></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+
+                        <div class="card-footer">
+                            @*<button type="submit" class="btn btn-primary">Submit</button>*@
+                            <input class="btn btn-primary" id="btnSubmit" type="button" value="Submit" onclick="submit();" />
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /.row -->
+        </div>
+    </div>
+
+</section>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Add Data</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" class="form-control" id="KeyType" autocomplete="off">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label for="ChargeType">ChargeType</label>
+                            @Html.DropDownList("ChargeType", ViewBag.ChargeType as SelectList, "Select ChargeType", new { @class = "form-control" })
+
+                        </div>
+                        <div class="col-md-12">
+                            <div id="InstallmentSection" class="Hide">
+                                <label for="Installment">Installment</label>
+                                @Html.DropDownList("InstallmentList", ViewBag.InstallmentList as SelectList, "Select Installment", new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div id="EMIAmountSection" class="Hide">
+                                <label for="EMIAmount">EMI Amount</label>
+                                <input type="number" class="form-control" id="EMIAmount" placeholder="0.00" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div id="PenaltyAmountSection" class="Hide">
+                                <label for="PenaltyAmount">Penalty Amount</label>
+                                <input type="number" class="form-control" id="PenaltyAmount" placeholder="0.00" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div id="DiscountAmountSection" class="Hide">
+                                <label for="DiscountAmount">Discount Amount</label>
+                                <input type="number" class="form-control" id="DiscountAmount" placeholder="0.00" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div id="OtherAmountSection" class="Hide">
+                                <label for="OtherAmount">Other Amount</label>
+                                <input type="number" class="form-control" id="OtherAmount" placeholder="0.00" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="Remark">Remark</label>
+                            <input type="text" class="form-control" id="Remark" autocomplete="off">
+
+                        </div>
+
+                    </div>
+
+
+
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnAddRow" class="btn btn-primary">Add</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+@*<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>*@
+
+
+@*<script src="~/plugins/jquery/jquery.min.js"></script>
+    <script src="~/plugins/jquery/jquery.validate.min.js"></script>
+    <script src="~/plugins/jquery/jquery.validate.unobtrusive.min.js"></script>*@
+
+@*@if (ViewBag.Message != null)
+    {
+        <script type="text/javascript">
+
+                window.onload = function () {
+                    alert("@ViewBag.Message");
+                };
+        </script>
+    }*@
+
+@if (ViewBag.Error != null && ViewBag.Error != "")
+{
+    <script type="text/javascript">
+
+            window.onload = function () {
+               // alert("@ViewBag.Error");
+				swal("TDH", "@ViewBag.Error", "error");
+
+            };
+    </script>
+}
+@if (ViewBag.Success != null && ViewBag.Success != "")
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                //alert("@ViewBag.Success");
+				swal("TDH", "@ViewBag.Success", "Success");
+            };
+    </script>
+
+}
+
+
+
+<script>
+
+
+    $(document).ready(function () {
+
+        CalculateGrandTotal();
+        var vHeight = $(window).height();
+        var x = $("#TblRecord").position();
+        // alert(vHeight);
+        // document.getElementById("Filter").style.top = (x.top - 250) + "px";
+        document.getElementById("Filter").style.marginBottom = (vHeight - 100) + "px";
+
+        $("#btnAddRow").click(function () {
+
+            //Getting value from to populate
+            var table = document.getElementById("TblRecord");
+            var SrNo = (table.rows.length) - 1;
+            // alert(SrNo)
+            if (SrNo == "")
+                SrNo = "1";
+            else
+                SrNo = parseInt(SrNo) + 1;
+
+            //  $('#txtSrNoUpdate').val(SrNo);
+
+            var ChargeTypeID = $('select[name=ChargeType]').find(':selected').val();
+            var ChargeType = $('select[name=ChargeType]').find(':selected').text();
+            if (ChargeTypeID == 0) {
+                swal("TDH", "Select ChargeType !", "error");
+                return;
+            }
+
+            var InstallmentID = $('select[name=InstallmentList]').find(':selected').val();
+            var Installment = $('select[name=InstallmentList]').find(':selected').text();
+            //if (InstallmentID == 0) {
+            //    swal("TDH", "Select Installment !", "error");
+            //    return;
+            //}
+
+            var EMIAmount =  $("#EMIAmount").val();
+            var PenaltyAmount = $("#PenaltyAmount").val();
+            var DiscountAmount = $("#DiscountAmount").val();
+            var OtherAmount = $("#OtherAmount").val();
+
+            if (EMIAmount == "" || EMIAmount == "NaN")
+                EMIAmount = "0";
+
+            if (PenaltyAmount == "" || PenaltyAmount == "NaN")
+                PenaltyAmount = "0";
+
+            if (DiscountAmount == "" || DiscountAmount == "NaN")
+                DiscountAmount = "0";
+
+            if (OtherAmount == "" || OtherAmount == "NaN")
+                OtherAmount = "0";
+
+            //alert(EMIAmount);
+            //alert(PenaltyAmount);
+            //alert(DiscountAmount);
+            //alert(OtherAmount);
+
+            var Amount = parseFloat(EMIAmount) + parseFloat(PenaltyAmount) + parseFloat(DiscountAmount) + parseFloat(OtherAmount)
+            //alert(Amount);
+            if (Amount == null || Amount <= 0) {
+                swal("TDH", "Fill Amount !", "error");
+                return;
+            }
+            //alert(InstallmentAmt);
+            var Remarks = $("#Remark").val();
+            var KeyType = $("#KeyType").val();
+            //   alert(Remarks);
+
+
+            //Prepare TR to add in Table
+            var tr;
+
+            tr = $('<tr/>');
+            tr.append('<td>' + SrNo + '</td>');
+            tr.append('<td style="display: none" ><input type="text"  value="0" name="txtReceiptDtlID" id="txtReceiptDtlID" autocomplete="off" disabled></td>');
+            tr.append('<td style="display: none" ><input type="text"  value="' + ChargeTypeID + '" name="txtChargeTypeID" id="txtChargeTypeID" autocomplete="off" disabled></td>');
+            tr.append('<td style="display: none"><input type="text" class="ClsCSS" value="' + KeyType + '" name="txtKeyType" id="txtKeyType" autocomplete="off" disabled></td>');
+            tr.append('<td><input type="text" class="ClsCSS" value="' + ChargeType + '" name="txtChargeType" id="txtChargeType" autocomplete="off" disabled></td>');
+
+            if (InstallmentID > 0) {
+                tr.append('<td style="display: none" ><input type="text" class="ClsCSS" value="' + InstallmentID + '" name="txtInstallmentID" id="txtInstallmentID" autocomplete="off" disabled></td>');
+                tr.append('<td><input type="text" class="ClsCSS" value="' + Installment + '" name="txtInstallment" id="txtInstallment" autocomplete="off" disabled></td>');
+            }
+            else {
+                tr.append('<td style="display: none" ><input type="text" class="ClsCSS" value="0" name="txtInstallmentID" id="txtInstallmentID" autocomplete="off" disabled></td>');
+                tr.append('<td><input type="text" class="ClsCSS" value="" name="txtInstallment" id="txtInstallment" autocomplete="off" disabled></td>');
+            }
+            tr.append('<td><input type="number" class="ClsCSS" value="' + Amount + '" name="txtAmount" id="txtAmount"  autocomplete="off" disabled></td>');
+
+            tr.append('<td><input type="text" class="ClsCSS" value="' + Remarks + '" name="txtRemarks" id="txtRemarks" autocomplete="off" disabled></td>');
+            tr.append("<td><a class='btn btn-primary' onclick='Remove(this)'><i class='fa fa-trash'></i></a></td>");
+
+            $('#TblRecord').append(tr);
+
+
+            ReSet();
+            CalculateGrandTotal();
+        });
+
+       
+        $("select[name=ChargeType]").change(function () {
+            var selectedChargeTypeID = $(this).children("option:selected").val();
+          //  alert("You have selected the country - " + selectedChargeTypeID);
+
+            $("#KeyType").val("");
+            $("#InstallmentSection").removeClass("Show");
+            $("#InstallmentSection").addClass("Hide");
+
+            $("#EMIAmountSection").removeClass("Show");
+            $("#EMIAmountSection").addClass("Hide");
+
+            $("#DiscountAmountSection").removeClass("Show");
+            $("#DiscountAmountSection").addClass("Hide");
+
+            $("#PenaltyAmountSection").removeClass("Show");
+            $("#PenaltyAmountSection").addClass("Hide");
+
+            $("#OtherAmountSection").removeClass("Show");
+            $("#OtherAmountSection").addClass("Hide");
+
+            $("#EMIAmount").val("0");
+            $("#PenaltyAmount").val("0");
+            $("#DiscountAmount").val("0");
+            $("#OtherAmount").val("0");
+            $.ajax(
+                {
+                    type: 'POST',
+                    dataType: 'JSON',
+                    url: "/Receipt/GetChargeTypeKey",
+                    data: { ChargeTypeID: selectedChargeTypeID },
+                    success:
+                        function (response) {
+                            if (response.Status > 0) {
+                                // alert(response.KeyType);
+                                $("#KeyType").val(response.KeyCode);
+                                if (response.KeyCode == "Installment")
+                                {
+                                    $("#InstallmentSection").addClass("Show");
+                                    $("#EMIAmountSection").addClass("Show");
+                                }
+                                else if (response.KeyCode == "Discount")
+                                {
+                                    $("#DiscountAmountSection").addClass("Show");
+                                }
+                                else if (response.KeyCode == "Penalty") {
+                                    $("#PenaltyAmountSection").addClass("Show");
+                                }
+                                else  {
+                                    $("#OtherAmountSection").addClass("Show");
+                                }
+                            }
+                            else { }
+                        },
+                    error:
+                        function (response) {
+                            swal("TDH", "", "error");
+                        }
+                });
+        });
+     
+    });
+
+    function submit() {
+
+        var IsDataComplate = 1;
+        var Message = "";
+        var tbl = document.getElementById('TblRecord');
+
+        //var ReceiptID = $('#ReceiptID').val();
+       // alert(ReceiptID);
+        var ReceiptNo = $('#ReceiptNo').val();
+        var BranchID = $('#BranchID').val();
+        var PaymentModeID = $('#PaymentModeID').val();
+        var ReceiptDate = $("#ReceiptDate").val();
+
+        var ChequeNo = $("#ChequeNo").val();
+        var ChequeDate = $("#ChequeDate").val();
+        var BankID = $("#BankID").val();
+        var LeadID = $('#LeadID').val();//$('select[name=LeadList]').find(':selected').val();
+
+        if (tbl.rows.length == 0 || tbl.rows.length == 1) {
+            IsDataComplate = 0;
+            Message = "Add Atleast One Record!";
+        }
+        else if (ReceiptNo == "") {
+            IsDataComplate = 0;
+            Message = "ReceiptNo Missing !";
+        }
+        else if (ReceiptDate == "") {
+            IsDataComplate = 0;
+            Message = "Receipt Date Missing !";
+        }
+        else if (BranchID <= 0) {
+            IsDataComplate = 0;
+            Message = "Branch Missing !";
+        }
+        else if (PaymentModeID <= 0) {
+            IsDataComplate = 0;
+            Message = "PaymentMode Missing !";
+        }
+        else if (ChequeNo != "" || ChequeDate != "" || BankID > 0)
+        {
+
+            if (ChequeNo == "") {
+                IsDataComplate = 0;
+                Message = "Fill Cheque No !";
+            }
+            else if (ChequeDate == "") {
+                IsDataComplate = 0;
+                Message = "Select Cheque Date!";
+            }
+            else if (BankID <= 0) {
+                IsDataComplate = 0;
+                Message = "Select Bank !";
+            }
+
+        }
+        else if (LeadID <= 0) {
+            IsDataComplate = 0;
+            Message = "Select Lead Missing !";
+        }
+
+        if (IsDataComplate == 1) {
+            var clsReceipt = {
+                "ReceiptID": $("#ReceiptID").val(),
+                "BranchID": $('#BranchID').val(),
+                "LeadID": $('#LeadID').val(),/*$('select[name=LeadList]').find(':selected').val(),*/
+                "ReceiptNo": $("#ReceiptNo").val(),
+                "ReceiptNoSeqNo": $("#ReceiptNo").val(),
+
+                "EMIAmt": $("#txtEMIAmount").val(),
+                "PenaltyAmt": $("#txtPenaltyAmount").val(),
+                "DiscountAmt": $("#txtDiscountAmount").val(),
+                "OtherAmt": $("#txtOtherAmount").val(),
+                "TotalAmt": $("#txtTotalAmount").val(),
+
+                "ReceiptDate": $("#ReceiptDate").val(),
+                "PaymentModeID": $("#PaymentModeID").val(),
+                "ChequeNo": $("#ChequeNo").val(),
+                "ChequeDate": $("#ChequeDate").val(),
+                "ChequeBankName": "",
+                "Remarks": $("#Remarks").val(),
+                "BankID": $('#BankID').val(),
+                "DeletedReason ": "",
+                "clsReceiptChargesDetails": []
+            }
+            $("#TblRecord TBODY TR").each(function () {
+
+
+                var row = $(this);
+                var TRD = {
+                    "ReceiptID": $('#ReceiptID').val(),
+                    "ReceiptDtlID": row.find("#txtReceiptDtlID").val(),
+                    "ChargeTypeID": row.find("#txtChargeTypeID").val(),
+                    "InstallmentNo": row.find("#txtInstallment").val(),
+                    "Amount": parseFloat(row.find("#txtAmount").val()),
+                    "Remarks": row.find("#txtRemarks").val()
+                };
+
+                clsReceipt.clsReceiptChargesDetails.push(TRD);
+            });
+
+
+
+
+            console.log(clsReceipt);
+            $.ajax({
+                type: "POST",
+                url: "/Receipt/PostData",
+                data: JSON.stringify(clsReceipt),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    if (data.Status >= 1) {
+                        window.location.href = "/Receipt/ReceiptView";
+
+                    }
+                    else {
+                        swal("TDH", data.Message, "error");
+                    }
+                }
+            });
+
+
+        }
+        else {
+            swal("TDH", Message, "error");
+        }
+
+    }
+
+
+
+    function ReSet() {
+
+        document.getElementById("ChargeType").selectedIndex = 0;
+        document.getElementById("InstallmentList").selectedIndex = 0;
+        document.getElementById("EMIAmount").value = "0";
+        document.getElementById("PenaltyAmount").value = "0";
+        document.getElementById("DiscountAmount").value = "0";
+        document.getElementById("OtherAmount").value = "0";
+        document.getElementById("Remark").value = "";
+        document.getElementById("KeyType").value = "";
+    }
+
+    function Remove(button) {
+        //Determine the reference of the Row using the Button.
+        var row = $(button).closest("TR");
+        //Get the reference of the Table.
+        var table = $("#TblRecord")[0];
+        //Delete the Table row using it's Index.
+        table.deleteRow(row[0].rowIndex);
+        CalculateGrandTotal();
+
+
+    };
+    function CalculateGrandTotal() {
+
+        //run through each row
+        TotalEMIsumVal = 0;
+        TotalPenaltysumVal = 0;
+        TotalDiscountsumVal = 0;
+        TotalOthersumVal = 0;
+        TotalReceivesumVal = 0;
+      //  alert();
+        $('table#TblRecord > tbody > tr').each(function (i, row) {
+
+            // reference all the stuff you need first
+            var $row = $(row);
+            var KeyType = $row.find("#txtKeyType").val();
+           // alert(KeyType);
+            if (KeyType == "Installment") {
+                TotalEMIsumVal = parseFloat(TotalEMIsumVal) + parseFloat($row.find("#txtAmount").val());
+            }
+            else if (KeyType == "Discount") {
+                TotalDiscountsumVal = parseFloat(TotalDiscountsumVal) + parseFloat($row.find("#txtAmount").val());
+            }
+            else if (KeyType == "Penalty") {
+                TotalPenaltysumVal = parseFloat(TotalPenaltysumVal) + parseFloat($row.find("#txtAmount").val());
+            }
+            else {
+                TotalOthersumVal = parseFloat(TotalOthersumVal) + parseFloat($row.find("#txtAmount").val());
+            }
+
+            TotalReceivesumVal = parseFloat(TotalEMIsumVal) + parseFloat(TotalPenaltysumVal) + parseFloat(TotalDiscountsumVal) + parseFloat(TotalOthersumVal);
+
+          //  TotalReceivesumVal = parseFloat(TotalReceivesumVal) + parseFloat($row.find("td:eq(7) input[type='number']").val());
+           // TotalReceivesumVal = parseFloat(TotalReceivesumVal) + parseFloat($row.find("#txtAmount").val());
+
+        });
+
+      //   alert(TotalReceivesumVal);
+
+        if (TotalEMIsumVal == "" || TotalEMIsumVal == "NaN")
+            TotalEMIsumVal = "0";
+
+        if (TotalPenaltysumVal == "" || TotalPenaltysumVal == "NaN")
+            TotalPenaltysumVal = "0";
+
+        if (TotalDiscountsumVal == "" || TotalDiscountsumVal == "NaN")
+            TotalDiscountsumVal = "0";
+
+        if (TotalOthersumVal == "" || TotalOthersumVal == "NaN")
+            TotalOthersumVal = "0";
+
+        if (TotalReceivesumVal == "" || TotalReceivesumVal == "NaN")
+            TotalReceivesumVal = "0";
+
+
+        document.getElementById("txtEMIAmount").value = TotalEMIsumVal;
+        document.getElementById("txtPenaltyAmount").value = TotalPenaltysumVal;
+        document.getElementById("txtDiscountAmount").value = TotalDiscountsumVal;
+        document.getElementById("txtOtherAmount").value = TotalOthersumVal;
+        document.getElementById("txtTotalAmount").value = TotalReceivesumVal;
+
+    }
+
+
+
+
+
+
+    $(function () {
+        $("#ReceiptDate").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'dd/mm/yy'
+
+        });
+    });
+
+    $(function () {
+        $("#ChequeDate").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'dd/mm/yy'
+        });
+    });
+
+
+
+</script>

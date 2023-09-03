@@ -1,0 +1,313 @@
+﻿@model Sunnet_NBFC.Models.clsDSAMaster
+
+@{
+    ViewBag.Title = "Add DSA";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Add DSA</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Add DSA</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+@using (Html.BeginForm("AddDSA", "DSA", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <div class="row">
+
+                                    <div class="col-md-4">
+                                        <label for="exampleInputEmail1">DSA Name</label>
+                                        @Html.TextBoxFor(model => model.DSAName, new
+                                   {
+                                       @class = "form-control",
+                                       @placeholder = "Name",
+                                       @name = "Customer Name",
+                                       @required = "true",
+                                       @maxlength = "50",
+                                       @autocomplete = "off",
+                                       @Id = "txtCustName"
+                                   })
+                                        @Html.ValidationMessageFor(model => model.DSAName, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="exampleInputEmail1">Address</label>
+                                        @Html.TextAreaFor(model => model.DSAAddress, new { @class = "form-control", @placeholder = "Address", @name = "Address", @maxlength = "100", @id = "txtAddress", @requried = "true" })
+
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="exampleInputEmail1">State</label>
+                                        @Html.DropDownListFor(model => model.DSAStateId, ViewBag.StateList as SelectList, new { @class = "form-control", @id = "DSAState" })
+                                        @Html.ValidationMessageFor(model => model.DSAStateId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+
+
+
+                                    <div class="col-md-4">
+                                        <label for="exampleInputEmail1">City</label>
+                                        @Html.DropDownListFor(model => model.DSACityId,
+                                       new SelectList(Enumerable.Empty<SelectListItem>(), "CityId", "CityName"),
+                                       "Select city", new { @class = "form-control", @id = "DSACity" })
+                                        @*@Html.DropDownListFor(model => model.DSACityId, ViewBag.CityList as SelectList, new { @class = "form-control", @id = "DSACity" })*@
+                                        @Html.ValidationMessageFor(model => model.DSACityId, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="exampleInputEmail1">Pin Code</label>
+                                        @Html.TextBoxFor(model => model.DSAPincode, new
+                                   {
+                                       @class = "form-control",
+                                       @placeholder = "PinCode",
+                                       @name = "PinCode",
+                                       @required = "true",
+                                       @id = "txtPinCode",
+                                       @autocomplete = "off",
+                                       @maxlength = "6",
+                                       @type = "number",
+                                   })
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="exampleInputEmail1">Email</label>
+                                        @Html.TextBoxFor(model => model.DSAEmail, new
+                                   {
+                                       @class = "form-control",
+                                       @placeholder = "Email",
+                                       @name = "Email",
+                                       @required = "true",
+                                       @maxlength = "100"
+                                   })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+
+                                    <div class="col-md-4">
+                                        <label for="exampleInputEmail1">Contact No</label>
+                                        @Html.TextBoxFor(model => model.DSAContactNo, new
+                                   {
+                                       @class = "form-control",
+                                       @placeholder = "Phone No",
+                                       @name = "PhoneNo",
+                                       @required = "true",
+                                       @id = "txtPhoneNo",
+                                       @autocomplete = "off",
+                                       @maxlength = "10"
+                                   })
+
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="exampleInputEmail1">What's No</label>
+                                        @Html.TextBoxFor(model => model.DSAWhatsUpNo, new
+                                   {
+                                       @class = "form-control",
+                                       @placeholder = "What's Up No",
+                                       @name = "Whatsup No",
+                                       @required = "true",
+                                       @maxlength = "10"
+                                   })
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="exampleInputEmail1">GST No</label>
+                                        @Html.TextBoxFor(model => model.DSAGSTNo, new
+                                   {
+                                       @class = "form-control",
+                                       @placeholder = "GST No",
+                                       @name = "GSTNo",
+                                       @required = "true",
+                                       @id = "txtGstNo",
+                                       @autocomplete = "off",
+                                       @maxlength = "15",
+                                       @pattern = "^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$",
+                                            @title = "Invalid GST Number."
+                                   })
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label for="exampleInputEmail1">Account No</label>
+                                        @Html.TextBoxFor(model => model.DSAccountNo, new
+                                   {
+                                       @class = "form-control",
+                                       @placeholder = "Name",
+                                       @name = "Account No",
+                                       @required = "true",
+                                       @maxlength = "20",
+                                       @autocomplete = "off",
+                                       @Id = "txtDsaAccountNo"
+                                   })
+                                        @Html.ValidationMessageFor(model => model.DSAccountNo, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="exampleInputEmail1">Bank Name</label>
+                                        @Html.TextBoxFor(model => model.DSABankName, new
+                                   {
+                                       @class = "form-control",
+                                       @placeholder = "Name",
+                                       @name = "Bank Name",
+                                       @required = "true",
+                                       @maxlength = "50",
+                                       @autocomplete = "off",
+                                       @Id = "txtDsaBankName"
+                                   })
+                                        @Html.ValidationMessageFor(model => model.DSABankName, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="exampleInputEmail1">Bank Branch</label>
+                                        @Html.TextBoxFor(model => model.DSABranch, new
+                                   {
+                                       @class = "form-control",
+                                       @placeholder = "Name",
+                                       @name = "Bank Name",
+                                       @required = "true",
+                                       @maxlength = "50",
+                                       @autocomplete = "off",
+                                       @Id = "txtDsaBranch"
+                                   })
+                                        @Html.ValidationMessageFor(model => model.DSABranch, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label for="exampleInputEmail1">IFSC Code</label>
+                                        @Html.TextBoxFor(model => model.DSAIFSCCode, new
+                                   {
+                                       @class = "form-control",
+                                       @placeholder = "Name",
+                                       @name = "IFSC Code",
+                                       @required = "true",
+                                       @maxlength = "50",
+                                       @autocomplete = "off",
+                                       @Id = "txtDsaIFSCCode"
+                                   })
+                                        @Html.ValidationMessageFor(model => model.DSAIFSCCode, "", new { @class = "text-danger", @id = "txtIFSCCode", @maxlength = "12" })
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="exampleInputEmail1">Commision</label>
+                                        @Html.TextBoxFor(model => model.DSACommision, new
+                                   {
+                                       @class = "form-control",
+                                       @placeholder = "Commision",
+                                       @name = "DSACommision",
+                                       @required = "true",
+                                       @maxlength = "10",
+                                       @type = "number",
+                                   })
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="exampleInputEmail1">PAN No</label>
+                                        @Html.TextBoxFor(model => model.PAN, new
+                                   {
+                                       @class = "form-control",
+                                       @placeholder = "Name",
+                                       @name = "Pan No",
+                                       @required = "true",
+                                       @maxlength = "10",
+                                       @autocomplete = "off",
+                                       @Id = "txtDsaPanNo"
+                                   })
+                                        @Html.ValidationMessageFor(model => model.PAN, "", new { @class = "text-danger", @id = "txtDsaPanNo", @maxlength = "10" })
+                                    </div>
+
+                                   
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label for="exampleInputEmail1">Aadhar No</label>
+                                        @Html.TextBoxFor(model => model.AAdharNo, new
+                                   {
+                                       @class = "form-control",
+                                       @placeholder = "Name",
+                                       @name = "Aadhar No",
+                                       @required = "true",
+                                       @maxlength = "12",
+                                       @autocomplete = "off",
+                                       @Id = "txtDsaAadharNo"
+                                   })
+                                        @Html.ValidationMessageFor(model => model.AAdharNo, "", new { @class = "text-danger", @id = "txtDsaAadharNo", @maxlength = "12" })
+                                    </div>
+
+                                    <div class="col-md-8">
+
+                                        <label for="exampleInputEmail1">Remarks</label>
+                                        @Html.TextBoxFor(model => model.DSARemarks, new
+                                   {
+                                       @class = "form-control",
+                                       @placeholder = "Remarks",
+                                       @name = "GSTNo",
+                                       @required = "true",
+                                       @id = "txtRemarks",
+                                       @autocomplete = "off",
+                                       @maxlength = "50"
+                                   })
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+
+
+                                    <div class="col-md-12">
+                                        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.row -->
+            </div>
+        </div>
+
+    </section>
+
+}
+<script src="~/plugins/jquery/jquery.min.js"></script>
+<script src="~/plugins/jquery/jquery.validate.min.js"></script>
+<script src="~/plugins/jquery/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/CustomJS/DSA.js"></script>
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+
+            window.onload = function () {
+                swal("TDH","@ViewBag.Message","success");
+            };
+    </script>
+}
+
+
+
+

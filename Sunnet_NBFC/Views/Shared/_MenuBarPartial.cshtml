@@ -1,0 +1,307 @@
+﻿@model IEnumerable<Sunnet_NBFC.Models.RoleSideMenuBar>
+
+@{
+    var MainMenu = Model.Select(c => new { c.ParentMenuID, c.MenuName }).Distinct().OrderBy(x => x.ParentMenuID).ToList();
+}
+
+
+
+@foreach (var Menu in MainMenu)
+{
+    <li class="nav-item">
+
+        <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-tree"></i>
+            <p>
+                @Menu.MenuName
+                <i class="fas fa-angle-left right"></i>
+            </p>
+        </a>
+
+        @{ 
+            var SubMenusList = Model.Where(c => c.ParentMenuID == Menu.ParentMenuID).OrderBy(c => c.SubMenuDisplaySeqNo).ToList();
+        }
+        <ul class="nav nav-treeview">
+            @foreach (var subMenuitem in SubMenusList)
+            {
+                <li class="nav-item">
+                    <a href='@Url.Action(subMenuitem.Action, subMenuitem.Controller)' class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>@subMenuitem.Title</p>
+                    </a>
+                </li>
+            }
+        </ul>
+        
+
+    </li>
+}
+
+    @*------------------------------------------------*@
+
+    <!--<li class="nav-item">
+        <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-chart-pie"></i>
+            <p>
+                Masters
+                <i class="right fas fa-angle-left"></i>
+            </p>
+        </a>
+        <ul class="nav nav-treeview">-->
+            @*<li class="nav-item">
+                    <a href='@Url.Action("AddStatus", "Status")' class="nav-link">
+
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Add Status</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href='@Url.Action("StatusView", "Status")' class="nav-link">
+
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Status View</p>
+                    </a>
+                </li>*@
+            <!--<li class="nav-item">
+                <a href='@Url.Action("AddCompany", "Company")' class="nav-link">
+
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Add Company</p>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href='@Url.Action("CompanyView", "Company")' class="nav-link">
+
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Company View</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href='@Url.Action("AddCity", "City")' class="nav-link">
+
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Add City</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href='@Url.Action("CityView", "City")' class="nav-link">
+
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>City View</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href='@Url.Action("AddProduct", "Product")' class="nav-link">
+
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Add Product</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href='@Url.Action("ProductView", "Product")' class="nav-link">
+
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Product View</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href='@Url.Action("AddCustomer", "Customer")' class="nav-link">
+
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Add Customer</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href='@Url.Action("CustomerView", "Customer")' class="nav-link">
+
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Customer View</p>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href='@Url.Action("AddDSA", "DSA")' class="nav-link">
+
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Add DSA</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href='@Url.Action("ViewDSA", "DSA")' class="nav-link">
+
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>DSA View</p>
+                </a>
+            </li>
+
+
+
+
+            <li class="nav-item">
+                <a href='@Url.Action("Branch", "Branch")' class="nav-link">
+
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Add Branch</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href='@Url.Action("BranchView", "Branch")' class="nav-link">
+
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Branch View</p>
+                </a>
+            </li>
+
+
+            <li class="nav-item">
+                <a href='@Url.Action("Misc", "Misc")' class="nav-link">
+
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Add Misc</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href='@Url.Action("MiscView", "Misc")' class="nav-link">
+
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Misc View</p>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href='@Url.Action("AddQuestion", "Question")' class="nav-link">
+
+                    <i class="far fa-question nav-icon"></i>
+                    <p>Add Question</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href='@Url.Action("ViewQuestion", "Question")' class="nav-link">
+
+                    <i class="far fa-question nav-icon"></i>
+                    <p>View Question</p>
+                </a>
+            </li>
+
+
+            <li class="nav-item">
+                <a href='@Url.Action("Employee", "Employee")' class="nav-link">
+
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Add Employee</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href='@Url.Action("EmployeeView", "Employee")' class="nav-link">
+
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Employee View</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href='@Url.Action("StageRole", "StageRole")' class="nav-link">
+
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Add StageRole</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href='@Url.Action("StageRoleView", "StageRole")' class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>StageRole View</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href='@Url.Action("Document", "Document")' class="nav-link">
+
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Add Document</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href='@Url.Action("DocumentView", "Document")' class="nav-link">
+
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Document View</p>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href='@Url.Action("RoleMaster", "UserRole")' class="nav-link">
+
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>User Role</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href='@Url.Action("RoleMaster", "UserRole")' class="nav-link">
+
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>User Role View</p>
+                </a>
+            </li>
+
+        </ul>
+    </li>
+
+
+    <li class="nav-item">
+        <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-tree"></i>
+            <p>
+                Lead
+                <i class="fas fa-angle-left right"></i>
+            </p>
+        </a>
+        <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href='@Url.Action("LeadGeneration", "LeadGeneration")' class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Add Lead</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href='@Url.Action("LeadView", "Lead")' class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>View Lead</p>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href='@Url.Action("LeadView", "LeadCalling")' class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>TCU Lead</p>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href='@Url.Action("LeadView", "LeadDocument")' class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Doument Calling</p>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href='@Url.Action("LeadView", "Lead")' class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Credit Approval</p>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href='@Url.Action("LeadView", "LeadDocumentSigning")' class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Doument Sign</p>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href='@Url.Action("LeadView", "Lead")' class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Final Approve</p>
+                </a>
+            </li>
+
+        </ul>
+    </li>-->

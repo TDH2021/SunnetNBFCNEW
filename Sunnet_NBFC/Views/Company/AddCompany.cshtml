@@ -1,0 +1,322 @@
+﻿@model Sunnet_NBFC.Models.clsCompanyMaster
+
+@{ ViewBag.Title = "AddCompany";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Add Company</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Add Company</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <div class="row">
+
+                                <div class="col-md-4">
+                                    <label for="exampleInputEmail1">Company Name</label>
+                                    @Html.TextBoxFor(model => model.CompanyName, new
+                                    {
+                                        @class = "form-control",
+                                        @placeholder = "Name",
+                                        @name = "Name",
+                                        @required = "true",
+                                        @maxlength = "50",
+                                        @id = "Name",
+                                        @autocomplete = "off"
+                                    })
+
+
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label for="exampleInputEmail1">Company Type</label>
+                                    @Html.TextBoxFor(model => model.CompanyType, new
+                                    {
+                                        @class = "form-control",
+                                        @placeholder = "CompanyType",
+                                        @name = "CompanyType",
+                                        @required = "true",
+                                        @id = "CompanyType",
+                                        @maxlength = "100"
+                                    })
+                                </div>
+
+
+                                <div class="col-md-4">
+                                    <label for="exampleInputEmail1">PANNo</label>
+                                    @Html.TextBoxFor(model => model.PANNo, new
+                                    {
+                                        @class = "form-control",
+                                        @placeholder = "PANNo",
+                                        @name = "PANNo",
+                                        @required = "true",
+                                        @maxlength = "10",
+                                        @id = "PANNo",
+                                        @autocomplete = "off"
+                                    })
+
+
+                                </div>
+
+
+
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label for="exampleInputEmail1">GSTNo</label>
+                                    @Html.TextBoxFor(model => model.GSTNo, new
+                                    {
+                                        @class = "form-control",
+                                        @placeholder = "GSTNo",
+                                        @name = "GSTNo",
+                                        @required = "true",
+                                        @id = "GSTNo",
+                                        @maxlength = "15"
+                                    })
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="exampleInputEmail1">Company CIN</label>
+                                    @Html.TextBoxFor(model => model.CINNo, new
+                                    {
+                                        @class = "form-control",
+                                        @placeholder = "CIN No",
+                                        @name = "Name",
+                                        @required = "true",
+                                        @maxlength = "50",
+                                        @id = "CINNo",
+                                        @autocomplete = "off"
+                                    })
+
+
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label for="exampleInputEmail1">DATE OF INCORPORATION</label>
+                                    @Html.TextBoxFor(model => model.DateofIncorporation, new
+                               {
+                                   @class = "form-control",
+                                   @placeholder = "DATE OF INCORPORATION",
+                                   @name = "CompanyType",
+                                   @required = "true",
+                                   @id = "DateofIncorporation",
+                                   @maxlength = "50",
+                                   @type= "Date"
+                               })
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label for="exampleInputEmail1">RBI Regd</label>
+                                    @Html.TextBoxFor(model => model.RBIRegd, new
+                                    {
+                                        @class = "form-control",
+                                        @placeholder = "RBI Regd",
+                                        @name = "PANNo",
+                                        @required = "true",
+                                        @maxlength = "10",
+                                        @id = "RBIRegd",
+                                        @autocomplete = "off"
+                                    })
+
+
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label for="exampleInputEmail1">Email Id</label>
+                                    @Html.TextBoxFor(model => model.EmailId, new
+                                    {
+                                        @class = "form-control",
+                                        @placeholder = "Email Id",
+                                        @name = "GSTNo",
+                                        @required = "true",
+                                        @id = "EmailId",
+                                        @maxlength = "15"
+                                    })
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="exampleInputEmail1">Website</label>
+                                    @Html.TextBoxFor(model => model.Website, new
+                                    {
+                                        @class = "form-control",
+                                        @placeholder = "CIN No",
+                                        @name = "Name",
+                                        @required = "true",
+                                        @maxlength = "50",
+                                        @id = "Website",
+                                        @autocomplete = "off"
+                                    })
+
+
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+
+                                <div class="col-md-4">
+                                    <label for="exampleInputEmail1">Address</label>
+                                    @Html.TextAreaFor(model => model.Address, new
+                                    {
+                                        @class = "form-control",
+                                        @placeholder = "Address",
+                                        @name = "Address",
+                                        @required = "true",
+                                        @id = "Address",
+                                        @maxlength = "100"
+                                    })
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="exampleInputEmail1">Country</label>
+                                    @Html.TextBoxFor(model => model.Country, new
+                                    {
+                                        @class = "form-control",
+                                        @placeholder = "Country",
+                                        @name = "Country",
+                                        @required = "true",
+                                        @id = "Country",
+
+                                    })
+                                </div>
+
+
+                                <div class="col-md-4">
+                                    <label for="exampleInputEmail1">State</label>
+                                    @Html.DropDownListFor(model => model.State, ViewBag.StateList as SelectList, new { @class = "form-control", @id = "State" })
+                                    @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
+                                </div>
+
+
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label for="exampleInputEmail1">City</label>
+                                    @Html.DropDownListFor(model => model.City,
+                                       new SelectList(Enumerable.Empty<SelectListItem>(), "CityId", "CityName"),
+                                       "Select city", new { @class = "form-control", @id = "City" })
+                                    @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                                </div>
+
+
+
+                                <div class="col-md-4">
+                                    <label for="exampleInputEmail1">Pincode</label>
+                                    @Html.TextBoxFor(model => model.PinCode, new
+                                    {
+                                        @class = "form-control",
+                                        @placeholder = "Pincode",
+                                        @name = "Pincode",
+                                        @required = "true",
+                                        @id = "Pincode",
+
+                                    })
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label for="exampleInputEmail1">Mobile </label>
+                                    @Html.TextBoxFor(model => model.MobileNo, new
+                               {
+                                   @class = "form-control",
+                                   @placeholder = "Mobile",
+                                   @name = "CompanyType",
+                                   @required = "true",
+                                   @id = "Mobile",
+                                   @maxlength = "50"
+                               })
+                                </div>
+
+
+
+
+                            </div>
+
+
+
+
+                            <div class="row">
+
+                                <div class="col-md-4">
+                                    <label for="exampleInputEmail1">Company Desc</label>
+                                    @Html.TextAreaFor(model => model.CompanyDesc, new
+                               {
+                                   @class = "form-control",
+                                   @placeholder = "CompanyDesc",
+                                   @name = "CompanyDesc",
+                                   @required = "true",
+                                   @id = "CompanyDesc",
+                                   @maxlength = "100"
+                               })
+
+
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label for="exampleInputEmail1">Company Other Desc</label>
+                                    @Html.TextAreaFor(model => model.CompanyOthDesc, new
+                                    {
+                                        @class = "form-control",
+                                        @placeholder = "Company Other Desc",
+                                        @name = "Company Other Desc",
+                                        @required = "true",
+                                        @id = "CompanyOthDesc",
+                                        @maxlength = "100"
+                                    })
+                                </div>
+
+                                <div class="col-md-4" style="margin-top:40px;">
+                                    <span>Select Logo:</span>
+
+                                    <input type="file" id="fileuploadapprovalmail" />
+                                </div>
+
+                            </div>
+
+
+                            <div class="card-footer" style="margin-top:10px;">
+                                <input type="submit" class="btn btn-primary" onclick="Validation();">Submit</input>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.row -->
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script src="~/plugins/jquery/jquery.min.js"></script>
+@*<script src="~/plugins/jquery/jquery.validate.min.js"></script>
+    <script src="~/plugins/jquery/jquery.validate.unobtrusive.min.js"></script>*@
+<script src="~/Scripts/CustomJS/CompanyJS.js"></script>
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+
+            window.onload = function () {
+                swal("TDH","@ViewBag.Message","error");
+            };
+    </script>
+}

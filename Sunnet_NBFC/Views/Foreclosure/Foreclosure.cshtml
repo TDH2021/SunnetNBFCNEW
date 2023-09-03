@@ -1,0 +1,271 @@
+﻿@model Sunnet_NBFC.Models.clsForecloseEntry
+@using Sunnet_NBFC.App_Code
+@using Sunnet_NBFC.Models
+@{
+	ViewBag.Title = "Foreclosure";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+	<div class="container-fluid">
+		<div class="row mb-2">
+			<div class="col-sm-6">
+				<h1>Foreclosure</h1>
+			</div>
+			<div class="col-sm-6">
+				<ol class="breadcrumb float-sm-right">
+					@*@Html.ActionLink("Back to List", "LedgerMasterView")*@
+				</ol>
+			</div>
+		</div>
+	</div><!-- /.container-fluid -->
+</section>
+
+@using (Html.BeginForm("Foreclosure", "Foreclosure", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+	@Html.AntiForgeryToken()
+	@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+	<section class="content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-body">
+
+							<div class="form-group">
+								<div class="row">
+									<div class="col-md-12">
+										@Html.HiddenFor(model => model.ReqType)
+										@Html.HiddenFor(model => model.LeadId)
+										@Html.HiddenFor(model => model.CompanyID)
+
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="row">
+									<div class="col-md-12">
+										<h5><b> Selected Lead Detail</b></h5>
+										<hr style="color:green" />
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-3">
+										@Html.LabelFor(model => Model.LeadNo, new { @class = "control-label" }) <br />
+										@Html.TextBoxFor(model => model.LeadNo, new { @class = "form-control", @readonly = "true" })
+									</div>
+									<div class="col-md-3">
+										@Html.LabelFor(model => Model.BranchName, new { @class = "control-label" })<br />
+										@Html.TextBoxFor(model => model.BranchName, new { @class = "form-control", @readonly = "true" })
+
+									</div>
+									<div class="col-md-3">
+										@Html.LabelFor(model => Model.DSAName, new { @class = "control-label" })<br />
+										@Html.TextBoxFor(model => model.DSAName, new { @class = "form-control", @readonly = "true" })
+
+									</div>
+									<div class="col-md-3">
+										@Html.LabelFor(model => Model.MainProduct, new { @class = "control-label" }) <br />
+										@Html.TextBoxFor(model => model.MainProduct, new { @class = "form-control", @readonly = "true" })
+
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-md-3">
+
+										@Html.LabelFor(model => Model.ProductName, new { @class = "control-label" })<br />
+										@Html.TextBoxFor(model => model.ProductName, new { @class = "form-control", @readonly = "true" })
+									</div>
+									<div class="col-md-3">
+										@Html.LabelFor(model => Model.CustName, new { @class = "control-label" }) <br />
+										@Html.TextBoxFor(model => model.CustName, new { @class = "form-control", @readonly = "true" })
+									</div>
+									<div class="col-md-3">
+										@Html.LabelFor(model => Model.FatherName, new { @class = "control-label" }) <br />
+										@Html.TextBoxFor(model => model.FatherName, new { @class = "form-control", @readonly = "true" })
+
+									</div>
+									<div class="col-md-3">
+
+										@Html.LabelFor(model => Model.MobileNo1, new { @class = "control-label" })<br />
+										@Html.TextBoxFor(model => model.MobileNo1, new { @class = "form-control", @readonly = "true" })
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										&nbsp;
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<h5><b> Loan Detail </b> </h5>
+										<hr style="color:green" />
+									</div>
+								</div>
+								<div class="row">
+
+									<div class="col-md-3">
+										@Html.LabelFor(model => Model.NetDisbursementAmount, new { @class = "control-label" }) <br />
+										@Html.TextBoxFor(model => model.NetDisbursementAmount, new { @class = "form-control", @readonly = "true" })
+									</div>
+									<div class="col-md-3">
+										@Html.LabelFor(model => Model.ROI, new { @class = "control-label" }) <br />
+										@Html.TextBoxFor(model => model.ROI, new { @class = "form-control", @readonly = "true" })
+
+									</div>
+									<div class="col-md-3">
+
+										@Html.LabelFor(model => Model.Tenure, new { @class = "control-label" })<br />
+										@Html.TextBoxFor(model => model.Tenure, new { @class = "form-control", @readonly = "true" })
+									</div>
+									<div class="col-md-3">
+										@Html.LabelFor(model => Model.LoanStartDate, new { @class = "control-label" })<br />
+										@Html.TextBoxFor(model => model.LoanStartDate, new { @class = "form-control", @readonly = "true" })
+
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-md-3">
+										@Html.LabelFor(model => Model.LoanEndDate, new { @class = "control-label" }) <br />
+										@Html.TextBoxFor(model => model.LoanEndDate, new { @class = "form-control", @readonly = "true" })
+									</div>
+									<div class="col-md-3">
+										@Html.LabelFor(model => Model.EmiAmount, new { @class = "control-label" }) <br />
+										@Html.TextBoxFor(model => model.EmiAmount, new { @class = "control-label" })
+
+									</div>
+									<div class="col-md-3">
+
+										@Html.LabelFor(model => Model.TotalInst, new { @class = "control-label" })<br />
+										@Html.TextBoxFor(model => model.TotalInst, new { @class = "form-control", @readonly = "true" })
+									</div>
+
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										&nbsp;
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<H5> <b>Foreclose Amount Details </b></H5>
+										<hr style="color:green" />
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-md-3">
+										@Html.LabelFor(model => Model.pos, new { @class = "control-label" }) <br />
+										@Html.TextBoxFor(model => model.pos, new { @class = "form-control", @readonly = "true" })
+									</div>
+									<div class="col-md-3">
+										@Html.LabelFor(model => Model.CurrentMonthInterest, new { @class = "control-label" }) <br />
+										@Html.TextBoxFor(model => model.CurrentMonthInterest, new { @class = "form-control", @readonly = "true" })
+
+									</div>
+									<div class="col-md-3">
+
+										@Html.LabelFor(model => Model.InstalmentOverdue, new { @class = "control-label" })<br />
+										@Html.TextBoxFor(model => model.InstalmentOverdue, new { @class = "form-control", @readonly = "true" })
+									</div>
+									<div class="col-md-3">
+										@Html.LabelFor(model => Model.BouncingCharges, new { @class = "control-label" })<br />
+										@Html.TextBoxFor(model => model.BouncingCharges, new { @class = "form-control", @readonly = "true" })
+
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-md-3">
+										@Html.LabelFor(model => Model.ExcessAmount, new { @class = "control-label" }) <br />
+										@Html.TextBoxFor(model => model.ExcessAmount, new { @class = "form-control", @readonly = "true" })
+									</div>
+									<div class="col-md-3">
+										@Html.LabelFor(model => Model.PenalCharges, new { @class = "control-label" }) <br />
+										@Html.TextBoxFor(model => model.PenalCharges, new { @class = "form-control", @readonly = "true" })
+
+									</div>
+									<div class="col-md-3">
+
+										@Html.LabelFor(model => Model.OtherCharges, new { @class = "control-label" })<br />
+										@Html.TextBoxFor(model => model.OtherCharges, new { @class = "form-control", @readonly = "true" })
+									</div>
+
+								</div>
+
+								<div class="row">
+
+									<div class="col-md-3">
+										@Html.LabelFor(model => Model.ForeclosureCharges, new { @class = "control-label" })<br />
+										@Html.TextBoxFor(model => model.ForeclosureCharges, new { @class = "form-control", @readonly = "true" })
+
+									</div>
+									<div class="col-md-3">
+										@Html.LabelFor(model => Model.GstOnForclose, new { @class = "control-label" })<br />
+										@Html.TextBoxFor(model => model.GstOnForclose, new { @class = "form-control", @readonly = "true" })
+
+									</div>
+									<div class="col-md-3">
+										@Html.LabelFor(model => Model.FinalForeclosureAmount, new { @class = "control-label" }) <br />
+										@Html.TextBoxFor(model => model.FinalForeclosureAmount, new { @class = "form-control", @readonly = "true" })
+
+									</div>
+
+								</div>
+							</div>
+
+							<div class="card-footer">
+
+								<input type="submit" value="Save" class="btn btn-primary" />
+								@Html.ActionLink("Cancel", "SearchForeclosure", "SearchForeclosure", null, new { @class = "btn btn-danger btn-large" })
+							</div>
+
+
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+	</section>
+
+}
+
+<script src="~/Scripts/CustomJS/StageRole.js"></script>
+@if (ViewBag.Error != null && ViewBag.Error != "")
+{
+	<script type="text/javascript">
+
+            window.onload = function () {
+               // alert("@ViewBag.Error");
+				swal("TDH", "@ViewBag.Error", "error");
+				callfillemp();
+            };
+	</script>
+}
+@if (ViewBag.Success != null && ViewBag.Success != "")
+{
+	<script type="text/javascript">
+            window.onload = function () {
+                //alert("@ViewBag.Success");
+				swal("TDH", "@ViewBag.Success", "Success");
+            };
+	</script>
+}
+
+
+
+<script>
+
+	$(document).ready(function () {
+		$('.datepicker').datepicker();
+	});
+</script>
+
+

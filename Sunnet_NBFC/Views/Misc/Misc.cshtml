@@ -1,0 +1,155 @@
+﻿@model Sunnet_NBFC.Models.clsMisc
+
+@{
+    ViewBag.Title = "Misc";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Misc</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    @Html.ActionLink("Back to List", "MiscView")
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+@using (Html.BeginForm("Misc", "Misc", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        @Html.HiddenFor(model => model.ReqType)
+                                        @Html.HiddenFor(model => model.MiscId)
+                                        @Html.HiddenFor(model => model.CompanyId)
+                                        @Html.HiddenFor(model => model.IsDelete)
+
+                                        @*@Html.HiddenFor(model => model.CreateBy)
+                                            @Html.HiddenFor(model => model.UpdateBy)*@
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+
+
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.MiscType, htmlAttributes: new { @class = "control-label" })
+
+                                        <label for="exampleInputEmail1"></label>
+
+                                        @Html.DropDownListFor(model => model.MiscType,
+                                        new List<SelectListItem> {
+                                        new SelectListItem { Value = "" , Text = "- Select Type -" },
+                                        new SelectListItem { Value = "Occupation" , Text = "Occupation" },
+                                        new SelectListItem { Value = "Qualification" , Text = "Qualification" },
+                                        new SelectListItem { Value = "Department" , Text = "Department" },
+                                        new SelectListItem { Value = "Martial Status" , Text = "Martial Status" },
+                                        new SelectListItem { Value = "Designation" , Text = "Designation" },
+                                        new SelectListItem { Value = "Role" , Text = "Role" },
+                                        new SelectListItem { Value = "Relation" , Text = "Reference" },
+                                         new SelectListItem { Value = "CreditCheckList" , Text = "CreditCheckList" },
+                                          new SelectListItem { Value = "Colletral" , Text = "Colletral" },
+                                          new SelectListItem { Value = "PayMode" , Text = "PayMode" }
+                                        },
+                                        new { @class = "form-control", @id = "ddlMiscType1" })
+
+
+                                        <!--@Html.HiddenFor(model => model.MiscType, new { @id = "hfMiscType" })-->
+
+                                        @*@Html.EditorFor(model => model.MiscType, new { htmlAttributes = new { @class = "form-control" } })*@
+                                        @Html.ValidationMessageFor(model => model.MiscType, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.MiscName, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.MiscName, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.MiscName, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="card-footer">
+                                    @if (Model.MiscId != null && Model.MiscId != 0)
+                                    {
+                                        <input type="submit" value="Update" class="btn btn-primary" />
+                                    }
+                                    else
+                                    {
+                                        <input type="submit" value="Save" class="btn btn-primary" />
+                                    }
+                                    @Html.ActionLink("Cancel", "MiscView", "Misc", null, new { @class = "btn btn-danger btn-large" })
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+    </section>
+
+}
+
+<script src="~/plugins/jquery/jquery.min.js"></script>
+<script src="~/plugins/jquery/jquery.validate.min.js"></script>
+<script src="~/plugins/jquery/jquery.validate.unobtrusive.min.js"></script>
+
+@if (ViewBag.Error != null && ViewBag.Error != "")
+{
+    <script type="text/javascript">
+
+            window.onload = function () {
+                alert("@ViewBag.Error");
+            };
+    </script>
+}
+@if (ViewBag.Success != null && ViewBag.Success != "")
+{
+    <script type="text/javascript">
+
+            window.onload = function () {
+                alert("@ViewBag.Success");
+            };
+    </script>
+}
+<script>
+
+    //$("#ddlMiscType").change(function () {
+    //    debugger;
+    //    debugger;
+    //    var ddtext = $("#ddlMiscType option:selected").text();
+    //    $("#hfMiscType").val(ddtext);
+
+    //})
+</script>
+
+@*@if (ViewBag.Success != null && ViewBag.Success != "")
+    {
+        <script>
+            $(function () {
+                var Message = '@ViewBag.Success';
+                alert(Message);
+            });
+        </script>
+    }*@
+

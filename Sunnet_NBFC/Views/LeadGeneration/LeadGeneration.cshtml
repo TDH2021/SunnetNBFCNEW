@@ -1,0 +1,306 @@
+﻿@model Sunnet_NBFC.Models.clsLeadGenerationMaster
+@{ ViewBag.Title = "Lead Generation";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<style>
+    .required:after {
+        content: " *";
+        color: red;
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    input[type=number] {
+        -moz-appearance: textfield;
+        /* Firefox */
+    }
+</style>
+
+
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Lead Generation</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Lead Generation</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <h5> Product Details</h5>
+                            </div>
+                            <hr>
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <label class="required" for="exampleInputEmail1">Main Product</label>
+
+                                    @Html.DropDownListFor(model => model.MainProductId, ViewBag.MainProductList as SelectList, "- Select Main Product- ",
+                                   new { @class = "form-control", @id = "MainProductId" })
+
+
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="required" for="exampleInputEmail1">Sub Product</label>
+                                    @Html.DropDownListFor(model => model.ProductId,
+                                       new SelectList(Enumerable.Empty<SelectListItem>(), "ProdId", "ProductName"),
+                                       "- Select Product -", new { @class = "form-control", @id = "ProductId" })
+
+                                    @Html.HiddenFor(model => model.Hdn_type, new { @class = "form-control", @id = "hdn_type" })
+                                    @Html.Hidden((String)ViewBag.AAdharClientID, new { @class = "form-control", @id = "hdn_AAdharClientID" })
+                                    @Html.Hidden((String)ViewBag.AAdharClientScreate, new { @class = "form-control", @id = "hdn_AAdharClientScreate" })
+                                    @Html.Hidden((String)ViewBag.AAdharIsAPICheck, new { @class = "form-control", @id = "hdn_AAdharIsAPICheck" })
+                                    @Html.Hidden((String)ViewBag.APIName, new { @class = "form-control", @id = "hdn_AAdharAPIName" })
+                                    @Html.Hidden((String)ViewBag.AadharAPi, new { @class = "form-control", @id = "hdn_AAdharAPISSSSSS" })
+                                    @Html.Hidden((String)ViewBag.AadharAPIOTP, new { @class = "form-control", @id = "hdn_AadharAPIOTP" })
+
+                                    @Html.Hidden((String)ViewBag.PANClientID, new { @class = "form-control", @id = "hdn_PANClientID" })
+                                    @Html.Hidden((String)ViewBag.PANClientScreate, new { @class = "form-control", @id = "hdn_PANClientScreate" })
+                                    @Html.Hidden((String)ViewBag.PANIsAPICheck, new { @class = "form-control", @id = "hdn_PANIsAPICheck" })
+                                    @Html.Hidden((String)ViewBag.PANAPIName, new { @class = "form-control", @id = "hdn_PANAPIName" })
+                                    @Html.Hidden((String)ViewBag.PanAPi, new { @class = "form-control", @id = "hdn_PanAPi" })
+                                    @Html.Hidden((String)ViewBag.PanAPIOTP, new { @class = "form-control", @id = "hdn_PanAPIOTP" })
+                                    <input type="hidden" value="@ViewBag.CompanyId" id="hdnCompanyId" />
+                                    <input type="hidden" value="@ViewBag.PostalApi" id="hdn_postalAPI" />
+
+                                </div>
+
+
+                            </div>
+                            <div class="row" id="divPersonal">
+
+                                <div class="col-md-6">
+                                    <label class="required" for="exampleInputEmail1">Center</label>
+
+                                    @Html.DropDownListFor(model => model.CenterId, ViewBag.CenterList  as SelectList, "- Select Center- ",
+                                   new { @class = "form-control", @id = "ddlCenter" })
+
+
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="required" for="exampleInputEmail1">Branch</label>
+                                    @Html.DropDownListFor(model => model.PLLoanBranch, ViewBag.BranchList as SelectList, "- Select Branch- ",
+                                   new { @class = "form-control", @id = "ddlBranch" })
+
+                                </div>
+
+
+                            </div>
+
+                            <div>
+                                @{
+                                    Html.RenderPartial("_AddCustomerDetails");
+                                }
+                            </div>
+
+
+                            <div style="display:none" id="co_applicant_div">
+                                @{
+                                    Html.RenderPartial("_AddCo_Applicant_Details");
+                                }
+                            </div>
+                            <div style="display:none" class="container-fluid" id="co_guranter_div">
+                                @{
+                                    Html.RenderPartial("_AddGuranterDetails");
+                                }
+                            </div>
+
+
+                            <div>
+                                @{
+                                    Html.RenderPartial("_AddAdditionalDetails");
+                                }
+                            </div>
+
+                            <div style="display:none" class="container-fluid" id="business_div">
+                                @{
+                                    Html.RenderPartial("_AddBusinessLoanDetails");
+                                }
+                            </div>
+
+                            <div style="display:none" class="container-fluid" id="vechical_div">
+                                @{
+                                    Html.RenderPartial("_AddVechicalLoanDetails");
+                                }
+                            </div>
+
+                            <div style="display:none" class="container-fluid" id="personal_div">
+                                @{
+                                    Html.RenderPartial("_AddPersloanLoanDetails");
+                                }
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                     <label for="exampleInputEmail1">Remarks</label>
+                                    <input type="text" id="txtRemarks" maxlength="200" class="form-control" />
+                                </div>
+                            </div>
+
+                            <div class="card-footer" style="margin-top:10px;">
+                                <button type="submit" class="btn btn-primary" onclick="ValidationChk();"> Submit </button>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</section>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <h4 class="modal-title">OTP Verification</h4>
+            </div>
+            <div class="modal-body">
+                <Center><p>Enter OTP Here</p></Center>
+
+                <div class="row">
+                    <input type="hidden" id="referenceId" />
+                    <input type="hidden" id="responseCode" />
+
+                    <div class="col-md-2">
+                        @Html.TextBoxFor(model => model.PanNo, new
+                   {
+                       @class = "form-control",
+                       @placeholder = "X",
+                       @name = "OTP1",
+                       @required = "true",
+                       @id = "OTP1",
+                       @style = "text-align:center",
+                       @maxlength = "1",
+                       @type = "number"
+
+
+
+                   })
+                    </div>
+
+
+
+                    <div class="col-md-2">
+                        @Html.TextBoxFor(model => model.PanNo, new
+                   {
+                       @class = "form-control",
+                       @placeholder = "X",
+                       @name = "OTP2",
+                       @required = "true",
+                       @id = "OTP2",
+                       @style = "text-align:center",
+                       @maxlength = "1",
+                       @type = "number"
+                   })
+                    </div>
+                    <div class="col-md-2">
+                        @Html.TextBoxFor(model => model.PanNo, new
+                   {
+                       @class = "form-control",
+                       @placeholder = "X",
+                       @name = "OTP3",
+                       @required = "true",
+                       @id = "OTP3",
+                       @style = "text-align:center",
+                       @maxlength = "1",
+                       @type = "number"
+
+                   })
+                    </div>
+                    <div class="col-md-2">
+                        @Html.TextBoxFor(model => model.PanNo, new
+                   {
+                       @class = "form-control",
+                       @placeholder = "X",
+                       @name = "OTP4",
+                       @required = "true",
+                       @id = "OTP4",
+                        @style = "text-align:center",
+                       @maxlength = "1",
+                       @type = "number"
+                   })
+                    </div>
+                    <div class="col-md-2">
+                        @Html.TextBoxFor(model => model.PanNo, new
+                   {
+                       @class = "form-control",
+                       @placeholder = "X",
+                       @name = "OT5P5",
+                       @required = "true",
+                       @id = "OTP5",
+                       @style = "text-align:center",
+                       @maxlength = "1",
+                       @type = "number"
+                   })
+                    </div>
+
+
+
+
+                    <div class="col-md-2">
+                        @Html.TextBoxFor(model => model.PanNo, new
+                   {
+                       @class = "form-control",
+                       @placeholder = "X",
+                       @name = "OTP6",
+                       @required = "true",
+                       @id = "OTP6",
+                       @style = "text-align:center",
+                       @maxlength = "1",
+                       @type = "number"
+
+                   })
+                    </div>
+
+                </div>
+
+                <div class="card-footer" style="margin-top:10px;">
+                    <Center><button type="submit" class="btn btn-primary" onclick="ChkAadharOTP();"> Verify </button> </Center>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="~/Scripts/CustomJS/LeadGeneration.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#example').DataTable({
+            scrollX: true,
+        });
+    });
+</script>
+

@@ -1,0 +1,22 @@
+public class UpdateMenuMaster
+    {
+
+        public string SNo { get; set; }
+        public string MenuName { get; set; }
+        public string SubMenuName { get; set; }
+        public string MenuId { get; set; }
+        public string SubMenuId { get; set; }
+       
+
+    }
+    public class RoleMenuMaster
+    {
+
+        public string RoleId { get; set; }
+        public string RoleName { get; set; }
+        public string EmpID { get; set; }
+        public string EmpCode { get; set; }
+        public string EmpName { get; set; }
+      
+
+    }

@@ -1,0 +1,220 @@
+﻿@*@model IEnumerable<Sunnet_NBFC.Models.clsForecloseEntry>*@
+@model Sunnet_NBFC.Models.clsForecloseEntry
+
+@{
+	ViewBag.Title = "Search Forclosure View";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+	<div class="container-fluid">
+		<div class="row mb-2">
+			<div class="col-sm-6">
+				<h1>Search Forclosure View</h1>
+			</div>
+			<div class="col-sm-6">
+				<ol class="breadcrumb float-sm-right">
+					@*<li class="breadcrumb-item"><a href="#">Home</a></li>
+						<li class="breadcrumb-item active">Employee View</li>*@
+
+					@*<h4>@Html.ActionLink("Create New", "StageRole")</h4>*@
+				</ol>
+			</div>
+		</div>
+	</div><!-- /.container-fluid -->
+</section>
+@*@using (Html.BeginForm("SearchForeclosure", "SearchForeclosurefilter", FormMethod.Post, new { enctype = "multipart/form-data" }))
+	{*@
+@Html.AntiForgeryToken()
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+<section class="content">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-12">
+
+				<!-- /.card -->
+				<div class="card">
+					<!-- /.card-header -->
+					<div class="card-body">
+						@using (Html.BeginForm("SearchForeclosure", "SearchForeclosure", FormMethod.Post, new { enctype = "multipart/form-data" }))
+						{
+
+							<div class="form-group">
+								<div class="row">
+									<div class="col-md-3">
+										<label>Lead No</label>
+
+									</div>
+									<div class="col-md-3">
+										@Html.TextBoxFor(model => model.SearchLeadNo, new { @class = "form-control", @PlaceHolder = "Enter Numeric Lead No Digits" })
+
+										@*@Html.ValidationMessageFor(model => model.SearchLeadNo, "", new { @class = "text-danger" })*@
+									</div>
+									<div class="col-md-3">
+										<button type="submit" class="btn btn-success">Search</button>
+									</div>
+								</div>
+							</div>
+						}
+						<div class="form-group">
+							<div class="row">
+								<div class="col-md-12">
+
+									@{
+										if (ViewBag.SearchList != null)
+										{
+											<table id="example1" class="table table-bordered table-striped">
+												<thead>
+													<tr>
+														<th>
+															LeadNo
+														</th>
+														<th>
+															Main Product
+														</th>
+														<th>
+															Product Name
+														</th>
+														<th>
+															Branch Name
+														</th>
+														<th>
+															DSA Name
+														</th>
+														<th>
+															Customer Name
+														</th>
+														<th>
+															Father Name
+														</th>
+														<th>
+															Mobile No I
+														</th>
+														<th>
+															Mobile No II
+														</th>
+														<th>
+															Loan Amount
+														</th>
+														<th>
+															Tenure
+														</th>
+														<th>
+															Emi Date
+														</th>
+														<th>
+															Emi Amount
+														</th>
+
+														<th></th>
+
+													</tr>
+												</thead>
+												<tbody>
+													@foreach (var item in ViewBag.SearchList)
+
+													{
+														<tr>
+															<td>
+																@item.LeadNo
+															</td>
+															<td>
+																@item.MainProduct
+															</td>
+															<td>
+																@item.ProductName
+															</td>
+															<td>
+																@item.BranchName
+															</td>
+															<td>
+																@item.DSAName
+															</td>
+															<td>
+																@item.CustName
+															</td>
+															<td>
+																@item.FatherName
+															</td>
+															<td>
+																@item.MobileNo1
+															</td>
+															<td>
+																@item.MobileNo2
+															</td>
+															<td>
+																@item.NetDisbursementAmount
+															</td>
+															<td>
+																@item.Tenure
+															</td>
+															<td>
+																@item.LoanStartDate
+															</td>
+															<td>
+																@item.EmiAmount
+															</td>
+
+															<td>
+																<div class="d-flex order-actions">
+																	<a href="@Url.Action("Foreclosure","Foreclosure",new{Id=item.LeadId})"
+																	   data-bs-toggle="tooltip" data-bs-placement="top" title="" class="btn btn-success" data-bs-original-title="Foreclosure"><u>Foreclosure</u></a>
+
+																</div>
+
+															</td>
+														</tr>
+													}
+												</tbody>
+											</table>
+										}
+									}
+								</div>
+							</div>
+						</div>
+						@*<div class="card-footer">
+								@Html.ActionLink("Export to Excel", "ExportToExcel", new { @class = "btn btn-primary" })
+							</div>*@
+
+
+					</div>
+					<!-- /.card-body -->
+				</div>
+				<!-- /.card -->
+			</div>
+			<!-- /.col -->
+		</div>
+		<!-- /.row -->
+	</div>
+	<!-- /.container-fluid -->
+</section>
+
+
+
+
+@if (ViewBag.Error != null && ViewBag.Error != "")
+{
+	<script type="text/javascript">
+
+            window.onload = function () {
+               // alert("@ViewBag.Error");
+				swal("TDH", "@ViewBag.Error", "error");
+
+            };
+	</script>
+}
+@if (ViewBag.Success != null && ViewBag.Success != "")
+{
+	<script type="text/javascript">
+            window.onload = function () {
+                //alert("@ViewBag.Success");
+				swal("TDH", "@ViewBag.Success", "Success");
+            };
+	</script>
+}
+
+
+
+

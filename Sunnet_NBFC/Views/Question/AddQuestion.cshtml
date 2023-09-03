@@ -1,0 +1,115 @@
+﻿@model Sunnet_NBFC.Models.clsQuestion
+
+@{
+    ViewBag.Title = "Add Question";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Add Question</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Add Question</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+@using (Html.BeginForm("AddQuestion", "Question", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="exampleInputEmail1">Main Product</label>
+                                        @Html.DropDownListFor(model => model.MainProdId, ViewBag.MainProdList as SelectList, new { @class = "form-control", @id = "ddlMainProduct" })
+                                        @Html.ValidationMessageFor(model => model.MainProdId, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="exampleInputEmail1">Sub Product</label>
+
+                                        @Html.DropDownListFor(model => model.ProdId,
+                                      new SelectList(Enumerable.Empty<SelectListItem>(), "ProdId", "ProductName"),
+                                      "Select Product", new { @class = "form-control", @id = "ddlProduct" })
+                                        @*@Html.DropDownListFor(model => model.DSACityId, ViewBag.CityList as SelectList, new { @class = "form-control", @id = "DSACity" })*@
+                                        @Html.ValidationMessageFor(model => model.ProdId, "", new { @class = "text-danger" })
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+
+
+                                    <div class="col-md-6">
+                                        <label for="exampleInputEmail1">Question</label>
+                                        @Html.TextBoxFor(model => model.Question, new
+                                   {
+                                       @class = "form-control",
+                                       @placeholder = "Question",
+                                       @name = "txtQuestion",
+                                       @required = "true",
+                                       @id = "txtQuestion",
+                                       @autocomplete = "off",
+                                       @maxlength = "100",
+                                       @type = "text",
+                                   })
+                                        @Html.ValidationMessageFor(model => model.Question, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="exampleInputEmail1">Answer Type</label>
+                                        @Html.DropDownListFor(model => model.QuestionAnsType,
+                                        new List<SelectListItem> {
+                                        new SelectListItem { Value = "0" , Text = "- Select Type -" },
+                                        new SelectListItem { Value = "Dropdown" , Text = "Dropdown" },
+                                        new SelectListItem { Value = "FreeText" , Text = "FreeText" },
+                                        },
+                                        new { @class = "form-control", @id = "ddlAnswerType" })
+                                        @Html.ValidationMessageFor(model => model.QuestionAnsType, "", new { @class = "text-danger" })
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.row -->
+            </div>
+        </div>
+
+    </section>
+
+}
+<script src="~/plugins/jquery/jquery.min.js"></script>
+<script src="~/plugins/jquery/jquery.validate.min.js"></script>
+<script src="~/plugins/jquery/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/CustomJS/Question.js"></script>
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+    </script>
+}
+
+
+
+

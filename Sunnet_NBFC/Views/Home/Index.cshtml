@@ -1,0 +1,79 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+
+                <!-- /.card -->
+                <div class="card">
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+
+                                    <th>Count</th>
+                                    <th>Stage</th>
+                                    <th>-</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @if (ViewBag.lst != null)
+                                {
+
+
+                                    foreach (var item in ViewBag.lst)
+                                    {
+
+                                        <tr>
+     
+                                            <td>@item.cnt</td>
+                                            <td>@item.Stage_Name</td>
+
+                                            <td>
+                                                <div class="d-flex order-actions">
+                                                    <a href="@Url.Action("LeadFinalApprove", "LeadFinalApprove", new { ShortStage_Name = item.ShortStage_Name})"
+                                                       data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Document"><u>Click </u></a>
+                                                </div>
+
+                                            </td>
+
+
+                                        </tr>
+                                    }
+                                   
+                                }
+
+
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Count</th>
+                                    <th>Stage</th>
+                                    <th>-</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        @*<div class="card-footer">
+                            @Html.ActionLink("Export to Excel", "ExportToExcel", new { @class = "btn btn-primary" })
+                        </div>*@
+                    </div>
+                    <!-- /.card-body -->
+
+
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+
+    
+
+
+</section>

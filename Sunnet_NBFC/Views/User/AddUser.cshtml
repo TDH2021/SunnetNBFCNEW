@@ -1,0 +1,102 @@
+﻿@model Sunnet_NBFC.Models.clsUser
+
+@{
+    ViewBag.Title = "Add User";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("AddUser", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        <label for="exampleInputEmail1">User Name</label>
+                                        @Html.TextBoxFor(model => model.UserName, new
+                                   {
+                                       @class = "form-control",
+                                       @placeholder = "Name",
+                                       @name = "User Name",
+                                       @required = "true",
+                                       @maxlength = "50",
+                                       @autocomplete = "off"
+                                   })
+                                        @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="exampleInputEmail1">Contact No</label>
+                                        @Html.TextBoxFor(model => model.ContactNo, new { @class = "form-control", @placeholder = "Contact No", @name = "ContactNo", @maxlength = "10", @requried = "true", @type = "number" })
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        <label for="exampleInputEmail1">Email Address</label>
+                                        @Html.TextBoxFor(model => model.EmailAddress, new
+                                   {
+                                       @class = "form-control",
+                                       @placeholder = "Email Address",
+                                       @name = "EmailAddress",
+                                       @required = "true",
+                                       @type = "email",
+                                       @maxlength = "50"
+                                   })
+
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="row">
+
+                                            <div class="col-md-12">
+                                                <label for="exampleInputPassword1">User Image</label>
+                                                <div class="col-md-10">
+                                                    <input type="file" name="postedFile" />
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                   
+                                </div>
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+}
+<script src="~/plugins/jquery/jquery.min.js"></script>
+<script src="~/plugins/jquery/jquery.validate.min.js"></script>
+<script src="~/plugins/jquery/jquery.validate.unobtrusive.min.js"></script>
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+
+        window.onload = function () {
+            alert("@ViewBag.Message");
+        };
+    </script>
+}
+
+

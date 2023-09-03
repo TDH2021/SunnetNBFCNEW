@@ -1,0 +1,167 @@
+﻿@model Sunnet_NBFC.Models.clsLeadMain
+@using Sunnet_NBFC.App_Code
+@using Sunnet_NBFC.Models
+
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h4>Lead Calling Details</h4>
+            </div>
+            <div class="col-sm-6">
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+@using (Html.BeginForm("LeadCalling", "LeadCalling", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @*@Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
+
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        @Html.HiddenFor(model => model.ReqType)
+                                        @Html.HiddenFor(model => model.LeadId)
+                                        @Html.HiddenFor(model => model.ShortStage_Name)
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                
+                                @if (Model.clsLeadCalling != null)
+                                {
+                                    int Index = 1;
+                                    foreach (var item in Model.clsLeadCalling)
+                                    {
+                                        <div class="form-group">
+                                            <div class="row">
+
+                                                <div class="col-md-6">
+                                                    @*@Html.Label(item.QuestionId.ToString(), new { @class = "control-label" })*@
+                                                    <b> (@Index. </b> &nbsp; @Html.Label(item.Question.ToString())
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    @if (item.QuestionAnsType == "Dropdown")
+                                                    {
+                                                        @Html.DropDownList("A_" + item.TcId.ToString() + "_" + item.QuestionId.ToString(), new SelectList(ViewBag.AnswerListDDL, "Value", "Text", item.Answer), "- Select- ",
+                                                        new { @class = "form-control", @id = "MainProductId", @disabled = "disabled" })
+                                                    }
+                                                    else
+                                                    {
+                                                        @Html.TextBox("A_" + item.TcId.ToString() + "_" + item.QuestionId.ToString(), item.Answer, new { @class = "form-control", @required = "false", @disabled = "disabled" })
+                                                        @*@Html.ValidationMessage(item.Answer, "", new { @class = "text-danger" })*@
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                        Index++;
+                                    }
+                                }
+                                <hr />
+                                <div class="form-group">
+                                    <div class="row">
+
+                                        <div class="col-md-6">
+                                            @Html.LabelFor(m => m.Status, new { @class = "control-label" })
+                                        </div>
+                                        <div class="col-md-6">
+
+                                            @*@Html.DropDownListFor(m => m.Status, ViewBag.StatusListDDL, "- Select- ", new { @class = "form-control" })*@
+                                            @Html.DropDownListFor(m => m.Status, new SelectList(ViewBag.StatusListDDL, "Value", "Text", Model.Status), "- Select -", new { @class = "form-control",@id="ddlStatus", @disabled = "disabled" })
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+
+                                        <div class="col-md-6">
+                                            @Html.LabelFor(m => m.Remarks, new { @class = "control-label" })
+                                        </div>
+                                        <div class="col-md-6">
+                                            @Html.TextAreaFor(m => m.Remarks, new { @class = "form-control", @disabled="disabled" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                               
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+}
+
+@if (ViewBag.Error != null && ViewBag.Error != "")
+{
+    <script type="text/javascript">
+
+            window.onload = function () {
+                alert("@ViewBag.Error");
+            };
+    </script>
+}
+@if (ViewBag.Success != null && ViewBag.Success != "")
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Success");
+            };
+    </script>
+}
+
+
+
+<script>
+    function Validation() {
+        var Status = $("#ddlStatus option:selected").val();
+        alert(Status);
+        if (Status == 0) {
+            swal("TDH", "Please Select Status", "error");
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+    $(document).ready(function () {
+        //$('.datepicker').datepicker();
+    });
+
+</script>
+
+<script>
+
+    //$("#ddlMiscType").change(function () {
+    //    debugger;
+    //    debugger;
+    //    var ddtext = $("#ddlMiscType option:selected").text();
+    //    $("#hfMiscType").val(ddtext);
+
+    //})
+</script>
+
+
+
+

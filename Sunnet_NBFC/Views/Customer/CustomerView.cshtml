@@ -1,0 +1,129 @@
+﻿
+@{ ViewBag.Title = "CustomerView";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Customer View</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Customer View</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+s
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+
+                <!-- /.card -->
+                <div class="card">
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Customer Id</th>
+                                    <th>First Name</th>
+                                    <th>Middle Name</th>
+                                    <th>Last Name</th>
+                                    <th>Father Name</th>
+                                    <th>Mother Name</th>
+                                    <th>Spouse Name</th>
+                                    <th>Gender</th>
+                                    <th>DOB</th>
+                                    <th>Mobile No1</th>
+                                    <th>Mobile No2</th>
+                                    <th>Cibil Score</th>
+                                    <th>Aadhar No</th>
+                                    <th>PAN No</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody> 
+                                @foreach (var item in ViewBag.lst)
+                                {
+
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.FirstName</td>
+                        <td>@item.MiddleName</td>
+                        <td>@item.LastName</td>
+                        <td>@item.FatherName</td>
+                        <td>@item.MotherName</td>
+                        <td>@item.SpouseName</td>
+                        <td>@item.Gender</td>
+                        <td>@item.Dob</td>
+                        <td>@item.MobileNo1</td>
+                        <td>@item.MobileNo2</td>
+                        <td>@item.CibilScore</td>
+                        <td>@item.AadharNo</td>
+                        <td>@item.PanNo</td>
+                        <td>
+                            <div class="d-flex order-actions">
+                                @*<a href="@Url.Action("Customerdelete","Customer",new{Id=item.Id})"
+                                   data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Edit"><u>Edit</u></a>*@
+
+
+
+                                <a href="@Url.Action("Customerdelete","Customer",new{Id=item.Id})"
+                                   data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Delete"
+                                   onclick="return Submit();" style="margin-left:10px;"><u>Delete</u></a>
+
+
+                            </div>
+
+                        </td>
+                    </tr>}
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Customer Id</th>
+                                    <th>First Name</th>
+                                    <th>Middle Name</th>
+                                    <th>Last Name</th>
+                                    <th>Father Name</th>
+                                    <th>Mother Name</th>
+                                    <th>Spouse Name</th>
+                                    <th>Gender</th>
+                                    <th>DOB</th>
+                                    <th>Mobile No1</th>
+                                    <th>Mobile No2</th>
+                                    <th>Cibil Score</th>
+                                    <th>Aadhar No</th>
+                                    <th>PAN No</th>
+                                    <th>Action</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        <div class="card-footer">
+                            @Html.ActionLink("Export to Excel", "ExportToExcel", new { @class = "btn btn-primary" })
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<script type="text/javascript">
+    function Submit() {
+        if (confirm("Are you sure you want to delete ?")) {
+            return true;
+        } else {
+            return false;
+        }
+    }</script>

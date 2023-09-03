@@ -1,0 +1,320 @@
+﻿@model Sunnet_NBFC.Models.clsEmployee
+@using Sunnet_NBFC.App_Code
+@using Sunnet_NBFC.Models
+@{
+    ViewBag.Title = "Employee";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Employee Master</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    @Html.ActionLink("Back to List", "EmployeeView")
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+@using (Html.BeginForm("Employee", "Employee", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        @Html.HiddenFor(model => model.ReqType)
+                                        @Html.HiddenFor(model => model.EmpID)
+                                        @Html.HiddenFor(model => model.CompId)
+                                        @Html.HiddenFor(model => model.IsDelete)
+
+                                        @*@Html.HiddenFor(model => model.CreateBy)
+                                            @Html.HiddenFor(model => model.UpdateBy)*@
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    @if (Model.EmpID != null && Model.EmpID != 0)
+                                    {
+                                        <div class="col-md-6">
+                                            @Html.LabelFor(model => model.EmpCode, new { @class = "control-label" })
+                                            @Html.TextBoxFor(model => model.EmpCode, new { @class = "form-control", @readonly = true })
+                                            @Html.ValidationMessageFor(model => model.EmpCode, "", new { @class = "text-danger" })
+                                        </div>
+                                    }
+
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.EmpName, new { @class = "control-label" }) *
+                                        @Html.TextBoxFor(model => model.EmpName, new { @class = "form-control", @required = "true" })
+                                        @Html.ValidationMessageFor(model => model.EmpName, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.Address, new { @class = "control-label" })
+                                        @Html.TextAreaFor(model => model.Address, new { @class = "form-control", })
+                                        @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.BranchId, new { @class = "control-label" })
+                                        @Html.DropDownListFor(model => model.BranchId, clsBranchDDL.GetBranchDDL(), "Select", new { @class = "form-control", @id = "BranchId" })
+                                        @Html.ValidationMessageFor(model => model.BranchId, "", new { @class = "text-danger" })
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.RoleId, new { @class = "control-label" })
+                                        @Html.DropDownListFor(model => model.RoleId, clsMiscDDL.GetMiscDDL("Role"), "Select", new { @class = "form-control", @id = "RoleId" })
+                                        @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+
+
+
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.StateID, new { @class = "control-label" })
+                                        @Html.DropDownListFor(model => model.StateID, clsStateDDL.GetStateDDL(), "Select", new { @class = "form-control", @id = "StateID" })
+                                        @Html.ValidationMessageFor(model => model.StateID, "", new { @class = "text-danger" })
+                                        @*ViewBag.StateList = ClsCommon.ToSelectList(DataInterface1.GetState(), "ID", "StateName");*@
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.CityID, new { @class = "control-label" })
+                                        @Html.DropDownListFor(model => model.CityID, clsCityDDL.GetCityDDL(), "Select", new { @class = "form-control", @id = "CityID" })
+                                        @Html.ValidationMessageFor(model => model.CityID, "", new { @class = "text-danger" })
+
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.ZipCode, new { @class = "control-label" })
+                                        @Html.TextBoxFor(model => model.ZipCode, new { @class = "form-control", @maxlength = "6" })
+                                        @Html.ValidationMessageFor(model => model.ZipCode, "", new { @class = "text-danger" })
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.ContactNo1, new { @class = "control-label" })*
+                                        @Html.TextBoxFor(model => model.ContactNo1, new { @class = "form-control", @type = "number" })
+                                        @Html.ValidationMessageFor(model => model.ContactNo1, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.ContactNo2, new { @class = "control-label" })
+                                        @Html.TextBoxFor(model => model.ContactNo2, new { @class = "form-control", })
+                                        @Html.ValidationMessageFor(model => model.ContactNo2, "", new { @class = "text-danger" })
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.WhatsAppNo, new { @class = "control-label" })
+                                        @Html.TextBoxFor(model => model.WhatsAppNo, new { @class = "form-control", })
+                                        @Html.ValidationMessageFor(model => model.WhatsAppNo, "", new { @class = "text-danger" })
+                                    </div>
+
+
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.Email, new { @class = "control-label" })
+                                        @Html.TextBoxFor(model => model.Email, new { @class = "form-control", })
+                                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-6">
+                                        @{
+                                            var temp = Model.DOB;
+                                        }
+
+                                        @Html.LabelFor(model => model.DOB, new { @class = "control-label" })
+                                        @Html.TextBoxFor(model => model.DOB, new { @class = "form-control datestyle" })
+                                        @*@Html.TextBoxFor(model => model.DOB, "{0:yyyy-MM-dd}", new { @class = "form-control datestylish" })*@
+                                        @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
+
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.PAN, new { @class = "control-label" })
+                                        @Html.TextBoxFor(model => model.PAN, new { @class = "form-control", })
+                                        @Html.ValidationMessageFor(model => model.PAN, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.AadhaarNo, new { @class = "control-label" })
+                                        @Html.TextBoxFor(model => model.AadhaarNo, new { @class = "form-control", })
+                                        @Html.ValidationMessageFor(model => model.AadhaarNo, "", new { @class = "text-danger" })
+                                    </div>
+
+
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.MaritalStatus, new { @class = "control-label" })
+                                        @Html.DropDownListFor(model => model.MaritalStatus, clsMiscDDL.GetMiscDDL("Martial Status"), "Select", new { @class = "form-control", @id = "msid" })
+                                        @Html.ValidationMessageFor(model => model.MaritalStatus, "", new { @class = "text-danger" })
+                                    </div>
+
+
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.Longtitute, new { @class = "control-label" })
+                                        @Html.TextBoxFor(model => model.Longtitute, new { @class = "form-control", })
+                                        @Html.ValidationMessageFor(model => model.Longtitute, "", new { @class = "text-danger" })
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.Langtiute, new { @class = "control-label" })
+                                        @Html.TextBoxFor(model => model.Langtiute, new { @class = "form-control", })
+                                        @Html.ValidationMessageFor(model => model.Langtiute, "", new { @class = "text-danger" })
+                                    </div>
+                                    @*<div class="col-md-6">
+                                            @Html.LabelFor(model => model.EmployeeAttnStatus, new { @class = "control-label" })
+                                            @Html.TextBoxFor(model => model.EmployeeAttnStatus, new { @class = "form-control", })
+                                            @Html.ValidationMessageFor(model => model.EmployeeAttnStatus, "", new { @class = "text-danger" })
+                                        </div>*@
+
+                                </div>
+
+                                @*<div class="row">
+                                        <div class="col-md-6">
+                                            @Html.LabelFor(model => model.AttnDate, new { @class = "control-label" })
+                                            @Html.TextBoxFor(model => model.AttnDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "Date" })
+                                            @Html.ValidationMessageFor(model => model.AttnDate, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="col-md-6">
+                                            @Html.LabelFor(model => model.ImageName, new { @class = "control-label" })
+                                            @Html.TextBoxFor(model => model.ImageName, new { @class = "form-control", })
+                                            @Html.ValidationMessageFor(model => model.ImageName, "", new { @class = "text-danger" })
+                                        </div>
+
+                                    </div>*@
+
+
+                                <div class="row">
+
+                                    <div class="col-md-6" style="margin-top:40px;">
+                                        <span>Photo: </span>
+                                        <input type="file" name="postedFile" required accept="image/png, image/jpg, image/jpeg" />
+                                        @Html.HiddenFor(model => model.ImageName)
+                                    </div>
+
+                                </div>
+
+
+
+
+
+
+
+                                <div class="card-footer">
+                                    @if (Model.EmpID != null && Model.EmpID != 0)
+                                    {
+                                        <input type="submit" value="Update" class="btn btn-primary" />
+                                    }
+                                    else
+                                    {
+                                        <input type="submit" value="Save" class="btn btn-primary" />
+                                    }
+                                    @Html.ActionLink("Cancel", "EmployeeView", "Employee", null, new { @class = "btn btn-danger btn-large" })
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+    </section>
+
+}
+
+<script src="~/Scripts/CustomJS/Employee.js"></script>
+
+
+
+@*<script>
+
+    $(document).ready(function () {
+        $('.datepicker').datepicker();
+    });
+
+</script>*@
+
+<script>
+
+    //$("#ddlMiscType").change(function () {
+    //    debugger;
+    //    debugger;
+    //    var ddtext = $("#ddlMiscType option:selected").text();
+    //    $("#hfMiscType").val(ddtext);
+
+    //})
+</script>
+
+@*@if (ViewBag.Success != null && ViewBag.Success != "")
+    {
+        <script>
+            $(function () {
+                var Message = '@ViewBag.Success';
+                alert(Message);
+            });
+        </script>
+    }*@
+
+@if (ViewBag.Error != null && ViewBag.Error != "")
+{
+    <script type="text/javascript">
+
+            window.onload = function () {
+               // alert("@ViewBag.Error");
+				swal("TDH", "@ViewBag.Error", "error");
+
+            };
+    </script>
+}
+@if (ViewBag.Success != null && ViewBag.Success != "")
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                //alert("@ViewBag.Success");
+				swal("TDH", "@ViewBag.Success", "Success");
+            };
+    </script>
+}
+@*jquery.UI.Combind*@
+@*<script src="~/Scripts/jquery-ui-1.13.2.min.js"></script>*@

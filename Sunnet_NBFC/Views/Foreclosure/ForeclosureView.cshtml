@@ -1,0 +1,174 @@
+﻿@model IEnumerable<Sunnet_NBFC.Models.clsForecloseEntry>
+
+@{
+	ViewBag.Title = "Foreclosure View";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+	<div class="container-fluid">
+		<div class="row mb-2">
+			<div class="col-sm-6">
+				<h1>Foreclosure View</h1>
+			</div>
+			<div class="col-sm-6">
+				<ol class="breadcrumb float-sm-right">
+					@*<li class="breadcrumb-item"><a href="#">Home</a></li>
+						<li class="breadcrumb-item active">Employee View</li>*@
+
+					@*<h4>@Html.ActionLink("Create New", "StageRole")</h4>*@
+				</ol>
+			</div>
+		</div>
+	</div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-12">
+
+				<!-- /.card -->
+				<div class="card">
+					<!-- /.card-header -->
+					<div class="card-body">
+						<table id="example1" class="table table-bordered table-striped">
+							<thead>
+								<tr>
+									<th>
+										@Html.DisplayNameFor(model => model.LeadNo)
+									</th>
+									<th>
+										@Html.DisplayNameFor(model => model.pos)
+									</th>
+									<th>
+										@Html.DisplayNameFor(model => model.CurrentMonthInterest)
+									</th>
+									<th>
+										@Html.DisplayNameFor(model => model.InstalmentOverdue)
+									</th>
+									<th>
+										@Html.DisplayNameFor(model => model.ExcessAmount)
+									</th>
+									<th>
+										@Html.DisplayNameFor(model => model.BouncingCharges)
+									</th>
+									<th>
+										@Html.DisplayNameFor(model => model.PenalCharges)
+									</th>
+									<th>
+										@Html.DisplayNameFor(model => model.OtherCharges)
+									</th>
+									<th>
+										@Html.DisplayNameFor(model => model.ForeclosureCharges)
+									</th>
+									<th>
+										@Html.DisplayNameFor(model => model.GstOnForclose)
+									</th>
+									<th>
+										@Html.DisplayNameFor(model => model.FinalForeclosureAmount)
+									</th>
+									<th></th>
+
+								</tr>
+							</thead>
+							<tbody>
+								@foreach (var item in Model)
+								{
+									<tr>
+										<td>
+											@Html.DisplayFor(modelItem => item.LeadNo)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.pos)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.CurrentMonthInterest)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.InstalmentOverdue)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.ExcessAmount)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.BouncingCharges)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.PenalCharges)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.OtherCharges)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.ForeclosureCharges)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.GstOnForclose)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.FinalForeclosureAmount)
+										</td>
+										<td>
+											<div class="d-flex order-actions">
+												@*<a href="@Url.Action("LedgerMaster","LedgerMaster",new{Id=item.LeadId})"
+													data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Edit"><u>Edit</u></a>*@
+
+												<a href="@Url.Action("DeleteLedgerMaster","LedgerMaster",new{Id=item.LeadId})"
+												   data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Delete"
+												   style="margin-left:10px;"><u>Delete</u></a>
+
+											</div>
+
+										</td>
+									</tr>
+								}
+							</tbody>
+						</table>
+						
+							@*<div class="card-footer">
+								@Html.ActionLink("Export to Excel", "ExportToExcel", new { @class = "btn btn-primary" })
+							</div>*@
+
+
+					</div>
+					<!-- /.card-body -->
+				</div>
+				<!-- /.card -->
+			</div>
+			<!-- /.col -->
+		</div>
+		<!-- /.row -->
+	</div>
+	<!-- /.container-fluid -->
+</section>
+
+
+<script src="~/plugins/jquery/jquery.min.js"></script>
+<script src="~/plugins/jquery/jquery.validate.min.js"></script>
+<script src="~/plugins/jquery/jquery.validate.unobtrusive.min.js"></script>
+
+@if (ViewBag.Error != null && ViewBag.Error != "")
+{
+	<script type="text/javascript">
+
+            window.onload = function () {
+               // alert("@ViewBag.Error");
+				swal("TDH", "@ViewBag.Error", "error");
+
+            };
+	</script>
+}
+@if (ViewBag.Success != null && ViewBag.Success != "")
+{
+	<script type="text/javascript">
+            window.onload = function () {
+                //alert("@ViewBag.Success");
+				swal("TDH", "@ViewBag.Success", "Success");
+            };
+	</script>
+}
+
+
+
+

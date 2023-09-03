@@ -1,0 +1,159 @@
+﻿@model Sunnet_NBFC.Models.clsRoleMaster
+@using Sunnet_NBFC.App_Code
+@using Sunnet_NBFC.Models
+
+@*@model Sunnet_NBFC.Models.clsSubMenu*@
+
+@{
+    ViewBag.Title = "RoleMaster";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Role Master</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    @Html.ActionLink("Back to List", "MiscView")
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+
+@Html.AntiForgeryToken()
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    @Html.HiddenFor(model => model.ReqType)
+                                    @Html.HiddenFor(model => model.CompanyId)
+                                    @Html.HiddenFor(model => model.IsDelete)
+
+                                    @*@Html.HiddenFor(model => model.CreateBy)
+                                        @Html.HiddenFor(model => model.UpdateBy)*@
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+
+
+                                <div class="col-md-6">
+                                    <input type="hidden" value="@TempData["CompanyId"]" id="hfCompanyId" />
+                                    @Html.LabelFor(model => model.RoleName, htmlAttributes: new { @class = "control-label" })
+                                    <label for="exampleInputEmail1"></label>
+                                    @Html.DropDownListFor(model => model.RoleId, clsMiscDDL.GetMiscDDL("Role"), "Select", new { @class = "form-control", @id = "RoleId" })
+
+                                    @*@Html.ValidationMessageFor(model => model.RoleName, "", new { @class = "text-danger" })*@
+                                </div>
+                                <div class="col-md-6">
+
+                                    <label class="contol-label">Employee</label>
+                                    @Html.DropDownListFor(model => model.EmpId, clsEmoloyeeDDL.GetEmoloyeeDDL(), "Select", new { @class = "form-control", @id = "EmpID" })
+                                    @*@Html.ValidationMessageFor(model => model.EmpId, "", new { @class = "text-danger" })*@
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-6">
+
+                                @Html.LabelFor(model => model.EmpCode, new { @class = "control-label" })
+                                @Html.TextBoxFor(model => model.EmpCode, new { @class = "form-control", disabled = "true", id = "EmpCode" })
+                                @Html.ValidationMessageFor(model => model.EmpCode, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="col-md-6">
+                                @Html.LabelFor(model => model.EmpName, new { @class = "control-label" })
+                                @Html.TextBoxFor(model => model.EmpName, new { @class = "form-control", disabled = "true", id = "EmpName" })
+                                @Html.ValidationMessageFor(model => model.EmpName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="card-body">
+
+                          
+
+
+                            <table class="table table-striped table-bordered" id="example45">
+                                <thead>
+                                    <tr>
+                                        <th>S.No.</th>
+                                        <th>Menu Name</th>
+                                        <th>Sub Menu Name</th>
+                                        <th>Select</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{ int rowNo = 0; }
+                                    @if (Model.clsSubMenulst != null)
+                                    {
+                                        foreach (var item in Model.clsSubMenulst)
+                                        {
+
+                                            <tr>
+                                                <td> @(rowNo += 1)</td>
+                                                <td>
+                                                    @item.MenuName
+                                                </td>
+                                                <td>
+                                                    @item.Title
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" id="@rowNo" class="checkbox" value=@item.IsSelected.ToString()>
+                                                </td>
+                                                <td hidden>
+                                                    @item.MenuId
+                                                </td>
+                                                <td hidden>
+                                                    @item.SubMenuId
+                                                </td>
+                                            </tr>
+
+                                        }
+
+
+                                    }
+
+
+                                </tbody>
+
+                            </table>
+
+
+
+                        </div>
+
+                        <div class="card-footer">
+
+                            <input type="submit" onclick="Valid();" value="Save" class="btn btn-primary" />
+                            
+                            @Html.ActionLink("Cancel", "MiscView", "Misc", null, new { @class = "btn btn-danger btn-large" })
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+
+<script src="~/Scripts/CustomJS/RoleMaster.js"></script>

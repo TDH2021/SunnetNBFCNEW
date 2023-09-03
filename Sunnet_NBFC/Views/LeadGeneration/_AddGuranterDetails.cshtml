@@ -1,0 +1,1648 @@
+﻿@model Sunnet_NBFC.Models.clsLeadGenerationMaster
+
+<style>
+    .table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+        .table td, th {
+        }
+</style>
+<div class="form-group">
+    <div class="container-fluid" style="margin-top:20px;">
+        <div class="col-md-12">
+            <h5> Guarantor Details</h5>
+        </div>
+        <hr>
+
+
+        <div class="row">
+
+
+            <div class="col-md-3">
+                <label class="required" for="exampleInputEmail1"> Aadhar No </label>
+                @Html.TextBoxFor(model => model.G_Adhaar, new
+           {
+               @class = "form-control",
+               @placeholder = "Aadhar No",
+               @name = "G_AadharNo",
+               @required = "true",
+               @autocomplete = "off",
+               @id = "G_AadharNo",
+               @onkeypress = "return isNumber(this.value);",
+               @maxlength = "12",
+           })
+                @Html.HiddenFor(model => model.G_AAdharverfiy, new { @class = "form-control", @id = "hdn_gurantor_aadhar_verify" })
+            </div>
+
+
+            <div class="col-md-1">
+
+
+                @if (ViewBag.AAdharIsAPICheck == "1")
+                {
+                    <button style="margin-top: 35px;" onclick="GurantorAAdharVerification();" class="btnGAadharVerify"> Verify </button>
+
+                }
+                else
+                {
+                    <button style="margin-top: 35px;" disabled class="btnGAadharVerify"> Verify </button>
+
+                }
+
+
+            </div>
+
+
+
+            <div class="col-md-3">
+                <label class="required" for="exampleInputEmail1"> Pan No </label>
+                @Html.TextBoxFor(model => model.G_PAN, new
+           {
+               @class = "form-control",
+               @placeholder = "PanNo",
+               @name = "G_PanNo",
+               @required = "true",
+               @autocomplete = "off",
+               @id = "G_PanNo",
+
+
+
+           })
+                @Html.HiddenFor(model => model.G_Panverfiy, new { @class = "form-control", @id = "hdn_gurantor_PanVerify" })
+            </div>
+
+            <div class="col-md-2">
+
+
+
+                @if (ViewBag.PANIsAPICheck == "1")
+                {
+                    <button style="margin-top: 35px;" onclick="GurantorPanVerification();" class="btnGPanAadharVerify"> Verify </button>
+
+                }
+                else
+                {
+                    <button style="margin-top: 35px;" class="btnGPanAadharVerify" disabled> Verify </button>
+
+                }
+
+            </div>
+
+
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <label class="required" for="exampleInputEmail1">Prefix</label>
+
+                @Html.DropDownListFor(model => model.G_Prefix,
+          new List<SelectListItem> {
+        new SelectListItem { Value = "" , Text = "- Select Prefix -" },
+        new SelectListItem { Value = "Mr" , Text = "Mr." },
+        new SelectListItem { Value = "Mrs" , Text = "Mrs." },
+        //new SelectListItem { Value = "Smt" , Text = "Smt." }
+        },
+          new { @class = "form-control", @id = "GPrefix" })
+            </div>
+
+            <div class="col-md-3">
+                <label class="required" for="exampleInputEmail1">First Name</label>
+                @Html.TextBoxFor(model => model.G_FirstName, new
+                {
+                    @class = "form-control",
+                    @placeholder = "First Name",
+                    @name = "FName",
+                    @required = "true",
+                    @maxlength = "50",
+                    @id = "G_FName",
+                    @autocomplete = "off"
+                })
+
+
+            </div>
+
+            <div class="col-md-3">
+                <label for="exampleInputEmail1">Middle Name</label>
+                @Html.TextBoxFor(model => model.G_MiddleName, new
+                {
+                    @class = "form-control",
+                    @placeholder = "Middle Name",
+                    @name = "MName",
+                    @id = "G_MName"
+
+                })
+            </div>
+
+            <div class="col-md-3">
+                <label for="exampleInputEmail1">Last Name</label>
+                @Html.TextBoxFor(model => model.G_LastName, new
+                {
+                    @class = "form-control",
+                    @placeholder = "Last Name",
+                    @name = "LName",
+                    @id = "G_LName"
+
+                })
+            </div>
+
+
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-3">
+                <label class="required" for="exampleInputEmail1">Gender</label>
+                @Html.DropDownListFor(model => model.G_Gender,
+                     new List<SelectListItem> {
+                new SelectListItem { Value = "0" , Text = "- Select Gender -" },
+                new SelectListItem { Value = "Male" , Text = "Male" },
+                new SelectListItem { Value = "Female" , Text = "Female" },
+                new SelectListItem { Value = "Transgender" , Text = "Transgender" }
+                 },
+                     new { @class = "form-control", @id = "G_Gender" })
+
+
+            </div>
+            <div class="col-md-3">
+                <label class="required" for="exampleInputEmail1">Date of Birth</label>
+                @Html.TextBoxFor(model => model.G_DOB, new
+           {
+               @class = "form-control datestyle",
+               @placeholder = "Date of Birth",
+               @name = "Dob",
+               @autocomplete = "off",
+               @required = "true",
+               @id = "G_Dob"
+
+           })
+            </div>
+
+            <div class="col-md-3">
+                <label class="required" for="exampleInputEmail1">Martial Status</label>
+
+
+                @Html.DropDownListFor(model => model.G_Marital_Status,
+          new List<SelectListItem> {
+     new SelectListItem { Value = "" , Text = "- Select Marital -" },
+     new SelectListItem { Value = "Single" , Text = "Single" },
+     new SelectListItem { Value = "Married" , Text = "Married" },
+     new SelectListItem { Value = "Divorce" , Text = "Divorce" },
+     new SelectListItem { Value = "Widow" , Text = "Widow" }
+      },
+          new { @class = "form-control", @id = "G_MartialStatus" })
+
+            </div>
+
+            <div class="col-md-3">
+                <label class="required" for="exampleInputEmail1">Corrospondance Address</label>
+                @Html.TextBoxFor(model => model.G_PresentAddress, new
+           {
+               @class = "form-control",
+               @placeholder = "Present Address",
+               @name = "PresentAddress",
+               @required = "true",
+               @id = "G_PresentAddress",
+               @autocomplete = "off",
+               @onchange = "SetValues_G();"
+
+           })
+            </div>
+
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                <label class="required" for="exampleInputEmail1">Corrospondance Pincode</label>
+                @Html.TextBoxFor(model => model.G_PresentPinCode, new
+           {
+               @class = "form-control",
+               @placeholder = "Present Pincode",
+               @name = "PresentPincode",
+               @required = "true",
+               @autocomplete = "off",
+               @id = "G_PresentPincode",
+               @onchange = "GetStateCity_PIN(this.value,G_C_State,G_C_City);",
+               @onkeypress = "return isNumber(this.value);",
+               @maxlength = "6",
+
+           })
+            </div>
+            <div class="col-md-3">
+                <label class="required" for="exampleInputEmail1">Corrospondance State</label>
+
+
+                @Html.TextBoxFor(model => model.G_PresentStateId, new
+           {
+               @class = "form-control",
+               @placeholder = "- Select State -",
+               @name = "- Select State -",
+               @required = "true",
+               @autocomplete = "off",
+               @type = "text",
+               @id = "G_C_State",
+               @readonly = "true"
+
+
+           })
+
+                @Html.ValidationMessageFor(model => model.G_PresentStateId, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-3">
+                <label class="required" for="exampleInputEmail1">Corrospondance City</label>
+
+
+                @Html.TextBoxFor(model => model.G_PresentCityId, new
+           {
+               @class = "form-control",
+               @placeholder = "- Select City -",
+               @name = "- Select City -",
+               @required = "true",
+               @type = "text",
+               @autocomplete = "off",
+               @id = "G_C_City",
+               @readonly = "true"
+
+           })
+                @Html.ValidationMessageFor(model => model.G_PresentCityId, "", new { @class = "text-danger" })
+
+
+            </div>
+            <div class="col-md-3">
+                <label class="required" for="exampleInputEmail1">Corrospondance Village</label>
+                @Html.TextBoxFor(model => model.G_PresentVillage, new
+           {
+               @class = "form-control",
+               @placeholder = "Present Village",
+               @name = "Present Village",
+               @required = "true",
+               @id = "G_PresentVillage",
+               @autocomplete = "off",
+               @onchange = "SetValues4_G();"
+
+           })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <label class="required" for="exampleInputEmail1">Corrospondance District</label>
+                @Html.TextBoxFor(model => model.G_PresentDistrict, new
+           {
+               @class = "form-control",
+               @placeholder = "Present District",
+               @name = "Present District",
+               @required = "true",
+               @id = "G_PresentDistrict",
+               @onchange = "SetValues5_G();",
+               @autocomplete = "off"
+
+           })
+            </div>
+        </div>
+
+        <div class="row" style="margin-bottom:10px; margin-top:10px;">
+            <div class="col-md-12">
+                <input type="checkbox" id="G_chlpercorr" name="G_chlpercorr
+                       " value="Yes" onchange="G_Applicantpermascorr();">
+                <label class="required" for="co_chlpercorr"> Permanent Address As Same As Corrospondance Address</label><br>
+            </div>
+
+        </div>
+
+
+
+
+
+        <div class="row">
+            <div class="col-md-3">
+                <label class="required" for="exampleInputEmail1">Permanent Address</label>
+                @Html.TextBoxFor(model => model.G_PermanentAddress, new
+           {
+               @class = "form-control",
+               @placeholder = "Permanent Address",
+               @name = "PermanentAddress",
+               @required = "true",
+               @autocomplete = "off",
+               @id = "G_PermanentAddress"
+
+           })
+            </div>
+
+            <div class="col-md-3">
+                <label class="required" for="exampleInputEmail1">Permanent Pincode</label>
+                @Html.TextBoxFor(model => model.G_PermanentPincode, new
+           {
+               @class = "form-control",
+               @placeholder = "Permanent Pincode",
+               @name = "PermanentPincode",
+               @required = "true",
+               @id = "G_PermanentPincode",
+               @autocomplete = "off",
+               @onchange = "GetStateCity_PIN(this.value,G_P_State,G_P_City);",
+               @onkeypress = "return isNumber(this.value);",
+               @maxlength = "6",
+
+           })
+            </div>
+
+            <div class="col-md-3">
+                <label class="required" for="exampleInputEmail1">Permanent State</label>
+
+                @Html.TextBoxFor(model => model.G_PermanentStateId, new
+           {
+               @class = "form-control",
+               @placeholder = "State",
+               @required = "true",
+               @type = "text",
+               @autocomplete = "off",
+               @id = "G_P_State",
+               @readonly = "true"
+
+
+           })
+
+                @Html.ValidationMessageFor(model => model.G_PermanentStateId, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-3">
+                <label class="required" for="exampleInputEmail1">Permanent City</label>
+
+                @Html.TextBoxFor(model => model.G_PermanentStateId, new
+           {
+               @class = "form-control",
+               @required = "true",
+               @type = "text",
+               @autocomplete = "off",
+               @id = "G_P_City",
+               @readonly = "true"
+           })
+
+
+                @Html.ValidationMessageFor(model => model.G_PermanentCityId, "", new { @class = "text-danger" })
+
+
+            </div>
+
+
+
+
+
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                <label class="required" for="exampleInputEmail1">Permanent Village</label>
+                @Html.TextBoxFor(model => model.G_PermanentDistrict, new
+           {
+               @class = "form-control",
+               @placeholder = "Permanent Village",
+               @name = "Permanent Village",
+               @required = "true",
+               @autocomplete = "off",
+               @id = "G_PermanentVillage"
+
+           })
+            </div>
+
+            <div class="col-md-3">
+                <label class="required" for="exampleInputEmail1">Permanent District</label>
+                @Html.TextBoxFor(model => model.G_PermanentDistrict, new
+           {
+               @class = "form-control",
+               @placeholder = "Permanent District",
+               @name = "Permanent District",
+               @required = "true",
+               @autocomplete = "off",
+               @id = "G_PermanentDistrict"
+
+           })
+            </div>
+            <div class="col-md-3">
+                <label class="required" for="exampleInputEmail1">Mobile No</label>
+                @Html.TextBoxFor(model => model.G_Mobile_No, new
+           {
+               @class = "form-control",
+               @placeholder = "Mobile No",
+               @name = "CibilScore",
+               @autocomplete = "off",
+               @required = "true",
+               @id = "G_Mobile_No",
+               @onkeypress = "return isNumber(this.value);",
+               @maxlength = "10",
+
+
+           })
+            </div>
+
+            <div class="col-md-3">
+                <label for="exampleInputEmail1">Email Id</label>
+                @Html.TextBoxFor(model => model.G_Email_Id, new
+           {
+               @class = "form-control",
+               @placeholder = "Email Id",
+               @autocomplete = "off",
+               @name = "CO_EmailId",
+               @id = "G_EmailId"
+
+           })
+            </div>
+
+
+
+
+        </div>
+        <div class="form-group">    
+            <div class="row">
+
+                <div class="col-md-3">
+                    <label class="required" for="exampleInputEmail1">
+                        Cibil Score
+                    </label>
+                    @Html.TextBoxFor(model => model.G_CIBIL, new
+               {
+                   @class = "form-control",
+                   @placeholder = "Cibil Score",
+                   @autocomplete = "off",
+                   @required = "true",
+                   @id = "G_CibilScore",
+                   @onkeypress = "return isNumber(this.value);",
+                   @maxlength = "4",
+
+               })
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="card-footer" style="margin-top:10px;">
+        <button type="submit" class="btn btn-primary" id="btnAdd" onclick="AddGdetails();" value="Add"> Add Guarantor Details </button>
+
+    </div>
+
+    <table class="table table-striped table-bordered" id="example10">
+        <thead>
+            <tr>
+                <th>Prefix</th>
+                <th>F Name</th>
+                <th>M Name</th>
+                <th>L Name</th>
+                <th>Gender</th>
+                <th>Dob</th>
+                <th>MartialStatus</th>
+                <th>Current Address</th>
+                <th>Pincode</th>
+                <th>State</th>
+                <th>City</th>
+                <th>Village</th>
+                <th>District</th>
+                <th>Permanent Address</th>
+                <th>Pincode</th>
+                <th>State</th>
+                <th>City</th>
+                <th>Village</th>
+                <th>District</th>
+                <th>Mobile No</th>
+                <th>Email No</th>
+                <th>Pan No</th>
+                <th>Aadhar No</th>
+                <th>Cibil Score</th>
+                <th>Aadhar Check</th>
+                <th>PAN Check</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+
+    </table>
+
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="GurantorModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <h4 class="modal-title">OTP Verification</h4>
+            </div>
+            <div class="modal-body">
+                <Center><p>Enter OTP Here</p></Center>
+
+                <div class="row">
+                    <input type="hidden" id="GurantorreferenceId" />
+                    <input type="hidden" id="GurantorresponseCode" />
+
+                    <div class="col-md-2">
+                        @Html.TextBoxFor(model => model.PanNo, new
+                   {
+                       @class = "form-control",
+                       @placeholder = "X",
+                       @name = "OTP1",
+                       @required = "true",
+                       @id = "GurantorOTP1",
+                       @style = "text-align:center",
+                       @maxlength = "1",
+                       @type = "number"
+
+
+
+                   })
+                    </div>
+                    <div class="col-md-2">
+                        @Html.TextBoxFor(model => model.PanNo, new
+                   {
+                       @class = "form-control",
+                       @placeholder = "X",
+                       @name = "OTP2",
+                       @required = "true",
+                       @id = "GurantorOTP2",
+                       @style = "text-align:center",
+                       @maxlength = "1",
+                       @type = "number"
+                   })
+                    </div>
+                    <div class="col-md-2">
+                        @Html.TextBoxFor(model => model.PanNo, new
+                   {
+                       @class = "form-control",
+                       @placeholder = "X",
+                       @name = "OTP3",
+                       @required = "true",
+                       @id = "GurantorOTP3",
+                       @style = "text-align:center",
+                       @maxlength = "1",
+                       @type = "number"
+
+                   })
+                    </div>
+                    <div class="col-md-2">
+                        @Html.TextBoxFor(model => model.PanNo, new
+                   {
+                       @class = "form-control",
+                       @placeholder = "X",
+                       @name = "OTP4",
+                       @required = "true",
+                       @id = "GurantorOTP4",
+                        @style = "text-align:center",
+                       @maxlength = "1",
+                       @type = "number"
+                   })
+                    </div>
+                    <div class="col-md-2">
+                        @Html.TextBoxFor(model => model.PanNo, new
+                   {
+                       @class = "form-control",
+                       @placeholder = "X",
+                       @name = "OT5P5",
+                       @required = "true",
+                       @id = "GurantorOTP5",
+                       @style = "text-align:center",
+                       @maxlength = "1",
+                       @type = "number"
+                   })
+                    </div>
+                    <div class="col-md-2">
+                        @Html.TextBoxFor(model => model.PanNo, new
+                   {
+                       @class = "form-control",
+                       @placeholder = "X",
+                       @name = "GurantorOTP6",
+                       @required = "true",
+                       @id = "OTP6",
+                       @style = "text-align:center",
+                       @maxlength = "1",
+                       @type = "number"
+
+                   })
+                    </div>
+
+                </div>
+
+                <div class="card-footer" style="margin-top:10px;">
+                    <Center><button type="submit" class="btn btn-primary" onclick="GurantorChkAadharOTP();"> Verify </button> </Center>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script type="text/javascript">
+    function AddGdetails() {
+
+
+
+        var customers1 = new Array();
+        $("#example10 TBODY TR").each(function () {
+            var row = $(this);
+            var customer1 = {};
+
+            customer1.G_FirstName = row.find("TD").eq(0).html();
+            customer1.G_MiddleName = row.find("TD").eq(1).html();
+            customer1.G_LastName = row.find("TD").eq(2).html();
+            customer1.G_Gender = row.find("TD").eq(3).html();
+            customer1.G_DOB = row.find("TD").eq(4).html();
+            customer1.G_Marital_Status = row.find("TD").eq(5).html();
+
+
+            customer1.G_PresentAddress = row.find("TD").eq(6).html();
+            customer1.G_PresentPinCode = row.find("TD").eq(7).html();
+            customer1.G_PresentStateId = row.find("TD").eq(8).html();
+            customer1.G_PresentCityId = row.find("TD").eq(9).html();
+
+            customer1.G_PresentVillage = row.find("TD").eq(10).html();
+            customer1.G_PresentDistrict = row.find("TD").eq(11).html();
+
+
+
+
+            customer1.G_PermanentAddress = row.find("TD").eq(12).html();
+            customer1.G_PermanentPincode = row.find("TD").eq(13).html();
+            customer1.G_P_State = row.find("TD").eq(11).html(14);
+            customer1.G_P_City = row.find("TD").eq(12).html(15);
+
+            customer1.G_PermanentVillage = row.find("TD").eq(16).html();
+            customer1.G_PresentDistrict = row.find("TD").eq(17).html();
+
+
+            customer1.G_Mobile_No = row.find("TD").eq(18).html();
+            customer1.G_EmailId = row.find("TD").eq(19).html();
+            customer1.G_PanNo = row.find("TD").eq(20).html();
+            customer1.G_AadharNo = row.find("TD").eq(21).html();
+            customer1.G_CibilScore = row.find("TD").eq(22).html();
+            if (customer1.G_FirstName != "No data available in table") {
+                customers1.push(customer1);
+            }
+
+        });
+
+        var G_Mobile_No = $("#G_Mobile_No").val();
+        var G_AadharNo = $("#G_AadharNo").val();
+
+        var flag = 0;
+        if (customers1.length != 0) {
+
+
+
+            for (let i = 0; i < customers1.length; i++) {
+
+                if (customers1[i].G_Mobile_No == G_Mobile_No) {
+
+                    flag = 1;
+                }
+
+            }
+        }
+
+        flag == 0;
+
+        if (flag == 0) {
+
+            var txtFName = $("#G_FName").val();
+            var txtMName = $("#G_MName").val();
+            var txtLName = $("#G_LName").val();
+            var txtG_Gender = $("#G_Gender option:selected").val();
+            var txtDob = $("#G_Dob").val();
+            var txtG_MartialStatus = $("#G_MartialStatus option:selected").val();
+
+            var G_PresentAddress = $("#G_PresentAddress").val();
+            var G_PresentPincode = $("#G_PresentPincode").val();
+            var G_C_State = $("#G_C_State").val();
+            var G_C_City = $("#G_C_City").val();
+            var G_PresentVillage = $("#G_PresentVillage").val();
+            var G_PresentDistrict = $("#G_PresentDistrict").val();
+
+
+
+            var G_PermanentAddress = $("#G_PermanentAddress").val();
+            var G_PermanentPincode = $("#G_PermanentPincode").val();
+            var G_P_State = $("#G_P_State").val();
+            var G_P_City = $("#G_P_City").val();
+            var G_PermanentVillage = $("#G_PermanentVillage").val();
+            var G_PermanentDistrict = $("#G_PermanentDistrict").val();
+
+
+
+            var G_Mobile_No = $("#G_Mobile_No").val();
+            var G_EmailId = $("#G_EmailId").val();
+            var G_PanNo = $("#G_PanNo").val();
+            var PANregex = /[A-Z]{5}[0-9]{4}[A-Z]{1}$/;
+            var G_AadharNo = $("#G_AadharNo").val();
+            var G_AadharVerify, G_PanVerify;
+            if ($(".btnGAadharVerify").is(":disabled") == true) {
+                G_AadharVerify = 1;
+            }
+            else {
+                G_AadharVerify = $("#hdn_gurantor_aadhar_verify").val();
+            }
+            if ($(".btnGPanAadharVerify").is(":disabled") == true) {
+                G_PanVerify = 1;
+            }
+            else {
+                G_PanVerify = $("#hdn_gurantor_PanVerify").val();
+            }
+
+            var G_CibilScore = $("#G_CibilScore").val();
+
+
+
+            debugger
+
+            if (txtFName.length == 0) {
+                swal("TDH", "Please Enter Guarantor First Name.", "error");
+                $("#G_FName").focus();
+
+            }
+            else if (txtG_Gender.length == 0) {
+                swal("TDH", "Please Select Guarantor Gendor.", "error");
+
+            } else if (txtDob.length == 0) {
+                swal("TDH", "Please Select Guarantor DOB.", "error");
+
+            } else if (underAgeValidate(txtDob) < 18) {
+                swal("TDH", "Gurantor is not 18 years.", "error");
+
+            } else if (txtG_MartialStatus.length == 0) {
+                swal("TDH", "Please enter gurantor matrial status.", "error");
+
+
+            } else if (G_PresentAddress.length == 0) {
+                swal("TDH", "Please enter gurantor PresentAddress.", "error");
+            } else if (G_PresentPincode.length == 0) {
+                swal("TDH", "Please enter gurantor PresentPincode.", "error");
+
+            } else if (G_PresentPincode.length != 6) {
+                swal("TDH", "Invalidgurantor PresentPincode.", "error");
+            } else if (G_C_State.length == 0) {
+                swal("TDH", "Please enter gurantor state.", "error");
+
+            } else if (G_C_City.length == 0) {
+                swal("TDH", "Please enter gurantor city.", "error");
+            } else if (G_PermanentAddress.length == 0) {
+                swal("TDH", "Please enter gurantor PermanentAddress.", "error");
+
+            } else if (G_PermanentPincode.length == 0) {
+                swal("TDH", "Please enter gurantor Permanent Pincode.", "error");
+
+            } else if (G_PermanentPincode.length != 6) {
+                swal("TDH", "Invalid gurantor Permanent Pincode.", "error");
+            } else if (G_P_State.length == 0) {
+                swal("TDH", "Please enter gurantor  state.", "error");
+            } else if (G_P_City.length == 0) {
+                swal("TDH", "Please enter gurantor  city.", "error");
+
+            } else if (G_Mobile_No.length == 0) {
+                swal("TDH", "Please enter mobile no.", "error");
+            } else if (G_PanNo.length != 10) {
+                swal("TDH", "Please enter valid gurantor pan no.", "error");
+            } else if (!PANregex.test(G_PanNo)) {
+                swal("TDH", "Invalid PAN No", "error");
+            } else if (G_PanVerify.length == 0) {
+                swal("TDH", "Please Verify PAN No.", "error");
+            } else if (G_PanVerify == "N") {
+                swal("TDH", "Please Verify Pan No", "error");
+
+            } else if (G_AadharNo.length != 12) {
+                swal("TDH", "Please enter gurantor Aadhar No.", "error");
+
+            } else if (G_AadharNo.charAt(0) == "0" || G_AadharNo.charAt(0) == "1") {
+                swal("TDH", "Gurantor Adhaar No would not start with 0 & 1.", "error");
+            }
+            else if (G_AadharVerify.length == 0) {
+                swal("TDH", "Please Verify Aadhar No.", "error");
+            } else if (G_AadharVerify == "N") {
+                swal("TDH", "Please Verify Aadhar No.", "error");
+            } else if (G_CibilScore.length == 0) {
+                swal("TDH", "Please Verify CibilScore.", "error");
+            } else if (G_CibilScore > 900 && G_CibilScore < 200) {
+                swal("TDH", "CibilScore must be between 200 and 900.", "error"); 
+            } else {
+                debugger
+                var txtPrefix = $("#GPrefix :selected").text();
+                var txtFName = $("#G_FName").val();
+                var txtMName = $("#G_MName").val();
+                var txtLName = $("#G_LName").val();
+                var txtG_Gender = $("#G_Gender option:selected").val();
+                var txtDob = $("#G_Dob").val();
+                var txtG_MartialStatus = $("#G_MartialStatus").val();
+
+                var G_PresentAddress = $("#G_PresentAddress").val();
+                var G_PresentPincode = $("#G_PresentPincode").val();
+                var G_C_State = $("#G_C_State").val();
+                var G_C_City = $("#G_C_City").val();
+                var G_PresentVillage = $("#G_PresentVillage").val();
+                var G_PresentDistrict = $("#G_PresentDistrict").val();
+
+
+                var G_PermanentAddress = $("#G_PermanentAddress").val();
+                var G_PermanentPincode = $("#G_PermanentPincode").val();
+                var G_P_State = $("#G_P_State").val();
+                var G_P_City = $("#G_P_City").val();
+                var G_PermanentVillage = $("#G_PermanentVillage").val();
+                var G_PermanentDistrict = $("#G_PermanentDistrict").val();
+
+                var G_Mobile_No = $("#G_Mobile_No").val();
+                var G_EmailId = $("#G_EmailId").val();
+                var G_PanNo = $("#G_PanNo").val();
+                var G_AadharNo = $("#G_AadharNo").val();
+                var G_CibilScore = $("#G_CibilScore").val();
+
+                debugger
+                //Get the reference of the Table's TBODY element.
+                var tBody = $("#example10 > TBODY")[0];
+
+                //Add Row.
+                var row = tBody.insertRow(-1);
+
+                //Add Name cell.
+                var cell = $(row.insertCell(-1));
+                cell.html(txtPrefix);
+
+
+                var cell = $(row.insertCell(-1));
+                cell.html(txtFName);
+
+                cell = $(row.insertCell(-1));
+                cell.html(txtMName);
+
+                cell = $(row.insertCell(-1));
+                cell.html(txtLName);
+
+
+                cell = $(row.insertCell(-1));
+                cell.html(txtG_Gender);
+
+                cell = $(row.insertCell(-1));
+                cell.html(txtDob);
+
+                cell = $(row.insertCell(-1));
+                cell.html(txtG_MartialStatus);
+
+
+
+                cell = $(row.insertCell(-1));
+                cell.html(G_PresentAddress);
+
+                cell = $(row.insertCell(-1));
+                cell.html(G_PresentPincode);
+
+                cell = $(row.insertCell(-1));
+                cell.html(G_C_State);
+
+                cell = $(row.insertCell(-1));
+                cell.html(G_C_City);
+
+                cell = $(row.insertCell(-1));
+                cell.html(G_PresentVillage);
+
+                cell = $(row.insertCell(-1));
+                cell.html(G_PresentDistrict);
+
+
+                cell = $(row.insertCell(-1));
+                cell.html(G_PermanentAddress);
+
+                cell = $(row.insertCell(-1));
+                cell.html(G_PermanentPincode);
+
+                cell = $(row.insertCell(-1));
+                cell.html(G_P_State);
+
+                cell = $(row.insertCell(-1));
+                cell.html(G_P_City);
+
+
+
+                cell = $(row.insertCell(-1));
+                cell.html(G_PermanentVillage);
+
+                cell = $(row.insertCell(-1));
+                cell.html(G_PermanentDistrict);
+
+
+
+
+                cell = $(row.insertCell(-1));
+                cell.html(G_Mobile_No);
+
+                cell = $(row.insertCell(-1));
+                cell.html(G_EmailId);
+
+
+                cell = $(row.insertCell(-1));
+                cell.html(G_PanNo);
+
+                cell = $(row.insertCell(-1));
+                cell.html(G_AadharNo);
+
+                cell = $(row.insertCell(-1));
+                cell.html(G_CibilScore);
+                cell = $(row.insertCell(-1));
+                cell.html(G_AadharVerify);
+                cell = $(row.insertCell(-1));
+                cell.html(G_PanVerify);
+                //Add Button cell.
+                cell = $(row.insertCell(-1));
+                var btnRemove = $("<input />");
+                btnRemove.attr("type", "button");
+                btnRemove.attr("onclick", "Remove(this);");
+                btnRemove.val("Remove");
+                cell.append(btnRemove);
+
+            }
+
+        } else {
+
+
+            swal({
+                title: "Error",
+                text: "Gurantor already added",
+                icon: "error",
+                button: true,
+
+            })
+                .then((willConfirm) => {
+                    if (willConfirm) {
+
+                    }
+                });
+
+
+        }
+
+    }
+</script>
+
+<script type="text/javascript">
+
+
+    function underAgeValidategurantor() {
+        debugger
+        var birthday = $("#G_Dob").val();
+
+
+        // it will accept two types of format yyyy-mm-dd and yyyy/mm/dd
+        var optimizedBirthday = birthday.replace(/-/g, "/");
+
+        //set date based on birthday at 01:00:00 hours GMT+0100 (CET)
+        var myBirthday = new Date(optimizedBirthday);
+
+        // set current day on 01:00:00 hours GMT+0100 (CET)
+        var currentDate = new Date().toJSON().slice(0, 10) + ' 01:00:00';
+
+        // calculate age comparing current date and borthday
+        var myAge = ~~((Date.now(currentDate) - myBirthday) / (31557600000));
+
+        if (myAge < 18) {
+            return myAge;
+        } else {
+            return myAge;
+        }
+
+    }
+</script>
+
+
+<script type="text/javascript">
+
+    function Remove(button) {
+        //Determine the reference of the Row using the Button.
+        var row = $(button).closest("TR");
+        var name = $("TD", row).eq(0).html();
+        if (confirm("Do you want to delete: " + name)) {
+            //Get the reference of the Table.
+            var table = $("#example10")[0];
+
+            //Delete the Table row using it's Index.
+            table.deleteRow(row[0].rowIndex);
+        }
+    };
+
+
+</script>
+
+
+<script type="text/javascript">
+
+    function GurantorAAdharVerification() {
+        debugger
+        var AadharNo = $("#G_AadharNo").val();
+        var emailid = "";
+
+        if (AadharNo.length != 12) {
+            swal({
+                title: "Error",
+                text: "Please enter correct aadhar no",
+                icon: "error",
+                button: true,
+
+            })
+                .then((willConfirm) => {
+                    if (willConfirm) {
+
+                    }
+                });
+
+        } else {
+            debugger
+            var urlvariable;
+
+            urlvariable = "https://sm-kyc-sandbox.scoreme.in/kyc/external/aadhaarverificationdetails";
+
+            var ItemJSON;
+
+            ItemJSON = '{"aadhaarNumber": "' + AadharNo + '","email":  "' + emailid + '"}';
+            debugger
+            URL = urlvariable;  //Your URL
+
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = callbackFunction(xmlhttp);
+            xmlhttp.open("POST", URL, false);
+            xmlhttp.setRequestHeader("Content-Type", "application/json");
+            xmlhttp.setRequestHeader('ClientId', "9b7f56d730cb292199b7a49620fa80f6");
+            xmlhttp.setRequestHeader('ClientSecret', "60812117e31f68b0475960d167a6fc856a09de16cc89f17f8ece51e29f216b15");
+            xmlhttp.onreadystatechange = callbackFunction(xmlhttp);
+            xmlhttp.send(ItemJSON);
+            debugger
+
+            var data = JSON.parse(xmlhttp.responseText);
+
+            if (data.responseMessage == "OTP successfully sent to mobile number.") {
+                document.getElementById("referenceId").value = data.data.referenceId;
+                swal({
+                    title: "Success",
+                    text: data.responseMessage,
+                    icon: "success",
+                    button: true,
+
+                })
+                    .then((willConfirm) => {
+                        if (willConfirm) {
+
+                            debugger
+
+                            $.ajax({
+                                url: "/LeadGeneration/SetApiResponse",
+                                type: "Get",
+                                dataType: "json",
+                                data: {
+                                    stage: 1,
+                                    OTP: "",
+                                    referenceId: "",
+                                    AadharNo: AadharNo,
+                                    email: emailid,
+                                    urlvariable: urlvariable,
+                                    responseCode: data.responseCode,
+                                    responseMessage: data.responseMessage,
+                                    response: JSON.parse(xmlhttp.responseText)
+                                },
+                                success: function (result) {
+
+                                }
+
+                            });
+
+
+                            $("#GurantorModal").modal()
+                        }
+                    });
+
+            } else if (data.message == "Credits not available.") {
+                swal({
+                    title: "Error",
+                    text: data.message,
+                    icon: "error",
+                    button: true,
+
+                })
+                    .then((willConfirm) => {
+                        if (willConfirm) {
+
+                            $.ajax({
+                                url: "/LeadGeneration/SetApiResponse",
+                                type: "Get",
+                                dataType: "json",
+                                data: {
+                                    stage: 1,
+                                    OTP: "",
+                                    referenceId: "",
+                                    AadharNo: AadharNo,
+                                    email: emailid,
+                                    urlvariable: urlvariable,
+                                    responseCode: data.status,
+                                    responseMessage: data.message,
+                                    response: JSON.parse(xmlhttp.responseText)
+                                },
+                                success: function (result) {
+
+                                }
+
+                            });
+
+                        }
+                    });
+
+            } else {
+                swal({
+                    title: "Error",
+                    text: data.responseMessage,
+                    icon: "error",
+                    button: true,
+
+                })
+                    .then((willConfirm) => {
+                        if (willConfirm) {
+
+                            $.ajax({
+                                url: "/LeadGeneration/SetApiResponse",
+                                type: "Get",
+                                dataType: "json",
+                                data: {
+                                    stage: 1,
+                                    OTP: "",
+                                    referenceId: "",
+                                    AadharNo: AadharNo,
+                                    email: emailid,
+                                    urlvariable: urlvariable,
+                                    responseCode: data.responseCode,
+                                    responseMessage: data.responseMessage,
+                                    response: JSON.parse(xmlhttp.responseText)
+                                },
+                                success: function (result) {
+
+                                }
+
+                            });
+
+                        }
+                    });
+            }
+
+        }
+
+
+    }
+    function GurantocallbackFunction(xmlhttp) {
+        //alert(xmlhttp.responseXML);
+    }
+    function GurantorChkAadharOTP() {
+        debugger
+        var OTP = $("#GurantorOTP1").val() + $("#GurantorOTP2").val() + $("#GurantorOTP3").val() + $("#GurantorOTP4").val() + $("#GurantorOTP5").val() + $("#GurantorOTP6").val();
+        if (OTP.length != 6) {
+            swal({
+                title: "Error",
+                text: "Please enter valid OTP",
+                icon: "error",
+                button: true,
+
+            })
+                .then((willConfirm) => {
+                    if (willConfirm) {
+
+                    }
+                });
+
+
+        } else {
+
+
+            debugger
+            var referenceId = $("#GurantorreferenceId").val();
+            var urlvariable;
+
+            urlvariable = "https://sm-kyc-sandbox.scoreme.in/kyc/external/aadhaarotpverification";
+
+            var ItemJSON;
+
+            ItemJSON = '{"otp": "' + OTP + '","referenceId":  "' + referenceId + '"}';
+
+            URL = urlvariable;  //Your URL
+
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = callbackFunction(xmlhttp);
+            xmlhttp.open("POST", URL, false);
+            xmlhttp.setRequestHeader('ClientId', "9b7f56d730cb292199b7a49620fa80f6");
+            xmlhttp.setRequestHeader('ClientSecret', "60812117e31f68b0475960d167a6fc856a09de16cc89f17f8ece51e29f216b15");
+            xmlhttp.onreadystatechange = callbackFunction(xmlhttp);
+            debugger
+
+            xmlhttp.send(ItemJSON);
+
+            var data = JSON.parse(xmlhttp.responseText);
+
+
+            if (data.responseMessage == "Successfully Completed.") {
+
+                swal({
+                    title: "Success",
+                    text: "Aadhar verify successfully",
+                    icon: "success",
+                    button: true,
+
+                })
+                    .then((willConfirm) => {
+                        if (willConfirm) {
+                            debugger
+                            document.getElementById("hdn_gurantor_aadhar_verify").value = "Y";
+
+
+                            $.ajax({
+                                url: "/LeadGeneration/SetApiResponse",
+                                type: "Get",
+                                dataType: "json",
+                                data: {
+                                    stage: 2,
+                                    OTP: OTP,
+                                    referenceId: referenceId,
+                                    AadharNo: "",
+                                    email: "",
+                                    urlvariable: urlvariable,
+                                    responseCode: data.responseCode,
+                                    responseMessage: data.responseMessage,
+                                    response: JSON.parse(xmlhttp.responseText)
+                                },
+                                success: function (result) {
+
+                                }
+
+                            });
+
+                            $("#GurantormyModal").modal("hide");
+                        }
+                    });
+
+
+            } else if (data.message == "Credits not available.") {
+                swal({
+                    title: "Error",
+                    text: data.message,
+                    icon: "error",
+                    button: true,
+
+                })
+                    .then((willConfirm) => {
+                        if (willConfirm) {
+
+                            $.ajax({
+                                url: "/LeadGeneration/SetApiResponse",
+                                type: "Get",
+                                dataType: "json",
+                                data: {
+                                    stage: 1,
+                                    OTP: "",
+                                    referenceId: "",
+                                    AadharNo: AadharNo,
+                                    email: emailid,
+                                    urlvariable: urlvariable,
+                                    responseCode: data.status,
+                                    responseMessage: data.message,
+                                    response: JSON.parse(xmlhttp.responseText)
+                                },
+                                success: function (result) {
+
+                                }
+
+                            });
+
+                        }
+                    });
+
+            } else {
+                swal({
+                    title: "Error",
+                    text: data.responseMessage,
+                    icon: "error",
+                    button: true,
+
+                })
+                    .then((willConfirm) => {
+                        if (willConfirm) {
+                            $.ajax({
+                                url: "/LeadGeneration/SetApiResponse",
+                                type: "Get",
+                                dataType: "json",
+                                data: {
+                                    stage: 2,
+                                    OTP: OTP,
+                                    referenceId: referenceId,
+                                    AadharNo: "",
+                                    email: "",
+                                    urlvariable: urlvariable,
+                                    responseCode: data.responseCode,
+                                    responseMessage: data.responseMessage,
+                                    response: JSON.parse(xmlhttp.responseText)
+                                },
+                                success: function (result) {
+
+                                }
+
+                            });
+                        }
+                    });
+
+
+
+            }
+
+
+
+        }
+
+    }
+
+    function GurantorPanVerification() {
+        debugger
+
+        var panNumber = $("#G_PanNo").val();
+        var fullName = $("#G_FName").val() + " " + $("#G_MName").val() + " " + $("#G_LName").val();
+        var dob = moment($("#G_Dob").val()).format('DD-MMM-YYYY');
+
+        if (fullName.trim().length == 0) {
+            swal({
+                title: "Error",
+                text: "Please enter customer full name",
+                icon: "error",
+                button: true,
+
+            })
+                .then((willConfirm) => {
+                    if (willConfirm) {
+
+                    }
+                });
+
+        }
+        else if (panNumber.length != 10) {
+            swal({
+                title: "Error",
+                text: "Please enter correct pan no",
+                icon: "error",
+                button: true,
+
+            })
+                .then((willConfirm) => {
+                    if (willConfirm) {
+
+                    }
+                });
+
+        }
+        else if (dob.length == 0) {
+            swal({
+                title: "Error",
+                text: "Please enter dob",
+                icon: "error",
+                button: true,
+
+            })
+                .then((willConfirm) => {
+                    if (willConfirm) {
+
+                    }
+                });
+
+        }
+        else if (dob == "Invalid date") {
+            swal({
+                title: "Error",
+                text: "Please enter correct dob",
+                icon: "error",
+                button: true,
+
+            })
+                .then((willConfirm) => {
+                    if (willConfirm) {
+
+                    }
+                });
+
+        }
+        else {
+            debugger
+            var urlvariable;
+
+            urlvariable = "https://sm-kyc-sandbox.scoreme.in/kyc/external/panverification";
+
+            var ItemJSON;
+
+            ItemJSON = '{"panNumber": "' + panNumber + '","fullName":  "' + fullName + '", "dateOfBirth":  "' + dob + '", "status":  "' + "individual" + '"}';
+
+            debugger
+            alert(ItemJSON)
+
+            URL = urlvariable;  //Your URL
+
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = callbackFunction(xmlhttp);
+            xmlhttp.open("POST", URL, false);
+            xmlhttp.setRequestHeader("Content-Type", "application/json");
+            xmlhttp.setRequestHeader('ClientId', "9b7f56d730cb292199b7a49620fa80f6");
+            xmlhttp.setRequestHeader('ClientSecret', "60812117e31f68b0475960d167a6fc856a09de16cc89f17f8ece51e29f216b15");
+            xmlhttp.onreadystatechange = callbackFunction(xmlhttp);
+            xmlhttp.send(ItemJSON);
+            debugger
+
+            var data = JSON.parse(xmlhttp.responseText);
+
+            if (data.responseMessage == "Successfully Submitted.") {
+                document.getElementById("referenceId").value = data.data.referenceId;
+                swal({
+                    title: "Success",
+                    text: data.responseMessage,
+                    icon: "success",
+                    button: true,
+
+                })
+                    .then((willConfirm) => {
+                        if (willConfirm) {
+                            debugger
+                            data = JSON.parse(xmlhttp.responseText);
+                            var rid = data.data.referenceId;
+                            debugger
+
+
+                            $.ajax({
+                                url: "/LeadGeneration/SetPANApiResponse",
+                                type: "Get",
+                                dataType: "json",
+                                data: {
+                                    stage: 1,
+                                    ApiName: "PanVerify",
+                                    OTP: "",
+                                    referenceId: "",
+                                    Panno: panNumber,
+                                    email: "",
+                                    urlvariable: urlvariable,
+                                    responseCode: data.responseCode,
+                                    responseMessage: data.responseMessage,
+                                    response: JSON.parse(xmlhttp.responseText)
+                                },
+                                success: function (result) {
+
+                                }
+
+                            });
+
+
+                            $.ajax({
+                                url: "https://sm-kyc-sandbox.scoreme.in/kyc/external/getkycrequestresponse?referenceId=" + rid,
+                                type: 'GET',
+                                dataType: 'json',
+                                headers: {
+                                    'ClientId': "9b7f56d730cb292199b7a49620fa80f6",
+                                    'ClientSecret': "60812117e31f68b0475960d167a6fc856a09de16cc89f17f8ece51e29f216b15"
+                                },
+                                contentType: 'application/json; charset=utf-8',
+                                success: function (result) {
+                                    // CallBack(result);
+                                    debugger
+
+                                    if (data.responseMessage == "Successfully Submitted.") {
+
+                                        swal({
+                                            title: "Success",
+                                            text: "Pan verify successfully",
+                                            icon: "success",
+                                            button: true,
+
+                                        })
+                                            .then((willConfirm) => {
+                                                if (willConfirm) {
+                                                    document.getElementById("hdn_gurantor_aadhar_verify").value = "Y";
+
+                                                    $.ajax({
+                                                        url: "/LeadGeneration/SetPANApiResponse",
+                                                        type: "Get",
+                                                        dataType: "json",
+                                                        data: {
+                                                            stage: 2,
+                                                            ApiName: "PanOTPVerify",
+                                                            OTP: "",
+                                                            referenceId: rid,
+                                                            Panno: panNumber,
+                                                            email: "",
+                                                            urlvariable: urlvariable,
+                                                            responseCode: data.responseCode,
+                                                            responseMessage: data.responseMessage,
+                                                            response: JSON.parse(xmlhttp.responseText)
+                                                        },
+                                                        success: function (result) {
+
+                                                        }
+
+                                                    });
+
+                                                }
+                                            });
+
+
+                                    } else {
+                                        swal({
+                                            title: "Error",
+                                            text: data.responseMessage,
+                                            icon: "error",
+                                            button: true,
+
+                                        })
+                                            .then((willConfirm) => {
+                                                if (willConfirm) {
+                                                    $.ajax({
+                                                        url: "/LeadGeneration/SetPANApiResponse",
+                                                        type: "Get",
+                                                        dataType: "json",
+                                                        data: {
+                                                            stage: 2,
+                                                            ApiName: "PanOTPVerify",
+                                                            OTP: "",
+                                                            referenceId: rid,
+                                                            Panno: panNumber,
+                                                            email: "",
+                                                            urlvariable: urlvariable,
+                                                            responseCode: data.responseCode,
+                                                            responseMessage: data.responseMessage,
+                                                            response: JSON.parse(xmlhttp.responseText)
+                                                        },
+                                                        success: function (result) {
+
+                                                        }
+
+                                                    });
+                                                }
+                                            });
+
+
+
+                                    }
+
+
+
+
+
+                                },
+                                error: function (error) {
+                                    debugger
+                                    alert(error);
+                                }
+                            })
+
+
+
+
+
+                        }
+                    });
+
+            } else {
+                swal({
+                    title: "Error",
+                    text: data.responseMessage,
+                    icon: "error",
+                    button: true,
+
+                })
+                    .then((willConfirm) => {
+                        if (willConfirm) {
+                            $.ajax({
+                                url: "/LeadGeneration/SetPANApiResponse",
+                                type: "Get",
+                                dataType: "json",
+                                data: {
+                                    stage: 1,
+                                    ApiName: "PanVerify",
+                                    OTP: "",
+                                    referenceId: "",
+                                    Panno: panNumber,
+                                    email: "",
+                                    urlvariable: urlvariable,
+                                    responseCode: data.responseCode,
+                                    responseMessage: data.responseMessage,
+                                    response: JSON.parse(xmlhttp.responseText)
+                                },
+                                success: function (result) {
+
+                                }
+
+                            });
+
+                        }
+                    });
+            }
+
+        }
+
+
+    }
+
+
+</script>

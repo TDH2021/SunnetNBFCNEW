@@ -1,0 +1,98 @@
+﻿@model Sunnet_NBFC.Models.clsCity
+@{
+	ViewBag.Title = "Edit City";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+	<div class="container-fluid">
+		<div class="row mb-2">
+			<div class="col-sm-6">
+				<h1>Edit City</h1>
+			</div>
+			<div class="col-sm-6">
+				<ol class="breadcrumb float-sm-right">
+					@Html.ActionLink("Back to List", "CityView")
+				</ol>
+			</div>
+		</div>
+	</div><!-- /.container-fluid -->
+</section>
+@using (Html.BeginForm("UpdateCity", "City", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+	@Html.AntiForgeryToken()
+	<section class="content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-body">
+							<div class="form-group">
+								<div class="row">
+									@Html.HiddenFor(model => model.Cityid)
+									<div class="col-md-6">
+										<label for="exampleInputEmail1">State</label>
+										@Html.DropDownListFor(model => model.Stateid, ViewBag.Service as SelectList, new { @class = "form-control" })
+										@Html.ValidationMessageFor(model => model.Stateid, "", new { @class = "text-danger" })
+
+
+									</div>
+									<div class="col-md-6">
+										<label for="exampleInputEmail1">City Name</label>
+										@Html.TextBoxFor(model => model.CityName, new { @class = "form-control", @placeholder = "City Name", @name = "City Name", @maxlength = "50", @requried = "true" })
+										@Html.ValidationMessageFor(model => model.CityName, "", new { @class = "text-danger" })
+
+									</div>
+								</div>
+							</div>
+
+							<div class="card-footer">
+								<button type="submit" class="btn btn-primary">Update</button>
+
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<!-- /.row -->
+			</div>
+		</div>
+
+	</section>
+
+}
+
+
+@*@if (ViewBag.Message != null)
+	{
+		<script type="text/javascript">
+
+				window.onload = function () {
+					alert("@ViewBag.Message");
+				};
+		</script>
+	}*@
+@if (ViewBag.Error != null && ViewBag.Error != "")
+{
+	<script type="text/javascript">
+
+            window.onload = function () {
+               // alert("@ViewBag.Error");
+				swal("TDH", "@ViewBag.Error", "error");
+				
+            };
+	</script>
+}
+@if (ViewBag.Success != null && ViewBag.Success != "")
+{
+	<script type="text/javascript">
+            window.onload = function () {
+                //alert("@ViewBag.Success");
+				swal("TDH", "@ViewBag.Success", "Success");
+            };
+	</script>
+}
+
+
+
+

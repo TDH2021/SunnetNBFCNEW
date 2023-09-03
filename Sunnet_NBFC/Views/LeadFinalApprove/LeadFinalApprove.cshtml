@@ -1,0 +1,284 @@
+﻿@model Sunnet_NBFC.Models.clsLeadFinalApproveMain
+@using Sunnet_NBFC.App_Code
+@using Sunnet_NBFC.Models
+
+@{
+	ViewBag.Title = "LeadFinalApprove";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+	<div class="container-fluid">
+		<div class="row mb-2">
+			<div class="col-sm-6">
+				<h1>Lead Final Approve</h1>
+			</div>
+			<div class="col-sm-6">
+				<ol class="breadcrumb float-sm-right">
+					@Html.ActionLink("Back to List", "LeadView", "Lead")
+				</ol>
+			</div>
+		</div>
+	</div><!-- /.container-fluid -->
+</section>
+
+@using (Html.BeginForm("LeadFinalApproveSave", "LeadFinalApprove", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+	@*@Html.AntiForgeryToken()
+		@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
+
+
+	<section class="content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-body">
+
+							<div class="form-group">
+								<div class="row">
+									<div class="col-md-12">
+										@Html.HiddenFor(model => model.ReqType)
+										@Html.HiddenFor(model => model.FinalApproveId)
+										@Html.HiddenFor(model => model.LeadId)
+										@Html.HiddenFor(model => model.ShortStage_Name)
+
+									</div>
+								</div>
+							</div>
+
+
+							<div class="form-group">
+								<div class="row">
+									<div class="col-md-6">
+										@Html.LabelFor(model => model.LeadNo, new { @class = "control-label" }) *
+										@Html.TextBoxFor(model => model.LeadNo, new { @class = "form-control", @required = "true", @readonly = "true" })
+										@*@Html.ValidationMessageFor(model => model.LeadId, "", new { @class = "text-danger" })*@
+									</div>
+
+								</div>
+								<hr />
+
+								<div class="row" style="display: none">
+									<div class="col-md-6">
+										@Html.LabelFor(model => model.TrnchsNo, new { @class = "control-label" })
+										@Html.TextBoxFor(model => model.TrnchsNo, new { @class = "form-control", @id = "txtTrnchsNo" })
+
+
+									</div>
+									<div class="col-md-6">
+										@Html.LabelFor(model => model.Particulers, new { @class = "control-label" })
+										@Html.TextBoxFor(model => model.Particulers, new { @class = "form-control", @id = "txtParticulers" })
+
+									</div>
+									<div class="col-md-6">
+										@Html.LabelFor(model => model.BorrowerKyc, new { @class = "control-label" })
+										@Html.DropDownListFor(model => model.BorrowerKyc,
+										new List<SelectListItem> {
+											new SelectListItem { Value = "No" , Text = "No" },
+											new SelectListItem { Value = "Yes" , Text = "Yes" },
+										},
+										new { @class = "form-control", @id = "ddlBorrowerKyc" })
+
+									</div>
+									<div class="col-md-6">
+										@Html.LabelFor(model => model.GuarantorKyc, new { @class = "control-label" })
+										@Html.DropDownListFor(model => model.GuarantorKyc,
+										new List<SelectListItem> {
+											new SelectListItem { Value = "No" , Text = "No" },
+											new SelectListItem { Value = "Yes" , Text = "Yes" },
+										},
+										new { @class = "form-control", @id = "ddlGuarantorKyc" })
+
+									</div>
+
+									<div class="col-md-6">
+										@Html.LabelFor(model => model.PDC, new { @class = "control-label" })
+										@Html.DropDownListFor(model => model.PDC,
+										new List<SelectListItem> {
+											new SelectListItem { Value = "No" , Text = "No" },
+											new SelectListItem { Value = "Yes" , Text = "Yes" },
+										},
+										new { @class = "form-control", @id = "ddlPDC" })
+
+									</div>
+									<div class="col-md-6">
+										@Html.LabelFor(model => model.BorrowerPhoto, new { @class = "control-label" })
+										@Html.DropDownListFor(model => model.BorrowerPhoto,
+										new List<SelectListItem> {
+											new SelectListItem { Value = "No" , Text = "No" },
+											new SelectListItem { Value = "Yes" , Text = "Yes" },
+										},
+										new { @class = "form-control", @id = "ddlBorrowerPhoto" })
+
+									</div>
+
+									<div class="col-md-6">
+										@Html.LabelFor(model => model.CoBorrowerPhoto, new { @class = "control-label" })
+										@Html.DropDownListFor(model => model.CoBorrowerPhoto,
+										new List<SelectListItem> {
+											new SelectListItem { Value = "No" , Text = "No" },
+											new SelectListItem { Value = "Yes" , Text = "Yes" },
+										},
+										new { @class = "form-control", @id = "ddlNACH" })
+
+									</div>
+									<div class="col-md-6">
+										@Html.LabelFor(model => model.GuarantorPhoto, new { @class = "control-label" })
+										@Html.DropDownListFor(model => model.GuarantorPhoto,
+										new List<SelectListItem> {
+											new SelectListItem { Value = "No" , Text = "No" },
+											new SelectListItem { Value = "Yes" , Text = "Yes" },
+										},
+										new { @class = "form-control", @id = "ddlGuarantorPhoto" })
+
+									</div>
+
+									<div class="col-md-6">
+										@Html.LabelFor(model => model.SanctionLetter, new { @class = "control-label" })
+										@Html.DropDownListFor(model => model.SanctionLetter,
+										new List<SelectListItem> {
+											new SelectListItem { Value = "No" , Text = "No" },
+											new SelectListItem { Value = "Yes" , Text = "Yes" },
+										},
+										new { @class = "form-control", @id = "ddlSanctionLetter" })
+
+									</div>
+									<div class="col-md-6">
+										@Html.LabelFor(model => model.LoanAgreementkit, new { @class = "control-label" })
+										@Html.DropDownListFor(model => model.LoanAgreementkit,
+										new List<SelectListItem> {
+											new SelectListItem { Value = "No" , Text = "No" },
+											new SelectListItem { Value = "Yes" , Text = "Yes" },
+										},
+										new { @class = "form-control", @id = "ddlLoanAgreementkit" })
+
+									</div>
+
+									<div class="col-md-6">
+										@Html.LabelFor(model => model.DisbursementRequestLetter, new { @class = "control-label" })
+										@Html.DropDownListFor(model => model.DisbursementRequestLetter,
+										new List<SelectListItem> {
+											new SelectListItem { Value = "No" , Text = "No" },
+											new SelectListItem { Value = "Yes" , Text = "Yes" },
+										},
+										new { @class = "form-control", @id = "ddlDisbursementRequestLetter" })
+
+									</div>
+									<div class="col-md-6">
+										@Html.LabelFor(model => model.NocPreviousFinanced, new { @class = "control-label" })
+										@Html.DropDownListFor(model => model.NocPreviousFinanced,
+										new List<SelectListItem> {
+											new SelectListItem { Value = "No" , Text = "No" },
+											new SelectListItem { Value = "Yes" , Text = "Yes" },
+										},
+										new { @class = "form-control", @id = "ddlNocPreviousFinanced" })
+
+									</div>
+									<div class="col-md-6">
+										@Html.LabelFor(model => model.Rtoslip, new { @class = "control-label" })
+										@Html.DropDownListFor(model => model.Rtoslip,
+										new List<SelectListItem> {
+											new SelectListItem { Value = "No" , Text = "No" },
+											new SelectListItem { Value = "Yes" , Text = "Yes" },
+										},
+										new { @class = "form-control", @id = "ddlRtoslip" })
+
+									</div>
+									<div class="col-md-6">
+
+
+									</div>
+									<div class="col-md-6">
+										@Html.LabelFor(model => model.StamppingCharges, new { @class = "control-label" })
+										@Html.TextBoxFor(model => model.StamppingCharges, new { @class = "form-control", @id = "txtStamppingCharges" })
+
+									</div>
+								</div>
+								@*<div class="row">
+									<div class="col-md-12">
+										<hr />
+									</div>
+								</div>*@
+							<div class="row">
+								<div class="col-md-3">
+									@Html.LabelFor(model => model.NetDisbAmt, new { @class = "control-label" })
+									@Html.TextBoxFor(model => model.NetDisbAmt, new { @class = "form-control", @id = "txtNetDisbAmt" })
+
+								</div>
+								<div class="col-md-3">
+									@Html.LabelFor(model => model.Proccesfees, new { @class = "control-label" })
+									@Html.TextBoxFor(model => model.Proccesfees, new { @class = "form-control", @id = "txtProccesfees" })
+
+
+								</div>
+								<div class="col-md-3">
+									@Html.LabelFor(model => model.AdvanceEMI, new { @class = "control-label" })
+									@Html.TextBoxFor(model => model.AdvanceEMI, new { @class = "form-control", @id = "txtAdvanceEMI" })
+
+								</div>
+								<div class="col-md-3">
+									@Html.LabelFor(model => model.GST, new { @class = "control-label" })
+									@Html.TextBoxFor(model => model.GST, new { @class = "form-control", @id = "txtGST" })
+								</div>
+							</div>
+
+								<div class="row">
+									
+									<div class="col-md-6">
+										@Html.LabelFor(model => model.Remarks, new { @class = "control-label" })
+										@Html.TextBoxFor(model => model.Remarks, new { @class = "form-control", @id = "txtRemarks" })
+									</div>
+								</div>
+
+
+                                <div class="card-footer">
+                                    <input type="submit" value="Update" class="btn btn-primary" />
+                                    @*@Html.ActionLink("Cancel", "LeadView", "Lead", null, new { @class = "btn btn-danger btn-large" })*@
+                                    @Html.ActionLink("Cancel", "GoToStage", "Lead", new { StageName = ViewBag.ComeFrom }, new { @class = "btn btn-danger btn-large" })
+                                </div>
+
+
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</section>
+
+}
+
+<script src="~/plugins/jquery/jquery.min.js"></script>
+<script src="~/plugins/jquery/jquery.validate.min.js"></script>
+<script src="~/plugins/jquery/jquery.validate.unobtrusive.min.js"></script>
+
+@if (ViewBag.Error != null && ViewBag.Error != "")
+{
+	<script type="text/javascript">
+
+            window.onload = function () {
+                //alert("@ViewBag.Error");
+				swal("TDH", "@ViewBag.Error", "error");
+            };
+	</script>
+}
+
+@if (ViewBag.Success != null && ViewBag.Success != "")
+{
+	<script type="text/javascript">
+            window.onload = function () {
+                //alert("@ViewBag.Success");
+				swal("TDH", "@ViewBag.Success", "Success");
+            };
+	</script>
+}
+
+
+
+
+
+
+

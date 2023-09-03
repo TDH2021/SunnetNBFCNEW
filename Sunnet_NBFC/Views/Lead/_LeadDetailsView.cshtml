@@ -1,0 +1,779 @@
+﻿@model Sunnet_NBFC.Models.clsLeadGenerationMaster
+
+
+<div class="modal-dialog" style="max-width: 1000px;">
+
+    <style>
+        .table {
+            display: block;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+            .table td, th {
+            }
+    </style>
+
+    <!-- Modal content-->
+    <div class="modal-content" style="overflow-y: scroll; height:550px; width: 1050px;">
+        <div class="modal-header">
+            <h4 class="modal-title">Customer Details</h4>
+
+        </div>
+        <div class="modal-body">
+            <div class="panel-body">
+                @Html.HiddenFor(Model => Model.LeadId, new { id = "Leadidd" })
+                <table class="table table-striped table-bordered table-hover table-responsive" style="display:table;"
+                       id="dataTables-example-Details">
+                    <thead>
+                        <tr>
+                            <th>Lead NO</th>
+                            <td>@Model.LeadNo</td>
+
+                            <th>Customer Name</th>
+                            <td>@Model.Prefix @Model.FirstName  @Model.MiddleName  @Model.LastName</td>
+
+
+                        </tr>
+                        <tr>
+                            <th>Main Product</th>
+                            <td>@Model.MainProductName</td>
+                            <th>Sub Product</th>
+                            <td>@Model.ProductName</td>
+                        </tr>
+                        @if (Model.MainProductName.ToUpper() == "INDIVIDUAL LOAN")
+                        {
+                            <tr>
+                                <th>Center Name</th>
+                                <td>@Model.CenterName</td>
+                                <th>Branch Name</th>
+                                <td>@Model.PLBranchName</td>
+                            </tr>
+                        }
+                        <tr>
+                            <th>Father Name</th>
+                            <td>@Model.FatherName</td>
+                            <th>Mother Name</th>
+                            <td>@Model.MotherName</td>
+                        </tr>
+                        <tr>
+                            <th>Spouse Name</th>
+                            <td>@Model.SpouseName</td>
+                            <th>Gender</th>
+                            <td>@Model.Gender</td>
+                        </tr>
+                        <tr>
+                            <th>Date Of Birth</th>
+                            <td>@Model.DateofBirth</td>
+
+                            <th>Martial Status</th>
+                            <td>@Model.MartialStatus</td>
+                        </tr>
+                        <tr>
+                            <th>Present Address</th>
+                            <td>@Model.PresentAddress</td>
+                            <th>Present City</th>
+                            <td>@Model.PresentCityId</td>
+
+                        </tr>
+                        <tr>
+                            <th>Present State</th>
+                            <td>@Model.PresentStateId</td>
+                            <th>Present Pincode</th>
+                            <td>@Model.PresentPincode</td>
+                        </tr>
+
+
+                        <tr>
+                            <th>Present Village</th>
+                            <td>@Model.PresentVillage</td>
+                            <th>Present District</th>
+                            <td>@Model.PresentDistrict</td>
+
+                        </tr>
+
+                        <tr>
+                            <th>Permanent Address</th>
+                            <td>@Model.PermanentAddress</td>
+                            <th>Permanent City</th>
+                            <td>@Model.PermanentCityId</td>
+
+                        </tr>
+
+                        <tr>
+                            <th>Permanent State</th>
+                            <td>@Model.PermanentStateId</td>
+                            <th>Permanent Pincode</th>
+                            <td>@Model.PermanentPincode</td>
+                        </tr>
+
+                        <tr>
+                            <th>Permanent Village</th>
+                            <td>@Model.PermanentVillage</td>
+                            <th>Permanent District</th>
+                            <td>@Model.PermanentDistrict</td>
+
+                        </tr>
+
+
+
+                        <tr>
+                            <th>Cibil Score</th>
+                            <td>@Model.CibilScore</td>
+                            <th>Mobile No1</th>
+                            <td>@Model.MobileNo1</td>
+                        </tr>
+                        <tr>
+                            <th>Father Mobile No</th>
+                            <td>@Model.FatherMobileNo</td>
+                            <th>Mother Mobile No</th>
+                            <td>@Model.MotherMobileNo</td>
+                        </tr>
+
+
+                        <tr>
+                            <th>Spouse Mobile No</th>
+                            <td>@Model.SpouseMobileNo</td>
+                            <th>Aadhar No</th>
+                            <td>@Model.AadharNo</td>
+                        </tr>
+
+                        <tr>
+                            <th>Pan No</th>
+                            <td>@Model.PanNo</td>
+                            <th>Email</th>
+                            <td>@Model.EmailId</td>
+                        </tr>
+                        @if (Model.CustImage.Trim() != "")
+                        {
+                            var img = Sunnet_NBFC.App_Code.ClsCommon.PreviewImage(Model.CustImage.Trim());
+                            <tr>
+                                <th>Profile Image</th>
+                                <td> <img src=@img alt="" height=100 width=200 /></td>
+                            </tr>
+
+                        }
+
+
+                        @if (ViewBag.CUSTYPEREUIRED == "b" || ViewBag.CUSTYPEREUIRED == "c")
+                        {
+
+                            <tr>
+                                <th><b>Co Applicant Details:</b></th>
+                                <td colspan="4"></td>
+                            </tr>
+
+
+                            <tr>
+
+                                <th>CO Applicant Name</th>
+                                <td>@Model.CO_Prefix @Model.CO_FirstName  @Model.CO_MiddleName  @Model.CO_LastName</td>
+
+
+                            </tr>
+
+                            <tr>
+
+                                <th>Gender</th>
+                                <td>@Model.CO_Gender</td>
+                                <th>Date Of Birth</th>
+                                <td>@Model.CO_DOB</td>
+
+                            </tr>
+                            <tr>
+
+                                <th>Martial Status</th>
+                                <td>@Model.CO_Marital_Status</td>
+                                <th>Present Address</th>
+                                <td>@Model.CO_PresentAddress</td>
+                            </tr>
+                            <tr>
+
+                                <th>Present Pincode</th>
+                                <td>@Model.CO_PresentPinCode</td>
+
+                                <th>Present State</th>
+                                <td>@Model.CO_PresentStateId</td>
+                            </tr>
+                            <tr>
+
+                                <th>Present City</th>
+                                <td>@Model.CO_PresentCityId</td>
+
+                                <th>Present Village</th>
+                                <td>@Model.CO_PresentVillage</td>
+                            </tr>
+
+                            <tr>
+
+                                <th>Present District</th>
+                                <td>@Model.CO_PresentDistrict</td>
+
+                                <th>Permanent Address</th>
+                                <td>@Model.CO_PermanentAddress</td>
+                            </tr>
+
+
+                            <tr>
+
+                                <th>Permanent Pincode</th>
+                                <td>@Model.CO_PermanentPincode</td>
+
+                                <th>Permanent State</th>
+                                <td>@Model.CO_PermanentStateId</td>
+                            </tr>
+
+                            <tr>
+
+                                <th>Permanent City</th>
+                                <td>@Model.CO_PermanentStateId</td>
+
+                                <th>Permanent Village</th>
+                                <td>@Model.CO_PermanentVillage</td>
+                            </tr>
+
+                            <tr>
+
+                                <th>Permanent District</th>
+                                <td>@Model.CO_PermanentDistrict</td>
+
+                                <th>Mobile No1</th>
+                                <td>@Model.CO_Mobile_No</td>
+                            </tr>
+
+                            <tr>
+
+                                <th>Aadhar No</th>
+                                <td>@Model.CO_Adhaar</td>
+
+                                <th>Pan No</th>
+                                <td>@Model.CO_PAN</td>
+                            </tr>
+
+                            <tr>
+                                <th>Email</th>
+                                <td>@Model.CO_Email_Id</td>
+                                <th></th>
+                                <td></td>
+                            </tr>
+                            if (Model.CO_image.Trim() != "")
+                            {
+                                var img = Sunnet_NBFC.App_Code.ClsCommon.PreviewImage(Model.CO_image.Trim());
+                                <tr>
+                                    <th>Co-Profile Image</th>
+                                    <td> <img src=@img alt="" height=100 width=200 /></td>
+                                </tr>
+
+                            }
+
+                            <tr>
+
+                                <th>Requested Loan Amount</th>
+                                <td>@Model.ReuestedLoanAmount</td>
+
+                                <th>Reuested Loan Tenure</th>
+                                <td>@Model.ReuestedLoanTenure</td>
+                            </tr>
+                            if (Model.MainProductName.ToUpper() != "INDIVIDUAL LOAN")
+                            {
+                                <tr>
+
+                                    <th>Refernce Name</th>
+                                    <td>@Model.RefernceName</td>
+
+                                    <th>Refence Relation</th>
+                                    <td>@Model.RefenceRelation</td>
+                                </tr>
+
+                                <tr>
+                                    <th>Refence MobileNo</th>
+                                    <td>@Model.RefenceMobileNo</td>
+
+
+                                    <th>Refernce Name1</th>
+                                    <td>@Model.RefernceName1</td>
+
+
+                                </tr>
+
+                                <tr>
+                                    <th>Refence Relation1</th>
+                                    <td>@Model.RefenceRelation1</td>
+
+                                    <th>Refence MobileNo1</th>
+                                    <td>@Model.RefenceMobileNo1</td>
+
+
+
+                                </tr>
+                            }
+                            <tr>
+                                <th>Est Month Income</th>
+                                <td>@Model.EstMonthIncome</td>
+                                <th>Est Month Expense</th>
+                                <td>@Model.EstMonthExpense</td>
+
+                            </tr>
+
+                        }
+
+
+
+
+                        @if (Model.MainProductName == "Personal Loan")
+                        {
+                            <tr>
+
+                                <th>Purpose of Loan</th>
+                                <td>@Model.LoanPurpose</td>
+
+                            </tr>
+
+                        }
+                        else if (Model.MainProductName == "Vehicle Loan")
+                        {
+                            <tr>
+                                <th>No of Dependent</th>
+                                <td>@Model.NoofDependent</td>
+                                <th>Colletral Security Type</th>
+                                <td>@Model.ColletralSecurityType</td>
+                            </tr>
+
+                            <tr>
+                                <th>Cur Month Obligation</th>
+                                <td>@Model.CurMonthObligation</td>
+                                <th>FORecomed Amt</th>
+                                <td>@Model.FORecomedAmt</td>
+                            </tr>
+
+                            <tr>
+                                <th>Viechle No</th>
+                                <td>@Model.ViechleNo</td>
+                                <th>Viechle Reg Year</th>
+                                <td>@Model.ViechleRegYear</td>
+                            </tr>
+
+                            <tr>
+                                <th>Registration Year</th>
+                                <td>@Model.MFGYear</td>
+                                <th>Viechle Model</th>
+                                <td>@Model.ViechleModel</td>
+                            </tr>
+
+                            <tr>
+                                <th>Viechle Color</th>
+                                <td>@Model.ViechleColor</td>
+                                <th>Viechle Company</th>
+                                <td>@Model.ViechleCompany</td>
+                            </tr>
+
+                            <tr>
+                                <th>Viechle Owner</th>
+                                <td>@Model.ViechleOwner</td>
+                                <th>Fual Type</th>
+                                <td>@Model.FuelType</td>
+                            </tr>
+                            <tr>
+                                <th>Owner</th>
+                                <td>@Model.Owner</td>
+                                <th>Insurance Status</th>
+                                <td>@Model.InsuranceStatus</td>
+                            </tr>
+                            <tr>
+                                <th>Insurance Type</th>
+                                <td>@Model.InsuranceType</td>
+                                <th>Fual Type</th>
+                                <td>@Model.FuelType</td>
+                            </tr>
+                            <tr>
+                                <th>Validity Date</th>
+                                <td>@Model.ValidityDate</td>
+                                <th>Ex ShowRoom Price</th>
+                                <td>@Model.ExShowRoomPrice</td>
+                            </tr>
+                            <tr>
+                                <th>On Road Price</th>
+                                <td>@Model.OnRoadPrice</td>
+                                <th>Dealer</th>
+                                <td>@Model.DealerName</td>
+                            </tr>
+                            <tr>
+                                <th>Insurer</th>
+                                <td>@Model.Insurer</td>
+                                <th>Policy No</th>
+                                <td>@Model.PolicyNo</td>
+                            </tr>
+                            <tr>
+                                <th>Registation Date</th>
+                                <td>@Model.RegistrationDate</td>
+                                <th></th>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>Remarks</th>
+                                <td>@Model.UserRemarks</td>
+                                <th></th>
+                                <td></td>
+                            </tr>
+
+                        }
+                        else if (Model.MainProductName == "Bussiness Loan")
+                        {
+                            <tr>
+                                <th>No of Dependent</th>
+                                <td>@Model.NoofDependent</td>
+                                <th>Colletral Security Type</th>
+                                <td>@Model.ColletralSecurityType</td>
+                            </tr>
+
+                            <tr>
+                                <th>Cur Month Obligation</th>
+                                <td>@Model.CurMonthObligation</td>
+                                <th>Loan Recommend by FO</th>
+                                <td>@Model.FORecomedAmt</td>
+                            </tr>
+
+                            <tr>
+                                <th>Purpose of Loan</th>
+                                <td>@Model.LoanPurpose</td>
+                                <th>Estd Market Value</th>
+                                <td>@Model.EstValueofscurity</td>
+                            </tr>
+                            
+                            
+                            <tr>
+                                <th>Property Type</th>
+                                <td>@Model.PropertyType</td>
+                                <th>Property Area</th>
+                                <td>@Model.Propertyarea</td>
+                            </tr>
+                            <tr>
+                                <th>Property Address</th>
+                                <td>@Model.PropertyAddress</td>
+                                <th></th>
+                                <td></td>
+                            </tr>
+
+                        }
+
+
+                    </thead>
+                </table>
+
+
+
+                @if (ViewBag.CUSTYPEREUIRED == "b" || ViewBag.CUSTYPEREUIRED == "g")
+                {
+
+                    <h4 class="modal-title">Gurantor Details</h4>
+
+                    <table class="table table-striped table-bordered" id="example10">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Gender</th>
+                                <th>Dob</th>
+                                <th>MartialStatus</th>
+                                <th>Current Address</th>
+                                <th>Pincode</th>
+                                <th>State</th>
+                                <th>City</th>
+                                <th>Village</th>
+                                <th>District</th>
+                                <th>Permanent Address</th>
+                                <th>Pincode</th>
+                                <th>State</th>
+                                <th>City</th>
+                                <th>Village</th>
+                                <th>District</th>
+                                <th>Mobile No</th>
+                                <th>Email No</th>
+                                <th>Pan No</th>
+                                <th>Aadhar No</th>
+                                <th>Cibil Score</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (ViewBag.gurantorslist != null)
+                            {
+                                foreach (var gurantor in ViewBag.gurantorslist)
+                                {
+                                    <tr>
+                                        <td>@gurantor.G_Prefix @gurantor.G_FirstName @gurantor.G_MiddleName @gurantor.G_LastName</td>
+                                        <td>@gurantor.G_Gender</td>
+                                        <td>@gurantor.G_DOB</td>
+                                        <td>@gurantor.G_Marital_Status</td>
+                                        <td>@gurantor.G_PresentAddress</td>
+                                        <td>@gurantor.G_PresentPinCode</td>
+                                        <td>@gurantor.G_PresentStateId</td>
+                                        <td>@gurantor.G_PresentCityId</td>
+                                        <td>@gurantor.G_PresentVillage</td>
+                                        <td>@gurantor.G_PresentDistrict</td>
+
+                                        <td>@gurantor.G_PermanentAddress</td>
+                                        <td>@gurantor.G_PermanentPincode</td>
+                                        <td>@gurantor.G_PermanentStateId</td>
+                                        <td>@gurantor.G_PermanentCityId</td>
+                                        <td>@gurantor.G_PermanentVillage</td>
+                                        <td>@gurantor.G_PermanentDistrict</td>
+
+                                        <td>@gurantor.G_Mobile_No</td>
+                                        <td>@gurantor.G_EmailId</td>
+                                        <td>@gurantor.G_PanNo</td>
+                                        <td>@gurantor.G_AadharNo</td>
+                                        <td>@gurantor.G_CibilScore</td>
+                                    </tr>
+                                }
+                            }
+
+                        </tbody>
+
+                    </table>
+
+
+
+                }
+            </div>
+
+            <hr />
+
+            @switch (ViewBag.Short_StageName)
+            {
+                case "DocCol":
+                    { Html.RenderAction("LeadCallingView", "LeadCalling"); }
+                    break;
+                case "Credit Approve":
+                    { Html.RenderAction("LeadCallingView", "LeadCalling"); }
+                    { Html.RenderAction("LeadDocument", "LeadDocument"); }
+                    break;
+
+                case "DocSign":
+                    { Html.RenderAction("LeadCallingView", "LeadCalling"); }
+                    { Html.RenderAction("LeadDocument", "LeadDocument"); }
+                    { Html.RenderAction("LeadCreditView", "LeadCredit"); }
+                    break;
+
+                case "FinalApprove":
+                    { Html.RenderAction("LeadCallingView", "LeadCalling"); }
+
+                    { Html.RenderAction("LeadCreditView", "LeadCredit"); }
+                    { Html.RenderAction("LeadDocumentView", "LeadDocument"); }
+                    { Html.RenderAction("LeadDocumentSigningView", "LeadDocumentSigning"); }
+                    break;
+
+                case "Disbursment":
+                    { Html.RenderAction("LeadCallingView", "LeadCalling"); }
+                    { Html.RenderAction("LeadDocument", "LeadDocument"); }
+                    { Html.RenderAction("LeadCreditView", "LeadCredit"); }
+                    { Html.RenderAction("LeadDocumentSigningView", "LeadDocumentSigning"); }
+                    { Html.RenderAction("LeadFinalApproveView", "LeadFinalApprove"); }
+
+                    break;
+                default:
+                    break;
+
+
+            }
+
+
+
+            @*<div class="panel-body">
+                    <label class="col-sm-4 control-label">Approved Loan Amount<span style="color:red">*</span></label>
+                    <div class="col-sm-4">
+                        <input type="number" id="rmark" name="rmark" autocomplete="off" class="form-control " />
+                    </div>
+                    <div class="col-sm-4">
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    <label class="col-sm-4 control-label">Approved Loan Tenure<span style="color:red">*</span></label>
+                    <div class="col-sm-4">
+                        <input type="number" id="rmark" name="rmark" autocomplete="off" class="form-control " />
+                    </div>
+                    <div class="col-sm-4">
+                    </div>
+                </div>*@
+
+
+
+            @if ((ViewBag.Status1 == "Pending" || ViewBag.Status1 == "Send Back") && ViewBag.Short_StageName == "LeadGen")
+            {
+                <div class="form-group">
+                    <div class="row">
+                        <label class="col-md-4 control-label">Status<span style="color:red">*</span></label>
+                        <div class="col-md-4">
+                            <select class="form-control" id="VERIFICATION_TYPES" name="VERIFICATION_TYPES" autocomplete="off">
+                                <option value="0">Select Action</option>
+                                <option value="A">Approve</option>
+                                @*<option value="S">Send Back</option>*@
+                                <option value="R">Reject</option>
+
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <label class="col-md-4 control-label">Comment/Remarks<span style="color:red">*</span></label>
+                        <div class="col-md-4">
+                            <textarea id="rmark" name="rmark" autocomplete="off" class="form-control "></textarea>
+                        </div>
+                        <div class="col-md-4">
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-6" style="margin-bottom:10%">
+                            <button type="submit" class="btn btn-success" onclick="return Validation();">
+                                Submit
+                                &nbsp; &nbsp; <i class="fa fa-save">
+                                </i>
+                            </button>
+                            &nbsp; &nbsp; &nbsp;
+                            @*<button class="btn btn-danger text-right" data-dismiss="modal" aria-hidden="true" onclick="reloadfun();">
+                                    Close
+                                    &nbsp; &nbsp; <i class="fa fa-close"> </i>
+                                </button>*@
+                        </div>
+                    </div>
+
+
+                </div>
+            }
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" onclick="reloadfun();">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    function reloadfun() {
+        debugger
+        location.reload();
+    }
+
+    function Validation() {
+        var rmarks = $('#rmark').val();
+        if ($("#VERIFICATION_TYPES option:selected").val() == "0") {
+            swal({
+                title: "Error",
+                text: "Please enter status type",
+                icon: "error",
+                button: true,
+
+            })
+                .then((willConfirm) => {
+                    if (willConfirm) {
+
+                    }
+                });
+
+
+        } else if (rmarks.length == "0") {
+            swal({
+                title: "Error",
+                text: "Please enter remark",
+                icon: "error",
+                button: true,
+
+            })
+                .then((willConfirm) => {
+                    if (willConfirm) {
+
+                    }
+                });
+
+        } else {
+
+
+            var filedata = new FormData();
+            AllDataArray = {
+                "ReqType": "UpdateStatus",
+                "LeadId": $("#Leadidd").val(),
+                "StageId": "0",
+                "StageName": "",
+                "IsActive": "0",
+                "IsCurrent": "0",
+                "ShortStage_Name": "LeadGen",
+                "Dependancy": "0",
+                "Sequence": "0",
+                "Status": $("#VERIFICATION_TYPES option:selected").val(),
+                "Remarks": $('#rmark').val(),
+
+
+            }
+            debugger
+            filedata.append('AllDataArray', JSON.stringify(AllDataArray));
+
+
+            $.ajax({
+                url: "/Lead/UpdateLeadGeneration",
+                type: "POST",
+                contentType: false,
+                processData: false,
+                data: filedata,
+
+                success: function (result) {
+                    debugger
+
+                    var message = JSON.parse(result)[0].ReturnMessage;
+
+                    if (message == "Record updated succussfully") {
+                        swal({
+                            title: "Success",
+                            text: message,
+                            icon: "success",
+                            button: true,
+
+                        })
+                            .then((willConfirm) => {
+                                if (willConfirm) {
+                                    window.location.pathname = 'Lead/LeadView';
+
+                                }
+                            });
+
+
+
+                    } else {
+
+                        swal({
+                            title: "Error",
+                            text: message,
+                            icon: "error",
+                            button: true,
+
+                        })
+                            .then((willConfirm) => {
+                                if (willConfirm) {
+
+                                }
+                            });
+
+                    }
+
+
+
+                }
+
+
+
+            })
+
+
+        }
+    }
+</script>

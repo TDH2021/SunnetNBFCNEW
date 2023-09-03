@@ -1,0 +1,82 @@
+﻿
+@{
+    ViewBag.Title = "ViewUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>User View</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">User View</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+
+                <!-- /.card -->
+                <div class="card">
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>User Name</th>
+                                    <th>Contact No</th>
+                                    <th>Email Address</th>
+                                    <th>User Pic </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in ViewBag.UserDetails)
+                                {
+                                    <tr>
+                                        <td>@item.UserName</td>
+                                        <td>@item.ContactNo</td>
+                                        <td>@item.EmailAddress</td>
+                                        <td><img src="~/UploadedFiles/@item.Userpic" class="img-sm" /></td>
+                                        <td>
+                                            @*@Html.ActionLink("Edit", "EditEmpDetails", new { id = @item.LeadId }) |
+                                                @Html.ActionLink("Delete", "DeleteEmp", new { id = @item.LeadId }, new { onclick = "return confirm('Are sure wants to delete?');" })*@
+                                            @Html.ActionLink("Display", "LeadDisplay", new { id = @item.UserId })
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Customer Name</th>
+                                    <th>Contact No</th>
+                                    <th>Gender</th>
+                                    <th>Service </th>
+                                    <th></th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        <div class="card-footer">
+                            @Html.ActionLink("Export to Excel", "ExportToExcel", new { @class = "btn btn-primary" })
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+

@@ -1,0 +1,114 @@
+﻿@model Sunnet_NBFC.Models.clsLogin
+@{
+    ViewBag.Title = "";
+    Layout = "";
+}
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Forget Password</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <script src="~/Scripts/sweetalert.min.js"></script>
+    <!-- Font Awesome -->
+    @Styles.Render("~/bundles/Logincss")
+</head>
+<body class="hold-transition login-page">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+    <div class="login-box">
+        <div class="login-logo">
+            <a href=""><b>Suneet</b>FINCORP</a>
+        </div>
+        <!-- /.login-logo -->
+        <div class="card" ng-app="MyApp">
+            <div class="card-body login-card-body" ng-controller="LoginController">
+                <p class="login-box-msg">Forget Password</p>
+                <div class="input-group mb-3">
+
+
+                    @Html.TextBoxFor(model => model.UserName, new
+               {
+                   @class = "form-control",
+                   @placeholder = "User Id",
+                   @name = "User Id",
+                   @required = "true",
+                   @maxlength = "50",
+                   @autocomplete = "off",
+                   @Id = "txtUserName"
+               })
+
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-user"></span>
+                        </div>
+                    </div>
+
+                   
+                </div>
+                <div class="input-group mb-3">
+                    @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                </div>
+                <div class="input-group mb-3">
+                    @Html.PasswordFor(model => model.UserPassword, new
+               {
+                   @class = "form-control",
+                   @placeholder = "Password",
+                   @name = "Password",
+                   @required = "true",
+                   @maxlength = "50",
+                   @autocomplete = "off",
+                   @Id = "txtPassword"
+               })
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    @Html.PasswordFor(model => model.ConfirmPassword, new
+               {
+                   @class = "form-control",
+                   @placeholder = "Password",
+                   @name = "Password",
+                   @required = "true",
+                   @maxlength = "50",
+                   @autocomplete = "off",
+                   @Id = "txtConfPassword"
+               })
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- /.col -->
+                <div class="col-12">
+                    <button type="submit" onclick="ForgetPassword();" class="btn btn-primary btn-block">Change Password</button>
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.social-auth-links -->
+
+            <p class="mb-1">
+                <a href='@Url.Action("Login", "Index")'>Login</a>
+            </p>
+        </div>
+        <!-- /.login-card-body -->
+    </div>
+    }
+    <script src="~/plugins/jquery/jquery.min.js"></script>
+    <script src="~/plugins/jquery/jquery.validate.min.js"></script>
+    <script src="~/plugins/jquery/jquery.validate.unobtrusive.min.js"></script>
+    @Scripts.Render("~/bundles/Loginjs")
+
+    <script src="~/Scripts/CustomJS/Login.js"></script>
+</body>
+</html>

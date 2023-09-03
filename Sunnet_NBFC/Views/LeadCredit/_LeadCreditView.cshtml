@@ -1,0 +1,1140 @@
+﻿@model Sunnet_NBFC.Models.clsLeadMain
+@using Sunnet_NBFC.App_Code
+@using Sunnet_NBFC.Models
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h4>Lead Credit Details</h4>
+            </div>
+            <div class="col-sm-6">
+                
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+
+    @Html.AntiForgeryToken()
+        @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
+
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        @using (Html.BeginForm("LeadCredit", "LeadCredit", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                        <div class="card-body">
+
+                            @*<div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6">
+
+                                        @Html.HiddenFor(model => model.ReqType)
+                                        @Html.HiddenFor(model => model.clsLeadCredit.ReqType)
+                                        @Html.HiddenFor(model => model.LeadId)
+                                        @Html.HiddenFor(model => model.ShortStage_Name)
+                                        @Html.HiddenFor(model => model.MainProdId)
+                                        @Html.HiddenFor(model => model.ProdId)
+
+                                        @Html.HiddenFor(model => model.clsLeadCredit.LeadId)
+                                        @Html.HiddenFor(model => model.clsLeadCredit.CrId)
+
+                                        @Html.LabelFor(model => model.LeadNo, new { @class = "control-label" }) *
+                                        @Html.TextBoxFor(model => model.LeadNo, new { @class = "form-control", @required = "true", @readonly = "true" })*@
+                                        @*@Html.ValidationMessageFor(model => model.LeadId, "", new { @class = "text-danger" })*@
+                                    @*</div>
+                                    <div class="col-md-6">
+                                        @Html.Label("Product", new { @class = "control-label" })
+                                        @Html.TextBoxFor(model => model.MainProdName, new { @class = "form-control", @readonly = "true" })
+                                    </div>
+                                </div>
+                            </div>*@
+
+                            <div class="form-group">
+                                <div class="row">
+
+                                    <div class="col-md-3" style="margin-top:3px;">
+                                        @Html.CheckBox("chkCIBILVerification", (Model.clsLeadCredit.CIBILVerification ?? "") == "Yes" ? true : false, new {@disabled = "disabled" })
+                                        <span>@Html.LabelFor(model => model.clsLeadCredit.CIBILVerification, new { @class = "control-label" }) : </span>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        @*<input type="file" name="clsLeadCredit.CibilDocPostedFile" id="CibilDocPostedFile" accept="image/png, image/jpg, image/jpeg" @((Model.clsLeadCredit.CIBILVerification ?? "") == "Yes" ? "" : "disabled='disabled'") />*@
+                                        @Html.HiddenFor(model => model.clsLeadCredit.CibilDoc)
+                                        @if (string.IsNullOrEmpty(Model.clsLeadCredit.CibilDoc) == false)
+                                        {
+                                            @Html.ActionLink("Download", "Download", "LeadCredit", new { FileType = Model.clsLeadCredit.CIBILCode, ImageName = Model.clsLeadCredit.CibilDoc }, new { @target = "_blank" })
+                                        }
+
+                                    </div>
+
+                                    <div class="col-md-1">
+                                        <span>Remark:</span>
+                                    </div>
+
+                                    <div class="col-md-5">
+                                        @Html.TextBoxFor(model => model.clsLeadCredit.CibilRemarks, @getHtmlAttributes(((Model.clsLeadCredit.CIBILVerification ?? "") == "Yes" ? false : true), "form-control"))
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="form-group">
+                                <div class="row">
+
+                                    <div class="col-md-3" style="margin-top:3px;">
+                                        @Html.CheckBox("chkFIVerification", (Model.clsLeadCredit.FIVerification ?? "") == "Yes" ? true : false, new { @disabled = "disabled" })
+                                        <span>@Html.LabelFor(model => model.clsLeadCredit.FIVerification, new { @class = "control-label" }) : </span>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        @*<input type="file" name="clsLeadCredit.FIDocPostedFile" id="FIDocPostedFile" required accept="image/png, image/jpg, image/jpeg" @((Model.clsLeadCredit.FIVerification ?? "") == "Yes" ? "" : "disabled='disabled'") />*@
+                                        @Html.HiddenFor(model => model.clsLeadCredit.FIDoc)
+                                        @Html.HiddenFor(model => model.clsLeadCredit.FICode)
+                                        @if (string.IsNullOrEmpty(Model.clsLeadCredit.FIDoc) == false)
+                                        {
+                                            @Html.ActionLink("Download", "Download", "LeadCredit", new { FileType = Model.clsLeadCredit.FICode, ImageName = Model.clsLeadCredit.FIDoc }, new { @target = "_blank" })
+                                        }
+
+                                    </div>
+
+                                    <div class="col-md-1">
+                                        <span>Remark:</span>
+                                    </div>
+
+                                    <div class="col-md-5">
+                                        @Html.TextBoxFor(model => model.clsLeadCredit.FIRemarks, @getHtmlAttributes(((Model.clsLeadCredit.FIVerification ?? "") == "Yes" ? false : true), "form-control"))
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="row">
+
+                                    <div class="col-md-3" style="margin-top:3px;">
+                                        @Html.CheckBox("chkTVRVerification", (Model.clsLeadCredit.TVRVerification ?? "") == "Yes" ? true : false, new { @disabled = "disabled" })
+                                        <span>@Html.LabelFor(model => model.clsLeadCredit.TVRVerification, new { @class = "control-label" }) : </span>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        @*<input type="file" name="clsLeadCredit.TVRDocPostedFile" id="TVRDocPostedFile" required accept="image/png, image/jpg, image/jpeg" @((Model.clsLeadCredit.TVRVerification ?? "") == "Yes" ? "" : "disabled='disabled'") />*@
+                                        @Html.HiddenFor(model => model.clsLeadCredit.TVRDoc)
+                                        @Html.HiddenFor(model => model.clsLeadCredit.TVRCode)
+                                        @if (string.IsNullOrEmpty(Model.clsLeadCredit.TVRDoc) == false)
+                                        {
+                                            @Html.ActionLink("Download", "Download", "LeadCredit", new { FileType = Model.clsLeadCredit.TVRCode, ImageName = Model.clsLeadCredit.TVRDoc }, new { @target = "_blank" })
+                                        }
+
+                                    </div>
+
+                                    <div class="col-md-1">
+                                        <span>Remark:</span>
+                                    </div>
+
+                                    <div class="col-md-5">
+                                        @Html.TextBoxFor(model => model.clsLeadCredit.TVRRemarks, @getHtmlAttributes(((Model.clsLeadCredit.TVRVerification ?? "") == "Yes" ? false : true), "form-control"))
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            @if (Model.MainProdType == "P")
+                            {
+                                <div class="form-group">
+                                    <div class="row">
+
+                                        <div class="col-md-3" style="margin-top:3px;">
+                                            @Html.CheckBox("chkCashFlowVerification", (Model.clsLeadCredit.CashFlowVerification ?? "") == "Yes" ? true : false, new { @disabled = "disabled" })
+                                            <span>@Html.LabelFor(model => model.clsLeadCredit.CashFlowVerification, new { @class = "control-label" }) : </span>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            @*<input type="file" name="clsLeadCredit.CashFlowDocPostedFile" id="CashFlowDocPostedFile" required accept="image/png, image/jpg, image/jpeg" @((Model.clsLeadCredit.CashFlowVerification ?? "") == "Yes" ? "" : "disabled='disabled'") />*@
+                                            @Html.HiddenFor(model => model.clsLeadCredit.CashFlowDoc)
+                                            @Html.HiddenFor(model => model.clsLeadCredit.CashFlowCode)
+                                            @if (string.IsNullOrEmpty(Model.clsLeadCredit.CashFlowDoc) == false)
+                                            {
+                                                @Html.ActionLink("Download", "Download", "LeadCredit", new { FileType = Model.clsLeadCredit.CashFlowCode, ImageName = Model.clsLeadCredit.CashFlowDoc }, new { @target = "_blank" })
+                                            }
+
+                                        </div>
+
+                                        <div class="col-md-1">
+                                            <span>Remark:</span>
+                                        </div>
+
+                                        <div class="col-md-5">
+                                            @Html.TextBoxFor(model => model.clsLeadCredit.CashFlowRemarks, @getHtmlAttributes(((Model.clsLeadCredit.CashFlowVerification ?? "") == "Yes" ? false : true), "form-control"))
+                                        </div>
+
+                                    </div>
+                                </div>
+                            }
+
+                            @if (Model.MainProdType == "V")
+                            {
+                                <div class="form-group">
+                                    <div class="row">
+
+                                        <div class="col-md-3" style="margin-top:3px;">
+                                            @Html.CheckBox("chkViechleValVerfication", (Model.clsLeadCredit.ViechleValVerfication ?? "") == "Yes" ? true : false, new { @disabled = "disabled" })
+                                            <span>@Html.LabelFor(model => model.clsLeadCredit.ViechleValVerfication, new { @class = "control-label" }) : </span>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            @*<input type="file" name="clsLeadCredit.ViechleDocPostedFile" id="ViechleDocPostedFile" required accept="image/png, image/jpg, image/jpeg" @((Model.clsLeadCredit.ViechleValVerfication ?? "") == "Yes" ? "" : "disabled='disabled'") />*@
+                                            @Html.HiddenFor(model => model.clsLeadCredit.ViechleDoc)
+                                            @Html.HiddenFor(model => model.clsLeadCredit.ViechleCode)
+                                            @if (string.IsNullOrEmpty(Model.clsLeadCredit.ViechleDoc) == false)
+                                            {
+                                                @Html.ActionLink("Download", "Download", "LeadCredit", new { FileType = Model.clsLeadCredit.ViechleCode, ImageName = Model.clsLeadCredit.ViechleDoc }, new { @target = "_blank" })
+                                            }
+
+                                        </div>
+
+                                        <div class="col-md-1">
+                                            <span>Remark:</span>
+                                        </div>
+
+                                        <div class="col-md-5">
+                                            @Html.TextBoxFor(model => model.clsLeadCredit.ViechleRemarks, @getHtmlAttributes(((Model.clsLeadCredit.ViechleValVerfication ?? "") == "Yes" ? false : true), "form-control"))
+                                        </div>
+
+                                    </div>
+                                </div>
+                            }
+
+                            @if (Model.MainProdType == "V" || Model.MainProdType == "B")
+                            {
+                                <div class="form-group">
+                                    <div class="row">
+
+                                        <div class="col-md-3" style="margin-top:3px;">
+                                            @Html.CheckBox("chkBankStmtVerification", (Model.clsLeadCredit.BankStmtVerification ?? "") == "Yes" ? true : false, new { @disabled = "disabled" })
+                                            <span>@Html.LabelFor(model => model.clsLeadCredit.BankStmtVerification, new { @class = "control-label" }) : </span>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            @*<input type="file" name="clsLeadCredit.BankStmtDocPostedFile" id="BankStmtDocPostedFile" required accept="image/png, image/jpg, image/jpeg" @((Model.clsLeadCredit.BankStmtVerification ?? "") == "Yes" ? "" : "disabled='disabled'") />*@
+                                            @Html.HiddenFor(model => model.clsLeadCredit.BankStmtDoc)
+                                            @Html.HiddenFor(model => model.clsLeadCredit.BankStmtCode)
+                                            @if (string.IsNullOrEmpty(Model.clsLeadCredit.BankStmtDoc) == false)
+                                            {
+                                                @Html.ActionLink("Download", "Download", "LeadCredit", new { FileType = Model.clsLeadCredit.BankStmtCode, ImageName = Model.clsLeadCredit.BankStmtDoc }, new { @target = "_blank" })
+                                            }
+
+                                        </div>
+
+                                        <div class="col-md-1">
+                                            <span>Remark:</span>
+                                        </div>
+
+                                        <div class="col-md-5">
+                                            @Html.TextBoxFor(model => model.clsLeadCredit.BankStmtRemarks, @getHtmlAttributes(((Model.clsLeadCredit.BankStmtVerification ?? "") == "Yes" ? false : true), "form-control"))
+                                        </div>
+
+                                    </div>
+                                </div>
+                            }
+
+
+                            @if (Model.MainProdType == "V" || Model.MainProdType == "B")
+                            {
+                                <div class="form-group">
+                                    <div class="row">
+
+                                        <div class="col-md-3" style="margin-top:3px;">
+                                            @Html.CheckBox("chkIncomeStmtVerification", (Model.clsLeadCredit.IncomeStmtVerification ?? "") == "Yes" ? true : false, new { @disabled = "disabled" })
+                                            <span>@Html.LabelFor(model => model.clsLeadCredit.IncomeStmtVerification, new { @class = "control-label" }) : </span>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            @*<input type="file" name="clsLeadCredit.IncomeStmtDocPostedFile" id="IncomeStmtDocPostedFile" required accept="image/png, image/jpg, image/jpeg" @((Model.clsLeadCredit.IncomeStmtVerification ?? "") == "Yes" ? "" : "disabled='disabled'") />*@
+                                            @Html.HiddenFor(model => model.clsLeadCredit.IncomeStmtDoc)
+                                            @Html.HiddenFor(model => model.clsLeadCredit.IncomeStmtCode)
+                                            @if (string.IsNullOrEmpty(Model.clsLeadCredit.IncomeStmtDoc) == false)
+                                            {
+                                                @Html.ActionLink("Download", "Download", "LeadCredit", new { FileType = Model.clsLeadCredit.IncomeStmtCode, ImageName = Model.clsLeadCredit.IncomeStmtDoc }, new { @target = "_blank" })
+                                            }
+
+                                        </div>
+
+                                        <div class="col-md-1">
+                                            <span>Remark:</span>
+                                        </div>
+
+                                        <div class="col-md-5">
+                                            @Html.TextBoxFor(model => model.clsLeadCredit.IncomeStmtRemarks, @getHtmlAttributes(((Model.clsLeadCredit.IncomeStmtVerification ?? "") == "Yes" ? false : true), "form-control"))
+                                        </div>
+
+                                    </div>
+                                </div>
+                            }
+
+                            @if (Model.MainProdType == "V" || Model.MainProdType == "B")
+                            {
+
+                                <div class="form-group">
+                                    <div class="row">
+
+                                        <div class="col-md-3" style="margin-top:3px;">
+                                            @Html.CheckBox("chkPersonalDiscussVerification", (Model.clsLeadCredit.PersonalDiscussVerification ?? "") == "Yes" ? true : false, new { @disabled = "disabled" })
+                                            <span>@Html.LabelFor(model => model.clsLeadCredit.PersonalDiscussVerification, new { @class = "control-label" }) : </span>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            @*<input type="file" name="clsLeadCredit.PersonalDiscussDocPostedFile" id="PersonalDiscussDocPostedFile" required accept="image/png, image/jpg, image/jpeg" @((Model.clsLeadCredit.PersonalDiscussVerification ?? "") == "Yes" ? "" : "disabled='disabled'") />*@
+                                            @Html.HiddenFor(model => model.clsLeadCredit.PersonalDiscussDoc)
+                                            @Html.HiddenFor(model => model.clsLeadCredit.PersonalDiscussCode)
+                                            @if (string.IsNullOrEmpty(Model.clsLeadCredit.PersonalDiscussDoc) == false)
+                                            {
+                                                @Html.ActionLink("Download", "Download", "LeadCredit", new { FileType = Model.clsLeadCredit.PersonalDiscussCode, ImageName = Model.clsLeadCredit.PersonalDiscussDoc }, new { @target = "_blank" })
+                                            }
+
+                                        </div>
+
+                                        <div class="col-md-1">
+                                            <span>Remark:</span>
+                                        </div>
+
+                                        <div class="col-md-5">
+                                            @Html.TextBoxFor(model => model.clsLeadCredit.PersonalDiscusssRemarks, @getHtmlAttributes(((Model.clsLeadCredit.PersonalDiscussVerification ?? "") == "Yes" ? false : true), "form-control"))
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            }
+                            @if (Model.MainProdType == "V" || Model.MainProdType == "B")
+                            {
+
+                                <div class="form-group">
+                                    <div class="row">
+
+                                        <div class="col-md-3" style="margin-top:3px;">
+                                            @Html.CheckBox("chkEligiblity", (Model.clsLeadCredit.Eligiblity ?? "") == "Yes" ? true : false, new { @disabled = "disabled" })
+                                            <span>@Html.LabelFor(model => model.clsLeadCredit.Eligiblity, new { @class = "control-label" }) : </span>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            @*<input type="file" name="clsLeadCredit.EligiblityDocPostedFile" id="EligiblityDocPostedFile" required accept="image/png, image/jpg, image/jpeg" @((Model.clsLeadCredit.Eligiblity ?? "") == "Yes" ? "" : "disabled='disabled'") />*@
+                                            @Html.HiddenFor(model => model.clsLeadCredit.EligiblityDoc)
+                                            @Html.HiddenFor(model => model.clsLeadCredit.EligiblityCode)
+                                            @if (string.IsNullOrEmpty(Model.clsLeadCredit.EligiblityDoc) == false)
+                                            {
+                                                @Html.ActionLink("Download", "Download", "LeadCredit", new { FileType = Model.clsLeadCredit.EligiblityCode, ImageName = Model.clsLeadCredit.EligiblityDoc }, new { @target = "_blank" })
+                                            }
+
+                                        </div>
+
+                                        <div class="col-md-1">
+                                            <span>Remark:</span>
+                                        </div>
+
+                                        <div class="col-md-5">
+                                            @Html.TextBoxFor(model => model.clsLeadCredit.EligiblityRemarks, @getHtmlAttributes(((Model.clsLeadCredit.Eligiblity ?? "") == "Yes" ? false : true), "form-control"))
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            }
+
+
+
+                            @if (Model.MainProdType == "V" || Model.MainProdType == "B")
+                            {
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <span>Occupation:</span>
+                                        </div>
+                                        <div class="col-md-5">
+                                            @Html.TextBoxFor(model => model.clsLeadCredit.Occupation, new { @class = "form-control", @disabled = "disabled" })
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                            @if (Model.MainProdType == "B")
+                            {
+                                <div class="form-group">
+                                    <div class="row">
+
+                                        <div class="col-md-3" style="margin-top:3px;">
+                                            @Html.CheckBox("chkPropertyDocVerification", (Model.clsLeadCredit.PropertyDocVerification ?? "") == "Yes" ? true : false, new { @disabled = "disabled" })
+                                            <span>@Html.LabelFor(model => model.clsLeadCredit.PropertyDocVerification, new { @class = "control-label" }) : </span>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            @*<input type="file" name="clsLeadCredit.PropertyDocPostedFile" id="PropertyDocPostedFile" required accept="image/png, image/jpg, image/jpeg" @((Model.clsLeadCredit.PropertyDocVerification ?? "") == "Yes" ? "" : "disabled='disabled'") />*@
+                                            @Html.HiddenFor(model => model.clsLeadCredit.PropertyDoc)
+                                            @Html.HiddenFor(model => model.clsLeadCredit.PropertyCode)
+                                            @if (string.IsNullOrEmpty(Model.clsLeadCredit.PropertyDoc) == false)
+                                            {
+                                                @Html.ActionLink("Download", "Download", "LeadCredit", new { FileType = Model.clsLeadCredit.PropertyCode, ImageName = Model.clsLeadCredit.PropertyDoc }, new { @target = "_blank" })
+                                            }
+
+                                        </div>
+
+                                        <div class="col-md-1">
+                                            <span>Remark:</span>
+                                        </div>
+
+                                        <div class="col-md-5">
+                                            @Html.TextBoxFor(model => model.clsLeadCredit.PropertyDocRemarks, @getHtmlAttributes(((Model.clsLeadCredit.PropertyDocVerification ?? "") == "Yes" ? false : true), "form-control"))
+                                        </div>
+
+                                    </div>
+                                </div>
+                            }
+
+
+                            @if (Model.MainProdType == "B")
+                            {
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <span>Colletral Type:</span>
+                                        </div>
+                                        <div class="col-md-5">
+                                            @Html.TextBoxFor(model => model.clsLeadCredit.ColletralType, new { @class = "form-control", @disabled = "disabled" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <span>PropertyAddress:</span>
+                                        </div>
+                                        <div class="col-md-5">
+                                            @Html.TextBoxFor(model => model.clsLeadCredit.PropertyAddress, new { @class = "form-control", @disabled = "disabled" })
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <span>PropertySize:</span>
+                                        </div>
+                                        <div class="col-md-5">
+                                            @Html.TextBoxFor(model => model.clsLeadCredit.PropertySize, new { @class = "form-control", @disabled = "disabled" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <span>LandArea:</span>
+                                        </div>
+                                        <div class="col-md-5">
+                                            @Html.TextBoxFor(model => model.clsLeadCredit.LandArea, new { @class = "form-control", @disabled = "disabled" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <span>Dimension:</span>
+                                        </div>
+                                        <div class="col-md-5">
+                                            @Html.TextBoxFor(model => model.clsLeadCredit.Dimension, new { @class = "form-control", @disabled = "disabled" })
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <span>SecurityValue:</span>
+                                        </div>
+                                        <div class="col-md-5">
+                                            @Html.TextBoxFor(model => model.clsLeadCredit.SecurityValue, new { @class = "form-control", @disabled = "disabled" })
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <span>MarketValue:</span>
+                                        </div>
+                                        <div class="col-md-5">
+                                            @Html.TextBoxFor(model => model.clsLeadCredit.MarketValue, new { @class = "form-control", @disabled = "disabled" })
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <span>LandValue:</span>
+                                        </div>
+                                        <div class="col-md-5">
+                                            @Html.TextBoxFor(model => model.clsLeadCredit.LandValue, new { @class = "form-control", @disabled = "disabled" })
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <span>ConstrutionValue:</span>
+                                        </div>
+                                        <div class="col-md-5">
+                                            @Html.TextBoxFor(model => model.clsLeadCredit.ConstrutionValue, new { @class = "form-control", @disabled = "disabled" })
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <span>TotalMarketValue:</span>
+                                        </div>
+                                        <div class="col-md-5">
+                                            @Html.TextBoxFor(model => model.clsLeadCredit.TotalMarketValue, new { @class = "form-control", @disabled = "disabled" })
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <span>LTV:</span>
+                                        </div>
+                                        <div class="col-md-5">
+                                            @Html.TextBoxFor(model => model.clsLeadCredit.LTV, new { @class = "form-control", @disabled = "disabled" })
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <span>RelizableValue:</span>
+                                        </div>
+                                        <div class="col-md-5">
+                                            @Html.TextBoxFor(model => model.clsLeadCredit.RelizableValue, new { @class = "form-control", @disabled = "disabled" })
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <span>PropertyVal:</span>
+                                        </div>
+                                        <div class="col-md-5">
+                                            @Html.TextBoxFor(model => model.clsLeadCredit.PropertyVal, new { @class = "form-control", @disabled = "disabled" })
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <span>PropertyDocuments:</span>
+                                        </div>
+                                        <div class="col-md-5">
+                                            @Html.TextBoxFor(model => model.clsLeadCredit.PropertyDocuments, new { @class = "form-control", @disabled = "disabled" })
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <span>PropertyChain:</span>
+                                        </div>
+                                        <div class="col-md-5">
+                                            @Html.TextBoxFor(model => model.clsLeadCredit.PropertyChain, new { @class = "form-control", @disabled = "disabled" })
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <span>LegalOpinionBy:</span>
+                                        </div>
+                                        <div class="col-md-5">
+                                            @Html.TextBoxFor(model => model.clsLeadCredit.LegalOpinionBy, new { @class = "form-control", @disabled = "disabled" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <span>LegalReportDate:</span>
+                                        </div>
+                                        <div class="col-md-5">
+                                            @Html.TextBoxFor(model => model.clsLeadCredit.LegalReportDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "Date", @disabled = "disabled" })
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <span>ValuerName:</span>
+                                        </div>
+                                        <div class="col-md-5">
+                                            @Html.TextBoxFor(model => model.clsLeadCredit.ValuerName, new { @class = "form-control", @disabled = "disabled" })
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <span>Valuation:</span>
+                                        </div>
+                                        <div class="col-md-5">
+                                            @Html.TextBoxFor(model => model.clsLeadCredit.Valuation, new { @class = "form-control", @disabled = "disabled" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <span>ValueDate:</span>
+                                        </div>
+                                        <div class="col-md-5">
+                                            @Html.TextBoxFor(model => model.clsLeadCredit.ValueDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "Date", @disabled = "disabled" })
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <span>BussinessName:</span>
+                                        </div>
+                                        <div class="col-md-5">
+                                            @Html.TextBoxFor(model => model.clsLeadCredit.BussinessName, new { @class = "form-control", @disabled = "disabled" })
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <span>BussinessVinatage:</span>
+                                        </div>
+                                        <div class="col-md-5">
+                                            @Html.TextBoxFor(model => model.clsLeadCredit.BussinessVinatage, new { @class = "form-control", @disabled = "disabled" })
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <span>BussinessAddress:</span>
+                                        </div>
+                                        <div class="col-md-5">
+                                            @Html.TextBoxFor(model => model.clsLeadCredit.BussinessAddress, new { @class = "form-control", @disabled = "disabled" })
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <span>BussinessProve:</span>
+                                        </div>
+                                        <div class="col-md-5">
+                                            @Html.TextBoxFor(model => model.clsLeadCredit.BussinessProve, new { @class = "form-control", @disabled = "disabled" })
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <span>CAMGeneration:</span>
+                                        </div>
+                                        <div class="col-md-5">
+                                            @Html.TextBoxFor(model => model.clsLeadCredit.CAMGeneration, new { @class = "form-control", @disabled = "disabled" })
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <span>CAMDoc:</span>
+                                        </div>
+                                        <div class="col-md-5">
+                                            @Html.TextBoxFor(model => model.clsLeadCredit.CAMDoc, new { @class = "form-control", @disabled = "disabled" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <span>CAMRemarks:</span>
+                                        </div>
+                                        <div class="col-md-5">
+                                            @Html.TextBoxFor(model => model.clsLeadCredit.CAMRemarks, new { @class = "form-control", @disabled = "disabled" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <span>CreditRemarks:</span>
+                                        </div>
+                                        <div class="col-md-5">
+                                            @Html.TextBoxFor(model => model.clsLeadCredit.CreditRemarks, new { @class = "form-control", @disabled = "disabled" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <span>NegativeRemarks:</span>
+                                        </div>
+                                        <div class="col-md-5">
+                                            @Html.TextBoxFor(model => model.clsLeadCredit.NegativeRemarks, new { @class = "form-control", @disabled = "disabled" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                            }
+
+                            @if (Model.MainProdType == "V")
+                            {
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <span>VehicleType:</span>
+                                        </div>
+                                        <div class="col-md-5">
+                                            @Html.TextBoxFor(model => model.clsLeadCredit.VehicleType, new { @class = "form-control", @disabled = "disabled" })
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <span>ChassisNo:</span>
+                                        </div>
+                                        <div class="col-md-5">
+                                            @Html.TextBoxFor(model => model.clsLeadCredit.ChassisNo, new { @class = "form-control", @disabled = "disabled" })
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <span>EngineNo:</span>
+                                        </div>
+                                        <div class="col-md-5">
+                                            @Html.TextBoxFor(model => model.clsLeadCredit.EngineNo, new { @class = "form-control", @disabled = "disabled" })
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <span>Insurername:</span>
+                                        </div>
+                                        <div class="col-md-5">
+                                            @Html.TextBoxFor(model => model.clsLeadCredit.Insurername, new { @class = "form-control", @disabled = "disabled" })
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <span>InsurancePolicyNo:</span>
+                                        </div>
+                                        <div class="col-md-5">
+                                            @Html.TextBoxFor(model => model.clsLeadCredit.InsurancePolicyNo, new { @class = "form-control", @disabled = "disabled" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <span>PolicyValidity:</span>
+                                        </div>
+                                        <div class="col-md-5">
+                                            @Html.TextBoxFor(model => model.clsLeadCredit.PolicyValidity, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "Date", @disabled = "disabled" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <span>RCDate:</span>
+                                        </div>
+                                        <div class="col-md-5">
+                                            @Html.TextBoxFor(model => model.clsLeadCredit.RCDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "Date", @disabled = "disabled" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <span>Fitness:</span>
+                                        </div>
+                                        <div class="col-md-5">
+                                            @Html.TextBoxFor(model => model.clsLeadCredit.Fitness, new { @class = "form-control", @disabled = "disabled" })
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <span>DealerId:</span>
+                                        </div>
+                                        <div class="col-md-5">
+                                            @Html.DropDownListFor(m => m.clsLeadCredit.DealerId, new SelectList(clsCommonData.GetEmoloyeeDDL(), "Value", "Text", Model.clsLeadCredit.DealerId), "- Select -", new { @class = "form-control", @disabled = "disabled" })
+                                            @*@Html.TextBoxFor(model => model.clsLeadCredit.DealerId, new { @class = "form-control", })*@
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <span>RTO:</span>
+                                        </div>
+                                        <div class="col-md-5">
+                                            @Html.TextBoxFor(model => model.clsLeadCredit.RTO, new { @class = "form-control", @disabled = "disabled" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <span>Transmission:</span>
+                                        </div>
+                                        <div class="col-md-5">
+                                            @Html.TextBoxFor(model => model.clsLeadCredit.Transmission, new { @class = "form-control", @disabled = "disabled" })
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <span>FuelType:</span>
+                                        </div>
+                                        <div class="col-md-5">
+                                            @Html.TextBoxFor(model => model.clsLeadCredit.FuelType, new { @class = "form-control", @disabled = "disabled" })
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <span>CarType:</span>
+                                        </div>
+                                        <div class="col-md-5">
+                                            @Html.TextBoxFor(model => model.clsLeadCredit.CarType, new { @class = "form-control", @disabled = "disabled" })
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                                <hr />
+                                <div class="form-group">
+                                    <div class="row">
+
+                                        <div class="col-md-6">
+                                            @Html.LabelFor(m => m.Status, new { @class = "control-label" })
+                                        </div>
+                                        <div class="col-md-6">
+
+                                            @*@Html.DropDownListFor(m => m.Status, ViewBag.StatusListDDL, "- Select- ", new { @class = "form-control" })*@
+                                            @Html.DropDownListFor(m => m.Status, new SelectList(ViewBag.StatusListDDL, "Value", "Text", Model.Status), "- Select -", new { @class = "form-control", @disabled = "disabled" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+
+                                        <div class="col-md-6">
+                                            @Html.LabelFor(m => m.Remarks, new { @class = "control-label" })
+                                        </div>
+                                        <div class="col-md-6">
+                                            @Html.TextAreaFor(m => m.Remarks, new { @class = "form-control", @disabled = "disabled" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                                }
+                            </div>
+                        </div>
+            </div>
+        </div>
+
+    </section>
+
+    @functions {
+        object getHtmlAttributes(bool ReadOnly, string CssClass)
+        {
+            if (ReadOnly)
+            {
+                //return new { @class = CssClass };
+                return new { @class = CssClass, @disabled = "disabled" };
+            }
+            return new { @class = CssClass, @disabled = "disabled" };
+        }
+    }
+
+
+
+
+
+<script src="~/plugins/jquery/jquery.min.js"></script>
+<script src="~/plugins/jquery/jquery.validate.min.js"></script>
+<script src="~/plugins/jquery/jquery.validate.unobtrusive.min.js"></script>
+@if (ViewBag.Error != null && ViewBag.Error != "")
+{
+    <script type="text/javascript">
+
+            window.onload = function () {
+                alert("@ViewBag.Error");
+            };
+    </script>
+}
+@if (ViewBag.Success != null && ViewBag.Success != "")
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Success");
+            };
+    </script>
+}
+
+
+
+<script>
+
+
+    $(document).ready(function () {
+        //$('.datepicker').datepicker();
+
+        $("#chkCIBILVerification").click(
+            function () {
+                if ($(this).is(":checked")) {
+                    $("#clsLeadCredit_CibilRemarks").removeAttr('disabled')
+                    $("#CibilDocPostedFile").removeAttr('disabled')
+                } else {
+                    $("#clsLeadCredit_CibilRemarks").attr('disabled', 'disabled')
+                    $("#CibilDocPostedFile").attr('disabled', 'disabled')
+                }
+            });
+
+        $("#chkFIVerification").click(
+            function () {
+                if ($(this).is(":checked")) {
+                    $("#clsLeadCredit_FIRemarks").removeAttr('disabled')
+                    $("#FIDocPostedFile").removeAttr('disabled')
+                } else {
+                    $("#clsLeadCredit_FIRemarks").attr('disabled', 'disabled')
+                    $("#FIDocPostedFile").attr('disabled', 'disabled')
+                }
+            });
+
+        $("#chkTVRVerification").click(
+            function () {
+                if ($(this).is(":checked")) {
+                    $("#clsLeadCredit_TVRRemarks").removeAttr('disabled')
+                    $("#TVRDocPostedFile").removeAttr('disabled')
+                } else {
+                    $("#clsLeadCredit_TVRRemarks").attr('disabled', 'disabled')
+                    $("#TVRDocPostedFile").attr('disabled', 'disabled')
+                }
+            });
+
+
+        $("#chkCashFlowVerification").click(
+            function () {
+                if ($(this).is(":checked")) {
+                    $("#clsLeadCredit_CashFlowRemarks").removeAttr('disabled')
+                    $("#CashFlowDocPostedFile").removeAttr('disabled')
+                } else {
+                    $("#clsLeadCredit_CashFlowRemarks").attr('disabled', 'disabled')
+                    $("#CashFlowDocPostedFile").attr('disabled', 'disabled')
+                }
+            });
+
+
+        $("#chkViechleValVerfication").click(
+            function () {
+                if ($(this).is(":checked")) {
+                    $("#clsLeadCredit_ViechleRemarks").removeAttr('disabled')
+                    $("#ViechleDocPostedFile").removeAttr('disabled')
+                } else {
+                    $("#clsLeadCredit_ViechleRemarks").attr('disabled', 'disabled')
+                    $("#ViechleDocPostedFile").attr('disabled', 'disabled')
+                }
+            });
+
+
+        $("#chkBankStmtVerification").click(
+            function () {
+                if ($(this).is(":checked")) {
+                    $("#clsLeadCredit_BankStmtRemarks").removeAttr('disabled')
+                    $("#BankStmtDocPostedFile").removeAttr('disabled')
+                } else {
+                    $("#clsLeadCredit_BankStmtRemarks").attr('disabled', 'disabled')
+                    $("#BankStmtDocPostedFile").attr('disabled', 'disabled')
+                }
+            });
+
+        $("#chkIncomeStmtVerification").click(
+            function () {
+                if ($(this).is(":checked")) {
+                    $("#clsLeadCredit_IncomeStmtRemarks").removeAttr('disabled')
+                    $("#IncomeStmtDocPostedFile").removeAttr('disabled')
+                } else {
+                    $("#clsLeadCredit_IncomeStmtRemarks").attr('disabled', 'disabled')
+                    $("#IncomeStmtDocPostedFile").attr('disabled', 'disabled')
+                }
+            });
+
+
+        $("#chkPersonalDiscussVerification").click(
+            function () {
+                if ($(this).is(":checked")) {
+                    $("#clsLeadCredit_PersonalDiscusssRemarks").removeAttr('disabled')
+                    $("#PersonalDiscussDocPostedFile").removeAttr('disabled')
+                } else {
+                    $("#clsLeadCredit_PersonalDiscusssRemarks").attr('disabled', 'disabled')
+                    $("#PersonalDiscussDocPostedFile").attr('disabled', 'disabled')
+                }
+            });
+
+        $("#chkEligiblity").click(
+            function () {
+                if ($(this).is(":checked")) {
+                    $("#clsLeadCredit_EligiblityRemarks").removeAttr('disabled')
+                    $("#EligiblityDocPostedFile").removeAttr('disabled')
+                } else {
+                    $("#clsLeadCredit_EligiblityRemarks").attr('disabled', 'disabled')
+                    $("#EligiblityDocPostedFile").attr('disabled', 'disabled')
+                }
+            });
+
+        $("#chkPropertyDocVerification").click(
+            function () {
+                if ($(this).is(":checked")) {
+                    $("#clsLeadCredit_PropertyDocRemarks").removeAttr('disabled')
+                    $("#PropertyDocPostedFile").removeAttr('disabled')
+                } else {
+                    $("#clsLeadCredit_PropertyDocRemarks").attr('disabled', 'disabled')
+                    $("#PropertyDocPostedFile").attr('disabled', 'disabled')
+                }
+            });
+
+
+
+    });
+
+</script>
+
+

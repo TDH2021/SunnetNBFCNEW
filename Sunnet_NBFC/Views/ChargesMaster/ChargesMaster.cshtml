@@ -1,0 +1,242 @@
+﻿@model Sunnet_NBFC.Models.clsChargesMaster
+@{
+    ViewBag.Title = "ChargesMaster";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    #tbl tr td {
+        padding-right: 10px;
+    }
+    
+</style>
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Add Charges</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    @Html.ActionLink("Back to List", "ChargesView")
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+@using (Html.BeginForm("ChargesMaster", "ChargesMaster", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        @Html.HiddenFor(model => model.ReqType)
+                                        @Html.HiddenFor(model => model.ChargeID)
+                                        @Html.HiddenFor(model => model.CompanyID)
+                                        @Html.HiddenFor(model => model.IsDelete)
+
+                                        @*@Html.HiddenFor(model => model.CreateBy)
+                                        @Html.HiddenFor(model => model.UpdateBy)*@
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        <label for="exampleInputEmail1">ChargeType</label>
+                                        @Html.DropDownListFor(model => model.ChargeTypeID, ViewBag.ChargesTypeList as SelectList, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.ChargeTypeID, "", new { @class = "text-danger" })
+
+
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="exampleInputEmail1">Charge Name</label>
+                                        @Html.TextBoxFor(model => model.ChargeName, new { @class = "form-control", autocomplete = "off", @placeholder = "Charges Name", @name = "Charges Name", @requried = "true" })
+                                        @Html.ValidationMessageFor(model => model.ChargeName, "", new { @class = "text-danger" })
+
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <table id="tbl">
+                                            <tr>
+                                                <td>
+                                                    <label for="exampleInputEmail1">Apply(%)</label>
+                                                    @Html.CheckBoxFor(model => model.IsChargePer, new { @class = "form-control" ,@id = "IsChargePer" })
+                                                    @Html.ValidationMessageFor(model => model.IsChargePer, "", new { @class = "text-danger" })
+                                                </td>
+                                                <td>
+                                                    <label for="exampleInputEmail1">Charges ( % )</label>
+                                                    @if (Convert.ToInt32(Model.ChargePer) > 0)
+                                                    {
+                                                        @Html.TextBoxFor(model => model.ChargePer, new { @class = "form-control", @id = "ChargePer", @placeholder = "Charges %", @name = "Charges Percentage", @requried = "true" })
+
+                                                    }
+                                                    else
+                                                    {
+                                                        @Html.TextBoxFor(model => model.ChargePer, new { @class = "form-control", @id = "ChargePer", @placeholder = "Charges %", @name = "Charges Percentage", @requried = "true", disabled = "disabled" })
+
+                                                    }
+                                                    @*@Html.ValidationMessageFor(model => model.ChargePer, "", new { @class = "text-danger" })*@
+                                                </td>
+                                                <td>
+                                                    <label for="exampleInputEmail1">Charges Amount</label>
+                                                    @if (Convert.ToInt32(Model.ChargePer) > 0)
+                                                    {
+                                                        @Html.TextBoxFor(model => model.ChargeAmount, new { @class = "form-control", @id = "ChargeAmount", @placeholder = "Charges Amount", autocomplete = "off", @name = "Charges Amount", @requried = "true", disabled = "disabled" })
+                                                    }
+                                                    else
+                                                    {
+                                                        @Html.TextBoxFor(model => model.ChargeAmount, new { @class = "form-control", @id = "ChargeAmount", @placeholder = "Charges Amount", autocomplete = "off", @name = "Charges Amount", @requried = "true" })
+                                                    }
+                                                    @*@Html.ValidationMessageFor(model => model.ChargeAmount, "", new { @class = "text-danger" })*@
+                                                </td>
+                                            </tr>
+                                        </table>
+
+
+
+
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="EffectiveFromDate">Effective From</label>
+                                                @Html.TextBoxFor(model => model.EffectiveFromDate, new
+                                           {
+                                               @class = "form-control",
+                                               @placeholder = "From Date",
+                                               @name = "EffectiveFromDate",
+                                               @required = "true",
+                                               @id = "EffectiveFromDate"
+                                           })
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="EffectiveToDate">Effective To</label>
+                                                @Html.TextBoxFor(model => model.EffectiveToDate, new
+                                           {
+                                               @class = "form-control",
+                                               @placeholder = "To Date",
+                                               @name = "EffectiveToDate",
+                                               @required = "true",
+                                               @id = "EffectiveToDate"
+                                           })
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.row -->
+            </div>
+        </div>
+
+    </section>
+
+}
+<script src="~/plugins/jquery/jquery.min.js"></script>
+<script src="~/plugins/jquery/jquery.validate.min.js"></script>
+<script src="~/plugins/jquery/jquery.validate.unobtrusive.min.js"></script>
+
+@*@if (ViewBag.Message != null)
+    {
+        <script type="text/javascript">
+
+                window.onload = function () {
+                    alert("@ViewBag.Message");
+                };
+        </script>
+    }*@
+
+@if (ViewBag.Error != null && ViewBag.Error != "")
+{
+    <script type="text/javascript">
+
+            window.onload = function () {
+               // alert("@ViewBag.Error");
+				swal("TDH", "@ViewBag.Error", "error");
+
+            };
+    </script>
+}
+@if (ViewBag.Success != null && ViewBag.Success != "")
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                //alert("@ViewBag.Success");
+				swal("TDH", "@ViewBag.Success", "Success");
+            };
+    </script>
+
+}
+
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<script>
+    $(function () {
+        $("#IsChargePer").click(function () {
+            if ($(this).is(":checked")) {
+                $("#ChargePer").removeAttr("disabled");
+                $("#ChargeAmount").attr("disabled", "disabled");
+                $("#ChargePer").focus();
+                $("#ChargeAmount").val('');
+            } else {
+                $("#ChargeAmount").removeAttr("disabled");
+                $("#ChargePer").attr("disabled", "disabled");
+                $("#ChargeAmount").focus();
+                $("#ChargePer").val('');
+                
+            }
+        });
+    });
+   
+    $(function () {
+        $("#EffectiveFromDate").datepicker({
+            
+           
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'dd/mm/yy'
+            
+            
+        });
+    });
+    $(function () {
+        $("#EffectiveToDate").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'dd/mm/yy'
+        });
+    });
+
+    
+
+</script>

@@ -1,0 +1,204 @@
+﻿@model Sunnet_NBFC.Models.clsTicket
+@{
+    ViewBag.Title = "Add Ticket";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Add Ticket</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Add Ticket</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+@using (Html.BeginForm("AddTicket", "Support", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="exampleInputEmail1">Product Name</label>
+                                        @Html.DropDownListFor(model => model.Prodid, ViewBag.Product as SelectList, new { @class = "form-control", @id = "ddlProduct" })
+                                        @Html.HiddenFor(model => model.SoftwareName, new { @id = "hdProduct" })
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label for="exampleInputEmail1">Ticket Type</label>
+
+                                        @Html.DropDownListFor(model => model.TicketTypeId, new List<SelectListItem>
+{
+   new SelectListItem{ Text="High", Value = "1" },
+   new SelectListItem{ Text="Medium", Value = "2" },
+   new SelectListItem{ Text="Low", Value = "3"},
+}, new { @class = "form-control", @id = "ddlTicketType" })
+                                        @Html.HiddenFor(model => model.TicketType, new { @id = "hdTicketType" })
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+
+                                        <div class="col-md-6">
+                                            <label for="exampleInputEmail1">Client Name</label>
+                                            @Html.TextBoxFor(model => model.ClientName, new
+                                       {
+                                           @class = "form-control",
+                                           @placeholder = "ClientName",
+                                           @name = "ClientName",
+                                           @required = "true",
+                                           @id = "txtClientName"
+                                       })
+
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="exampleInputEmail1">Contact No</label>
+                                            @Html.TextBoxFor(model => model.ClientContactNo, new
+                                       {
+                                           @class = "form-control",
+                                           @placeholder = "Contact No",
+                                           @name = "SGSTPer",
+                                           @required = "true",
+                                           @type = "number",
+                                           @id = "txtContactNo"
+                                       })
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Email Address</label>
+                                            @Html.TextBoxFor(model => model.ClientEmail, new { @class = "form-control", @requried = "true", @autocomplete = "off", @id = "txtemail" })
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="exampleInputEmail1">Description</label>
+                                            @Html.TextAreaFor(model => model.Description, new
+                                       {
+                                           @class = "form-control",
+                                           @name = "Ticket Description",
+                                           @required = "true",
+                                           @id = "txtDescription",
+                                           @autocomplete = "off"
+                                       })
+
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+
+                                        <div class="col-md-12">
+                                            <label for="exampleInputPassword1">Document</label>
+                                            <div class="col-md-10">
+                                                <input type="file" name="postedFile" />
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /.row -->
+                </div>
+            </div>
+
+    </section>
+
+}
+<script src="~/plugins/jquery/jquery.min.js"></script>
+<script src="~/plugins/jquery/jquery.validate.min.js"></script>
+<script src="~/plugins/jquery/jquery.validate.unobtrusive.min.js"></script>
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+
+        window.onload = function () {
+            alert("@ViewBag.Message");
+        };
+
+
+    </script>
+}
+<script>
+
+    $("#hdTicketType").val($("#ddlTicketType :selected").text());
+
+    $("#ddlProduct").change(function () {
+        var selectedText = $(this).find("option:selected").text();
+        var selectedValue = $(this).val();
+        $("#hdProduct").val(selectedText);
+        alert($("#hdProduct").val());
+    });
+
+    $("#ddlTicketType").change(function () {
+        var selectedText = $(this).find("option:selected").text();
+        var selectedValue = $(this).val();
+        $("#hdTicketType").val(selectedText);
+        alert($("#hdTicketType").val());
+    });
+
+
+    $(document).ready(function () {
+
+        $("#txtemail").change(function () {
+            var inputvalues = $(this).val();
+            var expr = /^([\w-\.]+)@@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+            if (!expr.test(inputvalues)) {
+                alert("Please Enter Proper Email Id");
+                return regex.test(inputvalues);
+            }
+        });
+    });
+    // alert($("#hdProduct").val($("#ddlProduct :selected").text()));
+
+</script>
+
+
+
+
+
+@*@Scripts.Render("~/bundles/jquery")*@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

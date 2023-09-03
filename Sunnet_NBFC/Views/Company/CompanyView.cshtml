@@ -1,0 +1,141 @@
+﻿
+@{ ViewBag.Title = "CompanyView";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Company View</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Company View</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+@{int i = 0;}
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+
+                <!-- /.card -->
+                <div class="card">
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>S.No.</th>
+                                    <th>Name</th>
+                                    <th>Address</th>
+                                    <th>City</th>
+                                    <th>State</th>
+                                    <th>Country</th>
+                                    <th>Pincode</th>
+                                    <th>PANNo</th>
+                                    <th>GSTNo</th>
+                                    <th>CompanyType</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (ViewBag.lst != null)
+                                {
+
+                                foreach (var item in ViewBag.lst)
+                                {
+
+                                    <tr>
+                                        <td>@(++i)</td>
+                                        <td>@item.CompanyName</td>
+                                        <td>@item.Address</td>
+                                        <td>@item.CityName</td>
+                                        <td>@item.StateName</td>
+                                        <td>@item.Country</td>
+                                        <td>@item.PinCode</td>
+                                        <td>@item.PANNo</td>
+                                        <td>@item.GSTNo</td>
+                                        <td>@item.CompanyType</td>
+                                        <td>
+                                            <div class="d-flex order-actions">
+                                                <a href="@Url.Action("Companydelete", "Company", new { Id = @item.CompanyId })"
+                                                   data-bs-toggle="tooltip" data-bs-placement="top" onclick="return Submit();" title="" data-bs-original-title="Delete"><u>Delete</u></a>
+
+                                            </div>
+
+                                        </td>
+
+
+                                    </tr>
+                                }
+                                }
+
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Company Id</th>
+                                    <th>Name</th>
+                                    <th>Address</th>
+                                    <th>City</th>
+                                    <th>State</th>
+                                    <th>Country</th>
+                                    <th>Pincode</th>
+                                    <th>PANNo</th>
+                                    <th>GSTNo</th>
+                                    <th>CompanyType</th>
+                                    <th>Action</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        <div class="card-footer">
+                            @Html.ActionLink("Export to Excel", "ExportToExcel", new { @class = "btn btn-primary" })
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<script type="text/javascript">
+    function Submit() {
+        if (confirm("Are you sure you want to delete ?")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+   @if (ViewBag.Message != null && ViewBag.Message != "")
+{
+    <script type="text/javascript">
+
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+</script>
+}
+
+     @*window.onload = function () {
+                swal("Good job!","Test", "success");
+            };*@
+    //swal({
+    //    title: "Error!",
+    //    text: "Here's my error message!",
+    //    type: "error",
+    //    confirmButtonText: "Cool"
+    //});
+    //function callSweetMsg() {
+
+    //}
+</script>

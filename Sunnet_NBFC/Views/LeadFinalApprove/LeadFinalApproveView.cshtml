@@ -1,0 +1,237 @@
+﻿@model IEnumerable<Sunnet_NBFC.Models.clsLeadFinalApprove>
+
+@{
+	ViewBag.Title = "Lead Finalapprove View";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+	<div class="container-fluid">
+		<div class="row mb-2">
+			<div class="col-sm-6">
+				<h1>Lead Final Approve View</h1>
+			</div>
+			<div class="col-sm-6">
+				<ol class="breadcrumb float-sm-right">
+					@*<li class="breadcrumb-item"><a href="#">Home</a></li>
+						<li class="breadcrumb-item active">Employee View</li>*@
+
+					@*<h4>@Html.ActionLink("Create New", "StageRole")</h4>*@
+				</ol>
+			</div>
+		</div>
+	</div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-12">
+
+				<!-- /.card -->
+				<div class="card">
+					<!-- /.card-header -->
+					<div class="card-body">
+						<table id="example1" class="table table-bordered table-striped">
+							<thead>
+								<tr>
+									<th>
+										Lead No
+									</th>
+									<th>
+										@Html.DisplayNameFor(model => model.NetDisbAmt)
+									</th>
+									@*<th>
+										@Html.DisplayNameFor(model => model.Particulers)
+									</th>*@
+									<th>
+										@Html.DisplayNameFor(model => model.Proccesfees)
+									</th>
+									<th>
+										@Html.DisplayNameFor(model => model.AdvanceEMI)
+									</th>
+									<th>
+										@Html.DisplayNameFor(model => model.GST)
+									</th>
+
+									@*<th>
+										@Html.DisplayNameFor(model => model.TrnchsNo)
+									</th>
+									<th>
+										@Html.DisplayNameFor(model => model.CersaiCharges)
+									</th>
+									<th>
+										@Html.DisplayNameFor(model => model.StamppingCharges)
+									</th>*@
+									<th>
+										@Html.DisplayNameFor(model => model.Remarks)
+									</th>
+									@*<th>
+										@Html.DisplayNameFor(model => model.BorrowerKyc)
+									</th>
+									<th>
+										@Html.DisplayNameFor(model => model.GuarantorKyc)
+									</th>
+									<th>
+										@Html.DisplayNameFor(model => model.Proccesfees)
+									</th>
+									<th>
+										@Html.DisplayNameFor(model => model.PDC)
+									</th>
+									<th>
+										@Html.DisplayNameFor(model => model.BorrowerPhoto)
+									</th>
+									<th>
+										@Html.DisplayNameFor(model => model.CoBorrowerPhoto)
+									</th>
+									<th>
+										@Html.DisplayNameFor(model => model.GuarantorPhoto)
+									</th>
+									<th>
+										@Html.DisplayNameFor(model => model.SanctionLetter)
+									</th>
+									<th>
+										@Html.DisplayNameFor(model => model.LoanAgreementkit)
+									</th>
+									<th>
+										@Html.DisplayNameFor(model => model.DisbursementRequestLetter)
+									</th>
+									<th>
+										@Html.DisplayNameFor(model => model.NocPreviousFinanced)
+									</th>
+									<th>
+										@Html.DisplayNameFor(model => model.Rtoslip)
+									</th>*@
+
+
+								</tr>
+							</thead>
+							<tbody>
+								@foreach (var item in Model)
+								{
+									<tr>
+										<td>
+											@Html.DisplayFor(modelItem => item.LeadNo)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.NetDisbAmt)
+										</td>
+
+										@*<td>
+			@Html.DisplayFor(modelItem => item.Particulers)
+		</td>*@
+										<td>
+											@Html.DisplayFor(modelItem => item.Proccesfees)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.AdvanceEMI)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.GST)
+										</td>
+
+										@*<td>
+											@Html.DisplayFor(modelItem => item.TrnchsNo)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.CersaiCharges)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.StamppingCharges)
+										</td>*@
+										<td>
+											@Html.DisplayFor(modelItem => item.Remarks)
+										</td>
+										@*<td>
+											@Html.DisplayFor(modelItem => item.BorrowerKyc)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.GuarantorKyc)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.PDC)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.BorrowerPhoto)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.CoBorrowerPhoto)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.SanctionLetter)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.LoanAgreementkit)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.DisbursementRequestLetter)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.NocPreviousFinanced)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.Rtoslip)
+										</td>*@
+
+										@*<td>
+			<div class="d-flex order-actions">
+				<a href="@Url.Action("StageRole","StageRole",new{Id=item.StageRoleId})"
+				   data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Edit"><u>Edit</u></a>
+
+				<a href="@Url.Action("DeleteStageRole","StageRole",new{Id=item.StageRoleId})"
+				   data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Delete"
+				   style="margin-left:10px;"><u>Delete</u></a>
+
+			</div>
+
+		</td>*@
+									</tr>
+								}
+							</tbody>
+						</table>
+						@*<div class="card-footer">
+								@Html.ActionLink("Export to Excel", "ExportToExcel", new { @class = "btn btn-primary" })
+							</div>*@
+
+
+					</div>
+					<!-- /.card-body -->
+				</div>
+				<!-- /.card -->
+			</div>
+			<!-- /.col -->
+		</div>
+		<!-- /.row -->
+	</div>
+	<!-- /.container-fluid -->
+</section>
+
+
+<script src="~/plugins/jquery/jquery.min.js"></script>
+<script src="~/plugins/jquery/jquery.validate.min.js"></script>
+<script src="~/plugins/jquery/jquery.validate.unobtrusive.min.js"></script>
+
+@if (ViewBag.Error != null && ViewBag.Error != "")
+{
+	<script type="text/javascript">
+
+            window.onload = function () {
+               // alert("@ViewBag.Error");
+				swal("TDH", "@ViewBag.Error", "error");
+
+            };
+	</script>
+}
+@if (ViewBag.Success != null && ViewBag.Success != "")
+{
+	<script type="text/javascript">
+            window.onload = function () {
+                //alert("@ViewBag.Success");
+				swal("TDH", "@ViewBag.Success", "Success");
+            };
+	</script>
+}
+
+
+
+

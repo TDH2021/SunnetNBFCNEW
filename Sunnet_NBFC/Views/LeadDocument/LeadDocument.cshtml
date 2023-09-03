@@ -1,0 +1,241 @@
+﻿@model Sunnet_NBFC.Models.clsLeadmaind
+@using Sunnet_NBFC.App_Code
+@using Sunnet_NBFC.Models
+
+@{
+    ViewBag.Title = "LeadDocument";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Lead Document Details</h1>
+            </div>
+            @*<div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    @Html.ActionLink("Back to List", "LeadView", "Lead")
+                </ol>
+            </div>*@
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+@using (Html.BeginForm("LeadDocument", "LeadDocument", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @*@Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
+
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        @Html.HiddenFor(model => model.ReqType)
+                                        @Html.HiddenFor(model => model.LeadId)
+                                        @Html.HiddenFor(model => model.ShortStage_Name)
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.LeadNo, new { @class = "control-label" }) *
+                                        @Html.TextBoxFor(model => model.LeadNo, new { @class = "form-control", @required = "true", @readonly = "true" })
+                                        @*@Html.ValidationMessageFor(model => model.LeadId, "", new { @class = "text-danger" })*@
+                                    </div>
+
+                                </div>
+                                <hr />
+
+                                @if (Model.clsLeadDocument != null)
+                                {
+                                    int Index = 1;
+                                    <div class="form-group">
+                                        <div class="row">
+
+                                            <div class="col-md-2">
+                                                Customer Type
+                                            </div>
+                                            <div class="col-md-3">
+                                                Customer Name
+                                            </div>
+                                            <div class="col-md-2">
+                                                Document
+                                            </div>
+                                            <div class="col-md-1">
+                                                IsRequired
+                                            </div>
+                                            <div class="col-md-1">
+                                                IsReceived
+                                            </div>
+                                            <div class="col-md-3">
+                                                Remark
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @Html.Hidden("hdnCount", Model.clsLeadDocument.Count)
+                                    foreach (var item in Model.clsLeadDocument)
+                                    {
+                                        <div class="form-group clsch">
+                                            <div class="row">
+
+                                                <div class="col-md-2">
+                                                    <b> @Index. </b>&nbsp;&nbsp; @Html.Label(item.CustomerType.ToString())
+                                                </div>
+                                                <div class="col-md-3">
+                                                    @Html.Label(item.CustName.ToString())
+                                                </div>
+                                                <div class="col-md-2">
+                                                    @Html.Label(item.DocumentName.ToString())
+                                                </div>
+                                                <div class="col-md-1">
+
+                                                    @Html.Hidden("hdnIsRequried", item.IsRequried, new { @id = "hdnIsRequrie" })
+                                                    @if (item.IsRequried == true)
+                                                    {<label>Yes</label>
+                                                    }
+                                                    else
+                                                    { <label>No</label>
+                                                    }
+                                                </div>
+                                                <div class="col-md-1">
+                                                    @Html.Hidden(@Index + "_DocID", item.DocID)
+                                                    @Html.Hidden(@Index + "_DcId", item.DcId)
+                                                    @Html.Hidden(@Index + "_CustomerType", item.CustomerType)
+                                                    @Html.Hidden(@Index + "_LeadCustId", item.LeadCustId)
+                                                    @Html.CheckBox(@Index + "_IsReceived", item.IsReceived,new {@id= @Index + "_chkIsReceived" })
+                                                </div>
+                                                <div class="col-md-3">
+                                                    @Html.TextBox(@Index + "_Remarks", item.Remarks, new { @class = "form-control" })
+                                                </div>
+
+                                            </div>
+                                            @*@Html.ValidationMessage(item.Answer, "", new { @class = "text-danger" })*@
+                                        </div>
+
+                                        Index++;
+                                    }
+                                }
+                                <hr />
+
+                                <div class="form-group">
+                                    <div class="row">
+
+                                        <div class="col-md-6">
+                                            @Html.LabelFor(m => m.Status, new { @class = "control-label" })
+                                        </div>
+                                        <div class="col-md-6">
+                                            @Html.DropDownListFor(m => m.Status, new SelectList(ViewBag.StatusListDDL, "Value", "Text", Model.Status), "- Select -", new { @class = "form-control",@id= "ddlStatus" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+
+                                        <div class="col-md-6">
+                                            @Html.LabelFor(m => m.Remarks, new { @class = "control-label" })
+                                        </div>
+                                        <div class="col-md-6">
+                                            @Html.TextAreaFor(m => m.Remarks, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card-footer">
+                                    <input type="submit" value="Update" class="btn btn-primary" onclick="return chkValidation()" />
+                                    @*@Html.ActionLink("Cancel", "LeadView", "Lead", null, new { @class = "btn btn-danger btn-large" })*@
+                                    @Html.ActionLink("Cancel", "GoToStage", "Lead", new { StageName = ViewBag.ComeFrom }, new { @class = "btn btn-danger btn-large" })
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+}
+
+@if (ViewBag.Error != null && ViewBag.Error != "")
+{
+    <script type="text/javascript">
+
+            window.onload = function () {
+                //alert("@ViewBag.Error");
+				swal("TDH", "@ViewBag.Error", "error");
+            };
+    </script>
+}
+@if (ViewBag.Success != null && ViewBag.Success != "")
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                //alert("@ViewBag.Success");
+				swal("TDH", "@ViewBag.Success", "Success");
+            };
+    </script>
+}
+<script>
+
+    function chkValidation() {
+        debugger;
+        var cntRe = 0;
+
+        $('.clsch').each(function () {
+            if ($(this).find("[name=hdnIsRequried]").val() == "True" && $(this).find('#chkIsReceived').prop('checked') == false) {
+                cntRe = cntRe + 1;
+            }
+        });
+        //alert(cntRe);
+        var cnt = 0;
+        $('input[type=checkbox]').each(function () {
+            if (this.checked) {
+                cnt = cnt + 1;
+            }
+        });
+
+        if (cnt == 0) {
+            swal("TDH", "Please Select at least one Doucment.", "error");
+            return false;
+        }
+
+        var Status = $("#ddlStatus option:selected").val();
+        //alert(Status);
+        if (Status == 0) {
+            swal("TDH", "Please Select Status", "error");
+            return false;
+        }
+        else if (Status == "A") {
+            if (cntRe > 0) {
+                swal("TDH", "Please Select All Required Documents.", "error");
+                return false;
+            }
+        }
+        else {
+            return true;
+        }
+    }
+
+</script>
+
+
+
+
+
+

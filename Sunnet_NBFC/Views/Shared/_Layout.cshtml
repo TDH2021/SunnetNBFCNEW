@@ -1,0 +1,862 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>@ViewBag.Title</title>
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <script src="~/Scripts/sweetalert.min.js"></script>
+    <!-- Font Awesome -->
+    @Styles.Render("~/bundles/LayoutCss")
+    @Scripts.Render("~/bundles/js")
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+        <!-- Preloader -->
+        <div class="preloader flex-column justify-content-center align-items-center">
+            <img class="animation__shake" src="~/dist/img/sunitlogo.png" alt="AdminLTELogo" height="60" width="60">
+        </div>
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href='@Url.Action("Index", "Home")' class="nav-link">Home</a>
+                </li>
+            </ul>
+
+            <!-- Right navbar links -->
+            <ul class="navbar-nav ml-auto">
+                <!-- Navbar Search -->
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="navbar-search" href="#" role="button">
+                        <i class="fas fa-search"></i>
+
+                        kl/i
+                    </a>
+                    <div class="navbar-search-block">
+                        <form class="form-inline">
+                            <div class="input-group input-group-sm">
+                                <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+                                <div class="input-group-append">
+                                    <button class="btn btn-navbar" type="submit">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                    <button class="btn btn-navbar" type="button" data-widget="navbar-search">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </li>
+
+                <!-- Messages Dropdown Menu -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                        <i class="far fa-comments"></i>
+                        <span class="badge badge-danger navbar-badge">3</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                        <a href="#" class="dropdown-item">
+                            <!-- Message Start -->
+                            <div class="media">
+                                <img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+                                <div class="media-body">
+                                    <h3 class="dropdown-item-title">
+                                        Brad Diesel
+                                        <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+                                    </h3>
+                                    <p class="text-sm">Call me whenever you can...</p>
+                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                                </div>
+                            </div>
+                            <!-- Message End -->
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <!-- Message Start -->
+                            <div class="media">
+                                <img src="dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                                <div class="media-body">
+                                    <h3 class="dropdown-item-title">
+                                        John Pierce
+                                        <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
+                                    </h3>
+                                    <p class="text-sm">I got your message bro</p>
+                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                                </div>
+                            </div>
+                            <!-- Message End -->
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <!-- Message Start -->
+                            <div class="media">
+                                <img src="dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                                <div class="media-body">
+                                    <h3 class="dropdown-item-title">
+                                        Nora Silvester
+                                        <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
+                                    </h3>
+                                    <p class="text-sm">The subject goes here</p>
+                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                                </div>
+                            </div>
+                            <!-- Message End -->
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+                    </div>
+                </li>
+                <!-- Notifications Dropdown Menu -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                        <i class="far fa-bell"></i>
+                        <span class="badge badge-warning navbar-badge">15</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                        <span class="dropdown-item dropdown-header">15 Notifications</span>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-envelope mr-2"></i> 4 new messages
+                            <span class="float-right text-muted text-sm">3 mins</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-users mr-2"></i> 8 friend requests
+                            <span class="float-right text-muted text-sm">12 hours</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-file mr-2"></i> 3 new reports
+                            <span class="float-right text-muted text-sm">2 days</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+                        <i class="fas fa-expand-arrows-alt"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
+                        <i class="fas fa-th-large"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.navbar -->
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+            <a href='@Url.Action("Index", "Home")' class="brand-link">
+                @*<img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">*@
+                <span class="brand-text font-weight-light">@(Session["UserName"])</span>
+            </a>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar user panel (optional) -->
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="image">
+                        @{
+                            var @img = "/UploadedFiles/EmployeePhoto/" + @Session["UserImg"];
+                            var absolutePath = Server.MapPath(@img);
+                        }
+                        @if (File.Exists(absolutePath) == false)
+                        {
+                            img = "/dist/img/avatar3.png";
+                        }
+
+                        <img src=@img class="img-circle elevation-2" alt="User Image">
+
+
+                    </div>
+                    <div class="info">
+                        <a href="#" class="d-block">@(Session["UserName"])</a>
+                    </div>
+                </div>
+
+                <!-- SidebarSearch Form -->
+                <div class="form-inline">
+                    <div class="input-group" data-widget="sidebar-search">
+                        <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+                        <div class="input-group-append">
+                            <button class="btn btn-sidebar">
+                                <i class="fas fa-search fa-fw"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <!-- Add icons to the links using the .nav-icon class
+    with font-awesome or any other icon font library -->
+                        <li class="nav-item menu-open">
+                            @*<a href="#" class="nav-link active">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                    Dashboard
+                    <i class="right fas fa-angle-left"></i>
+                </p>
+            </a>*@
+
+                        <li class="nav-item">
+                            <a href='@Url.Action("Logout", "Login")' class="nav-link active">
+                                <i class="far fa-usd nav-icon"></i>
+                                <p>Logout</p>
+                            </a>
+                        </li>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href='@Url.Action("Home", "Index")' class="nav-link active">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Dashboard v1</p>
+                                </a>
+                            </li>
+                            @*<li class="nav-item">
+                <a href="./index2.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Dashboard v2</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="./index3.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Dashboard v3</p>
+                </a>
+            </li>*@
+                        </ul>
+
+                        @*<li class="nav-item">
+            <a href="pages/widgets.html" class="nav-link">
+                <i class="nav-icon fas fa-th"></i>
+                <p>
+                    Widgets
+                    <span class="right badge badge-danger">New</span>
+                </p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-copy"></i>
+                <p>
+                    Layout Options
+                    <i class="fas fa-angle-left right"></i>
+                    <span class="badge badge-info right">6</span>
+                </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="pages/layout/top-nav.html" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Top Navigation</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Top Navigation + Sidebar</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="pages/layout/boxed.html" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Boxed</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="pages/layout/fixed-sidebar.html" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Fixed Sidebar</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="pages/layout/fixed-sidebar-custom.html" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Fixed Sidebar <small>+ Custom Area</small></p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="pages/layout/fixed-topnav.html" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Fixed Navbar</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="pages/layout/fixed-footer.html" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Fixed Footer</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="pages/layout/collapsed-sidebar.html" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Collapsed Sidebar</p>
+                    </a>
+                </li>
+            </ul>
+        </li>*@
+                        @*@Html.Partial("_MenuBarPartial");*@
+                        @if (Session["UserType"].ToString() == "E")
+                        {
+                            { Html.RenderAction("SetSideBarMenuesRights", "SideMenuBar"); }
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-chart-pie"></i>
+                                    <p>
+                                        Masters
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("AddStatus", "Status")' class="nav-link">
+
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Add Status</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("StatusView", "Status")' class="nav-link">
+
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Status View</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("AddCompany", "Company")' class="nav-link">
+
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Add Company</p>
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("CompanyView", "Company")' class="nav-link">
+
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Company View</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("AddCity", "City")' class="nav-link">
+
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Add City</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("CityView", "City")' class="nav-link">
+
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>City View</p>
+                                        </a>
+                                    </li>
+
+
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("AddProduct", "Product")' class="nav-link">
+
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Add Product</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("ProductView", "Product")' class="nav-link">
+
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Product View</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("AddCustomer", "Customer")' class="nav-link">
+
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Add Customer</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("CustomerView", "Customer")' class="nav-link">
+
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Customer View</p>
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("AddDSA", "DSA")' class="nav-link">
+
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Add DSA</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("ViewDSA", "DSA")' class="nav-link">
+
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>DSA View</p>
+                                        </a>
+                                    </li>
+
+
+
+
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("Branch", "Branch")' class="nav-link">
+
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Add Branch</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("BranchView", "Branch")' class="nav-link">
+
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Branch View</p>
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("Center", "Center")' class="nav-link">
+
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Add Center</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("CenterView", "Center")' class="nav-link">
+
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Center View</p>
+                                        </a>
+                                    </li>
+
+
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("Misc", "Misc")' class="nav-link">
+
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Add Misc</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("MiscView", "Misc")' class="nav-link">
+
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Misc View</p>
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("AddQuestion", "Question")' class="nav-link">
+
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Add Question</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("ViewQuestion", "Question")' class="nav-link">
+
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>View Question</p>
+                                        </a>
+                                    </li>
+
+
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("Employee", "Employee")' class="nav-link">
+
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Add Employee</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("EmployeeView", "Employee")' class="nav-link">
+
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Employee View</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("StageRole", "StageRole")' class="nav-link">
+
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Add StageRole</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("StageRoleView", "StageRole")' class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>StageRole View</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("Document", "Document")' class="nav-link">
+
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Add Document</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("DocumentView", "Document")' class="nav-link">
+
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Document View</p>
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("RoleMaster", "UserRole")' class="nav-link">
+
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>User Role</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("RoleMaster", "UserRole")' class="nav-link">
+
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>User Role View</p>
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("Bank", "Bank")' class="nav-link">
+
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Add Bank</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("BankView", "Bank")' class="nav-link">
+
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Bank View</p>
+                                        </a>
+                                    </li>
+
+
+
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("AddChargesMaster", "ChargesMaster")' class="nav-link">
+
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Add ChargeMaster</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("ChargesView", "ChargesMaster")' class="nav-link">
+
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>ChargeMaster View</p>
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("ChargesType", "ChargesType")' class="nav-link">
+
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Add ChargesType</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("ChargesTypeView", "ChargesType")' class="nav-link">
+
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>ChargesType View</p>
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("LedgerMaster", "LedgerMaster")' class="nav-link">
+
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Add LedgerMaster</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("LedgerMasterView", "LedgerMaster")' class="nav-link">
+
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>LedgerMaster View</p>
+                                        </a>
+                                    </li>
+
+
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-tree"></i>
+                                    <p>
+                                        Lead
+                                        <i class="fas fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("LeadGeneration", "LeadGeneration")' class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Add Lead</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("LeadView", "Lead")' class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>View Lead</p>
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("LeadView", "LeadCalling")' class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>TCU Lead</p>
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("LeadView", "LeadDocument")' class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Doument Calling</p>
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("LeadView", "LeadCredit")' class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Credit Approval</p>
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("LeadView", "LeadDocumentSigning")' class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Doument Sign</p>
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("LeadView", "LeadFinalApprove")' class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Final Approve</p>
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("LeadView", "LeadDisbursement")' class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Disbursement</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-receipt"></i>
+                                    <p>
+                                        Receipt
+                                        <i class="fas fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("AddReceipt", "Receipt")' class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Add Receipt</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("ReceiptView", "Receipt")' class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>View Receipt</p>
+                                        </a>
+                                    </li>
+
+
+                                </ul>
+                            </li>
+
+
+
+                            if (Session["UserType"].ToString().ToUpper() == "SUPERADMIN")
+                            {
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="fas fa-cog left"></i>
+                                        <p>
+                                           &nbsp; Settings
+                                            <i class="fas fa-angle-left right"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a href='@Url.Action("AddMenu", "Menu")' class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Add Menu</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href='@Url.Action("MenuView", "Menu")' class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>View Menu</p>
+                                            </a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a href='@Url.Action("AddSubMenu", "SubMenu")' class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Add Sub Menu</p>
+                                            </a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a href='@Url.Action("SubMenuView", "SubMenu")' class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Sub Menu View</p>
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </li>
+                            }
+                        }
+
+
+                        @*@{Html.RenderAction("SideMenu", "RoleRight", new { RoleID = 1, moduleId = 0 });}*@
+
+
+                        @*<li class="nav-item">
+        <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-tree"></i>
+            <p>
+               Product
+                <i class="fas fa-angle-left right"></i>
+            </p>
+        </a>
+        <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href='@Url.Action("AddProduct", "Product")' class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Product Add</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href='@Url.Action("ProductView", "Product")' class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>View Product</p>
+                </a>
+            </li>
+
+                            </ul>
+                        </li>*@
+
+</nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+
+            @RenderBody()
+
+        </div>
+        <footer class="main-footer">
+            <strong>Copyright &copy; 2022-2022 <a href="http://tdhitsolutions.com/">TDH IT Solutions</a></strong>
+            All rights reserved.
+            <div class="float-right d-none d-sm-inline-block">
+                <b>Version</b> 3.1.0
+            </div>
+        </footer>
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+    </div>
+    <!-- jQuery -->
+    <!-- Page specific script -->
+    <script>
+        $(function () {
+            $("#example1").DataTable({
+                "responsive": true, "lengthChange": false, "autoWidth": false,
+                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+            });
+        });
+
+        $(function () {
+            $("#example3").DataTable({
+                "responsive": true, "lengthChange": false, "autoWidth": false,
+                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            }).buttons().container().appendTo('#example3_wrapper .col-md-6:eq(0)');
+            $('#example4').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+            });
+        });
+    </script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="https://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    
+    <script>
+
+        $(document).ready(function () {
+            $('.datepicker').datepicker();
+        });
+
+    </script>
+    <script>
+
+        $(function () {
+            $(".datestyle").datepicker({
+                changeMonth: true,
+                changeYear: true,
+                dateFormat: 'dd/mm/yy',
+                yearRange: "-100:+0"
+            });
+        });
+    </script>
+
+    @*<script>
+        $(function () {
+          // Summernote
+            $('#txtDescription').summernote()
+
+          // CodeMirror
+          CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {
+            mode: "htmlmixed",
+            theme: "monokai"
+          });
+        })
+          </script>*@
+</body>
+</html>

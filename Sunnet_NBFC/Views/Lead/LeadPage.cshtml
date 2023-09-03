@@ -1,0 +1,165 @@
+﻿@using Sunnet_NBFC.Models
+@model clsLead
+@{
+    Layout = null;
+    ViewBag.Title = "Enquery Page";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>LeadPage</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link href="~/plugins/fontawesome-free/css/all.css" rel="stylesheet" />
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="~/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- Theme style -->
+    <link href="~/dist/css/adminlte.min.css" rel="stylesheet" />
+</head>
+<body class="hold-transition">
+
+
+@using (Html.BeginForm("LeadPage", "Lead", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="wrapper">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-2">
+
+                </div>
+                <div class="col-md-8">
+                    <div class="card card-outline card-primary">
+                        <div class="card-header text-center">
+                            <a href="http://tdhitsolutions.com" class="h1"><b>TDH IT</b>Solutions</a>
+                        </div>
+                        <div class="card-body">
+                            <p class="login-box-msg">Enquery Form</p>
+                            <div class="form-group">
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        <label for="exampleInputEmail1">Name</label>
+                                        @Html.TextBoxFor(model => model.CustName, new
+                                   {
+                                       @class = "form-control",
+                                       @placeholder = "Name",
+                                       @name = "Name",
+                                       @required = "true",
+                                       @maxlength = "50"
+                                   })
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="exampleInputEmail1">Contact No</label>
+                                        @Html.TextBoxFor(model => model.CustContNo, new
+                                   {
+                                       @class = "form-control",
+                                       @placeholder = "Contact No",
+                                       @name = "CustContNo",
+                                       @type = "number"
+                                   })
+                                        @Html.ValidationMessageFor(m => m.CustContNo, "", new { @class = "error" })
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        <label for="exampleInputEmail1">Address</label>
+                                        @Html.TextAreaFor(model => model.CustAdress, new
+                                   {
+                                       @class = "form-control",
+                                       @placeholder = "Address",
+                                       @name = "CustAdress",
+                                       @required = "true"
+                                   })
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="exampleInputEmail1">Email</label>
+                                        @Html.TextBoxFor(model => model.CustMail, new
+                                   {
+                                       @class = "form-control",
+                                       @placeholder = "Email",
+                                       @name = "CustMail"
+                                       
+                                   })
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        <label>Gender</label>
+                                        @Html.DropDownListFor(model => model.CustGender,
+        new SelectList(Enum.GetValues(typeof(Gender))), new { @class = "form-control" })
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Service</label>
+
+                                        @*ViewBag.CityList is holding all the cities values*@
+                                        @Html.DropDownListFor(model => model.ServiceId, ViewBag.Service as SelectList, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.ServiceId, "", new { @class = "text-danger" })
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+
+                                    <div class="col-md-12">
+                                        <label>Remarks</label>
+                                        @Html.TextBoxFor(model => model.Remarks, new
+                                   {
+                                       @class = "form-control",
+                                       @placeholder = "Remarks",
+                                       @name = "txtRemarks",
+                                       @required = "true"
+                                   })
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                            <!-- /.col -->
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-2">
+
+                </div>
+            </div>
+        </div>
+        <!-- /.card -->
+    </div>
+}
+
+    @if (ViewBag.Message != null)
+    {
+        <script type="text/javascript">
+
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+        </script>
+    }  
+    <!-- /.register-box -->
+    <!-- jQuery -->
+    <script src="~/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/dist/js/adminlte.min.js"></script>
+</body>
+</html>

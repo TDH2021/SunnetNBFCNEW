@@ -1,0 +1,175 @@
+﻿@model Sunnet_NBFC.Models.clsLeadGenerationMaster
+
+
+<div class="form-group" style="margin-top:20px;">
+    <div class="col-md-12">
+        <h5> Additional Details</h5>
+    </div>
+    <hr>
+
+    <div class="row">
+
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">Requested Loan Amount</label>
+            @Html.TextBoxFor(model => model.ReuestedLoanAmount, new
+            {
+                @class = "form-control",
+                @placeholder = "Reuested Loan Amount",
+                @name = "FName",
+                @required = "true",
+                @maxlength = "50",
+                @type = "number",
+                @id = "ReuestedLoanAmount",
+                @autocomplete = "off"
+            })
+
+
+        </div>
+
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">Requested Loan Tenure</label>
+            @Html.TextBoxFor(model => model.ReuestedLoanTenure, new
+            {
+                @class = "form-control",
+                @placeholder = "Reuested Loan Tenure",
+                @name = "MName",
+                @type = "number",
+                @required = "true",
+                @id = "ReuestedLoanTenure"
+
+            })
+        </div>
+
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">Est Month Income</label>
+            @Html.TextBoxFor(model => model.EstMonthIncome, new
+            {
+                @class = "form-control",
+                @placeholder = "Est Month Income",
+                @name = "FName",
+                @required = "true",
+                @maxlength = "50",
+                @type = "number",
+                @id = "EstMonthIncome",
+                @autocomplete = "off"
+            })
+
+
+        </div>
+
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">Est Month Expense</label>
+            @Html.TextBoxFor(model => model.EstMonthExpense, new
+       {
+           @class = "form-control",
+           @placeholder = "Est Month Expense",
+           @name = "MName",
+           @required = "true",
+           @id = "EstMonthExpense",
+           @onkeypress = "return isNumber(this.value);",
+           @maxlength = "10",
+       })
+        </div>
+
+
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">Cur Month Obligation</label>
+            @Html.TextBoxFor(model => model.CurMonthObligation, new
+       {
+           @class = "form-control",
+           @placeholder = "Cur Month Obligation",
+           @name = "MName",
+           @onkeypress = "return isNumber(this.value);",
+           @maxlength = "10",
+           @required = "true",
+           @id = "CurMonthObligation"
+
+       })
+        </div>
+    </div>
+
+    <div class="row" id="divRef1">
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">Refernce Name</label>
+            @Html.TextBoxFor(model => model.RefernceName, new
+            {
+                @class = "form-control",
+                @placeholder = "Refernce Name",
+                @name = "FName",
+                @required = "true",
+                @maxlength = "50",
+                @id = "RefernceName",
+                @autocomplete = "off"
+            })
+
+
+        </div>
+
+
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">Refence Relation</label>
+            @Html.DropDownListFor(model => model.RefenceRelation, ViewBag.RelationList as SelectList, "- Select Relation- ",
+                                   new { @class = "form-control", @id = "RefenceRelation" })
+        </div>
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">Refence MobileNo</label>
+            @Html.TextBoxFor(model => model.RefenceMobileNo, new
+       {
+           @class = "form-control",
+           @placeholder = "Refence MobileNo",
+           @name = "MName",
+           @required = "true",
+           @id = "RefenceMobileNo",
+           @onkeypress = "return isNumber(this.value);",
+           @maxlength = "10",
+       })
+        </div>
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">Refernce Name1</label>
+            @Html.TextBoxFor(model => model.RefernceName1, new
+            {
+                @class = "form-control",
+                @placeholder = "Refernce Name",
+                @name = "FName",
+                @required = "true",
+                @maxlength = "50",
+                @id = "RefernceName1",
+                @autocomplete = "off"
+            })
+
+
+        </div>
+
+    </div>
+    <div class="row" id="divRef2">
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">Refence Relation1</label>
+            @Html.DropDownListFor(model => model.RefenceRelation1, ViewBag.RelationList as SelectList, "- Select Relation- ",
+                                  new { @class = "form-control", @id = "RefenceRelation1" })
+
+        </div>
+
+
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">Refence MobileNo1</label>
+            @Html.TextBoxFor(model => model.RefenceMobileNo1, new
+       {
+           @class = "form-control",
+           @placeholder = "Refence MobileNo",
+           @name = "MName",
+           @required = "true",
+           @id = "RefenceMobileNo1",
+           @onkeypress = "return isNumber(this.value);",
+           @maxlength = "10"
+       })
+        </div>
+    </div>
+
+
+
+
+</div>
+
+

@@ -1,0 +1,163 @@
+﻿@model IEnumerable<Sunnet_NBFC.Models.clsBankMaster>
+
+@{
+    ViewBag.Title = "Bank View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Bank View</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    @*<li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Employee View</li>*@
+
+                    @*<h4>@Html.ActionLink("Create New", "Employee")</h4>*@
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+
+                <!-- /.card -->
+                <div class="card">
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="example1" class="table table-bordered table-striped">
+
+                            <thead>
+                                <tr>
+                                    <th>Sr No</th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.BankName)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.BankBranch)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.BankIFSCCode)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.BankMICRCode)
+                                    </th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{int rowNo = 1;}
+                                @foreach (var item in Model)
+                                {
+                                <tr>
+                                    <td>@(rowNo++)</td>
+                                    <td>
+
+                                        @Html.DisplayFor(modelItem => item.BankName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.BankBranch)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.BankIFSCCode)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.BankMICRCode)
+                                    </td>
+
+                                    @*<td>
+            <div class="d-flex order-actions">
+                <a href="@Url.Action("ChargesDetail","ChargesMaster",new{Id=item.ChargeID})"
+                   data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Edit"><u>Add Details</u></a>
+            </div>
+        </td>*@
+                                    <td>
+                                        <div class="d-flex order-actions">
+                                            <a href="@Url.Action("Bank","Bank",new{Id=item.BankId})"
+                                               data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Edit"><u>Edit</u></a>
+
+
+
+                                            <a href="@Url.Action("DeleteBank","Bank",new{Id=item.BankId})"
+                                               data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Delete"
+                                               style="margin-left:10px;"><u>Delete</u></a>
+
+                                            @*@Html.ActionLink("Employee", "Employee", new { Id = @item.DocId })
+                @Html.ActionLink("Delete", "Employee", new { Id = @item.DocID })*@
+
+                                        </div>
+
+                                    </td>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <div class="card-footer">
+                            @Html.ActionLink("Export to Excel", "ExportToExcel", new { @class = "btn btn-primary" })
+                        </div>
+
+
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+
+
+<script src="~/plugins/jquery/jquery.min.js"></script>
+<script src="~/plugins/jquery/jquery.validate.min.js"></script>
+<script src="~/plugins/jquery/jquery.validate.unobtrusive.min.js"></script>
+
+@if (ViewBag.Error != null && ViewBag.Error != "")
+{
+    <script type="text/javascript">
+
+            window.onload = function () {
+                alert("@ViewBag.Error");
+            };
+    </script>
+}
+@*@if (ViewBag.Success != null && ViewBag.Success != "")
+    {
+        <script type="text/javascript">
+
+                window.onload = function () {
+                    alert("@ViewBag.Success");
+                };
+        </script>
+    }*@
+@if (ViewBag.Error != null && ViewBag.Error != "")
+{
+    <script type="text/javascript">
+
+            window.onload = function () {
+               // alert("@ViewBag.Error");
+				swal("TDH", "@ViewBag.Error", "error");
+
+            };
+    </script>
+}
+@if (ViewBag.Success != null && ViewBag.Success != "")
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                //alert("@ViewBag.Success");
+				swal("TDH", "@ViewBag.Success", "Success");
+            };
+    </script>
+}
+
+

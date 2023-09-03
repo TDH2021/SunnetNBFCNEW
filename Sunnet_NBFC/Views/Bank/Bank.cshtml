@@ -1,0 +1,145 @@
+﻿@model Sunnet_NBFC.Models.clsBankMaster
+@{
+    ViewBag.Title = "Bank";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    #tbl tr td {
+        padding-right: 10px;
+    }
+</style>
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Add Charges</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    @Html.ActionLink("Back to List", "BankView")
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+@using (Html.BeginForm("Bank", "Bank", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        @Html.HiddenFor(model => model.ReqType)
+                                        @Html.HiddenFor(model => model.BankId)
+                                        @Html.HiddenFor(model => model.IsDelete)
+
+                                        @*@Html.HiddenFor(model => model.CreateBy)
+                                            @Html.HiddenFor(model => model.UpdateBy)*@
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        <label for="exampleInputEmail1">Bank Name</label>
+                                        @Html.TextBoxFor(model => model.BankName, new { @class = "form-control", autocomplete = "off", @placeholder = "Bank Name", @name = "Bank Name", @requried = "true" })
+                                        @Html.ValidationMessageFor(model => model.BankName, "", new { @class = "text-danger" })
+
+
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="exampleInputEmail1">Bank Branch</label>
+                                        @Html.TextBoxFor(model => model.BankBranch, new { @class = "form-control", autocomplete = "off", @placeholder = "Bank Branch", @name = "Bank Branch", @requried = "true" })
+                                        @Html.ValidationMessageFor(model => model.BankBranch, "", new { @class = "text-danger" })
+
+                                    </div>
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        <label for="exampleInputEmail1">IFSC Code</label>
+                                        @Html.TextBoxFor(model => model.BankIFSCCode, new { @class = "form-control", autocomplete = "off", @placeholder = "IFSC Code", @name = "IFSC Code", @requried = "true" })
+                                        @Html.ValidationMessageFor(model => model.BankIFSCCode, "", new { @class = "text-danger" })
+
+
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="exampleInputEmail1">MICR Code</label>
+                                        @Html.TextBoxFor(model => model.BankMICRCode, new { @class = "form-control", autocomplete = "off", @placeholder = "MICR Code", @name = "MICR Code", @requried = "true" })
+                                        @Html.ValidationMessageFor(model => model.BankMICRCode, "", new { @class = "text-danger" })
+
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>
+
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.row -->
+            </div>
+        </div>
+
+    </section>
+
+}
+<script src="~/plugins/jquery/jquery.min.js"></script>
+<script src="~/plugins/jquery/jquery.validate.min.js"></script>
+<script src="~/plugins/jquery/jquery.validate.unobtrusive.min.js"></script>
+
+@*@if (ViewBag.Message != null)
+    {
+        <script type="text/javascript">
+
+                window.onload = function () {
+                    alert("@ViewBag.Message");
+                };
+        </script>
+    }*@
+
+@if (ViewBag.Error != null && ViewBag.Error != "")
+{
+    <script type="text/javascript">
+
+            window.onload = function () {
+               // alert("@ViewBag.Error");
+				swal("TDH", "@ViewBag.Error", "error");
+
+            };
+    </script>
+}
+@if (ViewBag.Success != null && ViewBag.Success != "")
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                //alert("@ViewBag.Success");
+				swal("TDH", "@ViewBag.Success", "Success");
+            };
+    </script>
+
+}
+
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+

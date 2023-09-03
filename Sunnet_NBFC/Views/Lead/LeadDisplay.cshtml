@@ -1,0 +1,100 @@
+﻿@model Sunnet_NBFC.Models.clsLead
+
+
+@{
+    ViewBag.Title = "Lead Display";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Lead Display</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Lead Display</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+@*@using (Html.BeginForm("LeadDisplay", "Lead", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {*@
+@Html.AntiForgeryToken()
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <label for="exampleInputEmail1">Name</label>
+                                    <label class="form-control">@Model.CustName</label>
+                                    @*@Html.TextBoxFor(model => @Model.CustName, new { @class = "form-control" })*@
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="exampleInputEmail1">Contact No</label>
+                                    <label class="form-control">@Model.CustContNo</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <label for="exampleInputEmail1">Address</label>
+                                    <label class="form-control">@Model.CustAdress</label>
+                                    
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="exampleInputEmail1">Email</label>
+                                    <label class="form-control">@Model.CustMail</label>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <label for="exampleInputEmail1">Gender</label>
+                                    <label class="form-control">@Model.GenderName</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="exampleInputEmail1">Service</label>
+                                    <label class="form-control">@Model.ServiceName</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+
+                                <div class="col-md-12">
+                                    <label for="exampleInputEmail1">Remarks</label>
+                                    <label class="form-control">@Model.Remarks</label>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            @Html.ActionLink("Display Lead", "LeadView", "Lead", new { @class = "btn btn-primary" })
+                            
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /.row -->
+        </div>
+    </div>
+    
+</section>
+
+@*}*@

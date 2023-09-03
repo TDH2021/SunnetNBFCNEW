@@ -1,0 +1,132 @@
+﻿@model IEnumerable<Sunnet_NBFC.Models.clsLedgerMaster>
+
+@{
+	ViewBag.Title = "LedgerMaster View";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+	<div class="container-fluid">
+		<div class="row mb-2">
+			<div class="col-sm-6">
+				<h1>LedgerMaster View</h1>
+			</div>
+			<div class="col-sm-6">
+				<ol class="breadcrumb float-sm-right">
+					@*<li class="breadcrumb-item"><a href="#">Home</a></li>
+						<li class="breadcrumb-item active">Employee View</li>*@
+
+					@*<h4>@Html.ActionLink("Create New", "StageRole")</h4>*@
+				</ol>
+			</div>
+		</div>
+	</div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-12">
+
+				<!-- /.card -->
+				<div class="card">
+					<!-- /.card-header -->
+					<div class="card-body">
+						<table id="example1" class="table table-bordered table-striped">
+							<thead>
+								<tr>
+									<th>
+										@Html.DisplayNameFor(model => model.LedgerCode)
+									</th>
+									<th>
+										@Html.DisplayNameFor(model => model.LedgerName)
+									</th>
+									@*<th>
+										@Html.DisplayNameFor(model => model.LedgerGroupID)
+									</th>
+									<th>
+										@Html.DisplayNameFor(model => model.StatusID)
+									</th>*@
+									<th></th>
+
+								</tr>
+							</thead>
+							<tbody>
+								@foreach (var item in Model)
+								{
+									<tr>
+										<td>
+											@Html.DisplayFor(modelItem => item.LedgerCode)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.LedgerName)
+										</td>
+										@*<td>
+											@Html.DisplayFor(modelItem => item.LedgerGroupID)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.StatusID)
+										</td>*@
+
+										<td>
+											<div class="d-flex order-actions">
+												<a href="@Url.Action("LedgerMaster","LedgerMaster",new{Id=item.LedgerID})"
+												   data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Edit"><u>Edit</u></a>
+
+												<a href="@Url.Action("DeleteLedgerMaster","LedgerMaster",new{Id=item.LedgerID})"
+												   data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Delete"
+												   style="margin-left:10px;"><u>Delete</u></a>
+
+											</div>
+
+										</td>
+									</tr>
+								}
+							</tbody>
+						</table>
+						@*<div class="card-footer">
+							@Html.ActionLink("Export to Excel", "ExportToExcel", new { @class = "btn btn-primary" })
+						</div>*@
+
+
+					</div>
+					<!-- /.card-body -->
+				</div>
+				<!-- /.card -->
+			</div>
+			<!-- /.col -->
+		</div>
+		<!-- /.row -->
+	</div>
+	<!-- /.container-fluid -->
+</section>
+
+
+<script src="~/plugins/jquery/jquery.min.js"></script>
+<script src="~/plugins/jquery/jquery.validate.min.js"></script>
+<script src="~/plugins/jquery/jquery.validate.unobtrusive.min.js"></script>
+
+@if (ViewBag.Error != null && ViewBag.Error != "")
+{
+	<script type="text/javascript">
+
+            window.onload = function () {
+               // alert("@ViewBag.Error");
+				swal("TDH", "@ViewBag.Error", "error");
+				
+            };
+	</script>
+}
+@if (ViewBag.Success != null && ViewBag.Success != "")
+{
+	<script type="text/javascript">
+            window.onload = function () {
+                //alert("@ViewBag.Success");
+				swal("TDH", "@ViewBag.Success", "Success");
+            };
+	</script>
+}
+
+
+
+

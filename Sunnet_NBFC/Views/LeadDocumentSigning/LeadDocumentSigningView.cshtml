@@ -1,0 +1,204 @@
+﻿@model IEnumerable<Sunnet_NBFC.Models.clsLeadDocSign>
+
+@*@{
+		ViewBag.Title = "Lead Documents Signing View";
+		Layout = "~/Views/Shared/_Layout.cshtml";
+	}*@
+
+<section class="content-header">
+	<div class="container-fluid">
+		<div class="row mb-2">
+			<div class="col-sm-6">
+				<h1>Lead Documents Signing View</h1>
+			</div>
+			<div class="col-sm-6">
+				<ol class="breadcrumb float-sm-right">
+					@*<li class="breadcrumb-item"><a href="#">Home</a></li>
+						<li class="breadcrumb-item active">Employee View</li>*@
+
+					@*<h4>@Html.ActionLink("Create New", "StageRole")</h4>*@
+				</ol>
+			</div>
+		</div>
+	</div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-12">
+
+				<!-- /.card -->
+				<div class="card">
+					<!-- /.card-header -->
+					<div class="card-body">
+						<table id="example1" class="table table-bordered table-striped">
+							<thead>
+								<tr>
+									<th>
+										Lead No
+									</th>
+
+									<th>
+										@Html.DisplayNameFor(model => model.SanctionLetter)
+									</th>
+									<th>
+										@Html.DisplayNameFor(model => model.LoanAgrmentKit)
+									</th>
+									<th>
+										@Html.DisplayNameFor(model => model.PDC)
+									</th>
+									<th>
+										@Html.DisplayNameFor(model => model.NACH)
+									</th>
+									<th>
+										@Html.DisplayNameFor(model => model.Affidavit)
+									</th>
+									<th>
+										@Html.DisplayNameFor(model => model.RegisteredMortgageDeed)
+									</th>
+									<th>
+										@Html.DisplayNameFor(model => model.EquitableMortageDeed)
+									</th>
+									<th>
+										@Html.DisplayNameFor(model => model.BorrowerKyc)
+									</th>
+									<th>
+										@Html.DisplayNameFor(model => model.CoBorrowerKyc)
+									</th>
+									<th>
+										@Html.DisplayNameFor(model => model.GuarantorKyc)
+									</th>
+									<th>
+										@Html.DisplayNameFor(model => model.BorrowerPhoto)
+									</th>
+									<th>
+										@Html.DisplayNameFor(model => model.CoBorrowerPhoto)
+									</th>
+									<th>
+										@Html.DisplayNameFor(model => model.GuarantorPhoto)
+									</th>
+									<th>
+										@Html.DisplayNameFor(model => model.SignatureVerification)
+									</th>
+									<th>
+										@Html.DisplayNameFor(model => model.DisbursementRequestLetter)
+									</th>
+									<th>
+										@Html.DisplayNameFor(model => model.KycSelfAttested)
+									</th>
+									<th>
+										@Html.DisplayNameFor(model => model.Remarks)
+									</th>
+
+								</tr>
+							</thead>
+							<tbody>
+								@foreach (var item in Model)
+								{
+									<tr>
+										<td>
+											@Html.DisplayFor(modelItem => item.LeadNo)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.SanctionLetter)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.LoanAgrmentKit)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.PDC)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.NACH)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.Affidavit)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.RegisteredMortgageDeed)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.EquitableMortageDeed)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.BorrowerKyc)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.GuarantorKyc)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.BorrowerPhoto)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.CoBorrowerPhoto)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.GuarantorPhoto)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.SignatureVerification)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.DisbursementRequestLetter)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.KycSelfAttested)
+										</td>
+										@*<td>
+												@Html.DisplayFor(modelItem => item.Documents)
+											</td>*@
+										<td>
+											@Html.DisplayFor(modelItem => item.Remarks)
+										</td>
+
+									</tr>
+								}
+							</tbody>
+						</table>
+						@*<div class="card-footer">
+								@Html.ActionLink("Export to Excel", "ExportToExcel", new { @class = "btn btn-primary" })
+							</div>*@
+
+
+					</div>
+					<!-- /.card-body -->
+				</div>
+				<!-- /.card -->
+			</div>
+			<!-- /.col -->
+		</div>
+		<!-- /.row -->
+	</div>
+	<!-- /.container-fluid -->
+</section>
+
+
+<script src="~/plugins/jquery/jquery.min.js"></script>
+<script src="~/plugins/jquery/jquery.validate.min.js"></script>
+<script src="~/plugins/jquery/jquery.validate.unobtrusive.min.js"></script>
+
+@if (ViewBag.Error != null && ViewBag.Error != "")
+{
+	<script type="text/javascript">
+
+            window.onload = function () {
+               // alert("@ViewBag.Error");
+				swal("TDH", "@ViewBag.Error", "error");
+
+            };
+	</script>
+}
+@if (ViewBag.Success != null && ViewBag.Success != "")
+{
+	<script type="text/javascript">
+            window.onload = function () {
+                //alert("@ViewBag.Success");
+				swal("TDH", "@ViewBag.Success", "Success");
+            };
+	</script>
+}
+
+
+
+
