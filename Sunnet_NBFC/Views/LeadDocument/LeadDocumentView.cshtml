@@ -34,63 +34,65 @@
                 <div class="card">
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <table id="example1" class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th>
-                                        Lead No
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.CustomerType)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.CustName)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.DocumentName)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.IsRequried)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.IsReceived)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.Remarks)
-                                    </th>
-
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var item in Model)
-                                {
+                        <div class="row">
+                            <table id="example1" class="table table-bordered table-responsive">
                                     <tr>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.LeadNo)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.CustomerType)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.CustName)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.IsRequried)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.IsReceived)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Remarks)
-                                        </td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                        @*<div class="card-footer">
-                                @Html.ActionLink("Export to Excel", "ExportToExcel", new { @class = "btn btn-primary" })
-                            </div>*@
+                                        <th>
+                                            Lead No
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.CustomerType)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.CustName)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.DocumentName)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IsRequried)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IsReceived)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Remarks)
+                                        </th>
 
+                                    </tr>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.LeadNo)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.CustomerType)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.CustName)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.DocumentName)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.IsRequried)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.IsReceived)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Remarks)
+                                            </td>
+                                        </tr>
+                                    }
+                               
+                            </table>
+                            @*<div class="card-footer">
+                                    @Html.ActionLink("Export to Excel", "ExportToExcel", new { @class = "btn btn-primary" })
+                                </div>*@
+                        </div>
 
                     </div>
                     <!-- /.card-body -->
@@ -103,33 +105,5 @@
     </div>
     <!-- /.container-fluid -->
 </section>
-
-
-<script src="~/plugins/jquery/jquery.min.js"></script>
-<script src="~/plugins/jquery/jquery.validate.min.js"></script>
-<script src="~/plugins/jquery/jquery.validate.unobtrusive.min.js"></script>
-
-@if (ViewBag.Error != null && ViewBag.Error != "")
-{
-    <script type="text/javascript">
-
-            window.onload = function () {
-               // alert("@ViewBag.Error");
-				swal("TDH", "@ViewBag.Error", "error");
-
-            };
-    </script>
-}
-@if (ViewBag.Success != null && ViewBag.Success != "")
-{
-    <script type="text/javascript">
-            window.onload = function () {
-                //alert("@ViewBag.Success");
-				swal("TDH", "@ViewBag.Success", "Success");
-            };
-    </script>
-}
-
-
 
 

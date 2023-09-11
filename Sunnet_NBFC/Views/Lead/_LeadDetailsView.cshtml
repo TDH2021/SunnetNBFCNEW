@@ -545,13 +545,13 @@
                     break;
                 case "Credit Approve":
                     { Html.RenderAction("LeadCallingView", "LeadCalling"); }
-                    { Html.RenderAction("LeadDocument", "LeadDocument"); }
+                    { Html.RenderAction("LeadDocumentView", "LeadDocument"); }
                     break;
 
                 case "DocSign":
                     { Html.RenderAction("LeadCallingView", "LeadCalling"); }
-                    { Html.RenderAction("LeadDocument", "LeadDocument"); }
-                    { Html.RenderAction("LeadCreditView", "LeadCredit"); }
+                    { Html.RenderAction("LeadDocumentView", "LeadDocument"); }
+                   { Html.RenderAction("LeadCreditView", "LeadCredit"); }
                     break;
 
                 case "FinalApprove":
@@ -564,7 +564,7 @@
 
                 case "Disbursment":
                     { Html.RenderAction("LeadCallingView", "LeadCalling"); }
-                    { Html.RenderAction("LeadDocument", "LeadDocument"); }
+                    { Html.RenderAction("LeadDocumentView", "LeadDocument"); }
                     { Html.RenderAction("LeadCreditView", "LeadCredit"); }
                     { Html.RenderAction("LeadDocumentSigningView", "LeadDocumentSigning"); }
                     { Html.RenderAction("LeadFinalApproveView", "LeadFinalApprove"); }
