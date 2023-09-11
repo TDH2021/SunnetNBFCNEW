@@ -180,7 +180,7 @@ namespace Sunnet_NBFC.Controllers
                                         BussinessVinatage = row["BussinessVinatage"].ToString(),
                                         BussinessAddress = row["BussinessAddress"].ToString(),
                                         BussinessProve = row["BussinessProve"].ToString(),
-                                        CAMGeneration = row["CAMGeneration"].ToString(),
+                                        CamVerification = row["CamVerification"].ToString(),
 
                                         CAMDoc = row["CAMDoc"].ToString(),
                                         CAMRemarks = row["CAMRemarks"].ToString(),
@@ -256,6 +256,7 @@ namespace Sunnet_NBFC.Controllers
             {
                 throw ex;
             }
+
         }
 
         [HttpPost]
@@ -535,7 +536,7 @@ namespace Sunnet_NBFC.Controllers
                     if (ClsCommon.CheckFileType(M.clsLeadCredit.CAMDocPostedFile.FileName.ToString()) == true)
                     {
                         M.clsLeadCredit.CAMDoc = UploadImage(M.clsLeadCredit.CAMCODE, M.clsLeadCredit.CAMDocPostedFile, M.LeadId);
-                        if (!string.IsNullOrEmpty(M.clsLeadCredit.PropertyDoc))
+                        if (!string.IsNullOrEmpty(M.clsLeadCredit.CAMDoc))
                             M.clsLeadCredit.CamVerification = "Yes";
                         else
                             M.clsLeadCredit.CamVerification = null;
@@ -842,7 +843,7 @@ namespace Sunnet_NBFC.Controllers
                     }
                     else if (FileType == M.CAMCODE)
                     {
-                        FilePrefix = M.PropertyCode + "_";
+                        FilePrefix = M.CAMCODE + "_";
                         FolderPath = "/UploadedFiles/LeadCredit/";
                     }
 

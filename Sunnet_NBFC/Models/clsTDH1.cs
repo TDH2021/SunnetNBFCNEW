@@ -391,7 +391,7 @@ namespace Sunnet_NBFC.Models
     {
         //public string ReqType { get; set; }
         public int DocSignId { get; set; }
-        //public int LeadId { get; set; }
+        public int MainProdId { get; set; }
         public string LeadNo { get; set; }
 
         //[Required(ErrorMessage = "Employee is required.")]
@@ -502,7 +502,6 @@ namespace Sunnet_NBFC.Models
         //    Dispose(false);
         //}
     }
-
 
 
     public class clsLeadFinalApprove : clsLeadDetail

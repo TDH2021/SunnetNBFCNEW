@@ -1318,7 +1318,7 @@ public class DataInterface2 : DataInterface, IDisposable
                     cmd.Parameters.Add("@BussinessVinatage", SqlDbType.VarChar).Value = cls.BussinessVinatage;
                     cmd.Parameters.Add("@BussinessAddress", SqlDbType.VarChar).Value = cls.BussinessAddress;
                     cmd.Parameters.Add("@BussinessProve", SqlDbType.VarChar).Value = cls.BussinessProve;
-                    cmd.Parameters.Add("@CAMGeneration", SqlDbType.VarChar).Value = cls.CAMGeneration;
+
                     cmd.Parameters.Add("@CAMDoc", SqlDbType.VarChar).Value = cls.CAMDoc;
                     cmd.Parameters.Add("@CAMRemarks", SqlDbType.VarChar).Value = cls.CAMRemarks;
                     cmd.Parameters.Add("@CreditRemarks", SqlDbType.VarChar).Value = cls.CreditRemarks;

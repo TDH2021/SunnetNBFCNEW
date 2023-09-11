@@ -136,83 +136,88 @@
                                             <td>@item.ReuestedLoanTenure</td>
                                             <td>@item.ShortStage_Name</td>
                                             <td>@item.StatusDesc</td>
-                                            @if (item.ShortStage_Name != null)
+                                            @if (item.StatusDesc.ToString().ToUpper() != "REJECT")
                                             {
-                                                if (item.ShortStage_Name.ToString().ToUpper() == "PRIMYTEL" || item.ShortStage_Name.ToString().ToUpper() == "LEADGEN")
+
+
+
+                                                if (item.ShortStage_Name != null)
+                                                {
+                                                    if (item.ShortStage_Name.ToString().ToUpper() == "PRIMYTEL" || item.ShortStage_Name.ToString().ToUpper() == "LEADGEN")
+                                                    {
+                                                        <td>
+                                                            <div class="d-flex order-actions">
+                                                                <a href="@Url.Action("LeadCalling", "LeadCalling", new { LeadId = item.LeadId, ComeFrom = "LeadGen" })"
+                                                                   data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Calling"><u>Calling</u></a>
+                                                            </div>
+
+                                                        </td>
+                                                    }
+                                                    if (item.ShortStage_Name.ToString().ToUpper() == "DOCCOL")
+                                                    {
+                                                        <td>
+                                                            <div class="d-flex order-actions">
+                                                                <a href="@Url.Action("LeadDocument", "LeadDocument", new { LeadId = item.LeadId, ComeFrom = "LeadGen" })"
+                                                                   data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Document"><u>Document</u></a>
+                                                            </div>
+
+                                                        </td>
+                                                    }
+                                                    if (item.ShortStage_Name.ToString().ToUpper() == "CREDITAPPROVE")
+                                                    {
+                                                        <td>
+                                                            <div class="d-flex order-actions">
+                                                                <a href="@Url.Action("LeadCredit", "LeadCredit", new { LeadId = item.LeadId, ComeFrom = "LeadGen" })"
+                                                                   data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Document"><u>Credit Approve</u></a>
+                                                            </div>
+
+                                                        </td>
+                                                    }
+
+                                                    if (item.ShortStage_Name.ToString().ToUpper() == "DOCSIGN")
+                                                    {
+                                                        <td>
+                                                            <div class="d-flex order-actions">
+                                                                <a href="@Url.Action("LeadDocumentSigning", "LeadDocumentSigning", new { LeadId = item.LeadId, ComeFrom = "LeadGen" })"
+                                                                   data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Document"><u>Doc Sign</u></a>
+                                                            </div>
+
+                                                        </td>
+                                                    }
+
+                                                    if (item.ShortStage_Name.ToString().ToUpper() == "FINALAPPROVE")
+                                                    {
+                                                        <td>
+                                                            <div class="d-flex order-actions">
+                                                                <a href="@Url.Action("LeadFinalApprove", "LeadFinalApprove", new { LeadId = item.LeadId, ComeFrom = "LeadGen" })"
+                                                                   data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Document"><u>Final Approve</u></a>
+                                                            </div>
+
+                                                        </td>
+                                                    }
+                                                    if (item.ShortStage_Name.ToString().ToUpper() == "DISBURSE")
+                                                    {
+                                                        <td>
+                                                            <div class="d-flex order-actions">
+                                                                <a href="@Url.Action("LeadDisbursement", "LeadDisbursement", new { LeadId = item.LeadId, ComeFrom = "LeadGen" })"
+                                                                   data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Document"><u>Disbursement</u></a>
+                                                            </div>
+
+                                                        </td>
+                                                    }
+
+                                                }
+                                                else
                                                 {
                                                     <td>
                                                         <div class="d-flex order-actions">
-                                                            <a href="@Url.Action("LeadCalling","LeadCalling",new{LeadId=item.LeadId,ComeFrom="LeadGen"})"
-                                                               data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Calling"><u>Calling</u></a>
+                                                            <a href="@Url.Action("LeadCalling", "LeadCalling", new { LeadId = item.LeadId, ComeFrom = "LeadGen" })"
+                                                               data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Calling"><u>Action</u></a>
                                                         </div>
 
                                                     </td>
                                                 }
-                                                if (item.ShortStage_Name.ToString().ToUpper() == "DOCCOL")
-                                                {
-                                                    <td>
-                                                        <div class="d-flex order-actions">
-                                                            <a href="@Url.Action("LeadDocument", "LeadDocument", new { LeadId = item.LeadId,ComeFrom="LeadGen" })"
-                                                               data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Document"><u>Document</u></a>
-                                                        </div>
-
-                                                    </td>
-                                                }
-                                                if (item.ShortStage_Name.ToString().ToUpper() == "CREDITAPPROVE")
-                                                {
-                                                    <td>
-                                                        <div class="d-flex order-actions">
-                                                            <a href="@Url.Action("LeadCredit", "LeadCredit", new { LeadId = item.LeadId,ComeFrom="LeadGen" })"
-                                                               data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Document"><u>Credit Approve</u></a>
-                                                        </div>
-
-                                                    </td>
-                                                }
-
-                                                if (item.ShortStage_Name.ToString().ToUpper() == "DOCSIGN")
-                                                {
-                                                    <td>
-                                                        <div class="d-flex order-actions">
-                                                            <a href="@Url.Action("LeadDocumentSigning", "LeadDocumentSigning", new { LeadId = item.LeadId,ComeFrom="LeadGen" })"
-                                                               data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Document"><u>Doc Sign</u></a>
-                                                        </div>
-
-                                                    </td>
-                                                }
-
-                                                if (item.ShortStage_Name.ToString().ToUpper() == "FINALAPPROVE")
-                                                {
-                                                    <td>
-                                                        <div class="d-flex order-actions">
-                                                            <a href="@Url.Action("LeadFinalApprove", "LeadFinalApprove", new { LeadId = item.LeadId,ComeFrom="LeadGen" })"
-                                                               data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Document"><u>Final Approve</u></a>
-                                                        </div>
-
-                                                    </td>
-                                                }
-                                                if (item.ShortStage_Name.ToString().ToUpper() == "DISBURSE")
-                                                {
-                                                    <td>
-                                                        <div class="d-flex order-actions">
-                                                            <a href="@Url.Action("LeadDisbursement", "LeadDisbursement", new { LeadId = item.LeadId,ComeFrom="LeadGen" })"
-                                                               data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Document"><u>Disbursement</u></a>
-                                                        </div>
-
-                                                    </td>
-                                                }
-
                                             }
-                                            else
-                                            {
-                                                <td>
-                                                    <div class="d-flex order-actions">
-                                                        <a href="@Url.Action("LeadCalling","LeadCalling",new{LeadId=item.LeadId,ComeFrom="LeadGen"})"
-                                                           data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Calling"><u>Action</u></a>
-                                                    </div>
-
-                                                </td>
-                                            }
-
 
                                         </tr>
                                     }

@@ -192,67 +192,10 @@ namespace Sunnet_NBFC.Controllers
             }
         }
 
-        //public ActionResult LeadView()
-        //{
-
-
-        //    if (Session["UserID"] != null)
-        //    {
-        //        if (String.IsNullOrEmpty(Session["UserID"].ToString()) == true)
-        //        {
-        //            return RedirectToAction("Index", "Login");
-        //        }
-        //        else
-        //        {
-        //            List<clsLeadGenerationMaster> lst = new List<clsLeadGenerationMaster>();
-        //            try
-        //            {
-        //                using (clsLeadGenerationMaster cls = new clsLeadGenerationMaster())
-        //                {
-        //                    cls.ReqType = "GetLeadAllData";
-        //                    cls.CompanyId = 1;
-        //                    cls.LeadNo = "";
-        //                    cls.LeadId = 0;
-        //                    cls.Empid = int.Parse(Session["EmpId"].ToString());
-        //                    cls.ShortStage_Name = "FinalApprove";
-        //                    using (DataTable dt = DataInterface.GetLeadGenerationData(cls))
-        //                    {
-        //                        if (dt != null)
-        //                        {
-        //                            ViewBag.lst = DataInterface.ConvertDataTable<clsLeadGenerationMaster>(dt);
-        //                        }
-        //                    }
-        //                }
-
-        //            }
-        //            catch (Exception e1)
-        //            {
-        //                using (clsError clsE = new clsError())
-        //                {
-        //                    clsE.ReqType = "Get";
-        //                    clsE.Mode = "WEB";
-        //                    clsE.ErrorDescrption = e1.Message;
-        //                    clsE.FunctionName = "LeadView";
-        //                    clsE.Link = "LeadDisbursement/LeadView";
-        //                    clsE.PageName = "LeadDisbursement Controller";
-        //                    clsE.UserId = "1";
-        //                    DataInterface.PostError(clsE);
-        //                }
-        //            }
-
-        //        }
-        //    }
-        //    else
-        //    {
-        //        return RedirectToAction("Index", "Login");
-        //    }
-
-        //    return View();
-        //}
-
         [Sunnet_NBFC.App_Code.SessionAttribute]
         public ActionResult LeadFinalApprove(int leadid, string ComeFrom = "FinalApprove")
         {
+            clsLeadFinalApproveMain model = new clsLeadFinalApproveMain();
             try
             {
                 clsLeadFinalApproveMain M = new clsLeadFinalApproveMain();
@@ -263,23 +206,83 @@ namespace Sunnet_NBFC.Controllers
                     M.ReqType = "Get";
                     M.ShortStage_Name = "FinalApprove";
                     M.LeadId = leadid;
-                    dtLeadDetail = DataInterface2.GetLeadDetail(M);
-                    dtLeadDoc = DataInterface1.dbLeadFinalApprove(M);
+                    using (DataTable dt = DataInterface2.GetLeadDetail(M))
+                    {
+                        if (dt != null)
+                        {
+                            DataRow dr = dt.Rows[0];
+                            model.LeadNo = dr["LeadNo"].ToString();
+                            model.LeadId = int.Parse(dr["LeadId"].ToString());
+                            model.ShortStage_Name = dr["ShortStage_Name"].ToString();
+                            model.Status = dr["Status"].ToString();
+                        }
+                    }
+
+                    using (DataTable dt = DataInterface1.dbLeadFinalApprove(M))
+                    {
+                        if (dt != null)
+                        {
+                            DataRow dr = dt.Rows[0];
+                            model.FinalApproveId = int.Parse(dr["FinalApproveId"].ToString());
+                            model.Particulers = dr["Particulers"].ToString();
+                            model.Proccesfees = decimal.Parse(dr["Proccesfees"].ToString());
+                            model.AdvanceEMI = decimal.Parse(dr["AdvanceEMI"].ToString());
+                            model.GST = decimal.Parse(dr["GST"].ToString());
+                            model.NetDisbAmt = decimal.Parse(dr["NetDisbAmt"].ToString());
+                            model.TrnchsNo = decimal.Parse(dr["TrnchsNo"].ToString());
+                            model.CersaiCharges = decimal.Parse(dr["CersaiCharges"].ToString());
+                            model.StamppingCharges = decimal.Parse(dr["StamppingCharges"].ToString());
+                            model.Remarks = dr["Remarks"].ToString();
+                            model.CreatedBy = int.Parse(dr["CreatedBy"].ToString());
+                            model.UpdatedBy = int.Parse(dr["UpdatedBy"].ToString());
+                            model.IsDelete = int.Parse(dr["IsDelete"].ToString());
+                            model.CompanyId = int.Parse(dr["CompanyId"].ToString());
+                            model.BorrowerKyc = dr["BorrowerKyc"].ToString();
+                            model.GuarantorKyc = dr["GuarantorKyc"].ToString();
+                            model.PDC = dr["PDC"].ToString();
+                            model.BorrowerPhoto = dr["BorrowerPhoto"].ToString();
+                            model.CoBorrowerPhoto = dr["CoBorrowerPhoto"].ToString();
+                            model.GuarantorPhoto = dr["GuarantorPhoto"].ToString();
+                            model.SanctionLetter = dr["SanctionLetter"].ToString();
+                            model.LoanAgreementkit = dr["LoanAgreementkit"].ToString();
+                            model.DisbursementRequestLetter = dr["DisbursementRequestLetter"].ToString();
+                            model.NocPreviousFinanced = dr["NocPreviousFinanced"].ToString();
+                            model.Rtoslip = dr["Rtoslip"].ToString();
+                            //model.DisbursementRequestLetter = dr["DisbursementRequestLetter"].ToString();
+                            //model.SignatureVerification = dr["SignatureVerification"].ToString();
+                            //model.KycSelfAttested = dr["KycSelfAttested"].ToString();
+
+                        }
+                    }
+
+                    //dtLeadDetail = DataInterface2.GetLeadDetail(M);
+                    //dtLeadDoc = DataInterface1.dbLeadFinalApprove(M);
                 }
-                if (dtLeadDetail != null && dtLeadDetail.Rows.Count > 0)
-                    M = DataInterface.GetItem<clsLeadFinalApproveMain>(dtLeadDetail.Rows[0]);
+                //if (dtLeadDetail != null && dtLeadDetail.Rows.Count > 0)
+                //    M = DataInterface.GetItem<clsLeadFinalApproveMain>(dtLeadDetail.Rows[0]);
 
-                if (dtLeadDoc != null && dtLeadDoc.Rows.Count > 0)
-                    M.clsLeadFinalApprove = DataInterface.ConvertDataTable<clsLeadFinalApprove>(dtLeadDoc);
+                //if (dtLeadDoc != null && dtLeadDoc.Rows.Count > 0)
+                //    M.clsLeadFinalApprove = DataInterface.ConvertDataTable<clsLeadFinalApprove>(dtLeadDoc);
 
-                M.Status = M.Status ?? "P";
+                model.Status = model.Status ?? "P";
                 ViewBag.ComeFrom = ComeFrom;
-                return View(M);
+
             }
             catch (Exception ex)
             {
-                throw ex;
+                using (clsError clse = new clsError())
+                {
+                    clse.ReqType = "Get";
+                    clse.Mode = "WEB";
+                    clse.ErrorDescrption = ex.Message;
+                    clse.FunctionName = "LeadFinalApprove";
+                    clse.Link = "Lead/LeadFinalApprove";
+                    clse.PageName = "Lead Final Approve Controller";
+                    clse.UserId = ClsSession.UserID.ToString();
+                    DataInterface.PostError(clse);
+                }
             }
+            return View(model);
         }
 
         [Sunnet_NBFC.App_Code.SessionAttribute]
@@ -363,7 +366,7 @@ namespace Sunnet_NBFC.Controllers
             }
             if (IsSave)
             {
-                DownloadSanctionLetter(M.LeadId,M.LeadNo);
+                DownloadSanctionLetter(M.LeadId, M.LeadNo);
                 TempData["Success"] = !string.IsNullOrEmpty(clsRtn.Message) ? clsRtn.Message : "Saved/Updated";
                 return RedirectToAction("LeadView", "LeadFinalApprove");
             }
@@ -374,7 +377,7 @@ namespace Sunnet_NBFC.Controllers
                 if (M.LeadId > 0)
                 {
                     M.ReqType = "Get";
-                    M.StageId = 6;
+                    M.ShortStage_Name = "FinalApprove";
                     dtLeadDetail2 = DataInterface2.GetLeadDetail(M);
                     dtLeadDoc2 = DataInterface1.dbLeadFinalApprove(M);
                 }
@@ -501,7 +504,7 @@ namespace Sunnet_NBFC.Controllers
                 { }
                 #endregion
 
-              
+
 
 
             }

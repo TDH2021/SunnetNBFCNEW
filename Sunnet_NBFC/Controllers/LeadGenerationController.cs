@@ -11,11 +11,14 @@ using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using System.Configuration;
 using System.IO;
+using System.Diagnostics;
+
 namespace Sunnet_NBFC.Controllers
 {
     public class LeadGenerationController : Controller
     {
         // GET: LeadGeneration
+ 
         public ActionResult LeadGeneration()
         {
 
@@ -31,10 +34,7 @@ namespace Sunnet_NBFC.Controllers
                 ViewBag.StateList = ClsCommon.ToSelectList(DataInterface1.GetState(), "ID", "StateName");
 
 
-                using (clsLeadGenerationMaster clsStatus = new clsLeadGenerationMaster())
-                {
-                }
-
+             
 
                 ViewBag.MainProductList = ClsCommon.ToSelectList(DataInterface1.GetMainProductddl("View"), "MainProdId", "ProductName");
                 ViewBag.MaterialStatusList = ClsCommon.ToSelectList(DataInterface1.GetMiseddl("Martial Status"), "MiscName", "MiscName");
@@ -110,7 +110,23 @@ namespace Sunnet_NBFC.Controllers
             }
             catch (Exception e1)
             {
-
+                using (clsError clsE = new clsError())
+                {
+                    // Get stack trace for the exception with source file information
+                    var st = new StackTrace(e1, true);
+                    // Get the top stack frame
+                    var frame = st.GetFrame(0);
+                    // Get the line number from the stack frame
+                    var line = frame.GetFileLineNumber();
+                    clsE.ReqType = "Insert";
+                    clsE.Mode = "WEB";
+                    clsE.ErrorDescrption = e1.Message+ "Line "+ line+ "Frame "+ frame;
+                    clsE.FunctionName = "AddRequestLead";
+                    clsE.Link = "Status/AddRequestLead";
+                    clsE.PageName = "Status Controller";
+                    clsE.UserId = ClsSession.EmpId.ToString();
+                    DataInterface.PostError(clsE);
+                }
             }
             return View();
         }

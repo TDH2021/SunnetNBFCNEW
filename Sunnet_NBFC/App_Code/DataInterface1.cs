@@ -1120,9 +1120,9 @@ public class DataInterface1 : IDisposable
                     cmd.Parameters.Add("@FinalApproveId", SqlDbType.Int).Value = cls.FinalApproveId;
                     cmd.Parameters.Add("@LeadId", SqlDbType.Int).Value = cls.LeadId;
                     //cmd.Parameters.Add("@LeadNo", SqlDbType.Int).Value = cls.LeadNo;
-                    //cmd.Parameters.AddWithValue("@LeadNo",cls.LeadNo);
-                    cmd.Parameters.AddWithValue("@Particulers", cls.Particulers);
 
+                    cmd.Parameters.AddWithValue("@Particulers", cls.Particulers);
+                    cmd.Parameters.AddWithValue("@Proccesfees", cls.Proccesfees);
                     cmd.Parameters.AddWithValue("@AdvanceEMI", cls.AdvanceEMI);
                     cmd.Parameters.AddWithValue("@GST", cls.GST);
                     cmd.Parameters.AddWithValue("@NetDisbAmt", cls.NetDisbAmt);
@@ -1161,6 +1161,7 @@ public class DataInterface1 : IDisposable
         }
         return dt;
     }
+
 
     public static DataSet dbDisbursement(clsDisbursement cls)
     {

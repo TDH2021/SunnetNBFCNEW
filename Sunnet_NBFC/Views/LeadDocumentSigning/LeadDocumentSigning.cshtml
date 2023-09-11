@@ -3,465 +3,620 @@
 @using Sunnet_NBFC.Models
 
 @{
-    ViewBag.Title = "LeadDocumentSigning";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+	ViewBag.Title = "LeadDocumentSigning";
+	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<style>
-    .required:after {
-        content: " *";
-        color: red;
-    }
-</style>
 
 <section class="content-header">
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-                <h1>Lead Documents Signing</h1>
-            </div>
-            <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
-                    @Html.ActionLink("Back to List", "LeadView", "Lead")
-                </ol>
-            </div>
-        </div>
-    </div><!-- /.container-fluid -->
+	<div class="container-fluid">
+		<div class="row mb-2">
+			<div class="col-sm-6">
+				<h1>Lead Documents Signing</h1>
+			</div>
+			<div class="col-sm-6">
+				<ol class="breadcrumb float-sm-right">
+					@Html.ActionLink("Back to List", "LeadView", "Lead")
+				</ol>
+			</div>
+		</div>
+	</div><!-- /.container-fluid -->
 </section>
 
 @using (Html.BeginForm("LeadDocumentSigning", "LeadDocumentSigning", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    @*@Html.AntiForgeryToken()
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
+	@*@Html.AntiForgeryToken()
+		@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
 
 
-    <section class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-body">
+	<section class="content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-body">
 
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        @Html.HiddenFor(model => model.ReqType)
-                                        @Html.HiddenFor(model => model.DocSignId)
-                                        @Html.HiddenFor(model => model.LeadId)
-                                        @Html.HiddenFor(model => model.ShortStage_Name)
+							<div class="form-group">
+								<div class="row">
+									<div class="col-md-12">
+										@Html.HiddenFor(model => model.MainProdId, new { @id = "hdnMainProdId" })
+										@Html.HiddenFor(model => model.DocSignId)
+										@Html.HiddenFor(model => model.LeadId)
+										@Html.HiddenFor(model => model.ShortStage_Name)
 
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="row">
+									<div class="col-md-6">
+										@Html.LabelFor(model => model.LeadNo, new { @class = "control-label" }) *
+										@Html.TextBoxFor(model => model.LeadNo, new { @class = "form-control", @required = "true", @readonly = "true" })
+										@*@Html.ValidationMessageFor(model => model.LeadId, "", new { @class = "text-danger" })*@
+									</div>
 
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        @Html.LabelFor(model => model.LeadNo, new { @class = "control-label" }) *
-                                        @Html.TextBoxFor(model => model.LeadNo, new { @class = "form-control", @required = "true", @readonly = "true" })
-                                        @*@Html.ValidationMessageFor(model => model.LeadId, "", new { @class = "text-danger" })*@
-                                    </div>
-
-                                </div>
-                                <hr />
-
-                                <div class="row" style="display: none">
-                                    <div class="col-md-6">
-                                        @Html.LabelFor(model => model.Documents, new { @class = "control-label" })
-                                        @Html.DropDownListFor(model => model.Documents,
-                                        new List<SelectListItem> {
-                                            new SelectListItem { Value = "No" , Text = "No" },
-                                            new SelectListItem { Value = "Yes" , Text = "Yes" },
-                                        },
-                                        new { @class = "form-control", @id = "ddlDocuments" })
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        @Html.LabelFor(model => model.LeadNo, new { @class = "control-label" }) *
-                                        @Html.TextBoxFor(model => model.LeadNo, new { @class = "form-control", @required = "true", @readonly = "true" })
-                                        @*@Html.ValidationMessageFor(model => model.LeadId, "", new { @class = "text-danger" })*@
-                                    </div>
-
-                                </div>
-                                <hr />
-
-                                <div class="row" style="display: none">
-                                    <div class="col-md-6">
-                                        @Html.LabelFor(model => model.Documents, new { @class = "control-label" })
-                                        @Html.DropDownListFor(model => model.Documents,
-                                        new List<SelectListItem> {
-                                            new SelectListItem { Value = "No" , Text = "No" },
-                                            new SelectListItem { Value = "Yes" , Text = "Yes" },
-                                        },
-                                        new { @class = "form-control", @id = "ddlDocuments" })
+								</div>
+								<hr />
 
 
-                                    </div>
-                                    <div class="col-md-3">
-                                        @Html.LabelFor(model => model.DisbursmentKit, new { @class = "control-label" })
-                                        @Html.DropDownListFor(model => model.DisbursmentKit,
-                                        new List<SelectListItem> {
-                                            new SelectListItem { Value = "No" , Text = "No" },
-                                            new SelectListItem { Value = "Yes" , Text = "Yes" },
-                                        },
-                                        new { @class = "form-control", @id = "ddlDisbursmentKit" })
 
-                                    </div>
+								<div class="row">
+									<div class="col-md-3">
+										@Html.LabelFor(model => model.SanctionLetter, new { @class = "control-label" })
+										@Html.DropDownListFor(model => model.SanctionLetter,
+										new List<SelectListItem> {
+											new SelectListItem { Value = "No" , Text = "No" },
+											new SelectListItem { Value = "Yes" , Text = "Yes" },
+										},
+										new { @class = "form-control required", @id = "ddlSanctionLetter" })
 
-                                </div>
+									</div>
 
+									<div class="col-md-3">
+										@Html.LabelFor(model => model.LoanAgrmentKit, new { @class = "control-label" })
+										@Html.DropDownListFor(model => model.LoanAgrmentKit,
+										new List<SelectListItem> {
+											new SelectListItem { Value = "No" , Text = "No" },
+											new SelectListItem { Value = "Yes" , Text = "Yes" },
+										},
+										new { @class = "form-control", @id = "ddlLoanAgrmentKit" })
 
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        @Html.LabelFor(model => model.SanctionLetter, new { @class = "control-label" })
-                                        @Html.DropDownListFor(model => model.SanctionLetter,
-                                        new List<SelectListItem> {
-                                            new SelectListItem { Value = "No" , Text = "No" },
-                                            new SelectListItem { Value = "Yes" , Text = "Yes" },
-                                        },
-                                        new { @class = "form-control", @id = "ddlSanctionLetter" })
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                @Html.LabelFor(model => model.SanctionLetter, new { @class = "control-label" })
-                                                @Html.DropDownListFor(model => model.SanctionLetter,
-                                                new List<SelectListItem> {
-                                                    new SelectListItem { Value = "No" , Text = "No" },
-                                                    new SelectListItem { Value = "Yes" , Text = "Yes" },
-                                                },
-                                                new { @class = "form-control", @id = "ddlSanctionLetter" })
-                                            </div>
+									</div>
+									<div class="col-md-3">
+										@Html.LabelFor(model => model.PDC, new { @class = "control-label" })
+										@Html.DropDownListFor(model => model.PDC,
+										new List<SelectListItem> {
+											new SelectListItem { Value = "No" , Text = "No" },
+											new SelectListItem { Value = "Yes" , Text = "Yes" },
+										},
+										new { @class = "form-control", @id = "ddlPDC" })
 
-                                            <div class="col-md-3">
-                                                @Html.LabelFor(model => model.LoanAgrmentKit, new { @class = "control-label" })
-                                                @Html.DropDownListFor(model => model.LoanAgrmentKit,
-                                                new List<SelectListItem> {
-                                                    new SelectListItem { Value = "No" , Text = "No" },
-                                                    new SelectListItem { Value = "Yes" , Text = "Yes" },
-                                                },
-                                                new { @class = "form-control", @id = "ddlLoanAgrmentKit" })
+									</div>
+									<div class="col-md-3">
+										@Html.LabelFor(model => model.NACH, new { @class = "control-label" })
+										@Html.DropDownListFor(model => model.NACH,
+										new List<SelectListItem> {
+											new SelectListItem { Value = "No" , Text = "No" },
+											new SelectListItem { Value = "Yes" , Text = "Yes" },
+										},
+										new { @class = "form-control", @id = "ddlNACH" })
 
-                                            </div>
-                                            <div class="col-md-3">
-                                                @Html.LabelFor(model => model.PDC, new { @class = "control-label" })
-                                                @Html.DropDownListFor(model => model.PDC,
-                                                new List<SelectListItem> {
-                                                    new SelectListItem { Value = "No" , Text = "No" },
-                                                    new SelectListItem { Value = "Yes" , Text = "Yes" },
-                                                },
-                                                new { @class = "form-control", @id = "ddlPDC" })
+									</div>
+									@*</div>
+										<div class="row">*@
+									<div class="col-md-3">
+										@Html.LabelFor(model => model.Affidavit, new { @class = "control-label" })
+										@Html.DropDownListFor(model => model.Affidavit,
+										new List<SelectListItem> {
+											new SelectListItem { Value = "No" , Text = "No" },
+											new SelectListItem { Value = "Yes" , Text = "Yes" },
+										},
+										new { @class = "form-control", @id = "ddlAffidavit" })
 
-                                            </div>
-                                            <div class="col-md-3">
-                                                @Html.LabelFor(model => model.NACH, new { @class = "control-label" })
-                                                @Html.DropDownListFor(model => model.NACH,
-                                                new List<SelectListItem> {
-                                                    new SelectListItem { Value = "No" , Text = "No" },
-                                                    new SelectListItem { Value = "Yes" , Text = "Yes" },
-                                                },
-                                                new { @class = "form-control", @id = "ddlNACH" })
+									</div>
+									<div class="col-md-3">
+										@Html.LabelFor(model => model.RegisteredMortgageDeed, new { @class = "control-label" })
+										@Html.DropDownListFor(model => model.RegisteredMortgageDeed,
+										new List<SelectListItem> {
+											new SelectListItem { Value = "No" , Text = "No" },
+											new SelectListItem { Value = "Yes" , Text = "Yes" },
+										},
+										new { @class = "form-control", @id = "ddlRegisteredMortgageDeed" })
 
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                @Html.LabelFor(model => model.Affidavit, new { @class = "control-label" })
-                                                @Html.DropDownListFor(model => model.Affidavit,
-                                                new List<SelectListItem> {
-                                                    new SelectListItem { Value = "No" , Text = "No" },
-                                                    new SelectListItem { Value = "Yes" , Text = "Yes" },
-                                                },
-                                                new { @class = "form-control", @id = "ddlAffidavit" })
+									</div>
+									<div class="col-md-3">
+										@Html.LabelFor(model => model.EquitableMortageDeed, new { @class = "control-label" })
+										@Html.DropDownListFor(model => model.EquitableMortageDeed,
+										new List<SelectListItem> {
+											new SelectListItem { Value = "No" , Text = "No" },
+											new SelectListItem { Value = "Yes" , Text = "Yes" },
+										},
+										new { @class = "form-control", @id = "ddlEquitableMortageDeed" })
 
-                                            </div>
-                                            <div class="col-md-3">
-                                                @Html.LabelFor(model => model.RegisteredMortgageDeed, new { @class = "control-label" })
-                                                @Html.DropDownListFor(model => model.RegisteredMortgageDeed,
-                                                new List<SelectListItem> {
-                                                    new SelectListItem { Value = "No" , Text = "No" },
-                                                    new SelectListItem { Value = "Yes" , Text = "Yes" },
-                                                },
-                                                new { @class = "form-control", @id = "ddlRegisteredMortgageDeed" })
+									</div>
+									<div class="col-md-3">
+										@Html.LabelFor(model => model.BorrowerKyc, new { @class = "control-label" })
+										@Html.DropDownListFor(model => model.BorrowerKyc,
+										new List<SelectListItem> {
+											new SelectListItem { Value = "No" , Text = "No" },
+											new SelectListItem { Value = "Yes" , Text = "Yes" },
+										},
+										new { @class = "form-control", @id = "ddlBorrowerKyc" })
 
-                                            </div>
-                                            <div class="col-md-3">
-                                                @Html.LabelFor(model => model.EquitableMortageDeed, new { @class = "control-label" })
-                                                @Html.DropDownListFor(model => model.EquitableMortageDeed,
-                                                new List<SelectListItem> {
-                                                    new SelectListItem { Value = "No" , Text = "No" },
-                                                    new SelectListItem { Value = "Yes" , Text = "Yes" },
-                                                },
-                                                new { @class = "form-control", @id = "ddlEquitableMortageDeed" })
+									</div>
 
-                                            </div>
-                                            <div class="col-md-3">
-                                                @Html.LabelFor(model => model.BorrowerKyc, new { @class = "control-label" })
-                                                @Html.DropDownListFor(model => model.BorrowerKyc,
-                                                new List<SelectListItem> {
-                                                    new SelectListItem { Value = "No" , Text = "No" },
-                                                    new SelectListItem { Value = "Yes" , Text = "Yes" },
-                                                },
-                                                new { @class = "form-control", @id = "ddlBorrowerKyc" })
+									@*</div>
 
-                                            </div>
+										<div class="row">*@
+									<div class="col-md-3">
+										@Html.LabelFor(model => model.CoBorrowerKyc, new { @class = "control-label" })
+										@Html.DropDownListFor(model => model.CoBorrowerKyc,
+										new List<SelectListItem> {
+											new SelectListItem { Value = "No" , Text = "No" },
+											new SelectListItem { Value = "Yes" , Text = "Yes" },
+										},
+										new { @class = "form-control", @id = "ddlCoBorrowerKyc" })
 
-                                        </div>
+									</div>
+									<div class="col-md-3">
+										@Html.LabelFor(model => model.GuarantorKyc, new { @class = "control-label" })
+										@Html.DropDownListFor(model => model.GuarantorKyc,
+										new List<SelectListItem> {
+											new SelectListItem { Value = "No" , Text = "No" },
+											new SelectListItem { Value = "Yes" , Text = "Yes" },
+										},
+										new { @class = "form-control", @id = "ddlGuarantorKyc" })
 
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                @Html.LabelFor(model => model.CoBorrowerKyc, new { @class = "control-label" })
-                                                @Html.DropDownListFor(model => model.CoBorrowerKyc,
-                                                new List<SelectListItem> {
-                                                    new SelectListItem { Value = "No" , Text = "No" },
-                                                    new SelectListItem { Value = "Yes" , Text = "Yes" },
-                                                },
-                                                new { @class = "form-control", @id = "ddlBorrowerKyc" })
+									</div>
 
-                                            </div>
-                                            <div class="col-md-3">
-                                                @Html.LabelFor(model => model.GuarantorKyc, new { @class = "control-label" })
-                                                @Html.DropDownListFor(model => model.GuarantorKyc,
-                                                new List<SelectListItem> {
-                                                    new SelectListItem { Value = "No" , Text = "No" },
-                                                    new SelectListItem { Value = "Yes" , Text = "Yes" },
-                                                },
-                                                new { @class = "form-control", @id = "ddlGuarantorKyc" })
+									<div class="col-md-3">
+										@Html.LabelFor(model => model.BorrowerPhoto, new { @class = "control-label" })
+										@Html.DropDownListFor(model => model.BorrowerPhoto,
+										new List<SelectListItem> {
+											new SelectListItem { Value = "No" , Text = "No" },
+											new SelectListItem { Value = "Yes" , Text = "Yes" },
+										},
+										new { @class = "form-control", @id = "ddlBorrowerPhoto" })
 
-                                            </div>
+									</div>
+									<div class="col-md-3">
+										@Html.LabelFor(model => model.CoBorrowerPhoto, new { @class = "control-label" })
+										@Html.DropDownListFor(model => model.CoBorrowerPhoto,
+										new List<SelectListItem> {
+											new SelectListItem { Value = "No" , Text = "No" },
+											new SelectListItem { Value = "Yes" , Text = "Yes" },
+										},
+										new { @class = "form-control", @id = "ddlCoBorrowerPhoto" })
 
-                                            <div class="col-md-3">
-                                                @Html.LabelFor(model => model.BorrowerPhoto, new { @class = "control-label" })
-                                                @Html.DropDownListFor(model => model.BorrowerPhoto,
-                                                new List<SelectListItem> {
-                                                    new SelectListItem { Value = "No" , Text = "No" },
-                                                    new SelectListItem { Value = "Yes" , Text = "Yes" },
-                                                },
-                                                new { @class = "form-control", @id = "ddlBorrowerPhoto" })
+									</div>
+									<div class="col-md-3">
+										@Html.LabelFor(model => model.GuarantorPhoto, new { @class = "control-label" })
+										@Html.DropDownListFor(model => model.GuarantorPhoto,
+										new List<SelectListItem> {
+											new SelectListItem { Value = "No" , Text = "No" },
+											new SelectListItem { Value = "Yes" , Text = "Yes" },
+										},
+										new { @class = "form-control", @id = "ddlGuarantorPhoto" })
 
-                                            </div>
-                                            <div class="col-md-3">
-                                                @Html.LabelFor(model => model.CoBorrowerPhoto, new { @class = "control-label" })
-                                                @Html.DropDownListFor(model => model.CoBorrowerPhoto,
-                                                new List<SelectListItem> {
-                                                    new SelectListItem { Value = "No" , Text = "No" },
-                                                    new SelectListItem { Value = "Yes" , Text = "Yes" },
-                                                },
-                                                new { @class = "form-control", @id = "ddlNACH" })
+									</div>
 
-                                            </div>
-                                            <div class="col-md-3">
-                                                @Html.LabelFor(model => model.GuarantorPhoto, new { @class = "control-label" })
-                                                @Html.DropDownListFor(model => model.GuarantorPhoto,
-                                                new List<SelectListItem> {
-                                                    new SelectListItem { Value = "No" , Text = "No" },
-                                                    new SelectListItem { Value = "Yes" , Text = "Yes" },
-                                                },
-                                                new { @class = "form-control", @id = "ddlGuarantorPhoto" })
+									<div class="col-md-3">
+										@Html.LabelFor(model => model.SignatureVerification, new { @class = "control-label" })
+										@Html.DropDownListFor(model => model.SignatureVerification,
+										new List<SelectListItem> {
+											new SelectListItem { Value = "No" , Text = "No" },
+											new SelectListItem { Value = "Yes" , Text = "Yes" },
+										},
+										new { @class = "form-control", @id = "ddlSignatureVerification" })
 
-                                            </div>
+									</div>
 
-                                            <div class="col-md-3">
-                                                @Html.LabelFor(model => model.SignatureVerification, new { @class = "control-label" })
-                                                @Html.DropDownListFor(model => model.SignatureVerification,
-                                                new List<SelectListItem> {
-                                                    new SelectListItem { Value = "No" , Text = "No" },
-                                                    new SelectListItem { Value = "Yes" , Text = "Yes" },
-                                                },
-                                                new { @class = "form-control", @id = "ddlSignatureVerification" })
+									<div class="col-md-3">
+										@Html.LabelFor(model => model.DisbursementRequestLetter, new { @class = "control-label" })
+										@Html.DropDownListFor(model => model.DisbursementRequestLetter,
+										new List<SelectListItem> {
+											new SelectListItem { Value = "No" , Text = "No" },
+											new SelectListItem { Value = "Yes" , Text = "Yes" },
+										},
+										new { @class = "form-control", @id = "ddlDisbursementRequestLetter" })
 
-                                            </div>
+									</div>
 
-                                            <div class="col-md-3">
-                                                @Html.LabelFor(model => model.DisbursementRequestLetter, new { @class = "control-label" })
-                                                @Html.DropDownListFor(model => model.DisbursementRequestLetter,
-                                                new List<SelectListItem> {
-                                                    new SelectListItem { Value = "No" , Text = "No" },
-                                                    new SelectListItem { Value = "Yes" , Text = "Yes" },
-                                                },
-                                                new { @class = "form-control", @id = "ddlDisbursementRequestLetter" })
+									<div class="col-md-3">
+										@Html.LabelFor(model => model.KycSelfAttested, new { @class = "control-label" })
+										@Html.DropDownListFor(model => model.KycSelfAttested,
+										new List<SelectListItem> {
+											new SelectListItem { Value = "No" , Text = "No" },
+											new SelectListItem { Value = "Yes" , Text = "Yes" },
+										},
+										new { @class = "form-control", @id = "ddlKycSelfAttested" })
+									</div>
 
-                                            </div>
+									@*<div class="col-md-3">
+											@Html.LabelFor(model => model.DsRemark, new { @class = "control-label" })
+											@Html.TextBoxFor(model => model.DsRemark, new { @class = "form-control", @id = "txtRemarks" })
 
-                                            <div class="col-md-3">
-                                                @Html.LabelFor(model => model.KycSelfAttested, new { @class = "control-label" })
-                                                @Html.DropDownListFor(model => model.KycSelfAttested,
-                                                new List<SelectListItem> {
-                                                    new SelectListItem { Value = "No" , Text = "No" },
-                                                    new SelectListItem { Value = "Yes" , Text = "Yes" },
-                                                },
-                                                new { @class = "form-control", @id = "ddlKycSelfAttested" })
-                                            </div>
+										</div>*@
 
-                                            <div class="col-md-3">
-                                                @Html.LabelFor(model => model.DsRemark, new { @class = "control-label" })
-                                                @Html.TextBoxFor(model => model.DsRemark, new { @class = "form-control", @id = "txtRemarks" })
-
-                                            </div>
-
-                                        </div>
+								</div>
 
 
-                                        <div class="row" style="display: none">
-                                            <div class="col-md-6">
-                                                @Html.LabelFor(model => model.InsuranceWithHP, new { @class = "control-label" })
-                                                @Html.DropDownListFor(model => model.InsuranceWithHP,
-                                                new List<SelectListItem> {
-                                                    new SelectListItem { Value = "No" , Text = "No" },
-                                                    new SelectListItem { Value = "Yes" , Text = "Yes" },
-                                                },
-                                                new { @class = "form-control", @id = "ddlInsuranceWithHP" })
-
-                                            </div>
-                                            <div class="col-md-6">
-                                                @Html.LabelFor(model => model.NOC, new { @class = "control-label" })
-                                                @Html.DropDownListFor(model => model.NOC,
-                                                new List<SelectListItem> {
-                                                    new SelectListItem { Value = "No" , Text = "No" },
-                                                    new SelectListItem { Value = "Yes" , Text = "Yes" },
-                                                },
-                                                new { @class = "form-control", @id = "ddlNOC" })
-
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                @Html.LabelFor(model => model.RTOSlip, new { @class = "control-label" })
-                                                @Html.DropDownListFor(model => model.RTOSlip,
-                                                new List<SelectListItem> {
-                                                    new SelectListItem { Value = "No" , Text = "No" },
-                                                    new SelectListItem { Value = "Yes" , Text = "Yes" },
-                                                },
-                                                new { @class = "form-control", @id = "ddlRTOSlip" })
-
-                                            </div>
-                                            <div class="col-md-6">
-                                                @Html.LabelFor(model => model.OrignalPropertyPaper, new { @class = "control-label" })
-                                                @Html.DropDownListFor(model => model.OrignalPropertyPaper,
-                                                new List<SelectListItem> {
-                                                    new SelectListItem { Value = "No" , Text = "No" },
-                                                    new SelectListItem { Value = "Yes" , Text = "Yes" },
-                                                },
-                                                new { @class = "form-control", @id = "ddlOrignalPropertyPaper" })
-
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-
-                                            <div class="col-md-6">
 
 
-                                            </div>
-                                        </div>
+								<div class="row">
+									<div class="col-md-6">
+									</div>
+								</div>
 
-                                        <hr />
+								<hr />
 
-                                        <div class="form-group">
-                                            <div class="row">
+								<div class="form-group">
+									<div class="row">
+										<div class="col-md-6">
+											@Html.LabelFor(m => m.Status, new { @class = "control-label" })
+										</div>
+										<div class="col-md-6">
+											@Html.DropDownListFor(m => m.Status, new SelectList(ViewBag.StatusListDDL, "Value", "Text", Model.Status), "- Select -", new { @class = "form-control", @id = "ddlStatus" })
+										</div>
+									</div>
+								</div>
 
-                                                <div class="col-md-6">
-                                                    @Html.LabelFor(m => m.Status, new { @class = "control-label" })
-                                                </div>
-                                                <div class="col-md-6">
-                                                    @Html.DropDownListFor(m => m.Status, new SelectList(ViewBag.StatusListDDL, "Value", "Text", Model.Status), "- Select -", new { @class = "form-control" })
-                                                </div>
-                                            </div>
-                                        </div>
+								<div class="form-group">
+									<div class="row">
 
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    @Html.LabelFor(m => m.Remarks, new { @class = "control-label" })
-                                                </div>
-                                                <div class="col-md-6">
-                                                    @Html.TextAreaFor(m => m.Remarks, new { @class = "form-control" })
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                        <div class="card-footer">
-                                            <input type="submit" value="Update" class="btn btn-primary" />
-                                            @*@Html.ActionLink("Cancel", "LeadView", "Lead", null, new { @class = "btn btn-danger btn-large" })*@
-                                            @Html.ActionLink("Cancel", "GoToStage", "Lead", new { StageName = ViewBag.ComeFrom }, new { @class = "btn btn-danger btn-large" })
-                                        </div>
-                                        <div class="col-md-6">
-                                            @Html.LabelFor(m => m.Remarks, new { @class = "control-label" })
-                                        </div>
-                                        <div class="col-md-6">
-                                            @Html.TextAreaFor(m => m.Remarks, new { @class = "form-control" })
-                                        </div>
-                                    </div>
-                                </div>
+										<div class="col-md-6">
+											@Html.LabelFor(m => m.Remarks, new { @class = "control-label" })
+										</div>
+										<div class="col-md-6">
+											@Html.TextAreaFor(m => m.Remarks, new { @class = "form-control" })
+										</div>
+									</div>
+								</div>
 
 
-                                <div class="card-footer">
-                                    <input type="submit" value="Update" class="btn btn-primary" />
-                                    @*@Html.ActionLink("Cancel", "LeadView", "Lead", null, new { @class = "btn btn-danger btn-large" })*@
-                                    @Html.ActionLink("Cancel", "GoToStage", "Lead", new { StageName = ViewBag.ComeFrom }, new { @class = "btn btn-danger btn-large" })
-                                </div>
+								<div class="card-footer">
+									<input type="submit" value="Update" class="btn btn-primary" onclick="return SignValidation()" />
+									@*@Html.ActionLink("Cancel", "LeadView", "Lead", null, new { @class = "btn btn-danger btn-large" })*@
+									@Html.ActionLink("Cancel", "GoToStage", "Lead", new { StageName = ViewBag.ComeFrom }, new { @class = "btn btn-danger btn-large" })
+								</div>
 
+								<div class="row" style="display: none">
+									<div class="col-md-6">
+										@Html.LabelFor(model => model.InsuranceWithHP, new { @class = "control-label" })
+										@Html.DropDownListFor(model => model.InsuranceWithHP,
+										new List<SelectListItem> {
+											new SelectListItem { Value = "No" , Text = "No" },
+											new SelectListItem { Value = "Yes" , Text = "Yes" },
+										},
+										new { @class = "form-control", @id = "ddlInsuranceWithHP" })
 
-                            </div>
+									</div>
+									<div class="col-md-6">
+										@Html.LabelFor(model => model.NOC, new { @class = "control-label" })
+										@Html.DropDownListFor(model => model.NOC,
+										new List<SelectListItem> {
+											new SelectListItem { Value = "No" , Text = "No" },
+											new SelectListItem { Value = "Yes" , Text = "Yes" },
+										},
+										new { @class = "form-control", @id = "ddlNOC" })
 
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+									</div>
 
-    </section>
+									<div class="col-md-6">
+										@Html.LabelFor(model => model.RTOSlip, new { @class = "control-label" })
+										@Html.DropDownListFor(model => model.RTOSlip,
+										new List<SelectListItem> {
+											new SelectListItem { Value = "No" , Text = "No" },
+											new SelectListItem { Value = "Yes" , Text = "Yes" },
+										},
+										new { @class = "form-control", @id = "ddlRTOSlip" })
+
+									</div>
+									<div class="col-md-6">
+										@Html.LabelFor(model => model.OrignalPropertyPaper, new { @class = "control-label" })
+										@Html.DropDownListFor(model => model.OrignalPropertyPaper,
+										new List<SelectListItem> {
+											new SelectListItem { Value = "No" , Text = "No" },
+											new SelectListItem { Value = "Yes" , Text = "Yes" },
+										},
+										new { @class = "form-control", @id = "ddlOrignalPropertyPaper" })
+
+									</div>
+								</div>
+								<div class="row" style="display: none">
+									<div class="col-md-6">
+										@Html.LabelFor(model => model.Documents, new { @class = "control-label" })
+										@Html.DropDownListFor(model => model.Documents,
+										new List<SelectListItem> {
+											new SelectListItem { Value = "No" , Text = "No" },
+											new SelectListItem { Value = "Yes" , Text = "Yes" },
+										},
+										new { @class = "form-control", @id = "ddlDocuments" })
+
+									</div>
+									<div class="col-md-3">
+										@Html.LabelFor(model => model.DisbursmentKit, new { @class = "control-label" })
+										@Html.DropDownListFor(model => model.DisbursmentKit,
+										new List<SelectListItem> {
+											new SelectListItem { Value = "No" , Text = "No" },
+											new SelectListItem { Value = "Yes" , Text = "Yes" },
+										},
+										new { @class = "form-control", @id = "ddlDisbursmentKit" })
+
+									</div>
+
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</section>
 
 }
 
+@*<script src="~/plugins/jquery/jquery.min.js"></script>
+	<script src="~/plugins/jquery/jquery.validate.min.js"></script>
+	<script src="~/plugins/jquery/jquery.validate.unobtrusive.min.js"></script>*@
 @if (ViewBag.Error != null && ViewBag.Error != "")
 {
-
-    <script type="text/javascript">
+	<script type="text/javascript">
 
             window.onload = function () {
                 //alert("@ViewBag.Error");
 				swal("TDH", "@ViewBag.Error", "error");
             };
-    </script>
+	</script>
 }
 
 @if (ViewBag.Success != null && ViewBag.Success != "")
 {
-    <script type="text/javascript">
+	<script type="text/javascript">
             window.onload = function () {
                 //alert("@ViewBag.Success");
 				swal("TDH", "@ViewBag.Success", "Success");
             };
-
-    </script>
-
+	</script>
 }
 
-
 <script>
-    function chkValidation() {
+
+	function SignValidation() {
+		debugger;
+		var isreq = 0;
+		var fileds = "";
+		var lt = $("#hdnMainProdId").val();
+		document.getElementById("ddlSanctionLetter").style.borderColor = "#FF0000";
+		document.getElementById("ddlLoanAgrmentKit").style.borderColor = "#FF0000";
+		document.getElementById("ddlPDC").style.borderColor = "#FF0000";
+		document.getElementById("ddlNACH").style.borderColor = "#FF0000";
+		document.getElementById("ddlAffidavit").style.borderColor = "#FF0000";
+		document.getElementById("ddlRegisteredMortgageDeed").style.borderColor = "#FF0000";
+		document.getElementById("ddlBorrowerKyc").style.borderColor = "#FF0000";
+		document.getElementById("ddlCoBorrowerKyc").style.borderColor = "#FF0000";
+
+		var Status = $("#ddlStatus option:selected").val();
+		if (Status == "A") {
+			if (lt == 4) {
+				if ($("#ddlSanctionLetter option:selected").val() != "Yes") {
+					isreq = 1;
+					fileds = fileds.length > 0 ? fileds + ", SanctionLetter" : "SanctionLetter";
+					document.getElementById("ddlSanctionLetter").style.borderColor = "#FF0000";
+
+				}
+
+				if ($("#ddlLoanAgrmentKit option:selected").val() != "Yes") {
+					isreq = 1;
+					fileds = fileds.length > 0 ? fileds + ", LoanAgrmentKit" : "LoanAgrmentKit";
+					document.getElementById("ddlLoanAgrmentKit").style.borderColor = "#FF0000";
+				}
+
+				if ($("#ddlPDC option:selected").val() != "Yes") {
+					isreq = 1;
+					fileds = fileds.length > 0 ? fileds + ", PDC" : "PDC";
+					document.getElementById("ddlPDC").style.borderColor = "#FF0000";
+				}
+
+				if ($("#ddlNACH option:selected").val() != "Yes") {
+					isreq = 1;
+					fileds = fileds.length > 0 ? fileds + ", NACH" : "NACH";
+					document.getElementById("ddlNACH").style.borderColor = "#FF0000";
+				}
+
+				if ($("#ddlAffidavit option:selected").val() != "Yes") {
+					isreq = 1;
+					fileds = fileds.length > 0 ? fileds + ", Affidavit" : "Affidavit";
+					document.getElementById("ddlAffidavit").style.borderColor = "#FF0000";
+				}
+
+				if ($("#ddlRegisteredMortgageDeed option:selected").val() != "Yes") {
+					isreq = 1;
+					fileds = fileds.length > 0 ? fileds + ", RegisteredMortgageDeed" : "RegisteredMortgageDeed";
+					document.getElementById("ddlRegisteredMortgageDeed").style.borderColor = "#FF0000";
+				}
+
+				if ($("#ddlBorrowerKyc option:selected").val() != "Yes") {
+					isreq = 1;
+					fileds = fileds.length > 0 ? fileds + ", BorrowerKyc" : "BorrowerKyc";
+					document.getElementById("ddlBorrowerKyc").style.borderColor = "#FF0000";
+				}
+
+				if ($("#ddlCoBorrowerKyc option:selected").val() != "Yes") {
+					isreq = 1;
+					fileds = fileds.length > 0 ? fileds + ", CoBorrowerKyc" : "CoBorrowerKyc";
+					document.getElementById("ddlCoBorrowerKyc").style.borderColor = "#FF0000";
+				}
+
+				if ($("#ddlGuarantorKyc option:selected").val() != "Yes") {
+					isreq = 1;
+					fileds = fileds.length > 0 ? fileds + ", GuarantorKyc" : "GuarantorKyc";
+					document.getElementById("ddlGuarantorKyc").style.borderColor = "#FF0000";
+				}
+
+				if ($("#ddlBorrowerPhoto option:selected").val() != "Yes") {
+					isreq = 1;
+					fileds = fileds.length > 0 ? fileds + ", BorrowerPhoto" : "BorrowerPhoto";
+					document.getElementById("ddlBorrowerPhoto").style.borderColor = "#FF0000";
+				}
+
+				if ($("#ddlCoBorrowerPhoto option:selected").val() != "Yes") {
+					isreq = 1;
+					fileds = fileds.length > 0 ? fileds + ", CoBorrowerPhoto" : "CoBorrowerPhoto";
+					document.getElementById("ddlCoBorrowerPhoto").style.borderColor = "#FF0000";
+				}
+
+				if ($("#ddlGuarantorPhoto option:selected").val() != "Yes") {
+					isreq = 1;
+					fileds = fileds.length > 0 ? fileds + ", GuarantorPhoto" : "GuarantorPhoto";
+					document.getElementById("ddlGuarantorPhoto").style.borderColor = "#FF0000";
+				}
+				if ($("#ddlSignatureVerification option:selected").val() != "Yes") {
+					isreq = 1;
+					fileds = fileds.length > 0 ? fileds + ", SignatureVerification" : "SignatureVerification";
+					document.getElementById("ddlSignatureVerification").style.borderColor = "#FF0000";
+				}
+
+				if ($("#ddlDisbursementRequestLetter option:selected").val() != "Yes") {
+					isreq = 1;
+					fileds = fileds.length > 0 ? fileds + ", DisbursementRequestLetter" : "DisbursementRequestLetter";
+					document.getElementById("ddlDisbursementRequestLetter").style.borderColor = "#FF0000";
+				}
+
+				if ($("#ddlKycSelfAttested option:selected").val() != "Yes") {
+					isreq = 1;
+					fileds = fileds.length > 0 ? fileds + ", KycSelfAttested" : "KycSelfAttested";
+					document.getElementById("ddlKycSelfAttested").style.borderColor = "#FF0000";
+				}
+			}
+			else if (lt == 2 || lt == 3 || lt == 5) {
+				if ($("#ddlSanctionLetter option:selected").val() != "Yes") {
+					isreq = 1;
+					fileds = fileds.length > 0 ? fileds + ", SanctionLetter" : "SanctionLetter";
+					document.getElementById("ddlSanctionLetter").style.borderColor = "#FF0000";
+				}
+
+				if ($("#ddlLoanAgrmentKit option:selected").val() != "Yes") {
+					isreq = 1;
+					fileds = fileds.length > 0 ? fileds + ", LoanAgrmentKit" : "LoanAgrmentKit";
+					document.getElementById("ddlLoanAgrmentKit").style.borderColor = "#FF0000";
+				}
+
+				if ($("#ddlPDC option:selected").val() != "Yes") {
+					isreq = 1;
+					fileds = fileds.length > 0 ? fileds + ", PDC" : "PDC";
+					document.getElementById("ddlPDC").style.borderColor = "#FF0000";
+				}
+
+				if ($("#ddlNACH option:selected").val() != "Yes") {
+					isreq = 1;
+					fileds = fileds.length > 0 ? fileds + ", NACH" : "NACH";
+					document.getElementById("ddlNACH").style.borderColor = "#FF0000";
+				}
+
+				if ($("#ddlBorrowerKyc option:selected").val() != "Yes") {
+					isreq = 1;
+					fileds = fileds.length > 0 ? fileds + ", SanctionLetter" : "SanctionLetter";
+					document.getElementById("ddlBorrowerKyc").style.borderColor = "#FF0000";
+				}
+
+				//if ($("#ddlCoBorrowerKyc option:selected").val() != "Yes") {
+				//	isreq = 1;
+				//	fileds = fileds.length > 0 ? fileds + ", LoanAgrmentKit" : "LoanAgrmentKit";
+				//}
+
+				if ($("#ddlGuarantorKyc option:selected").val() != "Yes") {
+					isreq = 1;
+					fileds = fileds.length > 0 ? fileds + ", PDC" : "PDC";
+					document.getElementById("ddlGuarantorKyc").style.borderColor = "#FF0000";
+				}
+
+				if ($("#ddlBorrowerPhoto option:selected").val() != "Yes") {
+					isreq = 1;
+					fileds = fileds.length > 0 ? fileds + ", NACH" : "NACH";
+					document.getElementById("ddlBorrowerPhoto").style.borderColor = "#FF0000";
+				}
+
+				//if ($("#ddlCoBorrowerPhoto option:selected").val() != "Yes") {
+				//	isreq = 1;
+				//	fileds = fileds.length > 0 ? fileds + ", Affidavit" : "Affidavit";
+				//}
+
+				if ($("#ddlGuarantorPhoto option:selected").val() != "Yes") {
+					isreq = 1;
+					fileds = fileds.length > 0 ? fileds + ", GuarantorPhoto" : "GuarantorPhoto";
+					document.getElementById("ddlGuarantorPhoto").style.borderColor = "#FF0000";
+				}
+				//if ($("#ddlSignatureVerification option:selected").val() != "Yes") {
+				//	isreq = 1;
+				//	fileds = fileds.length > 0 ? fileds + ", SignatureVerification" : "SignatureVerification";
+				//}
+
+				if ($("#ddlDisbursementRequestLetter option:selected").val() != "Yes") {
+					isreq = 1;
+					fileds = fileds.length > 0 ? fileds + ", DisbursementRequestLetter" : "DisbursementRequestLetter";
+					document.getElementById("ddlDisbursementRequestLetter").style.borderColor = "#FF0000";
+				}
+
+				//if ($("#ddlKycSelfAttested option:selected").val() != "Yes") {
+				//	isreq = 1;
+				//	fileds = fileds.length > 0 ? fileds + ", KycSelfAttested" : "KycSelfAttested";
+				//}
+			}
+
+			else if (lt == 1) {
+
+				if ($("#ddlLoanAgrmentKit option:selected").val() != "Yes") {
+					isreq = 1;
+					fileds = fileds.length > 0 ? fileds + ", LoanAgrmentKit" : "LoanAgrmentKit";
+					document.getElementById("ddlLoanAgrmentKit").style.borderColor = "#FF0000";
+				}
+
+				if ($("#ddlKycSelfAttested option:selected").val() != "Yes") {
+					isreq = 1;
+					fileds = fileds.length > 0 ? fileds + ", KycSelfAttested" : "KycSelfAttested";
+					document.getElementById("ddlKycSelfAttested").style.borderColor = "#FF0000";
+				}
+			}
+
+		}
+
+		if ($("#Remarks").val() == "") {
+
+			isreq = 1;
+			fileds = fileds.length > 0 ? fileds + ", Remarks" : "Remarks";
+			document.getElementById("Remarks").style.borderColor = "#FF0000";
+		}
+
+		if (isreq == 1) {
+			swal("TDH", fileds + " are Required.", "error");
+			return false;
+		}
 
 
-        var Status = $("#ddlStatus option:selected").val();
-        //alert(Status);
-        if (Status == 0) {
-            swal("TDH", "Please Select Status", "error");
-            return false;
-        }
-        else if (Status == "A") {
-            if ($("#txtRemarks").val().trim() == "") {
-                swal("TDH", "Please Enter Remarks.", "error");
-                $("#txtRemarks").focus();
-                return false;
-            }
-        }
-        else {
-            return true;
-        }
-    }
+		//var Status = $("#ddlStatus option:selected").val();
+		////alert(Status);
+		//if (Status == 0) {
+		//	swal("TDH", "Please Select Status", "error");
+		//	return false;
+		//}
+		//else if (Status == "A") {
+		//	if (cntRe > 0) {
+		//		swal("TDH", "Please Select All Required Documents.", "error");
+		//		return false;
+		//	}
+		//}
+		//else {
+		//	return true;
+		//}
+	}
+
 </script>
+
+
+
+
+
 

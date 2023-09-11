@@ -190,37 +190,132 @@ namespace Sunnet_NBFC.Controllers
 
             }
         }
-        
-        
+        //public ActionResult LeadView()
+        //{
+
+
+        //    if (Session["UserID"] != null)
+        //    {
+        //        if (String.IsNullOrEmpty(Session["UserID"].ToString()) == true)
+        //        {
+        //            return RedirectToAction("Index", "Login");
+        //        }
+        //        else
+        //        {
+        //            List<clsLeadGenerationMaster> lst = new List<clsLeadGenerationMaster>();
+        //            try
+        //            {
+        //                using (clsLeadGenerationMaster cls = new clsLeadGenerationMaster())
+        //                {
+        //                    cls.ReqType = "GetLeadAllData";
+        //                    cls.CompanyId = 1;
+        //                    cls.LeadNo = "";
+        //                    cls.LeadId = 0;
+        //                    cls.Empid = int.Parse(Session["EmpId"].ToString());
+        //                   cls.ShortStage_Name = "DocSign";
+        //                    using (DataTable dt = DataInterface.GetLeadGenerationData(cls))
+        //                    {
+        //                        if (dt != null)
+        //                        {
+        //                            ViewBag.lst = DataInterface.ConvertDataTable<clsLeadGenerationMaster>(dt);
+        //                        }
+        //                    }
+        //                }
+
+        //            }
+        //            catch (Exception e1)
+        //            {
+        //                using (clsError clsE = new clsError())
+        //                {
+        //                    clsE.ReqType = "Get";
+        //                    clsE.Mode = "WEB";
+        //                    clsE.ErrorDescrption = e1.Message;
+        //                    clsE.FunctionName = "ToBeLeadDocSignView";
+        //                    clsE.Link = "LeadDocumentSigning/ToBeLeadDocSignView";
+        //                    clsE.PageName = "LeadDocumentSigning Controller";
+        //                    clsE.UserId = "1";
+        //                    DataInterface.PostError(clsE);
+        //                }
+        //            }
+
+        //        }
+        //    }
+        //    else
+        //    {
+        //        return RedirectToAction("Index", "Login");
+        //    }
+
+        //    return View();
+        //}
+
         [Sunnet_NBFC.App_Code.SessionAttribute]
         public ActionResult LeadDocumentSigning(int leadid, string ComeFrom = "DocSign")
         {
+            clsLeadDocSign model = new clsLeadDocSign();
             clsLeadDocSign M = new clsLeadDocSign();
             try
             {
-                DataTable dtLeadDetail = new DataTable();
-                DataTable dtLeadDoc = new DataTable();
                 if (leadid > 0)
                 {
                     M.ReqType = "Get";
                     M.ShortStage_Name = "DocSign";
                     M.LeadId = leadid;
-                    //dtLeadDetail = DataInterface2.GetLeadDetail(M);
-                    dtLeadDoc = DataInterface1.dbLeadDocSign(M);
+                    using (DataTable dt = DataInterface1.dbLeadDocSign(M))
+                    {
+                        if (dt != null)
+                        {
+                            DataRow dr = dt.Rows[0];
+                            model.MainProdId = int.Parse(dr["MainProdId"].ToString());
+                            model.DocSignId = int.Parse(dr["DocSignId"].ToString());
+                            model.LeadNo = dr["LeadNo"].ToString();
+                            model.Documents = dr["Documents"].ToString();
+                            model.SanctionLetter = dr["SanctionLetter"].ToString();
+                            model.LoanAgrmentKit = dr["LoanAgrmentKit"].ToString();
+                            model.PDC = dr["PDC"].ToString();
+                            model.NACH = dr["NACH"].ToString();
+                            model.DisbursmentKit = dr["DisbursmentKit"].ToString();
+                            model.InsuranceWithHP = dr["InsuranceWithHP"].ToString();
+                            model.NOC = dr["NOC"].ToString();
+                            model.RTOSlip = dr["RTOSlip"].ToString();
+                            model.OrignalPropertyPaper = dr["OrignalPropertyPaper"].ToString();
+                            model.RegisteredMortgageDeed = dr["RegisteredMortgageDeed"].ToString();
+                            model.EquitableMortageDeed = dr["EquitableMortageDeed"].ToString();
+                            model.Affidavit = dr["Affidavit"].ToString();
+                            model.DsRemark = dr["DsRemark"].ToString();
+                            model.CreatedBy = int.Parse(dr["CreatedBy"].ToString());
+                            model.UpdatedBy = int.Parse(dr["UpdatedBy"].ToString());
+                            model.IsDelete = int.Parse(dr["IsDelete"].ToString());
+                            model.DsRemark = dr["DsRemark"].ToString();
+                            model.BorrowerKyc = dr["BorrowerKyc"].ToString();
+                            model.CoBorrowerKyc = dr["CoBorrowerKyc"].ToString();
+                            model.GuarantorKyc = dr["GuarantorKyc"].ToString();
+                            model.BorrowerPhoto = dr["BorrowerPhoto"].ToString();
+                            model.CoBorrowerPhoto = dr["CoBorrowerPhoto"].ToString();
+                            model.GuarantorPhoto = dr["GuarantorPhoto"].ToString();
+                            model.DisbursementRequestLetter = dr["DisbursementRequestLetter"].ToString();
+                            model.SignatureVerification = dr["SignatureVerification"].ToString();
+                            model.KycSelfAttested = dr["KycSelfAttested"].ToString();
+
+                        }
+                    }
                 }
-                //if (dtLeadDetail != null && dtLeadDetail.Rows.Count > 0)
-                //    M = DataInterface.GetItem<clsLeadDocSign>(dtLeadDetail.Rows[0]);
 
-                if (dtLeadDoc != null && dtLeadDoc.Rows.Count > 0)
-                    M = DataInterface.GetItem<clsLeadDocSign>(dtLeadDoc.Rows[0]);
-                //M.clsLeadDocSign = DataInterface.ConvertDataTable<clsLeadDocSign>(dtLeadDoc);
+                using (DataTable dt = DataInterface2.GetLeadDetail(M))
+                {
+                    if (dt != null)
+                    {
+                        DataRow dr = dt.Rows[0];
+                        model.LeadId = int.Parse(dr["LeadId"].ToString());
+                        model.ShortStage_Name = dr["ShortStage_Name"].ToString();
+                        model.Status = dr["Status"].ToString();
+                        model.Remarks = dr["Remarks"].ToString();
+                    }
+                }
 
-                //M = DataInterface1.GetItem<clsLeadCalling>(dt.Rows[0]); //for single row
-                //ViewBag.AnswerListDDL = ClsCommon.AnswerDDL();
                 ViewBag.StatusListDDL = ClsCommon.StatusDDL("DocSign");
-                M.Status = M.Status ?? "P";
+                model.Status = model.Status ?? "P";
                 ViewBag.ComeFrom = ComeFrom;
-                return View(M);
+                return View(model);
             }
             catch (Exception ex)
             {
@@ -247,8 +342,6 @@ namespace Sunnet_NBFC.Controllers
                     ViewBag.Error = "Invalid Model";
                     return View(M);
                 }
-
-
                 if (M.DocSignId <= 0)
                 {
                     M.ReqType = "Insert";
@@ -314,28 +407,57 @@ namespace Sunnet_NBFC.Controllers
             }
             else
             {
-                //DataTable dtLeadDetail2 = new DataTable();
-                DataTable dtLeadDoc2 = new DataTable();
+                clsLeadDocSign model = new clsLeadDocSign();
+                //DataTable dtLeadDoc2 = new DataTable();
                 if (M.LeadId > 0)
                 {
                     M.ReqType = "Get";
-                    M.StageId = 5;
+                    M.ShortStage_Name = "DocSign";
+                    using (DataTable dt = DataInterface1.dbLeadDocSign(M))
+                    {
+                        if (dt != null)
+                        {
+                            DataRow dr = dt.Rows[0];
+                            model.DocSignId = int.Parse(dr["DocSignId"].ToString());
+                            model.LeadNo = dr["LeadNo"].ToString();
+                            model.Documents = dr["Documents"].ToString();
+                            model.SanctionLetter = dr["SanctionLetter"].ToString();
+                            model.LoanAgrmentKit = dr["LoanAgrmentKit"].ToString();
+                            model.PDC = dr["PDC"].ToString();
+                            model.NACH = dr["NACH"].ToString();
+                            model.DisbursmentKit = dr["DisbursmentKit"].ToString();
+                            model.InsuranceWithHP = dr["InsuranceWithHP"].ToString();
+                            model.NOC = dr["NOC"].ToString();
+                            model.RTOSlip = dr["RTOSlip"].ToString();
+                            model.OrignalPropertyPaper = dr["OrignalPropertyPaper"].ToString();
+                            model.RegisteredMortgageDeed = dr["RegisteredMortgageDeed"].ToString();
+                            model.EquitableMortageDeed = dr["EquitableMortageDeed"].ToString();
+                            model.Affidavit = dr["Affidavit"].ToString();
+                            model.DsRemark = dr["DsRemark"].ToString();
+                            model.CreatedBy = int.Parse(dr["CreatedBy"].ToString());
+                            model.UpdatedBy = int.Parse(dr["UpdatedBy"].ToString());
+                            model.IsDelete = int.Parse(dr["IsDelete"].ToString());
+                            model.DsRemark = dr["DsRemark"].ToString();
+                            model.BorrowerKyc = dr["BorrowerKyc"].ToString();
+                            model.CoBorrowerKyc = dr["CoBorrowerKyc"].ToString();
+                            model.GuarantorKyc = dr["GuarantorKyc"].ToString();
+                            model.BorrowerPhoto = dr["BorrowerPhoto"].ToString();
+                            model.CoBorrowerPhoto = dr["CoBorrowerPhoto"].ToString();
+                            model.GuarantorPhoto = dr["GuarantorPhoto"].ToString();
+                            model.DisbursementRequestLetter = dr["DisbursementRequestLetter"].ToString();
+                            model.SignatureVerification = dr["SignatureVerification"].ToString();
+                            model.KycSelfAttested = dr["KycSelfAttested"].ToString();
 
-                    // dtLeadDetail2 = DataInterface2.GetLeadDetail(M);
-                    dtLeadDoc2 = DataInterface1.dbLeadDocSign(M);
+                        }
+                    }
                 }
-                //if (dtLeadDetail2 != null && dtLeadDetail2.Rows.Count > 0)
-                //    M = DataInterface.GetItem<clsLeadDocSignMain>(dtLeadDetail2.Rows[0]);
 
-                if (dtLeadDoc2 != null && dtLeadDoc2.Rows.Count > 0)
-                    M = DataInterface.GetItem<clsLeadDocSign>(dtLeadDoc2.Rows[0]);
-                //M.clsLeadDocSign = DataInterface.ConvertDataTable<clsLeadDocSign>(dtLeadDoc2);
-
+                //if (dtLeadDoc2 != null && dtLeadDoc2.Rows.Count > 0)
+                //    M = DataInterface.GetItem<clsLeadDocSign>(dtLeadDoc2.Rows[0]);
                 ViewBag.StatusListDDL = ClsCommon.StatusDDL("DocSign");
-                M.Status = M.Status ?? "P";
-
+                model.Status = model.Status ?? "P";
                 ViewBag.Error = !string.IsNullOrEmpty(clsRtn.Message) ? clsRtn.Message : "Error: Data Not Saved/Updated";
-                return View(M);
+                return View(model);
             }
         }
 
@@ -367,7 +489,7 @@ namespace Sunnet_NBFC.Controllers
                     DataInterface.PostError(clse);
                 }
             }
-            return PartialView("LeadDocumentSigningView",lst);
+            return PartialView("LeadDocumentSigningView", lst);
             //return View(lst);
         }
 
