@@ -583,7 +583,7 @@ namespace Sunnet_NBFC.Models
 
 
         public string DependentFamilyAssessmentVerificationCode { get { return "FAMILY"; } }
-        [DisplayName("Dependent Family Assessment Verification")]
+        [DisplayName("Dependent Family Assessment")]
         public string DependentFamilyAssessmentVerification { get; set; }
         public string DependentFamilyAssessmentDoc { get; set; }
         public string DependentFamilyAssessmentRemarks { get; set; }
@@ -686,7 +686,10 @@ namespace Sunnet_NBFC.Models
         public DateTime? CreatedDate { get; set; }
         public int? UpdatedBy { get; set; }
         public DateTime? UpdatedDate { get; set; }
+
+        [DisplayName("CAM Verification")]
         public string CamVerification { get; set; }
+        
         public HttpPostedFileBase CibilDocPostedFile { get; set; }
 
         public HttpPostedFileBase FIDocPostedFile { get; set; }

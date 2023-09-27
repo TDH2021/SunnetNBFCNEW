@@ -16,7 +16,7 @@ using Microsoft.Ajax.Utilities;
 
 namespace Sunnet_NBFC.Controllers
 {
-    public class LeadCreditController : Controller
+    public class LeadCreditController_ : Controller
     {
 
         [SessionAttribute]
@@ -315,12 +315,6 @@ namespace Sunnet_NBFC.Controllers
                 {
                     M.clsLeadCredit.CIBILVerification = "Yes";
                 }
-                else if (!string.IsNullOrEmpty(M.clsLeadCredit.CibilDoc) && frm["chkCIBILVerification"].Split(',')[0] != "true")
-                {
-                    M.clsLeadCredit.CIBILVerification = null;
-                }
-
-
                 //------------------------------CIBIL-------------------------------------------------------------------
                 //------------------------------FI-------------------------------------------------------------------
                 if (M.clsLeadCredit.FIDocPostedFile != null && M.clsLeadCredit.FIDocPostedFile.ToString() != "")
@@ -344,10 +338,6 @@ namespace Sunnet_NBFC.Controllers
                 {
                     M.clsLeadCredit.FIVerification = "Yes";
                 }
-                else if (!string.IsNullOrEmpty(M.clsLeadCredit.FIDoc) && frm["chkFIVerification"].Split(',')[0] != "true")
-                {
-                    M.clsLeadCredit.FIVerification = null;
-                }
                 //------------------------------FI-------------------------------------------------------------------
                 //------------------------------TVR-------------------------------------------------------------------
                 if (M.clsLeadCredit.TVRDocPostedFile != null && M.clsLeadCredit.TVRDocPostedFile.ToString() != "")
@@ -370,10 +360,6 @@ namespace Sunnet_NBFC.Controllers
                 else if (!string.IsNullOrEmpty(M.clsLeadCredit.TVRDoc) && frm["chkTVRVerification"].Split(',')[0] == "true")
                 {
                     M.clsLeadCredit.TVRVerification = "Yes";
-                }
-                else if (!string.IsNullOrEmpty(M.clsLeadCredit.TVRDoc) && frm["chkTVRVerification"].Split(',')[0] != "true")
-                {
-                    M.clsLeadCredit.TVRVerification = null;
                 }
                 //------------------------------TVR-------------------------------------------------------------------
 
@@ -424,14 +410,6 @@ namespace Sunnet_NBFC.Controllers
                         return RedirectToAction("LeadCredit", "LeadCredit", new { LeadId = M.LeadId, ComeFrom = "CreditApprove" });
                     }
                 }
-                else if (!string.IsNullOrEmpty(M.clsLeadCredit.CashFlowDoc) && frm["chkCashFlowVerification"].Split(',')[0] == "true")
-                {
-                    M.clsLeadCredit.CashFlowVerification = "Yes";
-                }
-                else if (!string.IsNullOrEmpty(M.clsLeadCredit.CashFlowDoc) && frm["chkCashFlowVerification"].Split(',')[0] != "true")
-                {
-                    M.clsLeadCredit.CashFlowVerification = null;
-                }
                 //------------------------------CashFlow-------------------------------------------------------------------
                 //------------------------------Viechle-------------------------------------------------------------------
                 if (M.clsLeadCredit.ViechleDocPostedFile != null && M.clsLeadCredit.ViechleDocPostedFile.ToString() != "")
@@ -450,14 +428,6 @@ namespace Sunnet_NBFC.Controllers
                         //return View(M);
                         return RedirectToAction("LeadCredit", "LeadCredit", new { LeadId = M.LeadId, ComeFrom = "CreditApprove" });
                     }
-                }
-                else if (!string.IsNullOrEmpty(M.clsLeadCredit.ViechleDoc) && frm["chkViechleValVerfication"].Split(',')[0] == "true")
-                {
-                    M.clsLeadCredit.ViechleValVerfication = "Yes";
-                }
-                else if (!string.IsNullOrEmpty(M.clsLeadCredit.ViechleDoc) && frm["chkViechleValVerfication"].Split(',')[0] != "true")
-                {
-                    M.clsLeadCredit.ViechleValVerfication = null;
                 }
                 //------------------------------Viechle-------------------------------------------------------------------
 
@@ -479,14 +449,6 @@ namespace Sunnet_NBFC.Controllers
                         return RedirectToAction("LeadCredit", "LeadCredit", new { LeadId = M.LeadId, ComeFrom = "CreditApprove" });
                     }
                 }
-                else if (!string.IsNullOrEmpty(M.clsLeadCredit.BankStmtDoc) && frm["chkBankStmtVerification"].Split(',')[0] == "true")
-                {
-                    M.clsLeadCredit.BankStmtVerification = "Yes";
-                }
-                else if (!string.IsNullOrEmpty(M.clsLeadCredit.BankStmtDoc) && frm["chkBankStmtVerification"].Split(',')[0] != "true")
-                {
-                    M.clsLeadCredit.BankStmtVerification = null;
-                }
                 //------------------------------BankStmt-------------------------------------------------------------------\
 
                 //------------------------------IncomeStmt-------------------------------------------------------------------
@@ -507,14 +469,6 @@ namespace Sunnet_NBFC.Controllers
                         return RedirectToAction("LeadCredit", "LeadCredit", new { LeadId = M.LeadId, ComeFrom = "CreditApprove" });
                     }
                 }
-                else if (!string.IsNullOrEmpty(M.clsLeadCredit.IncomeStmtDoc) && frm["chkIncomeStmtVerification"].Split(',')[0] == "true")
-                {
-                    M.clsLeadCredit.IncomeStmtVerification = "Yes";
-                }
-                else if (!string.IsNullOrEmpty(M.clsLeadCredit.IncomeStmtDoc) && frm["chkIncomeStmtVerification"].Split(',')[0] != "true")
-                {
-                    M.clsLeadCredit.IncomeStmtVerification = null;
-                }
                 //------------------------------IncomeStmt-------------------------------------------------------------------
 
                 //------------------------------PersonalDiscuss-------------------------------------------------------------------
@@ -534,14 +488,6 @@ namespace Sunnet_NBFC.Controllers
                         //return View(M);
                         return RedirectToAction("LeadCredit", "LeadCredit", new { LeadId = M.LeadId, ComeFrom = "CreditApprove" });
                     }
-                }
-                else if (!string.IsNullOrEmpty(M.clsLeadCredit.PersonalDiscussDoc) && frm["chkPersonalDiscussVerification"].Split(',')[0] == "true")
-                {
-                    M.clsLeadCredit.PersonalDiscussVerification = "Yes";
-                }
-                else if (!string.IsNullOrEmpty(M.clsLeadCredit.PersonalDiscussDoc) && frm["chkPersonalDiscussVerification"].Split(',')[0] != "true")
-                {
-                    M.clsLeadCredit.PersonalDiscussVerification = null;
                 }
                 //------------------------------PersonalDiscuss-------------------------------------------------------------------
 
@@ -564,14 +510,6 @@ namespace Sunnet_NBFC.Controllers
                         return RedirectToAction("LeadCredit", "LeadCredit", new { LeadId = M.LeadId, ComeFrom = "CreditApprove" });
                     }
                 }
-                else if (!string.IsNullOrEmpty(M.clsLeadCredit.EligiblityDoc) && frm["chkEligiblity"].Split(',')[0] == "true")
-                {
-                    M.clsLeadCredit.Eligiblity = "Yes";
-                }
-                else if (!string.IsNullOrEmpty(M.clsLeadCredit.EligiblityDoc) && frm["chkEligiblity"].Split(',')[0] != "true")
-                {
-                    M.clsLeadCredit.Eligiblity = null;
-                }
                 //------------------------------Eligiblity-------------------------------------------------------------------
 
                 //------------------------------Property-------------------------------------------------------------------
@@ -592,16 +530,6 @@ namespace Sunnet_NBFC.Controllers
                         return RedirectToAction("LeadCredit", "LeadCredit", new { LeadId = M.LeadId, ComeFrom = "CreditApprove" });
                     }
                 }
-                else if (!string.IsNullOrEmpty(M.clsLeadCredit.PropertyDoc) && frm["chkPropertyDocVerification"].Split(',')[0] == "true")
-                {
-                    M.clsLeadCredit.PropertyDocVerification = "Yes";
-                }
-                else if (!string.IsNullOrEmpty(M.clsLeadCredit.PropertyDoc) && frm["chkPropertyDocVerification"].Split(',')[0] != "true")
-                {
-                    M.clsLeadCredit.PropertyDocVerification = null;
-                }
-                //------------------------------Property-------------------------------------------------------------------
-                //------------------------------CAMDocPostedFile-------------------------------------------------------------------
 
                 if (M.clsLeadCredit.CAMDocPostedFile != null && M.clsLeadCredit.CAMDocPostedFile.ToString() != "")
                 {
@@ -620,15 +548,7 @@ namespace Sunnet_NBFC.Controllers
                         return RedirectToAction("LeadCredit", "LeadCredit", new { LeadId = M.LeadId, ComeFrom = "CreditApprove" });
                     }
                 }
-                else if (!string.IsNullOrEmpty(M.clsLeadCredit.CAMDoc) && frm["chkCAMVerification"].Split(',')[0] == "true")
-                {
-                    M.clsLeadCredit.CamVerification = "Yes";
-                }
-                else if (!string.IsNullOrEmpty(M.clsLeadCredit.CAMDoc) && frm["chkCAMVerification"].Split(',')[0] != "true")
-                {
-                    M.clsLeadCredit.CamVerification = null;
-                }
-                //------------------------------CAMDocPostedFile-------------------------------------------------------------------
+                //------------------------------Property-------------------------------------------------------------------
 
 
                 #endregion
@@ -706,7 +626,6 @@ namespace Sunnet_NBFC.Controllers
                 {
                     M.ReqType = "Get";
                     M.StageId = 4;
-                    M.ShortStage_Name = "CreditApprove";
                     dtLeadCredit = DataInterface2.GetLeadCredit(M);
                 }
 
@@ -738,7 +657,6 @@ namespace Sunnet_NBFC.Controllers
                 {
                     M.ReqType = "Get";
                     M.StageId = 4;
-                    M.ShortStage_Name = "CreditApprove";
                     dtLeadDetail = DataInterface2.GetLeadDetail(M);
                     dtLeadCredit = DataInterface2.GetLeadCredit(M);
                 }
@@ -751,115 +669,7 @@ namespace Sunnet_NBFC.Controllers
                     M = DataInterface.GetItem<clsLeadMain>(dtLeadDetail.Rows[0]);
 
                 if (dtLeadCredit != null && dtLeadCredit.Rows.Count > 0)
-                {
-                    //M.clsLeadCredit = DataInterface.GetItem<clsLeadCredit>(dtLeadCredit.Rows[0]);
-
-                    clsLeadCredit Singlelist = new clsLeadCredit();
-                    Singlelist = (from DataRow row in dtLeadCredit.Rows
-
-                                  select new clsLeadCredit()
-                                  {
-                                      CrId = int.Parse(row["CrId"].ToString()),
-                                      LeadId = int.Parse(row["LeadId"].ToString()),
-                                      CIBILVerification = row["CIBILVerification"].ToString(),
-                                      CibilDoc = row["CibilDoc"].ToString(),
-                                      FIVerification = row["FIVerification"].ToString(),
-                                      CibilRemarks = row["CibilRemarks"].ToString(),
-                                      FIDoc = row["FIDoc"].ToString(),
-                                      FIRemarks = row["FIRemarks"].ToString(),
-                                      TVRVerification = row["TVRVerification"].ToString(),
-                                      TVRDoc = row["TVRDoc"].ToString(),
-                                      TVRRemarks = row["TVRRemarks"].ToString(),
-                                      CashFlowVerification = row["CashFlowVerification"].ToString(),
-                                      CashFlowDoc = row["CashFlowDoc"].ToString(),
-                                      CashFlowRemarks = row["CashFlowRemarks"].ToString(),
-                                      DependentFamilyAssessmentVerification = row["DependentFamilyAssessmentVerification"].ToString(),
-                                      DependentFamilyAssessmentDoc = row["DependentFamilyAssessmentDoc"].ToString(),
-                                      DependentFamilyAssessmentRemarks = row["DependentFamilyAssessmentRemarks"].ToString(),
-
-                                      ViechleValVerfication = row["ViechleValVerfication"].ToString(),
-                                      ViechleDoc = row["ViechleDoc"].ToString(),
-                                      ViechleRemarks = row["ViechleRemarks"].ToString(),
-                                      BankStmtDoc = row["BankStmtDoc"].ToString(),
-                                      BankStmtRemarks = row["BankStmtRemarks"].ToString(),
-
-                                      IncomeStmtVerification = row["IncomeStmtVerification"].ToString(),
-                                      IncomeStmtDoc = row["IncomeStmtDoc"].ToString(),
-                                      IncomeStmtRemarks = row["IncomeStmtRemarks"].ToString(),
-                                      PersonalDiscussVerification = row["PersonalDiscussVerification"].ToString(),
-                                      PersonalDiscussDoc = row["PersonalDiscussDoc"].ToString(),
-
-                                      PersonalDiscusssRemarks = row["PersonalDiscusssRemarks"].ToString(),
-                                      Eligiblity = row["Eligiblity"].ToString(),
-                                      EligiblityDoc = row["EligiblityDoc"].ToString(),
-                                      EligiblityRemarks = row["EligiblityRemarks"].ToString(),
-                                      Occupation = row["Occupation"].ToString(),
-
-                                      PropertyDocVerification = row["PropertyDocVerification"].ToString(),
-                                      PropertyDoc = row["PropertyDoc"].ToString(),
-                                      PropertyDocRemarks = row["PropertyDocRemarks"].ToString(),
-                                      ColletralType = row["ColletralType"].ToString(),
-                                      PropertyAddress = row["PropertyAddress"].ToString(),
-                                      PropertySize = row["PropertySize"].ToString(),
-                                      LandArea = row["LandArea"].ToString(),
-
-                                      Dimension = row["Dimension"].ToString(),
-                                      SecurityValue = row["SecurityValue"].ToString(),
-                                      MarketValue = row["MarketValue"].ToString(),
-                                      LandValue = row["LandValue"].ToString(),
-                                      ConstrutionValue = row["ConstrutionValue"].ToString(),
-                                      TotalMarketValue = row["TotalMarketValue"].ToString(),
-                                      LTV = row["LTV"].ToString(),
-
-                                      RelizableValue = row["RelizableValue"].ToString(),
-                                      PropertyVal = row["PropertyVal"].ToString(),
-                                      PropertyDocuments = row["PropertyDocuments"].ToString(),
-                                      PropertyChain = row["PropertyChain"].ToString(),
-                                      LegalOpinionBy = row["LegalOpinionBy"].ToString(),
-                                      LegalReportDate = row["LegalReportDate"].ToString(),
-                                      ValuerName = row["ValuerName"].ToString(),
-
-                                      Valuation = row["Valuation"].ToString(),
-                                      ValueDate = row["ValueDate"].ToString(),
-                                      BussinessName = row["BussinessName"].ToString(),
-                                      BussinessVinatage = row["BussinessVinatage"].ToString(),
-                                      BussinessAddress = row["BussinessAddress"].ToString(),
-                                      BussinessProve = row["BussinessProve"].ToString(),
-                                      CamVerification = row["CamVerification"].ToString(),
-
-                                      CAMDoc = row["CAMDoc"].ToString(),
-                                      CAMRemarks = row["CAMRemarks"].ToString(),
-                                      CreditRemarks = row["CreditRemarks"].ToString(),
-                                      NegativeRemarks = row["NegativeRemarks"].ToString(),
-                                      VehicleType = row["VehicleType"].ToString(),
-                                      ChassisNo = row["ChassisNo"].ToString(),
-                                      EngineNo = row["EngineNo"].ToString(),
-
-                                      Insurername = row["Insurername"].ToString(),
-                                      InsurancePolicyNo = row["InsurancePolicyNo"].ToString(),
-                                      PolicyValidity = row["PolicyValidity"].ToString(),
-                                      RCDate = row["RCDate"].ToString(),
-                                      Fitness = row["Fitness"].ToString(),
-
-                                      DealerId = (row["DealerId"].ToString() == "" ? 0 : int.Parse(row["DealerId"].ToString())),
-                                      RTO = row["RTO"].ToString(),
-                                      Transmission = row["Transmission"].ToString(),
-                                      FuelType = row["FuelType"].ToString(),
-                                      CarType = row["CarType"].ToString(),
-                                      ProposedLoanAmountAndCommercial = row["ProposedLoanAmountAndCommercial"].ToString(),
-                                      Occupancy = row["Occupancy"].ToString(),
-                                      CreditCheckList = row["CreditCheckList"].ToString(),
-                                      CreditCheckListID = int.Parse(row["CreditCheckListID"].ToString()),
-                                      CreditCheckListRemarks = row["CreditCheckListRemarks"].ToString(),
-
-                                  }).ToList().FirstOrDefault();
-
-                    if (Singlelist == null)
-                        M.clsLeadCredit = new clsLeadCredit();
-                    else
-                        M.clsLeadCredit = Singlelist;
-
-                }
+                    M.clsLeadCredit = DataInterface.GetItem<clsLeadCredit>(dtLeadCredit.Rows[0]);
                 else
                     M.clsLeadCredit = new clsLeadCredit();
 

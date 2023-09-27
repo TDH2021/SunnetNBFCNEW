@@ -7,6 +7,24 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    .required:after {
+        content: " *";
+        color: red;
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    input[type=number] {
+        -moz-appearance: textfield;
+        /* Firefox */
+    }
+</style>
+
 
 <section class="content-header">
     <div class="container-fluid">
@@ -51,7 +69,8 @@
                                         @Html.HiddenFor(model => model.clsLeadCredit.LeadId)
                                         @Html.HiddenFor(model => model.clsLeadCredit.CrId, new { @id = "hfCrId" })
 
-                                        @Html.LabelFor(model => model.LeadNo, new { @class = "control-label" }) *
+                                        @Html.LabelFor(model => model.LeadNo, new { @class = "control-label" }) 
+
                                         @Html.TextBoxFor(model => model.LeadNo, new { @class = "form-control", @required = "true", @readonly = "true" })
                                         @*@Html.ValidationMessageFor(model => model.LeadId, "", new { @class = "text-danger" })*@
                                     </div>
@@ -96,7 +115,7 @@
 
                                     <div class="col-md-3" style="margin-top:3px;">
                                         @Html.CheckBox("chkCAMVerification", (Model.clsLeadCredit.CamVerification ?? "") == "Yes" ? true : false, new { })
-                                        <span>@Html.LabelFor(model => model.clsLeadCredit.CamVerification, new { @class = "control-label" }) : </span>
+                                        <span>@Html.LabelFor(model => model.clsLeadCredit.CamVerification, new { @class = "control-label required" }) : </span>
                                     </div>
 
                                     <div class="col-md-3">
@@ -961,7 +980,8 @@
                                             <span>PolicyValidity:</span>
                                         </div>
                                         <div class="col-md-5">
-                                            @Html.TextBoxFor(model => model.clsLeadCredit.PolicyValidity, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "Date" })
+                                            @Html.TextBoxFor(model => model.clsLeadCredit.PolicyValidity, new { @class = "form-control datestyle", placeholder = "dd/mm/yyyy"})
+                                            @*@Html.TextBoxFor(model => model.clsLeadCredit.PolicyValidity, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "Date" })*@
                                         </div>
                                     </div>
                                 </div>
@@ -972,7 +992,8 @@
                                             <span>RCDate:</span>
                                         </div>
                                         <div class="col-md-5">
-                                            @Html.TextBoxFor(model => model.clsLeadCredit.RCDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "Date" })
+                                            @Html.TextBoxFor(model => model.clsLeadCredit.RCDate, new { @class = "form-control datestyle", placeholder = "dd/mm/yyyy" })
+                                            @*@Html.TextBoxFor(model => model.clsLeadCredit.RCDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "Date" })*@
                                         </div>
                                     </div>
                                 </div>

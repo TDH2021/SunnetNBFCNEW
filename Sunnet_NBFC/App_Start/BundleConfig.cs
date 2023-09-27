@@ -59,8 +59,6 @@ namespace Sunnet_NBFC
                 "~/plugins/datatables-buttons/js/buttons.print.min.js",
                 "~/plugins/datatables-buttons/js/buttons.colVis.min.js",
                 "~/dist/js/adminlte.min.js",
-                
-                "~/plugins/codemirror/mode/htmlmixed/htmlmixed.js",
                 "~/dist/js/demo.js"));
 
 

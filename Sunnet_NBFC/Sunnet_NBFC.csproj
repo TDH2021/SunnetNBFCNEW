@@ -204,6 +204,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Code\SessionAttribute.cs" />
+    <Compile Include="Controllers\LeadCreditController.cs" />
     <Compile Include="Models\ClsCommon.cs" />
     <Compile Include="App_Code\ClsReturnData.cs" />
     <Compile Include="App_Code\ClsSession.cs" />
@@ -232,7 +233,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LeadCallingController.cs" />
     <Compile Include="Controllers\LeadController.cs" />
-    <Compile Include="Controllers\LeadCreditController.cs" />
+    <Compile Include="Controllers\LeadCreditController_.cs" />
     <Compile Include="Controllers\LeadDisbursementController.cs" />
     <Compile Include="Controllers\LeadDocumentController.cs" />
     <Compile Include="Controllers\LeadDocumentSigningController.cs" />
@@ -1744,6 +1745,7 @@
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
     <None Include="plugins\jquery\jquery-1.10.2.intellisense.js" />
+    <Content Include="plugins\jquery\jquery-ui.js" />
     <Content Include="plugins\jquery\jquery-1.10.2.js" />
     <Content Include="plugins\jquery\jquery-1.10.2.min.js" />
     <Content Include="plugins\jquery\jquery-ui-1.8.13.js" />

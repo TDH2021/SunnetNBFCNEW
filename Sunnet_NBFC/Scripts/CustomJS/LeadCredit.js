@@ -145,12 +145,25 @@ $(document).ready(function () {
 });
 
 function Validation() {
+
+
+    if($("#ddlStatus").val() == "") {
+        swal("TDH", "Please select status", "error");
+        return false;
+    }
+
+    if ($('#chkCAMVerification').is(":checked") != true) {
+        swal("TDH", "Please CAM verification", "error");
+        return false;
+    }
+
+
     if ($('#chkCIBILVerification').is(":checked") == true) {
         var filedata = new FormData();
         var fileUpload = $("#CibilDocPostedFile").get(0);
         var files = fileUpload.files;
         debugger;
-        if (files.length <= 0) {
+        if (files.length <= 0 && $("#clsLeadCredit_CibilDoc").val()=="") {
             swal("TDH", "Please Upload CIBIL File.", "error");
             return false;
         }
@@ -164,7 +177,7 @@ function Validation() {
         var fileUpload = $("#CAMDocPostedFile").get(0);
         var files = fileUpload.files;
         debugger;
-        if (files.length <= 0) {
+        if (files.length <= 0 && $("#clsLeadCredit_CAMDoc").val() == "") {
             swal("TDH", "Please Upload CAM File.", "error");
             return false;
         }
@@ -179,7 +192,7 @@ function Validation() {
         var fileUpload = $("#FIDocPostedFile").get(0);
         var files = fileUpload.files;
         debugger;
-        if (files.length <= 0) {
+        if (files.length <= 0 && $("#clsLeadCredit_FIDoc").val() == "") {
             swal("TDH", "Please Upload FI Verification File.", "error");
             return false;
         }
@@ -194,7 +207,7 @@ function Validation() {
         var fileUpload = $("#TVRDocPostedFile").get(0);
         var files = fileUpload.files;
         debugger;
-        if (files.length <= 0) {
+        if (files.length <= 0 && $("#clsLeadCredit_TVRDoc").val() == "") {
             swal("TDH", "Please Upload TVR File.", "error");
             return false;
         }
@@ -209,7 +222,7 @@ function Validation() {
         var fileUpload = $("#DependentFamilyAssessmentDocPostedFile").get(0);
         var files = fileUpload.files;
         debugger;
-        if (files.length <= 0) {
+        if (files.length <= 0 && $("#clsLeadCredit_DependentFamilyAssessmentDoc").val() == "") {
             swal("TDH", "Please Upload Depended Assesment File.", "error");
             return false;
         }
@@ -224,7 +237,7 @@ function Validation() {
         var fileUpload = $("#CashFlowDocPostedFile").get(0);
         var files = fileUpload.files;
         debugger;
-        if (files.length <= 0) {
+        if (files.length <= 0 && $("#clsLeadCredit_CashFlowDoc").val() == "") {
             swal("TDH", "Please Upload Cash Flow File.", "error");
             return false;
         }
@@ -238,7 +251,7 @@ function Validation() {
         var fileUpload = $("#ViechleDocPostedFile").get(0);
         var files = fileUpload.files;
         debugger;
-        if (files.length <= 0) {
+        if (files.length <= 0 && $("#clsLeadCredit_ViechleDoc").val() == "") {
             swal("TDH", "Please Upload Viechle File.", "error");
             return false;
         }
@@ -253,7 +266,7 @@ function Validation() {
         var fileUpload = $("#BankStmtDocPostedFile").get(0);
         var files = fileUpload.files;
         debugger;
-        if (files.length <= 0) {
+        if (files.length <= 0 && $("#clsLeadCredit_BankStmtDoc").val() == "") {
             swal("TDH", "Please Upload Bank Statement File.", "error");
             return false;
         }
@@ -268,7 +281,7 @@ function Validation() {
         var fileUpload = $("#IncomeStmtDocPostedFile").get(0);
         var files = fileUpload.files;
         debugger;
-        if (files.length <= 0) {
+        if (files.length <= 0 && $("#clsLeadCredit_IncomeStmtDoc").val() == "") {
             swal("TDH", "Please Upload Income Statement File.", "error");
             return false;
         }
@@ -283,7 +296,7 @@ function Validation() {
         var fileUpload = $("#PersonalDiscussDocPostedFile").get(0);
         var files = fileUpload.files;
         debugger;
-        if (files.length <= 0) {
+        if (files.length <= 0 && $("#clsLeadCredit_PersonalDiscussDoc").val() == "") {
             swal("TDH", "Please Upload Personal Discussion File.", "error");
             return false;
         }
@@ -298,7 +311,7 @@ function Validation() {
         var fileUpload = $("#EligiblityDocPostedFile").get(0);
         var files = fileUpload.files;
         debugger;
-        if (files.length <= 0) {
+        if (files.length <= 0 && $("#clsLeadCredit_EligiblityDoc").val() == "") {
             swal("TDH", "Please Upload Elegiblity File.", "error");
             return false;
         }
@@ -313,7 +326,7 @@ function Validation() {
         var fileUpload = $("#PropertyDocPostedFile").get(0);
         var files = fileUpload.files;
         debugger;
-        if (files.length <= 0) {
+        if (files.length <= 0 && $("#clsLeadCredit_PropertyDoc").val() == "") {
             swal("TDH", "Please Upload Property File.", "error");
             return false;
         }
@@ -322,6 +335,8 @@ function Validation() {
             return false;
         }
     }
+
+
     if ($("#hfCrId").val() == "0") {
         if ($('#chkCIBILVerification').is(":checked") == false) {
             swal("TDH", "Please Select CIBIL Verification.", "error");
@@ -333,6 +348,7 @@ function Validation() {
             return false;
         }
     }
+
 
     if ($("#ddlStatus :selected").text() == "Select") {
         swal("TDH", "Please Select Status.", "error");
