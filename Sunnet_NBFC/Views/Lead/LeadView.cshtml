@@ -40,13 +40,13 @@
                         <div class="col-md-3">
                             <label>Main Product</label>
                             @Html.DropDownListFor(model => model.MainProductId, ViewBag.MainProductList as SelectList, "- Select Main Product- ",
-                                       new { @class = "form-control", @id = "MainProductId" })
+                                       new { @class = "form-control select2", @id = "MainProductId" })
                         </div>
                         <div class="col-md-3">
                             <label>Product</label>
                             @Html.DropDownListFor(model => model.ProductId,
                                            new SelectList(Enumerable.Empty<SelectListItem>(), "ProdId", "ProductName"),
-                                           "- Select Product -", new { @class = "form-control", @id = "ProductId" })
+                                           "- Select Product -", new { @class = "form-control select2", @id = "ProductId" })
                         </div>
                         <div class="col-md-3">
                             <label>Lead Number</label>
@@ -89,179 +89,148 @@
         </div>
 
         <div class="row">
-            <div class="form-group">
-                <!-- /.card -->
-                <div class="card">
-                    <!-- /.card-header -->
-                    <div class="card-body">
-                        <table id="example1" class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-
-                                    <th>Lead No</th>
-                                    <th>Main Product</th>
-                                    <th>Product</th>
-                                    <th>Customer Name</th>
-                                    <th>Mobile No</th>
-                                    <th>Pan No</th>
-                                    <th>Aadhar No</th>
-                                    <th>Requested Loan Amount</th>
-                                    <th>Requested Loan Tenure</th>
-                                    <th>Stage</th>
-                                    <th>Status</th>
-                                    <th>-</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                                @if (ViewBag.lst != null)
-                                {
-
-                                    var m = ViewBag.lst;
-                                    foreach (var item in m)
-                                    {
-                                        <tr>
-                                            <td>
-
-                                                <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="return CallPickData('@item.LeadNo','@item.LeadId');"> <b> @item.LeadNo  </b> </button>
-
-                                            </td>
-                                            <td>@item.MainProductName</td>
-                                            <td>@item.ProductName</td>
-                                            <td>@item.CustomerName</td>
-                                            <td>@item.MobileNo1</td>
-                                            <td>@item.PanNo</td>
-                                            <td>@item.AadharNo</td>
-                                            <td>@item.ReuestedLoanAmount</td>
-                                            <td>@item.ReuestedLoanTenure</td>
-                                            <td>@item.ShortStage_Name</td>
-                                            <td>@item.StatusDesc</td>
-                                            @if (item.StatusDesc.ToString().ToUpper() != "REJECT")
-                                            {
 
 
 
-                                                if (item.ShortStage_Name != null)
-                                                {
-                                                    if (item.ShortStage_Name.ToString().ToUpper() == "PRIMYTEL" || item.ShortStage_Name.ToString().ToUpper() == "LEADGEN")
-                                                    {
-                                                        <td>
-                                                            <div class="d-flex order-actions">
-                                                                <a href="@Url.Action("LeadCalling", "LeadCalling", new { LeadId = item.LeadId, ComeFrom = "LeadGen" })"
-                                                                   data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Calling"><u>Calling</u></a>
-                                                            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
 
-                                                        </td>
-                                                    }
-                                                    if (item.ShortStage_Name.ToString().ToUpper() == "DOCCOL")
-                                                    {
-                                                        <td>
-                                                            <div class="d-flex order-actions">
-                                                                <a href="@Url.Action("LeadDocument", "LeadDocument", new { LeadId = item.LeadId, ComeFrom = "LeadGen" })"
-                                                                   data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Document"><u>Document</u></a>
-                                                            </div>
+                            <th>Lead No</th>
+                            <th>Main Product</th>
+                            <th>Product</th>
+                            <th>Customer Name</th>
+                            <th>Mobile No</th>
+                            <th>Pan No</th>
+                            <th>Aadhar No</th>
+                            <th>Requested Loan Amount</th>
+                            <th>Requested Loan Tenure</th>
+                            <th>Stage</th>
+                            <th>Status</th>
+                            <th>ac</th>
+                        </tr>
+                    </thead>
+                    <tbody>
 
-                                                        </td>
-                                                    }
-                                                    if (item.ShortStage_Name.ToString().ToUpper() == "CREDITAPPROVE")
-                                                    {
-                                                        <td>
-                                                            <div class="d-flex order-actions">
-                                                                <a href="@Url.Action("LeadCredit", "LeadCredit", new { LeadId = item.LeadId, ComeFrom = "LeadGen" })"
-                                                                   data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Document"><u>Credit Approve</u></a>
-                                                            </div>
+                        @if (ViewBag.lst != null)
+                        {
 
-                                                        </td>
-                                                    }
-
-                                                    if (item.ShortStage_Name.ToString().ToUpper() == "DOCSIGN")
-                                                    {
-                                                        <td>
-                                                            <div class="d-flex order-actions">
-                                                                <a href="@Url.Action("LeadDocumentSigning", "LeadDocumentSigning", new { LeadId = item.LeadId, ComeFrom = "LeadGen" })"
-                                                                   data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Document"><u>Doc Sign</u></a>
-                                                            </div>
-
-                                                        </td>
-                                                    }
-
-                                                    if (item.ShortStage_Name.ToString().ToUpper() == "FINALAPPROVE")
-                                                    {
-                                                        <td>
-                                                            <div class="d-flex order-actions">
-                                                                <a href="@Url.Action("LeadFinalApprove", "LeadFinalApprove", new { LeadId = item.LeadId, ComeFrom = "LeadGen" })"
-                                                                   data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Document"><u>Final Approve</u></a>
-                                                            </div>
-
-                                                        </td>
-                                                    }
-                                                    if (item.ShortStage_Name.ToString().ToUpper() == "DISBURSE")
-                                                    {
-                                                        <td>
-                                                            <div class="d-flex order-actions">
-                                                                <a href="@Url.Action("LeadDisbursement", "LeadDisbursement", new { LeadId = item.LeadId, ComeFrom = "LeadGen" })"
-                                                                   data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Document"><u>Disbursement</u></a>
-                                                            </div>
-
-                                                        </td>
-                                                    }
-
-                                                }
-                                                else
-                                                {
-                                                    <td>
-                                                        <div class="d-flex order-actions">
-                                                            <a href="@Url.Action("LeadCalling", "LeadCalling", new { LeadId = item.LeadId, ComeFrom = "LeadGen" })"
-                                                               data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Calling"><u>Action</u></a>
-                                                        </div>
-
-                                                    </td>
-                                                }
-                                            }
-
-                                        </tr>
-                                    }
-                                }
-
-
-                            </tbody>
-                            <tfoot>
-                                <tr>
-
-                                    <th>Lead No</th>
-                                    <th>Main Product</th>
-                                    <th>Product</th>
-                                    <th>Customer Name</th>
-                                    <th>Mobile No</th>
-                                    <th>Pan No</th>
-                                    <th>Aadhar No</th>
-                                    <th>Requested Loan Amount</th>
-                                    <th>Requested Loan Tenure</th>
-                                    <th>Stage</th>
-                                    <th>Status</th>
-                                    <th>-</th>
-                                </tr>
-                            </tfoot>
-                        </table>
-                        <div class="card-footer">
-                            @using (Html.BeginForm("LeadView", "Lead", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            var m = ViewBag.lst;
+                            foreach (var item in m)
                             {
+                                <tr>
+                                    <td>
 
-                                @Html.ActionLink("Export to Excel", "ExportToExcel", new { @class = "btn btn-primary" })
+                                        <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="return CallPickData('@item.LeadNo','@item.LeadId');"> <b> @item.LeadNo  </b> </button>
+
+                                    </td>
+                                    <td>@item.MainProductName</td>
+                                    <td>@item.ProductName</td>
+                                    <td>@item.CustomerName</td>
+                                    <td>@item.MobileNo1</td>
+                                    <td>@item.PanNo</td>
+                                    <td>@item.AadharNo</td>
+                                    <td>@item.ReuestedLoanAmount</td>
+                                    <td>@item.ReuestedLoanTenure</td>
+                                    <td>@item.ShortStage_Name</td>
+                                    <td>@item.StatusDesc</td>
+                                    <td>
+                                        @if (item.StatusDesc.ToString().ToUpper() != "REJECT")
+                                        {
+
+                                            if (item.ShortStage_Name != null)
+                                            {
+                                                if (item.ShortStage_Name.ToString().ToUpper() == "PRIMYTEL" || item.ShortStage_Name.ToString().ToUpper() == "LEADGEN")
+                                                {
+                                                    <a href="@Url.Action("LeadCalling", "LeadCalling", new { LeadId = item.LeadId, ComeFrom = "LeadGen" })"
+                                                       data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Calling">Calling</a>
+
+                                                }
+                                                if (item.ShortStage_Name.ToString().ToUpper() == "DOCCOL")
+                                                {
+                                                    <a href="@Url.Action("LeadDocument", "LeadDocument", new { LeadId = item.LeadId, ComeFrom = "LeadGen" })"
+                                                       data-bs-toggle="tooltip" data-bs-placement="top" title="">Document</a>
+
+
+                                                }
+                                                if (item.ShortStage_Name.ToString().ToUpper() == "CREDITAPPROVE")
+                                                {
+                                                    <a href="@Url.Action("LeadCredit", "LeadCredit", new { LeadId = item.LeadId, ComeFrom = "LeadGen" })"
+                                                       data-bs-toggle="tooltip" data-bs-placement="top" title="">Credit Approve</a>
+
+                                                }
+
+                                                if (item.ShortStage_Name.ToString().ToUpper() == "DOCSIGN")
+                                                {
+                                                    <a href="@Url.Action("LeadDocumentSigning", "LeadDocumentSigning", new { LeadId = item.LeadId, ComeFrom = "LeadGen" })"
+                                                       data-bs-toggle="tooltip" data-bs-placement="top" title="">Doc Sign</a>
+
+                                                }
+
+                                                if (item.ShortStage_Name.ToString().ToUpper() == "FINALAPPROVE")
+                                                {
+                                                    <a href="@Url.Action("LeadFinalApprove", "LeadFinalApprove", new { LeadId = item.LeadId, ComeFrom = "LeadGen" })"
+                                                       data-bs-toggle="tooltip" data-bs-placement="top" title="">Final Approve</a>
+
+
+                                                }
+                                                if (item.ShortStage_Name.ToString().ToUpper() == "DISBURSE")
+                                                {
+                                                    <a href="@Url.Action("LeadDisbursement", "LeadDisbursement", new { LeadId = item.LeadId, ComeFrom = "LeadGen" })"
+                                                       data-bs-toggle="tooltip" data-bs-placement="top" title="">Disbursement</a>
+
+                                                }
+
+                                            }
+                                            else
+                                            {
+                                                <a href="@Url.Action("LeadCalling", "LeadCalling", new { LeadId = item.LeadId, ComeFrom = "LeadGen" })"
+                                                   data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Calling">Action</a>
+
+                                            }
+                                        }
+                                        </td>
+
+                                    </tr>
+                                }
                             }
-                        </div>
-                    </div>
-                    <!-- /.card-body -->
 
 
-                </div>
-                <!-- /.card -->
+                    </tbody>
+                    <tfoot>
+                        <tr>
+
+                            <th>Lead No</th>
+                            <th>Main Product</th>
+                            <th>Product</th>
+                            <th>Customer Name</th>
+                            <th>Mobile No</th>
+                            <th>Pan No</th>
+                            <th>Aadhar No</th>
+                            <th>Requested Loan Amount</th>
+                            <th>Requested Loan Tenure</th>
+                            <th>Stage</th>
+                            <th>Status</th>
+                            <th>ac</th>
+                        </tr>
+                    </tfoot>
+                </table>
+
             </div>
-
-
+            <!-- /.card-body -->
         </div>
-        <!-- /.col -->
+
+        <div class="card-footer">
+            @using (Html.BeginForm("LeadView", "Lead", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+
+                @Html.ActionLink("Export to Excel", "ExportToExcel", new { @class = "btn btn-primary" })
+            }
+        </div> <!-- /.col -->
     </div>
+
     <!-- /.row -->
 
     <div class="modal fade in" id="myModal" tabindex="1" role="dialog" aria-hidden="false" data-keyboard="false" data-backdrop="static"></div>

@@ -9,8 +9,25 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <script src="~/Scripts/sweetalert.min.js"></script>
     <!-- Font Awesome -->
-    @Styles.Render("~/bundles/LayoutCss")
-    @Scripts.Render("~/bundles/js")
+    @*@Styles.Render("~/bundles/LayoutCss"*@)
+    <link rel="stylesheet" href="~/dist/css/sweetalert2.css" />
+
+    <link rel="stylesheet" href="~/dist/css/sweetalert2.css" />
+
+    <link rel="stylesheet" href="~/plugins/fontawesome-free/css/all.min.css" />
+    <link rel="stylesheet" href="~/dist/css/jquery-ui.css" />
+    <link rel="stylesheet" href="~/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css" />
+
+    <link rel="stylesheet" href="~/plugins/datatables-responsive/css/responsive.bootstrap4.min.css" />
+
+    <link rel="stylesheet" href="~/plugins/datatables-buttons/css/buttons.bootstrap4.min.css" />
+    <link rel="stylesheet" href="~/plugins/select2/css/select2.min.css">
+
+    <link rel="stylesheet" href="~/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+
+    <link rel="stylesheet" href="~/dist/css/adminlte.min.css" />
+    <script src="~/Scripts/sweetalert2.js"></script>
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
@@ -82,7 +99,7 @@
                         <a href="#" class="dropdown-item">
                             <!-- Message Start -->
                             <div class="media">
-                                <img src="dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                                <img src="#" alt="User Avatar" class="img-size-50 img-circle mr-3">
                                 <div class="media-body">
                                     <h3 class="dropdown-item-title">
                                         John Pierce
@@ -199,15 +216,15 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-    with font-awesome or any other icon font library -->
+                        with font-awesome or any other icon font library -->
                         <li class="nav-item menu-open">
                             @*<a href="#" class="nav-link active">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p>
-                    Dashboard
-                    <i class="right fas fa-angle-left"></i>
-                </p>
-            </a>*@
+                                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                                    <p>
+                                        Dashboard
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>*@
 
                         <li class="nav-item">
                             <a href='@Url.Action("Logout", "Login")' class="nav-link active">
@@ -223,88 +240,88 @@
                                 </a>
                             </li>
                             @*<li class="nav-item">
-                <a href="./index2.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Dashboard v2</p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="./index3.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Dashboard v3</p>
-                </a>
-            </li>*@
+                                    <a href="./index2.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Dashboard v2</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="./index3.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Dashboard v3</p>
+                                    </a>
+                                </li>*@
                         </ul>
 
                         @*<li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
-                <i class="nav-icon fas fa-th"></i>
-                <p>
-                    Widgets
-                    <span class="right badge badge-danger">New</span>
-                </p>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-copy"></i>
-                <p>
-                    Layout Options
-                    <i class="fas fa-angle-left right"></i>
-                    <span class="badge badge-info right">6</span>
-                </p>
-            </a>
-            <ul class="nav nav-treeview">
-                <li class="nav-item">
-                    <a href="pages/layout/top-nav.html" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Top Navigation</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Top Navigation + Sidebar</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="pages/layout/boxed.html" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Boxed</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="pages/layout/fixed-sidebar.html" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Fixed Sidebar</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="pages/layout/fixed-sidebar-custom.html" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Fixed Sidebar <small>+ Custom Area</small></p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="pages/layout/fixed-topnav.html" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Fixed Navbar</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="pages/layout/fixed-footer.html" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Fixed Footer</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="pages/layout/collapsed-sidebar.html" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Collapsed Sidebar</p>
-                    </a>
-                </li>
-            </ul>
-        </li>*@
+                                <a href="pages/widgets.html" class="nav-link">
+                                    <i class="nav-icon fas fa-th"></i>
+                                    <p>
+                                        Widgets
+                                        <span class="right badge badge-danger">New</span>
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-copy"></i>
+                                    <p>
+                                        Layout Options
+                                        <i class="fas fa-angle-left right"></i>
+                                        <span class="badge badge-info right">6</span>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="pages/layout/top-nav.html" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Top Navigation</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Top Navigation + Sidebar</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="pages/layout/boxed.html" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Boxed</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="pages/layout/fixed-sidebar.html" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Fixed Sidebar</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="pages/layout/fixed-sidebar-custom.html" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Fixed Sidebar <small>+ Custom Area</small></p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="pages/layout/fixed-topnav.html" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Fixed Navbar</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="pages/layout/fixed-footer.html" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Fixed Footer</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="pages/layout/collapsed-sidebar.html" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Collapsed Sidebar</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>*@
                         @*@Html.Partial("_MenuBarPartial");*@
                         @if (Session["UserType"].ToString() == "E")
                         {
@@ -697,7 +714,7 @@
                                     <a href="#" class="nav-link">
                                         <i class="fas fa-cog left"></i>
                                         <p>
-                                           &nbsp; Settings
+                                            &nbsp; Settings
                                             <i class="fas fa-angle-left right"></i>
                                         </p>
                                     </a>
@@ -739,31 +756,31 @@
 
 
                         @*<li class="nav-item">
-        <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-tree"></i>
-            <p>
-               Product
-                <i class="fas fa-angle-left right"></i>
-            </p>
-        </a>
-        <ul class="nav nav-treeview">
-            <li class="nav-item">
-                <a href='@Url.Action("AddProduct", "Product")' class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Product Add</p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href='@Url.Action("ProductView", "Product")' class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>View Product</p>
-                </a>
-            </li>
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-tree"></i>
+                                <p>
+                                   Product
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href='@Url.Action("AddProduct", "Product")' class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Product Add</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href='@Url.Action("ProductView", "Product")' class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>View Product</p>
+                                    </a>
+                                </li>
 
-                            </ul>
-                        </li>*@
+                                                </ul>
+                                            </li>*@
 
-</nav>
+                </nav>
                 <!-- /.sidebar-menu -->
             </div>
             <!-- /.sidebar -->
@@ -776,7 +793,7 @@
 
         </div>
         <footer class="main-footer">
-            <strong>Copyright &copy; 2022-2022 <a href="http://tdhitsolutions.com/">TDH IT Solutions</a></strong>
+            <strong>Copyright &copy; 2022-2025 <a href="http://tdhitsolutions.com/">TDH IT Solutions</a></strong>
             All rights reserved.
             <div class="float-right d-none d-sm-inline-block">
                 <b>Version</b> 3.1.0
@@ -788,9 +805,53 @@
             <!-- Control sidebar content goes here -->
         </aside>
     </div>
-    <!-- jQuery -->
-    <!-- Page specific script -->
+    <script src="~/plugins/jquery/jquery.min.js"></script>
+
+    <script src="~/plugins/datatables/jquery.dataTables.min.js"></script>
+
+    <script src="~/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/plugins/jquery/jquery.validate.min.js"></script>
+    <script src="~/plugins/jquery/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/angular.min.js"></script>
+    Bootstrap 4
+    <script src="~/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="~/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="~/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+
+    <script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script src="~/plugins/select2/js/select2.full.min.js"></script>
+
+    <script src="~/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+
+    <script src="~/plugins/moment/moment.min.js"></script>
+
+    <script src="~/plugins/inputmask/jquery.inputmask.min.js"></script>
+
+    <script src="~/plugins/dropzone/min/dropzone.min.js"></script>
+    jsGrid
+    <script src="~/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="~/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="~/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+
+    <script src="~/plugins/select2/js/select2.full.min.js"></script>
+    AdminLTE App
+    <script src="~/dist/js/adminlte.min.js"></script>
+    AdminLTE for demo purposes
+    <script src="~/dist/js/demo.js"></script>
+    @*<script src="~/Scripts/sweetalert2.js"></script>*@
+
+
+
+    @*@Scripts.Render("~/bundles/js")*@
     <script>
+        $('.select2').select2()
+
+        //Initialize Select2 Elements
+        $('.select2bs4').select2({
+            theme: 'bootstrap4'
+        })
         $(function () {
             $("#example1").DataTable({
                 "responsive": true, "lengthChange": false, "autoWidth": false,
@@ -823,7 +884,11 @@
             });
         });
     </script>
-<script src="~/plugins/jquery/jquery-ui.js"></script>
+    <script src="~/plugins/jquery/jquery-ui.js"></script>
+    <!-- jQuery -->
+    <!-- Page specific script -->
+
+
     <script>
 
         $(document).ready(function () {
