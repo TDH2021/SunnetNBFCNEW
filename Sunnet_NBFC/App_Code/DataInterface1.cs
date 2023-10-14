@@ -1208,6 +1208,7 @@ public class DataInterface1 : IDisposable
         return ds;
     }
 
+
     public static DataSet dbGetEMI(clsEmi cls)
     {
         DataSet ds = new DataSet();
@@ -1221,7 +1222,7 @@ public class DataInterface1 : IDisposable
                     cmd.Parameters.AddWithValue("@LoanAmount", cls.PRINCIPAL);
                     cmd.Parameters.AddWithValue("@InterestRate", cls.INTEREST);
                     cmd.Parameters.AddWithValue("@LoanPeriod", cls.PERIOD);
-                    cmd.Parameters.AddWithValue("@StartPaymentDate", cls.StartPaymentDate ?? (object)DBNull.Value);
+                    cmd.Parameters.AddWithValue("@StartDate", cls.StartPaymentDate ?? (object)DBNull.Value);
                     ds = db.FillDsProc(cmd, "USP_GetEMI");
                 }
             }
@@ -1236,7 +1237,6 @@ public class DataInterface1 : IDisposable
         }
         return ds;
     }
-
     public static DataTable dbGetInstallment(int LeadId)
     {
         DataTable ds = new DataTable();

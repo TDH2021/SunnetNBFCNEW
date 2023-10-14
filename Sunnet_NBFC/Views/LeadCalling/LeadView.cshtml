@@ -3,9 +3,7 @@
     ViewBag.Title = "LeadView";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>*@
+
 <style>
     .modal-dialog {
         width: 1120px !important;
@@ -43,13 +41,13 @@
                         <div class="col-md-3">
                             <label>Main Product</label>
                             @Html.DropDownListFor(model => model.MainProductId, ViewBag.MainProductList as SelectList, "- Select Main Product- ",
-                                       new { @class = "form-control", @id = "MainProductId" })
+                                       new { @class = "form-control select2", @id = "MainProductId" })
                         </div>
                         <div class="col-md-3">
                             <label>Product</label>
                             @Html.DropDownListFor(model => model.ProductId,
                                            new SelectList(Enumerable.Empty<SelectListItem>(), "ProdId", "ProductName"),
-                                           "- Select Product -", new { @class = "form-control", @id = "ProductId" })
+                                           "- Select Product -", new { @class = "form-control select2", @id = "ProductId" })
                         </div>
                         <div class="col-md-3">
                             <label>Lead Number</label>
@@ -91,93 +89,92 @@
 
         </div>
         <div class="row">
-                <div class="col-12">
+            <div class="col-12">
 
-                    <!-- /.card -->
-                    <div class="card">
-                        <!-- /.card-header -->
-                        <div class="card-body">
-                            <table id="example1" class="table table-bordered table-striped">
-                                <thead>
-                                    <tr>
+                <!-- /.card -->
+                <div class="card">
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
 
-                                        <th>Lead No</th>
-                                        <th>Customer Name</th>
-                                        <th>Mobile No</th>
-                                        <th>Pan No</th>
-                                        <th>Aadhar No</th>
-                                        <th>Reuested Loan Amount</th>
-                                        <th>Reuested Loan Tenure</th>
-                                        <th>Status</th>
-                                        <th>-</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
+                                    <th>Lead No</th>
+                                    <th>Customer Name</th>
+                                    <th>Mobile No</th>
+                                    <th>Pan No</th>
+                                    <th>Aadhar No</th>
+                                    <th>Reuested Loan Amount</th>
+                                    <th>Reuested Loan Tenure(Months)</th>
+                                    <th>Status</th>
+                                    <th>-</th>
+                                </tr>
+                            </thead>
+                            <tbody>
 
-                                    @if (ViewBag.lst != null)
+                                @if (ViewBag.lst != null)
+                                {
+
+                                    var m = ViewBag.lst;
+                                    foreach (var item in m)
                                     {
-
-                                        var m = ViewBag.lst;
-                                        foreach (var item in m)
-                                        {
-                                            <tr>
-                                                <td>
-
-                                                    <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="return CallPickData('@item.LeadNo','@item.LeadId');"> <b> @item.LeadNo  </b> </button>
-
-                                                </td>
-                                                <td>@item.CustomerName</td>
-                                                <td>@item.MobileNo1</td>
-                                                <td>@item.PanNo</td>
-                                                <td>@item.AadharNo</td>
-                                                <td>@item.ReuestedLoanAmount</td>
-                                                <td>@item.ReuestedLoanTenure</td>
-                                                <td>@item.StatusDesc</td>
-                                                <td>
-                                                    <div class="d-flex order-actions">
-                                                        <a href="@Url.Action("LeadCalling","LeadCalling",new{LeadId=item.LeadId})"
-                                                           data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Calling"><u>Calling</u></a>
-                                                    </div>
-
-                                                </td>
-
-
-                                            </tr>
-                                        }
-                                    }
-
-
-                                </tbody>
-                                @*<tfoot>
                                         <tr>
+                                            <td>
 
-                                            <th>Lead No</th>
-                                            <th>Customer Name</th>
-                                            <th>Mobile No</th>
-                                            <th>Pan No</th>
-                                            <th>Aadhar No</th>
-                                            <th>Reuested Loan Amount</th>
-                                            <th>Reuested Loan Tenure</th>
-                                            <th>Status</th>
-                                            <th>-</th>
+                                                <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="return CallPickData('@item.LeadNo','@item.LeadId');"> <b> @item.LeadNo  </b> </button>
+
+                                            </td>
+                                            <td>@item.CustomerName</td>
+                                            <td>@item.MobileNo1</td>
+                                            <td>@item.PanNo</td>
+                                            <td>@item.AadharNo</td>
+                                            <td>@item.ReuestedLoanAmount</td>
+                                            <td>@item.ReuestedLoanTenure</td>
+                                            <td>@item.StatusDesc</td>
+                                            <td>
+                                                <div class="d-flex order-actions">
+                                                    <a href="@Url.Action("LeadCalling","LeadCalling",new{LeadId=item.LeadId})"
+                                                       data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Calling"><u>Calling</u></a>
+                                                </div>
+
+                                            </td>
+
+
                                         </tr>
-                                    </tfoot>*@
-                            </table>
-                            <div class="card-footer">
-                                @Html.ActionLink("Export to Excel", "ExportToExcel", new { @class = "btn btn-primary" })
-                            </div>
+                                    }
+                                }
+
+
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Lead No</th>
+                                    <th>Customer Name</th>
+                                    <th>Mobile No</th>
+                                    <th>Pan No</th>
+                                    <th>Aadhar No</th>
+                                    <th>Reuested Loan Amount</th>
+                                    <th>Reuested Loan Tenure(Months)</th>
+                                    <th>Status</th>
+                                    <th>-</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        <div class="card-footer">
+                            @Html.ActionLink("Export to Excel", "ExportToExcel", new { @class = "btn btn-primary" })
                         </div>
-                        <!-- /.card-body -->
-
-
                     </div>
-                    <!-- /.card -->
+                    <!-- /.card-body -->
+
+
                 </div>
-                <!-- /.col -->
+                <!-- /.card -->
             </div>
+            <!-- /.col -->
         </div>
-        <!-- /.row -->
-    
+    </div>
+    <!-- /.row -->
+
 
     <div class="modal fade in" id="myModal" tabindex="1" role="dialog" aria-hidden="false" data-keyboard="false" data-backdrop="static"></div>
 

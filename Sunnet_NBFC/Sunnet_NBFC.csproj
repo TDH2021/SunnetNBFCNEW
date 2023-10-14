@@ -205,6 +205,7 @@
   <ItemGroup>
     <Compile Include="App_Code\SessionAttribute.cs" />
     <Compile Include="Controllers\LeadCreditController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Models\ClsCommon.cs" />
     <Compile Include="App_Code\ClsReturnData.cs" />
     <Compile Include="App_Code\ClsSession.cs" />
@@ -2919,6 +2920,7 @@
     <Folder Include="PDF\" />
     <Folder Include="Styles\" />
     <Folder Include="Views\SideMenuBar\" />
+    <Folder Include="Views\Test\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

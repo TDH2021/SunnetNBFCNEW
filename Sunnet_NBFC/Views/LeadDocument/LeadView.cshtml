@@ -41,13 +41,13 @@
 						<div class="col-md-3">
 							<label>Main Product</label>
 							@Html.DropDownListFor(model => model.MainProductId, ViewBag.MainProductList as SelectList, "- Select Main Product- ",
-									   new { @class = "form-control", @id = "MainProductId" })
+									   new { @class = "form-control select2", @id = "MainProductId" })
 						</div>
 						<div class="col-md-3">
 							<label>Product</label>
 							@Html.DropDownListFor(model => model.ProductId,
 										   new SelectList(Enumerable.Empty<SelectListItem>(), "ProdId", "ProductName"),
-										   "- Select Product -", new { @class = "form-control", @id = "ProductId" })
+										   "- Select Product -", new { @class = "form-control select2", @id = "ProductId" })
 						</div>
 						<div class="col-md-3">
 							<label>Lead Number</label>

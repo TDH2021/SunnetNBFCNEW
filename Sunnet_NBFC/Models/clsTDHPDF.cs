@@ -909,4 +909,80 @@ namespace Sunnet_NBFC.Models
 
         }
     }
+
+    public class clsTestLetter : IDisposable
+    {
+        public static int TABLEWIDTH = 100;
+        public void GenSanctionLetter(string FilePath, string LetterName)
+        {
+            Document document = new Document();
+            document = clsCommonPDF.Letter(FilePath, LetterName);
+            document.Open();
+            //document.Close();
+            PdfPTable table = new PdfPTable(2);
+
+            float[] headers = { 60, 40 };
+            table.SetWidths(headers);
+            table.WidthPercentage = TABLEWIDTH;
+
+           
+            
+            string text = "Dear Customer,";
+            text = text + "\nWe are glad to inform you that at your request, the following facilities have been sanctioned/renewed as per the details furnished below and, on the terms, & conditions mentioned herein as well those mentioned in the loan documents\n\n";
+
+            Paragraph p3 = new Paragraph(text);
+            p3.Font.Size = 10;
+            p3.Font.Color = iTextSharp.text.BaseColor.BLACK;
+            p3.Alignment = Element.ALIGN_LEFT;
+            document.Add(p3);
+
+            text = "Additional Condition to Comply prior to disbursal: -\n";
+            text = text + "\nKindly use the Prospect No. as mentioned above in all your further communication with us. Please put your signature as token of your acceptance of the above stated terms & condition and retain a copy with yourself.";
+            text = text + "\nIn case of any query or assistance please contact your Branch manager or alternatively you can Email us at info@suneetfinman.comor our corporate office address is 6th Milestone, Yuvraj complex, Delhi UP Border, Chikemberpur, Ghaziabad 201006 or contact us at our landline number 0120-4165439";
+            text = text + "\nThe loan sanction letter is valid for a period of 30 from the date of issuance. The borrower must accept the offer within this period by providing all required documentation and signing the loan agreement.If the borrower fails to accept the offer within the validity period, the loan sanction letter will be deemed null and void, and the borrower will be required to submit a new loan application for reconsideration. This validity period clause is subject to the laws and regulations governing loan agreements in the jurisdiction where the loan is being disbursed";
+            text = text + "\nThe loan sanction letter is valid for a period of 30 from the date of issuance. The borrower must accept the offer within this period by providing all required documentation and signing the loan agreement.If the borrower fails to accept the offer within the validity period, the loan sanction letter will be deemed null and void, and the borrower will be required to submit a new loan application for reconsideration. This validity period clause is subject to the laws and regulations governing loan agreements in the jurisdiction where the loan is being disbursed";
+            text = text + "\nIt is the borrower's responsibility to keep the lender informed of any changes in their financial or personal circumstances that may affect their ability to repay the loan.";
+            text = text + "\nAll the terms & conditions mentioned in the sanction letter has conveyed & accepted by the customer.If the borrower accepts the loan sanction offer within the validity period, the loan agreement will be executed, and the loan amount will be disbursed in accordance with the terms and conditions of the loan agreement.";
+            text = text + "\nWe value your relationship with us and assure you of our best services always.";
+            text = text + "\n\n\n Best Regards\n\n\n For SuneetFinman Private Limited";
+            Paragraph p5 = new Paragraph(text);
+            p5.Font.Size = 10;
+            p5.Font.Color = iTextSharp.text.BaseColor.BLACK;
+            p5.Alignment = Element.ALIGN_LEFT;
+            document.Add(p5);
+            document.Close();
+            //// Close the document  
+
+            //// Close the writer instance  
+            //writer.Close();
+            //// Always close open filehandles explicity  
+            //fs.Close();           
+        }
+        bool disposed = false;
+
+        // Public implementation of Dispose pattern callable by consumers.
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        // Protected implementation of Dispose pattern.
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposed)
+                return;
+
+            if (disposing)
+            {
+                // Free any other managed objects here.
+                //
+            }
+
+            // Free any unmanaged objects here.
+            //
+            disposed = true;
+
+        }
+    }
 }

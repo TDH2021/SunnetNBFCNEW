@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="~/dist/css/adminlte.min.css" />
     <script src="~/Scripts/sweetalert2.js"></script>
 
+    <script src="~/Scripts/Scripts/jquery-3.4.1.js"></script>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
@@ -323,6 +324,10 @@
                                 </ul>
                             </li>*@
                         @*@Html.Partial("_MenuBarPartial");*@
+                        @if (Session["UserType"] == null)
+                        {
+                            @Url.Action("Logout", "Login")
+                        }
                         @if (Session["UserType"].ToString() == "E")
                         {
                             { Html.RenderAction("SetSideBarMenuesRights", "SideMenuBar"); }
