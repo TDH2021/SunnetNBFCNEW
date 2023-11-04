@@ -33,6 +33,7 @@ namespace Sunnet_NBFC.Controllers
                     List<clsLeadGenerationMaster> lst = new List<clsLeadGenerationMaster>();
                     try
                     {
+                        ViewBag.MainProductList = ClsCommon.ToSelectList(DataInterface1.GetMainProductddl("View"), "MainProdId", "ProductName");
                         using (clsLeadGenerationMaster cls = new clsLeadGenerationMaster())
                         {
                             cls.ReqType = "GetLeadAllData";

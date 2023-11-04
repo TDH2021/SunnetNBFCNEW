@@ -1,25 +1,17 @@
-﻿using System;
+﻿using Sunnet_NBFC.App_Code;
+using Sunnet_NBFC.Models;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.IO;
 using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Sunnet_NBFC.Models;
-using System.Data;
-using System.Web.UI.WebControls;
-using System.Web.UI;
-using Sunnet_NBFC.App_Code;
-using System.Runtime.InteropServices;
-using Newtonsoft.Json;
-using System.Xml.Linq;
-using Newtonsoft.Json.Linq;
-using Microsoft.Ajax.Utilities;
-using static System.Net.WebRequestMethods;
 using System.Net;
 using System.Net.Mail;
+using System.Web.Mvc;
 using System.Web.Script.Serialization;
-using System.Web.ModelBinding;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace Sunnet_NBFC.Controllers
 {
@@ -298,13 +290,11 @@ namespace Sunnet_NBFC.Controllers
                 TempData.Clear();
                 DataTable dt = new DataTable();
 
-
                 if (!ModelState.IsValid)
                 {
                     ViewBag.Error = "Invalid Model";
                     return View(M);
                 }
-
 
                 if (M.FinalApproveId <= 0)
                 {
@@ -347,8 +337,6 @@ namespace Sunnet_NBFC.Controllers
                         }
                     }
                 }
-
-
             }
             catch (Exception e1)
             {
@@ -364,11 +352,13 @@ namespace Sunnet_NBFC.Controllers
                     DataInterface.PostError(clse);
                 }
             }
+
             if (IsSave)
             {
                 DownloadSanctionLetter(M.LeadId, M.LeadNo);
                 TempData["Success"] = !string.IsNullOrEmpty(clsRtn.Message) ? clsRtn.Message : "Saved/Updated";
-                return RedirectToAction("LeadView", "LeadFinalApprove");
+                //return RedirectToAction("LeadView", "LeadFinalApprove");
+                return View();
             }
             else
             {
@@ -433,7 +423,7 @@ namespace Sunnet_NBFC.Controllers
             return View(lst);
         }
 
-        public ActionResult DownloadSanctionLetter(int? leadid, string leadno)
+        public string DownloadSanctionLetter(int? leadid, string leadno)
         {
             string FileName = "";
             if (leadid > 0)
@@ -459,61 +449,71 @@ namespace Sunnet_NBFC.Controllers
                     }
                 }
 
-                string path = Filepath;
-                byte[] fileBytes = System.IO.File.ReadAllBytes(path);
-                return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, FileName);
 
-                #region send email
-                try
+
+                //string path = Filepath;
+                //byte[] fileBytes = GetFile(path);
+                //return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, FileName);
+                //return File(Filepath, "application/force-download", Path.GetFileName(Filepath));
+
+                //#region send email
+                //try
+                //{
+                //    using (clsSendMail cls = new clsSendMail())
+                //    {
+                //        using (clsMail clsMail = new clsMail())
+                //        {
+                //            clsMail.ToEmail = "chetan.saini99@gmail.com";
+                //            clsMail.Subject = "Sanction Letter -" + leadid.ToString();
+                //            clsMail.AttachFile = Filepath;
+                //            clsMail.BodyHtml = cls.SanctionLetter("Test", "VchLoan", "10000", Server.MapPath("~/EmailTemplates/SenctionLetter.html"));
+                //            int a = cls.SendMail(clsMail);
+                //        }
+                //    }
+                //}
+                //catch (Exception ex)
+                //{ }
+                //#endregion
+
+                //#region send sms
+                //try
+                //{
+                //    using (clsTdhSms clsfn = new clsTdhSms())
+                //    {
+                //        using (clsSMSMaster clssms = new clsSMSMaster())
+                //        {
+                //            clssms.SMSType = "FinalApprove";
+                //            clssms.LeadId = Convert.ToInt32("0" + leadid.ToString());
+                //            DataSet ds1 = DataInterface1.dbSMSMaster(clssms);
+                //            string URL = ds1.Tables[0].Rows[0]["url"].ToString();
+                //            string msg = ds1.Tables[0].Rows[0]["sms"].ToString();
+                //            msg = msg.Replace("{#name#}", "Chetan").Replace("{#loanamt#}", "100000").Replace("{#leadno#}", leadno);
+                //            URL = URL.Replace("@MobileNo", ds1.Tables[1].Rows[0]["mobileno"].ToString()).Replace("@Message", msg).Replace("@TemplateID", ds1.Tables[0].Rows[0]["TemplateId"].ToString());
+                //            string a = clsfn.SendSms(URL);
+                //        }
+                //    }
+                //}
+                //catch (Exception ex)
+                //{ }
+                //#endregion
+
+                if (FileName != "")
                 {
-                    using (clsSendMail cls = new clsSendMail())
-                    {
-                        using (clsMail clsMail = new clsMail())
-                        {
-                            clsMail.ToEmail = "chetan.saini99@gmail.com";
-                            clsMail.Subject = "Sanction Letter -" + leadid.ToString();
-                            clsMail.AttachFile = Filepath;
-                            clsMail.BodyHtml = cls.SanctionLetter("Test", "VchLoan", "10000", Server.MapPath("~/EmailTemplates/SenctionLetter.html"));
-                            int a = cls.SendMail(clsMail);
-                        }
-                    }
+                    Response.AppendHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName(Filepath));
+                    Response.WriteFile(Filepath);
+                    Response.End();
                 }
-                catch (Exception ex)
-                { }
-                #endregion
 
-                #region send sms
-                try
-                {
-                    using (clsTdhSms clsfn = new clsTdhSms())
-                    {
-                        using (clsSMSMaster clssms = new clsSMSMaster())
-                        {
-                            clssms.SMSType = "FinalApprove";
-                            clssms.LeadId = Convert.ToInt32("0" + leadid.ToString());
-                            DataSet ds1 = DataInterface1.dbSMSMaster(clssms);
-                            string URL = ds1.Tables[0].Rows[0]["url"].ToString();
-                            string msg = ds1.Tables[0].Rows[0]["sms"].ToString();
-                            msg = msg.Replace("{#name#}", "Chetan").Replace("{#loanamt#}", "100000").Replace("{#leadno#}", leadno);
-                            URL = URL.Replace("@MobileNo", ds1.Tables[1].Rows[0]["mobileno"].ToString()).Replace("@Message", msg).Replace("@TemplateID", ds1.Tables[0].Rows[0]["TemplateId"].ToString());
-                            string a = clsfn.SendSms(URL);
-                        }
-                    }
-                }
-                catch (Exception ex)
-                { }
-                #endregion
-
-
-
-
+                return "1";
             }
             else
             {
-                return View();
+                return "0";
             }
 
         }
+
+
         public FileResult DownloadFile(string fileName)
         {
             //Build the File Path.
@@ -525,6 +525,19 @@ namespace Sunnet_NBFC.Controllers
             //Send the File to Download.
             //return File(bytes, "application/octet-stream", fileName);
         }
+
+
+        byte[] GetFile(string s)
+        {
+            System.IO.FileStream fs = System.IO.File.OpenRead(s);
+            byte[] data = new byte[fs.Length];
+            int br = fs.Read(data, 0, data.Length);
+            if (br != fs.Length)
+                throw new System.IO.IOException(s);
+            return data;
+        }
+
+
 
         //[HttpPost]
         //public ActionResult SendSMS()
@@ -580,6 +593,7 @@ namespace Sunnet_NBFC.Controllers
 
             }
         }
+
 
     }
 }
