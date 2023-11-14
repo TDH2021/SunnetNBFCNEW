@@ -465,6 +465,95 @@ namespace Sunnet_NBFC.Controllers
         }
 
 
+        public string DownloadSanctionLetter(int? leadid, string leadno)
+        {
+            string FileName = "";
+            if (leadid > 0)
+            {
+                FileName = "SancLetter_" + leadid.ToString() + "_" + DateTime.Now.ToString("ddMMyyyy") + ".pdf";
+                string Filepath = Server.MapPath("~/" + ConfigurationManager.AppSettings["GenLetterPath"].ToString() + "/" + FileName);
+                using (clsLeadGenerationMaster cls = new clsLeadGenerationMaster())
+                {
+                    cls.ReqType = "GenSanction";
+                    cls.LeadId = Convert.ToInt32("0" + leadid.ToString());
+                    //cls.LeadNo = "Lead032023000001";
+                    using (DataSet ds = DataInterface.DBLetter(cls))
+                    {
+                        if (ds.Tables.Count == 2)
+                        {
+                            ds.Tables[0].TableName = "Company";
+                            ds.Tables[1].TableName = "Lead";
+                            using (clsSanctionLetter cls1 = new clsSanctionLetter())
+                            {
+                                cls1.GenSanctionLetter(Filepath, "SanctionLetter", ds);
+                            }
+                        }
+                    }
+                }
+
+
+
+                //string path = Filepath;
+                //byte[] fileBytes = GetFile(path);
+                //return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, FileName);
+                //return File(Filepath, "application/force-download", Path.GetFileName(Filepath));
+
+                //#region send email
+                //try
+                //{
+                //    using (clsSendMail cls = new clsSendMail())
+                //    {
+                //        using (clsMail clsMail = new clsMail())
+                //        {
+                //            clsMail.ToEmail = "chetan.saini99@gmail.com";
+                //            clsMail.Subject = "Sanction Letter -" + leadid.ToString();
+                //            clsMail.AttachFile = Filepath;
+                //            clsMail.BodyHtml = cls.SanctionLetter("Test", "VchLoan", "10000", Server.MapPath("~/EmailTemplates/SenctionLetter.html"));
+                //            int a = cls.SendMail(clsMail);
+                //        }
+                //    }
+                //}
+                //catch (Exception ex)
+                //{ }
+                //#endregion
+
+                //#region send sms
+                //try
+                //{
+                //    using (clsTdhSms clsfn = new clsTdhSms())
+                //    {
+                //        using (clsSMSMaster clssms = new clsSMSMaster())
+                //        {
+                //            clssms.SMSType = "FinalApprove";
+                //            clssms.LeadId = Convert.ToInt32("0" + leadid.ToString());
+                //            DataSet ds1 = DataInterface1.dbSMSMaster(clssms);
+                //            string URL = ds1.Tables[0].Rows[0]["url"].ToString();
+                //            string msg = ds1.Tables[0].Rows[0]["sms"].ToString();
+                //            msg = msg.Replace("{#name#}", "Chetan").Replace("{#loanamt#}", "100000").Replace("{#leadno#}", leadno);
+                //            URL = URL.Replace("@MobileNo", ds1.Tables[1].Rows[0]["mobileno"].ToString()).Replace("@Message", msg).Replace("@TemplateID", ds1.Tables[0].Rows[0]["TemplateId"].ToString());
+                //            string a = clsfn.SendSms(URL);
+                //        }
+                //    }
+                //}
+                //catch (Exception ex)
+                //{ }
+                //#endregion
+
+                if (FileName != "")
+                {
+                    Response.AppendHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName(Filepath));
+                    Response.WriteFile(Filepath);
+                    Response.End();
+                }
+
+                return "1";
+            }
+            else
+            {
+                return "0";
+            }
+
+        }
 
         public ActionResult DownloadSanctionLetter(int? leadid)
         {
@@ -494,7 +583,12 @@ namespace Sunnet_NBFC.Controllers
                 string path = Filepath;
                 byte[] fileBytes = System.IO.File.ReadAllBytes(path);
                 return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, FileName);
-
+                //if (FileName != "")
+                //{
+                //    Response.AppendHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName(Filepath));
+                //    Response.WriteFile(Filepath);
+                //    Response.End();
+                //}
 
             }
             else

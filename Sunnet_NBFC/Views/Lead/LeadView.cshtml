@@ -109,7 +109,7 @@
                             <th>Requested Loan Tenure(Months)</th>
                             <th>Stage</th>
                             <th>Status</th>
-                            <th></th>
+                            @*<th></th>*@
                         </tr>
                     </thead>
                     <tbody>
@@ -136,7 +136,7 @@
                                     <td>@item.ReuestedLoanTenure</td>
                                     <td>@item.ShortStage_Name</td>
                                     <td>@item.StatusDesc</td>
-                                    <td>
+                                    @*<td>
                                         @if (item.StatusDesc.ToString().ToUpper() != "REJECT")
                                         {
 
@@ -191,7 +191,7 @@
 
                                             }
                                         }
-                                        </td>
+                                        </td>*@
 
                                     </tr>
                                 }
@@ -213,7 +213,7 @@
                             <th>Requested Loan Tenure(Months)</th>
                             <th>Stage</th>
                             <th>Status</th>
-                            <th></th>
+                            @*<th></th>*@
                         </tr>
                     </tfoot>
                 </table>
