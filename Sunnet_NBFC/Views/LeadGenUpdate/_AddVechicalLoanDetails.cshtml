@@ -1,0 +1,237 @@
+﻿@model Sunnet_NBFC.Models.clsLeadGenerationMaster
+
+
+<div class="form-group" style="margin-top:20px;">
+    <div class="col-md-12">
+        <h5> Vechical Loan Details</h5>
+    </div>
+    <hr>
+
+    <div class="row">
+
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">No of Dependent</label>
+            @Html.TextBoxFor(model => model.NoofDependent, new
+       {
+           @class = "form-control",
+           @placeholder = "No of Dependent",
+           @name = "MName",
+           @required = "true",
+           @onkeypress = "return isNumber(this.value);",
+           @maxlength = "2",
+           @id = "txtVchNoofDependent"
+
+       })
+        </div>
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">FORecomed Amt</label>
+            @Html.TextBoxFor(model => model.FORecomedAmt, new
+       {
+           @class = "form-control",
+           @placeholder = "FORecomed Amt",
+           @name = "FName",
+           @required = "true",
+           @onkeypress = "return isNumber(this.value);",
+           @maxlength = "10",
+           @id = "txtFORecomedAmt",
+           @autocomplete = "off"
+       })
+
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-3">
+            <label for="exampleInputEmail1">Vehicle No</label>
+            @Html.TextBoxFor(model => model.ViechleNo, new
+            {
+                @class = "form-control",
+                @placeholder = "Viechle No",
+                @name = "MName",
+                @required = "true",
+                @id = "ViechleNo"
+
+            })
+        </div>
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">Model</label>
+            @Html.TextBoxFor(model => model.ViechleModel, new
+            {
+                @class = "form-control",
+                @placeholder = "Viechle Model",
+                @name = "MName",
+                @required = "true",
+                @id = "ViechleModel"
+
+            })
+        </div>
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">Color</label>
+            @Html.TextBoxFor(model => model.ViechleColor, new
+            {
+                @class = "form-control",
+                @placeholder = "Viechle Color",
+                @name = "FName",
+                @required = "true",
+                @maxlength = "50",
+                @id = "ViechleColor",
+                @autocomplete = "off"
+            })
+
+
+        </div>
+
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">Viechle Reg Year</label>
+            @Html.TextBoxFor(model => model.ViechleRegYear, new
+       {
+           @class = "form-control",
+           @placeholder = "Viechle Reg Year",
+           @name = "FName",
+           @required = "true",
+           @onkeypress = "return isNumber(this.value);",
+           @maxlength = "5",
+           @id = "ViechleRegYear",
+           @autocomplete = "off"
+       })
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">Registration Year</label>
+            @Html.TextBoxFor(model => model.MFGYear, new
+       {
+           @class = "form-control",
+           @placeholder = "Registration Year",
+           @name = "MName",
+           @onkeypress = "return isNumber(this.value);",
+           @maxlength = "4",
+           @required = "true",
+           @id = "MFGYear"
+
+       })
+        </div>
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">Viechle Company</label>
+            @Html.TextBoxFor(model => model.ViechleCompany, new
+            {
+                @class = "form-control",
+                @placeholder = "Viechle Company",
+                @name = "MName",
+                @required = "true",
+                @id = "ViechleCompany"
+
+            })
+        </div>
+
+
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">Viechle Owner</label>
+            @Html.TextBoxFor(model => model.ViechleOwner, new
+            {
+                @class = "form-control",
+                @placeholder = "Viechle Owner",
+                @name = "MName",
+                @required = "true",
+                @id = "ViechleOwner"
+
+            })
+        </div>
+
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">Expected Market Value</label>
+            @Html.TextBoxFor(model => model.EstValueViechle, new
+       {
+           @class = "form-control",
+           @placeholder = "Est Value Viechle",
+           @name = "MName",
+           @onkeypress = "return isNumber(this.value);",
+           @maxlength = "10",
+           @required = "true",
+           @id = "EstValueViechle"
+
+       })
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">Fual Type</label>
+            <select class="form-control" id="ddlFualType">
+                <option>Petrol</option>
+                <option>Diesel</option>
+                <option>CNG Factory fitted</option>
+                <option>CNG Outside fitted</option>
+            </select>
+        </div>
+
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">Owner</label>
+            <select class="form-control" id="ddlOwner">
+                <option>0</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+            </select>
+        </div>
+
+        <div class="col-md-3">
+            <label for="exampleInputEmail1">Insurance Status</label>
+            <select class="form-control" id="ddlInsuranceStatus">
+                <option>New</option>
+                <option>Lapesd</option>
+                <option>Valid</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label for="exampleInputEmail1">Insurance Type</label>
+            <select class="form-control" id="ddlInsuranceType">
+                <option>New</option>
+                <option>Comprehensive</option>
+                <option>Third Party</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <label for="exampleInputEmail1">Validity Date</label>
+            <input type="text" class="form-control datestyle" id="txtValidityDate" />
+        </div>
+        <div class="col-md-3">
+            <label for="exampleInputEmail1">Ex ShowRoom Price</label>
+            <input type="text" class="form-control" id="txtExShowRoomPrice" onkeypress="return isNumber(this.value);" />
+        </div>
+        <div class="col-md-3">
+            <label for="exampleInputEmail1">On Road Price</label>
+            <input type="text" class="form-control" id="txtOnRoadPrice" onkeypress="return isNumber(this.value);" />
+        </div>
+        <div class="col-md-3">
+            <label for="exampleInputEmail1">Dealer</label>
+            @Html.DropDownListFor(model => model.DSAId, ViewBag.Dealer as SelectList, "- Select Dealer- ",
+                                   new { @class = "form-control", @id = "ddlDealer" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <label for="exampleInputEmail1">Insurer</label>
+            <input type="text" class="form-control" id="txtInsuar" />
+        </div>
+        <div class="col-md-3">
+            <label for="exampleInputEmail1">Policy No</label>
+            <input type="text" class="form-control" id="txtPolicyNo" />
+        </div>
+        <div class="col-md-3">
+            <label for="exampleInputEmail1">Registation Date</label>
+            <input type="text" class="form-control datestyle" id="txtRegDate" />
+        </div>
+    </div>
+
+</div>
+
+

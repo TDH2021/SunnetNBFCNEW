@@ -54,7 +54,7 @@
                                     <label class="required" for="exampleInputEmail1">Main Product</label>
 
                                     @Html.DropDownListFor(model => model.MainProductId, ViewBag.MainProductList as SelectList, "- Select Main Product- ",
-                                   new { @class = "form-control select2", @id = "MainProductId" })
+                                   new { @class = "form-control", @id = "MainProductId" })
 
 
                                 </div>
@@ -63,7 +63,7 @@
                                     <label class="required" for="exampleInputEmail1">Sub Product</label>
                                     @Html.DropDownListFor(model => model.ProductId,
                                        new SelectList(Enumerable.Empty<SelectListItem>(), "ProdId", "ProductName"),
-                                       "- Select Product -", new { @class = "form-control select2", @id = "ProductId" })
+                                       "- Select Product -", new { @class = "form-control", @id = "ProductId" })
 
                                     @Html.HiddenFor(model => model.Hdn_type, new { @class = "form-control", @id = "hdn_type" })
                                     @Html.Hidden((String)ViewBag.AAdharClientID, new { @class = "form-control", @id = "hdn_AAdharClientID" })

@@ -444,7 +444,7 @@ namespace Sunnet_NBFC.Models
         [DisplayName("Question")]
         public string Question { get; set; }
         public string QuestionAnsType { get; set; }
-        [Required(ErrorMessage = "Answer is required.")]
+        //[Required(ErrorMessage = "Answer is required.")]
 
         [DisplayName("Answer")]
         public string Answer { get; set; }

@@ -40,6 +40,8 @@
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
             <!-- Left navbar links -->
             <ul class="navbar-nav">
+
+               
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
@@ -50,7 +52,13 @@
 
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="fullscreen" href='@Url.Action("Logout", "Login")' role="button">
+                       <b> Logout</b>
+                    </a>
+                </li>
                 <!-- Navbar Search -->
+                
                 <li class="nav-item">
                     <a class="nav-link" data-widget="navbar-search" href="#" role="button">
                         <i class="fas fa-search"></i>
@@ -227,17 +235,17 @@
                                     </p>
                                 </a>*@
 
-                        <li class="nav-item">
+                        @*<li class="nav-item">
                             <a href='@Url.Action("Logout", "Login")' class="nav-link active">
                                 <i class="far fa-usd nav-icon"></i>
                                 <p>Logout</p>
                             </a>
-                        </li>
+                        </li>*@
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href='@Url.Action("Home", "Index")' class="nav-link active">
+                                <a href='@Url.Action("Index", "Home")' class="nav-link active">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Dashboard v1</p>
+                                    <p>Dashboard </p>
                                 </a>
                             </li>
                             @*<li class="nav-item">
@@ -343,20 +351,7 @@
                                     </p>
                                 </a>
                                 <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href='@Url.Action("AddStatus", "Status")' class="nav-link">
-
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Add Status</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href='@Url.Action("StatusView", "Status")' class="nav-link">
-
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Status View</p>
-                                        </a>
-                                    </li>
+                                   
                                     <li class="nav-item">
                                         <a href='@Url.Action("AddCompany", "Company")' class="nav-link">
 
@@ -750,7 +745,20 @@
                                                 <p>Sub Menu View</p>
                                             </a>
                                         </li>
+                                        <li class="nav-item">
+                                            <a href='@Url.Action("AddStatus", "Status")' class="nav-link">
 
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Add Status</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href='@Url.Action("StatusView", "Status")' class="nav-link">
+
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Status View</p>
+                                            </a>
+                                        </li>
                                     </ul>
                                 </li>
                             }
@@ -810,6 +818,7 @@
             <!-- Control sidebar content goes here -->
         </aside>
     </div>
+    <script src="~/plugins/jquery/jquery-1.10.2.js"></script>
     <script src="~/plugins/jquery/jquery.min.js"></script>
 
     <script src="~/plugins/datatables/jquery.dataTables.min.js"></script>
@@ -817,8 +826,8 @@
     <script src="~/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
     <script src="~/plugins/jquery/jquery.validate.min.js"></script>
     <script src="~/plugins/jquery/jquery.validate.unobtrusive.min.js"></script>
-    <script src="~/Scripts/angular.min.js"></script>
-    Bootstrap 4
+    @*<script src="~/Scripts/angular.min.js"></script>
+    Bootstrap 4*@
     <script src="~/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
     <script src="~/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
     <script src="~/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>

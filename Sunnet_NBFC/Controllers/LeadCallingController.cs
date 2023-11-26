@@ -232,7 +232,6 @@ namespace Sunnet_NBFC.Controllers
                         {
                             cls.ReqType = "GetLeadAllData";
                             cls.CompanyId = ClsSession.CompanyID;
-                            cls.LeadNo = "";
                             cls.LeadId = 0;
                             cls.ShortStage_Name = "PRIMYTEL";
                             cls.StageEmpId = int.Parse(Session["EmpId"].ToString());

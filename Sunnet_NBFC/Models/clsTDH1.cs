@@ -1198,7 +1198,7 @@ namespace Sunnet_NBFC.Models
         public int LeadId { get; set; }=0;
         public string LeadNo { get; set; } = "";
         public string OrgDocNo { get; set; } = "";
-        public string DocType { get; set; } = 0;
+        public string DocType { get; set; } = "";
         public string DocDate { get; set; } = "";
         public int PagesFrom { get; set; } = 0;
         public int PagesTo { get; set; }=0;

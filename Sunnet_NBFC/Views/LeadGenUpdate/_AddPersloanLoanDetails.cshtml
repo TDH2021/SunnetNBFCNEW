@@ -1,0 +1,32 @@
+﻿@model Sunnet_NBFC.Models.clsLeadGenerationMaster
+
+
+<div class="form-group">
+    <div class="row">
+
+        <div class="col-md-3">
+            <label class="required"   for="exampleInputEmail1">
+                Purpose of Loan
+            </label>
+            @Html.TextBoxFor(model => model.LoanPurpose, new
+       {
+           @class = "form-control",
+           @placeholder = "Purpose of Loan",
+           @name = "PurposeofLoan",
+           @id = "PersonalLoanPurpose",
+           @type = "text"
+
+
+       })
+        </div>
+    </div>
+
+</div>
+
+    
+
+ 
+
+
+
+

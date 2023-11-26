@@ -78,7 +78,7 @@
                                                     }
                                                     else
                                                     {
-                                                        @Html.TextBox("A_" + item.TcId.ToString() + "_" + item.QuestionId.ToString(), item.Answer, new { @class = "form-control", @required = "false" })
+                                                        @Html.TextBox("A_" + item.TcId.ToString() + "_" + item.QuestionId.ToString(), item.Answer, new { @class = "form-control"})
                                                         @*@Html.ValidationMessage(item.Answer, "", new { @class = "text-danger" })*@
                                                     }
                                                 </div>

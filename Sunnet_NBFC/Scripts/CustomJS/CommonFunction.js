@@ -4,6 +4,7 @@
         var s = '<option value="">- Select Product -</option>'
         $('#ProductId').html(s);
     } else {
+
         var s = '<option value="">- Select Product -</option>'
         $('#ProductId').html(s);
         $.ajax({

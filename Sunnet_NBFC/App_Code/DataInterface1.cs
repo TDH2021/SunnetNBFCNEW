@@ -948,7 +948,7 @@ public class DataInterface1 : IDisposable
             using (SqlCommand sqlCommand = new SqlCommand())
             {
                 sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
-                sqlCommand.Parameters.AddWithValue("@ReqType", "View");
+                sqlCommand.Parameters.AddWithValue("@ReqType", "ViewStage");
                 sqlCommand.Parameters.AddWithValue("@IsActive", "1");
                 dt = db.FillTableProc(sqlCommand, "USP_StageMaster");
             }

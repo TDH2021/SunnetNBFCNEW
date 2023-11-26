@@ -22,6 +22,7 @@ namespace Sunnet_NBFC.App_Code
 
             foreach (DataRow row in table.Rows)
             {
+               
                 list.Add(new SelectListItem()
                 {
                     Text = row[textField].ToString(),

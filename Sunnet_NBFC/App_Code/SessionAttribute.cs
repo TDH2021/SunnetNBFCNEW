@@ -26,10 +26,10 @@ namespace Sunnet_NBFC.App_Code
         {
             base.OnActionExecuting(filterContext);
 
-            if (filterContext.HttpContext.GetOverriddenBrowser().IsMobileDevice == (this.RedirectOnDevice == DeviceType.Mobile))
-            {
-                this.RedirectToRoute(filterContext, new { controller = this.RedirectController, action = this.RedirectAction });
-            }
+            //if (filterContext.HttpContext.GetOverriddenBrowser().IsMobileDevice == (this.RedirectOnDevice == DeviceType.Mobile))
+            //{
+            //    this.RedirectToRoute(filterContext, new { controller = this.RedirectController, action = this.RedirectAction });
+            //}
             if (HttpContext.Current.Session["UserId"] == null)
             {
                 //var descriptor = filterContext.ActionDescriptor;

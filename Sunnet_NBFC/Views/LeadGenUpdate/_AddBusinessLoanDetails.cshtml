@@ -1,0 +1,99 @@
+﻿@model Sunnet_NBFC.Models.clsLeadGenerationMaster
+
+
+<div class="form-group" style="margin-top:20px;">
+    <div class="col-md-12">
+        <h5> Business Loan Details</h5>
+    </div>
+    <hr>
+
+    <div class="row">
+
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">No of Dependent</label>
+            @Html.TextBoxFor(model => model.NoofDependent, new
+       {
+           @class = "form-control",
+           @placeholder = "No of Dependent",
+           @name = "MName",
+           @required = "true",
+           @onkeypress = "return isNumber(this.value);",
+           @maxlength = "2",
+           @id = "txtNoofDependent"
+
+       })
+        </div>
+
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">Colletral Security Type</label>
+            <select id="BusinessColletralSecurityType" class="form-control" required>
+                <option value="Self Occupied">Self Occupied</option>
+                <option value="Resiendential">Resiendential</option>
+                <option value="Commercial">Commercial</option>
+                <option value="Vacant">Vacant</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">
+                Loan Recommend by FO
+            </label>
+            @Html.TextBoxFor(model => model.FORecomedAmt, new
+       {
+           @class = "form-control",
+           @placeholder = "FORecomed Amt",
+           @name = "FName",
+           @required = "true",
+           @maxlength = "10",
+           @onkeypress = "return isNumber(this.value);",
+           @id = "BusinessFORecomedAmt",
+           @autocomplete = "off"
+       })
+
+        </div>
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">
+                Estd Market Value
+            </label>
+            @Html.TextBoxFor(model => model.EstValueofscurity, new
+       {
+           @class = "form-control",
+           @placeholder = "EstValueofscurity",
+           @name = "Est Value of Security",
+           @id = "EstValueofscurity",
+           @type = "text",
+           @onkeypress = "return isNumber(this.value);",
+           @maxlength = "10",
+
+       })
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">Property Type</label>
+            <select id="ddlPropertyType" class="form-control" required>
+                <option value="Select">Select</option>
+                <option value="Plot">Plot</option>
+                <option value="Constructed">Constructed</option>
+                <option value="Flat">Flat</option>
+            </select>
+        </div>
+
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">Property Area</label>
+            <select id="ddlPropertyArea" class="form-control" required>
+                <option value="Select">Select</option>
+                <option value="Square yards">Square yards</option>
+                <option value="Square feet">Square feet</option>
+
+            </select>
+        </div>
+        
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">Property Address</label>
+           <input id="txtPropertyAddress" maxlength="100" type="text" class="form-control" />
+        </div>
+    </div>
+</div>
+
+

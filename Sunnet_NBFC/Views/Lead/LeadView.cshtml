@@ -40,13 +40,13 @@
                         <div class="col-md-3">
                             <label>Main Product</label>
                             @Html.DropDownListFor(model => model.MainProductId, ViewBag.MainProductList as SelectList, "- Select Main Product- ",
-                                       new { @class = "form-control select2", @id = "MainProductId" })
+                                       new { @class = "form-control", @id = "MainProductId" })
                         </div>
                         <div class="col-md-3">
                             <label>Product</label>
                             @Html.DropDownListFor(model => model.ProductId,
                                            new SelectList(Enumerable.Empty<SelectListItem>(), "ProdId", "ProductName"),
-                                           "- Select Product -", new { @class = "form-control select2", @id = "ProductId" })
+                                           "- Select Product -", new { @class = "form-control", @id = "ProductId" })
                         </div>
                         <div class="col-md-3">
                             <label>Lead Number</label>
@@ -109,7 +109,7 @@
                             <th>Requested Loan Tenure(Months)</th>
                             <th>Stage</th>
                             <th>Status</th>
-                            @*<th></th>*@
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -136,6 +136,27 @@
                                     <td>@item.ReuestedLoanTenure</td>
                                     <td>@item.ShortStage_Name</td>
                                     <td>@item.StatusDesc</td>
+                                    <td>
+                                        @if (item.StatusDesc.ToString().ToUpper() != "REJECT")
+                                        {
+
+                                            if (item.ShortStage_Name != null)
+                                            {
+                                                if (item.ShortStage_Name.ToString().ToUpper() == "LEADGEN")
+                                                {
+                                                    <a href="@Url.Action("LeadGenUpdate", "LeadGenUpdate", new { LeadId = item.LeadId })"
+                                                       data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Update">Update</a>
+
+                                                }
+
+
+                                            }
+
+                                        }
+                                    </td>
+
+
+
                                     @*<td>
                                         @if (item.StatusDesc.ToString().ToUpper() != "REJECT")
                                         {
@@ -193,9 +214,9 @@
                                         }
                                         </td>*@
 
-                                    </tr>
-                                }
+                                </tr>
                             }
+                        }
 
 
                     </tbody>
@@ -213,7 +234,7 @@
                             <th>Requested Loan Tenure(Months)</th>
                             <th>Stage</th>
                             <th>Status</th>
-                            @*<th></th>*@
+                            <th></th>
                         </tr>
                     </tfoot>
                 </table>

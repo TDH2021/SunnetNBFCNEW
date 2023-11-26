@@ -195,10 +195,10 @@ namespace Sunnet_NBFC.Controllers
         //    clsProduct cls = new clsProduct();
         //    cls.ReqType = "";
         //    cls.ProdId = 0;
-        //    DataInterface1 db = new DataInterface1();
+
         //    DataTable dt = new DataTable();
-        //    dt = db.GetProduct(cls);
-        //    db = null;
+        //    dt = DataInterface1.GetProduct(cls);
+           
         //    cls = null;
         //    return dt;
         //}
