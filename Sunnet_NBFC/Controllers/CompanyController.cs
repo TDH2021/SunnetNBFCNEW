@@ -101,8 +101,9 @@ namespace Sunnet_NBFC.Controllers
                                 {
                                     CompanyId = int.Parse(row["CompanyId"].ToString()),
                                     CompanyName = row["CompanyName"].ToString(),
-                                    City = row["City"].ToString(),
-                                    State = row["State"].ToString(),
+                                    Address= row["Address"].ToString(),
+                                    CityName = row["CityName"].ToString(),
+                                    StateName = row["StateName"].ToString(),
                                     Country = row["Country"].ToString(),
                                     PinCode = row["PinCode"].ToString(),
                                     PANNo = row["PANNo"].ToString(),

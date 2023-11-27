@@ -113,7 +113,7 @@ namespace Sunnet_NBFC.Controllers
                         {
                             cls.ReqType = "view";
                             cls.Stateid = cs.Stateid;
-                            cls.CityName = cls.CityName;
+                            cls.CityName = cs.CityName;
 
                             using (DataTable dt = DataInterface1.GetCity(cls))
                             {
@@ -126,6 +126,7 @@ namespace Sunnet_NBFC.Controllers
                                             {
                                                 StateName = row["StateName"].ToString(),
                                                 CityName = row["CityName"].ToString(),
+                                                Cityid = int.Parse(row["Cityid"].ToString()),
                                             }).ToList();
 
 

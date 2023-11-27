@@ -111,13 +111,12 @@
                                     <label for="exampleInputEmail1">DATE OF INCORPORATION</label>
                                     @Html.TextBoxFor(model => model.DateofIncorporation, new
                                {
-                                   @class = "form-control",
+                                   @class = "form-control datestyle",
                                    @placeholder = "DATE OF INCORPORATION",
                                    @name = "CompanyType",
                                    @required = "true",
                                    @id = "DateofIncorporation",
-                                   @maxlength = "50",
-                                   @type= "Date"
+                                   @maxlength = "50"
                                })
                                 </div>
 
@@ -193,6 +192,7 @@
                                         @name = "Country",
                                         @required = "true",
                                         @id = "Country",
+                                        @value="INDIA"
 
                                     })
                                 </div>
@@ -293,7 +293,7 @@
 
 
                             <div class="card-footer" style="margin-top:10px;">
-                                <input type="submit" class="btn btn-primary" onclick="Validation();">Submit</input>
+                                <input type="submit" class="btn btn-primary" onclick="Validation();">
 
                             </div>
                         </div>

@@ -2048,7 +2048,7 @@ function ValidationChk() {
 
             else if (extension.length == 0) {
                 debugger;
-                swal("TDH", "Please select correct file customer.", "error");
+                swal("TDH", "Please select customer Images.", "error");
             }
             else if (hdn_customer_aadhar_verify != "Y" && $(".btnAadharVerify").is(":disabled") == false) {
                 debugger;
@@ -2137,7 +2137,7 @@ function ValidationChk() {
                 swal("TDH", "Co aplicant cibil score must be between 200 and 900.", "error");
             }
             else if (extension1.length == 0) {
-                swal("TDH", "Please select correct file Co Applicant.", "error");
+                swal("TDH", "Please select Co Applicant Images.", "error");
             }
             else if (ReuestedLoanAmount.length == 0) {
                 swal("TDH", "Please enter Requested Loan Amount.", "error");

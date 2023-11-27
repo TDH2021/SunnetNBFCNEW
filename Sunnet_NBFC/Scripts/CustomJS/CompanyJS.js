@@ -98,7 +98,7 @@ function Validation() {
         swal("TDH","Please enter CompanyDesc","error");
 
     } else if (CompanyOthDesc.length == 0) {
-        swal("TDH","Please enter CompanyOthDesc","eror");
+        swal("TDH", "Please enter CompanyOthDesc","error");
 
     } else {
 
@@ -150,7 +150,7 @@ function Validation() {
                 debugger
 
                 var message = JSON.parse(result)[0].ReturnMessage;
-                swal("TDH",message,"Success");
+                swal("TDH",message,"success");
                 if (message == "Record saved succussfully") {
 
                     window.location.href = '@Url.Action("CompanyView", "Company")'

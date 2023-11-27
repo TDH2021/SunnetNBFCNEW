@@ -208,6 +208,7 @@ namespace Sunnet_NBFC.Models
         public int OccupationID { get; set; }
         public int QualificationId { get; set; }
         public string CustRelation { get; set; }
+        public string DateofBirth { get; set; }
         public int CompanyId { get; set; }
         bool disposed = false;
 

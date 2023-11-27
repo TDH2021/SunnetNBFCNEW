@@ -162,5 +162,24 @@ namespace Sunnet_NBFC.Controllers
             ViewBag.StateList = ClsCommon.ToSelectList(DataInterface1.GetState(), "ID", "StateName");
             return View(cls);
         }
+
+        // GET: Client
+        public ActionResult DeleteDSA(string Id)
+        {
+            clsDSAMaster cls = new clsDSAMaster();
+            cls.DSAId = Convert.ToInt32(Id);
+            cls.ISDELETE = 1;
+            cls.COMPANYID = 1;
+            cls.ReqType = "Delete";
+
+            using (DataTable dt = DataInterface.DBDSAMaster(cls))
+            {
+               
+            }
+            
+
+
+            return RedirectToAction("ViewDSA");
+        }
     }
 }
