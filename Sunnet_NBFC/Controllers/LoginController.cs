@@ -69,17 +69,26 @@ namespace Sunnet_NBFC.Controllers
                                     cls.Type = dt.Rows[0]["Type"].ToString();
                                     if (UpdateLogin(cls) == 1)
                                     {
-                                        if (bool.Parse(dt.Rows[0]["IsLogged"].ToString()) ==true)
+                                        if (Session["CompanyId"] != null&& Session["EmpId"]!=null && Session["EmpCode"]!=null && Session["UserName"]!=null && Session["RoleId"]!=null)
                                         {
-                                            return RedirectToAction("Index", "Home");
+                                            if (bool.Parse(dt.Rows[0]["IsLogged"].ToString()) == true)
+                                            {
+                                                return RedirectToAction("Index", "Home");
+                                            }
+                                            else
+                                            {
+                                                cls.tmpUserName = cls.UserName.ToString();
+
+                                                return PartialView("LoginPopup", cls);
+
+                                            }
                                         }
                                         else
                                         {
-                                            cls.tmpUserName = cls.UserName.ToString();
-
-                                            return PartialView("LoginPopup", cls);
-
+                                            ViewBag.Error = "Employee not exists or deleted.";
+                                            return View("Index");
                                         }
+                                        
                                     }
 
                                 }
@@ -236,11 +245,13 @@ namespace Sunnet_NBFC.Controllers
                                 Session["UserID"] = cls.UserID;
                                 Session["UserType"] = cls.Type;
                                 Session["SessionId"] = cls.SessionID;
+                                
                                 if (cls.Type == "E" || cls.Type.ToUpper() == "ADMIN" || cls.Type.ToUpper()=="SUPERADMIN" )
                                 {
                                     clsEmployee cls1 = new clsEmployee();
                                     cls1.EmpID = cls.RefID;
                                     cls1.ReqType = "View";
+                                    cls1.IsDelete = 0;
                                     using (DataTable dt1 = DataInterface1.dbEmployee(cls1))
                                     {
                                         if (dt1 != null)

@@ -63,15 +63,18 @@ namespace Sunnet_NBFC.Controllers
 
             if (clsRetData.ID > 0)
             {
-                TempData["Success"] = !string.IsNullOrEmpty(clsRetData.Message) ? clsRetData.Message : "Saved/Updated";
+                ModelState.Clear();
+                ViewBag.Success = !string.IsNullOrEmpty(clsRetData.Message) ? clsRetData.Message : "Saved/Updated";
                // return RedirectToAction("DocumentView", "Document");
                 return View(M);
+                
             }
             else
             {
                 ViewBag.Error = !string.IsNullOrEmpty(clsRetData.Message) ? clsRetData.Message : "Error: Data Not Saved/Updated";
                 return View(M);
             }
+            //return RedirectToAction("Document");
         }
 
         [HttpGet]

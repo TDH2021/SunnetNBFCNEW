@@ -18,6 +18,7 @@ namespace Sunnet_NBFC.Controllers
     public class StageRoleController : Controller
     {
         // GET: Employee
+        [SessionAttribute]
         public ActionResult StageRole(int? Id)
         {
             try
@@ -112,6 +113,7 @@ namespace Sunnet_NBFC.Controllers
         }
 
         [HttpGet]
+        [SessionAttribute]
         public ActionResult StageRoleView()
         {
             List<clsStageRole> lst = new List<clsStageRole>();
@@ -130,6 +132,7 @@ namespace Sunnet_NBFC.Controllers
 
                 clsStageRole cls = new clsStageRole();
                 cls.ReqType = "view";
+                cls.IsDelete = 0;
                 dt = DataInterface1.dbStageRole(cls);
                 lst = DataInterface.ConvertDataTable<clsStageRole>(dt);
 
@@ -174,6 +177,7 @@ namespace Sunnet_NBFC.Controllers
                 clsStageRole cls = new clsStageRole();
                 cls.ReqType = "Delete";
                 cls.StageRoleId = Convert.ToInt32("0" + Id.ToString());
+                cls.IsDelete = 1;
                 dt = DataInterface1.dbStageRole(cls);
 
                 if (dt != null && dt.Rows.Count > 0)

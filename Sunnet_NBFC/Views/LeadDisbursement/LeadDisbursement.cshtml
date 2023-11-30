@@ -68,12 +68,12 @@
 									</div>
 									<div class="col-md-3">
 										@Html.LabelFor(model => model.BeneficiaryAccountNo, new { @class = "control-label", @type = "number" })
-										@Html.TextBoxFor(model => model.BeneficiaryAccountNo, new { @class = "form-control", @id = "txtBeneficiaryAccountNo" })
+										@Html.TextBoxFor(model => model.BeneficiaryAccountNo, new { @class = "form-control", @id = "txtBeneficiaryAccountNo", @onkeypress = "return isNumber(this.value);" })
 									</div>
 
 									<div class="col-md-3">
 										<label>Confirm Account No.</label>
-										@Html.TextBoxFor(model => model.BeneficiaryAccountNo, new { @class = "form-control", @id = "txtConfirmAccountNo" })
+										@Html.TextBoxFor(model => model.BeneficiaryAccountNo, new { @class = "form-control", @id = "txtConfirmAccountNo", @onkeypress = "return isNumber(this.value);" })
 									</div>
 
 									<div class="col-md-3">
@@ -97,19 +97,19 @@
 
 									<div class="col-md-3">
 										@Html.LabelFor(model => model.NetDisbursementAmount, new { @class = "control-label" })
-										@Html.TextBoxFor(model => model.NetDisbursementAmount, new { @class = "form-control", @id = "txtNetDisbursementAmount", @Maxlength = "12" })
+										@Html.TextBoxFor(model => model.NetDisbursementAmount, new { @class = "form-control", @id = "txtNetDisbursementAmount", @Maxlength = "12", @onkeypress = "return isNumber(this.value);" })
 										@Html.ValidationMessageFor(model => model.NetDisbursementAmount, "", new { @class = "text-danger" })
 
 									</div>
 									<div class="col-md-3">
 										@Html.LabelFor(model => model.ROI, new { @class = "control-label" })
-										@Html.TextBoxFor(model => model.ROI, new { @class = "form-control", @id = "txtROI", @Maxlength = "5" })
+										@Html.TextBoxFor(model => model.ROI, new { @class = "form-control", @id = "txtROI", @Maxlength = "5", @onkeypress = "return isNumber(this.value);" })
 										@Html.ValidationMessageFor(model => model.ROI, "", new { @class = "text-danger" })
 
 									</div>
 									<div class="col-md-3">
 										@Html.LabelFor(model => model.Tenure, new { @class = "control-label" })
-										@Html.TextBoxFor(model => model.Tenure, new { @class = "form-control", @id = "txtTenure", @Maxlength = "3" })
+										@Html.TextBoxFor(model => model.Tenure, new { @class = "form-control", @id = "txtTenure", @Maxlength = "3", @onkeypress = "return isNumber(this.value);" })
 										@Html.ValidationMessageFor(model => model.Tenure, "", new { @class = "text-danger" })
 
 
@@ -228,7 +228,7 @@
 	</section>
 
 }
-
+<script src="~/Scripts/CustomJS/CommonFunction.js"></script>
 @*<script src="~/plugins/jquery/jquery.min.js"></script>
 	<script src="~/plugins/jquery/jquery.validate.min.js"></script>
 	<script src="~/plugins/jquery/jquery.validate.unobtrusive.min.js"></script>*@

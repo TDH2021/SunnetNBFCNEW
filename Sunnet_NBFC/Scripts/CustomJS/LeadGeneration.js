@@ -1633,8 +1633,8 @@ function ValidationChk() {
             else if (Dob.length == 0) {
                 swal("TDH", "Please enter customer dob.", "error");
             }
-            else if (underAgeValidate(Dob) < 18) {
-                swal("TDH", "customer age must be 18 year or Above.", "error");
+            else if (underAgeValidate(Dob) < 18 || underAgeValidate(Dob)>60) {
+                swal("TDH", "Customer age must be between 18 & 60 year.", "error");
             }
             else if (MartialStatus.length == 0) {
                 swal("TDH", "Please enter customer material status.", "error");
@@ -1714,8 +1714,8 @@ function ValidationChk() {
             else if (CO_Dob.length == 0) {
                 swal("TDH", "Please enter co applicant DOB.", "error");
             }
-            else if (underAgeValidate(CO_Dob) < 18) {
-                swal("TDH", "Co applicant must be atleast 18 years.", "error");
+            else if (underAgeValidate(CO_Dob) < 18 || underAgeValidate(CO_Dob) > 60) {
+                swal("TDH", "Co applicant Age between 18 and 60 years.", "error");
             }
             else if (CO_MartialStatus.length == 0) {
                 swal("TDH", "Please enter Co applicant matrial status.", "error");
@@ -1991,8 +1991,8 @@ function ValidationChk() {
             else if (Dob.length == 0) {
                 swal("TDH", "Please enter customer dob.", "error");
             }
-            else if (underAgeValidate(Dob) < 18) {
-                swal("TDH", "customer age must be 18 year or Above.", "error");
+            else if (underAgeValidate(Dob) < 18 ||  underAgeValidate(Dob) > 60) {
+                swal("TDH", "Customer age must be between Age 18 and 60.", "error");
             }
             else if (MartialStatus.length == 0) {
                 swal("TDH", "Please enter customer material status.", "error");
@@ -2073,8 +2073,8 @@ function ValidationChk() {
             else if (CO_Dob.length == 0) {
                 swal("TDH", "Please enter co applicant DOB.", "error");
             }
-            else if (underAgeValidate(CO_Dob) < 18) {
-                swal("TDH", "Co applicant must be atleast 18 years.", "error");
+            else if (underAgeValidate(CO_Dob) < 18 || underAgeValidate(CO_Dob) > 60) {
+                swal("TDH", "Co applicant Age between 18 && 60 years.", "error");
             }
             else if (CO_MartialStatus.length == 0) {
                 swal("TDH", "Please enter Co Applicant matrial status.", "error");
@@ -2390,8 +2390,8 @@ function ValidationChk() {
             else if (Dob.length == 0) {
                 swal("TDH", "Please Select Customer Date of Birth.", "error");
             }
-            else if (underAgeValidate(Dob) < 18) {
-                swal("TDH", "Customer Age must be 18 year above.", "error");
+            else if (underAgeValidate(Dob) < 18 || underAgeValidate(Dob) > 60) {
+                swal("TDH", "Customer Age must be between 18 & 60 year.", "error");
             }
             else if (MartialStatus.length == 0) {
                 swal("TDH", "Please enter customer material status.", "error");
@@ -2681,8 +2681,8 @@ function ValidationChk() {
             else if (Dob.length == 0) {
                 swal("TDH", "Please enter customer dob.", "error");
             }
-            else if (underAgeValidate(Dob) < 18) {
-                swal("TDH", "customer age must be 18 year or Above.", "error");
+            else if (underAgeValidate(Dob) < 18 || underAgeValidate(Dob) > 60) {
+                swal("TDH", "customer age must be between 18 and 60 year.", "error");
             }
             else if (MartialStatus.length == 0) {
                 swal("TDH", "Please enter customer material status.", "error");

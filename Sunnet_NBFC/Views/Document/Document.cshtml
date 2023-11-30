@@ -55,14 +55,14 @@
 
                                     <div class="col-md-6">
                                         @Html.LabelFor(model => model.DocumentName, new { @class = "control-label" })
-                                        @Html.TextBoxFor(model => model.DocumentName, new { @class = "form-control", @required = "true" })
+                                        @Html.TextBoxFor(model => model.DocumentName, new { @class = "form-control", @required = "true",@id="txtDocName" })
                                         @Html.ValidationMessageFor(model => model.DocumentName, "", new { @class = "text-danger" })
                                     </div>
 
 
                                     <div class="col-md-6">
                                         @Html.LabelFor(model => model.ProdID, new { @class = "control-label" })
-                                        @Html.DropDownListFor(model => model.ProdID, clsProduct.GetProductDDL(), "- Select -", new { @class = "form-control" })
+                                        @Html.DropDownListFor(model => model.ProdID, clsProduct.GetProductDDL(), "- Select -", new { @class = "form-control",@id="ddlProduct" })
                                         @Html.ValidationMessageFor(model => model.ProdID, "", new { @class = "text-danger" })
 
                                         @*ViewBag.StateList = ClsCommon.ToSelectList(DataInterface1.GetState(), "ID", "StateName");*@
@@ -110,38 +110,28 @@
 
 }
 
-<script src="~/plugins/jquery/jquery.min.js"></script>
-<script src="~/plugins/jquery/jquery.validate.min.js"></script>
-<script src="~/plugins/jquery/jquery.validate.unobtrusive.min.js"></script>
 
-@if (ViewBag.Error != null && ViewBag.Error != "")
+@if (ViewBag.Success != null && ViewBag.Success != "")
 {
     <script type="text/javascript">
-
             window.onload = function () {
-                alert("@ViewBag.Error");
+                //alert("@ViewBag.Success");
+				swal("TDH", "@ViewBag.Error", "error");
             };
     </script>
 }
 @if (ViewBag.Success != null && ViewBag.Success != "")
 {
     <script type="text/javascript">
-
             window.onload = function () {
-                alert("@ViewBag.Success");
+                //alert("@ViewBag.Success");
+                swal("TDH", "@ViewBag.Success", "success");
+                $("#txtDocName").val("");
+                $("#ddlProduct").val("");
             };
     </script>
 }
-<script>
 
-    //$("#ddlMiscType").change(function () {
-    //    debugger;
-    //    debugger;
-    //    var ddtext = $("#ddlMiscType option:selected").text();
-    //    $("#hfMiscType").val(ddtext);
-
-    //})
-</script>
 
 @*@if (ViewBag.Success != null && ViewBag.Success != "")
     {

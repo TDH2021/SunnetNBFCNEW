@@ -12,6 +12,7 @@ using System.Web.UI;
 using Sunnet_NBFC.App_Code;
 using System.Runtime.InteropServices;
 using Newtonsoft.Json;
+using System.Diagnostics;
 
 namespace Sunnet_NBFC.Controllers
 {
@@ -151,6 +152,7 @@ namespace Sunnet_NBFC.Controllers
 
                 clsEmployee cls = new clsEmployee();
                 cls.ReqType = "view";
+                cls.IsDelete = 0;
                 dt = DataInterface1.dbEmployee(cls);
                 lst = DataInterface.ConvertDataTable<clsEmployee>(dt);
 
@@ -196,20 +198,38 @@ namespace Sunnet_NBFC.Controllers
 
                 if (clsRetData.ID > 0)
                 {
-                    TempData["Success"] = !string.IsNullOrEmpty(clsRetData.Message) ? clsRetData.Message : "Deleted";
+                    //TempData["Success"] = !string.IsNullOrEmpty(clsRetData.Message) ? clsRetData.Message : "Deleted";
+                    ViewBag.Success = !string.IsNullOrEmpty(clsRetData.Message) ? clsRetData.Message : "Error: Data Not Deleted";
                 }
                 else
                 {
-                    TempData["Error"] = !string.IsNullOrEmpty(clsRetData.Message) ? clsRetData.Message : "Error: Data Not Deleted";
+                    ViewBag.Error = !string.IsNullOrEmpty(clsRetData.Message) ? clsRetData.Message : "Error: Data Not Deleted";
                 }
 
                 return RedirectToAction("EmployeeView", "Employee");
 
             }
-            catch (Exception ex)
+            catch (Exception e1)
             {
-                throw ex;
-                //return RedirectToAction("Index");
+                using (clsError clsE = new clsError())
+                {
+                    // Get stack trace for the exception with source file information
+                    var st = new StackTrace(e1, true);
+                    // Get the top stack frame
+                    var frame = st.GetFrame(0);
+                    // Get the line number from the stack frame
+                    var line = frame.GetFileLineNumber();
+                    clsE.ReqType = "Update";
+                    clsE.Mode = "WEB";
+                    clsE.ErrorDescrption = e1.Message + "Line " + line + "Frame " + frame;
+                    clsE.FunctionName = "AddRequestLead";
+                    clsE.Link = "Status/AddRequestLead";
+                    clsE.PageName = "Status Controller";
+                    clsE.UserId = ClsSession.EmpId.ToString();
+                    DataInterface.PostError(clsE);
+                }
+                
+                return RedirectToAction("EmployeeView", "Employee");
             }
 
         }

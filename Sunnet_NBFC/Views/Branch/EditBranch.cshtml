@@ -1,10 +1,4 @@
 ﻿@model Sunnet_NBFC.Models.clsBranch
-
-@{
-    ViewBag.Title = "Branch";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
 <section class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
@@ -49,8 +43,8 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         @Html.LabelFor(model => model.BranchCode, htmlAttributes: new { @class = "control-label" })
-                                        @Html.EditorFor(model => model.BranchCode, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
-                                        @Html.ValidationMessageFor(model => model.BranchCode, "", new { @class = "text-danger" });
+                                        @Html.EditorFor(model => model.BranchCode, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.BranchCode, "", new { @class = "text-danger", @readonly = "true" })
                                     </div>
 
                                     <div class="col-md-6">
@@ -85,6 +79,7 @@
                                                 @Html.DropDownListFor(model => model.CityId,
                                                new SelectList(Enumerable.Empty<SelectListItem>(), "CityId", "CityName"),
                                                "Select city", new { @class = "form-control", @id = "DSACity" })
+                                                @Html.HiddenFor(model => model.CityId, new { @id = "hfCityId" })
                                                 @*@Html.DropDownListFor(model => model.DSACityId, ViewBag.CityList as SelectList, new { @class = "form-control", @id = "DSACity" })*@
                                                 @Html.ValidationMessageFor(model => model.CityId, "", new { @class = "text-danger" })
                                             </div>
@@ -202,4 +197,3 @@
             });
         </script>
     }*@
-

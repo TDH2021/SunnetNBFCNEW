@@ -101,8 +101,8 @@ namespace Sunnet_NBFC.Controllers
                             clsE.ReqType = "Insert";
                             clsE.Mode = "WEB";
                             clsE.ErrorDescrption = e1.Message;
-                            clsE.FunctionName = "Status View";
-                            clsE.Link = "Status/ViewStatus";
+                            clsE.FunctionName = "LeadView";
+                            clsE.Link = "Lead/LeadView";
                             clsE.PageName = "Status Controller";
                             clsE.UserId = "1";
                             DataInterface.PostError(clsE);

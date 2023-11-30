@@ -9,6 +9,7 @@ using iTextSharp.text.pdf;
 using System.Data;
 using Sunnet_NBFC.App_Code;
 using System;
+using System.Diagnostics;
 
 namespace Sunnet_NBFC.Models
 {
@@ -43,6 +44,7 @@ namespace Sunnet_NBFC.Models
             cell1.Border = Rectangle.NO_BORDER;
             cell1.Padding = 0;
             table.AddCell(cell1);
+           
             //PdfPCell cellCompanyName = new PdfPCell(new Phrase(dt.Rows[0]["CompanyName"].ToString()));
             //table.AddCell(cellCompanyName);
             ClsCommon.AddCelltoHeader(table, dt.Rows[0]["CompanyName"].ToString(), false);
@@ -67,118 +69,142 @@ namespace Sunnet_NBFC.Models
         public static int TABLEWIDTH = 100;
         public void GenSanctionLetter(string FilePath, string LetterName, DataSet dataSet)
         {
-            Document document = new Document();
-            document = clsCommonPDF.Letter(FilePath, LetterName);
-            document.Open();
-            clsCommonPDF.MainHeading(document, dataSet.Tables["Company"]);
-            //document.Close();
-            PdfPTable table = new PdfPTable(2);
+            try
+            {
+                Document document = new Document();
+                document = clsCommonPDF.Letter(FilePath, LetterName);
+                document.Open();
+                clsCommonPDF.MainHeading(document, dataSet.Tables["Company"]);
+                //document.Close();
+                PdfPTable table = new PdfPTable(2);
 
-            float[] headers = { 60, 40 };
-            table.SetWidths(headers);
-            table.WidthPercentage = TABLEWIDTH;
+                float[] headers = { 60, 40 };
+                table.SetWidths(headers);
+                table.WidthPercentage = TABLEWIDTH;
 
-            string text = "\nRef No -: " + dataSet.Tables["Lead"].Rows[0]["LeadNo"].ToString();
-            ClsCommon.AddCelltoBody(table, text, false);
-            text = "Date -: " + dataSet.Tables["Lead"].Rows[0]["EntryDate"].ToString();
-            ClsCommon.AddCelltoBody(table, text, false);
-            document.Add(table);
+                string text = "\nRef No -: " + dataSet.Tables["Lead"].Rows[0]["LeadNo"].ToString();
+                ClsCommon.AddCelltoBody(table, text, false);
+                text = "Date -: " + dataSet.Tables["Lead"].Rows[0]["EntryDate"].ToString();
+                ClsCommon.AddCelltoBody(table, text, false);
+                document.Add(table);
 
-            text = "To,\n" + dataSet.Tables["Lead"].Rows[0]["CustName"].ToString();
-            text = text + "\nS/O" + dataSet.Tables["Lead"].Rows[0]["FatherName"].ToString();
-            Paragraph p1 = new Paragraph(text);
-            p1.Font.Size = 10;
-            p1.Font.Color = iTextSharp.text.BaseColor.BLACK;
-            p1.Alignment = Element.ALIGN_LEFT;
-            document.Add(p1);
-
-
-            text = "";
-            text = "\nSubject: - Sanction of Credit facilities against your loan application dated " + dataSet.Tables["Lead"].Rows[0]["EntryDate"].ToString() + "\n";
-            Paragraph p2 = new Paragraph(text);
-            p2.Font.Size = 10;
-            p2.Font.Color = iTextSharp.text.BaseColor.BLACK;
-            p2.Alignment = Element.ALIGN_LEFT;
-            document.Add(p2);
-
-            text = "Dear Customer,";
-            text = text + "\nWe are glad to inform you that at your request, the following facilities have been sanctioned/renewed as per the details furnished below and, on the terms, & conditions mentioned herein as well those mentioned in the loan documents\n\n";
-
-            Paragraph p3 = new Paragraph(text);
-            p3.Font.Size = 10;
-            p3.Font.Color = iTextSharp.text.BaseColor.BLACK;
-            p3.Alignment = Element.ALIGN_LEFT;
-            document.Add(p3);
-
-            PdfPTable table1 = new PdfPTable(2);
-            float[] headers1 = { 50, 50 };
-            table1.SetWidths(headers1);
-            table1.WidthPercentage = TABLEWIDTH;
-            ClsCommon.AddCelltoHeader(table1, "Product", true);
-            ClsCommon.AddCelltoBody(table1, dataSet.Tables["Lead"].Rows[0]["SubProduct"].ToString(), true);
-            ClsCommon.AddCelltoHeader(table1, "Proposed End Use", true);
-            ClsCommon.AddCelltoBody(table1, dataSet.Tables["Lead"].Rows[0]["LoanPurpose"].ToString(), true);
-            ClsCommon.AddCelltoHeader(table1, "Limit/Loan Sanction Amt", true);
-            ClsCommon.AddCelltoBody(table1, "".ToString(), true);
-            ClsCommon.AddCelltoHeader(table1, "Interest Type", true);
-            ClsCommon.AddCelltoBody(table1, "".ToString(), true);
-            ClsCommon.AddCelltoHeader(table1, "Loan rate of Interest", true);
-            ClsCommon.AddCelltoBody(table1, dataSet.Tables["Lead"].Rows[0]["ROI"].ToString(), true);
-            ClsCommon.AddCelltoHeader(table1, "Tenure", true);
-            ClsCommon.AddCelltoBody(table1, dataSet.Tables["Lead"].Rows[0]["Tenure"].ToString(), true);
-            ClsCommon.AddCelltoHeader(table1, "Repayment", true);
-            ClsCommon.AddCelltoBody(table1, "", true);
-            ClsCommon.AddCelltoHeader(table1, "Security", true);
-            ClsCommon.AddCelltoBody(table1, "", true);
-            ClsCommon.AddCelltoHeader(table1, "Processing Fees", true);
-            ClsCommon.AddCelltoBody(table1, dataSet.Tables["Lead"].Rows[0]["Proccesfees"].ToString(), true);
-            document.Add(table1);
-
-            Paragraph p4 = new Paragraph("Security furnished/to be furnished\n\n");
-            p4.Font.Size = 10;
-            p4.Font.Color = iTextSharp.text.BaseColor.BLACK;
-            p4.Alignment = Element.ALIGN_LEFT;
-            document.Add(p4);
-            PdfPTable table2 = new PdfPTable(2);
-            float[] headers2 = { 40, 60 };
-            table2.SetWidths(headers2);
-            table2.WidthPercentage = TABLEWIDTH;
-            ClsCommon.AddCelltoHeader(table2, "S.No");
-            ClsCommon.AddCelltoHeader(table2, "Description");
-
-            ClsCommon.AddCelltoBody(table2, "1");
-            ClsCommon.AddCelltoBody(table2, "");
-
-            ClsCommon.AddCelltoBody(table2, "2");
-            ClsCommon.AddCelltoBody(table2, "");
-            document.Add(table2);
-
-            Font fontHeading = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD);
-            Font fontCell = new Font(Font.FontFamily.TIMES_ROMAN, 10, Font.NORMAL);
+                text = "To,\n" + dataSet.Tables["Lead"].Rows[0]["CustName"].ToString();
+                text = text + "\nS/O" + dataSet.Tables["Lead"].Rows[0]["FatherName"].ToString();
+                Paragraph p1 = new Paragraph(text);
+                p1.Font.Size = 10;
+                p1.Font.Color = iTextSharp.text.BaseColor.BLACK;
+                p1.Alignment = Element.ALIGN_LEFT;
+                document.Add(p1);
 
 
+                text = "";
+                text = "\nSubject: - Sanction of Credit facilities against your loan application dated " + dataSet.Tables["Lead"].Rows[0]["EntryDate"].ToString() + "\n";
+                Paragraph p2 = new Paragraph(text);
+                p2.Font.Size = 10;
+                p2.Font.Color = iTextSharp.text.BaseColor.BLACK;
+                p2.Alignment = Element.ALIGN_LEFT;
+                document.Add(p2);
 
-            text = "Additional Condition to Comply prior to disbursal: -\n";
-            text = text + "\nKindly use the Prospect No. as mentioned above in all your further communication with us. Please put your signature as token of your acceptance of the above stated terms & condition and retain a copy with yourself.";
-            text = text + "\nIn case of any query or assistance please contact your Branch manager or alternatively you can Email us at info@suneetfinman.comor our corporate office address is 6th Milestone, Yuvraj complex, Delhi UP Border, Chikemberpur, Ghaziabad 201006 or contact us at our landline number 0120-4165439";
-            text = text + "\nThe loan sanction letter is valid for a period of 30 from the date of issuance. The borrower must accept the offer within this period by providing all required documentation and signing the loan agreement.If the borrower fails to accept the offer within the validity period, the loan sanction letter will be deemed null and void, and the borrower will be required to submit a new loan application for reconsideration. This validity period clause is subject to the laws and regulations governing loan agreements in the jurisdiction where the loan is being disbursed";
-            text = text + "\nThe loan sanction letter is valid for a period of 30 from the date of issuance. The borrower must accept the offer within this period by providing all required documentation and signing the loan agreement.If the borrower fails to accept the offer within the validity period, the loan sanction letter will be deemed null and void, and the borrower will be required to submit a new loan application for reconsideration. This validity period clause is subject to the laws and regulations governing loan agreements in the jurisdiction where the loan is being disbursed";
-            text = text + "\nIt is the borrower's responsibility to keep the lender informed of any changes in their financial or personal circumstances that may affect their ability to repay the loan.";
-            text = text + "\nAll the terms & conditions mentioned in the sanction letter has conveyed & accepted by the customer.If the borrower accepts the loan sanction offer within the validity period, the loan agreement will be executed, and the loan amount will be disbursed in accordance with the terms and conditions of the loan agreement.";
-            text = text + "\nWe value your relationship with us and assure you of our best services always.";
-            text = text + "\n\n\n Best Regards\n\n\n For SuneetFinman Private Limited";
-            Paragraph p5 = new Paragraph(text);
-            p5.Font.Size = 10;
-            p5.Font.Color = iTextSharp.text.BaseColor.BLACK;
-            p5.Alignment = Element.ALIGN_LEFT;
-            document.Add(p5);
-            document.Close();
-            //// Close the document  
+                text = "Dear Customer,";
+                text = text + "\nWe are glad to inform you that at your request, the following facilities have been sanctioned/renewed as per the details furnished below and, on the terms, & conditions mentioned herein as well those mentioned in the loan documents\n\n";
 
-            //// Close the writer instance  
-            //writer.Close();
-            //// Always close open filehandles explicity  
-            //fs.Close();           
+                Paragraph p3 = new Paragraph(text);
+                p3.Font.Size = 10;
+                p3.Font.Color = iTextSharp.text.BaseColor.BLACK;
+                p3.Alignment = Element.ALIGN_LEFT;
+                document.Add(p3);
+
+                PdfPTable table1 = new PdfPTable(2);
+                float[] headers1 = { 50, 50 };
+                table1.SetWidths(headers1);
+                table1.WidthPercentage = TABLEWIDTH;
+                ClsCommon.AddCelltoHeader(table1, "Product", true);
+                ClsCommon.AddCelltoBody(table1, dataSet.Tables["Lead"].Rows[0]["SubProduct"].ToString(), true);
+                ClsCommon.AddCelltoHeader(table1, "Proposed End Use", true);
+                ClsCommon.AddCelltoBody(table1, dataSet.Tables["Lead"].Rows[0]["LoanPurpose"].ToString(), true);
+                ClsCommon.AddCelltoHeader(table1, "Limit/Loan Sanction Amt", true);
+                ClsCommon.AddCelltoBody(table1, "".ToString(), true);
+                ClsCommon.AddCelltoHeader(table1, "Interest Type", true);
+                ClsCommon.AddCelltoBody(table1, "".ToString(), true);
+                ClsCommon.AddCelltoHeader(table1, "Loan rate of Interest", true);
+                ClsCommon.AddCelltoBody(table1, dataSet.Tables["Lead"].Rows[0]["ROI"].ToString(), true);
+                ClsCommon.AddCelltoHeader(table1, "Tenure", true);
+                ClsCommon.AddCelltoBody(table1, dataSet.Tables["Lead"].Rows[0]["Tenure"].ToString(), true);
+                ClsCommon.AddCelltoHeader(table1, "Repayment", true);
+                ClsCommon.AddCelltoBody(table1, "", true);
+                ClsCommon.AddCelltoHeader(table1, "Security", true);
+                ClsCommon.AddCelltoBody(table1, "", true);
+                ClsCommon.AddCelltoHeader(table1, "Processing Fees", true);
+                ClsCommon.AddCelltoBody(table1, dataSet.Tables["Lead"].Rows[0]["Proccesfees"].ToString(), true);
+                document.Add(table1);
+
+                Paragraph p4 = new Paragraph("Security furnished/to be furnished\n\n");
+                p4.Font.Size = 10;
+                p4.Font.Color = iTextSharp.text.BaseColor.BLACK;
+                p4.Alignment = Element.ALIGN_LEFT;
+                document.Add(p4);
+                PdfPTable table2 = new PdfPTable(2);
+                float[] headers2 = { 40, 60 };
+                table2.SetWidths(headers2);
+                table2.WidthPercentage = TABLEWIDTH;
+                ClsCommon.AddCelltoHeader(table2, "S.No");
+                ClsCommon.AddCelltoHeader(table2, "Description");
+
+                ClsCommon.AddCelltoBody(table2, "1");
+                ClsCommon.AddCelltoBody(table2, "");
+
+                ClsCommon.AddCelltoBody(table2, "2");
+                ClsCommon.AddCelltoBody(table2, "");
+                document.Add(table2);
+
+                Font fontHeading = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD);
+                Font fontCell = new Font(Font.FontFamily.TIMES_ROMAN, 10, Font.NORMAL);
+
+
+
+                text = "Additional Condition to Comply prior to disbursal: -\n";
+                text = text + "\nKindly use the Prospect No. as mentioned above in all your further communication with us. Please put your signature as token of your acceptance of the above stated terms & condition and retain a copy with yourself.";
+                text = text + "\nIn case of any query or assistance please contact your Branch manager or alternatively you can Email us at info@suneetfinman.comor our corporate office address is 6th Milestone, Yuvraj complex, Delhi UP Border, Chikemberpur, Ghaziabad 201006 or contact us at our landline number 0120-4165439";
+                text = text + "\nThe loan sanction letter is valid for a period of 30 from the date of issuance. The borrower must accept the offer within this period by providing all required documentation and signing the loan agreement.If the borrower fails to accept the offer within the validity period, the loan sanction letter will be deemed null and void, and the borrower will be required to submit a new loan application for reconsideration. This validity period clause is subject to the laws and regulations governing loan agreements in the jurisdiction where the loan is being disbursed";
+                text = text + "\nThe loan sanction letter is valid for a period of 30 from the date of issuance. The borrower must accept the offer within this period by providing all required documentation and signing the loan agreement.If the borrower fails to accept the offer within the validity period, the loan sanction letter will be deemed null and void, and the borrower will be required to submit a new loan application for reconsideration. This validity period clause is subject to the laws and regulations governing loan agreements in the jurisdiction where the loan is being disbursed";
+                text = text + "\nIt is the borrower's responsibility to keep the lender informed of any changes in their financial or personal circumstances that may affect their ability to repay the loan.";
+                text = text + "\nAll the terms & conditions mentioned in the sanction letter has conveyed & accepted by the customer.If the borrower accepts the loan sanction offer within the validity period, the loan agreement will be executed, and the loan amount will be disbursed in accordance with the terms and conditions of the loan agreement.";
+                text = text + "\nWe value your relationship with us and assure you of our best services always.";
+                text = text + "\n\n\n Best Regards\n\n\n For SuneetFinman Private Limited";
+                Paragraph p5 = new Paragraph(text);
+                p5.Font.Size = 10;
+                p5.Font.Color = iTextSharp.text.BaseColor.BLACK;
+                p5.Alignment = Element.ALIGN_LEFT;
+                document.Add(p5);
+                document.Close();
+            }
+            catch (Exception e1)
+            {
+                using (clsError clsE = new clsError())
+                {
+                    // Get stack trace for the exception with source file information
+                    var st = new StackTrace(e1, true);
+                    // Get the top stack frame
+                    var frame = st.GetFrame(0);
+                    // Get the line number from the stack frame
+                    var line = frame.GetFileLineNumber();
+                    clsE.ReqType = "Insert";
+                    clsE.Mode = "WEB";
+                    clsE.ErrorDescrption = e1.Message + "Line " + line + "Frame " + frame;
+                    clsE.FunctionName = "GenerateSanctionletter";
+                    clsE.Link = "Generate Sanction letter";
+                    clsE.PageName = "Generate Sanction letter";
+                    clsE.UserId = ClsSession.EmpId.ToString();
+                    DataInterface.PostError(clsE);
+                }
+
+                //// Close the document  
+
+                //// Close the writer instance  
+                //writer.Close();
+                //// Always close open filehandles explicity  
+                //fs.Close();           
+            }
         }
         bool disposed = false;
 
