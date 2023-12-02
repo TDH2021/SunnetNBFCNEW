@@ -1,7 +1,6 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
-
+﻿
+@{ ViewBag.Title = "AddCustomer";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
 <section class="content">
     <div class="container-fluid">
         <div class="row">
@@ -30,7 +29,7 @@
                                     {
 
                                         <tr>
-     
+
                                             <td>@item.cnt</td>
                                             <td>@item.Stage_Name</td>
 
@@ -45,7 +44,7 @@
 
                                         </tr>
                                     }
-                                   
+
                                 }
 
 
@@ -59,8 +58,8 @@
                             </tfoot>
                         </table>
                         @*<div class="card-footer">
-                            @Html.ActionLink("Export to Excel", "ExportToExcel", new { @class = "btn btn-primary" })
-                        </div>*@
+                                @Html.ActionLink("Export to Excel", "ExportToExcel", new { @class = "btn btn-primary" })
+                            </div>*@
                     </div>
                     <!-- /.card-body -->
 
@@ -73,7 +72,7 @@
         <!-- /.row -->
     </div>
 
-    
+
 
 
 </section>

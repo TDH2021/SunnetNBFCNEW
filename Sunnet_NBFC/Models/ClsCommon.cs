@@ -11,6 +11,9 @@ using iText;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using Microsoft.Ajax.Utilities;
+using System.Text.RegularExpressions;
+using System.Configuration;
+using System.Runtime.InteropServices;
 
 namespace Sunnet_NBFC.App_Code
 {
@@ -22,7 +25,7 @@ namespace Sunnet_NBFC.App_Code
 
             foreach (DataRow row in table.Rows)
             {
-               
+
                 list.Add(new SelectListItem()
                 {
                     Text = row[textField].ToString(),
@@ -200,6 +203,79 @@ namespace Sunnet_NBFC.App_Code
             }
             return imgurl;
         }
+        public static string ReplaceSpecialCharacter(string Words)
+        {
+
+            string RepCharacter = "";
+
+            RepCharacter = Words.Trim().Replace("/", "").Replace(">", "").Replace("<", "").Replace("=", "").Replace(".exe", "").Replace("^", "").Replace("*", "").Replace("'", "").Replace("!", "").Replace("|", "");
+
+            return RepCharacter;
+
+        }
+        public static void WriteErrorLog_BulkUpload(string strLog, string logFilePath)
+
+        {
+            FileInfo logFileInfo = new FileInfo(logFilePath);
+            DirectoryInfo logDirInfo = new DirectoryInfo(logFileInfo.DirectoryName);
+            if (!logDirInfo.Exists)
+            {
+                logDirInfo.Create();
+            }
+            using (FileStream fileStream = new FileStream(logFilePath, FileMode.Append))
+            {
+                using (StreamWriter log = new StreamWriter(fileStream))
+                {
+
+                    log.WriteLine(System.DateTime.Now.ToString("g") + ":" + strLog);
+                }
+            }
+        }
+        public static bool isValidEmail(string inputEmail)
+        {
+            string strRegex = @"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}" +
+
+                  @"\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\" +
+
+                  @".)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
+
+            Regex re = new Regex(strRegex);
+            if (re.IsMatch(inputEmail))
+            {
+                return (true);
+            }
+
+            else
+
+            {
+
+                return (false);
+
+            }
+
+        }
+
+        public static void WriteLog(string strLog)
+        {
+            string FP_ErrorLog = ConfigurationManager.AppSettings["ErrorLog"];
+            string logFilePath = FP_ErrorLog + "Error_Log-" + System.DateTime.Today.ToString("dd-MM-yyyy") + "." + "txt";
+            FileInfo logFileInfo = new FileInfo(logFilePath);
+            DirectoryInfo logDirInfo = new DirectoryInfo(logFileInfo.DirectoryName);
+            if (!logDirInfo.Exists)
+            {
+                logDirInfo.Create();
+            }
+            using (FileStream fileStream = new FileStream(logFilePath, FileMode.Append))
+            {
+                using (StreamWriter log = new StreamWriter(fileStream))
+                {
+                    log.WriteLine(System.DateTime.Now.ToString("g") + ":" + strLog);
+                }
+            }
+
+        }
     }
+
+
 
 }
