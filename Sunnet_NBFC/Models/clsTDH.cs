@@ -583,7 +583,7 @@ namespace Sunnet_NBFC.Models
         public string CreateDate { get; set; }
         public int CompanyId { get; set; }
         public string CustImage { get; set; } = "";
-        
+        public string ElectricBill { get; set; } = "";
 
 
         public string CO_Prefix { get; set; }
@@ -633,6 +633,9 @@ namespace Sunnet_NBFC.Models
 
         public string CO_CIBIL { get; set; }
         public string CO_image { get; set; } = "";
+
+
+        public string CO_ElectricBill { get; set; } = "";
         public string G_Prefix { get; set; }
         public string G_FirstName { get; set; }
         public string G_MiddleName { get; set; }
@@ -666,6 +669,7 @@ namespace Sunnet_NBFC.Models
         public string EstValueViechle { get; set; }
         public string ReuestedLoanTenure { get; set; }
         public string EstMonthIncome { get; set; }
+        public string EstFamilyIncome { get; set; }
         public string EstMonthExpense { get; set; }
         public string CurMonthObligation { get; set; }
         public string FORecomedAmt { get; set; }

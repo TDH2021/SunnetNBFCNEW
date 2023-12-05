@@ -1,6 +1,7 @@
 ﻿
 @{ ViewBag.Title = "CustomerView";
-    Layout = "~/Views/Shared/_Layout.cshtml"; }
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
 
 <section class="content-header">
@@ -49,41 +50,46 @@ s
                                     <th>Action</th>
                                 </tr>
                             </thead>
-                            <tbody> 
-                                @foreach (var item in ViewBag.lst)
+                            <tbody>
+                                @if (ViewBag.lst != null)
                                 {
+                                    foreach (var item in ViewBag.lst)
+                                    {
 
-                    <tr>
-                        <td>@item.Id</td>
-                        <td>@item.FirstName</td>
-                        <td>@item.MiddleName</td>
-                        <td>@item.LastName</td>
-                        <td>@item.FatherName</td>
-                        <td>@item.MotherName</td>
-                        <td>@item.SpouseName</td>
-                        <td>@item.Gender</td>
-                        <td>@item.DateofBirth</td>
-                        <td>@item.MobileNo1</td>
-                        <td>@item.MobileNo2</td>
-                        <td>@item.CibilScore</td>
-                        <td>@item.AadharNo</td>
-                        <td>@item.PanNo</td>
-                        <td>
-                            <div class="d-flex order-actions">
-                                @*<a href="@Url.Action("Customerdelete","Customer",new{Id=item.Id})"
-                                   data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Edit"><u>Edit</u></a>*@
-
-
-
-                                <a href="@Url.Action("Customerdelete","Customer",new{Id=item.Id})"
-                                   data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Delete"
-                                   onclick="return Submit();" style="margin-left:10px;"><u>Delete</u></a>
+                                        <tr>
+                                            <td>@item.Id</td>
+                                            <td>@item.FirstName</td>
+                                            <td>@item.MiddleName</td>
+                                            <td>@item.LastName</td>
+                                            <td>@item.FatherName</td>
+                                            <td>@item.MotherName</td>
+                                            <td>@item.SpouseName</td>
+                                            <td>@item.Gender</td>
+                                            <td>@item.DateofBirth</td>
+                                            <td>@item.MobileNo1</td>
+                                            <td>@item.MobileNo2</td>
+                                            <td>@item.CibilScore</td>
+                                            <td>@item.AadharNo</td>
+                                            <td>@item.PanNo</td>
+                                            <td>
+                                                <div class="d-flex order-actions">
+                                                    @*<a href="@Url.Action("Customerdelete","Customer",new{Id=item.Id})"
+                                                        data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Edit"><u>Edit</u></a>*@
 
 
-                            </div>
 
-                        </td>
-                    </tr>}
+                                                    <a href="@Url.Action("Customerdelete","Customer",new{Id=item.Id})"
+                                                       data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Delete"
+                                                       onclick="return Submit();" style="margin-left:10px;"><u>Delete</u></a>
+
+
+                                                </div>
+
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+
                             </tbody>
                             <tfoot>
                                 <tr>

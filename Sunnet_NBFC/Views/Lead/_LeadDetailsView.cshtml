@@ -144,15 +144,25 @@
                             <th>Email</th>
                             <td>@Model.EmailId</td>
                         </tr>
-                        @if (Model.CustImage.Trim() != "")
-                        {
-                            var img = Sunnet_NBFC.App_Code.ClsCommon.PreviewImage(Model.CustImage.Trim());
-                            <tr>
-                                <th>Profile Image</th>
-                                <td> <img src=@img alt="" height=100 width=200 /></td>
-                            </tr>
 
-                        }
+
+                        <tr>
+                            <th>Profile Image</th>
+                            @if (Model.CustImage.Trim() != "")
+                            {
+                                var img = Sunnet_NBFC.App_Code.ClsCommon.PreviewImage(Model.CustImage.Trim());
+                                <td> <img src=@img alt="" height=100 width=200 /></td>
+                            }
+                            <th>Electric Bill </th>
+                            @if (Model.ElectricBill.Trim() != "")
+                            {
+                                var img = Sunnet_NBFC.App_Code.ClsCommon.PreviewImage(Model.ElectricBill.Trim());
+                                <td> <img src=@img alt="" height=100 width=200 /></td>
+                            }
+
+                        </tr>
+
+
 
 
                         @if (ViewBag.CUSTYPEREUIRED == "b" || ViewBag.CUSTYPEREUIRED == "c")
@@ -256,15 +266,23 @@
                                 <th></th>
                                 <td></td>
                             </tr>
-                            if (Model.CO_image.Trim() != "")
-                            {
-                                var img = Sunnet_NBFC.App_Code.ClsCommon.PreviewImage(Model.CO_image.Trim());
-                                <tr>
-                                    <th>Co-Profile Image</th>
-                                    <td> <img src=@img alt="" height=100 width=200 /></td>
-                                </tr>
 
-                            }
+                            <tr>
+                                <th>Co-Profile Image</th>
+                                @if (Model.CO_image.Trim() != "")
+                                {
+                                    var img = Sunnet_NBFC.App_Code.ClsCommon.PreviewImage(Model.CO_image.Trim());
+                                    <td> <img src=@img alt="" height=100 width=200 /></td>
+                                }
+                                <th>Co-Profile Electric Bill</th>
+                                @if (Model.CO_ElectricBill.Trim() != "")
+                                {
+                                    var img = Sunnet_NBFC.App_Code.ClsCommon.PreviewImage(Model.CO_ElectricBill.Trim());
+                                    <td> <img src=@img alt="" height=100 width=200 /></td>
+                                }
+                            </tr>
+
+
 
                             <tr>
 
@@ -439,8 +457,8 @@
                                 <th>Estd Market Value</th>
                                 <td>@Model.EstValueofscurity</td>
                             </tr>
-                            
-                            
+
+
                             <tr>
                                 <th>Property Type</th>
                                 <td>@Model.PropertyType</td>
@@ -551,7 +569,7 @@
                 case "DocSign":
                     { Html.RenderAction("LeadCallingView", "LeadCalling"); }
                     { Html.RenderAction("LeadDocumentView", "LeadDocument"); }
-                   { Html.RenderAction("LeadCreditView", "LeadCredit"); }
+                    { Html.RenderAction("LeadCreditView", "LeadCredit"); }
                     break;
 
                 case "FinalApprove":

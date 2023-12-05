@@ -285,6 +285,10 @@ namespace Sunnet_NBFC.Controllers
                                     {
                                         model.CustImage = Server.MapPath("~/Img/ApplicantImgs/") + Convert.ToString(ds.Tables[1].Rows[i]["CustImage"]);
                                     }
+                                    if (System.IO.File.Exists(Server.MapPath("~/Img/ApplicantImgs/" + Convert.ToString(ds.Tables[1].Rows[i]["ElectricBill"]))))
+                                    {
+                                        model.ElectricBill = Server.MapPath("~/Img/ApplicantImgs/") + Convert.ToString(ds.Tables[1].Rows[i]["ElectricBill"]);
+                                    }
 
                                 }
 
@@ -372,6 +376,10 @@ namespace Sunnet_NBFC.Controllers
                                     if (System.IO.File.Exists(Server.MapPath("~/Img/COApplicantImgs/" + Convert.ToString(ds.Tables[1].Rows[i]["CustImage"]))))
                                     {
                                         model.CO_image = Server.MapPath("~/Img/COApplicantImgs/") + Convert.ToString(ds.Tables[1].Rows[i]["CustImage"]);
+                                    }
+                                    if (System.IO.File.Exists(Server.MapPath("~/Img/COApplicantImgs/" + Convert.ToString(ds.Tables[1].Rows[i]["ElectricBill"]))))
+                                    {
+                                        model.CO_ElectricBill = Server.MapPath("~/Img/COApplicantImgs/") + Convert.ToString(ds.Tables[1].Rows[i]["ElectricBill"]);
                                     }
 
                                 }

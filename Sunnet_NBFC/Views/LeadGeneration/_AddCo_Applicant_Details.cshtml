@@ -158,11 +158,7 @@
         </div>
 
     </div>
-
-
     <div class="row">
-
-
         <div class="col-md-3">
             <label class="required" for="exampleInputEmail1">Date of Birth</label>
             @Html.TextBoxFor(model => model.CO_DOB, new
@@ -285,16 +281,16 @@
         <div class="col-md-3">
             <label class="required" for="exampleInputEmail1">Corrospondance District</label>
             @Html.TextBoxFor(model => model.CO_PresentDistrict, new
-       {
-           @class = "form-control",
-           @placeholder = "Present District",
-           @name = "Present District",
-           @required = "true",
-           @id = "CO_PresentDistrict",
-           @autocomplete = "off",
-           @onchange = "SetValues5_CO();"
+{
+@class = "form-control",
+@placeholder = "Present District",
+@name = "Present District",
+@required = "true",
+@id = "CO_PresentDistrict",
+@autocomplete = "off",
+@onchange = "SetValues5_CO();"
 
-       })
+})
         </div>
     </div>
     <div class="row" style="margin-bottom:10px; margin-top:10px;">
@@ -414,8 +410,6 @@
        })
         </div>
 
-
-
         <div class="col-md-3">
             <label class="required" for="exampleInputEmail1">Mobile No</label>
             @Html.TextBoxFor(model => model.CO_Mobile_No, new
@@ -444,6 +438,9 @@
        })
         </div>
 
+       
+    </div>
+    <div class="row">
         <div class="col-md-3">
             <label class="required" for="exampleInputEmail1">
                 Cibil Score
@@ -465,6 +462,12 @@
         <div class="col-md-3">
             <label class="required" for="exampleInputEmail1">CoApplicant Image</label>
             <input type="file" id="cofileuploadapplicantimg" accept="image/x-png,image/jpeg" />
+
+        </div>
+
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">CoApplicant Electric Bill</label>
+            <input type="file" id="cofileuploadElectricBill" accept="image/x-png,image/jpeg" />
 
         </div>
     </div>

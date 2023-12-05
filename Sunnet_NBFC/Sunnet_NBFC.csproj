@@ -2449,6 +2449,7 @@
     <Content Include="Scripts\CustomJS\Customer.js" />
     <Content Include="Scripts\CustomJS\DSA.js" />
     <Content Include="Scripts\CustomJS\LeadGenView.js" />
+    <Content Include="Scripts\CustomJS\LeadUpdate.js" />
     <Content Include="Scripts\CustomJS\Login.js" />
     <Content Include="Scripts\CustomJS\Question.js" />
     <Content Include="Scripts\CustomJS\RoleMaster.js" />
@@ -2920,7 +2921,6 @@
     <Content Include="Views\LeadGenUpdate\_AddPersloanLoanDetails.cshtml" />
     <Content Include="Views\LeadGenUpdate\_AddVechicalLoanDetails.cshtml" />
     <Content Include="Views\Branch\EditBranch.cshtml" />
-    <Content Include="Views\Shared\_LayoutPage1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

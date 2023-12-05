@@ -200,11 +200,28 @@ namespace Sunnet_NBFC.Controllers
                                     master.CustImage = fileName;
 
                                 }
+
+                                if (Request.Files[1] != null)
+                                {
+                                    file = Request.Files["AppElectricBill"];
+                                    //Extract Image File Name.
+                                    string fileName = System.IO.Path.GetFileName(file.FileName);
+
+                                    fileName = master.LeadNo + "_ElectricBill_" + fileName;
+
+                                    //Set the Image File Path.
+                                    string filePath = Server.MapPath("~/Img/ApplicantImgs");
+
+                                    //Save the Image File in Folder.
+                                    file.SaveAs(filePath + "\\" + fileName);
+                                    master.ElectricBill = fileName;
+
+                                }
                                 DataTable dt1 = DataInterface.GetLeadGenerationCustomer(master);
 
                                 if (master.Hdn_type.ToUpper() == "B" || master.Hdn_type.ToUpper() == "C")
                                 {
-                                    if (Request.Files[1] != null)
+                                    if (Request.Files[2] != null)
                                     {
                                         file = Request.Files["COApplicantImg"];
                                         //Extract Image File Name.
@@ -218,6 +235,22 @@ namespace Sunnet_NBFC.Controllers
                                         //Save the Image File in Folder.
                                         file.SaveAs(filePath + "\\" + fileName);
                                         master.CustImage = fileName;
+                                    }
+
+                                    if (Request.Files[3] != null)
+                                    {
+                                        file = Request.Files["COElectricBill"];
+                                        //Extract Image File Name.
+                                        string fileName = System.IO.Path.GetFileName(file.FileName);
+
+                                        fileName = master.LeadNo + "_CO_ElectricBill_" + fileName;
+
+                                        //Set the Image File Path.
+                                        string filePath = Server.MapPath("~/Img/COApplicantImgs");
+
+                                        //Save the Image File in Folder.
+                                        file.SaveAs(filePath + "\\" + fileName);
+                                        master.ElectricBill = fileName;
                                     }
                                     dt1 = DataInterface.GetLeadGenerationCO_ApplicantCustomer(master);
 

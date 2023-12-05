@@ -48,10 +48,11 @@
             @Html.TextBoxFor(model => model.ViechleNo, new
             {
                 @class = "form-control",
-                @placeholder = "Viechle No",
+                @placeholder = "Vehicle No",
                 @name = "MName",
                 @required = "true",
-                @id = "ViechleNo"
+                @id = "ViechleNo",
+                @maxlength="15"
 
             })
         </div>
@@ -60,7 +61,7 @@
             @Html.TextBoxFor(model => model.ViechleModel, new
             {
                 @class = "form-control",
-                @placeholder = "Viechle Model",
+                @placeholder = "Vehicle Model",
                 @name = "MName",
                 @required = "true",
                 @id = "ViechleModel"
@@ -72,7 +73,7 @@
             @Html.TextBoxFor(model => model.ViechleColor, new
             {
                 @class = "form-control",
-                @placeholder = "Viechle Color",
+                @placeholder = "Vehicle Color",
                 @name = "FName",
                 @required = "true",
                 @maxlength = "50",
@@ -84,11 +85,11 @@
         </div>
 
         <div class="col-md-3">
-            <label class="required" for="exampleInputEmail1">Viechle Reg Year</label>
+            <label class="required" for="exampleInputEmail1">Vehicle Reg Year</label>
             @Html.TextBoxFor(model => model.ViechleRegYear, new
        {
            @class = "form-control",
-           @placeholder = "Viechle Reg Year",
+           @placeholder = "Vehicle Reg Year",
            @name = "FName",
            @required = "true",
            @onkeypress = "return isNumber(this.value);",

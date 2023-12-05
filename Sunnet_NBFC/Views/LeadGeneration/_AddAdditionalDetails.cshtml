@@ -41,22 +41,41 @@
         </div>
 
         <div class="col-md-3">
-            <label class="required" for="exampleInputEmail1">Est Month Income</label>
+            <label class="required" for="exampleInputEmail1">Monthly Self Income</label>
             @Html.TextBoxFor(model => model.EstMonthIncome, new
+       {
+           @class = "form-control",
+           @placeholder = "Est Month Income",
+           @name = "FName",
+           @required = "true",
+           @type = "number",
+           @id = "EstMonthIncome",
+           @autocomplete = "off",
+           @onkeypress = "return isNumber(this.value);",
+       })
+
+
+        </div>
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">Monthly Family Income</label>
+            @Html.TextBoxFor(model => model.EstFamilyIncome, new
             {
                 @class = "form-control",
-                @placeholder = "Est Month Income",
-                @name = "FName",
+                @placeholder = "Est Family Income",
+                @name = "txtFName",
                 @required = "true",
-                @maxlength = "50",
-                @type = "number",
-                @id = "EstMonthIncome",
-                @autocomplete = "off"
+                @id = "txtEstFamilyIncome",
+                @autocomplete = "off",
+                @onkeypress = "return isNumber(this.value);",
             })
 
 
         </div>
 
+
+
+    </div>
+    <div class="row">
         <div class="col-md-3">
             <label class="required" for="exampleInputEmail1">Est Month Expense</label>
             @Html.TextBoxFor(model => model.EstMonthExpense, new
@@ -70,10 +89,6 @@
            @maxlength = "10",
        })
         </div>
-
-
-    </div>
-    <div class="row">
         <div class="col-md-3">
             <label class="required" for="exampleInputEmail1">Cur Month Obligation</label>
             @Html.TextBoxFor(model => model.CurMonthObligation, new
@@ -88,6 +103,7 @@
 
        })
         </div>
+
     </div>
 
     <div class="row" id="divRef1">

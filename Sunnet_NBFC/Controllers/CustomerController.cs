@@ -28,9 +28,9 @@ namespace Sunnet_NBFC.Controllers
                 }
 
 
-                    ViewBag.StateList = ClsCommon.ToSelectList(DataInterface1.GetState(), "ID", "StateName");
-                
-                
+                ViewBag.StateList = ClsCommon.ToSelectList(DataInterface1.GetState(), "ID", "StateName");
+
+
             }
             catch (Exception e1)
             {
@@ -59,7 +59,7 @@ namespace Sunnet_NBFC.Controllers
             }
             catch (Exception e1)
             {
-               
+
                 using (clsError clsE = new clsError())
                 {
                     clsE.ReqType = "Insert";
@@ -79,7 +79,7 @@ namespace Sunnet_NBFC.Controllers
         {
 
 
-            List<clsCompanyMaster> lst = new List<clsCompanyMaster>();
+            List<clsCustomerMaster> lst = new List<clsCustomerMaster>();
             try
             {
                 using (clsCustomerMaster cls = new clsCustomerMaster())
@@ -89,8 +89,29 @@ namespace Sunnet_NBFC.Controllers
                     {
                         if (dt != null)
                         {
-                            ViewBag.lst = DataInterface.ConvertDataTable<clsCustomerMaster>(dt);
+                            lst = (from DataRow row in dt.Rows
 
+                                   select new clsCustomerMaster()
+                                   {
+                                       Id = row["CustomerId"].ToString(),
+                                       FirstName = row["FirstName"].ToString(),
+                                       MiddleName = row["MiddleName"].ToString(),
+                                       LastName = row["LastName"].ToString(),
+                                       FatherName = row["FatherName"].ToString(),
+                                       MotherName = row["MotherName"].ToString(),
+                                       SpouseName = row["SpouseName"].ToString(),
+                                       Gender = row["Gender"].ToString(),
+                                       DateofBirth = row["DateofBirth"].ToString(),
+                                       MobileNo1 = row["MobileNo1"].ToString(),
+                                       MobileNo2 = row["MobileNo2"].ToString(),
+                                       CibilScore = row["CibilScore"].ToString(),
+                                       AadharNo = row["AadharNo"].ToString(),
+                                       PanNo = row["PanNo"].ToString(),
+
+                                   }).ToList();
+
+                            ViewBag.lst = lst;//
+                            
                         }
                     }
                 }
@@ -128,7 +149,7 @@ namespace Sunnet_NBFC.Controllers
                         JSONresult = JsonConvert.SerializeObject(dt);
                     }
                 }
-                
+
             }
             catch (Exception e1)
             {

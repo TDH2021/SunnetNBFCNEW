@@ -167,6 +167,23 @@
         </div>
 
         <div class="col-md-2">
+            <label class="required" for="exampleInputEmail1">Gender</label>
+            @Html.DropDownListFor(model => model.Gender,
+            new List<SelectListItem> {
+            new SelectListItem { Value = "0" , Text = "- Select Gender -" },
+            new SelectListItem { Value = "Male" , Text = "Male" },
+            new SelectListItem { Value = "Female" , Text = "Female" },
+            new SelectListItem { Value = "Transgender" , Text = "Transgender" }
+            },
+            new { @class = "form-control", @id = "Gender" })
+
+        </div>
+        
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-3">
             <label class="required" for="exampleInputEmail1">Father Name</label>
             @Html.TextBoxFor(model => model.FatherName, new
             {
@@ -179,11 +196,6 @@
                 @autocomplete = "off"
             })
         </div>
-
-    </div>
-
-
-    <div class="row">
 
         <div class="col-md-3">
             <label for="exampleInputEmail1">Mother Name</label>
@@ -211,22 +223,6 @@
            @id = "SpouseName"
 
        })
-        </div>
-
-
-
-
-        <div class="col-md-3">
-            <label class="required" for="exampleInputEmail1">Gender</label>
-            @Html.DropDownListFor(model => model.Gender,
-            new List<SelectListItem> {
-            new SelectListItem { Value = "0" , Text = "- Select Gender -" },
-            new SelectListItem { Value = "Male" , Text = "Male" },
-            new SelectListItem { Value = "Female" , Text = "Female" },
-            new SelectListItem { Value = "Transgender" , Text = "Transgender" }
-            },
-            new { @class = "form-control", @id = "Gender" })
-
         </div>
 
         <div class="col-md-3">
@@ -518,6 +514,10 @@
 
        })
         </div>
+       
+
+    </div>
+    <div class="row">
         <div class="col-md-3">
             <label class="required" for="exampleInputEmail1">Father Mobile Number</label>
             @Html.TextBoxFor(model => model.FatherMobileNo, new
@@ -549,10 +549,6 @@
 
        })
         </div>
-
-
-    </div>
-    <div class="row">
 
         <div class="col-md-3">
             <label class="required" for="exampleInputEmail1">
@@ -586,10 +582,17 @@
         </div>
 
 
+        
+    </div>
+    <div class="row">
         <div class="col-md-3">
             <label class="required" for="exampleInputEmail1">Applicant Image</label>
             <input type="file" id="fileuploadapplicantimg" accept="image/x-png,image/jpeg" />
         </div>
-    </div>
 
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">Electicity Bill</label>
+            <input type="file" id="fileuploadElectricBill" accept="image/x-png,image/jpeg" />
+        </div>
+    </div>
 </div>

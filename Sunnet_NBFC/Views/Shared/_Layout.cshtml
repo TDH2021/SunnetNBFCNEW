@@ -335,6 +335,7 @@
                         @if (Session["UserType"] == null)
                         {
                             @Url.Action("Logout", "Login")
+                            return;
                         }
                         @if (Session["UserType"].ToString() == "E")
                         {

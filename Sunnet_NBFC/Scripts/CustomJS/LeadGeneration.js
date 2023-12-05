@@ -28,7 +28,7 @@ $('#MainProductId').change(function () {
                 } else if (MainProducttext.toUpperCase() == "VEHICLE LOAN" || MainProducttext.toUpperCase() == "TWO WHEELER LOAN" || MainProducttext.toUpperCase() == "COMMERCIAL VEHICLE") {
                     $('#business_div').hide();
                     $('#vechical_div').show();
-                    $('#personal_div').hide();
+                    $('#personal_div').show();
                     $('#divPersonal').hide();
                     $('#divRef1').show();
                     $('#divRef2').show();
@@ -1483,6 +1483,7 @@ function ValidationChk() {
     var ReuestedLoanTenure = $("#ReuestedLoanTenure").val();
     var EstValueViechle = $("#EstValueViechle").val();
     var EstMonthIncome = $("#EstMonthIncome").val();
+    var EstFamilyIncome = $("#txtEstFamilyIncome").val();
     var EstMonthExpense = $("#EstMonthExpense").val();
     var FORecomedAmt = 0;
     var NoofDependent = 0;
@@ -1553,8 +1554,20 @@ function ValidationChk() {
         filedata.append('ApplicantImg', files[i]);
     }
 
-
-
+    var fileUpload1 = $("#fileuploadElectricBill").get(0);
+    var files1 = fileUpload1.files;
+    debugger;
+    if (files1.length <= 0) {
+        filedata.append('AppElectricBill', "");
+    }
+    var fileName1 = "";
+    var extension1 = "";
+    for (var i = 0; i < files1.length; i++) {
+        debugger
+        fileName1 = document.querySelector('#fileuploadElectricBill').value;
+        extension1 = fileName1.substring(fileName.lastIndexOf('.') + 1);
+        filedata.append('AppElectricBill', files1[i]);
+    }
 
     var cofileUpload = $("#cofileuploadapplicantimg").get(0);
     var cofiles = cofileUpload.files;
@@ -1570,8 +1583,22 @@ function ValidationChk() {
         filedata.append('COApplicantImg', cofiles[i]);
     }
 
+    var cofileUpload1 = $("#cofileuploadElectricBill").get(0);
+    var cofiles_1 = cofileUpload1.files;
+    var fileName_c = "";
+    var extension1_c = "";
+    debugger;
+    if (cofiles_1.length <= 0) {
+        filedata.append('COElectricBill', "");
+    }
+    for (var i = 0; i < cofiles_1.length; i++) {
+        fileName_c = document.querySelector('#cofileuploadElectricBill').value;
+        extension1_c = fileName_c.substring(fileName_c.lastIndexOf('.') + 1);
+        filedata.append('COElectricBill', cofiles_1[i]);
+    }
 
-    debugger
+
+    debugger;
 
     if (MainProductId.length == 0) {
         swal("TDH", "Please Select Main Product", "error");
@@ -1795,7 +1822,10 @@ function ValidationChk() {
             }
 
             else if (EstMonthIncome.length == 0) {
-                swal("TDH", "Please enter est month income.", "error");
+                swal("TDH", "Please enter est monthly self income.", "error");
+            }
+            else if (EstFamilyIncome.length == 0) {
+                swal("TDH", "Please enter est monthly family income.", "error");
             }
 
             else if (NoofDependent.length == 0 && (MainProductText == "Vehicle Loan" || MainProductText == "Bussiness Loan")) {
@@ -1902,6 +1932,7 @@ function ValidationChk() {
                     "ReuestedLoanTenure": ReuestedLoanTenure,
                     "EstValueViechle": EstValueViechle,
                     "EstMonthIncome": EstMonthIncome,
+                    "EstFamilyIncome": EstFamilyIncome,
                     "EstMonthExpense": EstMonthExpense,
                     "CurMonthObligation": CurMonthObligation,
                     "FORecomedAmt": FORecomedAmt,
@@ -2170,7 +2201,10 @@ function ValidationChk() {
             }
 
             else if (EstMonthIncome.length == 0) {
-                swal("TDH", "Please enter est month income.", "error");
+                swal("TDH", "Please enter est month self income.", "error");
+            }
+            else if (EstFamilyIncome.length == 0) {
+                swal("TDH", "Please enter est month family income.", "error");
             }
 
             else if (NoofDependent.length == 0 && (MainProductText == "Vehicle Loan" || MainProductText == "Bussiness Loan")) {
@@ -2258,6 +2292,7 @@ function ValidationChk() {
                     "ReuestedLoanTenure": ReuestedLoanTenure,
                     "EstValueViechle": EstValueViechle,
                     "EstMonthIncome": EstMonthIncome,
+                    "EstFamilyIncome": EstFamilyIncome,
                     "EstMonthExpense": EstMonthExpense,
                     "CurMonthObligation": CurMonthObligation,
                     "FORecomedAmt": FORecomedAmt,
@@ -2494,8 +2529,12 @@ function ValidationChk() {
                 swal("TDH", "Please enter refrence 1 person mobile no.", "error");
             }
             else if (EstMonthIncome.length == 0) {
-                swal("TDH", "Please enter est month income", "error");
+                swal("TDH", "Please enter est month self income", "error");
             }
+            else if (EstFamilyIncome.length == 0) {
+                swal("TDH", "Please enter est month family income", "error");
+            }
+
 
             else if (EstMonthExpense.length == 0) {
                 swal("TDH", "Please enter est. month expense", "error");
@@ -2592,6 +2631,7 @@ function ValidationChk() {
                     "ReuestedLoanTenure": ReuestedLoanTenure,
                     "EstValueViechle": EstValueViechle,
                     "EstMonthIncome": EstMonthIncome,
+                    "EstFamilyIncome": EstFamilyIncome,
                     "EstMonthExpense": EstMonthExpense,
                     "CurMonthObligation": CurMonthObligation,
                     "FORecomedAmt": FORecomedAmt,
@@ -2768,6 +2808,9 @@ function ValidationChk() {
             else if (EstMonthIncome.length == 0) {
                 swal("TDH", "Please enter est month income.", "error");
             }
+            else if (EstFamilyIncome.length == 0) {
+                swal("TDH", "Please enter est family income.", "error");
+            }
             else if (LoanPurpose.length == 0) {
                 swal("TDH", "Please enter purpose of loan.", "error");
             }
@@ -2866,6 +2909,7 @@ function ValidationChk() {
                     "ReuestedLoanTenure": ReuestedLoanTenure,
                     "EstValueViechle": EstValueViechle,
                     "EstMonthIncome": EstMonthIncome,
+                    "EstFamilyIncome": EstFamilyIncome,
                     "EstMonthExpense": EstMonthExpense,
                     "CurMonthObligation": CurMonthObligation,
                     "FORecomedAmt": FORecomedAmt,

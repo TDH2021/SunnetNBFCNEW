@@ -59,6 +59,7 @@
            @name = "CO_PanNo",
            @required = "true",
            @id = "CO_PanNo",
+           @maxlength = "10",
 
        })
             @Html.HiddenFor(model => model.CO_Panverfiy, new { @class = "form-control", @id = "hdn_co_PanVerify" })
@@ -218,7 +219,7 @@
            @id = "CO_PresentPincode",
            @onchange = "GetStateCity_PIN(this.value,Co_State,CO_City);",
            @onkeypress = "return isNumber(this.value);",
-           @maxlength = "10"
+           @maxlength = "6"
        })
         </div>
     </div>

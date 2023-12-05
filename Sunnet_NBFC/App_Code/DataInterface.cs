@@ -477,6 +477,7 @@ public class DataInterface : IDisposable
                 sqlCommand.Parameters.AddWithValue("@ReqLoanTenure", cls.ReuestedLoanTenure);
 
                 sqlCommand.Parameters.AddWithValue("@EstMonthIncome", cls.EstMonthIncome);
+                sqlCommand.Parameters.AddWithValue("@EstFamilyIncome", cls.EstFamilyIncome);
                 sqlCommand.Parameters.AddWithValue("@EstMonthExpense", cls.EstMonthExpense);
                 sqlCommand.Parameters.AddWithValue("@CurMonthObligation", cls.CurMonthObligation);
                 sqlCommand.Parameters.AddWithValue("@FORecomedAmt", cls.FORecomedAmt);
@@ -587,6 +588,7 @@ public class DataInterface : IDisposable
                 sqlCommand.Parameters.AddWithValue("@CompanyId", cls.CompanyId);
                 sqlCommand.Parameters.AddWithValue("@CreatedBy", cls.CreatedBy);
                 sqlCommand.Parameters.AddWithValue("@CustImage", cls.CustImage);
+                sqlCommand.Parameters.AddWithValue("@ElectricBill", cls.ElectricBill);
 
 
                 dt = db.FillTableProc(sqlCommand, "USP_LeadCustomer");
@@ -653,6 +655,7 @@ public class DataInterface : IDisposable
                 sqlCommand.Parameters.AddWithValue("@CompanyId", cls.CompanyId);
                 sqlCommand.Parameters.AddWithValue("@CreatedBy", cls.CreatedBy);
                 sqlCommand.Parameters.AddWithValue("@CustImage", cls.CustImage);
+                sqlCommand.Parameters.AddWithValue("@ElectricBill", cls.ElectricBill);
 
 
 
