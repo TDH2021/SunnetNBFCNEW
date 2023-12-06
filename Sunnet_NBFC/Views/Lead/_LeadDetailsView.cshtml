@@ -29,11 +29,8 @@
                         <tr>
                             <th>Lead NO</th>
                             <td>@Model.LeadNo</td>
-
                             <th>Customer Name</th>
                             <td>@Model.Prefix @Model.FirstName  @Model.MiddleName  @Model.LastName</td>
-
-
                         </tr>
                         <tr>
                             <th>Main Product</th>
@@ -106,7 +103,6 @@
                             <th>Permanent Pincode</th>
                             <td>@Model.PermanentPincode</td>
                         </tr>
-
                         <tr>
                             <th>Permanent Village</th>
                             <td>@Model.PermanentVillage</td>
@@ -114,9 +110,6 @@
                             <td>@Model.PermanentDistrict</td>
 
                         </tr>
-
-
-
                         <tr>
                             <th>Cibil Score</th>
                             <td>@Model.CibilScore</td>
@@ -129,8 +122,6 @@
                             <th>Mother Mobile No</th>
                             <td>@Model.MotherMobileNo</td>
                         </tr>
-
-
                         <tr>
                             <th>Spouse Mobile No</th>
                             <td>@Model.SpouseMobileNo</td>
@@ -144,8 +135,6 @@
                             <th>Email</th>
                             <td>@Model.EmailId</td>
                         </tr>
-
-
                         <tr>
                             <th>Profile Image</th>
                             @if (Model.CustImage.Trim() != "")
@@ -162,9 +151,6 @@
 
                         </tr>
 
-
-
-
                         @if (ViewBag.CUSTYPEREUIRED == "b" || ViewBag.CUSTYPEREUIRED == "c")
                         {
 
@@ -175,20 +161,14 @@
 
 
                             <tr>
-
                                 <th>CO Applicant Name</th>
                                 <td>@Model.CO_Prefix @Model.CO_FirstName  @Model.CO_MiddleName  @Model.CO_LastName</td>
-
-
                             </tr>
-
                             <tr>
-
                                 <th>Gender</th>
                                 <td>@Model.CO_Gender</td>
                                 <th>Date Of Birth</th>
                                 <td>@Model.CO_DOB</td>
-
                             </tr>
                             <tr>
 
@@ -222,10 +202,7 @@
                                 <th>Permanent Address</th>
                                 <td>@Model.CO_PermanentAddress</td>
                             </tr>
-
-
                             <tr>
-
                                 <th>Permanent Pincode</th>
                                 <td>@Model.CO_PermanentPincode</td>
 
@@ -263,8 +240,8 @@
                             <tr>
                                 <th>Email</th>
                                 <td>@Model.CO_Email_Id</td>
-                                <th></th>
-                                <td></td>
+                                <th>CIF</th>
+                                <td>@Model.Co_CIF</td>
                             </tr>
 
                             <tr>
@@ -295,7 +272,6 @@
                             if (Model.MainProductName.ToUpper() != "INDIVIDUAL LOAN")
                             {
                                 <tr>
-
                                     <th>Refernce Name</th>
                                     <td>@Model.RefernceName</td>
 
@@ -306,23 +282,15 @@
                                 <tr>
                                     <th>Refence MobileNo</th>
                                     <td>@Model.RefenceMobileNo</td>
-
-
                                     <th>Refernce Name1</th>
                                     <td>@Model.RefernceName1</td>
-
-
                                 </tr>
-
                                 <tr>
                                     <th>Refence Relation1</th>
                                     <td>@Model.RefenceRelation1</td>
 
                                     <th>Refence MobileNo1</th>
                                     <td>@Model.RefenceMobileNo1</td>
-
-
-
                                 </tr>
                             }
                             <tr>
@@ -335,16 +303,12 @@
 
                         }
 
-
-
-
                         @if (Model.MainProductName == "Personal Loan")
                         {
                             <tr>
 
                                 <th>Purpose of Loan</th>
                                 <td>@Model.LoanPurpose</td>
-
                             </tr>
 
                         }
@@ -422,7 +386,7 @@
                                 <td>@Model.PolicyNo</td>
                             </tr>
                             <tr>
-                                <th>Registation Date</th>
+                                <th>Registration Date</th>
                                 <td>@Model.RegistrationDate</td>
                                 <th></th>
                                 <td></td>
@@ -509,7 +473,7 @@
                                 <th>Pan No</th>
                                 <th>Aadhar No</th>
                                 <th>Cibil Score</th>
-
+                                <th>CIF</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -541,6 +505,7 @@
                                         <td>@gurantor.G_PanNo</td>
                                         <td>@gurantor.G_AadharNo</td>
                                         <td>@gurantor.G_CibilScore</td>
+                                        <td>@gurantor.G_CIF</td>
                                     </tr>
                                 }
                             }

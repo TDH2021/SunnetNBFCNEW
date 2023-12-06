@@ -1477,7 +1477,7 @@ function ValidationChk() {
     var CO_PanNo = $("#CO_PanNo").val();
     var CO_AadharNo = $("#CO_AadharNo").val();
     var CO_CibilScore = $("#CO_CibilScore").val();
-
+    var Co_CIF = $("#txtCoCIF").val();
     //Additional Info
     var ReuestedLoanAmount = $("#ReuestedLoanAmount").val();
     var ReuestedLoanTenure = $("#ReuestedLoanTenure").val();
@@ -1637,6 +1637,7 @@ function ValidationChk() {
                 /*customer.G_FilePath = row.find("TD").eq(19).html();*/
                 customer.G_AadharVerify = row.find("TD").eq(24).html();
                 customer.G_PanVerify = row.find("TD").eq(25).html();
+                customer.G_CIF = row.find("TD").eq(26).html();
 
                 customers.push(customer);
 
@@ -1925,9 +1926,10 @@ function ValidationChk() {
                     "CO_PAN": CO_PanNo,
                     "CO_Adhaar": CO_AadharNo,
                     "CO_CIBIL": CO_CibilScore,
+                    "Co_CIF":Co_CIF,
                     "CO_AAdharverfiy": hdn_co_aadhar_verify,
                     "CO_Panverfiy": hdn_co_PanVerify,
-
+                    "Co_CIF":Co_CIF,
                     "ReuestedLoanAmount": ReuestedLoanAmount,
                     "ReuestedLoanTenure": ReuestedLoanTenure,
                     "EstValueViechle": EstValueViechle,
@@ -2285,7 +2287,7 @@ function ValidationChk() {
                     "CO_PAN": CO_PanNo,
                     "CO_Adhaar": CO_AadharNo,
                     "CO_CIBIL": CO_CibilScore,
-
+                    "Co_CIF": Co_CIF,
 
 
                     "ReuestedLoanAmount": ReuestedLoanAmount,
@@ -2397,13 +2399,8 @@ function ValidationChk() {
                 /*customer.G_FilePath = row.find("TD").eq(19).html();*/
                 customer.G_AadharVerify = row.find("TD").eq(24).html();
                 customer.G_PanVerify = row.find("TD").eq(25).html();
+                customer.G_CIF = row.find("TD").eq(26).html();
                 customers.push(customer);
-
-
-
-
-
-
             });
             if (Prefix.length == 0) {
                 swal("TDH", "Please select prefix", "error");
@@ -2902,7 +2899,7 @@ function ValidationChk() {
                     "CO_PAN": CO_PanNo,
                     "CO_Adhaar": CO_AadharNo,
                     "CO_CIBIL": CO_CibilScore,
-
+                    "Co_CIF": Co_CIF,
 
 
                     "ReuestedLoanAmount": ReuestedLoanAmount,

@@ -169,7 +169,7 @@ namespace Sunnet_NBFC.Controllers
                                 for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                                 {
 
-
+                                    model.CIFID = ds.Tables[0].Rows[i]["CIF"].ToString();
                                     model.LeadId = int.Parse(ds.Tables[0].Rows[i]["LeadId"].ToString());
                                     model.LeadNo = Convert.ToString(ds.Tables[0].Rows[i]["LeadNo"]);
                                     model.CenterName = ds.Tables[0].Rows[i]["CenterName"].ToString();
@@ -296,7 +296,7 @@ namespace Sunnet_NBFC.Controllers
                                 {
 
                                     Gurantor gurantor = new Gurantor();
-
+                                    gurantor.G_CIF = Convert.ToString(ds.Tables[1].Rows[i]["CIF"]);
                                     gurantor.G_Prefix = Convert.ToString(ds.Tables[1].Rows[i]["PrefixName"]);
                                     gurantor.G_FirstName = Convert.ToString(ds.Tables[1].Rows[i]["FirstName"]);
                                     gurantor.G_MiddleName = Convert.ToString(ds.Tables[1].Rows[i]["MiddleName"]);
@@ -338,7 +338,7 @@ namespace Sunnet_NBFC.Controllers
                                 else if (Convert.ToString(ds.Tables[1].Rows[i]["CustType"]) == "CO_Applicant")
                                 {
 
-
+                                    model.Co_CIF = Convert.ToString(ds.Tables[1].Rows[i]["CIF"]);
                                     model.CO_Prefix = Convert.ToString(ds.Tables[1].Rows[i]["PrefixName"]);
                                     model.CO_FirstName = Convert.ToString(ds.Tables[1].Rows[i]["FirstName"]);
                                     model.CO_MiddleName = Convert.ToString(ds.Tables[1].Rows[i]["MiddleName"]);

@@ -112,7 +112,7 @@ namespace Sunnet_NBFC.Models
 
     }
 
-    
+
 
     public class clsClient
     {
@@ -585,7 +585,7 @@ namespace Sunnet_NBFC.Models
         public string CustImage { get; set; } = "";
         public string ElectricBill { get; set; } = "";
 
-
+        public string Co_CIF { get; set; }
         public string CO_Prefix { get; set; }
         public string CO_FirstName { get; set; }
         public string CO_MiddleName { get; set; }
@@ -634,7 +634,7 @@ namespace Sunnet_NBFC.Models
         public string CO_CIBIL { get; set; }
         public string CO_image { get; set; } = "";
 
-
+        public string G_CIF { get; set; } = "";
         public string CO_ElectricBill { get; set; } = "";
         public string G_Prefix { get; set; }
         public string G_FirstName { get; set; }
@@ -715,7 +715,7 @@ namespace Sunnet_NBFC.Models
         public string PolicyNo { get; set; } = "";
         public string Owner { get; set; } = "";
         public string InsuranceStatus { get; set; } = "";
-        public string InsuranceType { get; set; }="";
+        public string InsuranceType { get; set; } = "";
         public string ValidityDate { get; set; } = "";
         public string ExShowRoomPrice { get; set; } = "";
         public string OnRoadPrice { get; set; } = "";
@@ -754,6 +754,7 @@ namespace Sunnet_NBFC.Models
 
     public class Gurantor
     {
+        public string G_CIF { get; set; }
         public string G_Prefix { get; set; }
         public string G_FirstName { get; set; }
         public string G_MiddleName { get; set; }

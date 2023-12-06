@@ -20,7 +20,18 @@
 
         <div class="row">
 
+            <div class="col-md-3">
+                <label for="exampleInputEmail1">CIF Id</label>
+                @Html.TextBoxFor(model => model.G_CIF, new
+           {
+               @class = "form-control",
+               @placeholder = "CIFID",
+               @name = "CIFID",
+               @required = "true",
+               @id = "txtGCIF",
 
+           })
+            </div>
             <div class="col-md-3">
                 <label class="required" for="exampleInputEmail1"> Aadhar No </label>
                 @Html.TextBoxFor(model => model.G_Adhaar, new
@@ -512,6 +523,7 @@
                 <th>Cibil Score</th>
                 <th>Aadhar Check</th>
                 <th>PAN Check</th>
+                <th>CIF</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -681,6 +693,7 @@
             customer1.G_PanNo = row.find("TD").eq(20).html();
             customer1.G_AadharNo = row.find("TD").eq(21).html();
             customer1.G_CibilScore = row.find("TD").eq(22).html();
+            customer1.G_CIF = row.find("TD").eq(26).html();
             if (customer1.G_FirstName != "No data available in table") {
                 customers1.push(customer1);
             }
@@ -754,9 +767,8 @@
             }
 
             var G_CibilScore = $("#G_CibilScore").val();
-
-
-
+            var G_CIF = $("#txtGCIF").val();
+            
             debugger
 
             if (txtFName.length == 0) {
@@ -857,7 +869,7 @@
                 var G_PanNo = $("#G_PanNo").val();
                 var G_AadharNo = $("#G_AadharNo").val();
                 var G_CibilScore = $("#G_CibilScore").val();
-
+                var G_CIF = $("#txtGCIF").val();
                 debugger
                 //Get the reference of the Table's TBODY element.
                 var tBody = $("#example10 > TBODY")[0];
@@ -952,6 +964,8 @@
                 cell.html(G_AadharVerify);
                 cell = $(row.insertCell(-1));
                 cell.html(G_PanVerify);
+                cell = $(row.insertCell(-1));
+                cell.html(G_CIF);
                 //Add Button cell.
                 cell = $(row.insertCell(-1));
                 var btnRemove = $("<input />");

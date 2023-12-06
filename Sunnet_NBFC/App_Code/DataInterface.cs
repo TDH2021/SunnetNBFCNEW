@@ -610,7 +610,7 @@ public class DataInterface : IDisposable
             {
                 sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
                 sqlCommand.Parameters.AddWithValue("@ReqType", cls.ReqType);
-                sqlCommand.Parameters.AddWithValue("@Cif", "");
+                sqlCommand.Parameters.AddWithValue("@Cif", cls.Co_CIF);
                 sqlCommand.Parameters.AddWithValue("@FirstName", cls.CO_FirstName);
                 sqlCommand.Parameters.AddWithValue("@MiddleName", cls.CO_MiddleName);
                 sqlCommand.Parameters.AddWithValue("@LastName", cls.CO_LastName);
@@ -678,7 +678,7 @@ public class DataInterface : IDisposable
             {
                 sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
                 sqlCommand.Parameters.AddWithValue("@ReqType", "Insert");
-                sqlCommand.Parameters.AddWithValue("@Cif", "");
+                sqlCommand.Parameters.AddWithValue("@Cif", cls.G_CIF);
                 sqlCommand.Parameters.AddWithValue("@FirstName", cls.G_FirstName);
                 sqlCommand.Parameters.AddWithValue("@MiddleName", cls.G_MiddleName);
                 sqlCommand.Parameters.AddWithValue("@LastName", cls.G_LastName);

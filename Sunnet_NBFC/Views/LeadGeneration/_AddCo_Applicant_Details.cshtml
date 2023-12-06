@@ -9,7 +9,18 @@
 
     <div class="row">
 
+        <div class="col-md-3">
+            <label for="exampleInputEmail1">CIF Id</label>
+            @Html.TextBoxFor(model => model.CIFID, new
+       {
+           @class = "form-control",
+           @placeholder = "CIFID",
+           @name = "CIFID",
+           @required = "true",
+           @id = "txtCoCIF",
 
+       })
+        </div>
         <div class="col-md-3">
             <label class="required" for="exampleInputEmail1"> Aadhar No </label>
             @Html.TextBoxFor(model => model.CO_Adhaar, new
