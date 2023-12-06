@@ -504,6 +504,7 @@
     <Content Include="dist\css\sweetalert2.css" />
     <Content Include="dist\css\sweetalert2.min.css" />
     <Content Include="EmailTemplates\SenctionLetter.html" />
+    <Content Include="ErrorPage.html" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />

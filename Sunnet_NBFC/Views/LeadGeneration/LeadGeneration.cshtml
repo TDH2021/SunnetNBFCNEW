@@ -91,7 +91,7 @@
                                 <div class="col-md-6">
                                     <label class="required" for="exampleInputEmail1">Center</label>
 
-                                    @Html.DropDownListFor(model => model.CenterId, ViewBag.CenterList  as SelectList, "- Select Center- ",
+                                    @Html.DropDownListFor(model => model.CenterId, ViewBag.CenterList as SelectList, "- Select Center- ",
                                    new { @class = "form-control select2", @id = "ddlCenter" })
 
 
@@ -125,6 +125,11 @@
                                 }
                             </div>
 
+                            <div style="display:none" class="container-fluid" id="vechical_div">
+                                @{
+                                    Html.RenderPartial("_AddVechicalLoanDetails");
+                                }
+                            </div>
 
                             <div>
                                 @{
@@ -138,11 +143,6 @@
                                 }
                             </div>
 
-                            <div style="display:none" class="container-fluid" id="vechical_div">
-                                @{
-                                    Html.RenderPartial("_AddVechicalLoanDetails");
-                                }
-                            </div>
 
                             <div style="display:none" class="container-fluid" id="personal_div">
                                 @{
@@ -151,7 +151,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                     <label for="exampleInputEmail1">Remarks</label>
+                                    <label for="exampleInputEmail1">Remarks</label>
                                     <input type="text" id="txtRemarks" maxlength="200" class="form-control" />
                                 </div>
                             </div>

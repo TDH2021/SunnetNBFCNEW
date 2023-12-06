@@ -52,21 +52,22 @@
                 @name = "MName",
                 @required = "true",
                 @id = "ViechleNo",
-                @maxlength="15"
+                @maxlength = "15"
 
             })
         </div>
         <div class="col-md-3">
             <label class="required" for="exampleInputEmail1">Model</label>
             @Html.TextBoxFor(model => model.ViechleModel, new
-            {
-                @class = "form-control",
-                @placeholder = "Vehicle Model",
-                @name = "MName",
-                @required = "true",
-                @id = "ViechleModel"
+       {
+           @class = "form-control",
+           @placeholder = "Vehicle Model",
+           @name = "MName",
+           @required = "true",
+           @id = "ViechleModel",
+                @maxlength = "50",
 
-            })
+       })
         </div>
         <div class="col-md-3">
             <label class="required" for="exampleInputEmail1">Color</label>
@@ -103,7 +104,7 @@
 
     <div class="row">
         <div class="col-md-3">
-            <label class="required" for="exampleInputEmail1">Registration Year</label>
+            <label class="required" for="exampleInputEmail1">Manufacturing Year</label>
             @Html.TextBoxFor(model => model.MFGYear, new
        {
            @class = "form-control",
@@ -117,11 +118,11 @@
        })
         </div>
         <div class="col-md-3">
-            <label class="required" for="exampleInputEmail1">Viechle Company</label>
+            <label class="required" for="exampleInputEmail1">Vechile Company</label>
             @Html.TextBoxFor(model => model.ViechleCompany, new
             {
                 @class = "form-control",
-                @placeholder = "Viechle Company",
+                @placeholder = "Vechile Company",
                 @name = "MName",
                 @required = "true",
                 @id = "ViechleCompany"
@@ -131,11 +132,11 @@
 
 
         <div class="col-md-3">
-            <label class="required" for="exampleInputEmail1">Viechle Owner</label>
+            <label class="required" for="exampleInputEmail1">RC Name Owner</label>
             @Html.TextBoxFor(model => model.ViechleOwner, new
             {
                 @class = "form-control",
-                @placeholder = "Viechle Owner",
+                @placeholder = "RC Name Owner",
                 @name = "MName",
                 @required = "true",
                 @id = "ViechleOwner"

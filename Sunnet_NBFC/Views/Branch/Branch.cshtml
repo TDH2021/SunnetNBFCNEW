@@ -47,59 +47,62 @@
 
                             <div class="form-group">
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         @Html.LabelFor(model => model.BranchCode, htmlAttributes: new { @class = "control-label" })
                                         @Html.EditorFor(model => model.BranchCode, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
-                                        @Html.ValidationMessageFor(model => model.BranchCode, "", new { @class = "text-danger" });
+                                        @Html.ValidationMessageFor(model => model.BranchCode, "", new { @class = "text-danger" })
                                     </div>
 
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         @Html.LabelFor(model => model.BranchName, htmlAttributes: new { @class = "control-label" })
                                         @Html.EditorFor(model => model.BranchName, new { htmlAttributes = new { @class = "form-control" } })
                                         @Html.ValidationMessageFor(model => model.BranchName, "", new { @class = "text-danger" })
                                     </div>
+                                    <div class="col-md-4">
+                                        @Html.LabelFor(model => model.BranchAddres, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.BranchAddres, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.BranchAddres, "", new { @class = "text-danger" })
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="row">
-                                        <div class="col-md-6">
-                                            @Html.LabelFor(model => model.BranchAddres, htmlAttributes: new { @class = "control-label" })
-                                            @Html.EditorFor(model => model.BranchAddres, new { htmlAttributes = new { @class = "form-control" } })
-                                            @Html.ValidationMessageFor(model => model.BranchAddres, "", new { @class = "text-danger" })
-                                        </div>
 
-                                        <div class="col-md-6">
+
+                                        <div class="col-md-4">
+                                            <label for="exampleInputEmail1">Branch Manager</label>
+                                            @Html.EditorFor(model => model.BranchManger, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.BranchManger, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="col-md-4">
                                             @Html.LabelFor(model => model.BranchContactNo, htmlAttributes: new { @class = "control-label" })
                                             @Html.EditorFor(model => model.BranchContactNo, new { htmlAttributes = new { @class = "form-control", @maxlength = "15" } })
                                             @Html.ValidationMessageFor(model => model.BranchContactNo, "", new { @class = "text-danger" })
                                         </div>
+                                        <div class="col-md-4">
+                                            <label for="exampleInputEmail1">State</label>
+                                            @Html.DropDownListFor(model => model.StateId, ViewBag.StateList as SelectList, new { @class = "form-control", @id = "BranchState" })
+                                            @Html.ValidationMessageFor(model => model.StateId, "", new { @class = "text-danger" })
+                                        </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
-                                            <div class="col-md-6">
-                                                <label for="exampleInputEmail1">State</label>
-                                                @Html.DropDownListFor(model => model.StateId, ViewBag.StateList as SelectList, new { @class = "form-control", @id = "BranchState" })
-                                                @Html.ValidationMessageFor(model => model.StateId, "", new { @class = "text-danger" })
-                                            </div>
-                                            <div class="col-md-6">
+
+                                            <div class="col-md-4">
                                                 <label for="exampleInputEmail1">City</label>
+                                                @Html.HiddenFor(model => model.CityId, new { @id = "hfCityId" })
                                                 @Html.DropDownListFor(model => model.CityId,
                                                new SelectList(Enumerable.Empty<SelectListItem>(), "CityId", "CityName"),
                                                "Select city", new { @class = "form-control", @id = "DSACity" })
                                                 @*@Html.DropDownListFor(model => model.DSACityId, ViewBag.CityList as SelectList, new { @class = "form-control", @id = "DSACity" })*@
                                                 @Html.ValidationMessageFor(model => model.CityId, "", new { @class = "text-danger" })
                                             </div>
-                                        </div>
-                                    </div>
 
-                                    <div class="form-group">
-                                        <div class="row">
-
-                                            <div class="col-md-6">
+                                            <div class="col-md-4">
                                                 <label for="exampleInputEmail1">Rent Agriment Start Date</label>
                                                 @Html.EditorFor(model => model.RentAgrementStartDate, new { htmlAttributes = new { @class = "form-control datestyle", @id = "txtRstart" } })
                                                 @Html.ValidationMessageFor(model => model.RentAgrementStartDate, "", new { @class = "text-danger" })
                                             </div>
-                                            <div class="col-md-6">
+                                            <div class="col-md-4">
                                                 <label for="exampleInputEmail1">Rent Agriment End Date</label>
                                                 @Html.EditorFor(model => model.RentAgrimentEndDate, new { htmlAttributes = new { @class = "form-control datestyle", @id = "txtRenddate" } })
                                                 @Html.ValidationMessageFor(model => model.RentAgrimentEndDate, "", new { @class = "text-danger" })
@@ -107,30 +110,22 @@
                                         </div>
                                     </div>
 
+                                  
                                     <div class="form-group">
                                         <div class="row">
 
-                                            <div class="col-md-6">
+                                            <div class="col-md-4">
                                                 <label for="exampleInputEmail1">Rent</label>
                                                 @Html.EditorFor(model => model.BranchRent, new { htmlAttributes = new { @class = "form-control", @type = "number", @id = "txtRent" } })
                                                 @Html.ValidationMessageFor(model => model.BranchRent, "", new { @class = "text-danger" })
                                             </div>
-                                            <div class="col-md-6">
+                                            <div class="col-md-4">
                                                 <label for="exampleInputEmail1">Owner Name</label>
                                                 @Html.EditorFor(model => model.OwnerName, new { htmlAttributes = new { @class = "form-control", @type = "text", @id = "txtOwnerName" } })
                                                 @Html.ValidationMessageFor(model => model.BranchRent, "", new { @class = "text-danger" })
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="row">
 
-                                            <div class="col-md-6">
-                                                <label for="exampleInputEmail1">Branch Manager</label>
-                                                @Html.EditorFor(model => model.BranchManger, new { htmlAttributes = new { @class = "form-control" } })
-                                                @Html.ValidationMessageFor(model => model.BranchManger, "", new { @class = "text-danger" })
-                                            </div>
-                                            <div class="col-md-6">
+                                            <div class="col-md-4">
                                                 @if (Model.BranchId != null && Model.BranchId != 0)
                                                 {
                                                     <label class="control-label">Status</label>
@@ -147,6 +142,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                  
 
                                     <div class="card-footer">
                                         @if (Model.BranchId != null && Model.BranchId != 0)
