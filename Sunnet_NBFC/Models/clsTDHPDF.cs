@@ -298,10 +298,10 @@ namespace Sunnet_NBFC.Models
             p2.Alignment = Element.ALIGN_LEFT;
             document.Add(p3);
 
-            PdfPTable table2 = new PdfPTable(4);
+            PdfPTable table2 = new PdfPTable(2);
             float[] headers2 = { 60, 40 };
-            table1.SetWidths(headers2);
-            table1.WidthPercentage = TABLEWIDTH;
+            table2.SetWidths(headers2);
+            table2.WidthPercentage = TABLEWIDTH;
             ClsCommon.AddCelltoHeader(table2, "Description", true);
             ClsCommon.AddCelltoHeader(table2, "Amount", true);
 

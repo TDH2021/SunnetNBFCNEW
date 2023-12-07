@@ -5,6 +5,25 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    .required:after {
+        content: " *";
+        color: red;
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    input[type=number] {
+        -moz-appearance: textfield;
+        /* Firefox */
+    }
+</style>
+
+
 <section class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
@@ -33,7 +52,7 @@
                                 <div class="row">
 
                                     <div class="col-md-4">
-                                        <label for="exampleInputEmail1">DSA Name</label>
+                                        <label class="required" for="exampleInputEmail1">DSA Name</label>
                                         @Html.TextBoxFor(model => model.DSAName, new
                                    {
                                        @class = "form-control",
@@ -47,7 +66,7 @@
                                         @Html.ValidationMessageFor(model => model.DSAName, "", new { @class = "text-danger" })
                                     </div>
                                     <div class="col-md-4">
-                                        <label for="exampleInputEmail1">Address</label>
+                                        <label class="required" for="exampleInputEmail1">Address</label>
                                         @Html.TextAreaFor(model => model.DSAAddress, new { @class = "form-control", @placeholder = "Address", @name = "Address", @maxlength = "100", @id = "txtAddress", @requried = "true" })
 
                                     </div>
@@ -60,9 +79,6 @@
                             </div>
                             <div class="form-group">
                                 <div class="row">
-
-
-
                                     <div class="col-md-4">
                                         <label for="exampleInputEmail1">City</label>
                                         @Html.DropDownListFor(model => model.DSACityId,
@@ -72,7 +88,7 @@
                                         @Html.ValidationMessageFor(model => model.DSACityId, "", new { @class = "text-danger" })
                                     </div>
                                     <div class="col-md-4">
-                                        <label for="exampleInputEmail1">Pin Code</label>
+                                        <label class="required" for="exampleInputEmail1">Pin Code</label>
                                         @Html.TextBoxFor(model => model.DSAPincode, new
                                    {
                                        @class = "form-control",
@@ -82,7 +98,7 @@
                                        @id = "txtPinCode",
                                        @autocomplete = "off",
                                        @maxlength = "6",
-                                       @type = "number",
+                                       @onkeypress = "return isNumber(this.value);",
                                    })
                                     </div>
                                     <div class="col-md-4">
@@ -102,7 +118,7 @@
                                 <div class="row">
 
                                     <div class="col-md-4">
-                                        <label for="exampleInputEmail1">Contact No</label>
+                                        <label class="required" for="exampleInputEmail1">Contact No</label>
                                         @Html.TextBoxFor(model => model.DSAContactNo, new
                                    {
                                        @class = "form-control",
@@ -111,7 +127,8 @@
                                        @required = "true",
                                        @id = "txtPhoneNo",
                                        @autocomplete = "off",
-                                       @maxlength = "10"
+                                       @maxlength = "10",
+                                       @onkeypress = "return isNumber(this.value);",
                                    })
 
                                     </div>
@@ -123,7 +140,8 @@
                                        @placeholder = "What's Up No",
                                        @name = "Whatsup No",
                                        @required = "true",
-                                       @maxlength = "10"
+                                       @maxlength = "10",
+                                       @onkeypress = "return isNumber(this.value);",
                                    })
                                     </div>
                                     <div class="col-md-4">
@@ -147,7 +165,7 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <label for="exampleInputEmail1">Account No</label>
+                                        <label class="required" for="exampleInputEmail1">Account No</label>
                                         @Html.TextBoxFor(model => model.DSAccountNo, new
                                    {
                                        @class = "form-control",
@@ -156,12 +174,13 @@
                                        @required = "true",
                                        @maxlength = "20",
                                        @autocomplete = "off",
-                                       @Id = "txtDsaAccountNo"
+                                       @Id = "txtDsaAccountNo",
+                                       @onkeypress = "return isNumber(this.value);",
                                    })
                                         @Html.ValidationMessageFor(model => model.DSAccountNo, "", new { @class = "text-danger" })
                                     </div>
                                     <div class="col-md-4">
-                                        <label for="exampleInputEmail1">Bank Name</label>
+                                        <label class="required" for="exampleInputEmail1">Bank Name</label>
                                         @Html.TextBoxFor(model => model.DSABankName, new
                                    {
                                        @class = "form-control",
@@ -175,7 +194,7 @@
                                         @Html.ValidationMessageFor(model => model.DSABankName, "", new { @class = "text-danger" })
                                     </div>
                                     <div class="col-md-4">
-                                        <label for="exampleInputEmail1">Bank Branch</label>
+                                        <label class="required" for="exampleInputEmail1">Bank Branch</label>
                                         @Html.TextBoxFor(model => model.DSABranch, new
                                    {
                                        @class = "form-control",
@@ -193,7 +212,7 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <label for="exampleInputEmail1">IFSC Code</label>
+                                        <label class="required" for="exampleInputEmail1">IFSC Code</label>
                                         @Html.TextBoxFor(model => model.DSAIFSCCode, new
                                    {
                                        @class = "form-control",
@@ -207,19 +226,19 @@
                                         @Html.ValidationMessageFor(model => model.DSAIFSCCode, "", new { @class = "text-danger", @id = "txtIFSCCode", @maxlength = "12" })
                                     </div>
                                     <div class="col-md-4">
-                                        <label for="exampleInputEmail1">Commision</label>
+                                        <label class="required" for="exampleInputEmail1">Commision</label>
                                         @Html.TextBoxFor(model => model.DSACommision, new
                                    {
                                        @class = "form-control",
                                        @placeholder = "Commision",
                                        @name = "DSACommision",
                                        @required = "true",
-                                       @maxlength = "10",
-                                       @type = "number",
+                                       @maxlength = "5",
+                                       @onkeypress = "return isNumber(this.value);",
                                    })
                                     </div>
                                     <div class="col-md-4">
-                                        <label for="exampleInputEmail1">PAN No</label>
+                                        <label class="required" for="exampleInputEmail1">PAN No</label>
                                         @Html.TextBoxFor(model => model.PAN, new
                                    {
                                        @class = "form-control",
@@ -233,13 +252,13 @@
                                         @Html.ValidationMessageFor(model => model.PAN, "", new { @class = "text-danger", @id = "txtDsaPanNo", @maxlength = "10" })
                                     </div>
 
-                                   
+
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <label for="exampleInputEmail1">Aadhar No</label>
+                                        <label class="required" for="exampleInputEmail1">Aadhar No</label>
                                         @Html.TextBoxFor(model => model.AAdharNo, new
                                    {
                                        @class = "form-control",
@@ -294,10 +313,8 @@
     </section>
 
 }
-@*<script src="~/plugins/jquery/jquery.min.js"></script>
-<script src="~/plugins/jquery/jquery.validate.min.js"></script>
-<script src="~/plugins/jquery/jquery.validate.unobtrusive.min.js"></script>*@
 <script src="~/Scripts/CustomJS/DSA.js"></script>
+<script src="~/Scripts/CustomJS/CommonFunction.js"></script>
 @if (ViewBag.Message != null)
 {
     <script type="text/javascript">
@@ -307,7 +324,6 @@
             };
     </script>
 }
-
 
 
 

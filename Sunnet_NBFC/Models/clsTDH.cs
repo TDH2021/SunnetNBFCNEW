@@ -350,6 +350,7 @@ namespace Sunnet_NBFC.Models
         public string DSACode { get; set; }
         [Required(ErrorMessage = "DSA Name is required.")]
         public string DSAName { get; set; }
+        [Required(ErrorMessage = "DSA Address is required.")]
         public string DSAAddress { get; set; }
         public int DSACityId { get; set; }
         public int DSAStateId { get; set; }
@@ -375,16 +376,22 @@ namespace Sunnet_NBFC.Models
         public int CreatedBy { get; set; }
         public int UpdatedBy { get; set; }
 
+        [Required(ErrorMessage = "DSA Account No is required.")]
         public string DSAccountNo { get; set; }
+        [Required(ErrorMessage = "DSA Bank is required.")]
         public string DSABankName { get; set; }
+        [Required(ErrorMessage = "DSA Branch is required.")]
         public string DSABranch { get; set; }
+        [Required(ErrorMessage = "DSA IFSC Code is required.")]
         public string DSAIFSCCode { get; set; }
         public int ISDELETE { get; set; }
         public int COMPANYID { get; set; }
         public string CityName { get; set; }
         public string StateName { get; set; }
+        [Required(ErrorMessage = "DSA Pan is required.")]
         [RegularExpression("^[A-Z]{5}[0-9]{4}[A-Z]{1}$", ErrorMessage = "Invalid PAN Number")]
         public string PAN { get; set; } = "";
+        [Required(ErrorMessage = "DSA Aadhar is required.")]
         [RegularExpression("^[2-9]{1}[0-9]{3}[0-9]{4}[0-9]{4}$", ErrorMessage = "Invalid Aadhar Number")]
         public string AAdharNo { get; set; } = "";
         bool disposed = false;
