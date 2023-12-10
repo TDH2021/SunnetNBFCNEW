@@ -224,14 +224,46 @@ namespace Sunnet_NBFC.Controllers
                     return RedirectToAction("LeadView", "Lead", new { ShortStage_Name = "CreditApprove" });
                 }
 
-
                 //if (dtLeadCredit != null && dtLeadCredit.Rows.Count > 0)
                 //    M.clsLeadCredit = DataInterface.GetItem<clsLeadCredit>(dtLeadCredit.Rows[0]);
                 //else
                 //    M.clsLeadCredit = new clsLeadCredit();
 
+                clsCreditCheckList CFilter = new clsCreditCheckList();
+                CFilter.ReqType = "Edit";
+                CFilter.LeadId = M.LeadId;
+                CFilter.LeadCreditId = M.clsLeadCredit == null ? 0 : M.clsLeadCredit.CrId;
+
+                using (DataTable dtCreditCheckList = DataInterface2.GetCreditCheckList(CFilter))
+                {
+                    if (dtCreditCheckList != null)
+                    {
+                        //List<clsLeadCredit> list = new List<clsLeadCredit>();
+                        List<clsCreditCheckList> Multilist = new List<clsCreditCheckList>();
+                        Multilist = (from DataRow row in dtCreditCheckList.Rows
+                                     select new clsCreditCheckList()
+                                     {
+                                            ReqType = "Edit",
+                                            Id = int.Parse("0"+Convert.ToString(row["Id"])),
+                                            LeadId = int.Parse("0" + Convert.ToString(row["LeadId"])),
+                                            LeadCreditId = int.Parse("0" + Convert.ToString(row["LeadCreditId"])),
+                                            CheckListId = int.Parse("0" + Convert.ToString(row["CheckListId"])),
+                                            CheckListName = Convert.ToString(row["CheckListName"]),
+                                            Answer =Convert.ToString(row["Answer"]),
+                                            Remarks = Convert.ToString(row["Remarks"])
+
+                                      }).ToList();
+
+                        if (Multilist != null)
+                            M.clsCreditCheckList = Multilist;
+                    }
+
+                }
+
                 ViewBag.StatusListDDL = ClsCommon.StatusDDL("CreditApprove");
                 ViewBag.CrditCheckListDDL = ClsCommon.ToSelectList(DataInterface2.GetMiscForDDL("CreditCheckList"), "MiscId", "MiscName");
+                ViewBag.CrditCheckList = ClsCommon.ToSelectList(DataInterface2.GetMiscForDDL("IGLCheckList"), "MiscId", "MiscName");
+                ViewBag.AnswerListDDL = ClsCommon.AnswerDDL();
 
                 //M = DataInterface1.GetItem<clsLeadCalling>(dt.Rows[0]); //for single row
                 //ViewBag.AnswerListDDL = ClsCommon.AnswerDDL();
@@ -653,8 +685,63 @@ namespace Sunnet_NBFC.Controllers
                     if (Convert.ToInt64("0" + Convert.ToString(dt.Rows[0]["ReturnID"])) > 0)
                     {
                         IsSave = true;
+                        //if (M.clsLeadCredit.ReqType == "Insert")
+                        //    M.clsLeadCredit.CrId = Convert.ToInt32("0" + Convert.ToString(dt.Rows[0]["ReturnID"]));
                     }
                 }
+                if(IsSave)
+                {
+                    var QnsAnsKeyValue = frm.AllKeys
+                 .Where(k => k.StartsWith("A_"))
+                 .ToDictionary(k => k, k => frm[k]);
+
+                    var RmkKeyValue = frm.AllKeys
+                 .Where(k => k.StartsWith("Rmk_"))
+                 .ToDictionary(k => k, k => frm[k]);
+
+                    clsCreditCheckList CheckListModel = new clsCreditCheckList();
+
+                    int index = 0;
+                    foreach (var item in QnsAnsKeyValue)
+                    {
+                        string Key = item.Key;
+                        string Value = item.Value;
+                        string[] valueArray = Key.Split('_');
+                        CheckListModel = new clsCreditCheckList();
+
+                        CheckListModel.Id = Convert.ToInt32(valueArray[1]);
+                        CheckListModel.LeadId = M.LeadId;
+                        CheckListModel.LeadCreditId = M.clsLeadCredit.CrId;
+                        CheckListModel.CheckListId = Convert.ToInt32(valueArray[2]);
+                        CheckListModel.Answer = Value;
+                        CheckListModel.Remarks = RmkKeyValue.ElementAt(index).Value;
+                        index = index + 1;
+
+
+                        if (CheckListModel.Id <= 0)
+                        {
+                            CheckListModel.ReqType = "Insert";
+                        }
+                        else
+                        {
+                            CheckListModel.ReqType = "Update";
+                        }
+
+                        dt = DataInterface2.SaveCreditCheckList(CheckListModel);
+
+                        //ClsCommon.GETClassFromDt(dt, ref clsRtn);
+                        if (dt != null && dt.Rows.Count > 0)
+                        {
+                            if (Convert.ToInt64("0" + Convert.ToString(dt.Rows[0]["ReturnID"])) > 0)
+                            {
+                                IsSave = true;
+                            }
+                        }
+                    }
+
+                }
+
+
                 if (IsSave)
                 {
                     M.ReqType = "UpdateStatus";

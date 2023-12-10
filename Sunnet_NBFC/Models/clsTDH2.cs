@@ -395,10 +395,12 @@ namespace Sunnet_NBFC.Models
         public string MainProdType { get; set; }
         public int ProdId { get; set; }
         public string ProdName { get; set; }
+        public string CustomerType { get; set; }
         public string CustomerName { get; set; }
         public string ContactNo { get; set; }
         public List<clsLeadCalling> clsLeadCalling { get; set; }
         public clsLeadCredit clsLeadCredit { get; set; }
+        public List<clsCreditCheckList> clsCreditCheckList { get; set; }
         //public List<clsLeadCredit> clsLeadCred { get; set; }
 
         bool disposed = false;
@@ -487,6 +489,55 @@ namespace Sunnet_NBFC.Models
         }
 
     }
+
+    public class clsCreditCheckList
+    {
+        public string ReqType { get; set; }
+        public int Id { get; set; }
+        public int LeadId { get; set; }
+        public int LeadCreditId { get; set; }
+        public int CheckListId { get; set; }
+        public string CheckListName { get; set; }
+
+        [DisplayName("Answer")]
+        public string Answer { get; set; }
+
+        [DisplayName("Remarks")]
+        public string Remarks { get; set; }
+      
+        bool disposed = false;
+
+        // Public implementation of Dispose pattern callable by consumers.
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        // Protected implementation of Dispose pattern.
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposed)
+                return;
+
+            if (disposing)
+            {
+                // Free any other managed objects here.
+                //
+            }
+
+            // Free any unmanaged objects here.
+            //
+            disposed = true;
+        }
+
+        ~clsCreditCheckList()
+        {
+            Dispose(false);
+        }
+
+    }
+
 
     public class clsLeadDocument : clsLeadDetail
     {

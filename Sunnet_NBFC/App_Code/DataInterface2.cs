@@ -1240,6 +1240,44 @@ public class DataInterface2 : DataInterface, IDisposable
 
     #endregion
 
+    #region Credit CheckList
+    public static DataTable GetCreditCheckList(clsCreditCheckList cls)
+    {
+        DataTable dt = new DataTable();
+        try
+        {
+            //DBOperation db = new DBOperation();
+            //SqlCommand cmd = new SqlCommand();
+
+            using (DBOperation db = new DBOperation())
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@ReqType", SqlDbType.VarChar).Value = cls.ReqType;
+                    cmd.Parameters.Add("@LeadId", SqlDbType.Int).Value = cls.LeadId;
+                    cmd.Parameters.Add("@LeadCreditId", SqlDbType.Int).Value = cls.LeadCreditId;
+                    dt = db.FillTableProc(cmd, "USP_LeadCreditCheckList");
+                }
+            }
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        finally
+        {
+            dt.Dispose();
+        }
+
+        return dt;
+
+    }
+
+    #endregion
+
+
     #region Save LeadCredit
     public static DataTable SaveLeadCredit(clsLeadCredit cls)
     {
@@ -1351,6 +1389,65 @@ public class DataInterface2 : DataInterface, IDisposable
                     cmd.Parameters.Add("@CreatedBy", SqlDbType.Int).Value = ClsSession.UserID;
                     cmd.Parameters.Add("@UpdatedBy", SqlDbType.Int).Value = ClsSession.UserID;
                     dt = db.FillTableProc(cmd, "USP_LeadCredit");
+
+                    //if (dt != null && dt.Rows.Count > 0)
+                    //{
+                    //    clsRtn.ID = Convert.ToInt64("0" + Convert.ToString(dt.Rows[0]["ReturnID"]));
+                    //    clsRtn.Message = Convert.ToString(dt.Rows[0]["ReturnMessage"]);
+                    //    clsRtn.MessageDesc = clsRtn.Message;
+                    //    if (clsRtn.ID > 0)
+                    //        clsRtn.MsgType = (int)MessageType.Success;
+                    //    else
+                    //        clsRtn.MsgType = (int)MessageType.Fail;
+                    //}
+                }
+            }
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+            //clsRtn.MsgType = (int)MessageType.Error;
+            //clsRtn.ID = 0;
+            //clsRtn.Message = ex.Message;
+            //clsRtn.MessageDesc = ex.Message;
+        }
+        finally
+        {
+            dt.Dispose();
+        }
+
+        return dt;
+    }
+
+    #endregion
+
+    #region Save Credit CheckList
+    public static DataTable SaveCreditCheckList(clsCreditCheckList cls)
+    {
+        //ClsReturnData clsRtn = new ClsReturnData();
+        //clsRtn.MsgType = (int)MessageType.Fail;
+        DataTable dt = new DataTable();
+        try
+        {
+            //DBOperation db = new DBOperation();
+            //SqlCommand cmd = new SqlCommand();
+
+            using (DBOperation db = new DBOperation())
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@ReqType", SqlDbType.VarChar).Value = cls.ReqType;
+                    cmd.Parameters.Add("@Id", SqlDbType.Int).Value = cls.Id;
+                    cmd.Parameters.Add("@LeadId", SqlDbType.Int).Value = cls.LeadId;
+                    cmd.Parameters.Add("@LeadCreditId", SqlDbType.Int).Value = cls.LeadCreditId;
+                    cmd.Parameters.Add("@CheckListid", SqlDbType.Int).Value = cls.CheckListId;
+                    cmd.Parameters.Add("@Answer", SqlDbType.VarChar).Value = cls.Answer;
+                    cmd.Parameters.Add("@Remarks", SqlDbType.VarChar).Value = cls.Remarks;
+                    cmd.Parameters.Add("@CreatedBy", SqlDbType.Int).Value = ClsSession.UserID;
+                    cmd.Parameters.Add("@UpdatedBy", SqlDbType.Int).Value = ClsSession.UserID;
+                    dt = db.FillTableProc(cmd, "USP_LeadCreditCheckList");
 
                     //if (dt != null && dt.Rows.Count > 0)
                     //{
