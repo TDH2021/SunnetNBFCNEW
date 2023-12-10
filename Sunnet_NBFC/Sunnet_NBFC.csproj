@@ -56,6 +56,12 @@
     <Reference Include="CaptchaMvc, Version=2.5.0.0, Culture=neutral, PublicKeyToken=fe46ad421dd3b0e6, processorArchitecture=MSIL">
       <HintPath>..\packages\CaptchaMvc.Mvc4.1.5.0\lib\net40-full\CaptchaMvc.dll</HintPath>
     </Reference>
+    <Reference Include="Iconic.Zlib.Netstandard">
+      <HintPath>..\..\SUNNET_NBFC_20231210\Sunnet_NBFC\bin\Iconic.Zlib.Netstandard.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Zip">
+      <HintPath>..\..\SUNNET_NBFC_20231210\Sunnet_NBFC\bin\Ionic.Zip.dll</HintPath>
+    </Reference>
     <Reference Include="itext.barcodes, Version=7.2.5.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <HintPath>..\packages\itext7.7.2.5\lib\net461\itext.barcodes.dll</HintPath>
     </Reference>

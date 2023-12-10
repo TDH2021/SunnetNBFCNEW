@@ -21,6 +21,9 @@ using System.Runtime.InteropServices.ComTypes;
 using WebGrease.Activities;
 using System.Web.Script.Serialization;
 using System.Web.ModelBinding;
+using static System.Net.WebRequestMethods;
+using Ionic.Zip;
+//using System.IO.Compression;
 
 namespace Sunnet_NBFC.Controllers
 {
@@ -335,6 +338,10 @@ namespace Sunnet_NBFC.Controllers
 
                 if (IsSave)
                 {
+                    string slname = DownloadSanctionLetter(M.LeadId, M.LeadNo);
+                    string wlname = DownloadWelcomeLetter(M.LeadId);
+                    string rlname = DownloadRepyamentLetter(M.LeadId);
+                    downloadZipFile(M.LeadNo, slname, wlname, rlname);
                     M.ReqType = "UpdateStatus";
                     M.Status = "A";
                     dt = DataInterface1.UpdateLeadStatusDisburse(M);
@@ -352,13 +359,7 @@ namespace Sunnet_NBFC.Controllers
                             clsRtn.MsgType = (int)MessageType.Fail;
                         }
                     }
-
-
-
-
                 }
-
-
             }
             catch (Exception e1)
             {
@@ -376,11 +377,8 @@ namespace Sunnet_NBFC.Controllers
             }
             if (IsSave)
             {
-
                 TempData["Success"] = !string.IsNullOrEmpty(clsRtn.Message) ? clsRtn.Message : "Saved/Updated";
                 return RedirectToAction("LeadView", "LeadDisbursement");
-
-
             }
             else
             {
@@ -491,98 +489,6 @@ namespace Sunnet_NBFC.Controllers
                     }
                 }
 
-
-
-                //string path = Filepath;
-                //byte[] fileBytes = GetFile(path);
-                //return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, FileName);
-                //return File(Filepath, "application/force-download", Path.GetFileName(Filepath));
-
-                //#region send email
-                //try
-                //{
-                //    using (clsSendMail cls = new clsSendMail())
-                //    {
-                //        using (clsMail clsMail = new clsMail())
-                //        {
-                //            clsMail.ToEmail = "chetan.saini99@gmail.com";
-                //            clsMail.Subject = "Sanction Letter -" + leadid.ToString();
-                //            clsMail.AttachFile = Filepath;
-                //            clsMail.BodyHtml = cls.SanctionLetter("Test", "VchLoan", "10000", Server.MapPath("~/EmailTemplates/SenctionLetter.html"));
-                //            int a = cls.SendMail(clsMail);
-                //        }
-                //    }
-                //}
-                //catch (Exception ex)
-                //{ }
-                //#endregion
-
-                //#region send sms
-                //try
-                //{
-                //    using (clsTdhSms clsfn = new clsTdhSms())
-                //    {
-                //        using (clsSMSMaster clssms = new clsSMSMaster())
-                //        {
-                //            clssms.SMSType = "FinalApprove";
-                //            clssms.LeadId = Convert.ToInt32("0" + leadid.ToString());
-                //            DataSet ds1 = DataInterface1.dbSMSMaster(clssms);
-                //            string URL = ds1.Tables[0].Rows[0]["url"].ToString();
-                //            string msg = ds1.Tables[0].Rows[0]["sms"].ToString();
-                //            msg = msg.Replace("{#name#}", "Chetan").Replace("{#loanamt#}", "100000").Replace("{#leadno#}", leadno);
-                //            URL = URL.Replace("@MobileNo", ds1.Tables[1].Rows[0]["mobileno"].ToString()).Replace("@Message", msg).Replace("@TemplateID", ds1.Tables[0].Rows[0]["TemplateId"].ToString());
-                //            string a = clsfn.SendSms(URL);
-                //        }
-                //    }
-                //}
-                //catch (Exception ex)
-                //{ }
-                //#endregion
-
-                if (FileName != "")
-                {
-                    Response.AppendHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName(Filepath));
-                    Response.WriteFile(Filepath);
-                    Response.End();
-                }
-
-                return "1";
-            }
-            else
-            {
-                return "0";
-            }
-
-        }
-
-        public ActionResult DownloadSanctionLetter(int? leadid)
-        {
-            string FileName = "";
-            if (leadid > 0)
-            {
-                FileName = "SancLetter_" + leadid.ToString() + "_" + DateTime.Now.ToString("ddMMyyyy") + ".pdf";
-                string Filepath = Server.MapPath("~/" + ConfigurationManager.AppSettings["GenLetterPath"].ToString() + "/" + FileName);
-                using (clsLeadGenerationMaster cls = new clsLeadGenerationMaster())
-                {
-                    cls.ReqType = "GenSanction";
-                    cls.LeadId = Convert.ToInt32("0" + leadid.ToString());
-                    //cls.LeadNo = "Lead032023000001";
-                    using (DataSet ds = DataInterface.DBLetter(cls))
-                    {
-                        if (ds.Tables.Count == 2)
-                        {
-                            ds.Tables[0].TableName = "Company";
-                            ds.Tables[1].TableName = "Lead";
-                            using (clsSanctionLetter cls1 = new clsSanctionLetter())
-                            {
-                                cls1.GenSanctionLetter(Filepath, "SanctionLetter", ds);
-                            }
-                        }
-                    }
-                }
-                string path = Filepath;
-                byte[] fileBytes = System.IO.File.ReadAllBytes(path);
-                return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, FileName);
                 //if (FileName != "")
                 //{
                 //    Response.AppendHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName(Filepath));
@@ -590,15 +496,60 @@ namespace Sunnet_NBFC.Controllers
                 //    Response.End();
                 //}
 
+                return FileName;
             }
             else
             {
-                return View();
+                return FileName;
             }
 
         }
 
-        public ActionResult DownloadWelcomeLetter(int? leadid)
+        //public ActionResult DownloadSanctionLetter(int? leadid)
+        //{
+        //    string FileName = "";
+        //    if (leadid > 0)
+        //    {
+        //        FileName = "SancLetter_" + leadid.ToString() + "_" + DateTime.Now.ToString("ddMMyyyy") + ".pdf";
+        //        string Filepath = Server.MapPath("~/" + ConfigurationManager.AppSettings["GenLetterPath"].ToString() + "/" + FileName);
+        //        using (clsLeadGenerationMaster cls = new clsLeadGenerationMaster())
+        //        {
+        //            cls.ReqType = "GenSanction";
+        //            cls.LeadId = Convert.ToInt32("0" + leadid.ToString());
+        //            //cls.LeadNo = "Lead032023000001";
+        //            using (DataSet ds = DataInterface.DBLetter(cls))
+        //            {
+        //                if (ds.Tables.Count == 2)
+        //                {
+        //                    ds.Tables[0].TableName = "Company";
+        //                    ds.Tables[1].TableName = "Lead";
+        //                    using (clsSanctionLetter cls1 = new clsSanctionLetter())
+        //                    {
+        //                        cls1.GenSanctionLetter(Filepath, "SanctionLetter", ds);
+        //                    }
+        //                }
+        //            }
+        //        }
+
+        //        string path = Filepath;
+        //        byte[] fileBytes = System.IO.File.ReadAllBytes(path);
+        //        return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, FileName);
+        //        //if (FileName != "")
+        //        //{
+        //        //    Response.AppendHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName(Filepath));
+        //        //    Response.WriteFile(Filepath);
+        //        //    Response.End();
+        //        //}
+
+        //    }
+        //    else
+        //    {
+        //        return View();
+        //    }
+
+        //}
+
+        public string DownloadWelcomeLetter(int? leadid)
         {
             string FileName = "";
             if (leadid > 0)
@@ -612,11 +563,11 @@ namespace Sunnet_NBFC.Controllers
                     //cls.LeadNo = "Lead032023000001";
                     using (DataSet ds = DataInterface.DBLetter(cls))
                     {
-                        if (ds.Tables.Count == 2)
+                        if (ds.Tables.Count >= 2)
                         {
                             ds.Tables[0].TableName = "Company";
                             ds.Tables[1].TableName = "Lead";
-                            ds.Tables[1].TableName = "Disburse";
+                            ds.Tables[2].TableName = "Disburse";
                             using (clsWelcomeLetter cls1 = new clsWelcomeLetter())
                             {
                                 cls1.GenWelcomeLetter(Filepath, "WelcomeLetter", ds);
@@ -624,20 +575,26 @@ namespace Sunnet_NBFC.Controllers
                         }
                     }
                 }
-                string path = Filepath;
-                byte[] fileBytes = System.IO.File.ReadAllBytes(path);
-                return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, FileName);
-
-
+                //string path = Filepath;
+                //byte[] fileBytes = System.IO.File.ReadAllBytes(path);
+                //return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, FileName);
+                //if (FileName != "")
+                //{
+                //    Response.AppendHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName(Filepath));
+                //    Response.WriteFile(Filepath);
+                //    Response.End();
+                //}
+                return FileName;
             }
             else
             {
-                return View();
+                return FileName;
+                //return View();
             }
 
         }
 
-        public ActionResult DownloadRepyamentLetter(int? leadid)
+        public string DownloadRepyamentLetter(int? leadid)
         {
             string FileName = "";
             if (leadid > 0)
@@ -651,10 +608,11 @@ namespace Sunnet_NBFC.Controllers
                     //cls.LeadNo = "Lead032023000001";
                     using (DataSet ds = DataInterface.DBLetter(cls))
                     {
-                        if (ds.Tables.Count == 2)
+                        if (ds.Tables.Count > 2)
                         {
                             ds.Tables[0].TableName = "Company";
                             ds.Tables[1].TableName = "Lead";
+                            ds.Tables[2].TableName = "Repayment";
                             using (clsRepyament cls1 = new clsRepyament())
                             {
                                 cls1.GenRepyament(Filepath, "Repyament", ds);
@@ -662,17 +620,22 @@ namespace Sunnet_NBFC.Controllers
                         }
                     }
                 }
-                string path = Filepath;
-                byte[] fileBytes = System.IO.File.ReadAllBytes(path);
-                return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, FileName);
+                //string path = Filepath;
+                //byte[] fileBytes = System.IO.File.ReadAllBytes(path);
+                //return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, FileName);
 
-
+                //if (FileName != "")
+                //{
+                //    Response.AppendHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName(Filepath));
+                //    Response.WriteFile(Filepath);
+                //    Response.End();
+                //}
+                return FileName;
             }
             else
             {
-                return View();
+                return FileName;
             }
-
         }
 
         public FileResult DownloadFile(string fileName)
@@ -687,5 +650,45 @@ namespace Sunnet_NBFC.Controllers
             //return File(bytes, "application/octet-stream", fileName);
         }
 
+
+        //
+        public string downloadZipFile(string leadno, string sl, string wl, string rl)
+        {
+            using (ZipFile zip = new ZipFile())
+            {
+                zip.AlternateEncodingUsage = ZipOption.AsNecessary;
+                string tmpFolderPath = Server.MapPath("~/" + ConfigurationManager.AppSettings["GenLetterPath"].ToString() + "/");
+                // string folderpath = ConfigurationManager.AppSettings["SMFFilePDF"].ToString() + lblBCCode.Text.Trim().Replace("'", "") + "\\SMFPDF\\";
+                if (sl != "")
+                {
+                    zip.AddFile(tmpFolderPath + sl, leadno);
+                }
+
+                if (wl != "")
+                {
+                    zip.AddFile(tmpFolderPath + wl, leadno);
+                }
+
+                if (rl != "")
+                {
+                    zip.AddFile(tmpFolderPath + rl, leadno);
+                }
+
+
+                Response.Clear();
+                Response.BufferOutput = false;
+                string zipName = String.Format("{0}.zip", leadno.Trim() + "_" + DateTime.Now.ToString("dd-MMM-yyyy-HHmmss"));
+                Response.ContentType = "application/zip";
+                Response.AddHeader("content-disposition", "attachment; filename=" + zipName);
+                zip.Save(Response.OutputStream);
+
+                Response.End();
+                //Mulv.ActiveViewIndex = 0;
+
+
+                //FillGv();
+            }
+            return "";
+        }
     }
 }
