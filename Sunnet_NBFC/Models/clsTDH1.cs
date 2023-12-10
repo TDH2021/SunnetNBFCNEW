@@ -375,6 +375,10 @@ namespace Sunnet_NBFC.Models
         //public string ReqType { get; set; }
         //public int LeadId { get; set; }
         public string LeadNo { get; set; }
+        public string MainProdName { get; set; }
+        public string ProdName { get; set; }
+        public string CustomerName {get; set; }
+        public string ContactNo { get;set; }
         public List<clsLeadDocument> clsLeadDocument { get; set; }
 
 

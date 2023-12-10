@@ -98,15 +98,18 @@
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-
                                     <th>Lead No</th>
+                                    <th>Main Product</th>
+                                    <th>Product</th>
                                     <th>Customer Name</th>
                                     <th>Mobile No</th>
                                     <th>Pan No</th>
                                     <th>Aadhar No</th>
-                                    <th>Reuested Loan Amount</th>
-                                    <th>Reuested Loan Tenure(Months)</th>
+                                    <th>Requested Loan Amount</th>
+                                    <th>Requested Loan Tenure(Months)</th>
+                                    <th>Stage</th>
                                     <th>Status</th>
+
                                     <th>-</th>
                                 </tr>
                             </thead>
@@ -124,12 +127,15 @@
                                                 <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="return CallPickData('@item.LeadNo','@item.LeadId');"> <b> @item.LeadNo  </b> </button>
 
                                             </td>
+                                            <td>@item.MainProductName</td>
+                                            <td>@item.ProductName</td>
                                             <td>@item.CustomerName</td>
                                             <td>@item.MobileNo1</td>
                                             <td>@item.PanNo</td>
                                             <td>@item.AadharNo</td>
                                             <td>@item.ReuestedLoanAmount</td>
                                             <td>@item.ReuestedLoanTenure</td>
+                                            <td>@item.ShortStage_Name</td>
                                             <td>@item.StatusDesc</td>
                                             <td>
                                                 <div class="d-flex order-actions">
@@ -149,13 +155,17 @@
                             <tfoot>
                                 <tr>
                                     <th>Lead No</th>
+                                    <th>Main Product</th>
+                                    <th>Product</th>
                                     <th>Customer Name</th>
                                     <th>Mobile No</th>
                                     <th>Pan No</th>
                                     <th>Aadhar No</th>
-                                    <th>Reuested Loan Amount</th>
-                                    <th>Reuested Loan Tenure(Months)</th>
+                                    <th>Requested Loan Amount</th>
+                                    <th>Requested Loan Tenure(Months)</th>
+                                    <th>Stage</th>
                                     <th>Status</th>
+
                                     <th>-</th>
                                 </tr>
                             </tfoot>

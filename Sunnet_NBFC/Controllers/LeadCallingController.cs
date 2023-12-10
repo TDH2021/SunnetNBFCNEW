@@ -42,11 +42,12 @@ namespace Sunnet_NBFC.Controllers
                              LeadId = Convert.ToInt32("0" + Convert.ToString(row["LeadId"])),
                              LeadNo = Convert.ToString(row["LeadNo"]),
                              //MainProdId = Convert.ToInt32("0" + Convert.ToString(row["MainProdId"])),
-                             //MainProdName = Convert.ToString(row["MainProdName"]),
+                              MainProdName = Convert.ToString(row["MainProdName"]),
                              //MainProdType = Convert.ToString(row["MainProdType"]),
                              //ProdId = Convert.ToInt32("0" + Convert.ToString(row["ProdId"])),
-                             //ProdName = Convert.ToString(row["ProdName"]),
-
+                             ProdName = Convert.ToString(row["ProdName"]),
+                             CustomerName = Convert.ToString(row["CustomerName"]),
+                             ContactNo = Convert.ToString(row["ContactNo"]),
                          }).FirstOrDefault();
 
                     if (dtLeadCalling != null && dtLeadCalling.Rows.Count > 0)

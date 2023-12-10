@@ -305,19 +305,7 @@ function ChkAadharOTP() {
     debugger
     var OTP = $("#OTP1").val() + $("#OTP2").val() + $("#OTP3").val() + $("#OTP4").val() + $("#OTP5").val() + $("#OTP6").val();
     if (OTP.length != 6) {
-        swal({
-            title: "Error",
-            text: "Please enter valid OTP",
-            icon: "error",
-            button: true,
-
-        })
-            .then((willConfirm) => {
-                if (willConfirm) {
-
-                }
-            });
-
+        swal("TDH", "Please Enter Valid OTP", "error");
 
     } else {
 
@@ -458,12 +446,7 @@ function ChkAadharOTP() {
                         });
                     }
                 });
-
-
-
         }
-
-
 
     }
 
@@ -506,33 +489,9 @@ function PanVerification() {
 
     }
     else if (dob.length == 0) {
-        swal({
-            title: "Error",
-            text: "Please enter dob",
-            icon: "error",
-            button: true,
-
-        })
-            .then((willConfirm) => {
-                if (willConfirm) {
-
-                }
-            });
-
+        swal("TDH", "Please Enter DOB.", "error");
     } else if (dob == "Invalid date") {
-        swal({
-            title: "Error",
-            text: "Please enter correct dob",
-            icon: "error",
-            button: true,
-
-        })
-            .then((willConfirm) => {
-                if (willConfirm) {
-
-                }
-            });
-
+        swal("TDH", "Please Enter Correct DOB", "error"); 
     } else {
         debugger
         var urlvariable;
@@ -689,15 +648,7 @@ function PanVerification() {
                                                 });
                                             }
                                         });
-
-
-
                                 }
-
-
-
-
-
                             },
                             error: function (error) {
                                 debugger
@@ -705,15 +656,9 @@ function PanVerification() {
                             }
                         })
 
-
-
-
-
                     }
                 });
-
         }
-
 
         else {
             swal({
@@ -861,7 +806,6 @@ function SetValues1() {
                 let word = myArray[0];
 
                 document.getElementById("customerpresentcity").value = word;
-
 
                 var statedata = result[0].PostOffice[0].State;
                 document.getElementById("customerpresentState").value = statedata;
@@ -1413,6 +1357,7 @@ function ValidationChk() {
     var EmailId = $("#EmailId").val();
     var CIFID = $("#CIFID").val();
     var AadharNo = $("#AadharNo").val();
+    var OwnerShip = $("#ddlCustOwnerShip option:selected").val();
     var hdn_customer_aadhar_verify, hdn_customer_PanVerify;
     if ($(".btnAadharVerify").is(":disabled") == true) {
         hdn_customer_aadhar_verify = 1;
@@ -1478,6 +1423,11 @@ function ValidationChk() {
     var CO_AadharNo = $("#CO_AadharNo").val();
     var CO_CibilScore = $("#CO_CibilScore").val();
     var Co_CIF = $("#txtCoCIF").val();
+    var Co_OwnerShip = "";
+    if (CO_FName.trim() != "") {
+        Co_OwnerShip = $("#ddlCoOwnerShip option:selected").val();
+    }
+    
     //Additional Info
     var ReuestedLoanAmount = $("#ReuestedLoanAmount").val();
     var ReuestedLoanTenure = $("#ReuestedLoanTenure").val();
@@ -1638,7 +1588,7 @@ function ValidationChk() {
                 customer.G_AadharVerify = row.find("TD").eq(24).html();
                 customer.G_PanVerify = row.find("TD").eq(25).html();
                 customer.G_CIF = row.find("TD").eq(26).html();
-
+                customer.G_OwnerShip = row.find("TD").eq(27).html();
                 customers.push(customer);
 
             });
@@ -1900,7 +1850,7 @@ function ValidationChk() {
                     "EmailId": EmailId,
                     "CIFID": CIFID,
                     "AAdharverfiy": hdn_customer_aadhar_verify,
-
+                    "OwnerShip":OwnerShip,
                     "CO_Prefix": CO_Prefix,
                     "CO_FirstName": CO_FName,
                     "CO_MiddleName": CO_MName,
@@ -1929,7 +1879,8 @@ function ValidationChk() {
                     "Co_CIF":Co_CIF,
                     "CO_AAdharverfiy": hdn_co_aadhar_verify,
                     "CO_Panverfiy": hdn_co_PanVerify,
-                    "Co_CIF":Co_CIF,
+                    "Co_CIF": Co_CIF,
+                    "Co_OwnerShip":Co_OwnerShip,
                     "ReuestedLoanAmount": ReuestedLoanAmount,
                     "ReuestedLoanTenure": ReuestedLoanTenure,
                     "EstValueViechle": EstValueViechle,
@@ -2097,9 +2048,7 @@ function ValidationChk() {
             else if (CO_FName.length == 0) {
                 swal("TDH", "Please enter co applicant first name.", "error");
             }
-            else if (CO_LName.length == 0) {
-                swal("TDH", "Please enter co applicant last name.", "error");
-            }
+          
             else if (CO_Gender.length == 0) {
                 swal("TDH", "Please enter co applicant gender.", "error");
             }
@@ -2248,6 +2197,7 @@ function ValidationChk() {
                     "PermanentVillage": PermanentVillage,
                     "PermanentDistrict": PermanentDistrict,
                     "CibilScore": CibilScore,
+                    "OwnerShip":OwnerShip,
                     "MobileNo1": MobileNumber1,
 
                     /*"MobileNo2": MobileNumber2,*/
@@ -2275,7 +2225,6 @@ function ValidationChk() {
                     "CO_PresentVillage": CO_PresentVillage,
                     "CO_PresentDistrict": CO_PresentDistrict,
 
-
                     "CO_PermanentAddress": CO_PermanentAddress,
                     "CO_PermanentPincode": CO_PermanentPincode,
                     "CO_PermanentStateId": CO_permanentstate,
@@ -2288,8 +2237,7 @@ function ValidationChk() {
                     "CO_Adhaar": CO_AadharNo,
                     "CO_CIBIL": CO_CibilScore,
                     "Co_CIF": Co_CIF,
-
-
+                    "Co_OwnerShip":Co_OwnerShip,
                     "ReuestedLoanAmount": ReuestedLoanAmount,
                     "ReuestedLoanTenure": ReuestedLoanTenure,
                     "EstValueViechle": EstValueViechle,
@@ -2400,6 +2348,7 @@ function ValidationChk() {
                 customer.G_AadharVerify = row.find("TD").eq(24).html();
                 customer.G_PanVerify = row.find("TD").eq(25).html();
                 customer.G_CIF = row.find("TD").eq(26).html();
+                customer.G_OwnerShip = row.find("TD").eq(27).html();
                 customers.push(customer);
             });
             if (Prefix.length == 0) {
@@ -2546,7 +2495,7 @@ function ValidationChk() {
             else if (LoanPurpose.length == 0 && (MainProductText == "Individual Loan" || MainProductText == "Bussiness Loan")) {
                 swal("TDH", "Please enter purpose of loan", "error");
             }
-            else if (MainProductText.toUpperCase() == "INDIVIDUAL LOAN" && (CenterID.length == 0 || BranchID.length == 0)) {
+            else if (MainProductText.toUpperCase() == "INDIVIDUAL LOAN" && (CenterID.length == 0 || PLBranchID.length == 0)) {
 
                 swal("TDH", "Please Select Branch and Center in case of Individual Loan.", "error");
             }
@@ -2580,6 +2529,7 @@ function ValidationChk() {
                     "PermanentVillage": PermanentVillage,
                     "PermanentDistrict": PermanentDistrict,
                     "CibilScore": CibilScore,
+                    "OwnerShip": OwnerShip,
                     "MobileNo1": MobileNumber1,
 
                     /*"MobileNo2": MobileNumber2,*/
@@ -2621,8 +2571,7 @@ function ValidationChk() {
                     "CO_PAN": "",
                     "CO_Adhaar": "",
                     "CO_CIBIL": "",
-
-
+                    "Co_OwnerShip":"",
 
                     "ReuestedLoanAmount": ReuestedLoanAmount,
                     "ReuestedLoanTenure": ReuestedLoanTenure,
@@ -2872,6 +2821,7 @@ function ValidationChk() {
                     "Hdn_type": hdn_type,
                     "EmailId": EmailId,
                     "CIFID": CIFID,
+                    "OwnerShip": OwnerShip,
                     "AAdharverfiy": hdn_customer_aadhar_verify,
 
                     "CO_Prefix": CO_Prefix,
@@ -2900,7 +2850,7 @@ function ValidationChk() {
                     "CO_Adhaar": CO_AadharNo,
                     "CO_CIBIL": CO_CibilScore,
                     "Co_CIF": Co_CIF,
-
+                    "Co_OwnerShip":Co_OwnerShip,
 
                     "ReuestedLoanAmount": ReuestedLoanAmount,
                     "ReuestedLoanTenure": ReuestedLoanTenure,
@@ -2997,14 +2947,7 @@ function numberValidation(str) {
     }
 }
 
-function isNumber(evt) {
-    evt = (evt) ? evt : window.event;
-    var charCode = (evt.which) ? evt.which : evt.keyCode;
-    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-        return false;
-    }
-    return true;
-}
+
 function GetStateCity_PIN(PinCode, txtState, txtCity) {
     debugger;
     $.ajax({

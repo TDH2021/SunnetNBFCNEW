@@ -220,7 +220,7 @@ namespace Sunnet_NBFC.Controllers
                                     model.PropertyAddress = Convert.ToString(ds.Tables[0].Rows[i]["PropertyAddress"]);
                                     model.PropertyType = Convert.ToString(ds.Tables[0].Rows[i]["PropertyType"]);
                                     model.Propertyarea = Convert.ToString(ds.Tables[0].Rows[i]["Propertyarea"]);
-
+                                    
                                     //model.EstValueofscurity = Convert.ToString(ds.Tables[0].Rows[i]["EstValueofscurity"]);
                                     ViewBag.CUSTYPEREUIRED = Convert.ToString(ds.Tables[0].Rows[i]["CustTypeRequried"]);
                                     ViewBag.Status1 = Convert.ToString(ds.Tables[0].Rows[i]["Status1"]);
@@ -281,6 +281,7 @@ namespace Sunnet_NBFC.Controllers
                                     model.AadharNo = Convert.ToString(ds.Tables[1].Rows[i]["AadharNo"]);
                                     model.PanNo = Convert.ToString(ds.Tables[1].Rows[i]["PanNo"]);
                                     model.EmailId = Convert.ToString(ds.Tables[1].Rows[i]["EmailId"]);
+                                    model.OwnerShip = Convert.ToString(ds.Tables[1].Rows[i]["OwnerShip"]);
                                     if (System.IO.File.Exists(Server.MapPath("~/Img/ApplicantImgs/" + Convert.ToString(ds.Tables[1].Rows[i]["CustImage"]))))
                                     {
                                         model.CustImage = Server.MapPath("~/Img/ApplicantImgs/") + Convert.ToString(ds.Tables[1].Rows[i]["CustImage"]);
@@ -331,7 +332,7 @@ namespace Sunnet_NBFC.Controllers
                                     gurantor.G_PanNo = Convert.ToString(ds.Tables[1].Rows[i]["PanNo"]);
                                     gurantor.G_CibilScore = Convert.ToString(ds.Tables[1].Rows[i]["CibilScore"]);
                                     gurantor.G_EmailId = Convert.ToString(ds.Tables[1].Rows[i]["EmailId"]);
-
+                                    gurantor.G_OwnerShip = Convert.ToString(ds.Tables[1].Rows[i]["OwnerShip"]);
                                     gurantorslist.Add(gurantor);
 
                                 }
@@ -373,6 +374,7 @@ namespace Sunnet_NBFC.Controllers
                                     model.CO_PAN = Convert.ToString(ds.Tables[1].Rows[i]["PanNo"]);
                                     model.CO_CIBIL = Convert.ToString(ds.Tables[1].Rows[i]["CibilScore"]);
                                     model.CO_Email_Id = Convert.ToString(ds.Tables[1].Rows[i]["EmailId"]);
+                                    model.Co_OwnerShip = Convert.ToString(ds.Tables[1].Rows[i]["OwnerShip"]);
                                     if (System.IO.File.Exists(Server.MapPath("~/Img/COApplicantImgs/" + Convert.ToString(ds.Tables[1].Rows[i]["CustImage"]))))
                                     {
                                         model.CO_image = Server.MapPath("~/Img/COApplicantImgs/") + Convert.ToString(ds.Tables[1].Rows[i]["CustImage"]);

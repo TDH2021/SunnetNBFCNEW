@@ -71,6 +71,7 @@
            @required = "true",
            @id = "CO_PanNo",
            @maxlength = "10",
+           @onblur = "return ValidatePAN(this.value,id);"
        })
             @Html.HiddenFor(model => model.CO_Panverfiy, new { @class = "form-control", @id = "hdn_co_PanVerify" })
         </div>
@@ -184,7 +185,7 @@
        })
         </div>
         <div class="col-md-3">
-            <label class="required" for="exampleInputEmail1">Martial Status</label>
+            <label class="required" for="exampleInputEmail1">Marital Status</label>
 
 
             @Html.DropDownListFor(model => model.CO_Marital_Status,
@@ -450,9 +451,16 @@
        })
         </div>
 
-       
+
     </div>
     <div class="row">
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">OwnerShip</label>
+            <select class="form-control" id="ddlCoOwnerShip">
+                <option>Owned</option>
+                <option>Rented</option>
+            </select>
+        </div>
         <div class="col-md-3">
             <label class="required" for="exampleInputEmail1">
                 Cibil Score

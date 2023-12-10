@@ -24,7 +24,7 @@
        })
         </div>
         <div class="col-md-3">
-            <label class="required" for="exampleInputEmail1">FORecomed Amt</label>
+            <label class="required" for="exampleInputEmail1">FOR Recomended Amt</label>
             @Html.TextBoxFor(model => model.FORecomedAmt, new
        {
            @class = "form-control",
@@ -65,7 +65,7 @@
            @name = "MName",
            @required = "true",
            @id = "ViechleModel",
-                @maxlength = "50",
+           @maxlength = "10",
 
        })
         </div>
@@ -118,7 +118,7 @@
        })
         </div>
         <div class="col-md-3">
-            <label class="required" for="exampleInputEmail1">Vechile Company</label>
+            <label class="required" for="exampleInputEmail1">Vehicle Company</label>
             @Html.TextBoxFor(model => model.ViechleCompany, new
             {
                 @class = "form-control",
@@ -222,14 +222,14 @@
     <div class="row">
         <div class="col-md-3">
             <label for="exampleInputEmail1">Insurer</label>
-            <input type="text" class="form-control" id="txtInsuar" />
+            <input type="text" class="form-control" id="txtInsuar"/>
         </div>
         <div class="col-md-3">
             <label for="exampleInputEmail1">Policy No</label>
-            <input type="text" class="form-control" id="txtPolicyNo" />
+            <input type="text" class="form-control" id="txtPolicyNo" maxlength="20" />
         </div>
         <div class="col-md-3">
-            <label for="exampleInputEmail1">Registation Date</label>
+            <label for="exampleInputEmail1">Registration Date</label>
             <input type="text" class="form-control datestyle" id="txtRegDate" />
         </div>
     </div>

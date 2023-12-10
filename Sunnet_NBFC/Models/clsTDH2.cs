@@ -395,6 +395,8 @@ namespace Sunnet_NBFC.Models
         public string MainProdType { get; set; }
         public int ProdId { get; set; }
         public string ProdName { get; set; }
+        public string CustomerName { get; set; }
+        public string ContactNo { get; set; }
         public List<clsLeadCalling> clsLeadCalling { get; set; }
         public clsLeadCredit clsLeadCredit { get; set; }
         //public List<clsLeadCredit> clsLeadCred { get; set; }

@@ -589,6 +589,7 @@ public class DataInterface : IDisposable
                 sqlCommand.Parameters.AddWithValue("@CreatedBy", cls.CreatedBy);
                 sqlCommand.Parameters.AddWithValue("@CustImage", cls.CustImage);
                 sqlCommand.Parameters.AddWithValue("@ElectricBill", cls.ElectricBill);
+                sqlCommand.Parameters.AddWithValue("@OwnerShip", cls.OwnerShip);
 
 
                 dt = db.FillTableProc(sqlCommand, "USP_LeadCustomer");
@@ -656,8 +657,7 @@ public class DataInterface : IDisposable
                 sqlCommand.Parameters.AddWithValue("@CreatedBy", cls.CreatedBy);
                 sqlCommand.Parameters.AddWithValue("@CustImage", cls.CustImage);
                 sqlCommand.Parameters.AddWithValue("@ElectricBill", cls.ElectricBill);
-
-
+                sqlCommand.Parameters.AddWithValue("@OwnerShip", cls.Co_OwnerShip);
 
 
                 dt = db.FillTableProc(sqlCommand, "USP_LeadCustomer");
@@ -724,7 +724,7 @@ public class DataInterface : IDisposable
                 sqlCommand.Parameters.AddWithValue("@LeadID", cls.G_LeadId);
                 sqlCommand.Parameters.AddWithValue("@CompanyId", cls.G_CompanyId);
                 sqlCommand.Parameters.AddWithValue("@CreatedBy", cls.G_CreatedBy);
-
+                sqlCommand.Parameters.AddWithValue("@OwnerShip", cls.G_OwnerShip);
                 dt = db.FillTableProc(sqlCommand, "USP_LeadCustomer");
             }
 

@@ -29,7 +29,7 @@
                @name = "CIFID",
                @required = "true",
                @id = "txtGCIF",
-
+               @maxlength="10"
            })
             </div>
             <div class="col-md-3">
@@ -79,7 +79,7 @@
                @autocomplete = "off",
                @id = "G_PanNo",
                @maxlength = "10",
-
+               @onblur = "return ValidatePAN(this.value,id);"
 
            })
                 @Html.HiddenFor(model => model.G_Panverfiy, new { @class = "form-control", @id = "hdn_gurantor_PanVerify" })
@@ -191,7 +191,7 @@
             </div>
 
             <div class="col-md-3">
-                <label class="required" for="exampleInputEmail1">Martial Status</label>
+                <label class="required" for="exampleInputEmail1">Marital Status</label>
 
 
                 @Html.DropDownListFor(model => model.G_Marital_Status,
@@ -466,7 +466,7 @@
 
 
         </div>
-        <div class="form-group">    
+        <div class="form-group">
             <div class="row">
 
                 <div class="col-md-3">
@@ -481,11 +481,17 @@
                    @required = "true",
                    @id = "G_CibilScore",
                    @onkeypress = "return isNumber(this.value);",
-                   @maxlength = "4",
+                   @maxlength = "3",
 
                })
                 </div>
-
+                <div class="col-md-3">
+                    <label class="required" for="exampleInputEmail1">OwnerShip</label>
+                    <select class="form-control" id="ddlGOwnerShip">
+                        <option>Owned</option>
+                        <option>Rented</option>
+                    </select>
+                </div>
             </div>
         </div>
     </div>
@@ -524,6 +530,7 @@
                 <th>Aadhar Check</th>
                 <th>PAN Check</th>
                 <th>CIF</th>
+                <th>OwnerShip</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -676,9 +683,6 @@
             customer1.G_PresentVillage = row.find("TD").eq(10).html();
             customer1.G_PresentDistrict = row.find("TD").eq(11).html();
 
-
-
-
             customer1.G_PermanentAddress = row.find("TD").eq(12).html();
             customer1.G_PermanentPincode = row.find("TD").eq(13).html();
             customer1.G_P_State = row.find("TD").eq(11).html(14);
@@ -694,6 +698,7 @@
             customer1.G_AadharNo = row.find("TD").eq(21).html();
             customer1.G_CibilScore = row.find("TD").eq(22).html();
             customer1.G_CIF = row.find("TD").eq(26).html();
+            customer1.G_OwnerShip = row.find("TD").eq(27).html();
             if (customer1.G_FirstName != "No data available in table") {
                 customers1.push(customer1);
             }
@@ -768,7 +773,7 @@
 
             var G_CibilScore = $("#G_CibilScore").val();
             var G_CIF = $("#txtGCIF").val();
-            
+            var G_OwnerShip = $("#ddlInsuranceType :selected").val();
             debugger
 
             if (txtFName.length == 0) {
@@ -838,7 +843,7 @@
             } else if (G_CibilScore.length == 0) {
                 swal("TDH", "Please Verify CibilScore.", "error");
             } else if (G_CibilScore > 900 && G_CibilScore < 200) {
-                swal("TDH", "CibilScore must be between 200 and 900.", "error"); 
+                swal("TDH", "CibilScore must be between 200 and 900.", "error");
             } else {
                 debugger
                 var txtPrefix = $("#GPrefix :selected").text();
@@ -870,6 +875,7 @@
                 var G_AadharNo = $("#G_AadharNo").val();
                 var G_CibilScore = $("#G_CibilScore").val();
                 var G_CIF = $("#txtGCIF").val();
+                var G_OwnerShip = $("#ddlGOwnerShip option:selected").val();
                 debugger
                 //Get the reference of the Table's TBODY element.
                 var tBody = $("#example10 > TBODY")[0];
@@ -891,7 +897,6 @@
                 cell = $(row.insertCell(-1));
                 cell.html(txtLName);
 
-
                 cell = $(row.insertCell(-1));
                 cell.html(txtG_Gender);
 
@@ -900,8 +905,6 @@
 
                 cell = $(row.insertCell(-1));
                 cell.html(txtG_MartialStatus);
-
-
 
                 cell = $(row.insertCell(-1));
                 cell.html(G_PresentAddress);
@@ -921,7 +924,6 @@
                 cell = $(row.insertCell(-1));
                 cell.html(G_PresentDistrict);
 
-
                 cell = $(row.insertCell(-1));
                 cell.html(G_PermanentAddress);
 
@@ -933,8 +935,6 @@
 
                 cell = $(row.insertCell(-1));
                 cell.html(G_P_City);
-
-
 
                 cell = $(row.insertCell(-1));
                 cell.html(G_PermanentVillage);
@@ -966,6 +966,8 @@
                 cell.html(G_PanVerify);
                 cell = $(row.insertCell(-1));
                 cell.html(G_CIF);
+                cell = $(row.insertCell(-1));
+                cell.html(G_OwnerShip);
                 //Add Button cell.
                 cell = $(row.insertCell(-1));
                 var btnRemove = $("<input />");
@@ -977,22 +979,7 @@
             }
 
         } else {
-
-
-            swal({
-                title: "Error",
-                text: "Gurantor already added",
-                icon: "error",
-                button: true,
-
-            })
-                .then((willConfirm) => {
-                    if (willConfirm) {
-
-                    }
-                });
-
-
+            swal("TDH", "Gurrantor Already Added", "error");
         }
 
     }
@@ -1033,7 +1020,7 @@
     function Remove(button) {
         //Determine the reference of the Row using the Button.
         var row = $(button).closest("TR");
-        var name = $("TD", row).eq(0).html();
+        var name = $("TD", row).eq(1).html();
         if (confirm("Do you want to delete: " + name)) {
             //Get the reference of the Table.
             var table = $("#example10")[0];

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using iText.Commons.Utils;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -591,7 +592,7 @@ namespace Sunnet_NBFC.Models
         public int CompanyId { get; set; }
         public string CustImage { get; set; } = "";
         public string ElectricBill { get; set; } = "";
-
+        public string OwnerShip { get; set; } = "";
         public string Co_CIF { get; set; }
         public string CO_Prefix { get; set; }
         public string CO_FirstName { get; set; }
@@ -640,7 +641,7 @@ namespace Sunnet_NBFC.Models
 
         public string CO_CIBIL { get; set; }
         public string CO_image { get; set; } = "";
-
+        public string Co_OwnerShip { get; set; } = "";
         public string G_CIF { get; set; } = "";
         public string CO_ElectricBill { get; set; } = "";
         public string G_Prefix { get; set; }
@@ -662,15 +663,16 @@ namespace Sunnet_NBFC.Models
         public string G_PermanentAddress { get; set; }
         public string G_PermanentPincode { get; set; }
         public string G_PermanentStateId { get; set; }
-        public string G_PermanentCityId { get; set; }
-        public string G_PermanentVillage { get; set; }
-        public string G_PermanentDistrict { get; set; }
+        public string G_PermanentCityId { get; set; } = "";
+        public string G_PermanentVillage { get; set; } = "";
+        public string G_PermanentDistrict { get; set; } = "";
 
-        public string G_Mobile_No { get; set; }
-        public string G_Email_Id { get; set; }
-        public string G_PAN { get; set; }
-        public string G_Adhaar { get; set; }
-        public string G_CIBIL { get; set; }
+        public string G_Mobile_No { get; set; } = "";
+        public string G_Email_Id { get; set; } = "";
+        public string G_PAN { get; set; } = "";
+        public string G_Adhaar { get; set; } = "";
+        public string G_CIBIL { get; set; } = "";
+        public string G_OwnerShip { get; set; } = "";
 
         public string ReuestedLoanAmount { get; set; }
         public string EstValueViechle { get; set; }
@@ -704,13 +706,13 @@ namespace Sunnet_NBFC.Models
         public string FORemarks { get; set; }
         public int BranchID { get; set; }
         public string ShortStage_Name { get; set; }
-        public int StageEmpId { get; set; }
-        public string StatusDesc { get; set; }
-        public int CreatedBy { get; set; }
-        public int UpdatedBy { get; set; }
-        public string FromDate { get; set; }
-        public string ToDate { get; set; }
-        public string DSAId { get; set; }
+        public int StageEmpId { get; set; } = 0;
+        public string StatusDesc { get; set; } = "";
+        public int CreatedBy { get; set; } = 0;
+        public int UpdatedBy { get; set; } = 0;
+        public string FromDate { get; set; } = "";
+        public string ToDate { get; set; } = "";
+        public string DSAId { get; set; } = "";
         public int CenterId { get; set; } = 0;
         public int PLLoanBranch { get; set; } = 0;/// for Personal Loan Branch
         public string CenterName { get; set; } = "";
@@ -800,7 +802,6 @@ namespace Sunnet_NBFC.Models
         public string G_AadharNo { get; set; }
         public string G_CibilScore { get; set; }
         public string G_FilePath { get; set; }
-
         public int G_CompanyId { get; set; }
         public int G_BranchID { get; set; }
         public string G_LeadNo { get; set; }
@@ -808,7 +809,7 @@ namespace Sunnet_NBFC.Models
         public int G_PanVerify { get; set; }
         public int G_AadharVerify { get; set; }
         public int G_CreatedBy { get; set; }
-
+        public string G_OwnerShip { get; set; }
     }
     public class clsRoleMaster : clsRoleSubMenu
     {

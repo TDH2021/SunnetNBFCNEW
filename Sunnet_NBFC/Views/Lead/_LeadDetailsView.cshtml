@@ -136,6 +136,12 @@
                             <td>@Model.EmailId</td>
                         </tr>
                         <tr>
+                            <th>OwnerShip</th>
+                            <td>@Model.OwnerShip</td>
+                            <th></th>
+                            <td></td>
+                        </tr>
+                        <tr>
                             <th>Profile Image</th>
                             @if (Model.CustImage.Trim() != "")
                             {
@@ -172,7 +178,7 @@
                             </tr>
                             <tr>
 
-                                <th>Martial Status</th>
+                                <th>Marital Status</th>
                                 <td>@Model.CO_Marital_Status</td>
                                 <th>Present Address</th>
                                 <td>@Model.CO_PresentAddress</td>
@@ -243,7 +249,10 @@
                                 <th>CIF</th>
                                 <td>@Model.Co_CIF</td>
                             </tr>
-
+                            <tr>
+                                <th>OwnerShip</th>
+                                <td>@Model.Co_OwnerShip</td>
+                            </tr>
                             <tr>
                                 <th>Co-Profile Image</th>
                                 @if (Model.CO_image.Trim() != "")
@@ -474,6 +483,7 @@
                                 <th>Aadhar No</th>
                                 <th>Cibil Score</th>
                                 <th>CIF</th>
+                                <th>OwnerShip</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -506,6 +516,7 @@
                                         <td>@gurantor.G_AadharNo</td>
                                         <td>@gurantor.G_CibilScore</td>
                                         <td>@gurantor.G_CIF</td>
+                                        <td>@gurantor.G_OwnerShip</td>
                                     </tr>
                                 }
                             }

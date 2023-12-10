@@ -33,7 +33,7 @@
            @required = "true",
            @id = "AadharNo",
            @maxlength = "12",
-           @onkeypress= "return isNumber(this.value);"
+           @onkeypress = "return isNumber(this.value);"
 
        })
             @Html.HiddenFor(model => model.AAdharverfiy, new { @class = "form-control", @id = "hdn_customer_aadhar_verify" })
@@ -70,9 +70,8 @@
            @name = "PanNo",
            @required = "true",
            @id = "PanNo",
-           @maxlength = "10"
-
-
+           @maxlength = "10",
+           @onblur = "return ValidatePAN(this.value,id);"
        })
             @Html.HiddenFor(model => model.PanVerify, new { @class = "form-control", @id = "hdn_customer_PanVerify" })
         </div>
@@ -178,39 +177,37 @@
             new { @class = "form-control", @id = "Gender" })
 
         </div>
-        
+
     </div>
 
 
     <div class="row">
         <div class="col-md-3">
-            <label class="required" for="exampleInputEmail1">Father Name</label>
-            @Html.TextBoxFor(model => model.FatherName, new
+            <label class="required" for="exampleInputEmail1">Date of Birth</label>
+            @Html.TextBoxFor(model => model.DateofBirth, new
             {
-                @class = "form-control",
-                @placeholder = "Father Name",
-                @name = "FatherName",
+                @class = "form-control datestyle",
+                @placeholder = "Date of Birth",
+                @name = "Dob",
                 @required = "true",
-                @maxlength = "50",
-                @id = "FatherName",
-                @autocomplete = "off"
+                @id = "Dob",
+
             })
         </div>
-
         <div class="col-md-3">
-            <label for="exampleInputEmail1">Mother Name</label>
-            @Html.TextBoxFor(model => model.MotherName, new
-       {
-           @class = "form-control",
-           @placeholder = "Mother Name",
-           @name = "MotherName",
-           @required = "true",
-           @autocomplete = "off",
-           @id = "MotherName"
+            <label class="required" for="exampleInputEmail1">Marital Status</label>
 
-       })
+            @Html.DropDownListFor(model => model.MartialStatus,
+      new List<SelectListItem> {
+ new SelectListItem { Value = "" , Text = "- Select Marital -" },
+ new SelectListItem { Value = "Single" , Text = "Single" },
+ new SelectListItem { Value = "Married" , Text = "Married" },
+ new SelectListItem { Value = "Divorce" , Text = "Divorce" },
+ new SelectListItem { Value = "Widow" , Text = "Widow" }
+  },
+      new { @class = "form-control", @id = "MartialStatus" })
+
         </div>
-
         <div class="col-md-3">
             <label class="required" for="exampleInputEmail1">Spouse Name</label>
             @Html.TextBoxFor(model => model.SpouseName, new
@@ -226,40 +223,36 @@
         </div>
 
         <div class="col-md-3">
-            <label class="required" for="exampleInputEmail1">Date of Birth</label>
-            @Html.TextBoxFor(model => model.DateofBirth, new
+            <label class="required" for="exampleInputEmail1">Father Name</label>
+            @Html.TextBoxFor(model => model.FatherName, new
             {
-                @class = "form-control datestyle",
-                @placeholder = "Date of Birth",
-                @name = "Dob",
+                @class = "form-control",
+                @placeholder = "Father Name",
+                @name = "FatherName",
                 @required = "true",
-                @id = "Dob",
-
+                @maxlength = "50",
+                @id = "FatherName",
+                @autocomplete = "off"
             })
         </div>
-
 
 
     </div>
 
     <div class="row">
         <div class="col-md-3">
-            <label class="required" for="exampleInputEmail1">Martial Status</label>
+            <label for="exampleInputEmail1">Mother Name</label>
+            @Html.TextBoxFor(model => model.MotherName, new
+       {
+           @class = "form-control",
+           @placeholder = "Mother Name",
+           @name = "MotherName",
+           @required = "true",
+           @autocomplete = "off",
+           @id = "MotherName"
 
-            @Html.DropDownListFor(model => model.MartialStatus,
-      new List<SelectListItem> {
- new SelectListItem { Value = "" , Text = "- Select Marital -" },
- new SelectListItem { Value = "Single" , Text = "Single" },
- new SelectListItem { Value = "Married" , Text = "Married" },
- new SelectListItem { Value = "Divorce" , Text = "Divorce" },
- new SelectListItem { Value = "Widow" , Text = "Widow" }
-  },
-      new { @class = "form-control", @id = "MartialStatus" })
-
+       })
         </div>
-
-
-
 
         <div class="col-md-3">
             <label class="required" for="exampleInputEmail1">Corrospondance Address</label>
@@ -276,9 +269,6 @@
        })
         </div>
 
-
-
-
         <div class="col-md-3">
             <label class="required" for="exampleInputEmail1">Corrospondance Pincode</label>
             @Html.TextBoxFor(model => model.PresentPincode, new
@@ -291,7 +281,7 @@
            @autocomplete = "off",
            @onchange = "GetStateCity_PIN(this.value,customerpresentState,customerpresentcity);",
            @onkeypress = "return isNumber(this.value);",
-           @maxlength="6"
+           @maxlength = "6"
        })
         </div>
 
@@ -409,7 +399,7 @@
            @autocomplete = "off",
            @onchange = "GetStateCity_PIN(this.value,customerpermanentstate,customerpermanentcity);",
            @onkeypress = "return isNumber(this.value);",
-           @maxlength=6
+           @maxlength = 6
        })
         </div>
         <div class="col-md-3">
@@ -510,11 +500,11 @@
            @id = "MobileNumber1",
            @maxlength = "10",
            @onkeypress = "return isNumber(this.value);"
-           
+
 
        })
         </div>
-       
+
 
     </div>
     <div class="row">
@@ -582,9 +572,17 @@
         </div>
 
 
-        
+
     </div>
     <div class="row">
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">OwnerShip</label>
+            <select class="form-control" id="ddlCustOwnerShip">
+                <option>Owned</option>
+                <option>Rented</option>
+            </select>
+        </div>
+
         <div class="col-md-3">
             <label class="required" for="exampleInputEmail1">Applicant Image</label>
             <input type="file" id="fileuploadapplicantimg" accept="image/x-png,image/jpeg" />

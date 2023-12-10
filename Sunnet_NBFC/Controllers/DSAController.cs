@@ -76,8 +76,32 @@ namespace Sunnet_NBFC.Controllers
                     {
                         if (dt != null)
                         {
-                            ViewBag.lst = DataInterface.ConvertDataTable<clsDSAMaster>(dt);
+                            List<clsDSAMaster> list = new List<clsDSAMaster>();
+                            list = (from DataRow row in dt.Rows
 
+                                    select new clsDSAMaster()
+                                    {
+                                        DSAId =int.Parse(row["DSAId"].ToString()),
+                                        DSACode = row["DSACode"].ToString(),
+                                        DSAName = row["DSAName"].ToString(),
+                                        DSAContactNo = row["DSAContactNo"].ToString(),
+                                        DSAAddress = row["DSAAddress"].ToString(),
+                                        CityName = row["CityName"].ToString(),
+                                        StateName = row["StateName"].ToString(),
+                                        DSAPincode =long.Parse(row["DSAPincode"].ToString()),
+                                        DSAEmail = row["DSAEmail"].ToString(),
+                                        PAN = row["PAN"].ToString(),
+                                        AAdharNo = row["AAdharNo"].ToString(),
+                                        DSAWhatsUpNo = row["DSAWhatsUpNo"].ToString(),
+                                        DSAGSTNo = row["DSAGSTNo"].ToString(),
+                                        DSAccountNo = row["DSAccountNo"].ToString(),
+                                        DSABankName = row["DSABankName"].ToString(),
+                                        DSABranch = row["DSABranch"].ToString(),
+                                        DSAIFSCCode = row["DSAIFSCCode"].ToString(),
+                                        DSACommision =decimal.Parse(row["DSACommision"].ToString()),
+                                        DSARemarks = row["DSARemarks"].ToString(),
+                                    }).ToList();
+                            ViewBag.lst=list;
 
                         }
                     }

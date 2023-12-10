@@ -15,8 +15,8 @@
             </div>
             <div class="col-sm-6">
                 @*<ol class="breadcrumb float-sm-right">
-                    @Html.ActionLink("Back to List", "LeadView", "Lead")
-                </ol>*@
+                        @Html.ActionLink("Back to List", "LeadView", "Lead")
+                    </ol>*@
             </div>
         </div>
     </div><!-- /.container-fluid -->
@@ -35,8 +35,9 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <div class="form-group">
-                                <div class="row">
+
+                            <div class="row">
+                                <div class="form-group">
                                     <div class="col-md-12">
                                         @Html.HiddenFor(model => model.ReqType)
                                         @Html.HiddenFor(model => model.LeadId)
@@ -45,18 +46,39 @@
                                     </div>
                                 </div>
                             </div>
-
-
                             <div class="form-group">
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        @Html.LabelFor(model => model.LeadNo, new { @class = "control-label" }) *
-                                        @Html.TextBoxFor(model => model.LeadNo, new { @class = "form-control", @required = "true", @readonly = "true" })
-                                        @*@Html.ValidationMessageFor(model => model.LeadId, "", new { @class = "text-danger" })*@
-                                    </div>
 
+                                    <div class="col-md-4">
+                                        <label for="exampleInputEmail1">Lead No</label>
+                                        @Html.TextBoxFor(model => model.LeadNo, new { @class = "form-control", @required = "true", @readonly = "true" })
+
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="exampleInputEmail1">Main Product</label>
+                                        @Html.TextBoxFor(model => model.MainProdName, new { @class = "form-control", @required = "true", @readonly = "true" })
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="exampleInputEmail1">Product</label>
+                                        @Html.TextBoxFor(model => model.ProdName, new { @class = "form-control", @required = "true", @readonly = "true" })
+                                    </div>
                                 </div>
-                               
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label for="exampleInputEmail1">Customer Name</label>
+                                            @Html.TextBoxFor(model => model.CustomerName, new { @class = "form-control", @required = "true", @readonly = "true" })
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="exampleInputEmail1">Contact No</label>
+                                            @Html.TextBoxFor(model => model.ContactNo, new { @class = "form-control", @required = "true", @readonly = "true" })
+                                        </div>
+                                        <div class="col-md-4">
+
+                                        </div>
+                                    </div>
+                                </div>
+
                                 @if (Model.clsLeadCalling != null)
                                 {
                                     int Index = 1;
@@ -78,7 +100,7 @@
                                                     }
                                                     else
                                                     {
-                                                        @Html.TextBox("A_" + item.TcId.ToString() + "_" + item.QuestionId.ToString(), item.Answer, new { @class = "form-control"})
+                                                        @Html.TextBox("A_" + item.TcId.ToString() + "_" + item.QuestionId.ToString(), item.Answer, new { @class = "form-control" })
                                                         @*@Html.ValidationMessage(item.Answer, "", new { @class = "text-danger" })*@
                                                     }
                                                 </div>
@@ -97,8 +119,8 @@
                                         <div class="col-md-6">
 
                                             @*@Html.DropDownListFor(m => m.Status, ViewBag.StatusListDDL, "- Select- ", new { @class = "form-control" })*@
-                                            @Html.DropDownListFor(m => m.Status, new SelectList(ViewBag.StatusListDDL, "Value", "Text", Model.Status), "- Select -", new { @class = "form-control",@id="ddlStatus" })
-                                            
+                                            @Html.DropDownListFor(m => m.Status, new SelectList(ViewBag.StatusListDDL, "Value", "Text", Model.Status), "- Select -", new { @class = "form-control", @id = "ddlStatus" })
+
                                         </div>
                                     </div>
                                 </div>

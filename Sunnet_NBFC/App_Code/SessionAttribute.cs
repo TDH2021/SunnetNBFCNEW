@@ -47,7 +47,7 @@ namespace Sunnet_NBFC.App_Code
         }
         public override void OnResultExecuted(ResultExecutedContext filterContext)
         {
-           // Log("OnResultExecuted", filterContext.RouteData);
+            //Log("OnResultExecuted", filterContext.RouteData);
         }
         
         private void RedirectToRoute(ActionExecutingContext context, object routeValues)

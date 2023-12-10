@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/Sunnet_NBFC/Controllers/LeadDisbursementController.cs
+/Sunnet_NBFC/Models/clsTDHPDF.cs
+/.gitignore
