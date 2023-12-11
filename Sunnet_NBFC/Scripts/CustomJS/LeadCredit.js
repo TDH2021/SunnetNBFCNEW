@@ -145,11 +145,16 @@ $(document).ready(function () {
 });
 
 function Validation() {
+    if ($("#hfCrId").val() == "0") {
+        if ($('#chkCIBILVerification').is(":checked") == false) {
+            swal("TDH", "Please Select CIBIL Verification.", "error");
+            return false;
 
-
-    if($("#ddlStatus").val() == "") {
-        swal("TDH", "Please select status", "error");
-        return false;
+        }
+        else if ($('#chkCAMVerification').is(":checked") == false) {
+            swal("TDH", "Please Select CAM Verification.", "error");
+            return false;
+        }
     }
 
     if ($('#chkCAMVerification').is(":checked") != true) {
@@ -157,13 +162,12 @@ function Validation() {
         return false;
     }
 
-
     if ($('#chkCIBILVerification').is(":checked") == true) {
         var filedata = new FormData();
         var fileUpload = $("#CibilDocPostedFile").get(0);
         var files = fileUpload.files;
         debugger;
-        if (files.length <= 0 && $("#clsLeadCredit_CibilDoc").val()=="") {
+        if (files.length <= 0 && $("#clsLeadCredit_CibilDoc").val() == "") {
             swal("TDH", "Please Upload CIBIL File.", "error");
             return false;
         }
@@ -337,18 +341,11 @@ function Validation() {
     }
 
 
-    if ($("#hfCrId").val() == "0") {
-        if ($('#chkCIBILVerification').is(":checked") == false) {
-            swal("TDH", "Please Select CIBIL Verification.", "error");
-            return false;
 
-        }
-        else if ($('#chkCAMVerification').is(":checked") == false) {
-            swal("TDH", "Please Select CAM Verification.", "error");
-            return false;
-        }
+    if($("#ddlStatus").val() == "") {
+        swal("TDH", "Please select status", "error");
+        return false;
     }
-
 
     if ($("#ddlStatus :selected").text() == "Select") {
         swal("TDH", "Please Select Status.", "error");

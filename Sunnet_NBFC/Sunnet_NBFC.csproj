@@ -208,6 +208,7 @@
   <ItemGroup>
     <Compile Include="App_Code\SessionAttribute.cs" />
     <Compile Include="Controllers\LeadCreditController.cs" />
+    <Compile Include="Controllers\LeadDisbursementController.cs" />
     <Compile Include="Controllers\LeadGenUpdateController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Models\ClsCommon.cs" />
@@ -239,7 +240,6 @@
     <Compile Include="Controllers\LeadCallingController.cs" />
     <Compile Include="Controllers\LeadController.cs" />
     <Compile Include="Controllers\LeadCreditController_.cs" />
-    <Compile Include="Controllers\LeadDisbursementController.cs" />
     <Compile Include="Controllers\LeadDocumentController.cs" />
     <Compile Include="Controllers\LeadDocumentSigningController.cs" />
     <Compile Include="Controllers\LeadFinalApproveController.cs" />
@@ -278,6 +278,7 @@
     <Content Include="bin\Antlr3.Runtime.dll" />
     <Content Include="bin\BouncyCastle.Crypto.dll" />
     <Content Include="bin\CaptchaMvc.dll" />
+    <Content Include="bin\Ionic.Zip.dll" />
     <Content Include="bin\itext.barcodes.dll" />
     <Content Include="bin\itext.commons.dll" />
     <Content Include="bin\itext.forms.dll" />

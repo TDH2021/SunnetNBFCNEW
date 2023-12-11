@@ -120,7 +120,7 @@
 
                                     <div class="col-md-3" style="margin-top:3px;">
                                         @Html.CheckBox("chkCIBILVerification", (Model.clsLeadCredit.CIBILVerification ?? "") == "Yes" ? true : false, new { })
-                                        <span>@Html.LabelFor(model => model.clsLeadCredit.CIBILVerification, new { @class = "control-label required" }) : </span>
+                                        <label class="required" for="example">Customer CIBIL Verification : </label>
                                     </div>
 
                                     <div class="col-md-3">
@@ -791,7 +791,7 @@
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <span>BussinessName:</span>
+                                            <span>Business Name:</span>
                                         </div>
                                         <div class="col-md-5">
                                             @Html.TextBoxFor(model => model.clsLeadCredit.BussinessName, new { @class = "form-control", })
@@ -806,7 +806,7 @@
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <span>BussinessVinatage:</span>
+                                            <span>Business Vinatage:</span>
                                         </div>
                                         <div class="col-md-5">
                                             @Html.TextBoxFor(model => model.clsLeadCredit.BussinessVinatage, new { @class = "form-control", })
@@ -820,7 +820,7 @@
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <span>BussinessAddress:</span>
+                                            <span>Business Address:</span>
                                         </div>
                                         <div class="col-md-5">
                                             @Html.TextBoxFor(model => model.clsLeadCredit.BussinessAddress, new { @class = "form-control", })
@@ -833,7 +833,7 @@
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <span>BussinessProve:</span>
+                                            <span>Business Prove:</span>
                                         </div>
                                         <div class="col-md-5">
                                             @Html.TextBoxFor(model => model.clsLeadCredit.BussinessProve, new { @class = "form-control", })
@@ -856,33 +856,34 @@
                                         <div class="row">
 
                                             <div class="col-md-12">
-                                                Credit Check List:-
+                                                <label for="example"> Credit Check List:-</label>
                                             </div>
                                         </div>
                                         @foreach (var item in Model.clsCreditCheckList)
                                         {
-                                            <div class="row">
+                                            <div class="form-group">
+                                                <div class="row">
 
-                                                <div class="col-md-6">
-                                                    @*@Html.Label(item.QuestionId.ToString(), new { @class = "control-label" })*@
-                                                    <b> @Index. </b> &nbsp; @Html.Label(item.CheckListName.ToString())
+                                                    <div class="col-md-6">
+                                                        @*@Html.Label(item.QuestionId.ToString(), new { @class = "control-label" })*@
+                                                        <b> @Index. </b> &nbsp; @Html.Label(item.CheckListName.ToString())
+                                                    </div>
+
+                                                    <div class="col-md-2">
+                                                        @Html.DropDownList("A_" + item.Id.ToString() + "_" + item.CheckListId.ToString(), new SelectList(ViewBag.AnswerListDDL, "Value", "Text", item.Answer), "- Select- ",
+                                                        new { @class = "form-control", @id = "MainProductId" })
+                                                    </div>
+
+                                                    <div class="col-md-1">
+                                                        <span>Remark:</span>
+                                                    </div>
+
+                                                    <div class="col-md-3">
+                                                        @Html.TextBox("Rmk_" + item.Id.ToString() + "_" + item.CheckListId.ToString(), item.Remarks, new { @class = "form-control", @id = "CLRemark" })
+                                                    </div>
+
                                                 </div>
-
-                                                <div class="col-md-2">
-                                                    @Html.DropDownList("A_" + item.Id.ToString() + "_" + item.CheckListId.ToString(), new SelectList(ViewBag.AnswerListDDL, "Value", "Text", item.Answer), "- Select- ",
-                                                    new { @class = "form-control", @id = "MainProductId" })
-                                                </div>
-
-                                                <div class="col-md-1">
-                                                    <span>Remark:</span>
-                                                </div>
-
-                                                <div class="col-md-3">
-                                                    @Html.TextBox("Rmk_" + item.Id.ToString() + "_" + item.CheckListId.ToString(), item.Remarks, new { @class = "form-control", @id = "CLRemark" })
-                                                </div>
-
                                             </div>
-
                                             Index++;
                                         }
                                     </div>
