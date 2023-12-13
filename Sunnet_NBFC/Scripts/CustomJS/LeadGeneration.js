@@ -491,7 +491,7 @@ function PanVerification() {
     else if (dob.length == 0) {
         swal("TDH", "Please Enter DOB.", "error");
     } else if (dob == "Invalid date") {
-        swal("TDH", "Please Enter Correct DOB", "error"); 
+        swal("TDH", "Please Enter Correct DOB", "error");
     } else {
         debugger
         var urlvariable;
@@ -1427,7 +1427,7 @@ function ValidationChk() {
     if (CO_FName.trim() != "") {
         Co_OwnerShip = $("#ddlCoOwnerShip option:selected").val();
     }
-    
+
     //Additional Info
     var ReuestedLoanAmount = $("#ReuestedLoanAmount").val();
     var ReuestedLoanTenure = $("#ReuestedLoanTenure").val();
@@ -1444,17 +1444,20 @@ function ValidationChk() {
     var Propertyarea = $("#ddlPropertyArea option:selected").val();
     var PropertyType = $("#ddlPropertyType option:selected").val();
     var PropertyAddress = $("#txtPropertyAddress").val();
-    if (MainProductText == "Vehicle Loan") {
+    if (MainProductText == "Vehicle Loan" || MainProductText == "Commercial Vehicle" || MainProductText == "Two Wheeler Loan") {
         NoofDependent = $("#txtVchNoofDependent").val();
         FORecomedAmt = $("#txtFORecomedAmt").val();
     }
     else {
         NoofDependent = $("#txtNoofDependent").val();
-        ColletralSecurityType =
-
-            FORecomedAmt = $("#BusinessFORecomedAmt").val();
+        FORecomedAmt = $("#BusinessFORecomedAmt").val();
     }
-
+    if (NoofDependent == "") {
+        NoofDependent = 0;
+    }
+    if (FORecomedAmt == "") {
+        FORecomedAmt = 0;
+    }
     var ViechleNo = $("#ViechleNo").val();
     var ViechleRegYear = $("#ViechleRegYear").val();
     var MFGYear = $("#MFGYear").val();
@@ -1611,7 +1614,7 @@ function ValidationChk() {
             else if (Dob.length == 0) {
                 swal("TDH", "Please enter customer dob.", "error");
             }
-            else if (underAgeValidate(Dob) < 18 || underAgeValidate(Dob)>60) {
+            else if (underAgeValidate(Dob) < 18 || underAgeValidate(Dob) > 60) {
                 swal("TDH", "Customer age must be between 18 & 60 year.", "error");
             }
             else if (MartialStatus.length == 0) {
@@ -1779,10 +1782,10 @@ function ValidationChk() {
                 swal("TDH", "Please enter est monthly family income.", "error");
             }
 
-            else if (NoofDependent.length == 0 && (MainProductText == "Vehicle Loan" || MainProductText == "Bussiness Loan")) {
+            else if (NoofDependent.length == 0 && (MainProductText == "Vehicle Loan" || MainProductText == "Bussiness Loan" || MainProductText == "Commercial Vehicle" || MainProductText == "Two Wheeler Loan")) {
                 swal("TDH", "Please enter no of dependent person.", "error");
             }
-            else if (NoofDependent.length > 10 && (MainProductText == "Vehicle Loan" || MainProductText == "Bussiness Loan")) {
+            else if (NoofDependent.length > 10 && (MainProductText == "Vehicle Loan" || MainProductText == "Bussiness Loan" || MainProductText == "Commercial Vehicle" || MainProductText == "Two Wheeler Loan")) {
                 swal("TDH", "Invalid no of dependent person.", "error");
             }
             else if (LoanPurpose.length == 0) {
@@ -1850,7 +1853,7 @@ function ValidationChk() {
                     "EmailId": EmailId,
                     "CIFID": CIFID,
                     "AAdharverfiy": hdn_customer_aadhar_verify,
-                    "OwnerShip":OwnerShip,
+                    "OwnerShip": OwnerShip,
                     "CO_Prefix": CO_Prefix,
                     "CO_FirstName": CO_FName,
                     "CO_MiddleName": CO_MName,
@@ -1876,11 +1879,11 @@ function ValidationChk() {
                     "CO_PAN": CO_PanNo,
                     "CO_Adhaar": CO_AadharNo,
                     "CO_CIBIL": CO_CibilScore,
-                    "Co_CIF":Co_CIF,
+                    "Co_CIF": Co_CIF,
                     "CO_AAdharverfiy": hdn_co_aadhar_verify,
                     "CO_Panverfiy": hdn_co_PanVerify,
                     "Co_CIF": Co_CIF,
-                    "Co_OwnerShip":Co_OwnerShip,
+                    "Co_OwnerShip": Co_OwnerShip,
                     "ReuestedLoanAmount": ReuestedLoanAmount,
                     "ReuestedLoanTenure": ReuestedLoanTenure,
                     "EstValueViechle": EstValueViechle,
@@ -1922,6 +1925,7 @@ function ValidationChk() {
                     "OnRoadPrice": OnRoadPrice,
                     "Insurer": Insurer,
                     "PolicyNo": PolicyNo,
+                    "DSAId": DSAId
                 }
 
                 filedata.append('AllDataArray', JSON.stringify(AllDataArray));
@@ -1975,7 +1979,7 @@ function ValidationChk() {
             else if (Dob.length == 0) {
                 swal("TDH", "Please enter customer dob.", "error");
             }
-            else if (underAgeValidate(Dob) < 18 ||  underAgeValidate(Dob) > 60) {
+            else if (underAgeValidate(Dob) < 18 || underAgeValidate(Dob) > 60) {
                 swal("TDH", "Customer age must be between Age 18 and 60.", "error");
             }
             else if (MartialStatus.length == 0) {
@@ -2048,7 +2052,7 @@ function ValidationChk() {
             else if (CO_FName.length == 0) {
                 swal("TDH", "Please enter co applicant first name.", "error");
             }
-          
+
             else if (CO_Gender.length == 0) {
                 swal("TDH", "Please enter co applicant gender.", "error");
             }
@@ -2158,14 +2162,14 @@ function ValidationChk() {
                 swal("TDH", "Please enter est month family income.", "error");
             }
 
-            else if (NoofDependent.length == 0 && (MainProductText == "Vehicle Loan" || MainProductText == "Bussiness Loan")) {
+            else if (NoofDependent.length == 0 && (MainProductText == "Vehicle Loan" || MainProductText == "Bussiness Loan" || MainProductText == "Commercial Vehicle" || MainProductText == "Two Wheeler Loan")) {
                 swal("TDH", "Please enter no of dependent person.", "error");
 
             }
-            else if (NoofDependent.length > 10 && (MainProductText == "Vehicle Loan" || MainProductText == "Bussiness Loan")) {
+            else if (NoofDependent.length > 10 && (MainProductText == "Vehicle Loan" || MainProductText == "Bussiness Loan" || MainProductText == "Commercial Vehicle" || MainProductText == "Two Wheeler Loan")) {
                 swal("TDH", "Invalid no of dependent person.", "error");
             }
-            else if (LoanPurpose.length == 0 && (MainProductText == "Individual Loan" || MainProductText == "Bussiness Loan")) {
+            else if (LoanPurpose.length == 0 && (MainProductText == "Individual Loan" || MainProductText == "Bussiness Loan" || MainProductText == "Commercial Vehicle" || MainProductText == "Two Wheeler Loan")) {
                 swal("TDH", "Please enter purpose of loan.", "error");
             }
             else {
@@ -2197,7 +2201,7 @@ function ValidationChk() {
                     "PermanentVillage": PermanentVillage,
                     "PermanentDistrict": PermanentDistrict,
                     "CibilScore": CibilScore,
-                    "OwnerShip":OwnerShip,
+                    "OwnerShip": OwnerShip,
                     "MobileNo1": MobileNumber1,
 
                     /*"MobileNo2": MobileNumber2,*/
@@ -2237,7 +2241,7 @@ function ValidationChk() {
                     "CO_Adhaar": CO_AadharNo,
                     "CO_CIBIL": CO_CibilScore,
                     "Co_CIF": Co_CIF,
-                    "Co_OwnerShip":Co_OwnerShip,
+                    "Co_OwnerShip": Co_OwnerShip,
                     "ReuestedLoanAmount": ReuestedLoanAmount,
                     "ReuestedLoanTenure": ReuestedLoanTenure,
                     "EstValueViechle": EstValueViechle,
@@ -2279,7 +2283,7 @@ function ValidationChk() {
                     "OnRoadPrice": OnRoadPrice,
                     "Insurer": Insurer,
                     "PolicyNo": PolicyNo,
-
+                    "DSAId": DSAId
                 }
 
                 filedata.append('AllDataArray', JSON.stringify(AllDataArray));
@@ -2486,13 +2490,13 @@ function ValidationChk() {
                 swal("TDH", "Please enter est. month expense", "error");
             }
 
-            else if (NoofDependent.length == 0 && (MainProductText == "Vehicle Loan" || MainProductText == "Bussiness Loan")) {
+            else if (NoofDependent.length == 0 && (MainProductText == "Vehicle Loan" || MainProductText == "Bussiness Loan" || MainProductText == "Commercial Vehicle" || MainProductText == "Two Wheeler Loan")) {
                 swal("TDH", "Please enter no of dependent person", "error");
             }
-            else if (NoofDependent.length > 10 && (MainProductText == "Vehicle Loan" || MainProductText == "Bussiness Loan")) {
+            else if (NoofDependent.length > 10 && (MainProductText == "Vehicle Loan" || MainProductText == "Bussiness Loan" || MainProductText == "Commercial Vehicle" || MainProductText == "Two Wheeler Loan")) {
                 swal("TDH", "Invalid no of dependent person", "error");
             }
-            else if (LoanPurpose.length == 0 && (MainProductText == "Individual Loan" || MainProductText == "Bussiness Loan")) {
+            else if (LoanPurpose.length == 0 && (MainProductText == "Individual Loan" || MainProductText == "Bussiness Loan" || MainProductText == "Commercial Vehicle" || MainProductText == "Two Wheeler Loan")) {
                 swal("TDH", "Please enter purpose of loan", "error");
             }
             else if (MainProductText.toUpperCase() == "INDIVIDUAL LOAN" && (CenterID.length == 0 || PLBranchID.length == 0)) {
@@ -2571,7 +2575,7 @@ function ValidationChk() {
                     "CO_PAN": "",
                     "CO_Adhaar": "",
                     "CO_CIBIL": "",
-                    "Co_OwnerShip":"",
+                    "Co_OwnerShip": "",
 
                     "ReuestedLoanAmount": ReuestedLoanAmount,
                     "ReuestedLoanTenure": ReuestedLoanTenure,
@@ -2616,7 +2620,7 @@ function ValidationChk() {
                     "PolicyNo": PolicyNo,
                     "DSAId": DSAId
                 }
-
+                debugger;
                 filedata.append('AllDataArray', JSON.stringify(AllDataArray));
                 filedata.append('Gurantor_Details', JSON.stringify(customers));
                 $.ajax({
@@ -2850,7 +2854,7 @@ function ValidationChk() {
                     "CO_Adhaar": CO_AadharNo,
                     "CO_CIBIL": CO_CibilScore,
                     "Co_CIF": Co_CIF,
-                    "Co_OwnerShip":Co_OwnerShip,
+                    "Co_OwnerShip": Co_OwnerShip,
 
                     "ReuestedLoanAmount": ReuestedLoanAmount,
                     "ReuestedLoanTenure": ReuestedLoanTenure,
@@ -2971,10 +2975,10 @@ function GetStateCity_PIN(PinCode, txtState, txtCity) {
                 const myArray = citydata.split(" ");
                 let CityName = myArray[0];
                 txtCity.value = CityName;
-                                    
+
                 var statedata = result[0].PostOffice[0].State;
                 txtState.value = statedata;
-                
+
                 /*txtState = statedata;*/
             }
 

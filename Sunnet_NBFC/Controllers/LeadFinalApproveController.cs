@@ -357,8 +357,8 @@ namespace Sunnet_NBFC.Controllers
             {
                 //DownloadSanctionLetter(M.LeadId, M.LeadNo);
                 TempData["Success"] = !string.IsNullOrEmpty(clsRtn.Message) ? clsRtn.Message : "Saved/Updated";
-                //return RedirectToAction("LeadView", "LeadFinalApprove");
-                return View();
+                return RedirectToAction("LeadView", "LeadFinalApprove");
+                //return View();
             }
             else
             {

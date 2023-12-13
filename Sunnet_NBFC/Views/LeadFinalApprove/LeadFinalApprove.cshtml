@@ -51,7 +51,7 @@
 							<div class="form-group">
 								<div class="row">
 									<div class="col-md-6">
-										@Html.LabelFor(model => model.LeadNo, new { @class = "control-label" }) *
+										@Html.LabelFor(model => model.LeadNo, new { @class = "control-label" }) <span style="color:red; font-size:17px; font-weight:bold;">*</span>
 										@Html.TextBoxFor(model => model.LeadNo, new { @class = "form-control", @required = "true", @readonly = "true" })
 										@*@Html.ValidationMessageFor(model => model.LeadId, "", new { @class = "text-danger" })*@
 									</div>
@@ -202,24 +202,24 @@
 								</div>*@
 							<div class="row">
 								<div class="col-md-3">
-									@Html.LabelFor(model => model.NetDisbAmt, new { @class = "control-label" })
-									@Html.TextBoxFor(model => model.NetDisbAmt, new { @class = "form-control", @id = "txtNetDisbAmt" })
+									@Html.LabelFor(model => model.NetDisbAmt, new { @class = "control-label" }) <span style="color:red; font-size:17px; font-weight:bold;">*</span>
+									@Html.TextBoxFor(model => model.NetDisbAmt, new { @class = "form-control", @id = "txtNetDisbAmt", @Maxlength = "12", @onkeypress = "return isNumber(this.value);" })
 
 								</div>
 								<div class="col-md-3">
 									@Html.LabelFor(model => model.Proccesfees, new { @class = "control-label" })
-									@Html.TextBoxFor(model => model.Proccesfees, new { @class = "form-control", @id = "txtProccesfees" })
+									@Html.TextBoxFor(model => model.Proccesfees, new { @class = "form-control", @id = "txtProccesfees", @Maxlength = "8", @onkeypress = "return isNumber(this.value);" })
 
 
 								</div>
 								<div class="col-md-3">
 									@Html.LabelFor(model => model.AdvanceEMI, new { @class = "control-label" })
-									@Html.TextBoxFor(model => model.AdvanceEMI, new { @class = "form-control", @id = "txtAdvanceEMI" })
+									@Html.TextBoxFor(model => model.AdvanceEMI, new { @class = "form-control", @id = "txtAdvanceEMI", @Maxlength = "2", @type="Number" })
 
 								</div>
 								<div class="col-md-3">
 									@Html.LabelFor(model => model.GST, new { @class = "control-label" })
-									@Html.TextBoxFor(model => model.GST, new { @class = "form-control", @id = "txtGST" })
+									@Html.TextBoxFor(model => model.GST, new { @class = "form-control", @id = "txtGST", @Maxlength = "5", @onkeypress = "return isNumber(this.value);" })
 								</div>
 							</div>
 

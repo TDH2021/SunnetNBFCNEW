@@ -18,7 +18,7 @@ namespace Sunnet_NBFC.Controllers
     public class LeadGenerationController : Controller
     {
         // GET: LeadGeneration
- 
+
         public ActionResult LeadGeneration()
         {
 
@@ -34,7 +34,7 @@ namespace Sunnet_NBFC.Controllers
                 ViewBag.StateList = ClsCommon.ToSelectList(DataInterface1.GetState(), "ID", "StateName");
 
 
-             
+
 
                 ViewBag.MainProductList = ClsCommon.ToSelectList(DataInterface1.GetMainProductddl("View"), "MainProdId", "ProductName");
                 ViewBag.MaterialStatusList = ClsCommon.ToSelectList(DataInterface1.GetMiseddl("Martial Status"), "MiscName", "MiscName");
@@ -120,7 +120,7 @@ namespace Sunnet_NBFC.Controllers
                     var line = frame.GetFileLineNumber();
                     clsE.ReqType = "Insert";
                     clsE.Mode = "WEB";
-                    clsE.ErrorDescrption = e1.Message+ "Line "+ line+ "Frame "+ frame;
+                    clsE.ErrorDescrption = e1.Message + "Line " + line + "Frame " + frame;
                     clsE.FunctionName = "AddRequestLead";
                     clsE.Link = "Status/AddRequestLead";
                     clsE.PageName = "Status Controller";
@@ -153,7 +153,7 @@ namespace Sunnet_NBFC.Controllers
                         master.CreatedBy = ClsSession.EmpId;
                         string message = "";
 
-                        if (master.MainProductId == "1" || master.MainProductId == "3")
+                        if (master.MainProductId == "1")
                         {
                             master.ViechleRegYear = "0";
                             master.MFGYear = "0";
@@ -319,8 +319,17 @@ namespace Sunnet_NBFC.Controllers
         public JsonResult GetCustomerData(string cfid, string Aadharno, string PanNo)
         {
             JsonResult result = new JsonResult();
-            DataTable dt = DataInterface1.GetCustomerData(cfid, Aadharno, PanNo);
-            result = this.Json(JsonConvert.SerializeObject(dt), JsonRequestBehavior.AllowGet);
+            if (Aadharno.Trim() != "" || PanNo.Trim() != "")
+            {
+
+                DataTable dt = DataInterface1.GetCustomerData(cfid, Aadharno, PanNo);
+
+                result = this.Json(JsonConvert.SerializeObject(dt), JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                result = this.Json("", JsonRequestBehavior.AllowGet);
+            }
             return result;
         }
 

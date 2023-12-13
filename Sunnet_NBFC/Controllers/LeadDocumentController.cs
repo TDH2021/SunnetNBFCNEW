@@ -55,7 +55,7 @@ namespace Sunnet_NBFC.Controllers
                             cls.AadharNo = clss.AadharNo;
 
                             cls.ShortStage_Name = "DocCol";
-                            cls.LeadNo = "";
+                            
                             cls.LeadId = 0;
                             cls.Empid = int.Parse(Session["EmpId"].ToString());
                             if (Request.QueryString["ShortStage_Name"] != null)

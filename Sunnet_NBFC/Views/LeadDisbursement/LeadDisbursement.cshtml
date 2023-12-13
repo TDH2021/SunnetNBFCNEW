@@ -50,7 +50,7 @@
 							<div class="form-group">
 								<div class="row">
 									<div class="col-md-6">
-										@Html.LabelFor(model => model.LeadNo, new { @class = "control-label" }) *
+										@Html.LabelFor(model => model.LeadNo, new { @class = "control-label" }) <span style="color:red; font-size:17px; font-weight:bold;">*</span>
 										@Html.TextBoxFor(model => model.LeadNo, new { @class = "form-control", @required = "true", @readonly = "true" })
 										@*@Html.ValidationMessageFor(model => model.LeadId, "", new { @class = "text-danger" })*@
 									</div>
@@ -63,22 +63,22 @@
 								</div>
 								<div class="row">
 									<div class="col-md-3">
-										@Html.LabelFor(model => model.BeneficiaryName, new { @class = "control-label" })
-										@Html.TextBoxFor(model => model.BeneficiaryName, new { @class = "form-control", @id = "txtBeneficiaryName" })
+										@Html.LabelFor(model => model.BeneficiaryName, new { @class = "control-label" }) <span style="color:red; font-size:17px; font-weight:bold;">*</span>
+										@Html.TextBoxFor(model => model.BeneficiaryName, new { @class = "form-control", @id = "txtBeneficiaryName", @required = "true" })
 									</div>
 									<div class="col-md-3">
-										@Html.LabelFor(model => model.BeneficiaryAccountNo, new { @class = "control-label", @type = "number" })
-										@Html.TextBoxFor(model => model.BeneficiaryAccountNo, new { @class = "form-control", @id = "txtBeneficiaryAccountNo", @onkeypress = "return isNumber(this.value);" })
-									</div>
-
-									<div class="col-md-3">
-										<label>Confirm Account No.</label>
-										@Html.TextBoxFor(model => model.BeneficiaryAccountNo, new { @class = "form-control", @id = "txtConfirmAccountNo", @onkeypress = "return isNumber(this.value);" })
+										@Html.LabelFor(model => model.BeneficiaryAccountNo, new { @class = "control-label", @type = "number" }) <span style="color:red; font-size:17px; font-weight:bold;">*</span>
+										@Html.TextBoxFor(model => model.BeneficiaryAccountNo, new { @class = "form-control", @required = "true", @id = "txtBeneficiaryAccountNo", @onkeypress = "return isNumber(this.value);" })
 									</div>
 
 									<div class="col-md-3">
-										@Html.LabelFor(model => model.IfscCode, new { @class = "control-label" })
-										@Html.TextBoxFor(model => model.IfscCode, new { @class = "form-control", @id = "txtIfscCode", @Maxlength = "11" })
+										<label>Confirm Account No.</label><span style="color:red; font-size:17px; font-weight:bold;">*</span>
+										@Html.TextBoxFor(model => model.BeneficiaryAccountNo, new { @class = "form-control", @id = "txtConfirmAccountNo", @onkeypress = "return isNumber(this.value);", @required = "true" })
+									</div>
+
+									<div class="col-md-3">
+										@Html.LabelFor(model => model.IfscCode, new { @class = "control-label" })<span style="color:red; font-size:17px; font-weight:bold;">*</span>
+										@Html.TextBoxFor(model => model.IfscCode, new { @class = "form-control", @id = "txtIfscCode", @Maxlength = "11", @required = "true" })
 									</div>
 								</div>
 
@@ -96,27 +96,27 @@
 								<div class="row">
 
 									<div class="col-md-3">
-										@Html.LabelFor(model => model.NetDisbursementAmount, new { @class = "control-label" })
-										@Html.TextBoxFor(model => model.NetDisbursementAmount, new { @class = "form-control", @id = "txtNetDisbursementAmount", @Maxlength = "12", @onkeypress = "return isNumber(this.value);" })
+										@Html.LabelFor(model => model.NetDisbursementAmount, new { @class = "control-label" })<span style="color:red; font-size:17px; font-weight:bold;">*</span>
+										@Html.TextBoxFor(model => model.NetDisbursementAmount, new { @class = "form-control", @id = "txtNetDisbursementAmount", @Maxlength = "12", @onkeypress = "return isNumber(this.value);", @required = "true" })
 										@Html.ValidationMessageFor(model => model.NetDisbursementAmount, "", new { @class = "text-danger" })
 
 									</div>
 									<div class="col-md-3">
-										@Html.LabelFor(model => model.ROI, new { @class = "control-label" })
-										@Html.TextBoxFor(model => model.ROI, new { @class = "form-control", @id = "txtROI", @Maxlength = "5", @onkeypress = "return isNumber(this.value);" })
+										@Html.LabelFor(model => model.ROI, new { @class = "control-label" })<span style="color:red; font-size:17px; font-weight:bold;">*</span>
+										@Html.TextBoxFor(model => model.ROI, new { @class = "form-control", @id = "txtROI", @Maxlength = "5", @onkeypress = "return isNumber(this.value);", @required = "true" })
 										@Html.ValidationMessageFor(model => model.ROI, "", new { @class = "text-danger" })
 
 									</div>
 									<div class="col-md-3">
-										@Html.LabelFor(model => model.Tenure, new { @class = "control-label" })
-										@Html.TextBoxFor(model => model.Tenure, new { @class = "form-control", @id = "txtTenure", @Maxlength = "3", @onkeypress = "return isNumber(this.value);" })
+										@Html.LabelFor(model => model.Tenure, new { @class = "control-label" })<span style="color:red; font-size:17px; font-weight:bold;">*</span>
+										@Html.TextBoxFor(model => model.Tenure, new { @class = "form-control", @id = "txtTenure", @Maxlength = "3", @onkeypress = "return isNumber(this.value);", @required = "true" })
 										@Html.ValidationMessageFor(model => model.Tenure, "", new { @class = "text-danger" })
 
 
 									</div>
 
 									<div class="col-md-3">
-										@Html.LabelFor(model => model.PaymentMode, new { @class = "control-label" })
+										@Html.LabelFor(model => model.PaymentMode, new { @class = "control-label" })<span style="color:red; font-size:17px; font-weight:bold;">*</span>
 										@Html.DropDownListFor(model => model.MiscId, clsMiscDDL.GetMiscDDL("PayMode"), "Select", new { @class = "form-control", @id = "txtPaymentMode" })
 										@Html.ValidationMessageFor(model => model.MiscId, "", new { @class = "text-danger" })
 
@@ -132,8 +132,8 @@
 										@Html.TextBoxFor(model => model.UtrNo, new { @class = "form-control", @id = "txtUtrNo" })
 									</div>
 									<div class="col-md-3">
-										@Html.LabelFor(model => model.LoanStartDate, new { @class = "control-label" })
-										@Html.TextBoxFor(model => model.LoanStartDate, new { @class = "form-control datestyle", @id = "txtLoanStartDate" })
+										@Html.LabelFor(model => model.LoanStartDate, new { @class = "control-label" })<span style="color:red; font-size:17px; font-weight:bold;">*</span>
+										@Html.TextBoxFor(model => model.LoanStartDate, new { @class = "form-control datestyle", @id = "txtLoanStartDate", @required = "true" })
 										@Html.ValidationMessageFor(model => model.LoanStartDate, "", new { @class = "text-danger" })
 
 									</div>
