@@ -80,7 +80,7 @@
                                         </div>
                                         <div class="col-md-4">
                                             <label for="exampleInputEmail1">State</label>
-                                            @Html.DropDownListFor(model => model.StateId, ViewBag.StateList as SelectList, new { @class = "form-control", @id = "BranchState" })
+                                            @Html.DropDownListFor(model => model.StateId, new SelectList(ViewBag.StateList, "Value", "Text", Model.StateId), "Select", new { @class = "form-control", @id = "BranchState" })
                                             @Html.ValidationMessageFor(model => model.StateId, "", new { @class = "text-danger" })
                                         </div>
                                     </div>

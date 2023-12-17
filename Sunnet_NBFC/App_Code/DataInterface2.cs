@@ -1301,6 +1301,11 @@ public class DataInterface2 : DataInterface, IDisposable
                     cmd.Parameters.Add("@CIBILVerification", SqlDbType.VarChar).Value = cls.CIBILVerification;
                     cmd.Parameters.Add("@CibilDoc", SqlDbType.VarChar).Value = cls.CibilDoc;
                     cmd.Parameters.Add("@CibilRemarks", SqlDbType.VarChar).Value = cls.CibilRemarks;
+
+                    cmd.Parameters.Add("@CBCIBILVerification", SqlDbType.VarChar).Value = cls.CBCIBILVerification;
+                    cmd.Parameters.Add("@CBCibilDoc", SqlDbType.VarChar).Value = cls.CBCibilDoc;
+                    cmd.Parameters.Add("@CBCibilRemarks", SqlDbType.VarChar).Value = cls.CBCibilRemarks;
+
                     cmd.Parameters.Add("@FIVerification", SqlDbType.VarChar).Value = cls.FIVerification;
                     cmd.Parameters.Add("@FIDoc", SqlDbType.VarChar).Value = cls.FIDoc;
                     cmd.Parameters.Add("@FIRemarks", SqlDbType.VarChar).Value = cls.FIRemarks;
