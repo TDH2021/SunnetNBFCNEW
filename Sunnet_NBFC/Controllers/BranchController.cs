@@ -62,6 +62,8 @@ namespace Sunnet_NBFC.Controllers
 
             ClsReturnData clsRetData = new ClsReturnData();
 
+            ViewBag.StateList = ClsCommon.ToSelectList(DataInterface1.GetState(), "ID", "StateName");
+
             if (!ModelState.IsValid)
             {
                 ViewBag.Error = "Invalid Model";

@@ -614,6 +614,14 @@ namespace Sunnet_NBFC.Models
         public string CibilDoc { get; set; }
         public string CibilRemarks { get; set; }
 
+
+        public string CBCIBILCode { get { return "CBCIBIL"; } }
+        [DisplayName("Co-Borrower CIBIL Verification")]
+        public string CBCIBILVerification { get; set; }
+        public string CBCibilDoc { get; set; }
+        public string CBCibilRemarks { get; set; }
+
+
         public string CAMCODE { get { return "CAMCODE"; } }
         [DisplayName("CAM Generation")]
 
@@ -748,7 +756,7 @@ namespace Sunnet_NBFC.Models
         public string CamVerification { get; set; }
 
         public HttpPostedFileBase CibilDocPostedFile { get; set; }
-
+        public HttpPostedFileBase CBCibilDocPostedFile { get; set; }
         public HttpPostedFileBase FIDocPostedFile { get; set; }
         public HttpPostedFileBase TVRDocPostedFile { get; set; }
         public HttpPostedFileBase CashFlowDocPostedFile { get; set; }

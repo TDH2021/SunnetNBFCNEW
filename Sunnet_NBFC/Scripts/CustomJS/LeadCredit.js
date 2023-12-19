@@ -14,6 +14,17 @@ $(document).ready(function () {
             }
         });
 
+    $("#chkCBCIBILVerification").click(
+        function () {
+            if ($(this).is(":checked")) {
+                $("#clsLeadCredit_CBCibilRemarks").removeAttr('disabled')
+                $("#CBCibilDocPostedFile").removeAttr('disabled')
+            } else {
+                $("#clsLeadCredit_CBCibilRemarks").attr('disabled', 'disabled')
+                $("#CBCibilDocPostedFile").attr('disabled', 'disabled')
+            }
+        });
+
     $("#chkCAMVerification").click(
         function () {
             if ($(this).is(":checked")) {
@@ -176,6 +187,23 @@ function Validation() {
             return false;
         }
     }
+
+    if ($('#chkCBCIBILVerification').is(":checked") == true) {
+        var filedata = new FormData();
+        var fileUpload = $("#CBCibilDocPostedFile").get(0);
+        var files = fileUpload.files;
+        debugger;
+        if (files.length <= 0 && $("#clsLeadCredit_CBCibilDoc").val() == "") {
+            swal("TDH", "Please Upload Co-Borrower CIBIL File.", "error");
+            return false;
+        }
+        else if ($("#clsLeadCredit_CBCibilRemarks").val().trim() == "") {
+            swal("TDH", "Please Input Co-Borrower CIBIL Remarks.", "error");
+            return false;
+        }
+    }
+
+
     if ($('#chkCAMVerification').is(":checked") == true) {
         var filedata = new FormData();
         var fileUpload = $("#CAMDocPostedFile").get(0);

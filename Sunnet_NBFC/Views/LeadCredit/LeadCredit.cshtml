@@ -144,6 +144,39 @@
                                 </div>
                             </div>
 
+                            @if (Model.MainProdType == "I" && Model.CustomerType == "c")
+                            {
+                                <div class="form-group">
+                                    <div class="row">
+
+                                        <div class="col-md-3" style="margin-top:3px;">
+                                            @Html.CheckBox("chkCBCIBILVerification", (Model.clsLeadCredit.CBCIBILVerification ?? "") == "Yes" ? true : false, new { })
+                                            <label class="required" for="example">Co-Borrower CIBIL Verification : </label>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <input type="file" name="clsLeadCredit.CBCibilDocPostedFile" id="CBCibilDocPostedFile" accept="image/png, image/jpg, image/jpeg" @((Model.clsLeadCredit.CBCIBILVerification ?? "") == "Yes" ? "" : "disabled='disabled'") />
+                                            @Html.HiddenFor(model => model.clsLeadCredit.CBCibilDoc)
+                                            @if (string.IsNullOrEmpty(Model.clsLeadCredit.CBCibilDoc) == false)
+                                            {
+                                                @Html.ActionLink("Download", "Download", "LeadCredit", new { FileType = Model.clsLeadCredit.CBCIBILCode, ImageName = Model.clsLeadCredit.CBCibilDoc }, new { @target = "_blank" })
+                                            }
+
+                                        </div>
+
+                                        <div class="col-md-1">
+                                            <span>Remark:</span>
+                                        </div>
+
+                                        <div class="col-md-5">
+                                            @Html.TextBoxFor(model => model.clsLeadCredit.CBCibilRemarks, @getHtmlAttributes(((Model.clsLeadCredit.CBCIBILVerification ?? "") == "Yes" ? false : true), "form-control"))
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            }
+
                             <div class="form-group">
                                 <div class="row">
 

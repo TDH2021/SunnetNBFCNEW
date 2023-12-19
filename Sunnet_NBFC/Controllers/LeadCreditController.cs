@@ -129,8 +129,11 @@ namespace Sunnet_NBFC.Controllers
                                         LeadId = int.Parse(row["LeadId"].ToString()),
                                         CIBILVerification = row["CIBILVerification"].ToString(),
                                         CibilDoc = row["CibilDoc"].ToString(),
-                                        FIVerification = row["FIVerification"].ToString(),
                                         CibilRemarks = row["CibilRemarks"].ToString(),
+                                        CBCIBILVerification = row["CBCIBILVerification"].ToString(),
+                                        CBCibilDoc = row["CBCibilDoc"].ToString(),
+                                        CBCibilRemarks = row["CBCibilRemarks"].ToString(),
+                                        FIVerification = row["FIVerification"].ToString(),
                                         FIDoc = row["FIDoc"].ToString(),
                                         FIRemarks = row["FIRemarks"].ToString(),
                                         TVRVerification = row["TVRVerification"].ToString(),
@@ -365,6 +368,45 @@ namespace Sunnet_NBFC.Controllers
 
 
                 //------------------------------CIBIL-------------------------------------------------------------------
+
+                //------------------------------CBCIBIL-------------------------------------------------------------------
+                //if(M.MainProdType=="I" && M.CustomerType == "c")
+                //if (string.IsNullOrEmpty(M.clsLeadCredit.CBCibilDoc) && (M.clsLeadCredit.CBCibilDocPostedFile == null || M.clsLeadCredit.CBCibilDocPostedFile.ToString() == ""))
+                //{
+                //    ViewBag.Error = " Please Upload Co-Borrower Cibil Document";
+                //    //return View(M);
+                //    return RedirectToAction("LeadCredit", "LeadCredit", new { LeadId = M.LeadId, ComeFrom = "CreditApprove" });
+                //}
+
+                if (M.clsLeadCredit.CBCibilDocPostedFile != null && M.clsLeadCredit.CBCibilDocPostedFile.ToString() != "")
+                {
+                    if (ClsCommon.CheckFileType(M.clsLeadCredit.CBCibilDocPostedFile.FileName.ToString()) == true)
+                    {
+                        M.clsLeadCredit.CBCibilDoc = UploadImage("CBCIBIL", M.clsLeadCredit.CBCibilDocPostedFile, M.LeadId);
+                        if (!string.IsNullOrEmpty(M.clsLeadCredit.CBCibilDoc))
+                            M.clsLeadCredit.CBCIBILVerification = "Yes";
+                        else
+                            M.clsLeadCredit.CBCIBILVerification = null;
+                    }
+                    else
+                    {
+                        ViewBag.Error = " Please Upload Photo in jpg,jpeg,png format.";
+                        //return View(M);
+                        return RedirectToAction("LeadCredit", "LeadCredit", new { LeadId = M.LeadId, ComeFrom = "CreditApprove" });
+                    }
+                }
+                else if (!string.IsNullOrEmpty(M.clsLeadCredit.CBCibilDoc) && frm["chkCBCIBILVerification"].Split(',')[0] == "true")
+                {
+                    M.clsLeadCredit.CBCIBILVerification = "Yes";
+                }
+                else if (!string.IsNullOrEmpty(M.clsLeadCredit.CBCibilDoc) && frm["chkCBCIBILVerification"].Split(',')[0] != "true")
+                {
+                    M.clsLeadCredit.CBCIBILVerification = null;
+                }
+
+
+                //------------------------------CBCIBIL-------------------------------------------------------------------
+
                 //------------------------------FI-------------------------------------------------------------------
                 if (M.clsLeadCredit.FIDocPostedFile != null && M.clsLeadCredit.FIDocPostedFile.ToString() != "")
                 {
@@ -861,8 +903,11 @@ namespace Sunnet_NBFC.Controllers
                                       LeadId = int.Parse(row["LeadId"].ToString()),
                                       CIBILVerification = row["CIBILVerification"].ToString(),
                                       CibilDoc = row["CibilDoc"].ToString(),
-                                      FIVerification = row["FIVerification"].ToString(),
                                       CibilRemarks = row["CibilRemarks"].ToString(),
+                                      CBCIBILVerification = row["CBCIBILVerification"].ToString(),
+                                      CBCibilDoc = row["CBCibilDoc"].ToString(),
+                                      CBCibilRemarks = row["CBCibilRemarks"].ToString(),
+                                      FIVerification = row["FIVerification"].ToString(),
                                       FIDoc = row["FIDoc"].ToString(),
                                       FIRemarks = row["FIRemarks"].ToString(),
                                       TVRVerification = row["TVRVerification"].ToString(),
@@ -1077,6 +1122,11 @@ namespace Sunnet_NBFC.Controllers
                     if (FileType == "CIBIL")
                     {
                         FilePrefix = "CIBIL_";
+                        FolderPath = "/UploadedFiles/LeadCredit/";
+                    }
+                    else if (FileType == "CBCIBIL")
+                    {
+                        FilePrefix = "CBCIBIL_";
                         FolderPath = "/UploadedFiles/LeadCredit/";
                     }
                     else if (FileType == "FI")
