@@ -689,7 +689,11 @@ namespace Sunnet_NBFC.Models
         public string UtrNo { get; set; }
         [DisplayName("Loan Start Date")]
         public string LoanStartDate { get; set; }
-
+        public string MainProdName { get; set; }
+        public string ProdName { get; set; }
+        public string CustomerName { get; set; }
+        public string ContactNo { get; set; }
+        public string ReqLoanAmt { get; set; }
         public int MiscId { get; set; } // for payment mode by misc master
     }
     public class clsEmi
