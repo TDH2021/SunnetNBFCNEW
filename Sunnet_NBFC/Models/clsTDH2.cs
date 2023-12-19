@@ -455,6 +455,10 @@ namespace Sunnet_NBFC.Models
 
         [DisplayName("Remarks")]
         public string Remarks { get; set; }
+
+
+        [DisplayName("Remark by telecaller")]
+        public string TelecallerRemarks { get; set; }
         public int IsDelete { get; set; }
 
         bool disposed = false;
@@ -504,7 +508,7 @@ namespace Sunnet_NBFC.Models
 
         [DisplayName("Remarks")]
         public string Remarks { get; set; }
-      
+
         bool disposed = false;
 
         // Public implementation of Dispose pattern callable by consumers.
@@ -612,7 +616,7 @@ namespace Sunnet_NBFC.Models
 
         public string CAMCODE { get { return "CAMCODE"; } }
         [DisplayName("CAM Generation")]
-        
+
 
         public string FICode { get { return "FI"; } }
         [DisplayName("FI Verification")]
@@ -742,7 +746,7 @@ namespace Sunnet_NBFC.Models
 
         [DisplayName("CAM Verification")]
         public string CamVerification { get; set; }
-        
+
         public HttpPostedFileBase CibilDocPostedFile { get; set; }
 
         public HttpPostedFileBase FIDocPostedFile { get; set; }
@@ -803,7 +807,22 @@ namespace Sunnet_NBFC.Models
 
         }
 
+
+        public static SelectList GetDealerDetail()
+        {
+            clsDSAMaster cls = new clsDSAMaster();
+            cls.ReqType = "view";
+            cls.COMPANYID = ClsSession.CompanyID;
+            cls.ISDELETE = 0;
+            return ClsCommon.ToSelectList(DataInterface.DBDSAMaster(cls), "DSAId", "DSAName");
+
+        }
+
+
+
     }
+
+
 
     public class clsCenter : IDisposable
     {

@@ -523,7 +523,7 @@ namespace Sunnet_NBFC.Models
         public decimal Proccesfees { get; set; }
 
         [DisplayName("Advance EMI")]
-        public decimal AdvanceEMI { get; set; }
+        public int AdvanceEMI { get; set; }
 
         [DisplayName("GST")]
         public decimal GST { get; set; }
@@ -592,6 +592,13 @@ namespace Sunnet_NBFC.Models
         [DisplayName("Rtoslip")]
         public string Rtoslip { get; set; }
 
+        public string MainProdName { get; set; }
+        public string ProdName { get; set; }
+        public string CustomerName { get; set; }
+        public string ContactNo { get; set; }
+        public string ReqLoanAmt { get; set; }
+
+
         bool disposed = false;
 
         // Public implementation of Dispose pattern callable by consumers.
@@ -623,6 +630,7 @@ namespace Sunnet_NBFC.Models
             Dispose(false);
         }
     }
+
 
     public class clsLeadFinalApproveMain : clsLeadFinalApprove
     {
@@ -1198,6 +1206,7 @@ namespace Sunnet_NBFC.Models
 
     public class clsLeadPostDisburse
     {
+        public string ReqType { get; set; } = "";
         public int Id { get; set; } = 0;
         public int LeadId { get; set; }=0;
         public string LeadNo { get; set; } = "";

@@ -20,7 +20,7 @@ namespace Sunnet_NBFC.Controllers
     {
 
         [SessionAttribute]
-        public ActionResult LeadView()
+        public ActionResult LeadView(clsLeadGenerationMaster clss)
         {
             if (Session["UserID"] != null)
             {
@@ -36,13 +36,23 @@ namespace Sunnet_NBFC.Controllers
                         ViewBag.MainProductList = ClsCommon.ToSelectList(DataInterface1.GetMainProductddl("View"), "MainProdId", "ProductName");
                         using (clsLeadGenerationMaster cls = new clsLeadGenerationMaster())
                         {
+
                             cls.ReqType = "GetLeadAllData";
                             cls.CompanyId = ClsSession.CompanyID;
-                            cls.LeadNo = "";
                             cls.LeadId = 0;
                             cls.ShortStage_Name = "CreditApprove";
                             cls.StageEmpId = int.Parse(Session["EmpId"].ToString());
                             cls.Empid = 0;
+                            cls.MainProductId = clss.MainProductId;
+                            cls.ProductId = clss.ProductId;
+                            cls.LeadNo = clss.LeadNo;
+                            cls.CustomerName = clss.CustomerName;
+                            cls.MobileNo1 = clss.MobileNo1;
+                            cls.PanNo = clss.PanNo;
+                            cls.AadharNo = clss.AadharNo;
+                            cls.ReqType = "GetLeadAllData";
+                            cls.CompanyId = ClsSession.CompanyID;
+                            
 
 
                             using (DataTable dt = DataInterface.GetLeadGenerationData(cls))

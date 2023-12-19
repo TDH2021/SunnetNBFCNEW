@@ -2,292 +2,291 @@
 @using Sunnet_NBFC.App_Code
 @using Sunnet_NBFC.Models
 @{
-	ViewBag.Title = "Employee Detail";
-	Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Employee Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <section class="content-header">
-	<div class="container-fluid">
-		<div class="row mb-2">
-			<div class="col-sm-6">
-				<h1>Employee Detail</h1>
-			</div>
-			<div class="col-sm-6">
-				<ol class="breadcrumb float-sm-right">
-					@Html.ActionLink("Back to List", "EmployeeView")
-				</ol>
-			</div>
-		</div>
-	</div><!-- /.container-fluid -->
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Employee Detail</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    @Html.ActionLink("Back to List", "EmployeeView")
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
 </section>
 
 @using (Html.BeginForm("EmployeeDetail", "Employee", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-	@Html.AntiForgeryToken()
-	@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
 
-	<section class="content">
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="card">
-						<div class="card-body">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
 
-							<div class="form-group">
-								<div class="row">
-									<div class="col-md-12">
-										@Html.HiddenFor(model => model.ReqType)
-										@Html.HiddenFor(model => model.EmpDtlID)
-										@Html.HiddenFor(model => model.EmpID)
-										@Html.HiddenFor(model => model.Companyid)
-										@Html.HiddenFor(model => model.IsDelete)
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        @Html.HiddenFor(model => model.ReqType)
+                                        @Html.HiddenFor(model => model.EmpDtlID)
+                                        @Html.HiddenFor(model => model.EmpID)
+                                        @Html.HiddenFor(model => model.Companyid)
+                                        @Html.HiddenFor(model => model.IsDelete)
 
-										@*@Html.HiddenFor(model => model.CreateBy)
-											@Html.HiddenFor(model => model.UpdateBy)*@
-
-
-									</div>
-								</div>
-							</div>
-
-							<div class="form-group">
-								<div class="row">
-									<div class="col-md-6">
-										@Html.LabelFor(model => model.EmpCode, new { @class = "control-label" })
-										@Html.TextBoxFor(model => model.EmpCode, new { @class = "form-control", disabled = true })
-									</div>
-
-									<div class="col-md-6">
-										@Html.LabelFor(model => model.EmpName, new { @class = "control-label" })
-										@Html.TextBoxFor(model => model.EmpName, new { @class = "form-control", disabled = true })
-									</div>
-								</div>
+                                        @*@Html.HiddenFor(model => model.CreateBy)
+                                            @Html.HiddenFor(model => model.UpdateBy)*@
 
 
-								<div class="row">
+                                    </div>
+                                </div>
+                            </div>
 
-									<div class="col-md-6">
-										@Html.LabelFor(model => model.DesignationID, new { @class = "control-label" })
-										@Html.DropDownListFor(model => model.DesignationID, ViewBag.ddlDesig as SelectList, "Select", new { @class = "form-control" })
-									</div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.EmpCode, new { @class = "control-label" })
+                                        @Html.TextBoxFor(model => model.EmpCode, new { @class = "form-control", disabled = true })
+                                    </div>
 
-									<div class="col-md-6">
-										@Html.LabelFor(model => model.DepartmentId, new { @class = "control-label" })
-										@Html.DropDownListFor(model => model.DepartmentId, ViewBag.ddlDep as SelectList, "Select", new { @class = "form-control" })
-									</div>
-								</div>
-
-								<div class="row">
-
-									<div class="col-md-6">
-										@{
-											var temp = Model.DOJ;
-										}
-
-										@Html.LabelFor(model => model.DOJ, new { @class = "control-label" })
-										@Html.TextBoxFor(model => model.DOJ, new { @class = "form-control datestyle" })
-										@Html.ValidationMessageFor(model => model.DOJ, "", new { @class = "text-danger" })
-									</div>
-
-									<div class="col-md-6">
-										@Html.LabelFor(model => model.LastESICNo, new { @class = "control-label" })
-										@Html.TextBoxFor(model => model.LastESICNo, new { @class = "form-control" })
-									</div>
-								</div>
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.EmpName, new { @class = "control-label" })
+                                        @Html.TextBoxFor(model => model.EmpName, new { @class = "form-control", disabled = true })
+                                    </div>
+                                </div>
 
 
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.DesignationID, new { @class = "control-label" })
+                                        @Html.DropDownListFor(model => model.DesignationID, ViewBag.ddlDesig as SelectList, "Select", new { @class = "form-control" })
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.DepartmentId, new { @class = "control-label" })
+                                        @Html.DropDownListFor(model => model.DepartmentId, ViewBag.ddlDep as SelectList, "Select", new { @class = "form-control" })
+                                    </div>
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        @{
+                                            var temp = Model.DOJ;
+                                        }
+
+                                        @Html.LabelFor(model => model.DOJ, new { @class = "control-label" })
+                                        @Html.TextBoxFor(model => model.DOJ, new { @class = "form-control datestyle" })
+                                        @Html.ValidationMessageFor(model => model.DOJ, "", new { @class = "text-danger" })
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.LastESICNo, new { @class = "control-label" })
+                                        @Html.TextBoxFor(model => model.LastESICNo, new { @class = "form-control", @onkeypress = "return isNumber(this.value);" })
+                                    </div>
+                                </div>
 
 
 
-								<div class="row">
-									<div class="col-md-6">
-										@Html.LabelFor(model => model.LastPFNo, new { @class = "control-label" })
-										@Html.TextBoxFor(model => model.LastPFNo, new { @class = "form-control" })
-									</div>
-
-									<div class="col-md-6">
-										@Html.LabelFor(model => model.LastAcadmicDegree, new { @class = "control-label" })
-										@Html.TextBoxFor(model => model.LastAcadmicDegree, new { @class = "form-control" })
-									</div>
-
-								</div>
-
-								<div class="row">
-
-									<div class="col-md-6">
-										@Html.LabelFor(model => model.LastAcadmicDegree, new { @class = "control-label" })
-										@Html.TextBoxFor(model => model.LastAcadmicDegree, new { @class = "form-control" })
-
-									</div>
-
-									<div class="col-md-6">
-										@Html.LabelFor(model => model.LastProfDegree, new { @class = "control-label" })
-										@Html.TextBoxFor(model => model.LastProfDegree, new { @class = "form-control" })
-
-									</div>
-								</div>
-
-								<div class="row">
-									<div class="col-md-6">
-										@Html.LabelFor(model => model.LastCompany, new { @class = "control-label" })
-										@Html.TextBoxFor(model => model.LastCompany, new { @class = "form-control", })
-
-									</div>
-
-									<div class="col-md-6">
-										@Html.LabelFor(model => model.LastExperienceDtls, new { @class = "control-label" })
-										@Html.TextBoxFor(model => model.LastExperienceDtls, new { @class = "form-control", })
-
-									</div>
 
 
-								</div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.LastPFNo, new { @class = "control-label" })
+                                        @Html.TextBoxFor(model => model.LastPFNo, new { @class = "form-control", @onkeypress = "return isNumber(this.value);" })
+                                    </div>
 
-								<div class="row">
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.LastAcadmicDegree, new { @class = "control-label" })
+                                        @Html.TextBoxFor(model => model.LastAcadmicDegree, new { @class = "form-control" })
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.LastAcadmicDegree, new { @class = "control-label" })
+                                        @Html.TextBoxFor(model => model.LastAcadmicDegree, new { @class = "form-control" })
+
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.LastProfDegree, new { @class = "control-label" })
+                                        @Html.TextBoxFor(model => model.LastProfDegree, new { @class = "form-control" })
+
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.LastCompany, new { @class = "control-label" })
+                                        @Html.TextBoxFor(model => model.LastCompany, new { @class = "form-control", })
+
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.LastExperienceDtls, new { @class = "control-label" })
+                                        @Html.TextBoxFor(model => model.LastExperienceDtls, new { @class = "form-control", })
+
+                                    </div>
+
+
+                                </div>
+
+                                <div class="row">
 
                                     <div class="col-md-6">
                                         @Html.LabelFor(model => model.Salary, new { @class = "control-label" })
-                                        @Html.TextBoxFor(model => model.Salary, new { @class = "form-control", @type = "number" })
+                                        @Html.TextBoxFor(model => model.Salary, new { @class = "form-control", @onkeypress = "return isNumber(this.value);" })
                                         @Html.ValidationMessageFor(model => model.Salary, "", new { @class = "text-danger" })
                                     </div>
 
 
-								</div>
+                                </div>
 
-								<div class="row">
-									<div class="col-md-6">
-										@Html.LabelFor(model => model.IsLeave, new { @class = "control-label" })
-										@Html.CheckBoxFor(model => model.IsLeave, new { @class = "form-control" })
-									</div>
-									<div class="col-md-6">
-										@{
-											var temp1 = Model.DOL;
-										}
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.IsLeave, new { @class = "control-label" })
+                                        @Html.CheckBoxFor(model => model.IsLeave, new { @class = "form-control" })
+                                    </div>
+                                    <div class="col-md-6">
+                                        @{
+                                            var temp1 = Model.DOL;
+                                        }
 
-										@Html.LabelFor(model => model.DOL, new { @class = "control-label" })
-										@Html.TextBoxFor(model => model.DOL, new { @class = "form-control datestyle" })
+                                        @Html.LabelFor(model => model.DOL, new { @class = "control-label" })
+                                        @Html.TextBoxFor(model => model.DOL, new { @class = "form-control datestyle" })
 
-									</div>
-
-
-
-								</div>
-
-								<div class="row">
-									<div class="col-md-6">
-										@Html.LabelFor(model => model.LoginType, new { @class = "control-label" })
-										@Html.TextBoxFor(model => model.LoginType, new { @class = "form-control", })
-									</div>
-									<div class="col-md-6">
-										@Html.LabelFor(model => model.IsActive, new { @class = "control-label" })
-										@Html.DropDownListFor(model => model.IsActive,
-										new List<SelectListItem> {
-										new SelectListItem { Value = "1" , Text = "Yes" },
-										new SelectListItem { Value = "0" , Text = "No" },
-										},
-										new { @class = "form-control", @id = "ddlIsActive" })
-
-									</div>
-								</div>
-
-								<div class="row">
-									<div class="col-md-6">
-										@Html.LabelFor(model => model.Longtitute, new { @class = "control-label" })
-										@Html.TextBoxFor(model => model.Longtitute, new { @class = "form-control", })
-										@*@Html.ValidationMessageFor(model => model.Longtitute, "", new { @class = "text-danger" })*@
-									</div>
-									<div class="col-md-6">
-										@Html.LabelFor(model => model.Langtiute, new { @class = "control-label" })
-										@Html.TextBoxFor(model => model.Langtiute, new { @class = "form-control", })
-										@*@Html.ValidationMessageFor(model => model.Langtiute, "", new { @class = "text-danger" })*@
-									</div>
-								</div>
+                                    </div>
 
 
-								@*<div class="row">
 
-										<div class="col-md-6" style="margin-top:40px;">
-											<span>Photo: </span>
-											<input type="file" id="fileuploadapprovalmail" />
-										</div>
+                                </div>
 
-									</div>*@
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.LoginType, new { @class = "control-label" })
+                                        @Html.TextBoxFor(model => model.LoginType, new { @class = "form-control", })
+                                    </div>
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.IsActive, new { @class = "control-label" })
+                                        @Html.DropDownListFor(model => model.IsActive,
+                                        new List<SelectListItem> {
+                                        new SelectListItem { Value = "1" , Text = "Yes" },
+                                        new SelectListItem { Value = "0" , Text = "No" },
+                                        },
+                                        new { @class = "form-control", @id = "ddlIsActive" })
 
-								<div class="card-footer">
-									@*@if (Model.EmpID != null && Model.EmpID != 0)
-										{
-											<input type="submit" value="Update" class="btn btn-primary" />
-										}
-										else
-										{*@
-									<input type="submit" value="Save" class="btn btn-primary" />
-									@*}*@
-									@Html.ActionLink("Cancel", "EmployeeView", "Employee", null, new { @class = "btn btn-danger btn-large" })
-								</div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.Longtitute, new { @class = "control-label" })
+                                        @Html.TextBoxFor(model => model.Longtitute, new { @class = "form-control", })
+                                        @*@Html.ValidationMessageFor(model => model.Longtitute, "", new { @class = "text-danger" })*@
+                                    </div>
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.Langtiute, new { @class = "control-label" })
+                                        @Html.TextBoxFor(model => model.Langtiute, new { @class = "form-control", })
+                                        @*@Html.ValidationMessageFor(model => model.Langtiute, "", new { @class = "text-danger" })*@
+                                    </div>
+                                </div>
 
 
-							</div>
-						</div>
+                                @*<div class="row">
 
-					</div>
-				</div>
-			</div>
+                                        <div class="col-md-6" style="margin-top:40px;">
+                                            <span>Photo: </span>
+                                            <input type="file" id="fileuploadapprovalmail" />
+                                        </div>
 
-	</section>
+                                    </div>*@
+
+                                <div class="card-footer">
+                                    @*@if (Model.EmpID != null && Model.EmpID != 0)
+                                        {
+                                            <input type="submit" value="Update" class="btn btn-primary" />
+                                        }
+                                        else
+                                        {*@
+                                    <input type="submit" value="Save" class="btn btn-primary" />
+                                    @*}*@
+                                    @Html.ActionLink("Cancel", "EmployeeView", "Employee", null, new { @class = "btn btn-danger btn-large" })
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+    </section>
 
 }
 
-<script src="~/plugins/jquery/jquery.min.js"></script>
-<script src="~/plugins/jquery/jquery.validate.min.js"></script>
-<script src="~/plugins/jquery/jquery.validate.unobtrusive.min.js"></script>
+
+<script src="~/Scripts/CustomJS/CommonFunction.js"></script>
 <script src="~/Scripts/CustomJS/Employee.js"></script>
 @if (ViewBag.Error != null && ViewBag.Error != "")
 {
-	<script type="text/javascript">
+    <script type="text/javascript">
 
             window.onload = function () {
                 swal("TDH", "@ViewBag.Error", "error");
             };
-	</script>
+    </script>
 }
 @if (ViewBag.Success != null && ViewBag.Success != "")
 {
-	<script type="text/javascript">
+    <script type="text/javascript">
 
             window.onload = function () {
 
 				swal("TDH", "@ViewBag.Success", "Success");
             };
-	</script>
+    </script>
 }
 
 <script>
 
-	$(document).ready(function () {
-		$('.datepicker').datepicker();
-	});
+    $(document).ready(function () {
+        $('.datepicker').datepicker();
+    });
 
 </script>
 
 <script>
 
-		//$("#ddlMiscType").change(function () {
-		//    debugger;
-		//    debugger;
-		//    var ddtext = $("#ddlMiscType option:selected").text();
-		//    $("#hfMiscType").val(ddtext);
+        //$("#ddlMiscType").change(function () {
+        //    debugger;
+        //    debugger;
+        //    var ddtext = $("#ddlMiscType option:selected").text();
+        //    $("#hfMiscType").val(ddtext);
 
-		//})
+        //})
 </script>
 
 @*@if (ViewBag.Success != null && ViewBag.Success != "")
-	{
-		<script>
-			$(function () {
-				var Message = '@ViewBag.Success';
-				alert(Message);
-			});
-		</script>
-	}*@
+    {
+        <script>
+            $(function () {
+                var Message = '@ViewBag.Success';
+                alert(Message);
+            });
+        </script>
+    }*@
 

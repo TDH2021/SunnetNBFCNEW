@@ -63,6 +63,7 @@ namespace Sunnet_NBFC.Controllers
                 List<clsRoleMaster> clsRoles = jss.Deserialize<List<clsRoleMaster>>(Request.Form["Role"]);
                 for (int i = 0; i < clsRoles.Count; i++)
                 {
+                    clsRoles[i].ReqType = "Insert";
                     using (DataTable dt = DataInterface.DBRole(clsRoles[i]))
                     {
                         JSONresult= JsonConvert.SerializeObject(dt);
@@ -107,6 +108,7 @@ namespace Sunnet_NBFC.Controllers
             {
                 using(clsRoleMaster cls=new clsRoleMaster())
                 {
+                    cls.ReqType = "Update";
                     cls.RoleName = roleMenuMasters.RoleName;
                     cls.EmpId = int.Parse(roleMenuMasters.EmpID);
                     DataTable dtddl = DataInterface.DBRole(cls);
@@ -118,12 +120,13 @@ namespace Sunnet_NBFC.Controllers
 
                     using (clsRoleMaster cls = new clsRoleMaster())
                     {
+                        cls.ReqType = "Update";
                         cls.RoleId = int.Parse(roleMenuMasters.RoleId);
                         cls.RoleName = roleMenuMasters.RoleName;
                         cls.EmpId = int.Parse(roleMenuMasters.EmpID);
                         cls.EmpCode = roleMenuMasters.EmpCode;
-                        //cls.MenuId = updateMenuMasters.MenuId[i];
-                        //cls.SubMenuId= updateMenuMasters.SubMenuId[i];
+                        cls.MenuId = int.Parse(updateMenuMasters[i].MenuId);
+                        cls.SubMenuId= int.Parse(updateMenuMasters[i].SubMenuId);
                         DataTable dtddl = DataInterface.DBRole(cls);
                     }
                     //dt = DataInterface1.SaveMenu(roleMenuMasters.RoleId, roleMenuMasters.RoleName, roleMenuMasters.EmpID, 

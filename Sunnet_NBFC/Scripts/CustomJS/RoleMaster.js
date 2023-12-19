@@ -112,31 +112,8 @@ function Valid() {
     }
     debugger
     if (RoleId.length == 0 && EmpID.length == 0) {
-        swal({
-            title: "Error",
-            text: "Please select RoleId or EmpID",
-            icon: "error",
-            button: true,
-
-        })
-            .then((willConfirm) => {
-                if (willConfirm) {
-
-                }
-            });
+        swal("TDH", "Please Select Role or Employee.", "error");
     } else if (customers.length == 0) {
-        swal({
-            title: "Error",
-            text: "Please check some role",
-            icon: "error",
-            button: true,
-
-        })
-            .then((willConfirm) => {
-                if (willConfirm) {
-
-                }
-            });
     } else {
         filedata.append('AllDataArray', JSON.stringify(AllDataArray));
         $.ajax({
@@ -162,11 +139,7 @@ function Valid() {
                             window.location.pathname = 'UserRole/RoleMaster';
                         }
                     });
-
-
             }
-
-
 
         })
 

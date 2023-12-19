@@ -1,9 +1,9 @@
-﻿@model Sunnet_NBFC.Models.clsDisbursement
+﻿@model Sunnet_NBFC.Models.clsLeadPostDisburse
 @using Sunnet_NBFC.App_Code
 @using Sunnet_NBFC.Models
 
 @{
-	ViewBag.Title = "LeadDisbursement";
+	ViewBag.Title = "LeadPostDisbursement";
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -11,7 +11,7 @@
 	<div class="container-fluid">
 		<div class="row mb-2">
 			<div class="col-sm-6">
-				<h1>Lead Disbursement</h1>
+				<h1>Lead Post Disbursement</h1>
 			</div>
 			<div class="col-sm-6">
 				<ol class="breadcrumb float-sm-right">
@@ -22,7 +22,7 @@
 	</div><!-- /.container-fluid -->
 </section>
 
-@using (Html.BeginForm("LeadDisbursement", "LeadDisbursement", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("LeadPostDisbursement", "LeadPostDisbursement", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
 	@*@Html.AntiForgeryToken()
 		@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
@@ -39,9 +39,8 @@
 								<div class="row">
 									<div class="col-md-12">
 										@Html.HiddenFor(model => model.ReqType)
-										@Html.HiddenFor(model => model.DisbursementId)
+										@Html.HiddenFor(model => model.Id)
 										@Html.HiddenFor(model => model.LeadId)
-										@Html.HiddenFor(model => model.ShortStage_Name)
 									</div>
 								</div>
 							</div>
@@ -49,34 +48,10 @@
 
 							<div class="form-group">
 								<div class="row">
-
-									<div class="col-md-4">
-										<label for="exampleInputEmail1">Lead No</label>
+									<div class="col-md-6">
+										@Html.LabelFor(model => model.LeadNo, new { @class = "control-label" }) *
 										@Html.TextBoxFor(model => model.LeadNo, new { @class = "form-control", @required = "true", @readonly = "true" })
-
-									</div>
-									<div class="col-md-4">
-										<label for="exampleInputEmail1">Main Product</label>
-										@Html.TextBoxFor(model => model.MainProdName, new { @class = "form-control", @required = "true", @readonly = "true" })
-									</div>
-									<div class="col-md-4">
-										<label for="exampleInputEmail1">Product</label>
-										@Html.TextBoxFor(model => model.ProdName, new { @class = "form-control", @required = "true", @readonly = "true" })
-									</div>
-								</div>
-								<div class="form-group">
-									<div class="row">
-										<div class="col-md-4">
-											<label for="exampleInputEmail1">Customer Name</label>
-											@Html.TextBoxFor(model => model.CustomerName, new { @class = "form-control", @required = "true", @readonly = "true" })
-										</div>
-										<div class="col-md-4">
-											<label for="exampleInputEmail1">Contact No</label>
-											@Html.TextBoxFor(model => model.ContactNo, new { @class = "form-control", @required = "true", @readonly = "true" })
-										</div>
-										<div class="col-md-4">
-
-										</div>
+										@*@Html.ValidationMessageFor(model => model.LeadId, "", new { @class = "text-danger" })*@
 									</div>
 								</div>
 								<hr />
@@ -87,26 +62,22 @@
 								</div>
 								<div class="row">
 									<div class="col-md-3">
-										@Html.LabelFor(model => model.BeneficiaryName, new { @class = "control-label" }) <span style="color:red; font-size:17px; font-weight:bold;">*</span>
-										@Html.TextBoxFor(model => model.BeneficiaryName, new { @class = "form-control", @id = "txtBeneficiaryName", @required = "true" })
-										@Html.ValidationMessageFor(model => model.BeneficiaryName, "", new { @class = "text-danger" })
+										@Html.LabelFor(model => model.BeneficiaryName, new { @class = "control-label" })
+										@Html.TextBoxFor(model => model.BeneficiaryName, new { @class = "form-control", @id = "txtBeneficiaryName" })
 									</div>
 									<div class="col-md-3">
-										@Html.LabelFor(model => model.BeneficiaryAccountNo, new { @class = "control-label", @type = "number" }) <span style="color:red; font-size:17px; font-weight:bold;">*</span>
-										@Html.TextBoxFor(model => model.BeneficiaryAccountNo, new { @class = "form-control", @required = "true", @id = "txtBeneficiaryAccountNo", @onblur = "return checkConfirmAc()", @onkeypress = "return isNumber(this.value);" })
-										@Html.ValidationMessageFor(model => model.BeneficiaryAccountNo, "", new { @class = "text-danger" })
+										@Html.LabelFor(model => model.BeneficiaryAccountNo, new { @class = "control-label", @type = "number" })
+										@Html.TextBoxFor(model => model.BeneficiaryAccountNo, new { @class = "form-control", @id = "txtBeneficiaryAccountNo", @onkeypress = "return isNumber(this.value);" })
 									</div>
 
 									<div class="col-md-3">
-										<label>Confirm Account No.</label><span style="color:red; font-size:17px; font-weight:bold;">*</span>
-										@Html.TextBoxFor(model => model.BeneficiaryAccountNo, new { @class = "form-control", @id = "txtConfirmAccountNo", @onblur = "return checkConfirmAc()", @onkeypress = "return isNumber(this.value);", @required = "true" })
-										@Html.ValidationMessageFor(model => model.BeneficiaryAccountNo, "", new { @class = "text-danger" })
+										<label>Confirm Account No.</label>
+										@Html.TextBoxFor(model => model.BeneficiaryAccountNo, new { @class = "form-control", @id = "txtConfirmAccountNo", @onkeypress = "return isNumber(this.value);" })
 									</div>
 
 									<div class="col-md-3">
-										@Html.LabelFor(model => model.IfscCode, new { @class = "control-label" })<span style="color:red; font-size:17px; font-weight:bold;">*</span>
-										@Html.TextBoxFor(model => model.IfscCode, new { @class = "form-control", @id = "txtIfscCode", @Maxlength = "11", @required = "true" })
-										@Html.ValidationMessageFor(model => model.IfscCode, "", new { @class = "text-danger" })
+										@Html.LabelFor(model => model.IfscCode, new { @class = "control-label" })
+										@Html.TextBoxFor(model => model.IfscCode, new { @class = "form-control", @id = "txtIfscCode", @Maxlength = "11" })
 									</div>
 								</div>
 
@@ -124,27 +95,27 @@
 								<div class="row">
 
 									<div class="col-md-3">
-										@Html.LabelFor(model => model.NetDisbursementAmount, new { @class = "control-label" })<span style="color:red; font-size:17px; font-weight:bold;">*</span>
-										@Html.TextBoxFor(model => model.NetDisbursementAmount, new { @class = "form-control", @id = "txtNetDisbursementAmount", @Maxlength = "12", @onkeypress = "return isNumber(this.value);", @required = "true" })
+										@Html.LabelFor(model => model.NetDisbursementAmount, new { @class = "control-label" })
+										@Html.TextBoxFor(model => model.NetDisbursementAmount, new { @class = "form-control", @id = "txtNetDisbursementAmount", @Maxlength = "12", @onkeypress = "return isNumber(this.value);" })
 										@Html.ValidationMessageFor(model => model.NetDisbursementAmount, "", new { @class = "text-danger" })
 
 									</div>
 									<div class="col-md-3">
-										@Html.LabelFor(model => model.ROI, new { @class = "control-label" })<span style="color:red; font-size:17px; font-weight:bold;">*</span>
-										@Html.TextBoxFor(model => model.ROI, new { @class = "form-control", @id = "txtROI", @Maxlength = "5", @onkeypress = "return isNumber(this.value);", @required = "true" })
+										@Html.LabelFor(model => model.ROI, new { @class = "control-label" })
+										@Html.TextBoxFor(model => model.ROI, new { @class = "form-control", @id = "txtROI", @Maxlength = "5", @onkeypress = "return isNumber(this.value);" })
 										@Html.ValidationMessageFor(model => model.ROI, "", new { @class = "text-danger" })
 
 									</div>
 									<div class="col-md-3">
-										@Html.LabelFor(model => model.Tenure, new { @class = "control-label" })<span style="color:red; font-size:17px; font-weight:bold;">*</span>
-										@Html.TextBoxFor(model => model.Tenure, new { @class = "form-control", @id = "txtTenure", @Maxlength = "3", @onkeypress = "return isNumber(this.value);", @required = "true" })
+										@Html.LabelFor(model => model.Tenure, new { @class = "control-label" })
+										@Html.TextBoxFor(model => model.Tenure, new { @class = "form-control", @id = "txtTenure", @Maxlength = "3", @onkeypress = "return isNumber(this.value);" })
 										@Html.ValidationMessageFor(model => model.Tenure, "", new { @class = "text-danger" })
 
 
 									</div>
 
 									<div class="col-md-3">
-										@Html.LabelFor(model => model.PaymentMode, new { @class = "control-label" })<span style="color:red; font-size:17px; font-weight:bold;">*</span>
+										@Html.LabelFor(model => model.PaymentMode, new { @class = "control-label" })
 										@Html.DropDownListFor(model => model.MiscId, clsMiscDDL.GetMiscDDL("PayMode"), "Select", new { @class = "form-control", @id = "txtPaymentMode" })
 										@Html.ValidationMessageFor(model => model.MiscId, "", new { @class = "text-danger" })
 
@@ -160,8 +131,8 @@
 										@Html.TextBoxFor(model => model.UtrNo, new { @class = "form-control", @id = "txtUtrNo" })
 									</div>
 									<div class="col-md-3">
-										@Html.LabelFor(model => model.LoanStartDate, new { @class = "control-label" })<span style="color:red; font-size:17px; font-weight:bold;">*</span>
-										@Html.TextBoxFor(model => model.LoanStartDate, new { @class = "form-control datestyle", @id = "txtLoanStartDate", @required = "true" })
+										@Html.LabelFor(model => model.LoanStartDate, new { @class = "control-label" })
+										@Html.TextBoxFor(model => model.LoanStartDate, new { @class = "form-control datestyle", @id = "txtLoanStartDate" })
 										@Html.ValidationMessageFor(model => model.LoanStartDate, "", new { @class = "text-danger" })
 
 									</div>
@@ -187,7 +158,7 @@
 												</label>
 												<table id="tblemi" class="table table-bordered table-striped">
 													@*</table>
-							<table id="example1" class="table table-bordered table-striped">*@
+														<table id="example1" class="table table-bordered table-striped">*@
 													<thead>
 														<tr>
 															<th>
@@ -239,7 +210,7 @@
 									</div>
 								</div>
 								<div class="card-footer">
-									<input type="submit" value="Update" class="btn btn-primary" onclick="ValUpdate()" />
+									<input type="submit" value="Update" class="btn btn-primary" />
 									@*@Html.ActionLink("Cancel", "LeadView", "LeadDisbursement", null, new { @class = "btn btn-danger btn-large" })*@
 									@Html.ActionLink("Cancel", "GoToStage", "Lead", new { StageName = ViewBag.ComeFrom }, new { @class = "btn btn-danger btn-large" })
 								</div>
@@ -283,53 +254,6 @@
 }
 
 <script type="text/javascript">
-
-	function checkConfirmAc() {
-		var ac = $('#txtBeneficiaryAccountNo').val();
-		var conac = $('#txtConfirmAccountNo').val();
-
-		if (ac !="" && conac!="") {
-			if (ac!= conac) {
-
-				swal("TDH", "Account No. and Confirm Account No. Not Match. Please Check", "error");
-				$('#txtConfirmAccountNo').val("");
-				return false;
-			}
-		}
-
-	}
-
-	function ValUpdate() {
-		debugger;
-		var loan = $('#txtNetDisbursementAmount').val();
-		var tenure = $('#txtTenure').val();
-		var roi = $('#txtROI').val();
-		var startdate = $('#txtLoanStartDate').val();
-		
-		if (parseFloat(loan) == 0) {
-			//alert("Please Enter Net Disbursement Amount");
-			swal("TDH", "Please Enter Net Disbursement Amount", "error");
-			return false;
-		}
-		if (parseFloat(roi) == 0) {
-			//alert("Please Enter Rate Of Interest");
-			swal("TDH", "Please Enter Rate Of Interest", "error");
-			return false;
-		}
-		if (parseFloat(tenure) == 0) {
-			//alert("Please Enter Tenure");
-			swal("TDH", "Please Enter Tenure", "error");
-			return false;
-		}
-
-		if (startdate == "") {
-			//alert("Please Enter Loan start date");
-			swal("TDH", "PPlease Enter Loan start date", "error");
-			return false;
-		}
-	}
-
-
 	function fnCreateEmi() {
 		debugger;
 		var loan = $('#txtNetDisbursementAmount').val();
@@ -342,24 +266,20 @@
 		//alert(startdate);
 
 		if (parseFloat(loan) == 0) {
-			//alert("Please Enter Net Disbursement Amount");
-			swal("TDH", "Please Enter Net Disbursement Amount", "error");
+			alert("Please Enter Net Disbursement Amount");
 			return false;
 		}
 		if (parseFloat(roi) == 0) {
-			//alert("Please Enter Rate Of Interest");
-			swal("TDH", "Please Enter Rate Of Interest", "error");
+			alert("Please Enter Rate Of Interest");
 			return false;
 		}
 		if (parseFloat(tenure) == 0) {
-			//alert("Please Enter Tenure");
-			swal("TDH", "Please Enter Tenure", "error");
+			alert("Please Enter Tenure");
 			return false;
 		}
 
 		if (startdate == "") {
-			//alert("Please Enter Loan start date");
-			swal("TDH", "Please Enter Loan start date", "error");
+			alert("Please Enter Loan start date");
 			return false;
 		}
 

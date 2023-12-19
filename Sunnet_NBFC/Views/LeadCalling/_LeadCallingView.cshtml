@@ -50,12 +50,12 @@
                                         <div class="form-group">
                                             <div class="row">
 
-                                                <div class="col-md-6">
+                                                <div class="col-md-4">
                                                     @*@Html.Label(item.QuestionId.ToString(), new { @class = "control-label" })*@
                                                     <b> (@Index. </b> &nbsp; @Html.Label(item.Question.ToString())
                                                 </div>
 
-                                                <div class="col-md-6">
+                                                <div class="col-md-4">
                                                     @if (item.QuestionAnsType == "Dropdown")
                                                     {
                                                         @Html.DropDownList("A_" + item.TcId.ToString() + "_" + item.QuestionId.ToString(), new SelectList(ViewBag.AnswerListDDL, "Value", "Text", item.Answer), "- Select- ",
@@ -66,6 +66,9 @@
                                                         @Html.TextBox("A_" + item.TcId.ToString() + "_" + item.QuestionId.ToString(), item.Answer, new { @class = "form-control", @required = "false", @disabled = "disabled" })
                                                         @*@Html.ValidationMessage(item.Answer, "", new { @class = "text-danger" })*@
                                                     }
+                                                </div>
+                                                <div class="col-md-4">
+                                                    @Html.TextBox("A_" + item.TcId.ToString() + "_" + item.QuestionId.ToString(), item.TelecallerRemarks, new { @class = "form-control", @required = "false", @disabled = "disabled" })
                                                 </div>
                                             </div>
                                         </div>

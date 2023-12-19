@@ -905,6 +905,64 @@ namespace Sunnet_NBFC.Models
     }
 
 }
+public class clsLeadPostDisburse : IDisposable
+{
+    public string ReqType { get; set; }
+    public int Id { get; set; } = 0;
+    public int LeadId { get; set; } = 0;
+    public string LeadNo { get; set; } = "";
+    public string OrgDocNo { get; set; } = "";
+    public string DocType { get; set; } = "";
+    public string DocDate { get; set; } = "";
+    public int PagesFrom { get; set; } = 0;
+    public int PagesTo { get; set; } = 0;
+    public string AnyOther { get; set; } = "";
+    public string RegistrationCertificate { get; set; }
+    public string InsuredHPEndorse { get; set; }
+    public string InvoiceHPEndorse { get; set; }
+    public string MarginMoneyEndorse { get; set; }
+    public string NOC { get; set; }
+    public string RTOSlip { get; set; }
+    public string EndorsedRC { get; set; }
+    public int CreatedBy { get; set; }
+    public int UpdatedBy { get; set; }
+    public int CompanyId { get; set; }
+    public int BranchId { get; set; }
+    public int isDelete { get; set; }
+
+
+    bool disposed = false;
+
+    // Public implementation of Dispose pattern callable by consumers.
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    // Protected implementation of Dispose pattern.
+    protected virtual void Dispose(bool disposing)
+    {
+        if (disposed)
+            return;
+
+        if (disposing)
+        {
+            // Free any other managed objects here.
+            //
+        }
+
+        // Free any unmanaged objects here.
+        //
+        disposed = true;
+    }
+
+    ~clsLeadPostDisburse()
+    {
+        Dispose(false);
+    }
+}
+
 
 public class clsDashboard : IDisposable
 {

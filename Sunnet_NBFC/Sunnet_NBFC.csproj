@@ -210,6 +210,7 @@
     <Compile Include="Controllers\LeadCreditController.cs" />
     <Compile Include="Controllers\LeadDisbursementController.cs" />
     <Compile Include="Controllers\LeadGenUpdateController.cs" />
+    <Compile Include="Controllers\LeadPostDisbursement.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Models\ClsCommon.cs" />
     <Compile Include="App_Code\ClsReturnData.cs" />
@@ -2926,6 +2927,10 @@
     <Content Include="Views\LeadGenUpdate\_AddPersloanLoanDetails.cshtml" />
     <Content Include="Views\LeadGenUpdate\_AddVechicalLoanDetails.cshtml" />
     <Content Include="Views\Branch\EditBranch.cshtml" />
+    <Content Include="Views\LeadPostDisbursement\LeadPostDisbursement.cshtml" />
+    <Content Include="Views\LeadPostDisbursement\LeadPostDisbursementView.cshtml" />
+    <Content Include="Views\LeadPostDisbursement\LeadView.cshtml" />
+    <Content Include="Views\UserRole\RoleMasterUpdate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1081,9 +1081,7 @@ public class DataInterface2 : DataInterface, IDisposable
         DataTable dt = new DataTable();
         try
         {
-            //DBOperation db = new DBOperation();
-            //SqlCommand cmd = new SqlCommand();
-
+            
             using (DBOperation db = new DBOperation())
             {
                 using (SqlCommand cmd = new SqlCommand())
@@ -1101,6 +1099,8 @@ public class DataInterface2 : DataInterface, IDisposable
                     cmd.Parameters.Add("@CompanyId", SqlDbType.Int).Value = ClsSession.CompanyID;
                     cmd.Parameters.Add("@CreatedBy", SqlDbType.Int).Value = ClsSession.UserID;
                     cmd.Parameters.Add("@UpdatedBy", SqlDbType.Int).Value = ClsSession.UserID;
+
+                    cmd.Parameters.Add("@TelecallerRemarks", SqlDbType.VarChar).Value = cls.TelecallerRemarks;
                     dt = db.FillTableProc(cmd, "USP_LeadCalling");
 
                     //if (dt != null && dt.Rows.Count > 0)

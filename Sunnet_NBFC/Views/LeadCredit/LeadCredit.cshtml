@@ -1096,7 +1096,7 @@
                                             <span>DealerId:</span>
                                         </div>
                                         <div class="col-md-5">
-                                            @Html.DropDownListFor(m => m.clsLeadCredit.DealerId, new SelectList(clsCommonData.GetEmoloyeeDDL(), "Value", "Text", Model.clsLeadCredit.DealerId), "- Select -", new { @class = "form-control" })
+                                            @Html.DropDownListFor(m => m.clsLeadCredit.DealerId, new SelectList(clsCommonData.GetDealerDetail(), "Value", "Text", Model.clsLeadCredit.DealerId), "- Select -", new { @class = "form-control" })
                                             @*@Html.TextBoxFor(model => model.clsLeadCredit.DealerId, new { @class = "form-control", })*@
                                         </div>
                                     </div>

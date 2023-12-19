@@ -63,6 +63,7 @@ namespace Sunnet_NBFC.Controllers
                                                 QuestionAnsType = row["QuestionAnsType"].ToString(),
                                                 Answer = row["Answer"].ToString(),
                                                 Remarks = row["Remarks"].ToString(),
+                                                TelecallerRemarks= row["TelecallerRemarks"].ToString(),
                                                 //IsDelete = Convert.ToInt32("0" + Convert.ToString(row["IsDelete"])),
                                             }).ToList();
                     }
@@ -121,8 +122,8 @@ namespace Sunnet_NBFC.Controllers
                     CallingModel.TcId = Convert.ToInt32(valueArray[1]);
                     CallingModel.LeadId = M.LeadId;
                     CallingModel.QuestionId = Convert.ToInt32(valueArray[2]);
-                    CallingModel.Answer = Value;
-
+                    CallingModel.Answer = Value.Split(',')[0].ToString();
+                    CallingModel.TelecallerRemarks = Value.Split(',')[1].ToString();
 
                     if (CallingModel.TcId <= 0)
                     {

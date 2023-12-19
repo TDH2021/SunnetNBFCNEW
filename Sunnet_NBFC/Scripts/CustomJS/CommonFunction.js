@@ -42,7 +42,7 @@ function isNumber(evt) {
 
 function ValidatePAN(strval,id) {
     var txtPANCard = strval;
-    alert(strval);
+    /*alert(strval);*/
     var regex = /([A-Z]){5}([0-9]){4}([A-Z]){1}$/;
     if (regex.test(txtPANCard.toUpperCase())) {
         return true;

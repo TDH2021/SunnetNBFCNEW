@@ -50,12 +50,36 @@
 
 							<div class="form-group">
 								<div class="row">
-									<div class="col-md-6">
-										@Html.LabelFor(model => model.LeadNo, new { @class = "control-label" }) <span style="color:red; font-size:17px; font-weight:bold;">*</span>
-										@Html.TextBoxFor(model => model.LeadNo, new { @class = "form-control", @required = "true", @readonly = "true" })
-										@*@Html.ValidationMessageFor(model => model.LeadId, "", new { @class = "text-danger" })*@
-									</div>
 
+									<div class="col-md-4">
+										<label for="exampleInputEmail1">Lead No</label>
+										@Html.TextBoxFor(model => model.LeadNo, new { @class = "form-control", @required = "true", @readonly = "true" })
+
+									</div>
+									<div class="col-md-4">
+										<label for="exampleInputEmail1">Main Product</label>
+										@Html.TextBoxFor(model => model.MainProdName, new { @class = "form-control", @required = "true", @readonly = "true" })
+									</div>
+									<div class="col-md-4">
+										<label for="exampleInputEmail1">Product</label>
+										@Html.TextBoxFor(model => model.ProdName, new { @class = "form-control", @required = "true", @readonly = "true" })
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="row">
+										<div class="col-md-4">
+											<label for="exampleInputEmail1">Customer Name</label>
+											@Html.TextBoxFor(model => model.CustomerName, new { @class = "form-control", @required = "true", @readonly = "true" })
+										</div>
+										<div class="col-md-4">
+											<label for="exampleInputEmail1">Contact No</label>
+											@Html.TextBoxFor(model => model.ContactNo, new { @class = "form-control", @required = "true", @readonly = "true" })
+										</div>
+										<div class="col-md-4">
+											<label for="exampleInputEmail1">Required Loan</label>
+											@Html.TextBoxFor(model => model.ReqLoanAmt, new { @ID = "ReqLoanAmt", @class = "form-control", @required = "true", @readonly = "true" })
+										</div>
+									</div>
 								</div>
 								<hr />
 
@@ -196,35 +220,35 @@
 									</div>
 								</div>
 								@*<div class="row">
-									<div class="col-md-12">
-										<hr />
+										<div class="col-md-12">
+											<hr />
+										</div>
+									</div>*@
+								<div class="row">
+									<div class="col-md-3">
+										@Html.LabelFor(model => model.NetDisbAmt, new { @class = "control-label" }) <span style="color:red; font-size:17px; font-weight:bold;">*</span>
+										@Html.TextBoxFor(model => model.NetDisbAmt, new { @class = "form-control", @id = "txtNetDisbAmt", @Maxlength = "12", @onkeypress = "return isNumber(this.value);" })
+
 									</div>
-								</div>*@
-							<div class="row">
-								<div class="col-md-3">
-									@Html.LabelFor(model => model.NetDisbAmt, new { @class = "control-label" }) <span style="color:red; font-size:17px; font-weight:bold;">*</span>
-									@Html.TextBoxFor(model => model.NetDisbAmt, new { @class = "form-control", @id = "txtNetDisbAmt", @Maxlength = "12", @onkeypress = "return isNumber(this.value);" })
-
-								</div>
-								<div class="col-md-3">
-									@Html.LabelFor(model => model.Proccesfees, new { @class = "control-label" })
-									@Html.TextBoxFor(model => model.Proccesfees, new { @class = "form-control", @id = "txtProccesfees", @Maxlength = "8", @onkeypress = "return isNumber(this.value);" })
+									<div class="col-md-3">
+										@Html.LabelFor(model => model.Proccesfees, new { @class = "control-label" })
+										@Html.TextBoxFor(model => model.Proccesfees, new { @class = "form-control", @id = "txtProccesfees", @Maxlength = "8", @onkeypress = "return isNumber(this.value);" })
 
 
-								</div>
-								<div class="col-md-3">
-									@Html.LabelFor(model => model.AdvanceEMI, new { @class = "control-label" })
-									@Html.TextBoxFor(model => model.AdvanceEMI, new { @class = "form-control", @id = "txtAdvanceEMI", @Maxlength = "2", @type="Number" })
+									</div>
+									<div class="col-md-3">
+										@Html.LabelFor(model => model.AdvanceEMI, new { @class = "control-label" })
+										@Html.TextBoxFor(model => model.AdvanceEMI, new { @class = "form-control", @id = "txtAdvanceEMI", @Maxlength = "2", @type = "Number" })
 
+									</div>
+									<div class="col-md-3">
+										@Html.LabelFor(model => model.GST, new { @class = "control-label" })
+										@Html.TextBoxFor(model => model.GST, new { @class = "form-control", @id = "txtGST", @Maxlength = "5", @onkeypress = "return isNumber(this.value);" })
+									</div>
 								</div>
-								<div class="col-md-3">
-									@Html.LabelFor(model => model.GST, new { @class = "control-label" })
-									@Html.TextBoxFor(model => model.GST, new { @class = "form-control", @id = "txtGST", @Maxlength = "5", @onkeypress = "return isNumber(this.value);" })
-								</div>
-							</div>
 
 								<div class="row">
-									
+
 									<div class="col-md-6">
 										@Html.LabelFor(model => model.Remarks, new { @class = "control-label" })
 										@Html.TextBoxFor(model => model.Remarks, new { @class = "form-control", @id = "txtRemarks" })
@@ -232,11 +256,11 @@
 								</div>
 
 
-                                <div class="card-footer">
-                                    <input type="submit" value="Update" class="btn btn-primary" />
-                                    @*@Html.ActionLink("Cancel", "LeadView", "Lead", null, new { @class = "btn btn-danger btn-large" })*@
-                                    @Html.ActionLink("Cancel", "GoToStage", "Lead", new { StageName = ViewBag.ComeFrom }, new { @class = "btn btn-danger btn-large" })
-                                </div>
+								<div class="card-footer">
+									<input type="submit" value="Update" class="btn btn-primary" />
+									@*@Html.ActionLink("Cancel", "LeadView", "Lead", null, new { @class = "btn btn-danger btn-large" })*@
+									@Html.ActionLink("Cancel", "GoToStage", "Lead", new { StageName = ViewBag.ComeFrom }, new { @class = "btn btn-danger btn-large" })
+								</div>
 
 
 							</div>
@@ -251,9 +275,9 @@
 
 }
 
-<script src="~/plugins/jquery/jquery.min.js"></script>
-<script src="~/plugins/jquery/jquery.validate.min.js"></script>
-<script src="~/plugins/jquery/jquery.validate.unobtrusive.min.js"></script>
+@*<script src="~/plugins/jquery/jquery.min.js"></script>
+	<script src="~/plugins/jquery/jquery.validate.min.js"></script>
+	<script src="~/plugins/jquery/jquery.validate.unobtrusive.min.js"></script>*@
 
 @if (ViewBag.Error != null && ViewBag.Error != "")
 {
@@ -276,6 +300,27 @@
 	</script>
 }
 
+<script type="text/javascript">
+	function ValUpdate() {
+		debugger;
+		var nba = $('#txtNetDisbAmt').val();
+		var ra = $('#ReqLoanAmt').val();
+		alert(nba);
+		alert(ra);
+
+		if (parseFloat(nba) == 0) {
+			//alert("Please Enter Net Disbursement Amount");
+			swal("TDH", "Please Enter Net Disbursement Amount", "error");
+			return false;
+		}
+		if (parseFloat(ra) > 0) {
+			if (parseFloat(nba) > parseFloat(ra)) {
+				swal("TDH", "Net Disbursement Amount cannot be greater than Requested Loan Amount. Please check.", "error");
+				return false;
+			}
+		}
+	}
+</script>
 
 
 

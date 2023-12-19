@@ -207,6 +207,10 @@ namespace Sunnet_NBFC.Controllers
                             model.LeadId = int.Parse(dr["LeadId"].ToString());
                             model.ShortStage_Name = dr["ShortStage_Name"].ToString();
                             model.Status = dr["Status"].ToString();
+                            model.MainProdName = Convert.ToString(dr["MainProdName"]);
+                            model.ProdName = Convert.ToString(dr["ProdName"]);
+                            model.CustomerName = Convert.ToString(dr["CustomerName"]);
+                            model.ContactNo = Convert.ToString(dr["ContactNo"]);
                         }
                     }
 
@@ -218,7 +222,7 @@ namespace Sunnet_NBFC.Controllers
                             model.FinalApproveId = int.Parse(dr["FinalApproveId"].ToString());
                             model.Particulers = dr["Particulers"].ToString();
                             model.Proccesfees = decimal.Parse(dr["Proccesfees"].ToString());
-                            model.AdvanceEMI = decimal.Parse(dr["AdvanceEMI"].ToString());
+                            model.AdvanceEMI = int.Parse(dr["AdvanceEMI"].ToString());
                             model.GST = decimal.Parse(dr["GST"].ToString());
                             model.NetDisbAmt = decimal.Parse(dr["NetDisbAmt"].ToString());
                             model.TrnchsNo = decimal.Parse(dr["TrnchsNo"].ToString());
@@ -240,6 +244,7 @@ namespace Sunnet_NBFC.Controllers
                             model.DisbursementRequestLetter = dr["DisbursementRequestLetter"].ToString();
                             model.NocPreviousFinanced = dr["NocPreviousFinanced"].ToString();
                             model.Rtoslip = dr["Rtoslip"].ToString();
+                            model.ReqLoanAmt = dr["ReqLoanAmt"].ToString();
                             //model.DisbursementRequestLetter = dr["DisbursementRequestLetter"].ToString();
                             //model.SignatureVerification = dr["SignatureVerification"].ToString();
                             //model.KycSelfAttested = dr["KycSelfAttested"].ToString();
