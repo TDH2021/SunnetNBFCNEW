@@ -46,6 +46,7 @@
                                     </div>
                                 </div>
                             </div>
+                           
                             <div class="form-group">
                                 <div class="row">
 
@@ -81,6 +82,19 @@
 
                                 @if (Model.clsLeadCalling != null)
                                 {
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label class="example">Question</label>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="example">Answer</label>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="example">Telecaller Remarks</label>
+                                            </div>
+                                        </div>
+                                    </div>
                                     int Index = 1;
                                     foreach (var item in Model.clsLeadCalling)
                                     {
