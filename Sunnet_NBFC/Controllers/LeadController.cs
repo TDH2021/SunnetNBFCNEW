@@ -15,6 +15,8 @@ using System.Web;
 using Org.BouncyCastle.Crypto.IO;
 using System.Diagnostics.Metrics;
 using static iText.StyledXmlParser.Jsoup.Select.Evaluator;
+using System.Configuration;
+using System.Diagnostics;
 
 namespace Sunnet_NBFC.Controllers
 {
@@ -52,7 +54,7 @@ namespace Sunnet_NBFC.Controllers
                             cls.PanNo = clss.PanNo;
                             cls.AadharNo = clss.AadharNo;
                             cls.ReqType = "ViewLead";
-
+                            cls.isdelete = 0;
                             cls.LeadNo = clss.LeadNo;
                             cls.LeadId = 0;
                             cls.Empid = int.Parse(Session["EmpId"].ToString());
@@ -84,11 +86,11 @@ namespace Sunnet_NBFC.Controllers
                                                 ReuestedLoanTenure = row["ReuestedLoanTenure"].ToString(),
                                                 ShortStage_Name = row["ShortStage_Name"].ToString(),
                                                 StatusDesc = row["StatusDesc"].ToString(),
-
+                                                IsLoanDisbursed = row["IsLoanDisbursed"].ToString(),
                                             }).ToList();
 
 
-                                    ViewBag.lst = list;// DataInterface.ConvertDataTable<clsLeadGenerationMaster>(dt);
+                                    ViewBag.lst = list;
                                 }
                             }
                         }
@@ -104,7 +106,7 @@ namespace Sunnet_NBFC.Controllers
                             clsE.FunctionName = "LeadView";
                             clsE.Link = "Lead/LeadView";
                             clsE.PageName = "Status Controller";
-                            clsE.UserId = "1";
+                            clsE.UserId = Session["UserID"].ToString();
                             DataInterface.PostError(clsE);
                         }
                         throw e1;
@@ -220,18 +222,13 @@ namespace Sunnet_NBFC.Controllers
                                     model.PropertyAddress = Convert.ToString(ds.Tables[0].Rows[i]["PropertyAddress"]);
                                     model.PropertyType = Convert.ToString(ds.Tables[0].Rows[i]["PropertyType"]);
                                     model.Propertyarea = Convert.ToString(ds.Tables[0].Rows[i]["Propertyarea"]);
-                                    
+
                                     //model.EstValueofscurity = Convert.ToString(ds.Tables[0].Rows[i]["EstValueofscurity"]);
                                     ViewBag.CUSTYPEREUIRED = Convert.ToString(ds.Tables[0].Rows[i]["CustTypeRequried"]);
                                     ViewBag.Status1 = Convert.ToString(ds.Tables[0].Rows[i]["Status1"]);
                                     ViewBag.Short_StageName = Convert.ToString(ds.Tables[0].Rows[i]["ShortStage_Name"]);
 
                                 }
-
-
-
-
-
 
                             }
                             HttpPostedFileBase file = null;
@@ -385,9 +382,6 @@ namespace Sunnet_NBFC.Controllers
                                     }
 
                                 }
-
-
-
                             }
 
 
@@ -405,9 +399,9 @@ namespace Sunnet_NBFC.Controllers
                     clsE.Mode = "WEB";
                     clsE.ErrorDescrption = e1.Message;
                     clsE.FunctionName = "Status View";
-                    clsE.Link = "Status/ViewStatus";
-                    clsE.PageName = "Status Controller";
-                    clsE.UserId = "1";
+                    clsE.Link = "Lead/LeadDetails";
+                    clsE.PageName = "Lead Controller";
+                    clsE.UserId = Session["UserID"].ToString();
                     DataInterface.PostError(clsE);
                 }
             }
@@ -476,8 +470,6 @@ namespace Sunnet_NBFC.Controllers
 
                         gv.RenderControl(objHtmlTextWriter);
 
-
-
                         Response.Output.Write(objStringWriter.ToString());
 
                         Response.Flush();
@@ -492,6 +484,54 @@ namespace Sunnet_NBFC.Controllers
                 }
 
             }
+        }
+
+        public JsonResult LeadDelete()
+        {
+            string JSONresult = "";
+            try
+            {
+              
+                JavaScriptSerializer jss = new JavaScriptSerializer();
+                ViewBag.CompanyId = ClsSession.CompanyID;
+                clsLeadGenerationMaster cls = jss.Deserialize<clsLeadGenerationMaster>(Request.Form["AllDataArray"]);
+
+                cls.LeadId = cls.LeadId;
+                cls.ReqType = "Delete";
+                using (DataTable dt = DataInterface.GetLeadGeneration(cls))
+                {
+                    if (dt != null)
+                    {
+                        if (dt.Rows.Count > 0)
+                        {
+                            JSONresult = JsonConvert.SerializeObject(dt);
+                            return Json(JSONresult, JsonRequestBehavior.AllowGet);
+                        }
+                    }
+                }
+               
+            }
+            catch (Exception e1)
+            {
+                using (clsError clsE = new clsError())
+                {
+                    // Get stack trace for the exception with source file information
+                    var st = new StackTrace(e1, true);
+                    // Get the top stack frame
+                    var frame = st.GetFrame(0);
+                    // Get the line number from the stack frame
+                    var line = frame.GetFileLineNumber();
+                    clsE.ReqType = "Update";
+                    clsE.Mode = "WEB";
+                    clsE.ErrorDescrption = e1.Message + "Line " + line + "Frame " + frame;
+                    clsE.FunctionName = "LeadDelete";
+                    clsE.Link = "Lead/LeadDelete";
+                    clsE.PageName = "Status Controller";
+                    clsE.UserId = ClsSession.EmpId.ToString();
+                    DataInterface.PostError(clsE);
+                }
+            }
+            return Json(JSONresult, JsonRequestBehavior.AllowGet);
         }
     }
 }

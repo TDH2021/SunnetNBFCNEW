@@ -59,6 +59,16 @@ function callfillemp() {
         });
     }
 }
+
+$(function () {
+    $('#selectall').click(function () {
+        if (this.checked) {
+            $(".checkbox").prop("checked", true);
+        } else {
+            $(".checkbox").prop("checked", false);
+        }
+    });
+});
 function Valid() {
     debugger
     var RoleId = $("#RoleId option:selected").val();
@@ -79,9 +89,6 @@ function Valid() {
 
         var sbname = row.find("TD").eq(2).html();
         customer.SubMenuName = sbname.trim();
-
-
-
         var mid = row.find("TD").eq(4).html();
         customer.MenuId = mid.trim();
 
@@ -117,7 +124,7 @@ function Valid() {
     } else {
         filedata.append('AllDataArray', JSON.stringify(AllDataArray));
         $.ajax({
-            url: "/UserRole/UpdateMenu",
+            url: "/UserRole/Role",
             type: "POST",
             contentType: false,
             processData: false,

@@ -470,6 +470,7 @@ public class DataInterface : IDisposable
             {
                 sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
                 sqlCommand.Parameters.AddWithValue("@ReqType", cls.ReqType);
+                sqlCommand.Parameters.AddWithValue("@LeadId", cls.LeadId);
                 sqlCommand.Parameters.AddWithValue("@MainProdId", cls.MainProductId);
                 sqlCommand.Parameters.AddWithValue("@ProdId", cls.ProductId);
                 sqlCommand.Parameters.AddWithValue("@ReqLoanAmt", cls.ReuestedLoanAmount);
@@ -1015,6 +1016,7 @@ public class DataInterface : IDisposable
                 sqlCommand.Parameters.AddWithValue("@PanNo", cls.PanNo);
                 sqlCommand.Parameters.AddWithValue("@AadharNo", cls.AadharNo);
                 sqlCommand.Parameters.AddWithValue("@MobileNo", cls.MobileNo1);
+                sqlCommand.Parameters.AddWithValue("@isdelete", cls.isdelete);
 
                 dt = db.FillTableProc(sqlCommand, "USP_Lead");
             }

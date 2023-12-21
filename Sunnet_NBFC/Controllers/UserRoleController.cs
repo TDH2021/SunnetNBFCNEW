@@ -60,10 +60,19 @@ namespace Sunnet_NBFC.Controllers
 
             try
             {
-                List<clsRoleMaster> clsRoles = jss.Deserialize<List<clsRoleMaster>>(Request.Form["Role"]);
+                List<clsRoleMaster> clsRoles = jss.Deserialize<List<clsRoleMaster>>(Request.Form["MenuRoleS"]);
+                RoleMenuMaster roleMenuMasters = jss.Deserialize<RoleMenuMaster>(Request.Form["AllDataArray"]);
                 for (int i = 0; i < clsRoles.Count; i++)
                 {
                     clsRoles[i].ReqType = "Insert";
+                    clsRoles[i].EmpId = roleMenuMasters.EmpID==""?0:int.Parse(roleMenuMasters.EmpID);
+                    clsRoles[i].EmpName = roleMenuMasters.EmpName;
+                    clsRoles[i].RoleId = roleMenuMasters.RoleId==""?0:int.Parse(roleMenuMasters.RoleId);
+                    clsRoles[i].RoleName = roleMenuMasters.RoleName;
+                    clsRoles[i].EmpCode = roleMenuMasters.EmpCode;
+                    clsRoles[i].CompanyId = ClsSession.CompanyID;
+                    clsRoles[i].CreatedBy = ClsSession.UserID;
+
                     using (DataTable dt = DataInterface.DBRole(clsRoles[i]))
                     {
                         JSONresult= JsonConvert.SerializeObject(dt);

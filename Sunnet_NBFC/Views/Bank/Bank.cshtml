@@ -15,11 +15,7 @@
             <div class="col-sm-6">
                 <h1>Add Charges</h1>
             </div>
-            <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
-                    @Html.ActionLink("Back to List", "BankView")
-                </ol>
-            </div>
+            
         </div>
     </div><!-- /.container-fluid -->
 </section>
@@ -103,19 +99,6 @@
     </section>
 
 }
-<script src="~/plugins/jquery/jquery.min.js"></script>
-<script src="~/plugins/jquery/jquery.validate.min.js"></script>
-<script src="~/plugins/jquery/jquery.validate.unobtrusive.min.js"></script>
-
-@*@if (ViewBag.Message != null)
-    {
-        <script type="text/javascript">
-
-                window.onload = function () {
-                    alert("@ViewBag.Message");
-                };
-        </script>
-    }*@
 
 @if (ViewBag.Error != null && ViewBag.Error != "")
 {

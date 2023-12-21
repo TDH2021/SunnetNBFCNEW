@@ -731,6 +731,7 @@ namespace Sunnet_NBFC.Models
         public string Propertyarea { get; set; } = "";
         public string PropertyAddress { get; set; } = "";
         public string PropertyType { get; set; } = "";
+        public int isdelete { get; set; } = 0;
         bool disposed = false;
 
         // Public implementation of Dispose pattern callable by consumers.

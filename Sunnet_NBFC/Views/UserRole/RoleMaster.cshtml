@@ -14,7 +14,7 @@
                 <h1>Role Master</h1>
             </div>
             <div class="col-sm-6">
-               
+
             </div>
         </div>
     </div><!-- /.container-fluid -->
@@ -81,15 +81,17 @@
                                 @Html.ValidationMessageFor(model => model.EmpName, "", new { @class = "text-danger" })
                             </div>
                         </div>
-                        <div class="card-body">
 
+                        <div class="card-body">
+                           
                             <table class="table table-striped table-bordered" id="example45">
                                 <thead>
                                     <tr>
-                                        <th>S.No.</th>
-                                        <th>Menu Name</th>
-                                        <th>Sub Menu Name</th>
-                                        <th>Select</th>
+                                        <th class="text-center info">S.No.</th>
+                                        <th class="text-center info">Menu Name</th>
+                                        <th class="text-center info">Sub Menu Name</th>
+
+                                        <th class="text-center info"><input type="checkbox" name="checkAll" class="checkbox" id="selectall"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -100,14 +102,14 @@
                                         {
 
                                             <tr>
-                                                <td> @(rowNo += 1)</td>
-                                                <td>
+                                                <td class="text-center info"> @(rowNo += 1)</td>
+                                                <td class="text-center info">
                                                     @item.MenuName
                                                 </td>
-                                                <td>
+                                                <td class="text-center info">
                                                     @item.Title
                                                 </td>
-                                                <td>
+                                                <td class="text-center info">
                                                     <input type="checkbox" id="@rowNo" class="checkbox" value=@item.IsSelected.ToString()>
                                                 </td>
                                                 <td hidden>
@@ -119,7 +121,7 @@
                                             </tr>
 
                                         }
-
+                                            
 
                                     }
 
@@ -135,7 +137,7 @@
                         <div class="card-footer">
 
                             <input type="submit" onclick="Valid();" value="Save" class="btn btn-primary" />
-                            
+
                             @Html.ActionLink("Cancel", "Index", "Home", null, new { @class = "btn btn-danger btn-large" })
                         </div>
 
@@ -151,4 +153,4 @@
 
 
 
-<script src="~/Scripts/CustomJS/RoleMaster_1.js"></script>
+<script src="~/Scripts/CustomJS/RoleMaster.js"></script>
