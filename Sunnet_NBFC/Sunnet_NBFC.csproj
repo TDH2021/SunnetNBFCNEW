@@ -2932,6 +2932,7 @@
     <Content Include="Views\LeadPostDisbursement\LeadView.cshtml" />
     <Content Include="Views\UserRole\RoleMasterUpdate.cshtml" />
     <Content Include="Views\UserRole\RoleMaster_Empwise.cshtml" />
+    <Content Include="Views\Login\FirstTimeLogin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

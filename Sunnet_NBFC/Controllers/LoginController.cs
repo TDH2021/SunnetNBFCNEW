@@ -321,6 +321,17 @@ namespace Sunnet_NBFC.Controllers
 
 
         }
+
+        public ActionResult FirstTimeLogin()
+        {
+            using (clsLogin cls = new clsLogin())
+            {
+                
+                return View(cls);
+            }
+
+
+        }
         [HttpPost]
         public JsonResult UpdatePassword()
         {

@@ -218,13 +218,7 @@ function CheckUserName() {
                 }
 
             }
-
-
-
         })
-
-
-
     }
 }
 
@@ -277,6 +271,61 @@ function ForgetPassword() {
                 }
                 else {
                     swal("TDH", "Please Enter Coorect Id or Password", "error");
+                }
+
+            }
+        })
+    }
+}
+function ChangePassword() {
+    var ReqType = "FirstTimeLogin";
+    var Password = $("#txtPassword").val();
+    var ConfirmPass = $("#txtConfPassword").val();
+    var UserName = $("#txtUserName").val();
+    $("#txtConfPassword").val("");
+    $("#txtPassword").val("");
+    $("#txtUserName").val("");
+    if (UserName.length == 0) {
+        swal("TDH", "Please Enter UserName", "error");
+    }
+    else if (Password.length == 0) {
+        swal("TDH", "Please Enter Password", "error");
+    } else if (ConfirmPass.length == 0) {
+        swal("TDH", "Please Enter Confrim Password", "error");
+    }
+    else if (Password != ConfirmPass) {
+        swal("TDH", "Both Password Cannot Match", "error");
+    }
+
+    else {
+        var filedata = new FormData();
+
+        var UserName = UserName;
+        var UserPassword = Password;
+
+        var AllDataArray = {
+            "ReqType": ReqType,
+            "UserName": UserName,
+            "UserPassword": Password
+        }
+
+        filedata.append('AllDataArray', JSON.stringify(AllDataArray));
+
+        $.ajax({
+            url: "/Login/UpdatePassword",
+            type: "POST",
+            contentType: false,
+            processData: false,
+            data: filedata,
+
+            success: function (result) {
+                debugger;
+                if (result.length > 2) {
+                    debugger;
+                    window.location.pathname = 'Login/Index';
+                }
+                else {
+                    swal("TDH", "Please Enter Coorect Password", "error");
                 }
 
             }
