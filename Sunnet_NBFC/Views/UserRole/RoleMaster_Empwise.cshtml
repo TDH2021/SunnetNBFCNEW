@@ -10,7 +10,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Role Master</h1>
+                <h1>Role Master Employee Wise</h1>
             </div>
             <div class="col-sm-6">
 
@@ -20,7 +20,7 @@
 </section>
 
 
-@*@Html.AntiForgeryToken()*@
+@Html.AntiForgeryToken()
 
 <section class="content">
     <div class="container-fluid">
@@ -28,47 +28,23 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    @Html.HiddenFor(model => model.ReqType)
-                                    @Html.HiddenFor(model => model.CompanyId)
-                                    @Html.HiddenFor(model => model.IsDelete)
-
-                                    @*@Html.HiddenFor(model => model.CreateBy)
-                    @Html.HiddenFor(model => model.UpdateBy)*@
-
-
-                                </div>
-                            </div>
-                        </div>
-
-
-                        @using (Html.BeginForm("RoleMaster", "UserRole", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        @using (Html.BeginForm("RoleMaster_EmpWise", "UserRole", FormMethod.Post, new { enctype = "multipart/form-data" }))
                         {
-                            <div class="form-group" id="divRole">
+                            <div class="form-group" id="divEmployee">
                                 <div class="row">
-
-                                    <input type="hidden" value="@TempData["CompanyId"]" id="hfCompanyId" />
                                     <div class="col-md-6">
+                                        @Html.HiddenFor(model => model.ReqType)
+                                        @Html.HiddenFor(model => model.CompanyId)
+                                        @Html.HiddenFor(model => model.IsDelete)
 
-                                        <label>Role Name</label>
-                                        @Html.DropDownListFor(model => model.RoleId, ViewBag.RoleList as SelectList, "Select Role",
-                                    new { @class = "form-control", @id = "ddlRoleId" })
+                                        <label>Employee</label>
+                                        @Html.DropDownListFor(model => model.EmpId, ViewBag.EmpList as SelectList, "Select", new { @class = "form-control", @id = "EmpID" })
 
                                     </div>
-
-
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="row">
-
-
-
-                                    <button type="submit" class="btn btn-info btn-secondary">Set Rights</button>
+                                    <div class="col-md-6">
+                                        <br />
+                                        <button type="submit" class="btn btn-info btn-secondary">Set Rights</button>
+                                    </div>
                                 </div>
                             </div>
                         }
@@ -130,7 +106,7 @@
 
                         <div class="card-footer">
 
-                            <input type="submit" onclick="Valid();" value="Save" class="btn btn-primary" />
+                            <input type="submit" onclick="Valid_Employee();" value="Save" class="btn btn-primary" />
 
                             @Html.ActionLink("Cancel", "Index", "Home", null, new { @class = "btn btn-danger btn-large" })
                         </div>

@@ -20,7 +20,7 @@ namespace Sunnet_NBFC.Models
 
         public int BranchId { get; set; }
 
-        [Required(ErrorMessage = "Branch Code is required.")]
+        
         [DisplayName("Branch Code")]
 
         public string BranchCode { get; set; }

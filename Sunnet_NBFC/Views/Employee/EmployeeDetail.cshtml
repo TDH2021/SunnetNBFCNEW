@@ -114,26 +114,20 @@
                                 </div>
 
                                 <div class="row">
-
-                                    <div class="col-md-6">
-                                        @Html.LabelFor(model => model.LastAcadmicDegree, new { @class = "control-label" })
-                                        @Html.TextBoxFor(model => model.LastAcadmicDegree, new { @class = "form-control" })
-
-                                    </div>
-
                                     <div class="col-md-6">
                                         @Html.LabelFor(model => model.LastProfDegree, new { @class = "control-label" })
                                         @Html.TextBoxFor(model => model.LastProfDegree, new { @class = "form-control" })
 
                                     </div>
-                                </div>
-
-                                <div class="row">
                                     <div class="col-md-6">
                                         @Html.LabelFor(model => model.LastCompany, new { @class = "control-label" })
                                         @Html.TextBoxFor(model => model.LastCompany, new { @class = "form-control", })
 
                                     </div>
+                                </div>
+
+                                <div class="row">
+
 
                                     <div class="col-md-6">
                                         @Html.LabelFor(model => model.LastExperienceDtls, new { @class = "control-label" })
@@ -141,19 +135,13 @@
 
                                     </div>
 
-
-                                </div>
-
-                                <div class="row">
-
                                     <div class="col-md-6">
                                         @Html.LabelFor(model => model.Salary, new { @class = "control-label" })
                                         @Html.TextBoxFor(model => model.Salary, new { @class = "form-control", @onkeypress = "return isNumber(this.value);" })
                                         @Html.ValidationMessageFor(model => model.Salary, "", new { @class = "text-danger" })
                                     </div>
-
-
                                 </div>
+
 
                                 <div class="row">
                                     <div class="col-md-6">

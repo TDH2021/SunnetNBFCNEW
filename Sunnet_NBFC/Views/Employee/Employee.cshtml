@@ -118,7 +118,7 @@
 
                                     <div class="col-md-6">
                                         @Html.LabelFor(model => model.ContactNo1, new { @class = "control-label" })*
-                                        @Html.TextBoxFor(model => model.ContactNo1, new { @class = "form-control", @onkeypress = "return isNumber(this.value);",@maxlegth="10" })
+                                        @Html.TextBoxFor(model => model.ContactNo1, new { @class = "form-control", @maxlength = "10", @onkeypress = "return isNumber(this.value);" })
                                         @Html.ValidationMessageFor(model => model.ContactNo1, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
@@ -126,13 +126,13 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         @Html.LabelFor(model => model.ContactNo2, new { @class = "control-label" })
-                                        @Html.TextBoxFor(model => model.ContactNo2, new { @class = "form-control", @onkeypress = "return isNumber(this.value);", @maxlength="10" })
+                                        @Html.TextBoxFor(model => model.ContactNo2, new { @class = "form-control", @maxlength = "10",@onkeypress = "return isNumber(this.value);" })
                                         @Html.ValidationMessageFor(model => model.ContactNo2, "", new { @class = "text-danger" })
                                     </div>
 
                                     <div class="col-md-6">
                                         @Html.LabelFor(model => model.WhatsAppNo, new { @class = "control-label" })
-                                        @Html.TextBoxFor(model => model.WhatsAppNo, new { @class = "form-control", @onkeypress = "return isNumber(this.value);",@maxlength="10" })
+                                        @Html.TextBoxFor(model => model.WhatsAppNo, new { @class = "form-control", @maxlength = "10", @onkeypress = "return isNumber(this.value);" })
                                         @Html.ValidationMessageFor(model => model.WhatsAppNo, "", new { @class = "text-danger" })
                                     </div>
 
@@ -144,7 +144,7 @@
                                     <div class="col-md-6">
                                         @Html.LabelFor(model => model.Email, new { @class = "control-label" })
                                         @Html.TextBoxFor(model => model.Email, new { @class = "form-control", })
-                                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger", @maxlength = "50" })
                                     </div>
                                     <div class="col-md-6">
                                         @{
@@ -154,7 +154,7 @@
                                         @Html.LabelFor(model => model.DOB, new { @class = "control-label" })
                                         @Html.TextBoxFor(model => model.DOB, new { @class = "form-control datestyle" })
                                         @*@Html.TextBoxFor(model => model.DOB, "{0:yyyy-MM-dd}", new { @class = "form-control datestylish" })*@
-                                        @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
+                                        @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger", @maxlength = "20" })
 
                                     </div>
 
@@ -164,12 +164,12 @@
 
                                     <div class="col-md-6">
                                         @Html.LabelFor(model => model.PAN, new { @class = "control-label" })
-                                        @Html.TextBoxFor(model => model.PAN, new { @class = "form-control", })
+                                        @Html.TextBoxFor(model => model.PAN, new { @class = "form-control", @maxlength = "10" })
                                         @Html.ValidationMessageFor(model => model.PAN, "", new { @class = "text-danger", @onblur = "return ValidatePAN(this.value,id);" })
                                     </div>
                                     <div class="col-md-6">
                                         @Html.LabelFor(model => model.AadhaarNo, new { @class = "control-label" })
-                                        @Html.TextBoxFor(model => model.AadhaarNo, new { @class = "form-control", })
+                                        @Html.TextBoxFor(model => model.AadhaarNo, new { @class = "form-control", @maxlength = "12" })
                                         @Html.ValidationMessageFor(model => model.AadhaarNo, "", new { @class = "text-danger", @onkeypress = "return isNumber(this.value);" })
                                     </div>
 

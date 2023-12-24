@@ -753,7 +753,7 @@ namespace Sunnet_NBFC.Models
             cls.ReqType = "view";
             cls.CompId = ClsSession.CompanyID;
             cls.IsDelete = 0;
-            return ClsCommon.ToSelectList(DataInterface1.dbEmployee(cls), "EmpID", "EmpName");
+            return ClsCommon.ToSelectList(DataInterface1.dbEmployee(cls), "EmpID", "EmployeeName");
 
         }
     }

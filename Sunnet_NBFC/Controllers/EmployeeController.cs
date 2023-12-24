@@ -115,7 +115,7 @@ namespace Sunnet_NBFC.Controllers
                     clse.FunctionName = "Employee";
                     clse.Link = "Employee/Employee";
                     clse.PageName = "Employee Controller";
-                    clse.UserId = "1";
+                    clse.UserId = ClsSession.EmpId.ToString();
                     DataInterface.PostError(clse);
                 }
             }
@@ -167,7 +167,7 @@ namespace Sunnet_NBFC.Controllers
                     clse.FunctionName = "EmployeeView";
                     clse.Link = "Employee/Employee";
                     clse.PageName = "Employee Controller";
-                    clse.UserId = "1";
+                    clse.UserId = ClsSession.EmpId.ToString();
                     DataInterface.PostError(clse);
                 }
             }
@@ -222,9 +222,9 @@ namespace Sunnet_NBFC.Controllers
                     clsE.ReqType = "Update";
                     clsE.Mode = "WEB";
                     clsE.ErrorDescrption = e1.Message + "Line " + line + "Frame " + frame;
-                    clsE.FunctionName = "AddRequestLead";
-                    clsE.Link = "Status/AddRequestLead";
-                    clsE.PageName = "Status Controller";
+                    clsE.FunctionName = "DeleteEmployee";
+                    clsE.Link = "Employee/DeleteEmployee";
+                    clsE.PageName = "Delete Employee Controller";
                     clsE.UserId = ClsSession.EmpId.ToString();
                     DataInterface.PostError(clsE);
                 }
@@ -260,6 +260,17 @@ namespace Sunnet_NBFC.Controllers
             }
             catch (Exception ex)
             {
+                using (clsError cls = new clsError())
+                {
+                    cls.ReqType = "Insert";
+                    cls.Mode = "WEB";
+                    cls.ErrorDescrption = ex.Message;
+                    cls.FunctionName = "EmployeeDetail";
+                    cls.Link = "Employee/EmployeeDetail";
+                    cls.PageName = "Employee Detail Controller";
+                    cls.UserId = ClsSession.EmpId.ToString();
+                    DataInterface.PostError(cls);
+                }
                 throw ex;
             }
         }
@@ -310,7 +321,7 @@ namespace Sunnet_NBFC.Controllers
                     clse.FunctionName = "Employee";
                     clse.Link = "Employee/Employee";
                     clse.PageName = "Employee Controller";
-                    clse.UserId = "1";
+                    clse.UserId = ClsSession.EmpId.ToString();
                     DataInterface.PostError(clse);
                 }
             }
@@ -385,10 +396,10 @@ namespace Sunnet_NBFC.Controllers
                     cls.ReqType = "Insert";
                     cls.Mode = "WEB";
                     cls.ErrorDescrption = e1.Message + "-" + e1.InnerException.Message;
-                    cls.FunctionName = "City View";
-                    cls.Link = "Company/CompanyView";
-                    cls.PageName = "Company Controller";
-                    cls.UserId = "1";
+                    cls.FunctionName = "GetEmpdtl";
+                    cls.Link = "Employee/GetEmpdtl";
+                    cls.PageName = "Employee Controller";
+                    cls.UserId =ClsSession.EmpId.ToString();
                     DataInterface.PostError(cls);
                 }
             }

@@ -146,7 +146,7 @@ namespace Sunnet_NBFC.Controllers
                             cls.FunctionName = "City View";
                             cls.Link = "City/CityView";
                             cls.PageName = "City Controller";
-                            cls.UserId = "1";
+                            cls.UserId = ClsSession.EmpId.ToString();
                             DataInterface.PostError(cls);
                         }
                     }

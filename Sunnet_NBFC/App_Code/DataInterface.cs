@@ -1076,6 +1076,34 @@ public class DataInterface : IDisposable
         }
         return dt;
     }
+
+    public static DataSet ViewDBRole(clsRoleMaster cls)
+    {
+
+
+        DataSet dt = new DataSet();
+        using (DBOperation db = new DBOperation())
+        {
+            using (SqlCommand sqlCommand = new SqlCommand())
+            {
+                sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                sqlCommand.Parameters.AddWithValue("@ReqType", cls.ReqType);
+                sqlCommand.Parameters.AddWithValue("@RoleId", cls.RoleId);
+                sqlCommand.Parameters.AddWithValue("@RoleName", cls.RoleName);
+                sqlCommand.Parameters.AddWithValue("@EmpId", cls.EmpId);
+                sqlCommand.Parameters.AddWithValue("@EmpCode", cls.EmpCode);
+                sqlCommand.Parameters.AddWithValue("@MenuId", cls.MenuId);
+                sqlCommand.Parameters.AddWithValue("@SubMenuId", cls.SubMenuId);
+                sqlCommand.Parameters.AddWithValue("@CreatedBy", cls.CreatedBy);
+                sqlCommand.Parameters.AddWithValue("@CompanyId", cls.CompanyId);
+                sqlCommand.Parameters.AddWithValue("@IsDelete", cls.IsDelete);
+                dt = db.FillDsProc(sqlCommand, "USP_Role");
+            }
+
+
+        }
+        return dt;
+    }
     public static DataSet DBLetter(clsLeadGenerationMaster cls)
     {
 

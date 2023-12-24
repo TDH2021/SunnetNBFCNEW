@@ -814,9 +814,9 @@ namespace Sunnet_NBFC.Models
     }
     public class clsRoleMaster : clsRoleSubMenu
     {
-        public int RoleId { get; set; }
+        public string RoleId { get; set; } = "0";
         public string RoleName { get; set; }
-        public int EmpId { get; set; }
+        public string EmpId { get; set; } = "0";
         public string EmpCode { get; set; }
         public string EmpName { get; set; }
         public int CreatedBy { get; set; }
