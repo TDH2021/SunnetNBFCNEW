@@ -1017,6 +1017,8 @@ public class DataInterface : IDisposable
                 sqlCommand.Parameters.AddWithValue("@AadharNo", cls.AadharNo);
                 sqlCommand.Parameters.AddWithValue("@MobileNo", cls.MobileNo1);
                 sqlCommand.Parameters.AddWithValue("@isdelete", cls.isdelete);
+                sqlCommand.Parameters.AddWithValue("@CreatedBy", cls.CreatedBy);
+                sqlCommand.Parameters.AddWithValue("@BranchId", cls.BranchID);
 
                 dt = db.FillTableProc(sqlCommand, "USP_Lead");
             }

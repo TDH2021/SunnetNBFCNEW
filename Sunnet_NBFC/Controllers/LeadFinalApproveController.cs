@@ -185,7 +185,7 @@ namespace Sunnet_NBFC.Controllers
         }
 
         [Sunnet_NBFC.App_Code.SessionAttribute]
-        public ActionResult LeadFinalApprove(int leadid, string ComeFrom = "FinalApprove")
+        public ActionResult LeadFinalApprove(int leadid=0, string ComeFrom = "FinalApprove")
         {
             clsLeadFinalApproveMain model = new clsLeadFinalApproveMain();
             try

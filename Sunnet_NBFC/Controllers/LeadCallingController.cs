@@ -235,7 +235,7 @@ namespace Sunnet_NBFC.Controllers
                             cls.ReqType = "GetLeadAllData";
                             cls.CompanyId = ClsSession.CompanyID;
                             cls.LeadId = 0;
-                            cls.ShortStage_Name = "PRIMYTEL";
+                            cls.ShortStage_Name = "PRIMYTEL"; 
                             cls.StageEmpId = int.Parse(Session["EmpId"].ToString());
                             cls.Empid = 0;
                             cls.MainProductId = clss.MainProductId;
@@ -245,7 +245,7 @@ namespace Sunnet_NBFC.Controllers
                             cls.MobileNo1 = clss.MobileNo1;
                             cls.PanNo = clss.PanNo;
                             cls.AadharNo = clss.AadharNo;
-
+                            
                             using (DataTable dt = DataInterface.GetLeadGenerationData(cls))
                             {
                                 if (dt != null)

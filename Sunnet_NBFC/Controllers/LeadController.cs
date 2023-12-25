@@ -57,7 +57,14 @@ namespace Sunnet_NBFC.Controllers
                             cls.isdelete = 0;
                             cls.LeadNo = clss.LeadNo;
                             cls.LeadId = 0;
-                            cls.Empid = int.Parse(Session["EmpId"].ToString());
+                            if (ClsSession.UserType.ToUpper() == "E")
+                            {
+                                cls.Empid = int.Parse(Session["EmpId"].ToString());
+                            }
+                            else
+                            {
+                                cls.Empid = 0;
+                            }
                             if (Request.QueryString["ShortStage_Name"] != null)
                             {
                                 cls.ShortStage_Name = Request.QueryString["ShortStage_Name"].ToString();

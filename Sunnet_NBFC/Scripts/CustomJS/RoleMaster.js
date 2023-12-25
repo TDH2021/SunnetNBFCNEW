@@ -124,9 +124,9 @@ function Valid() {
 
 function Valid_Employee() {
     debugger
-    var RoleId = $("#ddlRoleId option:selected").val();
-    var RoleName = $("#ddlRoleId option:selected").text();
-    var EmpID = "0";
+    var RoleId = "0";
+    var RoleName = "";
+    var EmpID = $("#EmpID option:selected").val(); ;
     var EmpCode = "";
     var EmpName = "";
     var customers = new Array();
@@ -171,8 +171,8 @@ function Valid_Employee() {
 
     }
     debugger
-    if (RoleId.length == 0 && EmpID.length == 0) {
-        swal("TDH", "Please Select Role or Employee.", "error");
+    if (EmpID.length == 0) {
+        swal("TDH", "Please Select Employee.", "error");
     } else if (customers.length == 0) {
     } else {
         filedata.append('AllDataArray', JSON.stringify(AllDataArray));
@@ -196,7 +196,7 @@ function Valid_Employee() {
                 })
                     .then((willConfirm) => {
                         if (willConfirm) {
-                            window.location.pathname = 'UserRole/RoleMaster';
+                            window.location.pathname = 'UserRole/RoleMaster_EmpWise';
                         }
                     });
             }

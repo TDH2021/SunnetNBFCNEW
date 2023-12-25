@@ -14,6 +14,7 @@ namespace Sunnet_NBFC.App_Code
         public static int EmpId { get; set; } = 0;
         public static int RoleID { get; set; } = 0;
         public static int BranchId { get; set; } = 0;
+        public static string UserType { get; set; } = "";
 
 
     }

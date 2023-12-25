@@ -29,6 +29,7 @@ namespace Sunnet_NBFC.Controllers
                     ClsSession.EmpId = int.Parse(Session["EmpId"].ToString());
                     ClsSession.BranchId = int.Parse(Session["BranchId"].ToString());
                     ClsSession.RoleID = int.Parse(Session["RoleId"].ToString());
+                    ClsSession.UserType = Session["UserType"].ToString();
                     List<clsDashboard> lst = new List<clsDashboard>();
                     using (clsLeadGenerationMaster cls = new clsLeadGenerationMaster())
                     {
