@@ -569,6 +569,9 @@ namespace Sunnet_NBFC.Models
         public string DocumentName { get; set; }
         public int LeadCustId { get; set; }
         public string CustName { get; set; }
+        public int CreatedBy { get; set; }= 0;
+        public int UpdatedBy { get; set; } = 0;
+
         bool disposed = false;
 
         // Public implementation of Dispose pattern callable by consumers.

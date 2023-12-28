@@ -359,7 +359,9 @@ namespace Sunnet_NBFC.Controllers
                     DocumentModel.IsReceived = Convert.ToBoolean(arr[0]);
                     DocumentModel.Remarks = Remarks;
                     DocumentModel.LeadCustId = Convert.ToInt32(LeadCustId);
-                    
+                    DocumentModel.CreatedBy = ClsSession.EmpId;
+                    DocumentModel.UpdatedBy = ClsSession.EmpId;
+                    DocumentModel.CompanyId = ClsSession.CompanyID;
                     if (DocumentModel.IsReceived == true)
                     {
                         if (DocumentModel.DcId <= 0)
@@ -384,8 +386,29 @@ namespace Sunnet_NBFC.Controllers
                     }
 
                 }
-
-                if (IsSave)
+                if (M.Status == "A")
+                {
+                    if (IsSave)
+                    {
+                        M.ReqType = "UpdateStatus";
+                        dt = DataInterface1.UpdateLeadStatus(M);
+                        if (dt != null && dt.Rows.Count > 0)
+                        {
+                            clsRtn.ID = Convert.ToInt64("0" + Convert.ToString(dt.Rows[0]["ReturnID"]));
+                            clsRtn.Message = Convert.ToString(dt.Rows[0]["ReturnMessage"]);
+                            clsRtn.MessageDesc = clsRtn.Message;
+                            if (clsRtn.ID > 0)
+                            {
+                                clsRtn.MsgType = (int)MessageType.Success;
+                            }
+                            else
+                            {
+                                clsRtn.MsgType = (int)MessageType.Fail;
+                            }
+                        }
+                    }
+                }
+                else
                 {
                     M.ReqType = "UpdateStatus";
                     dt = DataInterface1.UpdateLeadStatus(M);
@@ -404,8 +427,7 @@ namespace Sunnet_NBFC.Controllers
                         }
                     }
                 }
-
-
+              
             }
             catch (Exception e1)
             {

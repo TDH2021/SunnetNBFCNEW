@@ -7,7 +7,6 @@ using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
 namespace Sunnet_NBFC.Controllers
 {
     public class HomeController : Controller

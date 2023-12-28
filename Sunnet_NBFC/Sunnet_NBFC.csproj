@@ -56,6 +56,9 @@
     <Reference Include="CaptchaMvc, Version=2.5.0.0, Culture=neutral, PublicKeyToken=fe46ad421dd3b0e6, processorArchitecture=MSIL">
       <HintPath>..\packages\CaptchaMvc.Mvc4.1.5.0\lib\net40-full\CaptchaMvc.dll</HintPath>
     </Reference>
+    <Reference Include="Dapper">
+      <HintPath>C:\Users\Admin\Downloads\DemoChart\DemoChart\DemoChart\bin\Dapper.dll</HintPath>
+    </Reference>
     <Reference Include="Ionic.Zip, Version=1.9.1.8, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL">
       <HintPath>..\packages\Ionic.Zip.1.9.1.8\lib\Ionic.Zip.dll</HintPath>
     </Reference>
@@ -124,6 +127,7 @@
       <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
@@ -204,6 +208,7 @@
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
     </Reference>
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Code\SessionAttribute.cs" />
@@ -511,6 +516,28 @@
     <Content Include="EmailTemplates\SenctionLetter.html" />
     <Content Include="ErrorPage.html" />
     <Content Include="favicon.ico" />
+    <Content Include="FusionCharts\FCF_Area2D.swf" />
+    <Content Include="FusionCharts\FCF_Bar2D.swf" />
+    <Content Include="FusionCharts\FCF_Candlestick.swf" />
+    <Content Include="FusionCharts\FCF_Column2D.swf" />
+    <Content Include="FusionCharts\FCF_Column3D.swf" />
+    <Content Include="FusionCharts\FCF_Doughnut2D.swf" />
+    <Content Include="FusionCharts\FCF_Funnel.swf" />
+    <Content Include="FusionCharts\FCF_Gantt.swf" />
+    <Content Include="FusionCharts\FCF_Line.swf" />
+    <Content Include="FusionCharts\FCF_MSArea2D.swf" />
+    <Content Include="FusionCharts\FCF_MSBar2D.swf" />
+    <Content Include="FusionCharts\FCF_MSColumn2D.swf" />
+    <Content Include="FusionCharts\FCF_MSColumn2DLineDY.swf" />
+    <Content Include="FusionCharts\FCF_MSColumn3D.swf" />
+    <Content Include="FusionCharts\FCF_MSColumn3DLineDY.swf" />
+    <Content Include="FusionCharts\FCF_MSLine.swf" />
+    <Content Include="FusionCharts\FCF_Pie2D.swf" />
+    <Content Include="FusionCharts\FCF_Pie3D.swf" />
+    <Content Include="FusionCharts\FCF_StackedArea2D.swf" />
+    <Content Include="FusionCharts\FCF_StackedBar2D.swf" />
+    <Content Include="FusionCharts\FCF_StackedColumn2D.swf" />
+    <Content Include="FusionCharts\FCF_StackedColumn3D.swf" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="dist\img\sunitlogo.png" />

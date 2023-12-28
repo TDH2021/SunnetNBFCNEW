@@ -977,6 +977,8 @@ public class DataInterface1 : IDisposable
                     cmd.Parameters.Add("@IsReceived", SqlDbType.Bit).Value = cls.IsReceived;
                     cmd.Parameters.Add("@Remarks", SqlDbType.VarChar).Value = cls.Remarks;
                     cmd.Parameters.Add("@IsDelete", SqlDbType.Bit).Value = cls.IsDelete;
+                    cmd.Parameters.Add("@CreatedBy", SqlDbType.Int).Value = cls.CreatedBy;
+                    cmd.Parameters.Add("@UpdatedBy", SqlDbType.Int).Value = cls.UpdatedBy;
                     cmd.Parameters.Add("@LeadCustId", SqlDbType.Int).Value = cls.LeadCustId;
                     dt = db.FillTableProc(cmd, "USP_LeadDocument");
                 }
