@@ -156,7 +156,7 @@ $(document).ready(function () {
 });
 
 function Validation() {
-    if ($("#hfCrId").val() == "0") {
+    if ($("#hfCrId").val() == "0" && $("#ddlStatus").val()!="P") {
         if ($('#chkCIBILVerification').is(":checked") == false) {
             swal("TDH", "Please Select CIBIL Verification.", "error");
             return false;
@@ -168,7 +168,7 @@ function Validation() {
         }
     }
 
-    if ($('#chkCAMVerification').is(":checked") != true) {
+    if ($('#chkCAMVerification').is(":checked") != true && $("#ddlStatus").val() != "P") {
         swal("TDH", "Please CAM verification", "error");
         return false;
     }
