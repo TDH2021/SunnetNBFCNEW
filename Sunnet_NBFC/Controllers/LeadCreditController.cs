@@ -333,7 +333,7 @@ namespace Sunnet_NBFC.Controllers
                 #region Attachments
 
                 //------------------------------CIBIL-------------------------------------------------------------------
-                if (M.Status!="P" && string.IsNullOrEmpty(M.clsLeadCredit.CibilDoc) && (M.clsLeadCredit.CibilDocPostedFile == null || M.clsLeadCredit.CibilDocPostedFile.ToString() == ""))
+                if (M.Status!="P" && M.Status != "R" && M.Status != "S" && string.IsNullOrEmpty(M.clsLeadCredit.CibilDoc) && (M.clsLeadCredit.CibilDocPostedFile == null || M.clsLeadCredit.CibilDocPostedFile.ToString() == ""))
                 {
                     ViewBag.Error = " Please Upload Cibil Document";
                     //return View(M);
