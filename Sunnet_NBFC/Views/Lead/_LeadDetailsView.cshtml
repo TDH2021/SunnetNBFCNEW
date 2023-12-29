@@ -446,7 +446,12 @@
                             </tr>
 
                         }
-
+                        <tr>
+                            <th>
+                                Send Back Remarks
+                            </th>
+                            <td colspan="3">@Model.FORemarks</td>
+                        </td>
 
                     </thead>
                 </table>
@@ -537,7 +542,7 @@
                 case "DocCol":
                     { Html.RenderAction("LeadCallingView", "LeadCalling"); }
                     break;
-                case "Credit Approve":
+                case "CreditApprove":
                     { Html.RenderAction("LeadCallingView", "LeadCalling"); }
                     { Html.RenderAction("LeadDocumentView", "LeadDocument"); }
                     break;

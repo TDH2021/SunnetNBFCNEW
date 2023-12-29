@@ -229,7 +229,7 @@ namespace Sunnet_NBFC.Controllers
                                     model.PropertyAddress = Convert.ToString(ds.Tables[0].Rows[i]["PropertyAddress"]);
                                     model.PropertyType = Convert.ToString(ds.Tables[0].Rows[i]["PropertyType"]);
                                     model.Propertyarea = Convert.ToString(ds.Tables[0].Rows[i]["Propertyarea"]);
-
+                                    model.FORemarks = Convert.ToString(ds.Tables[0].Rows[i]["Remarks"]);
                                     //model.EstValueofscurity = Convert.ToString(ds.Tables[0].Rows[i]["EstValueofscurity"]);
                                     ViewBag.CUSTYPEREUIRED = Convert.ToString(ds.Tables[0].Rows[i]["CustTypeRequried"]);
                                     ViewBag.Status1 = Convert.ToString(ds.Tables[0].Rows[i]["Status1"]);
