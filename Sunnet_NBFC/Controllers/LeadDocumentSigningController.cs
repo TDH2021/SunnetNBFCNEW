@@ -295,6 +295,7 @@ namespace Sunnet_NBFC.Controllers
                             model.DisbursementRequestLetter = dr["DisbursementRequestLetter"].ToString();
                             model.SignatureVerification = dr["SignatureVerification"].ToString();
                             model.KycSelfAttested = dr["KycSelfAttested"].ToString();
+                            model.ReqLoanAmt = dr["ReqLoanAmt"].ToString();
 
                         }
                     }
@@ -309,6 +310,10 @@ namespace Sunnet_NBFC.Controllers
                         model.ShortStage_Name = dr["ShortStage_Name"].ToString();
                         model.Status = dr["Status"].ToString();
                         model.Remarks = dr["Remarks"].ToString();
+                        model.MainProdName = Convert.ToString(dr["MainProdName"]);
+                        model.ProdName = Convert.ToString(dr["ProdName"]);
+                        model.CustomerName = Convert.ToString(dr["CustomerName"]);
+                        model.ContactNo = Convert.ToString(dr["ContactNo"]);
                     }
                 }
 
@@ -362,8 +367,29 @@ namespace Sunnet_NBFC.Controllers
                     }
                 }
 
-
-                if (IsSave)
+                if (M.Status == "A")
+                {
+                    if (IsSave)
+                    {
+                        M.ReqType = "UpdateStatus";
+                        dt = DataInterface1.UpdateLeadStatusDc(M);
+                        if (dt != null && dt.Rows.Count > 0)
+                        {
+                            clsRtn.ID = Convert.ToInt64("0" + Convert.ToString(dt.Rows[0]["ReturnID"]));
+                            clsRtn.Message = Convert.ToString(dt.Rows[0]["ReturnMessage"]);
+                            clsRtn.MessageDesc = clsRtn.Message;
+                            if (clsRtn.ID > 0)
+                            {
+                                clsRtn.MsgType = (int)MessageType.Success;
+                            }
+                            else
+                            {
+                                clsRtn.MsgType = (int)MessageType.Fail;
+                            }
+                        }
+                    }
+                }
+                else
                 {
                     M.ReqType = "UpdateStatus";
                     dt = DataInterface1.UpdateLeadStatusDc(M);

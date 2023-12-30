@@ -49,12 +49,36 @@
 							</div>
 							<div class="form-group">
 								<div class="row">
-									<div class="col-md-6">
-										@Html.LabelFor(model => model.LeadNo, new { @class = "control-label" }) *
-										@Html.TextBoxFor(model => model.LeadNo, new { @class = "form-control", @required = "true", @readonly = "true" })
-										@*@Html.ValidationMessageFor(model => model.LeadId, "", new { @class = "text-danger" })*@
-									</div>
 
+									<div class="col-md-4">
+										<label for="exampleInputEmail1">Lead No</label>
+										@Html.TextBoxFor(model => model.LeadNo, new { @class = "form-control", @required = "true", @readonly = "true" })
+
+									</div>
+									<div class="col-md-4">
+										<label for="exampleInputEmail1">Main Product</label>
+										@Html.TextBoxFor(model => model.MainProdName, new { @class = "form-control", @required = "true", @readonly = "true" })
+									</div>
+									<div class="col-md-4">
+										<label for="exampleInputEmail1">Product</label>
+										@Html.TextBoxFor(model => model.ProdName, new { @class = "form-control", @required = "true", @readonly = "true" })
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="row">
+										<div class="col-md-4">
+											<label for="exampleInputEmail1">Customer Name</label>
+											@Html.TextBoxFor(model => model.CustomerName, new { @class = "form-control", @required = "true", @readonly = "true" })
+										</div>
+										<div class="col-md-4">
+											<label for="exampleInputEmail1">Contact No</label>
+											@Html.TextBoxFor(model => model.ContactNo, new { @class = "form-control", @required = "true", @readonly = "true" })
+										</div>
+										<div class="col-md-4">
+											<label for="exampleInputEmail1">Required Loan</label>
+											@Html.TextBoxFor(model => model.ReqLoanAmt, new { @ID = "ReqLoanAmt", @class = "form-control", @required = "true", @readonly = "true" })
+										</div>
+									</div>
 								</div>
 								<hr />
 
@@ -103,7 +127,7 @@
 
 									</div>
 									@*</div>
-										<div class="row">*@
+			<div class="row">*@
 									<div class="col-md-3">
 										@Html.LabelFor(model => model.Affidavit, new { @class = "control-label" })
 										@Html.DropDownListFor(model => model.Affidavit,
@@ -147,7 +171,7 @@
 
 									@*</div>
 
-										<div class="row">*@
+			<div class="row">*@
 									<div class="col-md-3">
 										@Html.LabelFor(model => model.CoBorrowerKyc, new { @class = "control-label" })
 										@Html.DropDownListFor(model => model.CoBorrowerKyc,
@@ -233,10 +257,10 @@
 									</div>
 
 									@*<div class="col-md-3">
-											@Html.LabelFor(model => model.DsRemark, new { @class = "control-label" })
-											@Html.TextBoxFor(model => model.DsRemark, new { @class = "form-control", @id = "txtRemarks" })
+				@Html.LabelFor(model => model.DsRemark, new { @class = "control-label" })
+				@Html.TextBoxFor(model => model.DsRemark, new { @class = "form-control", @id = "txtRemarks" })
 
-										</div>*@
+			</div>*@
 
 								</div>
 
