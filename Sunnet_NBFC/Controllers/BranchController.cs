@@ -291,7 +291,15 @@ namespace Sunnet_NBFC.Controllers
 
 
                 }
+
+                //-------------------State---------------------------------
                 ViewBag.StateList = ClsCommon.ToSelectList(DataInterface1.GetState(), "ID", "StateName");
+                //-------------------City---------------------------------
+                clsCity ClsCity = new clsCity();
+                ClsCity.Stateid = M.StateId;
+                ClsCity.ReqType = "View";
+                ViewBag.CityList = ClsCommon.ToSelectList(DataInterface1.GetCity(ClsCity), "Cityid", "CityName");
+                //---------------------------------------------------------
                 return View(M);
             }
 

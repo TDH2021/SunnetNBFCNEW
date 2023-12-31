@@ -398,6 +398,7 @@ namespace Sunnet_NBFC.Models
         public string CustomerType { get; set; }
         public string CustomerName { get; set; }
         public string ContactNo { get; set; }
+        public decimal ROI { get; set; }
         public List<clsLeadCalling> clsLeadCalling { get; set; }
         public clsLeadCredit clsLeadCredit { get; set; }
         public List<clsCreditCheckList> clsCreditCheckList { get; set; }

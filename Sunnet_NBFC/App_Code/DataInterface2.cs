@@ -1583,4 +1583,58 @@ public class DataInterface2 : DataInterface, IDisposable
     #endregion
 
 
+    #region Update Lead ROI
+    public static DataTable UpdateLeadROI(clsLeadMain cls)
+    {
+        //ClsReturnData clsRtn = new ClsReturnData();
+        //clsRtn.MsgType = (int)MessageType.Fail;
+        DataTable dt = new DataTable();
+        try
+        {
+            DBOperation db = new DBOperation();
+            SqlCommand cmd = new SqlCommand();
+
+            //using (DBOperation db = new DBOperation())
+            //{
+            //    using (SqlCommand cmd = new SqlCommand())
+            //    {
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@ReqType", SqlDbType.VarChar).Value = "UpdateROI";
+            cmd.Parameters.Add("@LeadId", SqlDbType.Int).Value = cls.LeadId;
+            cmd.Parameters.Add("@ROI", SqlDbType.Decimal).Value = cls.ROI;
+            cmd.Parameters.Add("@CompanyId", SqlDbType.Int).Value = ClsSession.CompanyID;
+            dt = db.FillTableProc(cmd, "USP_LEAD");
+
+            //if (dt != null && dt.Rows.Count > 0)
+            //{
+            //    clsRtn.ID = Convert.ToInt64("0" + Convert.ToString(dt.Rows[0]["ReturnID"]));
+            //    clsRtn.Message = Convert.ToString(dt.Rows[0]["ReturnMessage"]);
+            //    clsRtn.MessageDesc = clsRtn.Message;
+            //    if (clsRtn.ID > 0)
+            //        clsRtn.MsgType = (int)MessageType.Success;
+            //    else
+            //        clsRtn.MsgType = (int)MessageType.Fail;
+            //}
+            //    }
+            //}
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+            //clsRtn.MsgType = (int)MessageType.Error;
+            //clsRtn.ID = 0;
+            //clsRtn.Message = ex.Message;
+            //clsRtn.MessageDesc = ex.Message;
+        }
+        finally
+        {
+            dt.Dispose();
+        }
+
+        return dt;
+    }
+
+    #endregion
+
 }
