@@ -138,8 +138,8 @@
                         <tr>
                             <th>OwnerShip</th>
                             <td>@Model.OwnerShip</td>
-                            <th></th>
-                            <td></td>
+                            <th>CIF ID</th>
+                            <td>@Model.CIFID</td>
                         </tr>
                         <tr>
                             <th>Profile Image</th>
@@ -281,24 +281,24 @@
                             if (Model.MainProductName.ToUpper() != "INDIVIDUAL LOAN")
                             {
                                 <tr>
-                                    <th>Refernce Name</th>
+                                    <th>Refernce Name-1</th>
                                     <td>@Model.RefernceName</td>
 
-                                    <th>Refence Relation</th>
+                                    <th>Refence Relation-1</th>
                                     <td>@Model.RefenceRelation</td>
                                 </tr>
 
                                 <tr>
-                                    <th>Refence MobileNo</th>
+                                    <th>Refence MobileNo-1</th>
                                     <td>@Model.RefenceMobileNo</td>
-                                    <th>Refernce Name1</th>
+                                    <th>Refernce Name-2</th>
                                     <td>@Model.RefernceName1</td>
                                 </tr>
                                 <tr>
-                                    <th>Refence Relation1</th>
+                                    <th>Refence Relation-2</th>
                                     <td>@Model.RefenceRelation1</td>
 
-                                    <th>Refence MobileNo1</th>
+                                    <th>Refence MobileNo-2</th>
                                     <td>@Model.RefenceMobileNo1</td>
                                 </tr>
                             }
@@ -312,7 +312,7 @@
 
                         }
 
-                        @if (Model.MainProductName == "Personal Loan")
+                        @if (Model.MainProductName == "INDIVIDUAL LOAN")
                         {
                             <tr>
 
@@ -321,7 +321,7 @@
                             </tr>
 
                         }
-                        else if (Model.MainProductName == "Vehicle Loan")
+                        else if (Model.MainProductName.ToUpper() == "VEHICLE LOAN" || Model.MainProductName.ToUpper()== "TWO WHEELER LOAN" || Model.MainProductName.ToUpper()== "COMMERCIAL VEHICLE")
                         {
                             <tr>
                                 <th>No of Dependent</th>
@@ -394,21 +394,28 @@
                                 <th>Policy No</th>
                                 <td>@Model.PolicyNo</td>
                             </tr>
+
                             <tr>
                                 <th>Registration Date</th>
-                                <td>@Model.RegistrationDate</td>
-                                <th></th>
-                                <td></td>
+                                <td colspan="3">@Model.RegistrationDate</td>
+                            </tr>
+                            <tr>
+                                <th>Purpose of Loan</th>
+                                <td colspan="3">@Model.LoanPurpose</td>
                             </tr>
                             <tr>
                                 <th>Remarks</th>
-                                <td>@Model.UserRemarks</td>
-                                <th></th>
-                                <td></td>
+                                <td colspan="3">@Model.UserRemarks</td>
+                            </tr>
+                            <tr>
+                                <th>E-Rikshaw Maker</th>
+                                <td>@Model.ERikshawMaker</td>
+                                <th>Performa Invoice</th>
+                                <td>@Model.PerformaInvoice</td>
                             </tr>
 
                         }
-                        else if (Model.MainProductName == "Bussiness Loan")
+                        else if (Model.MainProductName == "BUSSINESS LOAN")
                         {
                             <tr>
                                 <th>No of Dependent</th>
@@ -451,7 +458,7 @@
                                 Send Back Remarks
                             </th>
                             <td colspan="3">@Model.FORemarks</td>
-                        </td>
+                            
 
                     </thead>
                 </table>

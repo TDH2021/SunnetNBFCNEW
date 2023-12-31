@@ -225,7 +225,7 @@
            @autocomplete = "off",
            @id = "CO_PresentPincode",
            @onkeypress = "return isNumber(this.value);",
-           @onchange = "GetStateCity_PIN(this.value,Co_State,CO_City);",
+           @onchange = "GetStateCity_PIN(this.value,Co_State,CO_City,this.Id);",
            @maxlength = "6",
 
        })
@@ -285,8 +285,7 @@
            @name = "Present Village",
            @required = "true",
            @id = "CO_PresentVillage",
-           @autocomplete = "off",
-           @onchange = "SetValues4_CO();"
+           @autocomplete = "off"
 
        })
         </div>
@@ -294,16 +293,14 @@
         <div class="col-md-3">
             <label class="required" for="exampleInputEmail1">Correspondence District</label>
             @Html.TextBoxFor(model => model.CO_PresentDistrict, new
-{
-@class = "form-control",
-@placeholder = "Present District",
-@name = "Present District",
-@required = "true",
-@id = "CO_PresentDistrict",
-@autocomplete = "off",
-@onchange = "SetValues5_CO();"
-
-})
+       {
+           @class = "form-control",
+           @placeholder = "Present District",
+           @name = "Present District",
+           @required = "true",
+           @id = "CO_PresentDistrict",
+           @autocomplete = "off"
+       })
         </div>
     </div>
     <div class="row" style="margin-bottom:10px; margin-top:10px;">
@@ -397,7 +394,7 @@
 
         <div class="col-md-3">
             <label class="required" for="exampleInputEmail1">Permanent Village</label>
-            @Html.TextBoxFor(model => model.CO_PermanentDistrict, new
+            @Html.TextBoxFor(model => model.CO_PermanentVillage, new
        {
            @class = "form-control",
            @placeholder = "Permanent Village",

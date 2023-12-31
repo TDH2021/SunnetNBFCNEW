@@ -230,6 +230,9 @@ namespace Sunnet_NBFC.Controllers
                                     model.PropertyType = Convert.ToString(ds.Tables[0].Rows[i]["PropertyType"]);
                                     model.Propertyarea = Convert.ToString(ds.Tables[0].Rows[i]["Propertyarea"]);
                                     model.FORemarks = Convert.ToString(ds.Tables[0].Rows[i]["Remarks"]);
+                                    model.DealerName= Convert.ToString(ds.Tables[0].Rows[i]["DealerName"]);
+                                    model.ERikshawMaker= Convert.ToString(ds.Tables[0].Rows[i]["ERikshawMaker"]);
+                                    model.PerformaInvoice = Convert.ToString(ds.Tables[0].Rows[i]["PerformaInvoice"]);
                                     //model.EstValueofscurity = Convert.ToString(ds.Tables[0].Rows[i]["EstValueofscurity"]);
                                     ViewBag.CUSTYPEREUIRED = Convert.ToString(ds.Tables[0].Rows[i]["CustTypeRequried"]);
                                     ViewBag.Status1 = Convert.ToString(ds.Tables[0].Rows[i]["Status1"]);
@@ -286,6 +289,7 @@ namespace Sunnet_NBFC.Controllers
                                     model.PanNo = Convert.ToString(ds.Tables[1].Rows[i]["PanNo"]);
                                     model.EmailId = Convert.ToString(ds.Tables[1].Rows[i]["EmailId"]);
                                     model.OwnerShip = Convert.ToString(ds.Tables[1].Rows[i]["OwnerShip"]);
+                                    model.CIFID = Convert.ToString(ds.Tables[1].Rows[i]["CIF"]);
                                     if (System.IO.File.Exists(Server.MapPath("~/Img/ApplicantImgs/" + Convert.ToString(ds.Tables[1].Rows[i]["CustImage"]))))
                                     {
                                         model.CustImage = Server.MapPath("~/Img/ApplicantImgs/") + Convert.ToString(ds.Tables[1].Rows[i]["CustImage"]);

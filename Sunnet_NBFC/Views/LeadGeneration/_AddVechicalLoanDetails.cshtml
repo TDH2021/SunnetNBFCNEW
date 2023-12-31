@@ -65,7 +65,7 @@
            @name = "MName",
            @required = "true",
            @id = "ViechleModel",
-           @maxlength = "10",
+           @maxlength = "80",
 
        })
         </div>
@@ -94,7 +94,7 @@
            @name = "FName",
            @required = "true",
            @onkeypress = "return isNumber(this.value);",
-           @maxlength = "5",
+           @maxlength = "4",
            @id = "ViechleRegYear",
            @autocomplete = "off"
        })
@@ -169,6 +169,7 @@
                 <option>Diesel</option>
                 <option>CNG Factory fitted</option>
                 <option>CNG Outside fitted</option>
+                <option>Electric Bike</option>
             </select>
         </div>
 
@@ -226,11 +227,21 @@
         </div>
         <div class="col-md-3">
             <label for="exampleInputEmail1">Policy No</label>
-            <input type="text" class="form-control" id="txtPolicyNo" maxlength="20" />
+            <input type="text" class="form-control" id="txtPolicyNo" maxlength="80" />
         </div>
         <div class="col-md-3">
             <label for="exampleInputEmail1">Registration Date</label>
-            <input type="text" class="form-control datestyle" id="txtRegDate" />
+            <input type="text" class="form-control datestyle" id="txtRegDate" maxlength="10" />
+        </div>
+        <div class="col-md-3">
+            <label for="exampleInputEmail1">E-Rikshaw Maker</label>
+            <input type="text" class="form-control" id="txtERikshawMaker" maxlength="100" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <label for="exampleInputEmail1">Performa Invoice</label>
+            <input type="text" class="form-control" id="txtPerformaInvoice" maxlength="100" />
         </div>
     </div>
 

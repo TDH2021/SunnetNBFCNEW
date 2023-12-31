@@ -1390,10 +1390,13 @@ function ValidationChk() {
     var hdn_type = $("#hdn_type").val();
 
 
-    var CenterID = $("#MainProductId option:selected").val();
+    var CenterID = $("#ddlCenter option:selected").val();
     var PLBranchID = $("#ddlBranch option:selected").val();
     if (PLBranchID.length == 0) {
         PLBranchID = 0;
+    }
+    if (CenterID.length == 0) {
+        CenterID = 0;
     }
     //CO_Applicant Info
     var CO_Prefix = $("#CoPrefix :selected").text();
@@ -1437,13 +1440,14 @@ function ValidationChk() {
     var EstMonthExpense = $("#EstMonthExpense").val();
     var FORecomedAmt = 0;
     var NoofDependent = 0;
-    var ColletralSecurityType = $("#BusinessColletralSecurityType option:selected").val();
     var LoanPurpose = $("#PersonalLoanPurpose").val();
     var CurMonthObligation = $("#CurMonthObligation").val();
     var EstValueofscurity = $("#EstValueofscurity").val();
     var Propertyarea = $("#ddlPropertyArea option:selected").val();
     var PropertyType = $("#ddlPropertyType option:selected").val();
     var PropertyAddress = $("#txtPropertyAddress").val();
+    var ColletralSecurityType = "";
+
     if (MainProductText == "Vehicle Loan" || MainProductText == "Commercial Vehicle" || MainProductText == "Two Wheeler Loan") {
         NoofDependent = $("#txtVchNoofDependent").val();
         FORecomedAmt = $("#txtFORecomedAmt").val();
@@ -1451,6 +1455,9 @@ function ValidationChk() {
     else {
         NoofDependent = $("#txtNoofDependent").val();
         FORecomedAmt = $("#BusinessFORecomedAmt").val();
+    }
+    if (MainProductText == "Bussiness Loan") {
+        ColletralSecurityType = $("#BusinessColletralSecurityType option:selected").val();
     }
     if (NoofDependent == "") {
         NoofDependent = 0;
@@ -1478,6 +1485,8 @@ function ValidationChk() {
     var InsuranceStatus = $("#ddlInsuranceStatus :selected").val();
     var InsuranceType = $("#ddlInsuranceType :selected").val();
     var RegistrationDate = $("#txtRegDate").val();
+    var ERikshawMaker = $("#txtERikshawMaker").val();
+    var PerformaInvoice = $("#txtPerformaInvoice").val();
     var ValidityDate = $("#txtValidityDate").val();
     var ExShowRoomPrice = $("#txtExShowRoomPrice").val();
     var OnRoadPrice = $("#txtOnRoadPrice").val();
@@ -1925,6 +1934,8 @@ function ValidationChk() {
                     "OnRoadPrice": OnRoadPrice,
                     "Insurer": Insurer,
                     "PolicyNo": PolicyNo,
+                    "PerformaInvoice": PerformaInvoice,
+                    "ERikshawMaker": ERikshawMaker,
                     "DSAId": DSAId
                 }
 
@@ -1950,13 +1961,8 @@ function ValidationChk() {
 
                         }
                     }
-
-
-
                 })
-
             }
-
 
         }
         else if (hdn_type == "c") {
@@ -2283,6 +2289,8 @@ function ValidationChk() {
                     "OnRoadPrice": OnRoadPrice,
                     "Insurer": Insurer,
                     "PolicyNo": PolicyNo,
+                    "PerformaInvoice": PerformaInvoice,
+                    "ERikshawMaker": ERikshawMaker,
                     "DSAId": DSAId
                 }
 
@@ -2618,6 +2626,8 @@ function ValidationChk() {
                     "OnRoadPrice": OnRoadPrice,
                     "Insurer": Insurer,
                     "PolicyNo": PolicyNo,
+                    "PerformaInvoice": PerformaInvoice,
+                    "ERikshawMaker": ERikshawMaker,
                     "DSAId": DSAId
                 }
                 debugger;
@@ -2897,7 +2907,9 @@ function ValidationChk() {
                     "OnRoadPrice": OnRoadPrice,
                     "Insurer": Insurer,
                     "PolicyNo": PolicyNo,
-                    "DSAId": DSAId
+                    "PerformaInvoice": PerformaInvoice,
+                    "ERikshawMaker": ERikshawMaker,
+                    "DSAId": DSAId,
                 }
 
                 filedata.append('AllDataArray', JSON.stringify(AllDataArray));
@@ -2952,7 +2964,7 @@ function numberValidation(str) {
 }
 
 
-function GetStateCity_PIN(PinCode, txtState, txtCity) {
+function GetStateCity_PIN(PinCode, txtState, txtCity, txtPincode) {
     debugger;
     $.ajax({
         url: $("#hdn_postalAPI").val() + PinCode,
@@ -2967,7 +2979,7 @@ function GetStateCity_PIN(PinCode, txtState, txtCity) {
             debugger
             if (result[0]["Message"].toUpperCase() == "NO RECORDS FOUND") {
                 swal("TDH", result[0]["Message"], "error");
-                PinCode.value = "";
+                $('#txtPincode').val("");
                 return;
             }
             else {

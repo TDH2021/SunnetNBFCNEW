@@ -495,6 +495,9 @@ public class DataInterface : IDisposable
                 sqlCommand.Parameters.AddWithValue("@RefernceName", cls.RefernceName);
                 sqlCommand.Parameters.AddWithValue("@RefenceMobileNo", cls.RefenceMobileNo);
                 sqlCommand.Parameters.AddWithValue("@RefenceRelation", cls.RefenceRelation);
+                sqlCommand.Parameters.AddWithValue("@RefernceName1", cls.RefernceName1);
+                sqlCommand.Parameters.AddWithValue("@RefenceMobileNo1", cls.RefenceMobileNo1);
+                sqlCommand.Parameters.AddWithValue("@RefenceRelation1", cls.RefenceRelation1);
 
                 sqlCommand.Parameters.AddWithValue("@DSAId", cls.DSAId);
 
@@ -523,6 +526,9 @@ public class DataInterface : IDisposable
                 sqlCommand.Parameters.AddWithValue("@Propertyarea", cls.Propertyarea);
                 sqlCommand.Parameters.AddWithValue("@PropertyType", cls.PropertyType);
                 sqlCommand.Parameters.AddWithValue("@PropertyAddress", cls.PropertyAddress);
+                sqlCommand.Parameters.AddWithValue("@ERikshawMaker", cls.ERikshawMaker);
+                sqlCommand.Parameters.AddWithValue("@PerformaInvoice", cls.PerformaInvoice);
+
                 dt = db.FillTableProc(sqlCommand, "USP_Lead");
             }
 
@@ -591,8 +597,12 @@ public class DataInterface : IDisposable
                 sqlCommand.Parameters.AddWithValue("@CustImage", cls.CustImage);
                 sqlCommand.Parameters.AddWithValue("@ElectricBill", cls.ElectricBill);
                 sqlCommand.Parameters.AddWithValue("@OwnerShip", cls.OwnerShip);
-
-
+                sqlCommand.Parameters.AddWithValue("@PrefixName", cls.Prefix);
+                sqlCommand.Parameters.AddWithValue("@PresentDistrict", cls.PresentDistrict);
+                sqlCommand.Parameters.AddWithValue("@PresentVillage", cls.PresentVillage);
+                sqlCommand.Parameters.AddWithValue("@PermanentDistrict", cls.PermanentDistrict);
+                sqlCommand.Parameters.AddWithValue("@PermanentVillage", cls.PermanentVillage);
+                
                 dt = db.FillTableProc(sqlCommand, "USP_LeadCustomer");
             }
 
@@ -659,7 +669,11 @@ public class DataInterface : IDisposable
                 sqlCommand.Parameters.AddWithValue("@CustImage", cls.CustImage);
                 sqlCommand.Parameters.AddWithValue("@ElectricBill", cls.ElectricBill);
                 sqlCommand.Parameters.AddWithValue("@OwnerShip", cls.Co_OwnerShip);
-
+                sqlCommand.Parameters.AddWithValue("@PrefixName", cls.CO_Prefix);
+                sqlCommand.Parameters.AddWithValue("@PresentDistrict", cls.CO_PresentDistrict);
+                sqlCommand.Parameters.AddWithValue("@PresentVillage", cls.CO_PresentVillage);
+                sqlCommand.Parameters.AddWithValue("@PermanentDistrict", cls.CO_PermanentDistrict);
+                sqlCommand.Parameters.AddWithValue("@PermanentVillage", cls.CO_PermanentVillage);
 
                 dt = db.FillTableProc(sqlCommand, "USP_LeadCustomer");
             }
@@ -726,6 +740,11 @@ public class DataInterface : IDisposable
                 sqlCommand.Parameters.AddWithValue("@CompanyId", cls.G_CompanyId);
                 sqlCommand.Parameters.AddWithValue("@CreatedBy", cls.G_CreatedBy);
                 sqlCommand.Parameters.AddWithValue("@OwnerShip", cls.G_OwnerShip);
+                sqlCommand.Parameters.AddWithValue("@PrefixName", cls.G_PrefixName);
+                sqlCommand.Parameters.AddWithValue("@PresentDistrict", cls.G_PresentDistrict);
+                sqlCommand.Parameters.AddWithValue("@PresentVillage", cls.G_PresentVillage);
+                sqlCommand.Parameters.AddWithValue("@PermanentDistrict", cls.G_PermanentDistrict);
+                sqlCommand.Parameters.AddWithValue("@PermanentVillage", cls.G_PermanentVillage);
                 dt = db.FillTableProc(sqlCommand, "USP_LeadCustomer");
             }
 

@@ -731,6 +731,10 @@ namespace Sunnet_NBFC.Models
         public string Propertyarea { get; set; } = "";
         public string PropertyAddress { get; set; } = "";
         public string PropertyType { get; set; } = "";
+        public string PrefixName { get; set; } = "";
+        public string Co_PrefixName { get; set; }
+        public string PerformaInvoice { get; set; } = "";
+        public string ERikshawMaker { get; set; } = "";
         public int isdelete { get; set; } = 0;
         bool disposed = false;
 
@@ -811,6 +815,7 @@ namespace Sunnet_NBFC.Models
         public int G_AadharVerify { get; set; }
         public int G_CreatedBy { get; set; }
         public string G_OwnerShip { get; set; }
+        public string G_PrefixName { get; set; } = "";
     }
     public class clsRoleMaster : clsRoleSubMenu
     {
