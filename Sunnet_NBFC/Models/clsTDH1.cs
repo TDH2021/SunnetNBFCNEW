@@ -474,6 +474,12 @@ namespace Sunnet_NBFC.Models
         [DisplayName("Kyc Self Attested")]
         public string KycSelfAttested { get; set; }
 
+        public string MainProdName { get; set; }
+        public string ProdName { get; set; }
+        public string CustomerName { get; set; }
+        public string ContactNo { get; set; }
+        public string ReqLoanAmt { get; set; }
+
 
         //bool disposed = false;
 
