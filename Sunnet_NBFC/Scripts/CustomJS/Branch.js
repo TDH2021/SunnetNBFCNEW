@@ -1,7 +1,10 @@
 ﻿$(document).ready(function (event) {
+
+    //var CityId = document.getElementById("hfCityId").value;
+
+
     $('#BranchState').change(function (e) {
        // alert("a");
-        var CityId = document.getElementById("hfCityId").value;
         //alert(CityId);
         var stateid = $("#BranchState option:selected").val();
        
@@ -29,12 +32,20 @@
 
             });
 
-            if (parseInt(CityId) > 0) {
-                document.getElementById("DSACity").value = 18;
-                
-            }
+            
+
         }
-    }).change();
+    });
+
+
+    //alert(CityId);
+    //if (parseInt(CityId) > 0) {
+    //    $('#DSACity').val(CityId);
+    //    //document.getElementById("DSACity").value = CityId;
+    //    document.getElementById("hfCityId").value = 0;
+    //}
+
+
 });
 //$('#BranchState').change(function () {
 //    debugger;

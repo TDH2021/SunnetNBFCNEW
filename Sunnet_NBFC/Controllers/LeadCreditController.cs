@@ -796,6 +796,9 @@ namespace Sunnet_NBFC.Controllers
 
                 if (IsSave)
                 {
+                    //Update ROI Process
+                    DataTable dtROI = DataInterface2.UpdateLeadROI(M);
+                    
                     M.ReqType = "UpdateStatus";
                     dt = DataInterface2.UpdateLeadStatus(M);
                     if (dt != null && dt.Rows.Count > 0)
