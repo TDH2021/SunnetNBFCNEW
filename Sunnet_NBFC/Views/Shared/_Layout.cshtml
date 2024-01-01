@@ -332,11 +332,22 @@
                                 </ul>
                             </li>*@
                         @*@Html.Partial("_MenuBarPartial");*@
+                            <input type="hidden" value="@Session["UserType"]" id="userTypeId" />
+                            @*<script>
+                                var userType = $("#userTypeId").val();
+                                alert(userType);
+                                if (userType == null) {
+                                    window.location.href('/Login/Logout');
+                                    window.location.href('/Login/Index');
+                                }
+                            </script>*@
                         @if (Session["UserType"] == null)
                         {
-                            @Url.Action("Logout", "Login")
+                            
+                            @Url.Action("Logout", "Login");
                             return;
                         }
+                        
                         @if (Session["UserType"].ToString() == "E")
                         {
                             { Html.RenderAction("SetSideBarMenuesRights", "SideMenuBar"); }
