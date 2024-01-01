@@ -157,6 +157,10 @@ $(document).ready(function () {
 
 function Validation() {
     if ($("#hfCrId").val() == "0" && $("#ddlStatus").val() != "P" && $("#ddlStatus").val() != "R" && $("#ddlStatus").val() != "S") {
+        if ($("#txtROI").val() == "" || $("#txtROI").val() == "0") {
+            swal("TDH", "Please Insert ROI.", "error");
+            return false;
+        }
         if ($('#chkCIBILVerification').is(":checked") == false) {
             swal("TDH", "Please Select CIBIL Verification.", "error");
             return false;

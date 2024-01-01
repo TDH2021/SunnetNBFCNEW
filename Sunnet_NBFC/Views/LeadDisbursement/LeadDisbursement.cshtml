@@ -75,11 +75,19 @@
 											@Html.TextBoxFor(model => model.ContactNo, new { @class = "form-control", @required = "true", @readonly = "true" })
 										</div>
 										<div class="col-md-4">
+											<label for="exampleInputEmail1">Required Loan</label>
+											@Html.TextBoxFor(model => model.ReqLoanAmt, new { @ID = "ReqLoanAmt", @class = "form-control", @required = "true", @readonly = "true" })
+										</div>
+
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="row">
+										<div class="col-md-4">
 											@Html.LabelFor(model => model.ROI, new { @class = "control-label" })
 											@*<span style="color:red; font-size:17px; font-weight:bold;">*</span>*@
-											@Html.TextBoxFor(model => model.ROI, new { @class = "form-control", @id = "txtROI", @Maxlength = "5", @onkeypress = "return isNumber(this.value);", @required = "true", @readonly = "true" })
+											@Html.TextBoxFor(model => model.ROI, new { @class = "form-control", @id = "txtROI", @Maxlength = "10", @onkeypress = "return isNumber(this.value);", @required = "true", @readonly = "true" })
 											@*@Html.ValidationMessageFor(model => model.ROI, "", new { @class = "text-danger" })*@
-
 										</div>
 									</div>
 								</div>
@@ -298,7 +306,8 @@
 	}
 
 	function ValUpdate() {
-		debugger;
+		//debugger;
+		var ra = $('#ReqLoanAmt').val();
 		var loan = $('#txtNetDisbursementAmount').val();
 		var tenure = $('#txtTenure').val();
 		var roi = $('#txtROI').val();
@@ -309,6 +318,13 @@
 			swal("TDH", "Please Enter Net Disbursement Amount", "error");
 			return false;
 		}
+		if (parseFloat(ra) > 0) {
+            if (parseFloat(loan) > parseFloat(ra)) {
+				swal("TDH", "Net Disbursement Amount cannot be greater than Requested Loan Amount. Please check.", "error");
+				return false;
+			}
+		}
+
 		if (parseFloat(roi) == 0) {
 			//alert("Please Enter Rate Of Interest");
 			swal("TDH", "Please Enter Rate Of Interest", "error");
@@ -330,6 +346,7 @@
 
 	function fnCreateEmi() {
 		debugger;
+		var ra = $('#ReqLoanAmt').val();
 		var loan = $('#txtNetDisbursementAmount').val();
 		var tenure = $('#txtTenure').val();
 		var roi = $('#txtROI').val();
@@ -344,6 +361,13 @@
 			swal("TDH", "Please Enter Net Disbursement Amount", "error");
 			return false;
 		}
+		if (parseFloat(ra) > 0) {
+			if (parseFloat(loan) > parseFloat(ra)) {
+				swal("TDH", "Net Disbursement Amount cannot be greater than Requested Loan Amount. Please check.", "error");
+				return false;
+			}
+		}
+
 		if (parseFloat(roi) == 0) {
 			//alert("Please Enter Rate Of Interest");
 			swal("TDH", "Please Enter Rate Of Interest", "error");

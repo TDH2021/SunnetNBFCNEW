@@ -162,7 +162,7 @@ namespace Sunnet_NBFC.Controllers
                                         Eligiblity = row["Eligiblity"].ToString(),
                                         EligiblityDoc = row["EligiblityDoc"].ToString(),
                                         EligiblityRemarks = row["EligiblityRemarks"].ToString(),
-                                        Occupation = row["Occupation"].ToString(),
+                                        //Occupation = row["Occupation"].ToString(),
 
                                         PropertyDocVerification = row["PropertyDocVerification"].ToString(),
                                         PropertyDoc = row["PropertyDoc"].ToString(),
@@ -939,7 +939,7 @@ namespace Sunnet_NBFC.Controllers
                                       Eligiblity = row["Eligiblity"].ToString(),
                                       EligiblityDoc = row["EligiblityDoc"].ToString(),
                                       EligiblityRemarks = row["EligiblityRemarks"].ToString(),
-                                      Occupation = row["Occupation"].ToString(),
+                                      //Occupation = row["Occupation"].ToString(),
 
                                       PropertyDocVerification = row["PropertyDocVerification"].ToString(),
                                       PropertyDoc = row["PropertyDoc"].ToString(),

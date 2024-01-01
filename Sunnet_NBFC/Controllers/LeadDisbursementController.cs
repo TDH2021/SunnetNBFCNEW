@@ -339,8 +339,8 @@ namespace Sunnet_NBFC.Controllers
                 if (IsSave)
                 {
                     string slname = DownloadSanctionLetter(M.LeadId, M.LeadNo);
-                    string wlname = DownloadWelcomeLetter(M.LeadId);
-                    string rlname = DownloadRepyamentLetter(M.LeadId);
+                    string wlname = DownloadWelcomeLetter(M.LeadId, M.LeadNo);
+                    string rlname = DownloadRepyamentLetter(M.LeadId, M.LeadNo);
                     downloadZipFile(M.LeadNo, slname, wlname, rlname);
                     M.ReqType = "UpdateStatus";
                     M.Status = "A";
@@ -468,7 +468,7 @@ namespace Sunnet_NBFC.Controllers
             string FileName = "";
             if (leadid > 0)
             {
-                FileName = "SancLetter_" + leadid.ToString() + "_" + DateTime.Now.ToString("ddMMyyyy") + ".pdf";
+                FileName = "SancLetter_" + leadno.ToString() + "_" + DateTime.Now.ToString("ddMMyyyy") + ".pdf";
                 string Filepath = Server.MapPath("~/" + ConfigurationManager.AppSettings["GenLetterPath"].ToString() + "/" + FileName);
                 using (clsLeadGenerationMaster cls = new clsLeadGenerationMaster())
                 {
@@ -505,56 +505,13 @@ namespace Sunnet_NBFC.Controllers
 
         }
 
-        //public ActionResult DownloadSanctionLetter(int? leadid)
-        //{
-        //    string FileName = "";
-        //    if (leadid > 0)
-        //    {
-        //        FileName = "SancLetter_" + leadid.ToString() + "_" + DateTime.Now.ToString("ddMMyyyy") + ".pdf";
-        //        string Filepath = Server.MapPath("~/" + ConfigurationManager.AppSettings["GenLetterPath"].ToString() + "/" + FileName);
-        //        using (clsLeadGenerationMaster cls = new clsLeadGenerationMaster())
-        //        {
-        //            cls.ReqType = "GenSanction";
-        //            cls.LeadId = Convert.ToInt32("0" + leadid.ToString());
-        //            //cls.LeadNo = "Lead032023000001";
-        //            using (DataSet ds = DataInterface.DBLetter(cls))
-        //            {
-        //                if (ds.Tables.Count == 2)
-        //                {
-        //                    ds.Tables[0].TableName = "Company";
-        //                    ds.Tables[1].TableName = "Lead";
-        //                    using (clsSanctionLetter cls1 = new clsSanctionLetter())
-        //                    {
-        //                        cls1.GenSanctionLetter(Filepath, "SanctionLetter", ds);
-        //                    }
-        //                }
-        //            }
-        //        }
-
-        //        string path = Filepath;
-        //        byte[] fileBytes = System.IO.File.ReadAllBytes(path);
-        //        return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, FileName);
-        //        //if (FileName != "")
-        //        //{
-        //        //    Response.AppendHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName(Filepath));
-        //        //    Response.WriteFile(Filepath);
-        //        //    Response.End();
-        //        //}
-
-        //    }
-        //    else
-        //    {
-        //        return View();
-        //    }
-
-        //}
-
-        public string DownloadWelcomeLetter(int? leadid)
+   
+        public string DownloadWelcomeLetter(int? leadid, string leadno)
         {
             string FileName = "";
             if (leadid > 0)
             {
-                FileName = "Welcome_" + leadid.ToString() + "_" + DateTime.Now.ToString("ddMMyyyy") + ".pdf";
+                FileName = "Welcome_" + leadno.ToString() + "_" + DateTime.Now.ToString("ddMMyyyy") + ".pdf";
                 string Filepath = Server.MapPath("~/" + ConfigurationManager.AppSettings["GenLetterPath"].ToString() + "/" + FileName);
                 using (clsLeadGenerationMaster cls = new clsLeadGenerationMaster())
                 {
@@ -594,12 +551,12 @@ namespace Sunnet_NBFC.Controllers
 
         }
 
-        public string DownloadRepyamentLetter(int? leadid)
+        public string DownloadRepyamentLetter(int? leadid, string leadno)
         {
             string FileName = "";
             if (leadid > 0)
             {
-                FileName = "Repyament_" + leadid.ToString() + "_" + DateTime.Now.ToString("ddMMyyyy") + ".pdf";
+                FileName = "Repyament_" + leadno.ToString() + "_" + DateTime.Now.ToString("ddMMyyyy") + ".pdf";
                 string Filepath = Server.MapPath("~/" + ConfigurationManager.AppSettings["GenLetterPath"].ToString() + "/" + FileName);
                 using (clsLeadGenerationMaster cls = new clsLeadGenerationMaster())
                 {

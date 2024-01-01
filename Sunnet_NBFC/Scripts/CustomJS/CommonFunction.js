@@ -15,7 +15,7 @@
                 MainProductId: MainProductId
             },
             success: function (result) {
-               
+
                 var data = JSON.parse(result);
                 for (var i = 0; i < data.length; i++) {
                     var opt = new Option(data[i].ProductName, data[i].ProdId);
@@ -31,7 +31,7 @@
 
 function isNumber(evt) {
     var charCode = (window.event.which) ? window.event.which : window.event.keyCode
-    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+    if (charCode > 31 && charCode != 46 && (charCode < 48 || charCode > 57)) {
         return false;
     }
     else {
@@ -40,7 +40,7 @@ function isNumber(evt) {
 
 }
 
-function ValidatePAN(strval,id) {
+function ValidatePAN(strval, id) {
     var txtPANCard = strval;
     /*alert(strval);*/
     var regex = /([A-Z]){5}([0-9]){4}([A-Z]){1}$/;

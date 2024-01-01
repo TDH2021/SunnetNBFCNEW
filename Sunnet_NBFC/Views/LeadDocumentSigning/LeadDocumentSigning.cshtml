@@ -413,16 +413,19 @@
 		var isreq = 0;
 		var fileds = "";
 		var lt = $("#hdnMainProdId").val();
-		document.getElementById("ddlSanctionLetter").style.borderColor = "#FF0000";
-		document.getElementById("ddlLoanAgrmentKit").style.borderColor = "#FF0000";
-		document.getElementById("ddlPDC").style.borderColor = "#FF0000";
-		document.getElementById("ddlNACH").style.borderColor = "#FF0000";
-		document.getElementById("ddlAffidavit").style.borderColor = "#FF0000";
-		document.getElementById("ddlRegisteredMortgageDeed").style.borderColor = "#FF0000";
-		document.getElementById("ddlBorrowerKyc").style.borderColor = "#FF0000";
-		document.getElementById("ddlCoBorrowerKyc").style.borderColor = "#FF0000";
+		document.getElementById("ddlSanctionLetter").style.borderColor = "#ced4da";
+		document.getElementById("ddlLoanAgrmentKit").style.borderColor = "#ced4da";
+		document.getElementById("ddlPDC").style.borderColor = "#ced4da";
+		document.getElementById("ddlNACH").style.borderColor = "#ced4da";
+		document.getElementById("ddlAffidavit").style.borderColor = "#ced4da";
+		document.getElementById("ddlRegisteredMortgageDeed").style.borderColor = "#ced4da";
+		document.getElementById("ddlBorrowerKyc").style.borderColor = "#ced4da";
+		document.getElementById("ddlCoBorrowerKyc").style.borderColor = "#ced4da";
 
+		alert(lt);
+		
 		var Status = $("#ddlStatus option:selected").val();
+		alert(Status);
 		if (Status == "A") {
 			if (lt == 4) {
 				if ($("#ddlSanctionLetter option:selected").val() != "Yes") {

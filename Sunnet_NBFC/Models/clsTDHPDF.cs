@@ -79,9 +79,9 @@ namespace Sunnet_NBFC.Models
             table.SetWidths(headers);
             table.WidthPercentage = TABLEWIDTH;
 
-            string text = "\nRef No -: " + dataSet.Tables["Lead"].Rows[0]["LeadNo"].ToString();
+            string text = "\nRef No : " + dataSet.Tables["Lead"].Rows[0]["LeadNo"].ToString();
             ClsCommon.AddCelltoBody(table, text, false);
-            text = "Date -: " + dataSet.Tables["Lead"].Rows[0]["EntryDate"].ToString();
+            text = "Date : " + dataSet.Tables["Lead"].Rows[0]["EntryDate"].ToString();
             ClsCommon.AddCelltoBody(table, text, false);
             document.Add(table);
 
@@ -120,7 +120,7 @@ namespace Sunnet_NBFC.Models
             ClsCommon.AddCelltoHeader(table1, "Proposed End Use", true);
             ClsCommon.AddCelltoBody(table1, dataSet.Tables["Lead"].Rows[0]["LoanPurpose"].ToString(), true);
             ClsCommon.AddCelltoHeader(table1, "Limit/Loan Sanction Amt", true);
-            ClsCommon.AddCelltoBody(table1, "".ToString(), true);
+            ClsCommon.AddCelltoBody(table1, dataSet.Tables["Lead"].Rows[0]["NetDisbursementAmount"].ToString().ToString(), true); 
             ClsCommon.AddCelltoHeader(table1, "Interest Type", true);
             ClsCommon.AddCelltoBody(table1, "".ToString(), true);
             ClsCommon.AddCelltoHeader(table1, "Loan rate of Interest", true);
@@ -228,9 +228,9 @@ namespace Sunnet_NBFC.Models
                 table.SetWidths(headers);
                 table.WidthPercentage = TABLEWIDTH;
 
-                string text = "Date  -: " + dataSet.Tables["Lead"].Rows[0]["EntryDate"].ToString() + "\n";
-                text = text + " Loan account No -: " + dataSet.Tables["Lead"].Rows[0]["LeadNo"].ToString() + "\n";
-                text = text + " Customer ID -: " + dataSet.Tables["Lead"].Rows[0]["LeadNo"].ToString() + "\n\n\n";
+                string text = " Date  : " + dataSet.Tables["Lead"].Rows[0]["EntryDate"].ToString() + "\n";
+                text = text + " Loan account No : " + dataSet.Tables["Lead"].Rows[0]["LeadNo"].ToString() + "\n";
+                text = text + " Customer ID : " + dataSet.Tables["Lead"].Rows[0]["CIF"].ToString() + "\n\n\n";
 
                 text = text + "To,\n" + dataSet.Tables["Lead"].Rows[0]["CustName"].ToString();
                 text = text + "\nS/O " + dataSet.Tables["Lead"].Rows[0]["FatherName"].ToString();
@@ -243,7 +243,7 @@ namespace Sunnet_NBFC.Models
 
                 text = "";
                 text = "\nDear Customer \n Welcome to " + dataSet.Tables["Company"].Rows[0]["CompanyName"].ToString() + " and thank you for choosing us for your " + dataSet.Tables["Lead"].Rows[0]["MainProduct"].ToString() + "\n";
-                text = text + " Your installment amount is INR " + dataSet.Tables["Lead"].Rows[0]["EmiAmount"].ToString() + " and will start from " + dataSet.Tables["Lead"].Rows[0]["LoanDate"].ToString() + " First instalment of your repayment mode (PDC/ECS) from your " + dataSet.Tables["Lead"].Rows[0]["BenficaryName"].ToString() + ". Account No: " + dataSet.Tables["Lead"].Rows[0]["BenficaryAccountNo"].ToString() + " will be banked on ………………….& on 05th of every Month till the entire tenure of the loan. Total Instalments are " + dataSet.Tables["Lead"].Rows[0]["NoofInst"].ToString() + ". from initial repayment start date. The ROI of the captioned loan is " + dataSet.Tables["Lead"].Rows[0]["ROI"].ToString() + "%\n\n " +
+                text = text + " Your installment amount is INR " + dataSet.Tables["Lead"].Rows[0]["EmiAmount"].ToString() + " and will start from " + dataSet.Tables["Lead"].Rows[0]["LoanDate"].ToString() + " First instalment of your repayment mode (PDC/ECS) from your " + dataSet.Tables["Lead"].Rows[0]["BenficaryName"].ToString() + ". Account No: " + dataSet.Tables["Lead"].Rows[0]["BenficaryAccountNo"].ToString() + " will be banked on ………………….& on "+ dataSet.Tables["Lead"].Rows[0]["EmiDay"].ToString() + " of every Month till the entire tenure of the loan. Total Instalments are " + dataSet.Tables["Lead"].Rows[0]["NoofInst"].ToString() + ". from initial repayment start date. The ROI of the captioned loan is " + dataSet.Tables["Lead"].Rows[0]["ROI"].ToString() + "%\n\n " +
                     "DISBURSAL ISSUED TO YOU VIDE-:";
                 Paragraph p2 = new Paragraph(text);
                 p2.Font.Size = 10;

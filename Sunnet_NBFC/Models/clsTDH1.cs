@@ -699,7 +699,7 @@ namespace Sunnet_NBFC.Models
         public string ProdName { get; set; }
         public string CustomerName { get; set; }
         public string ContactNo { get; set; }
-        public string ReqLoanAmt { get; set; }
+        public decimal ReqLoanAmt { get; set; } = 0;
         public int MiscId { get; set; } // for payment mode by misc master
     }
     public class clsEmi

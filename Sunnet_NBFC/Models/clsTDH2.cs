@@ -399,7 +399,7 @@ namespace Sunnet_NBFC.Models
         public string CustomerType { get; set; }
         public string CustomerName { get; set; }
         public string ContactNo { get; set; }
-        public decimal ROI { get; set; }
+        public string ROI { get; set; }
         public List<clsLeadCalling> clsLeadCalling { get; set; }
         public clsLeadCredit clsLeadCredit { get; set; }
         public List<clsCreditCheckList> clsCreditCheckList { get; set; }
@@ -691,7 +691,7 @@ namespace Sunnet_NBFC.Models
         public string Eligiblity { get; set; }
         public string EligiblityDoc { get; set; }
         public string EligiblityRemarks { get; set; }
-        public string Occupation { get; set; }
+        public string Occupation { get; set; } = "";
 
 
         public string PropertyCode { get { return "PROPERTY"; } }
