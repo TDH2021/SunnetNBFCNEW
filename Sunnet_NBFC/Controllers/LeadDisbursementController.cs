@@ -417,7 +417,7 @@ namespace Sunnet_NBFC.Controllers
                 }
             }
 
-            return View(lst);
+            return PartialView("LeadDisbursementView",lst);
         }
 
 

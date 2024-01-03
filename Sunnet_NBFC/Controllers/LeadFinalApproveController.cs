@@ -425,7 +425,7 @@ namespace Sunnet_NBFC.Controllers
                 }
             }
 
-            return View(lst);
+            return PartialView("LeadFinalApproveView", lst);
         }
 
         public string DownloadSanctionLetter(int? leadid, string leadno)
