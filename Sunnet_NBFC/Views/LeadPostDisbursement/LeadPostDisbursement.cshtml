@@ -48,76 +48,79 @@
 
 							<div class="form-group">
 								<div class="row">
-									<div class="col-md-6">
-										@Html.LabelFor(model => model.LeadNo, new { @class = "control-label" }) *
+
+									<div class="col-md-4">
+										<label for="exampleInputEmail1">Lead No</label>
 										@Html.TextBoxFor(model => model.LeadNo, new { @class = "form-control", @required = "true", @readonly = "true" })
-										@*@Html.ValidationMessageFor(model => model.LeadId, "", new { @class = "text-danger" })*@
+
+									</div>
+									<div class="col-md-4">
+										<label for="exampleInputEmail1">Main Product</label>
+										@Html.TextBoxFor(model => model.MainProdName, new { @class = "form-control", @required = "true", @readonly = "true" })
+									</div>
+									<div class="col-md-4">
+										<label for="exampleInputEmail1">Product</label>
+										@Html.TextBoxFor(model => model.ProdName, new { @class = "form-control", @required = "true", @readonly = "true" })
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="row">
+										<div class="col-md-4">
+											<label for="exampleInputEmail1">Customer Name</label>
+											@Html.TextBoxFor(model => model.CustomerName, new { @class = "form-control", @required = "true", @readonly = "true" })
+										</div>
+										<div class="col-md-4">
+											<label for="exampleInputEmail1">Contact No</label>
+											@Html.TextBoxFor(model => model.ContactNo, new { @class = "form-control", @required = "true", @readonly = "true" })
+										</div>
+										<div class="col-md-4">
+
+										</div>
 									</div>
 								</div>
 								<hr />
 								<div class="row">
-									<div class="col-md-12">
-										<h5> Bank Details</h5>
-									</div>
-								</div>
-								<div class="row">
 									<div class="col-md-3">
-										@Html.LabelFor(model => model.BeneficiaryName, new { @class = "control-label" })
-										@Html.TextBoxFor(model => model.BeneficiaryName, new { @class = "form-control", @id = "txtBeneficiaryName" })
+										@Html.LabelFor(model => model.DocType, new { @class = "control-label" })
+										@Html.TextBoxFor(model => model.DocType, new { @class = "form-control", @id = "txtDocType" })
 									</div>
 									<div class="col-md-3">
-										@Html.LabelFor(model => model.BeneficiaryAccountNo, new { @class = "control-label", @type = "number" })
-										@Html.TextBoxFor(model => model.BeneficiaryAccountNo, new { @class = "form-control", @id = "txtBeneficiaryAccountNo", @onkeypress = "return isNumber(this.value);" })
+										@Html.LabelFor(model => model.DocDate, new { @class = "control-label" })
+										@Html.TextBoxFor(model => model.DocDate, new { @class = "form-control date", @id = "txtDocDate" })
 									</div>
 
 									<div class="col-md-3">
-										<label>Confirm Account No.</label>
-										@Html.TextBoxFor(model => model.BeneficiaryAccountNo, new { @class = "form-control", @id = "txtConfirmAccountNo", @onkeypress = "return isNumber(this.value);" })
+										@Html.LabelFor(model => model.PagesFrom, new { @class = "control-label" })
+										@Html.TextBoxFor(model => model.PagesFrom, new { @class = "form-control", @id = "txtPagesFrom", @Maxlength = "5", @onkeypress = "return isNumber(this.value);" })
 									</div>
 
 									<div class="col-md-3">
-										@Html.LabelFor(model => model.IfscCode, new { @class = "control-label" })
-										@Html.TextBoxFor(model => model.IfscCode, new { @class = "form-control", @id = "txtIfscCode", @Maxlength = "11" })
-									</div>
-								</div>
-
-								<div class="row">
-									<div class="col-md-12">
-										&nbsp;
-									</div>
-								</div>
-
-								<div class="row">
-									<div class="col-md-12">
-										<h5> Disbursement Details</h5>
+										@Html.LabelFor(model => model.PagesTo, new { @class = "control-label" })
+										@Html.TextBoxFor(model => model.PagesTo, new { @class = "form-control", @id = "txtPagesTo", @Maxlength = "5", @onkeypress = "return isNumber(this.value);" })
 									</div>
 								</div>
 								<div class="row">
 
 									<div class="col-md-3">
-										@Html.LabelFor(model => model.NetDisbursementAmount, new { @class = "control-label" })
-										@Html.TextBoxFor(model => model.NetDisbursementAmount, new { @class = "form-control", @id = "txtNetDisbursementAmount", @Maxlength = "12", @onkeypress = "return isNumber(this.value);" })
-										@Html.ValidationMessageFor(model => model.NetDisbursementAmount, "", new { @class = "text-danger" })
+										@Html.LabelFor(model => model.AnyOther, new { @class = "control-label" })
+										@Html.TextBoxFor(model => model.AnyOther, new { @class = "form-control", @id = "txtAnyOther" })
 
 									</div>
 									<div class="col-md-3">
-										@Html.LabelFor(model => model.ROI, new { @class = "control-label" })
-										@Html.TextBoxFor(model => model.ROI, new { @class = "form-control", @id = "txtROI", @Maxlength = "5", @onkeypress = "return isNumber(this.value);" })
-										@Html.ValidationMessageFor(model => model.ROI, "", new { @class = "text-danger" })
+										@Html.LabelFor(model => model.RegistrationCertificate, new { @class = "control-label" })
+										@Html.TextBoxFor(model => model.RegistrationCertificate, new { @class = "form-control", @id = "txtRegistrationCertificate" })
 
 									</div>
 									<div class="col-md-3">
-										@Html.LabelFor(model => model.Tenure, new { @class = "control-label" })
-										@Html.TextBoxFor(model => model.Tenure, new { @class = "form-control", @id = "txtTenure", @Maxlength = "3", @onkeypress = "return isNumber(this.value);" })
-										@Html.ValidationMessageFor(model => model.Tenure, "", new { @class = "text-danger" })
+										@Html.LabelFor(model => model.InsuredHPEndorse, new { @class = "control-label" })
+										@Html.TextBoxFor(model => model.InsuredHPEndorse, new { @class = "form-control", @id = "txtInsuredHPEndorse" })
 
 
 									</div>
 
 									<div class="col-md-3">
-										@Html.LabelFor(model => model.PaymentMode, new { @class = "control-label" })
-										@Html.DropDownListFor(model => model.MiscId, clsMiscDDL.GetMiscDDL("PayMode"), "Select", new { @class = "form-control", @id = "txtPaymentMode" })
-										@Html.ValidationMessageFor(model => model.MiscId, "", new { @class = "text-danger" })
+										@Html.LabelFor(model => model.InvoiceHPEndorse, new { @class = "control-label" })
+										@Html.TextBoxFor(model => model.InvoiceHPEndorse, new { @class = "form-control", @id = "txtInvoiceHPEndorse" })
 
 									</div>
 
@@ -127,88 +130,50 @@
 
 								<div class="row">
 									<div class="col-md-3">
-										@Html.LabelFor(model => model.UtrNo, new { @class = "control-label" })
-										@Html.TextBoxFor(model => model.UtrNo, new { @class = "form-control", @id = "txtUtrNo" })
+										@Html.LabelFor(model => model.MarginMoneyEndorse, new { @class = "control-label" })
+										@Html.TextBoxFor(model => model.MarginMoneyEndorse, new { @class = "form-control", @id = "txtUtrNo" })
 									</div>
 									<div class="col-md-3">
-										@Html.LabelFor(model => model.LoanStartDate, new { @class = "control-label" })
-										@Html.TextBoxFor(model => model.LoanStartDate, new { @class = "form-control datestyle", @id = "txtLoanStartDate" })
-										@Html.ValidationMessageFor(model => model.LoanStartDate, "", new { @class = "text-danger" })
+										@Html.LabelFor(model => model.NOC, new { @class = "control-label" })
+										@Html.TextBoxFor(model => model.NOC, new { @class = "form-control datestyle", @id = "txtLoanStartDate" })
+										@*@Html.ValidationMessageFor(model => model.NOC, "", new { @class = "text-danger" })*@
 
 									</div>
 									<div class="col-md-3">
-										<label>&nbsp;&nbsp;</label><br />
-										<input type="button" class="btn btn-info" value="Create EMI" onclick="fnCreateEmi()" />
-										@*@Html.ActionLink("Create EMI", "LeadDisbursement", "LeadDisbursement", FormMethod.Post, new { @class = "btn btn-info btn-large" })*@
+										@Html.LabelFor(model => model.RTOSlip, new { @class = "control-label" })
+										@Html.TextBoxFor(model => model.RTOSlip, new { @class = "form-control datestyle", @id = "txtLoanStartDate" })
+
+									</div>
+									<div class="col-md-3">
+										@Html.LabelFor(model => model.EndorsedRC, new { @class = "control-label" })
+										@Html.TextBoxFor(model => model.EndorsedRC, new { @class = "form-control datestyle", @id = "txtLoanStartDate" })
+
 									</div>
 								</div>
 								<div class="row">
-									<div class="col-md-12">
-										<hr />
+									<div class="col-md-3">
+										@Html.LabelFor(model => model.MarginMoneyEndorse, new { @class = "control-label" })
+										@Html.TextBoxFor(model => model.MarginMoneyEndorse, new { @class = "form-control", @id = "txtUtrNo" })
+									</div>
+									<div class="col-md-3">
+										@Html.LabelFor(model => model.NOC, new { @class = "control-label" })
+										@Html.TextBoxFor(model => model.NOC, new { @class = "form-control datestyle", @id = "txtLoanStartDate" })
+										@*@Html.ValidationMessageFor(model => model.NOC, "", new { @class = "text-danger" })*@
+
+									</div>
+									<div class="col-md-3">
+										@Html.LabelFor(model => model.RTOSlip, new { @class = "control-label" })
+										@Html.TextBoxFor(model => model.RTOSlip, new { @class = "form-control datestyle", @id = "txtLoanStartDate" })
+
+									</div>
+									<div class="col-md-3">
+										@Html.LabelFor(model => model.EndorsedRC, new { @class = "control-label" })
+										@Html.TextBoxFor(model => model.EndorsedRC, new { @class = "form-control datestyle", @id = "txtLoanStartDate" })
+
 									</div>
 								</div>
 
-								<div class="row">
-									<div class="col-md-12">
-										<div class="card">
-											<!-- /.card-header -->
-											<div class="card-body">
-												<label>
-													Emi Details
-												</label>
-												<table id="tblemi" class="table table-bordered table-striped">
-													@*</table>
-														<table id="example1" class="table table-bordered table-striped">*@
-													<thead>
-														<tr>
-															<th>
-																Sr. No.
-															</th>
-															<th>
-																Emi Date
-															</th>
-															<th>
-																Emi Amount
-															</th>
-															<th>Current Balance</th>
-															<th>Interest</th>
-															<th>Principal</th>
-														</tr>
-													</thead>
-													<tbody>
 
-														@foreach (var item in ViewBag.EmiList)
-														{
-															<tr>
-																<td>
-																	@item.PERIOD
-																</td>
-																<td>
-																	@item.PAYDATE
-
-																</td>
-																<td>
-																	@item.PAYMENT
-
-																</td>
-																<td>
-																	@item.CURRENT_BALANCE
-																</td>
-																<td>
-																	@item.INTEREST
-																</td>
-																<td>
-																	@item.PRINCIPAL
-																</td>
-															</tr>
-														}
-
-													</tbody>
-												</table>
-											</div>
-										</div>
-									</div>
-								</div>
 								<div class="card-footer">
 									<input type="submit" value="Update" class="btn btn-primary" />
 									@*@Html.ActionLink("Cancel", "LeadView", "LeadDisbursement", null, new { @class = "btn btn-danger btn-large" })*@

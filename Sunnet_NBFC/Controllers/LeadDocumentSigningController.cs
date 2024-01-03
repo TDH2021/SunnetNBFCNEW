@@ -498,7 +498,54 @@ namespace Sunnet_NBFC.Controllers
                 M.CompanyId = ClsSession.CompanyID;
 
                 dtLeadDoc = DataInterface1.dbLeadDocSign(M);
-                lst = DataInterface.ConvertDataTable<clsLeadDocSign>(dtLeadDoc);
+                //lst = DataInterface.ConvertDataTable<clsLeadDocSign>(dtLeadDoc);
+                using (DataTable dt = DataInterface1.dbLeadDocSign(M))
+                {
+                    if (dt != null)
+                    {
+
+                        List<clsLeadDocSign> list = new List<clsLeadDocSign>();
+                        list = (from DataRow dr in dt.Rows
+
+                                select new clsLeadDocSign()
+                                {
+
+                                    //MainProdId = int.Parse(dr["MainProdId"].ToString()),
+                                    DocSignId = int.Parse(dr["DocSignId"].ToString()),
+                                    LeadNo = dr["LeadNo"].ToString(),
+                                    Documents = dr["Documents"].ToString(),
+                                    SanctionLetter = dr["SanctionLetter"].ToString(),
+                                    LoanAgrmentKit = dr["LoanAgrmentKit"].ToString(),
+                                    PDC = dr["PDC"].ToString(),
+                                    NACH = dr["NACH"].ToString(),
+                                    DisbursmentKit = dr["DisbursmentKit"].ToString(),
+                                    InsuranceWithHP = dr["InsuranceWithHP"].ToString(),
+                                    NOC = dr["NOC"].ToString(),
+                                    RTOSlip = dr["RTOSlip"].ToString(),
+                                    OrignalPropertyPaper = dr["OrignalPropertyPaper"].ToString(),
+                                    RegisteredMortgageDeed = dr["RegisteredMortgageDeed"].ToString(),
+                                    EquitableMortageDeed = dr["EquitableMortageDeed"].ToString(),
+                                    Affidavit = dr["Affidavit"].ToString(),
+                                    DsRemark = dr["DsRemark"].ToString(),
+                                    //CreatedBy = int.Parse(dr["CreatedBy"].ToString()),
+                                    //UpdatedBy = int.Parse(dr["UpdatedBy"].ToString()),
+                                    //IsDelete = int.Parse(dr["IsDelete"].ToString()),
+                                    BorrowerKyc = dr["BorrowerKyc"].ToString(),
+                                    CoBorrowerKyc = dr["CoBorrowerKyc"].ToString(),
+                                    GuarantorKyc = dr["GuarantorKyc"].ToString(),
+                                    BorrowerPhoto = dr["BorrowerPhoto"].ToString(),
+                                    CoBorrowerPhoto = dr["CoBorrowerPhoto"].ToString(),
+                                    GuarantorPhoto = dr["GuarantorPhoto"].ToString(),
+                                    DisbursementRequestLetter = dr["DisbursementRequestLetter"].ToString(),
+                                    SignatureVerification = dr["SignatureVerification"].ToString(),
+                                    KycSelfAttested = dr["KycSelfAttested"].ToString(),
+                                    //ReqLoanAmt = dr["ReqLoanAmt"].ToString(),
+                                }).ToList();
+
+
+                        lst = list;
+                    }
+                }
 
             }
             catch (Exception ex)

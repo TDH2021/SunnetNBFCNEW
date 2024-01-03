@@ -321,7 +321,7 @@
                             </tr>
 
                         }
-                        else if (Model.MainProductName.ToUpper() == "VEHICLE LOAN" || Model.MainProductName.ToUpper()== "TWO WHEELER LOAN" || Model.MainProductName.ToUpper()== "COMMERCIAL VEHICLE")
+                        else if (Model.MainProductName.ToUpper() == "VEHICLE LOAN" || Model.MainProductName.ToUpper() == "TWO WHEELER LOAN" || Model.MainProductName.ToUpper() == "COMMERCIAL VEHICLE")
                         {
                             <tr>
                                 <th>No of Dependent</th>
@@ -415,7 +415,7 @@
                             </tr>
 
                         }
-                        else if (Model.MainProductName == "BUSSINESS LOAN")
+                        else if (Model.MainProductName.ToString().ToUpper() == "BUSSINESS LOAN")
                         {
                             <tr>
                                 <th>No of Dependent</th>
@@ -448,9 +448,10 @@
                             <tr>
                                 <th>Property Address</th>
                                 <td>@Model.PropertyAddress</td>
-                                <th></th>
-                                <td></td>
+                                <th>Monthly Family Income</th>
+                                <td>@Model.EstFamilyIncome</td>
                             </tr>
+                            
 
                         }
                         <tr>
@@ -458,7 +459,7 @@
                                 Send Back Remarks
                             </th>
                             <td colspan="3">@Model.FORemarks</td>
-                            
+
 
                     </thead>
                 </table>
@@ -547,30 +548,52 @@
             @switch (ViewBag.Short_StageName)
             {
                 case "DocCol":
-                    { Html.RenderAction("LeadCallingView", "LeadCalling"); }
+                    if(ViewBag.MainProductName!="INDIVIDUAL LOAN")
+                    {
+
+                        { Html.RenderAction("LeadCallingView", "LeadCalling"); }
+                    }
                     break;
                 case "CreditApprove":
-                    { Html.RenderAction("LeadCallingView", "LeadCalling"); }
-                    { Html.RenderAction("LeadDocumentView", "LeadDocument"); }
+                    if (ViewBag.MainProductName != "INDIVIDUAL LOAN")
+                    {
+
+                        { Html.RenderAction("LeadCallingView", "LeadCalling"); }
+                        { Html.RenderAction("LeadDocumentView", "LeadDocument"); }
+                    }
+
                     break;
 
                 case "DocSign":
-                    { Html.RenderAction("LeadCallingView", "LeadCalling"); }
-                    { Html.RenderAction("LeadDocumentView", "LeadDocument"); }
+                    if (ViewBag.MainProductName != "INDIVIDUAL LOAN")
+                    {
+
+                        { Html.RenderAction("LeadCallingView", "LeadCalling"); }
+                        { Html.RenderAction("LeadDocumentView", "LeadDocument"); }
+                    }
                     { Html.RenderAction("LeadCreditView", "LeadCredit"); }
                     break;
 
                 case "FinalApprove":
-                    { Html.RenderAction("LeadCallingView", "LeadCalling"); }
+                    if (ViewBag.MainProductName != "INDIVIDUAL LOAN")
+                    {
 
+                        { Html.RenderAction("LeadCallingView", "LeadCalling"); }
+                        { Html.RenderAction("LeadDocumentView", "LeadDocument"); }
+                    }
+                    
                     { Html.RenderAction("LeadCreditView", "LeadCredit"); }
                     { Html.RenderAction("LeadDocumentView", "LeadDocument"); }
                     { Html.RenderAction("LeadDocumentSigningView", "LeadDocumentSigning"); }
                     break;
 
-                case "Disbursment":
-                    { Html.RenderAction("LeadCallingView", "LeadCalling"); }
-                    { Html.RenderAction("LeadDocumentView", "LeadDocument"); }
+                case "Disburse":
+                    if (ViewBag.MainProductName != "INDIVIDUAL LOAN")
+                    {
+
+                        { Html.RenderAction("LeadCallingView", "LeadCalling"); }
+                        { Html.RenderAction("LeadDocumentView", "LeadDocument"); }
+                    }
                     { Html.RenderAction("LeadCreditView", "LeadCredit"); }
                     { Html.RenderAction("LeadDocumentSigningView", "LeadDocumentSigning"); }
                     { Html.RenderAction("LeadFinalApproveView", "LeadFinalApprove"); }

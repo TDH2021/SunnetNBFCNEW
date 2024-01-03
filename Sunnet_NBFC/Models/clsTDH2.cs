@@ -400,6 +400,7 @@ namespace Sunnet_NBFC.Models
         public string CustomerName { get; set; }
         public string ContactNo { get; set; }
         public string ROI { get; set; }
+        
         public List<clsLeadCalling> clsLeadCalling { get; set; }
         public clsLeadCredit clsLeadCredit { get; set; }
         public List<clsCreditCheckList> clsCreditCheckList { get; set; }

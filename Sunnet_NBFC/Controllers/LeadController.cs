@@ -232,12 +232,13 @@ namespace Sunnet_NBFC.Controllers
                                     model.FORemarks = Convert.ToString(ds.Tables[0].Rows[i]["Remarks"]);
                                     model.DealerName= Convert.ToString(ds.Tables[0].Rows[i]["DealerName"]);
                                     model.ERikshawMaker= Convert.ToString(ds.Tables[0].Rows[i]["ERikshawMaker"]);
+                                    model.EstFamilyIncome = Convert.ToString(ds.Tables[0].Rows[i]["EstFamilyIncome"]);
                                     model.PerformaInvoice = Convert.ToString(ds.Tables[0].Rows[i]["PerformaInvoice"]);
                                     //model.EstValueofscurity = Convert.ToString(ds.Tables[0].Rows[i]["EstValueofscurity"]);
                                     ViewBag.CUSTYPEREUIRED = Convert.ToString(ds.Tables[0].Rows[i]["CustTypeRequried"]);
                                     ViewBag.Status1 = Convert.ToString(ds.Tables[0].Rows[i]["Status1"]);
                                     ViewBag.Short_StageName = Convert.ToString(ds.Tables[0].Rows[i]["ShortStage_Name"]);
-
+                                    ViewBag.MainProductName= Convert.ToString(ds.Tables[0].Rows[i]["MainProductName"]).ToUpper();
                                 }
 
                             }

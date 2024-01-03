@@ -319,7 +319,7 @@
 			return false;
 		}
 		if (parseFloat(ra) > 0) {
-            if (parseFloat(loan) > parseFloat(ra)) {
+			if (parseFloat(nba) > parseFloat(ra)) {
 				swal("TDH", "Net Disbursement Amount cannot be greater than Requested Loan Amount. Please check.", "error");
 				return false;
 			}
@@ -362,7 +362,7 @@
 			return false;
 		}
 		if (parseFloat(ra) > 0) {
-			if (parseFloat(loan) > parseFloat(ra)) {
+			if (parseFloat(nba) > parseFloat(ra)) {
 				swal("TDH", "Net Disbursement Amount cannot be greater than Requested Loan Amount. Please check.", "error");
 				return false;
 			}

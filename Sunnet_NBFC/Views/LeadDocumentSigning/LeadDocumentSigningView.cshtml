@@ -36,10 +36,6 @@
 							<thead>
 								<tr>
 									<th>
-										Lead No
-									</th>
-
-									<th>
 										@Html.DisplayNameFor(model => model.SanctionLetter)
 									</th>
 									<th>
@@ -97,9 +93,6 @@
 								@foreach (var item in Model)
 								{
 									<tr>
-										<td>
-											@Html.DisplayFor(modelItem => item.LeadNo)
-										</td>
 										<td>
 											@Html.DisplayFor(modelItem => item.SanctionLetter)
 										</td>
