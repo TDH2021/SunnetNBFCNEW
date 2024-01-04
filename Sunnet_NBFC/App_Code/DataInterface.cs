@@ -528,6 +528,7 @@ public class DataInterface : IDisposable
                 sqlCommand.Parameters.AddWithValue("@PropertyAddress", cls.PropertyAddress);
                 sqlCommand.Parameters.AddWithValue("@ERikshawMaker", cls.ERikshawMaker);
                 sqlCommand.Parameters.AddWithValue("@PerformaInvoice", cls.PerformaInvoice);
+                sqlCommand.Parameters.AddWithValue("@RepaymentType", cls.RepaymentType);
 
                 dt = db.FillTableProc(sqlCommand, "USP_Lead");
             }

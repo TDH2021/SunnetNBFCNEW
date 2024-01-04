@@ -735,6 +735,7 @@ namespace Sunnet_NBFC.Models
         public string Co_PrefixName { get; set; }
         public string PerformaInvoice { get; set; } = "";
         public string ERikshawMaker { get; set; } = "";
+        public string RepaymentType { get; set; } = "";
         public int isdelete { get; set; } = 0;
         bool disposed = false;
 

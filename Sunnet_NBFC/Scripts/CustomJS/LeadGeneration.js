@@ -1494,6 +1494,10 @@ function ValidationChk() {
     var PolicyNo = $("#txtPolicyNo").val();
     var customers = new Array();
     var DSAId = $("#ddlDealer :selected").val();
+    var RepaymentType = $("#ddlRepaymentType :selected").val();
+    if (MainProductText != "Individual Loan") {
+        RepaymentType = "";
+    }
     if (DSAId.length == 0) {
         DSAId = "0";
     }
@@ -1611,9 +1615,9 @@ function ValidationChk() {
             else if (FName.length == 0) {
                 swal("TDH", "Please enter customer first name", "error");
             }
-            else if (FatherName.length == 0) {
-                swal("TDH", "Please enter customer father name.", "error");
-            }
+            //else if (FatherName.length == 0) {
+            //    swal("TDH", "Please enter customer father name.", "error");
+            //}
             else if (MartialStatus == "Married" && SpouseName.length == 0) {
                 swal("TDH", "Please enter customer spouse name.", "error");
             }
@@ -1936,7 +1940,8 @@ function ValidationChk() {
                     "PolicyNo": PolicyNo,
                     "PerformaInvoice": PerformaInvoice,
                     "ERikshawMaker": ERikshawMaker,
-                    "DSAId": DSAId
+                    "DSAId": DSAId,
+                    "RepaymentType": RepaymentType
                 }
 
                 filedata.append('AllDataArray', JSON.stringify(AllDataArray));
@@ -1973,9 +1978,9 @@ function ValidationChk() {
             else if (FName.length == 0) {
                 swal("TDH", "Please enter customer first name", "error");
             }
-            else if (FatherName.length == 0) {
-                swal("TDH", "Please enter customer father name.", "error");
-            }
+            //else if (FatherName.length == 0) {
+            //    swal("TDH", "Please enter customer father name.", "error");
+            //}
             else if (MartialStatus == "Married" && SpouseName.length == 0) {
                 swal("TDH", "Please enter customer spouse name.", "error");
             }
@@ -2291,7 +2296,8 @@ function ValidationChk() {
                     "PolicyNo": PolicyNo,
                     "PerformaInvoice": PerformaInvoice,
                     "ERikshawMaker": ERikshawMaker,
-                    "DSAId": DSAId
+                    "DSAId": DSAId,
+                    "RepaymentType": RepaymentType
                 }
 
                 filedata.append('AllDataArray', JSON.stringify(AllDataArray));
@@ -2628,7 +2634,8 @@ function ValidationChk() {
                     "PolicyNo": PolicyNo,
                     "PerformaInvoice": PerformaInvoice,
                     "ERikshawMaker": ERikshawMaker,
-                    "DSAId": DSAId
+                    "DSAId": DSAId,
+                    "RepaymentType":RepaymentType
                 }
                 debugger;
                 filedata.append('AllDataArray', JSON.stringify(AllDataArray));
@@ -2910,6 +2917,7 @@ function ValidationChk() {
                     "PerformaInvoice": PerformaInvoice,
                     "ERikshawMaker": ERikshawMaker,
                     "DSAId": DSAId,
+                    "RepaymentType": RepaymentType
                 }
 
                 filedata.append('AllDataArray', JSON.stringify(AllDataArray));

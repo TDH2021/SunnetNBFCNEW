@@ -29,30 +29,16 @@
                     {
                         <div class="card-body">
 
-                            @*<div class="form-group">
+                            <div class="form-group">
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-3">
+                                        <label for="exampleInputEmail1" class="required">ROI</label>
+                                        @Html.TextBoxFor(model => model.ROI, new { @class = "form-control", @disabled = "disabled" })
 
-                                        @Html.HiddenFor(model => model.ReqType)
-                                        @Html.HiddenFor(model => model.clsLeadCredit.ReqType)
-                                        @Html.HiddenFor(model => model.LeadId)
-                                        @Html.HiddenFor(model => model.ShortStage_Name)
-                                        @Html.HiddenFor(model => model.MainProdId)
-                                        @Html.HiddenFor(model => model.ProdId)
 
-                                        @Html.HiddenFor(model => model.clsLeadCredit.LeadId)
-                                        @Html.HiddenFor(model => model.clsLeadCredit.CrId)
-
-                                        @Html.LabelFor(model => model.LeadNo, new { @class = "control-label" }) *
-                                        @Html.TextBoxFor(model => model.LeadNo, new { @class = "form-control", @required = "true", @readonly = "true" })*@
-                            @*@Html.ValidationMessageFor(model => model.LeadId, "", new { @class = "text-danger" })*@
-                            @*</div>
-                                        <div class="col-md-6">
-                                            @Html.Label("Product", new { @class = "control-label" })
-                                            @Html.TextBoxFor(model => model.MainProdName, new { @class = "form-control", @readonly = "true" })
-                                        </div>
                                     </div>
-                                </div>*@
+                                </div>
+                            </div>
 
                             <div class="form-group">
                                 <div class="row">
@@ -421,19 +407,19 @@
 
 
 
-                            @if (Model.MainProdType == "V" || Model.MainProdType == "T" || Model.MainProdType == "B")
-                            {
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <span>Occupation:</span>
-                                        </div>
-                                        <div class="col-md-5">
-                                            @Html.TextBoxFor(model => model.clsLeadCredit.Occupation, new { @class = "form-control", @disabled = "disabled" })
+                            @*@if (Model.MainProdType == "V" || Model.MainProdType == "T" || Model.MainProdType == "B")
+                                {
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <span>Occupation:</span>
+                                            </div>
+                                            <div class="col-md-5">
+                                                @Html.TextBoxFor(model => model.clsLeadCredit.Occupation, new { @class = "form-control", @disabled = "disabled" })
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            }
+                                }*@
 
                             @if (Model.MainProdType == "B")
                             {
@@ -788,28 +774,28 @@
                             {
 
                                 @*<div class="form-group">
-                                    <div class="row">
+                                        <div class="row">
 
-                                        <div class="col-md-3">
-                                            <span>Credit Check List :</span>
-                                        </div>
-                                        <div class="col-md-5">
+                                            <div class="col-md-3">
+                                                <span>Credit Check List :</span>
+                                            </div>
+                                            <div class="col-md-5">
 
-                                            @Html.DropDownListFor(m => m.clsLeadCredit.CreditCheckListID, new SelectList(ViewBag.CrditCheckListDDL, "Value", "Text", Model.clsLeadCredit.CreditCheckListID), "- Select -", new { @class = "form-control" })
+                                                @Html.DropDownListFor(m => m.clsLeadCredit.CreditCheckListID, new SelectList(ViewBag.CrditCheckListDDL, "Value", "Text", Model.clsLeadCredit.CreditCheckListID), "- Select -", new { @class = "form-control" })
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <span>Credit Check List Remarks :</span>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <span>Credit Check List Remarks :</span>
+                                            </div>
+                                            <div class="col-md-5">
+                                                @Html.TextBoxFor(model => model.clsLeadCredit.CreditCheckListRemarks, new { @class = "form-control", })
+                                            </div>
                                         </div>
-                                        <div class="col-md-5">
-                                            @Html.TextBoxFor(model => model.clsLeadCredit.CreditCheckListRemarks, new { @class = "form-control", })
-                                        </div>
-                                    </div>
-                                </div>*@
+                                    </div>*@
                             }
 
                             @if (Model.MainProdType == "V" || Model.MainProdType == "T")
@@ -988,10 +974,10 @@
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <span>DealerId:</span>
+                                            <span>Dealer:</span>
                                         </div>
                                         <div class="col-md-5">
-                                            @Html.DropDownListFor(m => m.clsLeadCredit.DealerId, new SelectList(clsCommonData.GetEmoloyeeDDL(), "Value", "Text", Model.clsLeadCredit.DealerId), "- Select -", new { @class = "form-control", @disabled = "disabled" })
+                                            @Html.DropDownListFor(m => m.clsLeadCredit.DealerId, new SelectList(clsCommonData.GetDealerDetail(), "Value", "Text", Model.clsLeadCredit.DealerId), "- Select -", new { @class = "form-control", @disabled = "disabled" })
                                             @*@Html.TextBoxFor(model => model.clsLeadCredit.DealerId, new { @class = "form-control", })*@
                                         </div>
                                     </div>

@@ -312,12 +312,14 @@
 
                         }
 
-                        @if (Model.MainProductName == "INDIVIDUAL LOAN")
+                        @if (Model.MainProductName.ToUpper() == "INDIVIDUAL LOAN")
                         {
                             <tr>
-
+                                <th>Repyament Type</th>
+                                <td>@Model.RepaymentType</td>
                                 <th>Purpose of Loan</th>
                                 <td>@Model.LoanPurpose</td>
+                                
                             </tr>
 
                         }

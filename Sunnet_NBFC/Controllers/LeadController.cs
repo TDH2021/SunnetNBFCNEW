@@ -234,6 +234,7 @@ namespace Sunnet_NBFC.Controllers
                                     model.ERikshawMaker= Convert.ToString(ds.Tables[0].Rows[i]["ERikshawMaker"]);
                                     model.EstFamilyIncome = Convert.ToString(ds.Tables[0].Rows[i]["EstFamilyIncome"]);
                                     model.PerformaInvoice = Convert.ToString(ds.Tables[0].Rows[i]["PerformaInvoice"]);
+                                    model.RepaymentType = Convert.ToString(ds.Tables[0].Rows[i]["RepaymentType"]);
                                     //model.EstValueofscurity = Convert.ToString(ds.Tables[0].Rows[i]["EstValueofscurity"]);
                                     ViewBag.CUSTYPEREUIRED = Convert.ToString(ds.Tables[0].Rows[i]["CustTypeRequried"]);
                                     ViewBag.Status1 = Convert.ToString(ds.Tables[0].Rows[i]["Status1"]);
