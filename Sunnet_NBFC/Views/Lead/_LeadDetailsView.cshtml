@@ -29,8 +29,8 @@
                         <tr>
                             <th>Lead NO</th>
                             <td>@Model.LeadNo</td>
-                            <th>Customer Name</th>
-                            <td>@Model.Prefix @Model.FirstName  @Model.MiddleName  @Model.LastName</td>
+                            <th></th>
+                            <td></td>
                         </tr>
                         <tr>
                             <th>Main Product</th>
@@ -48,60 +48,68 @@
                             </tr>
                         }
                         <tr>
+                            <th colspan="4">
+                                Customer Details
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>CIF ID</th>
+                            <td>@Model.CIFID</td>
+                            <td>Aadhar No</td>
+                            <th>@Model.AadharNo</th>
+                        </tr>
+                        <tr>
+                            <th>PAN No</th>
+                            <th>@Model.PanNo</th>
+                            <th>Customer Name</th>
+                            <td>@Model.Prefix @Model.FirstName  @Model.MiddleName  @Model.LastName</td>
+                        </tr>
+                        <tr>
+                            <th>Gender</th>
+                            <td>@Model.Gender</td>
+                            <th>Date Of Birth</th>
+                            <td>@Model.DateofBirth</td>
+                        </tr>
+                        <tr>
+                            <th>Martial Status</th>
+                            <td>@Model.MartialStatus</td>
+                            <th>Spouse Name</th>
+                            <td>@Model.SpouseName</td>
+                        </tr>
+                        <tr>
+
                             <th>Father Name</th>
                             <td>@Model.FatherName</td>
                             <th>Mother Name</th>
                             <td>@Model.MotherName</td>
                         </tr>
-                        <tr>
-                            <th>Spouse Name</th>
-                            <td>@Model.SpouseName</td>
-                            <th>Gender</th>
-                            <td>@Model.Gender</td>
-                        </tr>
-                        <tr>
-                            <th>Date Of Birth</th>
-                            <td>@Model.DateofBirth</td>
 
-                            <th>Martial Status</th>
-                            <td>@Model.MartialStatus</td>
-                        </tr>
                         <tr>
-                            <th>Present Address</th>
+                            <th>Correspondance Address</th>
                             <td>@Model.PresentAddress</td>
-                            <th>Present City</th>
+                            <th>Correspondance City</th>
                             <td>@Model.PresentCityId</td>
-
-                        </tr>
-                        <tr>
-                            <th>Present State</th>
-                            <td>@Model.PresentStateId</td>
-                            <th>Present Pincode</th>
-                            <td>@Model.PresentPincode</td>
                         </tr>
 
-
                         <tr>
-                            <th>Present Village</th>
+                            <th>Correspondance Village</th>
                             <td>@Model.PresentVillage</td>
-                            <th>Present District</th>
+                            <th>Correspondance District</th>
                             <td>@Model.PresentDistrict</td>
 
                         </tr>
-
+                        <tr>
+                            <th>Correspondance State</th>
+                            <td>@Model.PresentStateId</td>
+                            <th>Correspondance Pincode</th>
+                            <td>@Model.PresentPincode</td>
+                        </tr>
                         <tr>
                             <th>Permanent Address</th>
                             <td>@Model.PermanentAddress</td>
                             <th>Permanent City</th>
                             <td>@Model.PermanentCityId</td>
 
-                        </tr>
-
-                        <tr>
-                            <th>Permanent State</th>
-                            <td>@Model.PermanentStateId</td>
-                            <th>Permanent Pincode</th>
-                            <td>@Model.PermanentPincode</td>
                         </tr>
                         <tr>
                             <th>Permanent Village</th>
@@ -111,9 +119,16 @@
 
                         </tr>
                         <tr>
+                            <th>Permanent State</th>
+                            <td>@Model.PermanentStateId</td>
+                            <th>Permanent Pincode</th>
+                            <td>@Model.PermanentPincode</td>
+                        </tr>
+
+                        <tr>
                             <th>Cibil Score</th>
                             <td>@Model.CibilScore</td>
-                            <th>Mobile No1</th>
+                            <th>Mobile Number</th>
                             <td>@Model.MobileNo1</td>
                         </tr>
                         <tr>
@@ -125,21 +140,13 @@
                         <tr>
                             <th>Spouse Mobile No</th>
                             <td>@Model.SpouseMobileNo</td>
-                            <th>Aadhar No</th>
-                            <td>@Model.AadharNo</td>
+                            <th>Email Id</th>
+                            <td>@Model.EmailId</td>
                         </tr>
 
                         <tr>
-                            <th>Pan No</th>
-                            <td>@Model.PanNo</td>
-                            <th>Email</th>
-                            <td>@Model.EmailId</td>
-                        </tr>
-                        <tr>
                             <th>OwnerShip</th>
                             <td>@Model.OwnerShip</td>
-                            <th>CIF ID</th>
-                            <td>@Model.CIFID</td>
                         </tr>
                         <tr>
                             <th>Profile Image</th>
@@ -161,12 +168,17 @@
                         {
 
                             <tr>
-                                <th><b>Co Applicant Details:</b></th>
-                                <td colspan="4"></td>
+                                <th colspan="4">Co Applicant Details:</th>
                             </tr>
-
-
                             <tr>
+                                <th>CIF Id</th>
+                                <td>@Model.Co_CIF</td>
+                                <th>Aadhar No</th>
+                                <td>@Model.CO_Adhaar</td>
+                            </tr>
+                            <tr>
+                                <th>Pan No</th>
+                                <td>@Model.CO_PAN</td>
                                 <th>CO Applicant Name</th>
                                 <td>@Model.CO_Prefix @Model.CO_FirstName  @Model.CO_MiddleName  @Model.CO_LastName</td>
                             </tr>
@@ -180,29 +192,27 @@
 
                                 <th>Marital Status</th>
                                 <td>@Model.CO_Marital_Status</td>
-                                <th>Present Address</th>
+                                <th>Corrospondance Address</th>
                                 <td>@Model.CO_PresentAddress</td>
                             </tr>
                             <tr>
-
-                                <th>Present Pincode</th>
+                                <th>Corrospondance Pincode</th>
                                 <td>@Model.CO_PresentPinCode</td>
-
-                                <th>Present State</th>
+                                <th>Corrospondance State</th>
                                 <td>@Model.CO_PresentStateId</td>
                             </tr>
                             <tr>
 
-                                <th>Present City</th>
+                                <th>Corrospondance City</th>
                                 <td>@Model.CO_PresentCityId</td>
 
-                                <th>Present Village</th>
+                                <th>Corrospondance Village</th>
                                 <td>@Model.CO_PresentVillage</td>
                             </tr>
 
                             <tr>
 
-                                <th>Present District</th>
+                                <th>Corrospondance District</th>
                                 <td>@Model.CO_PresentDistrict</td>
 
                                 <th>Permanent Address</th>
@@ -211,7 +221,6 @@
                             <tr>
                                 <th>Permanent Pincode</th>
                                 <td>@Model.CO_PermanentPincode</td>
-
                                 <th>Permanent State</th>
                                 <td>@Model.CO_PermanentStateId</td>
                             </tr>
@@ -230,53 +239,55 @@
                                 <th>Permanent District</th>
                                 <td>@Model.CO_PermanentDistrict</td>
 
-                                <th>Mobile No1</th>
+                                <th>Mobile No</th>
                                 <td>@Model.CO_Mobile_No</td>
                             </tr>
-
-                            <tr>
-
-                                <th>Aadhar No</th>
-                                <td>@Model.CO_Adhaar</td>
-
-                                <th>Pan No</th>
-                                <td>@Model.CO_PAN</td>
-                            </tr>
-
                             <tr>
                                 <th>Email</th>
                                 <td>@Model.CO_Email_Id</td>
-                                <th>CIF</th>
-                                <td>@Model.Co_CIF</td>
-                            </tr>
-                            <tr>
                                 <th>OwnerShip</th>
                                 <td>@Model.Co_OwnerShip</td>
                             </tr>
                             <tr>
-                                <th>Co-Profile Image</th>
+                                <th>Cibil Score</th>
+                                <td>@Model.CO_CIBIL</td>
+                            </tr>
+
+                            <tr>
+                                <th>Co-Applicant Image</th>
                                 @if (Model.CO_image.Trim() != "")
                                 {
                                     var img = Sunnet_NBFC.App_Code.ClsCommon.PreviewImage(Model.CO_image.Trim());
                                     <td> <img src=@img alt="" height=100 width=200 /></td>
                                 }
-                                <th>Co-Profile Electric Bill</th>
+                                <th>Co-Applicant Electric Bill</th>
                                 @if (Model.CO_ElectricBill.Trim() != "")
                                 {
                                     var img = Sunnet_NBFC.App_Code.ClsCommon.PreviewImage(Model.CO_ElectricBill.Trim());
                                     <td> <img src=@img alt="" height=100 width=200 /></td>
                                 }
                             </tr>
-
-
-
+                            <tr>
+                                <th colspan="4">Additional Details</th>
+                            </tr>
                             <tr>
 
                                 <th>Requested Loan Amount</th>
                                 <td>@Model.ReuestedLoanAmount</td>
-
-                                <th>Reuested Loan Tenure</th>
+                                <th>Reuested Loan Tenure(Months)</th>
                                 <td>@Model.ReuestedLoanTenure</td>
+                            </tr>
+                            <tr>
+                                <th>Monthly Self Income</th>
+                                <td>@Model.EstMonthIncome</td>
+                                <th>Monthly Family Income</th>
+                                <td>@Model.EstFamilyIncome</td>
+                            </tr>
+                            <tr>
+                                <th>Estimated Month Expense</th>
+                                <td>@Model.EstMonthExpense</td>
+                                <th>Current Month Obligation</th>
+                                <td>@Model.CurMonthObligation</td>
                             </tr>
                             if (Model.MainProductName.ToUpper() != "INDIVIDUAL LOAN")
                             {
@@ -302,13 +313,6 @@
                                     <td>@Model.RefenceMobileNo1</td>
                                 </tr>
                             }
-                            <tr>
-                                <th>Est Month Income</th>
-                                <td>@Model.EstMonthIncome</td>
-                                <th>Est Month Expense</th>
-                                <td>@Model.EstMonthExpense</td>
-
-                            </tr>
 
                         }
 
@@ -319,22 +323,20 @@
                                 <td>@Model.RepaymentType</td>
                                 <th>Purpose of Loan</th>
                                 <td>@Model.LoanPurpose</td>
-                                
+
                             </tr>
 
                         }
                         else if (Model.MainProductName.ToUpper() == "VEHICLE LOAN" || Model.MainProductName.ToUpper() == "TWO WHEELER LOAN" || Model.MainProductName.ToUpper() == "COMMERCIAL VEHICLE")
                         {
                             <tr>
+                                <th colspan="4">
+                                    Vechical Details
+                                </th>
+                            </tr>
+                            <tr>
                                 <th>No of Dependent</th>
                                 <td>@Model.NoofDependent</td>
-                                <th>Colletral Security Type</th>
-                                <td>@Model.ColletralSecurityType</td>
-                            </tr>
-
-                            <tr>
-                                <th>Cur Month Obligation</th>
-                                <td>@Model.CurMonthObligation</td>
                                 <th>FORecomed Amt</th>
                                 <td>@Model.FORecomedAmt</td>
                             </tr>
@@ -342,27 +344,32 @@
                             <tr>
                                 <th>Viechle No</th>
                                 <td>@Model.ViechleNo</td>
-                                <th>Viechle Reg Year</th>
-                                <td>@Model.ViechleRegYear</td>
-                            </tr>
-
-                            <tr>
-                                <th>Registration Year</th>
-                                <td>@Model.MFGYear</td>
                                 <th>Viechle Model</th>
                                 <td>@Model.ViechleModel</td>
-                            </tr>
 
+                            </tr>
                             <tr>
                                 <th>Viechle Color</th>
                                 <td>@Model.ViechleColor</td>
-                                <th>Viechle Company</th>
-                                <td>@Model.ViechleCompany</td>
+                                <th>Viechle Reg Year</th>
+                                <td>@Model.ViechleRegYear</td>
+                            </tr>
+                            <tr>
+                                <th>Registration Year</th>
+                                <td>@Model.ViechleRegYear</td>
+                                <th>Manufacturing Year</th>
+                                <td>@Model.MFGYear</td>
                             </tr>
 
                             <tr>
-                                <th>Viechle Owner</th>
+                                <th>Viechle Company</th>
+                                <td>@Model.ViechleCompany</td>
+                                <th>RC Name Owner</th>
                                 <td>@Model.ViechleOwner</td>
+                            </tr>
+                            <tr>
+                                <th>Expected Market Value</th>
+                                <td>@Model.EstValueViechle</td>
                                 <th>Fual Type</th>
                                 <td>@Model.FuelType</td>
                             </tr>
@@ -375,39 +382,29 @@
                             <tr>
                                 <th>Insurance Type</th>
                                 <td>@Model.InsuranceType</td>
-                                <th>Fual Type</th>
-                                <td>@Model.FuelType</td>
-                            </tr>
-                            <tr>
                                 <th>Validity Date</th>
                                 <td>@Model.ValidityDate</td>
+                            </tr>
+                            <tr>
+
                                 <th>Ex ShowRoom Price</th>
                                 <td>@Model.ExShowRoomPrice</td>
-                            </tr>
-                            <tr>
                                 <th>On Road Price</th>
                                 <td>@Model.OnRoadPrice</td>
+
+                            </tr>
+                            <tr>
                                 <th>Dealer</th>
                                 <td>@Model.DealerName</td>
-                            </tr>
-                            <tr>
                                 <th>Insurer</th>
                                 <td>@Model.Insurer</td>
+
+                            </tr>
+                            <tr>
                                 <th>Policy No</th>
                                 <td>@Model.PolicyNo</td>
-                            </tr>
-
-                            <tr>
                                 <th>Registration Date</th>
-                                <td colspan="3">@Model.RegistrationDate</td>
-                            </tr>
-                            <tr>
-                                <th>Purpose of Loan</th>
-                                <td colspan="3">@Model.LoanPurpose</td>
-                            </tr>
-                            <tr>
-                                <th>Remarks</th>
-                                <td colspan="3">@Model.UserRemarks</td>
+                                <td>@Model.RegistrationDate</td>
                             </tr>
                             <tr>
                                 <th>E-Rikshaw Maker</th>
@@ -415,6 +412,7 @@
                                 <th>Performa Invoice</th>
                                 <td>@Model.PerformaInvoice</td>
                             </tr>
+
 
                         }
                         else if (Model.MainProductName.ToString().ToUpper() == "BUSSINESS LOAN")
@@ -427,19 +425,11 @@
                             </tr>
 
                             <tr>
-                                <th>Cur Month Obligation</th>
-                                <td>@Model.CurMonthObligation</td>
                                 <th>Loan Recommend by FO</th>
                                 <td>@Model.FORecomedAmt</td>
-                            </tr>
-
-                            <tr>
-                                <th>Purpose of Loan</th>
-                                <td>@Model.LoanPurpose</td>
                                 <th>Estd Market Value</th>
                                 <td>@Model.EstValueofscurity</td>
                             </tr>
-
 
                             <tr>
                                 <th>Property Type</th>
@@ -450,12 +440,17 @@
                             <tr>
                                 <th>Property Address</th>
                                 <td>@Model.PropertyAddress</td>
-                                <th>Monthly Family Income</th>
-                                <td>@Model.EstFamilyIncome</td>
-                            </tr>
-                            
 
+                            </tr>
+                            <tr>
+                                <th>Purpose of Loan</th>
+                                <td>@Model.LoanPurpose</td>
+                            </tr>
                         }
+                        <tr>
+                            <th>Remarks</th>
+                            <td colspan="3">@Model.UserRemarks</td>
+                        </tr>
                         <tr>
                             <th>
                                 Send Back Remarks
@@ -476,28 +471,30 @@
                     <table class="table table-striped table-bordered" id="example10">
                         <thead>
                             <tr>
+                                <th>CIF</th>
+                                <th>Pan No</th>
+                                <th>Aadhar No</th>
                                 <th>Name</th>
                                 <th>Gender</th>
                                 <th>Dob</th>
                                 <th>MartialStatus</th>
-                                <th>Current Address</th>
-                                <th>Pincode</th>
-                                <th>State</th>
-                                <th>City</th>
-                                <th>Village</th>
-                                <th>District</th>
+                                <th>Coorespodance Address</th>
+                                <th>Coorespodance City</th>
+                                <th>Coorespodance District</th>
+                                <th>Coorespodance Village</th>
+                                <th>Coorespodance State</th>
+                                <th>Coorespodance Pincode</th>
                                 <th>Permanent Address</th>
-                                <th>Pincode</th>
-                                <th>State</th>
-                                <th>City</th>
-                                <th>Village</th>
-                                <th>District</th>
+                                <th>Permanent City</th>
+                                <th>Permanent District</th>
+                                <th>Permanent Village</th>
+                                <th>Permanent Pincode</th>
+                                <th>Permanent State</th>
                                 <th>Mobile No</th>
                                 <th>Email No</th>
-                                <th>Pan No</th>
-                                <th>Aadhar No</th>
+
                                 <th>Cibil Score</th>
-                                <th>CIF</th>
+
                                 <th>OwnerShip</th>
                             </tr>
                         </thead>
@@ -507,30 +504,29 @@
                                 foreach (var gurantor in ViewBag.gurantorslist)
                                 {
                                     <tr>
+                                        <td>@gurantor.G_CIF</td>
+                                        <td>@gurantor.G_AadharNo</td>
+                                        <td>@gurantor.G_PanNo</td>
                                         <td>@gurantor.G_Prefix @gurantor.G_FirstName @gurantor.G_MiddleName @gurantor.G_LastName</td>
                                         <td>@gurantor.G_Gender</td>
                                         <td>@gurantor.G_DOB</td>
                                         <td>@gurantor.G_Marital_Status</td>
                                         <td>@gurantor.G_PresentAddress</td>
-                                        <td>@gurantor.G_PresentPinCode</td>
-                                        <td>@gurantor.G_PresentStateId</td>
                                         <td>@gurantor.G_PresentCityId</td>
-                                        <td>@gurantor.G_PresentVillage</td>
                                         <td>@gurantor.G_PresentDistrict</td>
-
+                                        <td>@gurantor.G_PresentVillage</td>
+                                        <td>@gurantor.G_PresentStateId</td>
+                                        <td>@gurantor.G_PresentPinCode</td>
                                         <td>@gurantor.G_PermanentAddress</td>
+                                        <td>@gurantor.G_PermanentCityId</td>
+                                        <td>@gurantor.G_PermanentDistrict</td>
+                                        <td>@gurantor.G_PermanentVillage</td>
                                         <td>@gurantor.G_PermanentPincode</td>
                                         <td>@gurantor.G_PermanentStateId</td>
-                                        <td>@gurantor.G_PermanentCityId</td>
-                                        <td>@gurantor.G_PermanentVillage</td>
-                                        <td>@gurantor.G_PermanentDistrict</td>
-
                                         <td>@gurantor.G_Mobile_No</td>
                                         <td>@gurantor.G_EmailId</td>
-                                        <td>@gurantor.G_PanNo</td>
-                                        <td>@gurantor.G_AadharNo</td>
+
                                         <td>@gurantor.G_CibilScore</td>
-                                        <td>@gurantor.G_CIF</td>
                                         <td>@gurantor.G_OwnerShip</td>
                                     </tr>
                                 }
@@ -550,7 +546,7 @@
             @switch (ViewBag.Short_StageName)
             {
                 case "DocCol":
-                    if(ViewBag.MainProductName!="INDIVIDUAL LOAN")
+                    if (ViewBag.MainProductName != "INDIVIDUAL LOAN")
                     {
 
                         { Html.RenderAction("LeadCallingView", "LeadCalling"); }
@@ -583,7 +579,7 @@
                         { Html.RenderAction("LeadCallingView", "LeadCalling"); }
                         { Html.RenderAction("LeadDocumentView", "LeadDocument"); }
                     }
-                    
+
                     { Html.RenderAction("LeadCreditView", "LeadCredit"); }
                     { Html.RenderAction("LeadDocumentView", "LeadDocument"); }
                     { Html.RenderAction("LeadDocumentSigningView", "LeadDocumentSigning"); }
