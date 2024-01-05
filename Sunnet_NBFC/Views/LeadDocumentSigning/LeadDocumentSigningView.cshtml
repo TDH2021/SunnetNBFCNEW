@@ -1,15 +1,19 @@
-﻿@model IEnumerable<Sunnet_NBFC.Models.clsLeadDocSign>
+﻿@model Sunnet_NBFC.Models.clsLeadDocSign
+<style>
+	.table {
+		display: block;
+		overflow-x: auto;
+		white-space: nowrap;
+	}
 
-@*@{
-		ViewBag.Title = "Lead Documents Signing View";
-		Layout = "~/Views/Shared/_Layout.cshtml";
-	}*@
-
+		.table td, th {
+		}
+</style>
 <section class="content-header">
 	<div class="container-fluid">
 		<div class="row mb-2">
 			<div class="col-sm-6">
-				<h1>Lead Documents Signing View</h1>
+				<h1>Lead Documents Signing Details</h1>
 			</div>
 			<div class="col-sm-6">
 				<ol class="breadcrumb float-sm-right">
@@ -32,122 +36,192 @@
 				<div class="card">
 					<!-- /.card-header -->
 					<div class="card-body">
-						<table id="example1" class="table table-bordered table-striped">
+						<table class="table table-striped table-bordered table-hover table-responsive" style="display:table;"
+							   id="dataTables-example-DetailsDS">
 							<thead>
 								<tr>
 									<th>
 										@Html.DisplayNameFor(model => model.SanctionLetter)
 									</th>
+									<td>
+										@*@Html.DisplayFor(modelItem => item.SanctionLetter)*@
+										@Model.SanctionLetter
+									</td>
 									<th>
 										@Html.DisplayNameFor(model => model.LoanAgrmentKit)
 									</th>
+									<td>
+										@Model.LoanAgrmentKit
+									</td>
+								</tr>
+								<tr>
 									<th>
 										@Html.DisplayNameFor(model => model.PDC)
 									</th>
+									<td>
+										@Model.PDC
+									</td>
 									<th>
 										@Html.DisplayNameFor(model => model.NACH)
 									</th>
+									<td>
+										@Model.NACH
+									</td>
+
+								</tr>
+								<tr>
 									<th>
 										@Html.DisplayNameFor(model => model.Affidavit)
 									</th>
+									<td>
+										@Model.Affidavit
+									</td>
 									<th>
 										@Html.DisplayNameFor(model => model.RegisteredMortgageDeed)
 									</th>
+									<td>
+										@Model.RegisteredMortgageDeed
+									</td>
+								</tr>
+								<tr>
 									<th>
 										@Html.DisplayNameFor(model => model.EquitableMortageDeed)
 									</th>
+
+									<td>
+										@Model.EquitableMortageDeed
+									</td>
 									<th>
 										@Html.DisplayNameFor(model => model.BorrowerKyc)
 									</th>
+									<td>
+										@Model.BorrowerKyc
+									</td>
+								</tr>
+								<tr>
 									<th>
 										@Html.DisplayNameFor(model => model.CoBorrowerKyc)
 									</th>
+									<td>
+										@Model.CoBorrowerKyc
+									</td>
 									<th>
 										@Html.DisplayNameFor(model => model.GuarantorKyc)
 									</th>
+									<td>
+										@Model.GuarantorKyc
+									</td>
+								</tr>
+								<tr>
 									<th>
 										@Html.DisplayNameFor(model => model.BorrowerPhoto)
 									</th>
+									<td>
+										@Model.BorrowerPhoto
+									</td>
 									<th>
 										@Html.DisplayNameFor(model => model.CoBorrowerPhoto)
 									</th>
+									<td>
+										@Model.CoBorrowerPhoto
+									</td>
+								</tr>
+								<tr>
 									<th>
 										@Html.DisplayNameFor(model => model.GuarantorPhoto)
 									</th>
+									<td>
+										@Model.GuarantorPhoto
+									</td>
 									<th>
 										@Html.DisplayNameFor(model => model.SignatureVerification)
 									</th>
+
+									<td>
+										@Model.SignatureVerification
+									</td>
+								</tr>
+								<tr>
 									<th>
 										@Html.DisplayNameFor(model => model.DisbursementRequestLetter)
 									</th>
+									<td>
+										@Model.DisbursementRequestLetter
+									</td>
 									<th>
 										@Html.DisplayNameFor(model => model.KycSelfAttested)
 									</th>
+									<td>
+										@Model.KycSelfAttested
+									</td>
+								</tr>
+								<tr>
 									<th>
-										@Html.DisplayNameFor(model => model.Remarks)
+										@Html.DisplayNameFor(model => model.DsRemark)
 									</th>
-
+									<td colspan="3">
+										@Model.DsRemark
+									</td>
 								</tr>
 							</thead>
-							<tbody>
-								@foreach (var item in Model)
-								{
-									<tr>
-										<td>
-											@Html.DisplayFor(modelItem => item.SanctionLetter)
-										</td>
-										<td>
-											@Html.DisplayFor(modelItem => item.LoanAgrmentKit)
-										</td>
-										<td>
-											@Html.DisplayFor(modelItem => item.PDC)
-										</td>
-										<td>
-											@Html.DisplayFor(modelItem => item.NACH)
-										</td>
-										<td>
-											@Html.DisplayFor(modelItem => item.Affidavit)
-										</td>
-										<td>
-											@Html.DisplayFor(modelItem => item.RegisteredMortgageDeed)
-										</td>
-										<td>
-											@Html.DisplayFor(modelItem => item.EquitableMortageDeed)
-										</td>
-										<td>
-											@Html.DisplayFor(modelItem => item.BorrowerKyc)
-										</td>
-										<td>
-											@Html.DisplayFor(modelItem => item.GuarantorKyc)
-										</td>
-										<td>
-											@Html.DisplayFor(modelItem => item.BorrowerPhoto)
-										</td>
-										<td>
-											@Html.DisplayFor(modelItem => item.CoBorrowerPhoto)
-										</td>
-										<td>
-											@Html.DisplayFor(modelItem => item.GuarantorPhoto)
-										</td>
-										<td>
-											@Html.DisplayFor(modelItem => item.SignatureVerification)
-										</td>
-										<td>
-											@Html.DisplayFor(modelItem => item.DisbursementRequestLetter)
-										</td>
-										<td>
-											@Html.DisplayFor(modelItem => item.KycSelfAttested)
-										</td>
-										@*<td>
-												@Html.DisplayFor(modelItem => item.Documents)
-											</td>*@
-										<td>
-											@Html.DisplayFor(modelItem => item.Remarks)
-										</td>
+							@*<tbody>
+									@foreach (var item in Model)
+									{
+										<tr>
 
-									</tr>
-								}
-							</tbody>
+											<td>
+												@Html.DisplayFor(modelItem => item.LoanAgrmentKit)
+											</td>
+											<td>
+												@Html.DisplayFor(modelItem => item.PDC)
+											</td>
+											<td>
+												@Html.DisplayFor(modelItem => item.NACH)
+											</td>
+											<td>
+												@Html.DisplayFor(modelItem => item.Affidavit)
+											</td>
+											<td>
+												@Html.DisplayFor(modelItem => item.RegisteredMortgageDeed)
+											</td>
+											<td>
+												@Html.DisplayFor(modelItem => item.EquitableMortageDeed)
+											</td>
+											<td>
+												@Html.DisplayFor(modelItem => item.BorrowerKyc)
+											</td>
+											<td>
+												@Html.DisplayFor(modelItem => item.CoBorrowerKyc)
+											</td>
+
+											<td>
+												@Html.DisplayFor(modelItem => item.GuarantorKyc)
+											</td>
+											<td>
+												@Html.DisplayFor(modelItem => item.BorrowerPhoto)
+											</td>
+											<td>
+												@Html.DisplayFor(modelItem => item.CoBorrowerPhoto)
+											</td>
+											<td>
+												@Html.DisplayFor(modelItem => item.GuarantorPhoto)
+											</td>
+											<td>
+												@Html.DisplayFor(modelItem => item.SignatureVerification)
+											</td>
+											<td>
+												@Html.DisplayFor(modelItem => item.DisbursementRequestLetter)
+											</td>
+											<td>
+												@Html.DisplayFor(modelItem => item.KycSelfAttested)
+											</td>
+											<td>
+												@Html.DisplayFor(modelItem => item.Remarks)
+											</td>
+
+										</tr>
+									}
+								</tbody>*@
 						</table>
 						@*<div class="card-footer">
 								@Html.ActionLink("Export to Excel", "ExportToExcel", new { @class = "btn btn-primary" })

@@ -490,60 +490,63 @@ namespace Sunnet_NBFC.Controllers
         [Sunnet_NBFC.App_Code.SessionAttribute]
         public ActionResult LeadDocumentSigningView(clsLeadDocSign M)
         {
-            List<clsLeadDocSign> lst = new List<clsLeadDocSign>();
+            //List<clsLeadDocSign> lst = new List<clsLeadDocSign>();
+            clsLeadDocSign list = new clsLeadDocSign();
             try
             {
                 DataTable dtLeadDoc = new DataTable();
                 M.ReqType = "View";
                 M.CompanyId = ClsSession.CompanyID;
 
-                dtLeadDoc = DataInterface1.dbLeadDocSign(M);
+                //dtLeadDoc = DataInterface1.dbLeadDocSign(M);
                 //lst = DataInterface.ConvertDataTable<clsLeadDocSign>(dtLeadDoc);
                 using (DataTable dt = DataInterface1.dbLeadDocSign(M))
                 {
                     if (dt != null)
                     {
 
-                        List<clsLeadDocSign> list = new List<clsLeadDocSign>();
-                        list = (from DataRow dr in dt.Rows
+                        //List<clsLeadDocSign> list = new List<clsLeadDocSign>();
+                        //list = (from DataRow dr in dt.Rows
 
-                                select new clsLeadDocSign()
-                                {
+                        //        select new clsLeadDocSign()
+                        //        {
 
-                                    //MainProdId = int.Parse(dr["MainProdId"].ToString()),
-                                    DocSignId = int.Parse(dr["DocSignId"].ToString()),
-                                    LeadNo = dr["LeadNo"].ToString(),
-                                    Documents = dr["Documents"].ToString(),
-                                    SanctionLetter = dr["SanctionLetter"].ToString(),
-                                    LoanAgrmentKit = dr["LoanAgrmentKit"].ToString(),
-                                    PDC = dr["PDC"].ToString(),
-                                    NACH = dr["NACH"].ToString(),
-                                    DisbursmentKit = dr["DisbursmentKit"].ToString(),
-                                    InsuranceWithHP = dr["InsuranceWithHP"].ToString(),
-                                    NOC = dr["NOC"].ToString(),
-                                    RTOSlip = dr["RTOSlip"].ToString(),
-                                    OrignalPropertyPaper = dr["OrignalPropertyPaper"].ToString(),
-                                    RegisteredMortgageDeed = dr["RegisteredMortgageDeed"].ToString(),
-                                    EquitableMortageDeed = dr["EquitableMortageDeed"].ToString(),
-                                    Affidavit = dr["Affidavit"].ToString(),
-                                    DsRemark = dr["DsRemark"].ToString(),
-                                    //CreatedBy = int.Parse(dr["CreatedBy"].ToString()),
-                                    //UpdatedBy = int.Parse(dr["UpdatedBy"].ToString()),
-                                    //IsDelete = int.Parse(dr["IsDelete"].ToString()),
-                                    BorrowerKyc = dr["BorrowerKyc"].ToString(),
-                                    CoBorrowerKyc = dr["CoBorrowerKyc"].ToString(),
-                                    GuarantorKyc = dr["GuarantorKyc"].ToString(),
-                                    BorrowerPhoto = dr["BorrowerPhoto"].ToString(),
-                                    CoBorrowerPhoto = dr["CoBorrowerPhoto"].ToString(),
-                                    GuarantorPhoto = dr["GuarantorPhoto"].ToString(),
-                                    DisbursementRequestLetter = dr["DisbursementRequestLetter"].ToString(),
-                                    SignatureVerification = dr["SignatureVerification"].ToString(),
-                                    KycSelfAttested = dr["KycSelfAttested"].ToString(),
-                                    //ReqLoanAmt = dr["ReqLoanAmt"].ToString(),
-                                }).ToList();
+                        DataRow dr = dt.Rows[0];
+
+                        //MainProdId = int.Parse(dr["MainProdId"].ToString()),
+                        list.DocSignId = int.Parse(dr["DocSignId"].ToString());
+                        list.LeadNo = dr["LeadNo"].ToString();
+                        list.Documents = dr["Documents"].ToString();
+                        list.SanctionLetter = dr["SanctionLetter"].ToString();
+                        list.LoanAgrmentKit = dr["LoanAgrmentKit"].ToString();
+                        list.PDC = dr["PDC"].ToString();
+                        list.NACH = dr["NACH"].ToString();
+                        list.DisbursmentKit = dr["DisbursmentKit"].ToString();
+                        list.InsuranceWithHP = dr["InsuranceWithHP"].ToString();
+                        list.NOC = dr["NOC"].ToString();
+                        list.RTOSlip = dr["RTOSlip"].ToString();
+                        list.OrignalPropertyPaper = dr["OrignalPropertyPaper"].ToString();
+                        list.RegisteredMortgageDeed = dr["RegisteredMortgageDeed"].ToString();
+                        list.EquitableMortageDeed = dr["EquitableMortageDeed"].ToString();
+                        list.Affidavit = dr["Affidavit"].ToString();
+                        list.DsRemark = dr["DsRemark"].ToString();
+                        //CreatedBy = int.Parse(dr["CreatedBy"].ToString()),
+                        //UpdatedBy = int.Parse(dr["UpdatedBy"].ToString()),
+                        //IsDelete = int.Parse(dr["IsDelete"].ToString()),
+                        list.BorrowerKyc = dr["BorrowerKyc"].ToString();
+                        list.CoBorrowerKyc = dr["CoBorrowerKyc"].ToString();
+                        list.GuarantorKyc = dr["GuarantorKyc"].ToString();
+                        list.BorrowerPhoto = dr["BorrowerPhoto"].ToString();
+                        list.CoBorrowerPhoto = dr["CoBorrowerPhoto"].ToString();
+                        list.GuarantorPhoto = dr["GuarantorPhoto"].ToString();
+                        list.DisbursementRequestLetter = dr["DisbursementRequestLetter"].ToString();
+                        list.SignatureVerification = dr["SignatureVerification"].ToString();
+                        list.KycSelfAttested = dr["KycSelfAttested"].ToString();
+                        //ReqLoanAmt = dr["ReqLoanAmt"].ToString(),
+                        //}).ToList();
 
 
-                        lst = list;
+                        //lst = list;
                     }
                 }
 
@@ -562,7 +565,7 @@ namespace Sunnet_NBFC.Controllers
                     DataInterface.PostError(clse);
                 }
             }
-            return PartialView("LeadDocumentSigningView", lst);
+            return PartialView("LeadDocumentSigningView", list);
             //return View(lst);
         }
 
