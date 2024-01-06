@@ -289,6 +289,11 @@
                                 <th>Current Month Obligation</th>
                                 <td>@Model.CurMonthObligation</td>
                             </tr>
+                            <tr>
+                                <th>Purpose of Loan</th>
+                                <td>@Model.LoanPurpose</td>
+
+                            </tr>
                             if (Model.MainProductName.ToUpper() != "INDIVIDUAL LOAN")
                             {
                                 <tr>
@@ -321,9 +326,7 @@
                             <tr>
                                 <th>Repyament Type</th>
                                 <td>@Model.RepaymentType</td>
-                                <th>Purpose of Loan</th>
-                                <td>@Model.LoanPurpose</td>
-
+                                
                             </tr>
 
                         }
@@ -581,7 +584,6 @@
                     }
 
                     { Html.RenderAction("LeadCreditView", "LeadCredit"); }
-                    { Html.RenderAction("LeadDocumentView", "LeadDocument"); }
                     { Html.RenderAction("LeadDocumentSigningView", "LeadDocumentSigning"); }
                     break;
 

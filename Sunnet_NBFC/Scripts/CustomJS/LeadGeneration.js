@@ -1615,9 +1615,9 @@ function ValidationChk() {
             else if (FName.length == 0) {
                 swal("TDH", "Please enter customer first name", "error");
             }
-            //else if (FatherName.length == 0) {
-            //    swal("TDH", "Please enter customer father name.", "error");
-            //}
+            else if (FatherName.length == 0) {
+                swal("TDH", "Please enter customer father name.", "error");
+            }
             else if (MartialStatus == "Married" && SpouseName.length == 0) {
                 swal("TDH", "Please enter customer spouse name.", "error");
             }
@@ -1675,9 +1675,9 @@ function ValidationChk() {
             else if (MobileNumber1.length == 0) {
                 swal("TDH", "Please enter customer mobile number.", "error");
             }
-            else if (FatherMobileNumber.length == 0) {
-                swal("TDH", "Please enter father mobile number.", "error");
-            }
+            //else if (FatherMobileNumber.length == 0) {
+            //    swal("TDH", "Please enter father mobile number.", "error");
+            //}
 
             else if (MartialStatus == "Married" && SpouseMobileNumber.length == 0) {
                 swal("TDH", "Please enter spouse mobile number.", "error");
@@ -1978,9 +1978,9 @@ function ValidationChk() {
             else if (FName.length == 0) {
                 swal("TDH", "Please enter customer first name", "error");
             }
-            //else if (FatherName.length == 0) {
-            //    swal("TDH", "Please enter customer father name.", "error");
-            //}
+            else if (FatherName.length == 0) {
+                swal("TDH", "Please enter customer father name.", "error");
+            }
             else if (MartialStatus == "Married" && SpouseName.length == 0) {
                 swal("TDH", "Please enter customer spouse name.", "error");
             }
@@ -2038,9 +2038,9 @@ function ValidationChk() {
             else if (MobileNumber1.length == 0) {
                 swal("TDH", "Please enter customer mobile number.", "error");
             }
-            else if (FatherMobileNumber.length == 0) {
-                swal("TDH", "Please enter father mobile number.", "error");
-            }
+            //else if (FatherMobileNumber.length == 0) {
+            //    swal("TDH", "Please enter father mobile number.", "error");
+            //}
             else if (MartialStatus == "Married" && SpouseMobileNumber.length == 0) {
                 swal("TDH", "Please enter spouse mobile number.", "error");
             }
@@ -2437,9 +2437,9 @@ function ValidationChk() {
             else if (MobileNumber1.length == 0) {
                 swal("TDH", "Please enter customer mobile number.", "error");
             }
-            else if (FatherMobileNumber.length == 0) {
-                swal("TDH", "Please enter father mobile number.", "error");
-            }
+            //else if (FatherMobileNumber.length == 0) {
+            //    swal("TDH", "Please enter father mobile number.", "error");
+            //}
 
             else if (MartialStatus == "Married" && SpouseMobileNumber.length == 0) {
                 swal("TDH", "Please enter spouse mobile number.", "error");
@@ -2736,9 +2736,9 @@ function ValidationChk() {
             else if (MobileNumber1.length == 0) {
                 swal("TDH", "Please enter customer mobile number.", "error");
             }
-            else if (FatherMobileNumber.length == 0) {
-                swal("TDH", "Please enter father mobile number.", "error");
-            }
+            //else if (FatherMobileNumber.length == 0) {
+            //    swal("TDH", "Please enter father mobile number.", "error");
+            //}
 
             else if (MartialStatus == "Married" && SpouseMobileNumber.length == 0) {
                 swal("TDH", "Please enter spouse mobile number.", "error");

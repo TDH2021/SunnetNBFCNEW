@@ -190,6 +190,7 @@ public class DataInterface1 : IDisposable
                 sqlCommand.Parameters.AddWithValue("@ProductName", cls.ProductName);
                 sqlCommand.Parameters.AddWithValue("@CustTypeRequried", cls.CustTypeRequried);
                 sqlCommand.Parameters.AddWithValue("@CompanyId", cls.CompanyId);
+                sqlCommand.Parameters.AddWithValue("@ReportProductName", cls.ReportProductName);
                 dt = db.FillTableProc(sqlCommand, "USP_Product");
             }
         }

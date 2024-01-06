@@ -332,7 +332,11 @@ namespace Sunnet_NBFC.Controllers
                 string LeadCustId = "";
                 string IsReceived = "";
                 string Remarks = "";
-
+                clsLeadDocument cls = new clsLeadDocument();
+                cls.LeadId = M.LeadId;
+                cls.ReqType = "DeleteAll";
+                DataInterface1.dbLeadDocument(cls);
+                cls = null;
                 for (int i = 1; i <= Total; i++)
                 {
                     DocID = "";
@@ -364,14 +368,15 @@ namespace Sunnet_NBFC.Controllers
                     DocumentModel.CompanyId = ClsSession.CompanyID;
                     if (DocumentModel.IsReceived == true)
                     {
-                        if (DocumentModel.DcId <= 0)
-                        {
-                            DocumentModel.ReqType = "Insert";
-                        }
-                        else
-                        {
-                            DocumentModel.ReqType = "Update";
-                        }
+                        DocumentModel.ReqType = "Insert";
+                        //if (DocumentModel.DcId <= 0)
+                        //{
+                        //    DocumentModel.ReqType = "Insert";
+                        //}
+                        //else
+                        //{
+                        //    DocumentModel.ReqType = "Update";
+                        //}
 
                         dt = DataInterface1.dbLeadDocument(DocumentModel);
 

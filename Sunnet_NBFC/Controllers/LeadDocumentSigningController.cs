@@ -355,7 +355,7 @@ namespace Sunnet_NBFC.Controllers
                 {
                     M.ReqType = "Update";
                 }
-
+                M.DsRemark = M.Remarks;
                 dt = DataInterface1.dbLeadDocSign(M);
 
                 //ClsCommon.GETClassFromDt(dt, ref clsRtn);

@@ -63,9 +63,12 @@
 										@Html.DropDownListFor(model => model.CustTypeRequried, domainsList as SelectList, new { @class = "form-control" })
 
 									</div>
-									<div class="col-md-6">
+                                    <div class="col-md-6">
 
-									</div>
+                                        <label for="exampleInputEmail1">Report Product Name</label>
+                                        @Html.TextBoxFor(model => model.ReportProductName, new { @class = "form-control", @placeholder = "Enter Report Product Name", @name = "Product Name", @maxlength = "50", @requried = "true" })
+                                        @Html.ValidationMessageFor(model => model.ReportProductName, "", new { @class = "text-danger" })
+                                    </div>
 								</div>
 							</div>
 
@@ -84,9 +87,6 @@
 	</section>
 
 }
-<script src="~/plugins/jquery/jquery.min.js"></script>
-<script src="~/plugins/jquery/jquery.validate.min.js"></script>
-<script src="~/plugins/jquery/jquery.validate.unobtrusive.min.js"></script>
 
 @*@if (ViewBag.Message != null)
 	{

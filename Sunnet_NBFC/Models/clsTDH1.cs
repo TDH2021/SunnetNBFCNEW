@@ -120,7 +120,7 @@ namespace Sunnet_NBFC.Models
         [DisplayName("Main Product")]
         public string MainProduct { get; set; }
         public string CustTypeName { get; set; }
-
+        public string ReportProductName { get; set; }
         bool disposed = false;
 
         // Public implementation of Dispose pattern callable by consumers.

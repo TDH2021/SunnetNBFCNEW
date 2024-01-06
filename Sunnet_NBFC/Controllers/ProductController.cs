@@ -93,7 +93,7 @@ namespace Sunnet_NBFC.Controllers
                     clse.FunctionName = "Add Product";
                     clse.Link = "Product/AddProduct";
                     clse.PageName = "Product Controller";
-                    clse.UserId = "1";
+                    clse.UserId = ClsSession.EmpId.ToString();
                     DataInterface.PostError(clse);
                 }
             }
@@ -122,6 +122,7 @@ namespace Sunnet_NBFC.Controllers
                     clsdt.MainProdId = int.Parse(dt.Rows[0]["MainProdId"].ToString());
                     clsdt.ProductName = dt.Rows[0]["ProductName"].ToString();
                     clsdt.CustTypeRequried = dt.Rows[0]["CustTypeRequried"].ToString();
+                    clsdt.ReportProductName = dt.Rows[0]["ReportProductName"].ToString();
                 }
                 ViewBag.ddlmp = ClsCommon.ToSelectList(DataInterface1.GetMainProductddl("view"), "MainProdId", "ProductName");
                 return View(clsdt);
@@ -141,7 +142,7 @@ namespace Sunnet_NBFC.Controllers
                 {
 
                     cls.ReqType = "Update";
-                    cls.CompanyId = 1;
+                    cls.CompanyId = ClsSession.CompanyID;
                     cls.IsDelete = 0;
                     using (DataTable dt = DataInterface1.GetProduct(cls))
                     {
