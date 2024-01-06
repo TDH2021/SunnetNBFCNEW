@@ -57,10 +57,13 @@
                                 </tr>
                             </tfoot>
                         </table>
+
+
                         @*<div class="card-footer">
                                 @Html.ActionLink("Export to Excel", "ExportToExcel", new { @class = "btn btn-primary" })
                             </div>*@
                     </div>
+                    <div id="chartContainer" style="height: 370px; width: 100%;"></div>
                     <!-- /.card-body -->
 
 
@@ -73,5 +76,25 @@
     </div>
 
 </section>
+<script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+<script>
+window.onload = function () {
+    alert("A");
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	title: {
+		text: "Lead Data Summary"
+	},
+	data: [{
+		type: "doughnut",
+		startAngle: 60,
+		indexLabelFontSize: 16,
+		indexLabel: "{label} - {y}%",
+		toolTipContent: "<b>{label}:</b> {y}%",
+		dataPoints: @Html.Raw(ViewBag.DataPoints)
+	}]
+});
+chart.render();
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.2/Chart.bundle.min.js"></script>
+}
+</script>

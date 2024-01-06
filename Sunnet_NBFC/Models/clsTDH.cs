@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using System.Runtime.Serialization;
 namespace Sunnet_NBFC.Models
 {
 
@@ -1009,3 +1009,85 @@ public class clsDashboard : IDisposable
 }
 
 
+public class clsChart : IDisposable
+{
+    public string cnt { get; set; }
+    public string Stage_Name { get; set; }
+    bool disposed = false;
+
+    // Public implementation of Dispose pattern callable by consumers.
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    // Protected implementation of Dispose pattern.
+    protected virtual void Dispose(bool disposing)
+    {
+        if (disposed)
+            return;
+
+        if (disposing)
+        {
+            // Free any other managed objects here.
+            //
+        }
+
+        // Free any unmanaged objects here.
+        //
+        disposed = true;
+    }
+
+    ~clsChart()
+    {
+        Dispose(false);
+    }
+}
+
+[DataContract]
+public class DataPoint : IDisposable
+{
+    public DataPoint(string label, double y)
+    {
+        this.Label = label;
+        this.Y = y;
+    }
+
+    [DataMember(Name = "label")]
+    public string Label = "";
+
+    //Explicitly setting the name to be used while serializing to JSON.
+    [DataMember(Name = "y")]
+    public Nullable<double> Y = null;
+    bool disposed = false;
+
+    // Public implementation of Dispose pattern callable by consumers.
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    // Protected implementation of Dispose pattern.
+    protected virtual void Dispose(bool disposing)
+    {
+        if (disposed)
+            return;
+
+        if (disposing)
+        {
+            // Free any other managed objects here.
+            //
+        }
+
+        // Free any unmanaged objects here.
+        //
+        disposed = true;
+    }
+
+    ~DataPoint()
+    {
+        Dispose(false);
+    }
+}

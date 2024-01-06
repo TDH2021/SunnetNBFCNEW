@@ -154,6 +154,7 @@
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
@@ -516,28 +517,6 @@
     <Content Include="EmailTemplates\SenctionLetter.html" />
     <Content Include="ErrorPage.html" />
     <Content Include="favicon.ico" />
-    <Content Include="FusionCharts\FCF_Area2D.swf" />
-    <Content Include="FusionCharts\FCF_Bar2D.swf" />
-    <Content Include="FusionCharts\FCF_Candlestick.swf" />
-    <Content Include="FusionCharts\FCF_Column2D.swf" />
-    <Content Include="FusionCharts\FCF_Column3D.swf" />
-    <Content Include="FusionCharts\FCF_Doughnut2D.swf" />
-    <Content Include="FusionCharts\FCF_Funnel.swf" />
-    <Content Include="FusionCharts\FCF_Gantt.swf" />
-    <Content Include="FusionCharts\FCF_Line.swf" />
-    <Content Include="FusionCharts\FCF_MSArea2D.swf" />
-    <Content Include="FusionCharts\FCF_MSBar2D.swf" />
-    <Content Include="FusionCharts\FCF_MSColumn2D.swf" />
-    <Content Include="FusionCharts\FCF_MSColumn2DLineDY.swf" />
-    <Content Include="FusionCharts\FCF_MSColumn3D.swf" />
-    <Content Include="FusionCharts\FCF_MSColumn3DLineDY.swf" />
-    <Content Include="FusionCharts\FCF_MSLine.swf" />
-    <Content Include="FusionCharts\FCF_Pie2D.swf" />
-    <Content Include="FusionCharts\FCF_Pie3D.swf" />
-    <Content Include="FusionCharts\FCF_StackedArea2D.swf" />
-    <Content Include="FusionCharts\FCF_StackedBar2D.swf" />
-    <Content Include="FusionCharts\FCF_StackedColumn2D.swf" />
-    <Content Include="FusionCharts\FCF_StackedColumn3D.swf" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="dist\img\sunitlogo.png" />
@@ -2504,6 +2483,7 @@
     <Content Include="Scripts\Scripts\angular.min.js" />
     <Content Include="Scripts\Scripts\bootstrap.js" />
     <Content Include="Scripts\Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Scripts\canvasjs.min.js" />
     <Content Include="Scripts\Scripts\FileSaver.min.js" />
     <Content Include="Scripts\Scripts\home-index.js" />
     <Content Include="Scripts\Scripts\i18n\angular-locale_lrc.js" />
