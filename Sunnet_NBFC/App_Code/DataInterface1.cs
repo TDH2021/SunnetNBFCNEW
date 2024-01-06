@@ -79,6 +79,28 @@ public class DataInterface1 : IDisposable
         return dt;
     }
 
+    public static DataTable UpdateLetterFilesInLead(clsFilesLead cls)
+    {
+        DataTable dt = new DataTable();
+        using (DBOperation db = new DBOperation())
+        {
+            using (SqlCommand sqlCommand = new SqlCommand())
+            {
+                sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                sqlCommand.Parameters.AddWithValue("@ReqType", cls.ReqType);
+                sqlCommand.Parameters.AddWithValue("@LeadId", cls.leadid);
+                sqlCommand.Parameters.AddWithValue("@SanctionLetter", cls.SanctionLetter);
+                sqlCommand.Parameters.AddWithValue("@WelcomeLetter", cls.WelcomeLetter);
+                sqlCommand.Parameters.AddWithValue("@RepyamentLetter", cls.RepyamentLetter);
+                dt = db.FillTableProc(sqlCommand, "Usp_UpdateLetterFilesInLead");
+            }
+
+
+        }
+        return dt;
+    }
+
+
     public static DataTable GetState()
     {
         DataTable dt = new DataTable();

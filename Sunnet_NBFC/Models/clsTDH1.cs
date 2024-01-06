@@ -11,6 +11,50 @@ using System.Web.Mvc;
 namespace Sunnet_NBFC.Models
 {
 
+    public class clsFilesLead : IDisposable
+    {
+        public string ReqType { get; set; }
+        public int leadid { get; set; }
+
+        public string SanctionLetter { get; set; }
+
+
+        public string WelcomeLetter { get; set; }
+
+        public string RepyamentLetter { get; set; }
+        bool disposed = false;
+
+        // Public implementation of Dispose pattern callable by consumers.
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        // Protected implementation of Dispose pattern.
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposed)
+                return;
+
+            if (disposing)
+            {
+                // Free any other managed objects here.
+                //
+            }
+
+            // Free any unmanaged objects here.
+            //
+            disposed = true;
+        }
+
+        ~clsFilesLead()
+        {
+            Dispose(false);
+        }
+
+    }
+
     public class clsCity : IDisposable
     {
         public string ReqType { get; set; }

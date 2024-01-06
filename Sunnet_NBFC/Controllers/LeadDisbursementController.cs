@@ -341,6 +341,22 @@ namespace Sunnet_NBFC.Controllers
                     string slname = DownloadSanctionLetter(M.LeadId, M.LeadNo);
                     string wlname = DownloadWelcomeLetter(M.LeadId, M.LeadNo);
                     string rlname = DownloadRepyamentLetter(M.LeadId, M.LeadNo);
+                    try
+                    {
+                        using (clsFilesLead clsfl = new clsFilesLead())
+                        {
+                            clsfl.leadid = M.LeadId;
+                            clsfl.SanctionLetter = slname;
+                            clsfl.WelcomeLetter = wlname;
+                            clsfl.RepyamentLetter = rlname;
+                            clsfl.ReqType = "Update";
+                            DataTable dtupdate = DataInterface1.UpdateLetterFilesInLead(clsfl);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
                     downloadZipFile(M.LeadNo, slname, wlname, rlname);
                     M.ReqType = "UpdateStatus";
                     M.Status = "A";
@@ -417,7 +433,7 @@ namespace Sunnet_NBFC.Controllers
                 }
             }
 
-            return PartialView("LeadDisbursementView",lst);
+            return PartialView("LeadDisbursementView", lst);
         }
 
 
@@ -505,7 +521,7 @@ namespace Sunnet_NBFC.Controllers
 
         }
 
-   
+
         public string DownloadWelcomeLetter(int? leadid, string leadno)
         {
             string FileName = "";
