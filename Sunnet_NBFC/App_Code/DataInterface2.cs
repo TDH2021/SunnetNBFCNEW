@@ -1555,7 +1555,7 @@ public class DataInterface2 : DataInterface, IDisposable
                     cmd.Parameters.AddWithValue("@MaxNo", cls.MaxNo);
                     cmd.Parameters.AddWithValue("@CreatedBy", cls.CreatedBy);
                     cmd.Parameters.AddWithValue("@UpdatedBy", cls.UpdateBy);
-
+                    cmd.Parameters.AddWithValue("@BranchId", cls.BranchId);
                     dt = db.FillTableProc(cmd, "USP_Center");
 
                 }

@@ -29,6 +29,34 @@
 });
 
 
+$('#ddlBranch').change(function () {
+    var BranchId = $("#ddlBranch option:selected").val();
+    if (BranchId.length == 0) {
+        var s = '<option value="">- Select Center -</option>'
+        $('#ddlCenter').html(s);
+    } else {
+
+        var s = '<option value="">- Select Center-</option>'
+        $('#ddlCenter').html(s);
+        $.ajax({
+            url: "/Center/GetCenter",
+            type: "Get",
+            dataType: "json",
+            data: {
+                BranchId: BranchId
+            },
+            success: function (result) {
+
+                var data = JSON.parse(result);
+                for (var i = 0; i < data.length; i++) {
+                    var opt = new Option(data[i].CenterName, data[i].CenterId);
+                    $('#ddlCenter').append(opt);
+                }
+            }
+        });
+    }
+});
+
 function isNumber(evt) {
     var charCode = (window.event.which) ? window.event.which : window.event.keyCode
     if (charCode > 31 && charCode != 46 && (charCode < 48 || charCode > 57)) {

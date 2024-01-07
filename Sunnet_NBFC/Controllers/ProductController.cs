@@ -300,13 +300,13 @@ namespace Sunnet_NBFC.Controllers
             {
                 using (clsError cls = new clsError())
                 {
-                    cls.ReqType = "GetProduct";
+                    cls.ReqType = "GetCenter";
                     cls.Mode = "WEB";
                     cls.ErrorDescrption = e1.Message + "-" + e1.InnerException.Message;
-                    cls.FunctionName = "GetProduct";
-                    cls.Link = "Company/GetProduct";
+                    cls.FunctionName = "GetCenter";
+                    cls.Link = "Company/GetCenter";
                     cls.PageName = "Product Controller";
-                    cls.UserId = "1";
+                    cls.UserId = ClsSession.EmpId.ToString();
                     DataInterface.PostError(cls);
                 }
             }

@@ -78,19 +78,6 @@ namespace Sunnet_NBFC.Controllers
                                     }
                                 }
                             }
-
-                            //List<DataPoint> dataPoints = new List<DataPoint>();
-
-                            //dataPoints.Add(new DataPoint("Herbal Medicines", 41));
-                            //dataPoints.Add(new DataPoint("Aroma Therapy", 22));
-                            //dataPoints.Add(new DataPoint("Homeopathy", 9));
-                            //dataPoints.Add(new DataPoint("Acupuncture", 7));
-                            //dataPoints.Add(new DataPoint("Massage Therapy", 5));
-                            //dataPoints.Add(new DataPoint("Reflexology", 6));
-                            //dataPoints.Add(new DataPoint("Osteopathy", 5));
-                            //dataPoints.Add(new DataPoint("Chiropractic", 5));
-
-
                         }
                         else
                         {
@@ -103,9 +90,7 @@ namespace Sunnet_NBFC.Controllers
                                 {
                                     if (dt.Rows.Count > 0)
                                     {
-
                                         lst = (from DataRow row in dt.Rows
-
                                                select new clsDashboard()
                                                {
                                                    cnt = row["cnt"].ToString(),
@@ -113,8 +98,28 @@ namespace Sunnet_NBFC.Controllers
                                                    Stage_Name = row["Stage_Name"].ToString(),
 
                                                }).ToList();
-
                                         ViewBag.lst = lst;
+                                    }
+                                }
+                            }
+                            cls.ReqType = "ViewChart";
+                            using (DataTable dt = DataInterface.DBDashBoard(cls))
+                            {
+                                if (dt != null)
+                                {
+                                    if (dt.Rows.Count > 0)
+                                    {
+                                        object sum = dt.Compute("Sum(cnt)", "");
+                                        double Totalsum = Convert.ToDouble(sum);
+                                        foreach (DataRow row in dt.Rows)
+                                        {
+                                            double val1 = (double.Parse(row["cnt"].ToString()) / Totalsum) * 100;
+                                            double val = Math.Round(val1, 2);
+                                            lstchart.Add(new DataPoint(row["Stage_Name"].ToString(), val));
+                                            //lstchart.Add(new DataPoint(row["Stage_Name"].ToString(),5 ));
+                                        }
+
+                                        ViewBag.DataPoints = JsonConvert.SerializeObject(lstchart);
                                     }
                                 }
                             }

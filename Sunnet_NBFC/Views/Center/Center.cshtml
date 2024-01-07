@@ -48,12 +48,19 @@
                             <div class="form-group">
                                 <div class="row">
 
+                                    <div class="col-md-6">
+                                        <label class="required" for="exampleInputEmail1">Branch</label>
+                                        @Html.DropDownListFor(model => model.BranchId, ViewBag.BranchList as SelectList, "- Select Branch- ",
+                                  new { @class = "form-control select2", @id = "ddlBranch" })
 
-                                    <div class="col-md-12">
+                                        @Html.ValidationMessageFor(model => model.BranchId, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-6">
                                         @Html.LabelFor(model => model.CenterName, htmlAttributes: new { @class = "control-label" })
                                         @Html.EditorFor(model => model.CenterName, new { htmlAttributes = new { @class = "form-control" } })
                                         @Html.ValidationMessageFor(model => model.CenterName, "", new { @class = "text-danger" })
                                     </div>
+
                                     <div class="col-md-6" style="display:none;">
                                         @Html.LabelFor(model => model.CenterHead, htmlAttributes: new { @class = "control-label" })
                                         @Html.EditorFor(model => model.CenterHead, new { htmlAttributes = new { @class = "form-control" } })
@@ -115,7 +122,7 @@
     <script type="text/javascript">
 
             window.onload = function () {
-                swal("TDH","@ViewBag.Success","success");
+                swal("TDH","@ViewBag.Success","succes");
             };
     </script>
 }

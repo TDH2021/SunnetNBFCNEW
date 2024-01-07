@@ -50,6 +50,7 @@ namespace Sunnet_NBFC.Controllers
                 {
                     cls.ReqType = "View";
                     cls.CompanyID = ClsSession.CompanyID;
+                    cls.IsDelete = 0;
                     ViewBag.BranchList = ClsCommon.ToSelectList(DataInterface2.ViewBranch(cls), "BranchId", "BranchName");
                 }
                 ViewBag.RelationList = ClsCommon.ToSelectList(DataInterface2.GetMiscForDDL("Relation"), "MiscId", "MiscName");

@@ -87,23 +87,23 @@
 
                             </div>
                             <div class="row" id="divPersonal">
+                                <div class="col-md-6">
+                                    <label class="required" for="exampleInputEmail1">Branch</label>
+                                    @Html.DropDownListFor(model => model.PLLoanBranch, ViewBag.BranchList as SelectList, "- Select Branch- ",
+                                   new { @class = "form-control", @id = "ddlBranch" })
+
+                                </div>
 
                                 <div class="col-md-6">
                                     <label class="required" for="exampleInputEmail1">Center</label>
 
-                                    @Html.DropDownListFor(model => model.CenterId, ViewBag.CenterList as SelectList, "- Select Center- ",
-                                   new { @class = "form-control select2", @id = "ddlCenter" })
+                                    @Html.DropDownListFor(model => model.CenterId,
+                                       new SelectList(Enumerable.Empty<SelectListItem>(), "CenterId", "CenterName"),
+                                       "Select Center", new { @class = "form-control", @id = "ddlCenter" })
 
 
-                                </div>
-
-                                <div class="col-md-6">
-                                    <label class="required" for="exampleInputEmail1">Branch</label>
-                                    @Html.DropDownListFor(model => model.PLLoanBranch, ViewBag.BranchList as SelectList, "- Select Branch- ",
-                                   new { @class = "form-control select2", @id = "ddlBranch" })
 
                                 </div>
-
 
                             </div>
 

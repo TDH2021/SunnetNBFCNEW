@@ -11,6 +11,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI;
 using Sunnet_NBFC.App_Code;
 using System.Diagnostics;
+using Newtonsoft.Json;
 
 namespace Sunnet_NBFC.Controllers
 {
@@ -287,9 +288,6 @@ namespace Sunnet_NBFC.Controllers
                         clsE.UserId = ClsSession.EmpId.ToString();
                         DataInterface.PostError(clsE);
                     }
-
-
-
                 }
 
                 //-------------------State---------------------------------

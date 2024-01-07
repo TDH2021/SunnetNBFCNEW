@@ -10,6 +10,7 @@ using System.Data;
 using System.Web.UI.WebControls;
 using System.Web.UI;
 using Sunnet_NBFC.App_Code;
+using Newtonsoft.Json;
 
 namespace Sunnet_NBFC.Controllers
 {
@@ -25,6 +26,12 @@ namespace Sunnet_NBFC.Controllers
             {
                 clsCenter M = new clsCenter();
 
+                using (clsBranch cls = new clsBranch())
+                {
+                    cls.ReqType = "View";
+                    cls.CompanyID = ClsSession.CompanyID;
+                    ViewBag.BranchList = ClsCommon.ToSelectList(DataInterface2.ViewBranch(cls), "BranchId", "BranchName");
+                }
                 if (Id != null && Id > 0)
                 {
                     using (clsCenter cls = new clsCenter())
@@ -47,6 +54,7 @@ namespace Sunnet_NBFC.Controllers
                                     M.CompanyID = int.Parse(dt.Rows[0]["CompanyId"].ToString());
                                     M.MaxNo = int.Parse(dt.Rows[0]["MaxNo"].ToString());
                                     M.IsDelete = int.Parse(dt.Rows[0]["IsDELETE"].ToString());
+                                    M.BranchId= int.Parse(dt.Rows[0]["BranchId"].ToString());
                                     if (dt.Rows[0]["CreatedBy"].ToString() != "")
                                     {
                                         M.CreatedBy = int.Parse(dt.Rows[0]["CreatedBy"].ToString());
@@ -144,6 +152,7 @@ namespace Sunnet_NBFC.Controllers
                                      CompanyID = int.Parse(row["CompanyId"].ToString()),
                                      MaxNo = int.Parse(row["MaxNo"].ToString()),
                                      CenterHead = row["CenterHead"].ToString(),
+                                     BranchId = int.Parse(row["BranchId"].ToString()),
                                  }).ToList();
                         }
                     }
@@ -198,11 +207,7 @@ namespace Sunnet_NBFC.Controllers
                             return View(cls);
                         }
                     }
-
-
-                }
-               
-
+                }              
                 return RedirectToAction("CenterView", "Center");
 
             }
@@ -211,10 +216,47 @@ namespace Sunnet_NBFC.Controllers
                 throw ex;
                 //return RedirectToAction("Index");
             }
-
         }
 
+        public JsonResult GetCenter(string BranchId)
+        {
+            JsonResult result = new JsonResult();
+
+            try
+            {
+
+                using (clsCenter cls = new clsCenter())
+                {
+                    cls.ReqType = "View";
+                    cls.BranchId = int.Parse(BranchId);
+                    cls.IsDelete = 0;
+                    using (DataTable dt = DataInterface2.DBCenter(cls))
+                    {
+                        result = this.Json(JsonConvert.SerializeObject(dt), JsonRequestBehavior.AllowGet);
+
+                    }
 
 
+                }
+
+            }
+            catch (Exception e1)
+            {
+                using (clsError cls = new clsError())
+                {
+                    cls.ReqType = "GetProduct";
+                    cls.Mode = "WEB";
+                    cls.ErrorDescrption = e1.Message + "-" + e1.InnerException.Message;
+                    cls.FunctionName = "GetCenter";
+                    cls.Link = "Company/GetCenter";
+                    cls.PageName = "Center Controller";
+                    cls.UserId = ClsSession.EmpId.ToString();
+                    DataInterface.PostError(cls);
+                }
+            }
+
+            return result;
+
+        }
     }
 }

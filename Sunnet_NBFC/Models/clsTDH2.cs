@@ -857,6 +857,7 @@ namespace Sunnet_NBFC.Models
         public int CreatedBy { get; set; }
         public int UpdateBy { get; set; }
         public int IsDelete { get; set; }
+        public int BranchId { get; set; }
         bool disposed = false;
 
         public void Dispose()
