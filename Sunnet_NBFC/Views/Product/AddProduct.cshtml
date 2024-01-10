@@ -20,7 +20,7 @@
 </section>
 @using (Html.BeginForm("PostProduct", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-	@*@Html.AntiForgeryToken()*@
+	@Html.AntiForgeryToken()
 	<section class="content">
 		<div class="container-fluid">
 			<div class="row">
