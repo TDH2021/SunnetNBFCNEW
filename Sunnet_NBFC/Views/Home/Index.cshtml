@@ -7,63 +7,67 @@
             <div class="col-12">
 
                 <!-- /.card -->
-                <div class="card">
-                    <!-- /.card-header -->
-                    <div class="card-body">
-                        <table id="example1" class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <div class="card">
+                        <div class="form-group">
 
-                                    <th>Count</th>
-                                    <th>Stage</th>
-                                    <th>-</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <table id="example" class="table table-bordered table-striped">
+                                        
+                                        <thead>
+                                            <tr>
+                                                <th colspan="3">
+                                                    Lead Data Summary
+                                                </th>
+                                            </tr>
+                                            <tr>
 
-                                @if (ViewBag.lst != null)
-                                {
+                                                <th>Count</th>
+                                                <th>Stage</th>
+                                                <th>-</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
 
-
-                                    foreach (var item in ViewBag.lst)
-                                    {
-
-                                        <tr>
-
-                                            <td>@item.cnt</td>
-                                            <td>@item.Stage_Name</td>
-
-                                            <td>
-                                                <div class="d-flex order-actions">
-                                                    <a href="@Url.Action("LeadFinalApprove", "LeadFinalApprove", new { ShortStage_Name = item.ShortStage_Name})"
-                                                       data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Document"><u>Click </u></a>
-                                                </div>
-
-                                            </td>
+                                            @if (ViewBag.lst != null)
+                                            {
 
 
-                                        </tr>
-                                    }
+                                                foreach (var item in ViewBag.lst)
+                                                {
 
-                                }
+                                                    <tr>
 
+                                                        <td>@item.cnt</td>
+                                                        <td>@item.Stage_Name</td>
 
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>Count</th>
-                                    <th>Stage</th>
-                                    <th>-</th>
-                                </tr>
-                            </tfoot>
-                        </table>
+                                                        <td>
+                                                            <div class="d-flex order-actions">
+                                                                <a href="@Url.Action("LeadFinalApprove", "LeadFinalApprove", new { ShortStage_Name = item.ShortStage_Name})"
+                                                                   data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Document"><u>Click </u></a>
+                                                            </div>
+
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            }
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+                                </div>
+                            </div>
+                        </div>
 
 
                         @*<div class="card-footer">
-                                @Html.ActionLink("Export to Excel", "ExportToExcel", new { @class = "btn btn-primary" })
-                            </div>*@
+                    @Html.ActionLink("Export to Excel", "ExportToExcel", new { @class = "btn btn-primary" })
+                </div>*@
                     </div>
-                    <div id="chartContainer" style="height: 370px; width: 100%;"></div>
                     <!-- /.card-body -->
 
 
@@ -79,7 +83,7 @@
 <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
 <script>
 window.onload = function () {
-    alert("A");
+/*    alert("A");*/
 var chart = new CanvasJS.Chart("chartContainer", {
 	animationEnabled: true,
 	title: {
