@@ -417,6 +417,28 @@ namespace Sunnet_NBFC.Controllers
                 dtLeadDoc = ds.Tables[0];
                 lst = DataInterface.ConvertDataTable<clsDisbursement>(dtLeadDoc);
 
+                using (DataTable dt = dtLeadDoc)
+                {
+                    if (dt != null)
+                    {
+                        lst = (from DataRow dr in dt.Rows
+
+                                  select new clsDisbursement()
+                                  {
+                                      BeneficiaryName = dr["BeneficiaryName"].ToString(),
+                                      BeneficiaryAccountNo = dr["BeneficiaryAccountNo"].ToString(),
+                                      IfscCode = dr["IfscCode"].ToString(),
+                                      NetDisbursementAmount = decimal.Parse(dr["NetDisbursementAmount"].ToString()),
+                                      Tenure = int.Parse(dr["Tenure"].ToString()),
+                                      PaymentMode = dr["PaymentMode"].ToString(),
+                                      UtrNo = dr["UtrNo"].ToString(),
+                                      LoanStartDate = dr["LoanStartDate"].ToString(),
+                                      LeadId =int.Parse(dr["LeadId"].ToString())
+                                  }).ToList();
+                    }
+                }
+
+
             }
             catch (Exception ex)
             {

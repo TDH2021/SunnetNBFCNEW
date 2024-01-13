@@ -1,4 +1,5 @@
-﻿using Sunnet_NBFC.App_Code;
+﻿using iTextSharp.text;
+using Sunnet_NBFC.App_Code;
 using Sunnet_NBFC.Models;
 using System;
 using System.Collections.Generic;
@@ -185,7 +186,7 @@ namespace Sunnet_NBFC.Controllers
         }
 
         [Sunnet_NBFC.App_Code.SessionAttribute]
-        public ActionResult LeadFinalApprove(int leadid=0, string ComeFrom = "FinalApprove")
+        public ActionResult LeadFinalApprove(int leadid = 0, string ComeFrom = "FinalApprove")
         {
             clsLeadFinalApproveMain model = new clsLeadFinalApproveMain();
             try
@@ -392,23 +393,28 @@ namespace Sunnet_NBFC.Controllers
         [Sunnet_NBFC.App_Code.SessionAttribute]
         public ActionResult LeadFinalApproveView(clsLeadFinalApprove M)
         {
-            List<clsLeadFinalApprove> lst = new List<clsLeadFinalApprove>();
+            List<clsLeadFinalApprove> _model = new List<clsLeadFinalApprove>();
             try
             {
-                //DataTable dtLeadDetail = new DataTable();
                 DataTable dtLeadDoc = new DataTable();
                 M.ReqType = "View";
                 M.CompanyId = ClsSession.CompanyID;
-                //M.StageId = 6;
-                //dtLeadDetail = DataInterface2.GetLeadDetail(M);
-                dtLeadDoc = DataInterface1.dbLeadFinalApprove(M);
-                lst = DataInterface.ConvertDataTable<clsLeadFinalApprove>(dtLeadDoc);
-                //if (dtLeadDetail != null && dtLeadDetail.Rows.Count > 0)
-                //M = DataInterface.GetItem<clsLeadFinalApprove>(dtLeadDoc.Rows[0]);
-                //if (dtLeadDoc != null && dtLeadDoc.Rows.Count > 0)
-                //    M.clsLeadFinalApprove = DataInterface.ConvertDataTable<clsLeadFinalApprove>(dtLeadDoc);
-                //M.Status = M.Status ?? "P";
-                //return View(M);
+                using (DataTable dt = DataInterface1.dbLeadFinalApprove(M))
+                {
+                    if (dt != null)
+                    {
+                        _model = (from DataRow dr in dt.Rows
+
+                                  select new clsLeadFinalApprove()
+                                  {
+                                      NetDisbAmt = decimal.Parse(dr["NetDisbAmt"].ToString()),
+                                      Proccesfees = decimal.Parse(dr["Proccesfees"].ToString()),
+                                      AdvanceEMI = int.Parse(dr["AdvanceEMI"].ToString()),
+                                      GST = decimal.Parse(dr["GST"].ToString()),
+                                      Remarks = dr["Remarks"].ToString()
+                                  }).ToList();
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -425,7 +431,7 @@ namespace Sunnet_NBFC.Controllers
                 }
             }
 
-            return PartialView("LeadFinalApproveView", lst);
+            return PartialView("LeadFinalApproveView", _model);
         }
 
         public string DownloadSanctionLetter(int? leadid, string leadno)
