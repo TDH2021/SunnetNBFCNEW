@@ -599,6 +599,10 @@ namespace Sunnet_NBFC.Models
         public string CO_MiddleName { get; set; }
         public string CO_LastName { get; set; }
         public string CO_Adress { get; set; }
+
+        public string CO_FatherName { get; set; }
+
+        public string CO_MotherName { get; set; }
         public string CO_DOB { get; set; }
         public string CO_Occupation { get; set; }
         public string CO_Marital_Status { get; set; }

@@ -10,41 +10,7 @@
     <div class="row">
 
         <div class="col-md-3">
-            <label class="required" for="exampleInputEmail1">No of Dependent</label>
-            @Html.TextBoxFor(model => model.NoofDependent, new
-       {
-           @class = "form-control",
-           @placeholder = "No of Dependent",
-           @name = "MName",
-           @required = "true",
-           @onkeypress = "return isNumber(this.value);",
-           @maxlength = "2",
-           @id = "txtVchNoofDependent"
-
-       })
-        </div>
-        <div class="col-md-3">
-            <label class="required" for="exampleInputEmail1">FOR Recomended Amt</label>
-            @Html.TextBoxFor(model => model.FORecomedAmt, new
-       {
-           @class = "form-control",
-           @placeholder = "FORecomed Amt",
-           @name = "FName",
-           @required = "true",
-           @onkeypress = "return isNumber(this.value);",
-           @maxlength = "10",
-           @id = "txtFORecomedAmt",
-           @autocomplete = "off"
-       })
-
-        </div>
-
-    </div>
-
-    <div class="row">
-
-        <div class="col-md-3">
-            <label for="exampleInputEmail1">Vehicle No</label>
+            <label for="exampleInputEmail1">Vehicle Number</label>
             @Html.TextBoxFor(model => model.ViechleNo, new
             {
                 @class = "form-control",
@@ -84,20 +50,17 @@
 
 
         </div>
-
         <div class="col-md-3">
-            <label class="required" for="exampleInputEmail1">Vehicle Reg Year</label>
-            @Html.TextBoxFor(model => model.ViechleRegYear, new
-       {
-           @class = "form-control",
-           @placeholder = "Vehicle Reg Year",
-           @name = "FName",
-           @required = "true",
-           @onkeypress = "return isNumber(this.value);",
-           @maxlength = "4",
-           @id = "ViechleRegYear",
-           @autocomplete = "off"
-       })
+            <label class="required" for="exampleInputEmail1">Vehicle Make</label>
+            @Html.TextBoxFor(model => model.ViechleCompany, new
+            {
+                @class = "form-control",
+                @placeholder = "Vechile Company",
+                @name = "MName",
+                @required = "true",
+                @id = "ViechleCompany"
+
+            })
         </div>
 
     </div>
@@ -118,21 +81,26 @@
        })
         </div>
         <div class="col-md-3">
-            <label class="required" for="exampleInputEmail1">Vehicle Company</label>
-            @Html.TextBoxFor(model => model.ViechleCompany, new
-            {
-                @class = "form-control",
-                @placeholder = "Vechile Company",
-                @name = "MName",
-                @required = "true",
-                @id = "ViechleCompany"
-
-            })
+            <label class="required" for="exampleInputEmail1">Vehicle Registration Year</label>
+            @Html.TextBoxFor(model => model.ViechleRegYear, new
+       {
+           @class = "form-control",
+           @placeholder = "Vehicle Reg Year",
+           @name = "FName",
+           @required = "true",
+           @onkeypress = "return isNumber(this.value);",
+           @maxlength = "4",
+           @id = "ViechleRegYear",
+           @autocomplete = "off"
+       })
+        </div>
+        <div class="col-md-3">
+            <label for="exampleInputEmail1">Registration Date as per RC</label>
+            <input type="text" class="form-control datestyle" id="txtRegDate" maxlength="10" />
         </div>
 
-
         <div class="col-md-3">
-            <label class="required" for="exampleInputEmail1">RC Name Owner</label>
+            <label class="required" for="exampleInputEmail1">Name as per RC</label>
             @Html.TextBoxFor(model => model.ViechleOwner, new
             {
                 @class = "form-control",
@@ -142,6 +110,32 @@
                 @id = "ViechleOwner"
 
             })
+        </div>
+
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">Fuel Type</label>
+            <select class="form-control" id="ddlFualType">
+                <option>Petrol</option>
+                <option>Diesel</option>
+                <option>CNG Factory fitted</option>
+                <option>CNG Outside fitted</option>
+                <option>Electric</option>
+            </select>
+        </div>
+
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">Owner</label>
+            <select class="form-control" id="ddlOwner">
+                <option>0</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+            </select>
         </div>
 
         <div class="col-md-3">
@@ -159,53 +153,38 @@
        })
         </div>
 
-    </div>
-
-    <div class="row">
-        <div class="col-md-3">
-            <label class="required" for="exampleInputEmail1">Fual Type</label>
-            <select class="form-control" id="ddlFualType">
-                <option>Petrol</option>
-                <option>Diesel</option>
-                <option>CNG Factory fitted</option>
-                <option>CNG Outside fitted</option>
-                <option>Electric Bike</option>
-            </select>
-        </div>
-
-        <div class="col-md-3">
-            <label class="required" for="exampleInputEmail1">Owner</label>
-            <select class="form-control" id="ddlOwner">
-                <option>0</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-            </select>
-        </div>
-
         <div class="col-md-3">
             <label for="exampleInputEmail1">Insurance Status</label>
             <select class="form-control" id="ddlInsuranceStatus">
-                <option>New</option>
                 <option>Lapesd</option>
                 <option>Valid</option>
             </select>
         </div>
+    </div>
+    <div class="row">
         <div class="col-md-3">
             <label for="exampleInputEmail1">Insurance Type</label>
             <select class="form-control" id="ddlInsuranceType">
-                <option>New</option>
                 <option>Comprehensive</option>
                 <option>Third Party</option>
             </select>
         </div>
-    </div>
-    <div class="row">
         <div class="col-md-3">
-            <label for="exampleInputEmail1">Validity Date</label>
+            <label for="exampleInputEmail1">Insurer Name</label>
+            <input type="text" class="form-control" id="txtInsuar" />
+        </div>
+        <div class="col-md-3">
+            <label for="exampleInputEmail1">Policy Number</label>
+            <input type="text" class="form-control" id="txtPolicyNo" maxlength="80" />
+        </div>
+
+        <div class="col-md-3">
+            <label for="exampleInputEmail1">Insurance Validity Date</label>
             <input type="text" class="form-control datestyle" id="txtValidityDate" />
         </div>
+
+    </div>
+    <div class="row">
         <div class="col-md-3">
             <label for="exampleInputEmail1">Ex ShowRoom Price</label>
             <input type="text" class="form-control" id="txtExShowRoomPrice" onkeypress="return isNumber(this.value);" />
@@ -215,35 +194,53 @@
             <input type="text" class="form-control" id="txtOnRoadPrice" onkeypress="return isNumber(this.value);" />
         </div>
         <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">FOR Recommended Amount</label>
+            @Html.TextBoxFor(model => model.FORecomedAmt, new
+       {
+           @class = "form-control",
+           @placeholder = "FORecomed Amt",
+           @name = "FName",
+           @onkeypress = "return isNumber(this.value);",
+           @maxlength = "10",
+           @id = "txtFORetxtFORecomedAmtcomedAmt",
+           @autocomplete = "off"
+       })
+        </div>
+        <div class="col-md-3">
             <label for="exampleInputEmail1">Dealer</label>
             @Html.DropDownListFor(model => model.DSAId, ViewBag.Dealer as SelectList, "- Select Dealer- ",
                                    new { @class = "form-control", @id = "ddlDealer" })
         </div>
     </div>
     <div class="row">
-        <div class="col-md-3">
-            <label for="exampleInputEmail1">Insurer</label>
-            <input type="text" class="form-control" id="txtInsuar"/>
-        </div>
-        <div class="col-md-3">
-            <label for="exampleInputEmail1">Policy No</label>
-            <input type="text" class="form-control" id="txtPolicyNo" maxlength="80" />
-        </div>
-        <div class="col-md-3">
-            <label for="exampleInputEmail1">Registration Date</label>
-            <input type="text" class="form-control datestyle" id="txtRegDate" maxlength="10" />
-        </div>
+
         <div class="col-md-3">
             <label for="exampleInputEmail1">E-Rikshaw Maker</label>
             <input type="text" class="form-control" id="txtERikshawMaker" maxlength="100" />
         </div>
-    </div>
-    <div class="row">
+
         <div class="col-md-3">
             <label for="exampleInputEmail1">Performa Invoice</label>
             <input type="text" class="form-control" id="txtPerformaInvoice" maxlength="100" />
         </div>
+        <div class="col-md-3">
+            <label for="exampleInputEmail1">Number of Dependent</label>
+            @Html.TextBoxFor(model => model.NoofDependent, new
+       {
+           @class = "form-control",
+           @placeholder = "No of Dependent",
+           @name = "MName",
+           @required = "true",
+           @onkeypress = "return isNumber(this.value);",
+           @maxlength = "2",
+           @id = "txtVchNoofDependent"
+
+       })
+        </div>
+
     </div>
+
+</div>
 
 </div>
 

@@ -98,38 +98,16 @@
 											</div>
 										</td>
 										<th></th>
-										<td>
-										</td>
+                                        <td>
+                                            <div class="d-flex order-actions">
+                                                <a href="@Url.Action("DownloadSanctionLetter", "LeadDisbursement", new { LeadId = item.LeadId })" class="btn btn-info"
+                                                   data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Document"><u>SanctionLetter</u></a>
+                                            </div>
+
+                                        </td>
 									</tr>
 								}
 							</thead>
-							<tbody>
-
-								<tr>
-									<td>
-										@Html.DisplayFor(modelItem => item.LeadNo)
-									</td>
-									<td>
-									</td>
-									<td>
-									</td>
-									<td>
-									</td>
-									<td>
-									</td>
-									<td>
-										@Html.DisplayFor(modelItem => item.DRemark)
-									</td>
-									<td>
-										<div class="d-flex order-actions">
-											<a href="@Url.Action("DownloadSanctionLetter", "LeadDisbursement", new { LeadId = item.LeadId })" class="btn btn-info"
-											   data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Document"><u>SanctionLetter</u></a>
-										</div>
-
-									</td>
-								</tr>
-
-							</tbody>
 						</table>
 						@*<div class="card-footer">
 								@Html.ActionLink("Export to Excel", "ExportToExcel", new { @class = "btn btn-primary" })

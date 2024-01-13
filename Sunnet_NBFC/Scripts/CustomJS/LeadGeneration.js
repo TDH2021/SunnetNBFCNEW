@@ -1403,6 +1403,8 @@ function ValidationChk() {
     var CO_FName = $("#CO_FName").val();
     var CO_MName = $("#CO_MName").val();
     var CO_LName = $("#CO_LName").val();
+    var CO_FatherName = $("#txtCoFathName").val();
+    var CO_MotherName = $("#txtCoMothName").val();
     var CO_Gender = $("#CO_Gender option:selected").val();
     var CO_Dob = $("#CO_Dob").val();
     var CO_MartialStatus = $("#CO_MartialStatus option:selected").val();
@@ -1666,12 +1668,12 @@ function ValidationChk() {
             else if (PermanentPincode.length != 6) {
                 swal("TDH", "Customer invalid permanent pincode.", "error");
             }
-            else if (CibilScore.length == 0) {
-                swal("TDH", "Please enter customer cibil score.", "error");
-            }
-            else if (CibilScore > 900 && CibilScore < 200) {
-                swal("TDH", "Cibil score must be betweeen 200 to 900.", "error");
-            }
+            //else if (CibilScore.length == 0) {
+            //    swal("TDH", "Please enter customer cibil score.", "error");
+            //}
+            //else if (CibilScore > 900 && CibilScore < 200) {
+            //    swal("TDH", "Cibil score must be betweeen 200 to 900.", "error");
+            //}
             else if (MobileNumber1.length == 0) {
                 swal("TDH", "Please enter customer mobile number.", "error");
             }
@@ -1701,6 +1703,12 @@ function ValidationChk() {
             else if (CO_FName.length == 0) {
                 swal("TDH", "Please enter co applicant first name.", "error");
             }
+            else if (CO_FatherName.length == 0) {
+                swal("TDH", "Please enter co applicant father name.", "error");
+            }
+            //else if (CO_MotherName.length == 0) {
+            //    swal("TDH", "Please enter co applicant Mother name.", "error");
+            //}
 
             else if (CO_Gender.length == 0) {
                 swal("TDH", "Please enter co applicant gender.", "error");
@@ -1765,12 +1773,12 @@ function ValidationChk() {
                 debugger
                 swal("TDH", "Co Applicant PAN not verify.", "error");
             }
-            else if (CO_CibilScore.length == 0) {
-                swal("TDH", "Please enter co aplicant CibilScore.", "error");
-            }
-            else if (CO_CibilScore > 900 && CO_CibilScore < 200) {
-                swal("TDH", "Co aplicant cibil score must be between 200 and 900.", "error");
-            }
+            //else if (CO_CibilScore.length == 0) {
+            //    swal("TDH", "Please enter co aplicant CibilScore.", "error");
+            //}
+            //else if (CO_CibilScore > 900 && CO_CibilScore < 200) {
+            //    swal("TDH", "Co aplicant cibil score must be between 200 and 900.", "error");
+            //}
             else if (extension1.length == 0) {
                 swal("TDH", "Please select correct file Co Applicant.", "error");
             }
@@ -1941,7 +1949,9 @@ function ValidationChk() {
                     "PerformaInvoice": PerformaInvoice,
                     "ERikshawMaker": ERikshawMaker,
                     "DSAId": DSAId,
-                    "RepaymentType": RepaymentType
+                    "RepaymentType": RepaymentType,
+                    "CO_FatherName": CO_FatherName,
+                    "CO_MotherName": CO_MotherName
                 }
 
                 filedata.append('AllDataArray', JSON.stringify(AllDataArray));
@@ -2029,12 +2039,12 @@ function ValidationChk() {
             else if (PermanentPincode.length != 6) {
                 swal("TDH", "Customer invalid permanent pincode.", "error");
             }
-            else if (CibilScore.length == 0) {
-                swal("TDH", "Please enter customer cibil score.", "error");
-            }
-            else if (CibilScore > 900 && CibilScore < 200) {
-                swal("TDH", "Cibil score must be betweeen 200 to 900.", "error");
-            }
+            //else if (CibilScore.length == 0) {
+            //    swal("TDH", "Please enter customer cibil score.", "error");
+            //}
+            //else if (CibilScore > 900 && CibilScore < 200) {
+            //    swal("TDH", "Cibil score must be betweeen 200 to 900.", "error");
+            //}
             else if (MobileNumber1.length == 0) {
                 swal("TDH", "Please enter customer mobile number.", "error");
             }
@@ -2063,7 +2073,13 @@ function ValidationChk() {
             else if (CO_FName.length == 0) {
                 swal("TDH", "Please enter co applicant first name.", "error");
             }
-
+            else if (CO_FatherName.length == 0) {
+                swal("TDH", "Please enter co applicant father's name.", "error");
+            }
+            //else if (CO_MotherName.length == 0) {
+            //    swal("TDH", "Please enter co applicant mother's name.", "error");
+            //}
+            
             else if (CO_Gender.length == 0) {
                 swal("TDH", "Please enter co applicant gender.", "error");
             }
@@ -2127,12 +2143,12 @@ function ValidationChk() {
                 debugger
                 swal("TDH", "Co Applicant PAN not verify.", "error");
             }
-            else if (CO_CibilScore.length == 0) {
-                swal("TDH", "Please enter co aplicant CibilScore.", "error");
-            }
-            else if (CO_CibilScore > 900 && CO_CibilScore < 200) {
-                swal("TDH", "Co aplicant cibil score must be between 200 and 900.", "error");
-            }
+            //else if (CO_CibilScore.length == 0) {
+            //    swal("TDH", "Please enter co aplicant CibilScore.", "error");
+            //}
+            //else if (CO_CibilScore > 900 && CO_CibilScore < 200) {
+            //    swal("TDH", "Co aplicant cibil score must be between 200 and 900.", "error");
+            //}
             else if (extension1.length == 0) {
                 swal("TDH", "Please select Co Applicant Images.", "error");
             }
@@ -2297,7 +2313,9 @@ function ValidationChk() {
                     "PerformaInvoice": PerformaInvoice,
                     "ERikshawMaker": ERikshawMaker,
                     "DSAId": DSAId,
-                    "RepaymentType": RepaymentType
+                    "RepaymentType": RepaymentType,
+                    "CO_FatherName": CO_FatherName,
+                    "CO_MotherName": CO_MotherName
                 }
 
                 filedata.append('AllDataArray', JSON.stringify(AllDataArray));
@@ -2917,7 +2935,9 @@ function ValidationChk() {
                     "PerformaInvoice": PerformaInvoice,
                     "ERikshawMaker": ERikshawMaker,
                     "DSAId": DSAId,
-                    "RepaymentType": RepaymentType
+                    "RepaymentType": RepaymentType,
+                    "CO_FatherName": CO_FatherName,
+                    "CO_MotherName": CO_MotherName
                 }
 
                 filedata.append('AllDataArray', JSON.stringify(AllDataArray));

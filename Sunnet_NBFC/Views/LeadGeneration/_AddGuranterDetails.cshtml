@@ -438,7 +438,7 @@
            {
                @class = "form-control",
                @placeholder = "Mobile No",
-               @name = "CibilScore",
+               @name = "MobileNo",
                @autocomplete = "off",
                @required = "true",
                @id = "G_Mobile_No",
@@ -470,7 +470,7 @@
             <div class="row">
 
                 <div class="col-md-3">
-                    <label class="required" for="exampleInputEmail1">
+                    <label for="exampleInputEmail1">
                         Cibil Score
                     </label>
                     @Html.TextBoxFor(model => model.G_CIBIL, new
@@ -840,11 +840,13 @@
                 swal("TDH", "Please Verify Aadhar No.", "error");
             } else if (G_AadharVerify == "N") {
                 swal("TDH", "Please Verify Aadhar No.", "error");
-            } else if (G_CibilScore.length == 0) {
-                swal("TDH", "Please Verify CibilScore.", "error");
-            } else if (G_CibilScore > 900 && G_CibilScore < 200) {
-                swal("TDH", "CibilScore must be between 200 and 900.", "error");
-            } else {
+            }
+            //else if (G_CibilScore.length == 0) {
+            //    swal("TDH", "Please Verify CibilScore.", "error");
+            //} else if (G_CibilScore > 900 && G_CibilScore < 200) {
+            //    swal("TDH", "CibilScore must be between 200 and 900.", "error");
+            //}
+            else {
                 debugger
                 var txtPrefix = $("#GPrefix :selected").text();
                 var txtFName = $("#G_FName").val();

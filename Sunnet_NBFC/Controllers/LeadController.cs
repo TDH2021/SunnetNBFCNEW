@@ -385,6 +385,8 @@ namespace Sunnet_NBFC.Controllers
                                     model.CO_CIBIL = Convert.ToString(ds.Tables[1].Rows[i]["CibilScore"]);
                                     model.CO_Email_Id = Convert.ToString(ds.Tables[1].Rows[i]["EmailId"]);
                                     model.Co_OwnerShip = Convert.ToString(ds.Tables[1].Rows[i]["OwnerShip"]);
+                                    model.CO_FatherName = Convert.ToString(ds.Tables[1].Rows[i]["FatherName"]);
+                                    model.CO_MotherName = Convert.ToString(ds.Tables[1].Rows[i]["MotherName"]);
                                     if (System.IO.File.Exists(Server.MapPath("~/Img/COApplicantImgs/" + Convert.ToString(ds.Tables[1].Rows[i]["CustImage"]))))
                                     {
                                         model.CO_image = Server.MapPath("~/Img/COApplicantImgs/") + Convert.ToString(ds.Tables[1].Rows[i]["CustImage"]);

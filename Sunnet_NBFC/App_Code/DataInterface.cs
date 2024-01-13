@@ -603,7 +603,8 @@ public class DataInterface : IDisposable
                 sqlCommand.Parameters.AddWithValue("@PresentVillage", cls.PresentVillage);
                 sqlCommand.Parameters.AddWithValue("@PermanentDistrict", cls.PermanentDistrict);
                 sqlCommand.Parameters.AddWithValue("@PermanentVillage", cls.PermanentVillage);
-                
+                sqlCommand.Parameters.AddWithValue("@EmailId", cls.EmailId);
+
                 dt = db.FillTableProc(sqlCommand, "USP_LeadCustomer");
             }
 
@@ -629,8 +630,8 @@ public class DataInterface : IDisposable
                 sqlCommand.Parameters.AddWithValue("@LastName", cls.CO_LastName);
                 sqlCommand.Parameters.AddWithValue("@Custtype", "CO_Applicant");
 
-                sqlCommand.Parameters.AddWithValue("@FatherName", "");
-                sqlCommand.Parameters.AddWithValue("@MotherName", "");
+                sqlCommand.Parameters.AddWithValue("@FatherName", cls.CO_FatherName);
+                sqlCommand.Parameters.AddWithValue("@MotherName", cls.CO_MotherName);
                 sqlCommand.Parameters.AddWithValue("@SpouseName", "");
                 sqlCommand.Parameters.AddWithValue("@Gender", cls.CO_Gender);
 
@@ -675,7 +676,7 @@ public class DataInterface : IDisposable
                 sqlCommand.Parameters.AddWithValue("@PresentVillage", cls.CO_PresentVillage);
                 sqlCommand.Parameters.AddWithValue("@PermanentDistrict", cls.CO_PermanentDistrict);
                 sqlCommand.Parameters.AddWithValue("@PermanentVillage", cls.CO_PermanentVillage);
-
+                sqlCommand.Parameters.AddWithValue("@EmailId", cls.CO_Email_Id);
                 dt = db.FillTableProc(sqlCommand, "USP_LeadCustomer");
             }
 
@@ -725,9 +726,7 @@ public class DataInterface : IDisposable
                 sqlCommand.Parameters.AddWithValue("@FatherMobileNo", "");
                 sqlCommand.Parameters.AddWithValue("@MotherMobileNo", "");
                 sqlCommand.Parameters.AddWithValue("@SpouseMobileNo", "");
-
-
-                sqlCommand.Parameters.AddWithValue("@IsLoanDisbursed", "");
+                sqlCommand.Parameters.AddWithValue("@EmailId", cls.G_EmailId);
 
 
                 sqlCommand.Parameters.AddWithValue("@AadharNo", cls.G_AadharNo);

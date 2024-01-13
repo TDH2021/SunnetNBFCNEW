@@ -172,6 +172,33 @@
     </div>
     <div class="row">
         <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">Father's Name</label>
+            @Html.TextBoxFor(model => model.CO_FatherName, new
+       {
+           @class = "form-control datestyle",
+           @placeholder = "Father's Name",
+           @name = "Dob",
+           @required = "true",
+           @autocomplete = "off",
+           @id = "txtCoFathName",
+
+       })
+        </div>
+        <div class="col-md-3">
+            <label for="exampleInputEmail1">Mother's Name</label>
+            @Html.TextBoxFor(model => model.CO_MotherName, new
+       {
+           @class = "form-control datestyle",
+           @placeholder = "Mother's Name",
+           @name = "Dob",
+           @required = "true",
+           @autocomplete = "off",
+           @id = "txtCoMothName",
+
+       })
+        </div>
+
+        <div class="col-md-3">
             <label class="required" for="exampleInputEmail1">Date of Birth</label>
             @Html.TextBoxFor(model => model.CO_DOB, new
        {
@@ -200,6 +227,9 @@
 
 
         </div>
+    </div>
+    <div class="row">
+
         <div class="col-md-3">
             <label class="required" for="exampleInputEmail1">Correspondence Address</label>
             @Html.TextBoxFor(model => model.CO_PresentAddress, new
@@ -230,9 +260,7 @@
 
        })
         </div>
-    </div>
 
-    <div class="row">
         <div class="col-md-3">
             <label class="required" for="exampleInputEmail1">Correspondence State</label>
 
@@ -275,6 +303,9 @@
 
 
         </div>
+    </div>
+
+    <div class="row">
 
         <div class="col-md-3">
             <label class="required" for="exampleInputEmail1">Correspondence Village</label>
@@ -302,6 +333,7 @@
            @autocomplete = "off"
        })
         </div>
+        <div class="col-md-6"></div>
     </div>
     <div class="row" style="margin-bottom:10px; margin-top:10px;">
         <div class="col-md-12">
@@ -382,8 +414,6 @@
            @readonly = "true"
        })
 
-
-
             @*@Html.DropDownListFor(model => model.PermanentCityId, ViewBag.CityList as SelectList, new { @class = "form-control" })*@
             @Html.ValidationMessageFor(model => model.CO_PermanentCityId, "", new { @class = "text-danger" })
 
@@ -421,7 +451,7 @@
         </div>
 
         <div class="col-md-3">
-            <label class="required" for="exampleInputEmail1">Mobile No</label>
+            <label for="exampleInputEmail1">Mobile No</label>
             @Html.TextBoxFor(model => model.CO_Mobile_No, new
        {
            @class = "form-control",
@@ -459,7 +489,7 @@
             </select>
         </div>
         <div class="col-md-3">
-            <label class="required" for="exampleInputEmail1">
+            <label for="exampleInputEmail1">
                 Cibil Score
             </label>
             @Html.TextBoxFor(model => model.CibilScore, new
