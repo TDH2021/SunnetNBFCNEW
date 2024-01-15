@@ -1452,7 +1452,7 @@ function ValidationChk() {
 
     if (MainProductText == "Vehicle Loan" || MainProductText == "Commercial Vehicle" || MainProductText == "Two Wheeler Loan") {
         NoofDependent = $("#txtVchNoofDependent").val();
-        FORecomedAmt = $("#txtFORecomedAmt").val();
+        FORecomedAmt = $("#txtFORecomedAmtcomedAmt").val();
     }
     else {
         NoofDependent = $("#txtNoofDependent").val();

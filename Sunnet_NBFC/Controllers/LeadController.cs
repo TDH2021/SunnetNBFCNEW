@@ -225,7 +225,7 @@ namespace Sunnet_NBFC.Controllers
                                     model.ValidityDate = Convert.ToString(ds.Tables[0].Rows[i]["ValidityDate"]);
                                     model.ExShowRoomPrice = Convert.ToString(ds.Tables[0].Rows[i]["ExShowRoomPrice"]);
                                     model.OnRoadPrice = Convert.ToString(ds.Tables[0].Rows[i]["OnRoadPrice"]);
-                                    model.EstValueofscurity = Convert.ToString(ds.Tables[0].Rows[i]["OnRoadPrice"]);
+                                    model.EstValueofscurity = Convert.ToString(ds.Tables[0].Rows[i]["EstValueofscurity"]);
                                     model.PropertyAddress = Convert.ToString(ds.Tables[0].Rows[i]["PropertyAddress"]);
                                     model.PropertyType = Convert.ToString(ds.Tables[0].Rows[i]["PropertyType"]);
                                     model.Propertyarea = Convert.ToString(ds.Tables[0].Rows[i]["Propertyarea"]);
