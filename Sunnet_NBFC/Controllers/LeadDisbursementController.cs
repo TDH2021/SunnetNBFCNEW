@@ -413,9 +413,10 @@ namespace Sunnet_NBFC.Controllers
                 DataTable dtLeadDoc = new DataTable();
                 M.ReqType = "View";
                 M.CompanyId = ClsSession.CompanyID;
+                M.LeadNo = "";
                 ds = DataInterface1.dbDisbursement(M);
                 dtLeadDoc = ds.Tables[0];
-                lst = DataInterface.ConvertDataTable<clsDisbursement>(dtLeadDoc);
+                //lst = DataInterface.ConvertDataTable<clsDisbursement>(dtLeadDoc);
 
                 using (DataTable dt = dtLeadDoc)
                 {
