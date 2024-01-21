@@ -52,7 +52,7 @@ namespace Sunnet_NBFC.Controllers
                             cls.AadharNo = clss.AadharNo;
                             cls.ReqType = "GetLeadAllData";
                             cls.CompanyId = ClsSession.CompanyID;
-                            
+
 
 
                             using (DataTable dt = DataInterface.GetLeadGenerationData(cls))
@@ -123,112 +123,112 @@ namespace Sunnet_NBFC.Controllers
                             clsLeadCredit Singlelist = new clsLeadCredit();
                             Singlelist = (from DataRow row in dtLeadCredit.Rows
 
-                                    select new clsLeadCredit()
-                                    {
-                                        CrId = int.Parse(row["CrId"].ToString()),
-                                        LeadId = int.Parse(row["LeadId"].ToString()),
-                                        CIBILVerification = row["CIBILVerification"].ToString(),
-                                        CibilDoc = row["CibilDoc"].ToString(),
-                                        CibilRemarks = row["CibilRemarks"].ToString(),
-                                        CBCIBILVerification = row["CBCIBILVerification"].ToString(),
-                                        CBCibilDoc = row["CBCibilDoc"].ToString(),
-                                        CBCibilRemarks = row["CBCibilRemarks"].ToString(),
-                                        FIVerification = row["FIVerification"].ToString(),
-                                        FIDoc = row["FIDoc"].ToString(),
-                                        FIRemarks = row["FIRemarks"].ToString(),
-                                        TVRVerification = row["TVRVerification"].ToString(),
-                                        TVRDoc = row["TVRDoc"].ToString(),
-                                        TVRRemarks = row["TVRRemarks"].ToString(),
-                                        CashFlowVerification = row["CashFlowVerification"].ToString(),
-                                        CashFlowDoc = row["CashFlowDoc"].ToString(),
-                                        CashFlowRemarks = row["CashFlowRemarks"].ToString(),
-                                        DependentFamilyAssessmentVerification = row["DependentFamilyAssessmentVerification"].ToString(),
-                                        DependentFamilyAssessmentDoc = row["DependentFamilyAssessmentDoc"].ToString(),
-                                        DependentFamilyAssessmentRemarks = row["DependentFamilyAssessmentRemarks"].ToString(),
+                                          select new clsLeadCredit()
+                                          {
+                                              CrId = int.Parse(row["CrId"].ToString()),
+                                              LeadId = int.Parse(row["LeadId"].ToString()),
+                                              CIBILVerification = row["CIBILVerification"].ToString(),
+                                              CibilDoc = row["CibilDoc"].ToString(),
+                                              CibilRemarks = row["CibilRemarks"].ToString(),
+                                              CBCIBILVerification = row["CBCIBILVerification"].ToString(),
+                                              CBCibilDoc = row["CBCibilDoc"].ToString(),
+                                              CBCibilRemarks = row["CBCibilRemarks"].ToString(),
+                                              FIVerification = row["FIVerification"].ToString(),
+                                              FIDoc = row["FIDoc"].ToString(),
+                                              FIRemarks = row["FIRemarks"].ToString(),
+                                              TVRVerification = row["TVRVerification"].ToString(),
+                                              TVRDoc = row["TVRDoc"].ToString(),
+                                              TVRRemarks = row["TVRRemarks"].ToString(),
+                                              CashFlowVerification = row["CashFlowVerification"].ToString(),
+                                              CashFlowDoc = row["CashFlowDoc"].ToString(),
+                                              CashFlowRemarks = row["CashFlowRemarks"].ToString(),
+                                              DependentFamilyAssessmentVerification = row["DependentFamilyAssessmentVerification"].ToString(),
+                                              DependentFamilyAssessmentDoc = row["DependentFamilyAssessmentDoc"].ToString(),
+                                              DependentFamilyAssessmentRemarks = row["DependentFamilyAssessmentRemarks"].ToString(),
 
-                                        ViechleValVerfication = row["ViechleValVerfication"].ToString(),
-                                        ViechleDoc = row["ViechleDoc"].ToString(),
-                                        ViechleRemarks = row["ViechleRemarks"].ToString(),
-                                        BankStmtDoc = row["BankStmtDoc"].ToString(),
-                                        BankStmtRemarks = row["BankStmtRemarks"].ToString(),
+                                              ViechleValVerfication = row["ViechleValVerfication"].ToString(),
+                                              ViechleDoc = row["ViechleDoc"].ToString(),
+                                              ViechleRemarks = row["ViechleRemarks"].ToString(),
+                                              BankStmtDoc = row["BankStmtDoc"].ToString(),
+                                              BankStmtRemarks = row["BankStmtRemarks"].ToString(),
 
-                                        IncomeStmtVerification = row["IncomeStmtVerification"].ToString(),
-                                        IncomeStmtDoc = row["IncomeStmtDoc"].ToString(),
-                                        IncomeStmtRemarks = row["IncomeStmtRemarks"].ToString(),
-                                        PersonalDiscussVerification = row["PersonalDiscussVerification"].ToString(),
-                                        PersonalDiscussDoc = row["PersonalDiscussDoc"].ToString(),
+                                              IncomeStmtVerification = row["IncomeStmtVerification"].ToString(),
+                                              IncomeStmtDoc = row["IncomeStmtDoc"].ToString(),
+                                              IncomeStmtRemarks = row["IncomeStmtRemarks"].ToString(),
+                                              PersonalDiscussVerification = row["PersonalDiscussVerification"].ToString(),
+                                              PersonalDiscussDoc = row["PersonalDiscussDoc"].ToString(),
 
-                                        PersonalDiscusssRemarks = row["PersonalDiscusssRemarks"].ToString(),
-                                        Eligiblity = row["Eligiblity"].ToString(),
-                                        EligiblityDoc = row["EligiblityDoc"].ToString(),
-                                        EligiblityRemarks = row["EligiblityRemarks"].ToString(),
-                                        //Occupation = row["Occupation"].ToString(),
+                                              PersonalDiscusssRemarks = row["PersonalDiscusssRemarks"].ToString(),
+                                              Eligiblity = row["Eligiblity"].ToString(),
+                                              EligiblityDoc = row["EligiblityDoc"].ToString(),
+                                              EligiblityRemarks = row["EligiblityRemarks"].ToString(),
+                                              //Occupation = row["Occupation"].ToString(),
 
-                                        PropertyDocVerification = row["PropertyDocVerification"].ToString(),
-                                        PropertyDoc = row["PropertyDoc"].ToString(),
-                                        PropertyDocRemarks = row["PropertyDocRemarks"].ToString(),
-                                        ColletralType = row["ColletralType"].ToString(),
-                                        PropertyAddress = row["PropertyAddress"].ToString(),
-                                        PropertySize = row["PropertySize"].ToString(),
-                                        LandArea = row["LandArea"].ToString(),
+                                              PropertyDocVerification = row["PropertyDocVerification"].ToString(),
+                                              PropertyDoc = row["PropertyDoc"].ToString(),
+                                              PropertyDocRemarks = row["PropertyDocRemarks"].ToString(),
+                                              ColletralType = row["ColletralType"].ToString(),
+                                              PropertyAddress = row["PropertyAddress"].ToString(),
+                                              PropertySize = row["PropertySize"].ToString(),
+                                              LandArea = row["LandArea"].ToString(),
 
-                                        Dimension = row["Dimension"].ToString(),
-                                        SecurityValue = row["SecurityValue"].ToString(),
-                                        MarketValue = row["MarketValue"].ToString(),
-                                        LandValue = row["LandValue"].ToString(),
-                                        ConstrutionValue = row["ConstrutionValue"].ToString(),
-                                        TotalMarketValue = row["TotalMarketValue"].ToString(),
-                                        LTV = row["LTV"].ToString(),
+                                              Dimension = row["Dimension"].ToString(),
+                                              SecurityValue = row["SecurityValue"].ToString(),
+                                              MarketValue = row["MarketValue"].ToString(),
+                                              LandValue = row["LandValue"].ToString(),
+                                              ConstrutionValue = row["ConstrutionValue"].ToString(),
+                                              TotalMarketValue = row["TotalMarketValue"].ToString(),
+                                              LTV = row["LTV"].ToString(),
 
-                                        RelizableValue = row["RelizableValue"].ToString(),
-                                        PropertyVal = row["PropertyVal"].ToString(),
-                                        PropertyDocuments = row["PropertyDocuments"].ToString(),
-                                        PropertyChain = row["PropertyChain"].ToString(),
-                                        LegalOpinionBy = row["LegalOpinionBy"].ToString(),
-                                        LegalReportDate = row["LegalReportDate"].ToString(),
-                                        ValuerName = row["ValuerName"].ToString(),
+                                              RelizableValue = row["RelizableValue"].ToString(),
+                                              PropertyVal = row["PropertyVal"].ToString(),
+                                              PropertyDocuments = row["PropertyDocuments"].ToString(),
+                                              PropertyChain = row["PropertyChain"].ToString(),
+                                              LegalOpinionBy = row["LegalOpinionBy"].ToString(),
+                                              LegalReportDate = row["LegalReportDate"].ToString(),
+                                              ValuerName = row["ValuerName"].ToString(),
 
-                                        Valuation = row["Valuation"].ToString(),
-                                        ValueDate = row["ValueDate"].ToString(),
-                                        BussinessName = row["BussinessName"].ToString(),
-                                        BussinessVinatage = row["BussinessVinatage"].ToString(),
-                                        BussinessAddress = row["BussinessAddress"].ToString(),
-                                        BussinessProve = row["BussinessProve"].ToString(),
-                                        CamVerification = row["CamVerification"].ToString(),
+                                              Valuation = row["Valuation"].ToString(),
+                                              ValueDate = row["ValueDate"].ToString(),
+                                              BussinessName = row["BussinessName"].ToString(),
+                                              BussinessVinatage = row["BussinessVinatage"].ToString(),
+                                              BussinessAddress = row["BussinessAddress"].ToString(),
+                                              BussinessProve = row["BussinessProve"].ToString(),
+                                              CamVerification = row["CamVerification"].ToString(),
 
-                                        CAMDoc = row["CAMDoc"].ToString(),
-                                        CAMRemarks = row["CAMRemarks"].ToString(),
-                                        CreditRemarks = row["CreditRemarks"].ToString(),
-                                        NegativeRemarks = row["NegativeRemarks"].ToString(),
-                                        VehicleType = row["VehicleType"].ToString(),
-                                        ChassisNo = row["ChassisNo"].ToString(),
-                                        EngineNo = row["EngineNo"].ToString(),
+                                              CAMDoc = row["CAMDoc"].ToString(),
+                                              CAMRemarks = row["CAMRemarks"].ToString(),
+                                              CreditRemarks = row["CreditRemarks"].ToString(),
+                                              NegativeRemarks = row["NegativeRemarks"].ToString(),
+                                              VehicleType = row["VehicleType"].ToString(),
+                                              ChassisNo = row["ChassisNo"].ToString(),
+                                              EngineNo = row["EngineNo"].ToString(),
 
-                                        Insurername = row["Insurername"].ToString(),
-                                        InsurancePolicyNo = row["InsurancePolicyNo"].ToString(),
-                                        PolicyValidity = row["PolicyValidity"].ToString(),
-                                        RCDate = row["RCDate"].ToString(),
-                                        Fitness = row["Fitness"].ToString(),
-                                        
-                                        DealerId = (row["DealerId"].ToString()==""?0:int.Parse(row["DealerId"].ToString())),
-                                        RTO = row["RTO"].ToString(),
-                                        Transmission = row["Transmission"].ToString(),
-                                        FuelType = row["FuelType"].ToString(),
-                                        CarType = row["CarType"].ToString(),
-                                        ProposedLoanAmountAndCommercial = row["ProposedLoanAmountAndCommercial"].ToString(),
-                                        Occupancy = row["Occupancy"].ToString(),
-                                        CreditCheckList = row["CreditCheckList"].ToString(),
-                                        CreditCheckListID = int.Parse(row["CreditCheckListID"].ToString()),
-                                        CreditCheckListRemarks = row["CreditCheckListRemarks"].ToString(),
+                                              Insurername = row["Insurername"].ToString(),
+                                              InsurancePolicyNo = row["InsurancePolicyNo"].ToString(),
+                                              PolicyValidity = row["PolicyValidity"].ToString(),
+                                              RCDate = row["RCDate"].ToString(),
+                                              Fitness = row["Fitness"].ToString(),
 
-                                    }).ToList().FirstOrDefault();
+                                              DealerId = (row["DealerId"].ToString() == "" ? 0 : int.Parse(row["DealerId"].ToString())),
+                                              RTO = row["RTO"].ToString(),
+                                              Transmission = row["Transmission"].ToString(),
+                                              FuelType = row["FuelType"].ToString(),
+                                              CarType = row["CarType"].ToString(),
+                                              ProposedLoanAmountAndCommercial = row["ProposedLoanAmountAndCommercial"].ToString(),
+                                              Occupancy = row["Occupancy"].ToString(),
+                                              CreditCheckList = row["CreditCheckList"].ToString(),
+                                              CreditCheckListID = int.Parse(row["CreditCheckListID"].ToString()),
+                                              CreditCheckListRemarks = row["CreditCheckListRemarks"].ToString(),
 
-                            if(Singlelist==null)
+                                          }).ToList().FirstOrDefault();
+
+                            if (Singlelist == null)
                                 M.clsLeadCredit = new clsLeadCredit();
                             else
                                 M.clsLeadCredit = Singlelist;
                         }
-                        
+
                     }
 
                 }
@@ -256,16 +256,16 @@ namespace Sunnet_NBFC.Controllers
                         Multilist = (from DataRow row in dtCreditCheckList.Rows
                                      select new clsCreditCheckList()
                                      {
-                                            ReqType = "Edit",
-                                            Id = int.Parse("0"+Convert.ToString(row["Id"])),
-                                            LeadId = int.Parse("0" + Convert.ToString(row["LeadId"])),
-                                            LeadCreditId = int.Parse("0" + Convert.ToString(row["LeadCreditId"])),
-                                            CheckListId = int.Parse("0" + Convert.ToString(row["CheckListId"])),
-                                            CheckListName = Convert.ToString(row["CheckListName"]),
-                                            Answer =Convert.ToString(row["Answer"]),
-                                            Remarks = Convert.ToString(row["Remarks"])
+                                         ReqType = "Edit",
+                                         Id = int.Parse("0" + Convert.ToString(row["Id"])),
+                                         LeadId = int.Parse("0" + Convert.ToString(row["LeadId"])),
+                                         LeadCreditId = int.Parse("0" + Convert.ToString(row["LeadCreditId"])),
+                                         CheckListId = int.Parse("0" + Convert.ToString(row["CheckListId"])),
+                                         CheckListName = Convert.ToString(row["CheckListName"]),
+                                         Answer = Convert.ToString(row["Answer"]),
+                                         Remarks = Convert.ToString(row["Remarks"])
 
-                                      }).ToList();
+                                     }).ToList();
 
                         if (Multilist != null)
                             M.clsCreditCheckList = Multilist;
@@ -333,13 +333,13 @@ namespace Sunnet_NBFC.Controllers
                 #region Attachments
 
                 //------------------------------CIBIL-------------------------------------------------------------------
-                if (M.Status!="P" && M.Status != "R" && M.Status != "S" && string.IsNullOrEmpty(M.clsLeadCredit.CibilDoc) && (M.clsLeadCredit.CibilDocPostedFile == null || M.clsLeadCredit.CibilDocPostedFile.ToString() == ""))
+                if (M.Status != "P" && M.Status != "R" && M.Status != "S" && string.IsNullOrEmpty(M.clsLeadCredit.CibilDoc) && (M.clsLeadCredit.CibilDocPostedFile == null || M.clsLeadCredit.CibilDocPostedFile.ToString() == ""))
                 {
                     ViewBag.Error = " Please Upload Cibil Document";
                     //return View(M);
                     return RedirectToAction("LeadCredit", "LeadCredit", new { LeadId = M.LeadId, ComeFrom = "CreditApprove" });
                 }
-                
+
                 if (M.clsLeadCredit.CibilDocPostedFile != null && M.clsLeadCredit.CibilDocPostedFile.ToString() != "")
                 {
                     if (ClsCommon.CheckFileType(M.clsLeadCredit.CibilDocPostedFile.FileName.ToString()) == true)
@@ -741,7 +741,7 @@ namespace Sunnet_NBFC.Controllers
                         //    M.clsLeadCredit.CrId = Convert.ToInt32("0" + Convert.ToString(dt.Rows[0]["ReturnID"]));
                     }
                 }
-                if(IsSave)
+                if (IsSave)
                 {
                     var QnsAnsKeyValue = frm.AllKeys
                  .Where(k => k.StartsWith("A_"))
@@ -794,11 +794,12 @@ namespace Sunnet_NBFC.Controllers
                 }
 
 
+
                 if (IsSave)
                 {
                     //Update ROI Process
                     DataTable dtROI = DataInterface2.UpdateLeadROI(M);
-                    
+
                     M.ReqType = "UpdateStatus";
                     dt = DataInterface2.UpdateLeadStatus(M);
                     if (dt != null && dt.Rows.Count > 0)
@@ -949,6 +950,7 @@ namespace Sunnet_NBFC.Controllers
                                       PropertySize = row["PropertySize"].ToString(),
                                       LandArea = row["LandArea"].ToString(),
 
+
                                       Dimension = row["Dimension"].ToString(),
                                       SecurityValue = row["SecurityValue"].ToString(),
                                       MarketValue = row["MarketValue"].ToString(),
@@ -957,6 +959,7 @@ namespace Sunnet_NBFC.Controllers
                                       TotalMarketValue = row["TotalMarketValue"].ToString(),
                                       LTV = row["LTV"].ToString(),
 
+
                                       RelizableValue = row["RelizableValue"].ToString(),
                                       PropertyVal = row["PropertyVal"].ToString(),
                                       PropertyDocuments = row["PropertyDocuments"].ToString(),
@@ -964,6 +967,7 @@ namespace Sunnet_NBFC.Controllers
                                       LegalOpinionBy = row["LegalOpinionBy"].ToString(),
                                       LegalReportDate = row["LegalReportDate"].ToString(),
                                       ValuerName = row["ValuerName"].ToString(),
+
 
                                       Valuation = row["Valuation"].ToString(),
                                       ValueDate = row["ValueDate"].ToString(),
@@ -1167,6 +1171,13 @@ namespace Sunnet_NBFC.Controllers
                         FilePrefix = M.IncomeStmtCode + "_";
                         FolderPath = "/UploadedFiles/LeadCredit/";
                     }
+
+                    else if (FileType == M.PropertyCode)
+                    {
+                        FilePrefix = M.PropertyCode + "_";
+                        FolderPath = "/UploadedFiles/LeadCredit/";
+                    }
+
                     else if (FileType == M.PersonalDiscussCode)
                     {
                         FilePrefix = M.PersonalDiscussCode + "_";
@@ -1177,11 +1188,7 @@ namespace Sunnet_NBFC.Controllers
                         FilePrefix = M.EligiblityCode + "_";
                         FolderPath = "/UploadedFiles/LeadCredit/";
                     }
-                    else if (FileType == M.PropertyCode)
-                    {
-                        FilePrefix = M.PropertyCode + "_";
-                        FolderPath = "/UploadedFiles/LeadCredit/";
-                    }
+
                     else if (FileType == M.CAMCODE)
                     {
                         FilePrefix = M.CAMCODE + "_";

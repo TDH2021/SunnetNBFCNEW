@@ -102,13 +102,15 @@
                                             <label for="exampleInputEmail1">Customer Name</label>
                                             @Html.TextBoxFor(model => model.CustomerName, new { @class = "form-control", @required = "true", @readonly = "true" })
                                         </div>
+
                                         <div class="col-md-4">
                                             <label for="exampleInputEmail1">Contact No</label>
                                             @Html.TextBoxFor(model => model.ContactNo, new { @class = "form-control", @required = "true", @readonly = "true" })
                                         </div>
+
                                         <div class="col-md-4">
                                             <label for="exampleInputEmail1" class="required">ROI</label>
-                                            @Html.TextBoxFor(model => model.ROI, new { @class = "form-control",@maxlength="5", @onkeypress = "return isNumber(this.value);",@id="txtROI" })
+                                            @Html.TextBoxFor(model => model.ROI, new { @class = "form-control", @maxlength = "5", @onkeypress = "return isNumber(this.value);", @id = "txtROI" })
 
                                         </div>
                                     </div>
@@ -518,18 +520,18 @@
 
 
                             @*@if (Model.MainProdType == "V" || Model.MainProdType == "T" || Model.MainProdType == "B")
-                            {
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <span>Occupation:</span>
-                                        </div>
-                                        <div class="col-md-5">
-                                            @Html.TextBoxFor(model => model.clsLeadCredit.Occupation, new { @class = "form-control", })
+                                {
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <span>Occupation:</span>
+                                            </div>
+                                            <div class="col-md-5">
+                                                @Html.TextBoxFor(model => model.clsLeadCredit.Occupation, new { @class = "form-control", })
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            }*@
+                                }*@
 
                             @if (Model.MainProdType == "B")
                             {
@@ -721,6 +723,7 @@
                                         <div class="col-md-3">
                                             <span>PropertyVal:</span>
                                         </div>
+
                                         <div class="col-md-5">
                                             @Html.TextBoxFor(model => model.clsLeadCredit.PropertyVal, new { @class = "form-control", })
                                         </div>
@@ -731,6 +734,7 @@
 
                                 <div class="form-group">
                                     <div class="row">
+
                                         <div class="col-md-3">
                                             <span>PropertyDocuments:</span>
                                         </div>
