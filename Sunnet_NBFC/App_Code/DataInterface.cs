@@ -604,6 +604,7 @@ public class DataInterface : IDisposable
                 sqlCommand.Parameters.AddWithValue("@PermanentDistrict", cls.PermanentDistrict);
                 sqlCommand.Parameters.AddWithValue("@PermanentVillage", cls.PermanentVillage);
                 sqlCommand.Parameters.AddWithValue("@EmailId", cls.EmailId);
+                sqlCommand.Parameters.AddWithValue("@LandMark", cls.CustLandMark);
 
                 dt = db.FillTableProc(sqlCommand, "USP_LeadCustomer");
             }
@@ -677,6 +678,8 @@ public class DataInterface : IDisposable
                 sqlCommand.Parameters.AddWithValue("@PermanentDistrict", cls.CO_PermanentDistrict);
                 sqlCommand.Parameters.AddWithValue("@PermanentVillage", cls.CO_PermanentVillage);
                 sqlCommand.Parameters.AddWithValue("@EmailId", cls.CO_Email_Id);
+                sqlCommand.Parameters.AddWithValue("@LandMark", cls.Co_LandMark);
+
                 dt = db.FillTableProc(sqlCommand, "USP_LeadCustomer");
             }
 
@@ -701,9 +704,9 @@ public class DataInterface : IDisposable
                 sqlCommand.Parameters.AddWithValue("@LastName", cls.G_LastName);
                 sqlCommand.Parameters.AddWithValue("@Custtype", "Gurantor");
 
-                sqlCommand.Parameters.AddWithValue("@FatherName", "");
+                sqlCommand.Parameters.AddWithValue("@FatherName", cls.G_FatherName);
                 sqlCommand.Parameters.AddWithValue("@MotherName", "");
-                sqlCommand.Parameters.AddWithValue("@SpouseName", "");
+                sqlCommand.Parameters.AddWithValue("@SpouseName", cls.G_SpouseName);
                 sqlCommand.Parameters.AddWithValue("@Gender", cls.G_Gender);
 
 
@@ -745,6 +748,7 @@ public class DataInterface : IDisposable
                 sqlCommand.Parameters.AddWithValue("@PresentVillage", cls.G_PresentVillage);
                 sqlCommand.Parameters.AddWithValue("@PermanentDistrict", cls.G_PermanentDistrict);
                 sqlCommand.Parameters.AddWithValue("@PermanentVillage", cls.G_PermanentVillage);
+                sqlCommand.Parameters.AddWithValue("@LandMark", cls.G_LandMark);
                 dt = db.FillTableProc(sqlCommand, "USP_LeadCustomer");
             }
 

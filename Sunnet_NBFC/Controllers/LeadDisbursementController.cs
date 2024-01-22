@@ -424,18 +424,21 @@ namespace Sunnet_NBFC.Controllers
                     {
                         lst = (from DataRow dr in dt.Rows
 
-                                  select new clsDisbursement()
-                                  {
-                                      BeneficiaryName = dr["BeneficiaryName"].ToString(),
-                                      BeneficiaryAccountNo = dr["BeneficiaryAccountNo"].ToString(),
-                                      IfscCode = dr["IfscCode"].ToString(),
-                                      NetDisbursementAmount = decimal.Parse(dr["NetDisbursementAmount"].ToString()),
-                                      Tenure = int.Parse(dr["Tenure"].ToString()),
-                                      PaymentMode = dr["PaymentMode"].ToString(),
-                                      UtrNo = dr["UtrNo"].ToString(),
-                                      LoanStartDate = dr["LoanStartDate"].ToString(),
-                                      LeadId =int.Parse(dr["LeadId"].ToString())
-                                  }).ToList();
+                               select new clsDisbursement()
+                               {
+                                   BeneficiaryName = dr["BeneficiaryName"].ToString(),
+                                   BeneficiaryAccountNo = dr["BeneficiaryAccountNo"].ToString(),
+                                   IfscCode = dr["IfscCode"].ToString(),
+                                   NetDisbursementAmount = decimal.Parse(dr["NetDisbursementAmount"].ToString()),
+                                   Tenure = int.Parse(dr["Tenure"].ToString()),
+                                   PaymentMode = dr["PaymentMode"].ToString(),
+                                   UtrNo = dr["UtrNo"].ToString(),
+                                   LoanStartDate = dr["LoanStartDate"].ToString(),
+                                   LeadId = int.Parse(dr["LeadId"].ToString()),
+                                   SanctionLetter_fileName = dr["SanctionLetter_fileName"].ToString(),
+                                   WelcomeLetter_fileName = dr["WelcomeLetter_fileName"].ToString(),
+                                   RepyamentLetter_fileName = dr["RepyamentLetter_fileName"].ToString()
+                               }).ToList();
                     }
                 }
 
@@ -646,6 +649,16 @@ namespace Sunnet_NBFC.Controllers
             //return File(bytes, "application/octet-stream", fileName);
         }
 
+        public FileResult DownloadFileByFileName(string namestr)
+        {
+            //Build the File Path.
+            string path = Server.MapPath("~/" + ConfigurationManager.AppSettings["GenLetterPath"].ToString() + "/" + namestr);
+            //Read the File data into Byte Array.
+            byte[] bytes = System.IO.File.ReadAllBytes(path);
+            //return File(namestr, "application/pdf");
+            //Send the File to Download.
+            return File(bytes, "application/octet-stream", namestr);
+        }
 
         //
         public string downloadZipFile(string leadno, string sl, string wl, string rl)

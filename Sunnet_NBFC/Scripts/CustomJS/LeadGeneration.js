@@ -1497,6 +1497,8 @@ function ValidationChk() {
     var customers = new Array();
     var DSAId = $("#ddlDealer :selected").val();
     var RepaymentType = $("#ddlRepaymentType :selected").val();
+    var Co_LandMark = $("#txtCoLandMark").val();
+    var Cust_LandMark = $("#txtCustLandMark").val();
     if (MainProductText != "Individual Loan") {
         RepaymentType = "";
     }
@@ -1951,7 +1953,9 @@ function ValidationChk() {
                     "DSAId": DSAId,
                     "RepaymentType": RepaymentType,
                     "CO_FatherName": CO_FatherName,
-                    "CO_MotherName": CO_MotherName
+                    "CO_MotherName": CO_MotherName,
+                    "Co_LandMark": Co_LandMark,
+                    "CustLandMark": Cust_LandMark
                 }
 
                 filedata.append('AllDataArray', JSON.stringify(AllDataArray));
@@ -2315,7 +2319,9 @@ function ValidationChk() {
                     "DSAId": DSAId,
                     "RepaymentType": RepaymentType,
                     "CO_FatherName": CO_FatherName,
-                    "CO_MotherName": CO_MotherName
+                    "CO_MotherName": CO_MotherName,
+                    "Co_LandMark": Co_LandMark,
+                    "CustLandMark": Cust_LandMark
                 }
 
                 filedata.append('AllDataArray', JSON.stringify(AllDataArray));
@@ -2385,6 +2391,9 @@ function ValidationChk() {
                 customer.G_PanVerify = row.find("TD").eq(25).html();
                 customer.G_CIF = row.find("TD").eq(26).html();
                 customer.G_OwnerShip = row.find("TD").eq(27).html();
+                customer.G_FatherName = row.find("TD").eq(28).html();
+                customer.G_SpouseName = row.find("TD").eq(29).html();
+                customer.G_LandMark = row.find("TD").eq(30).html();
                 customers.push(customer);
             });
             if (Prefix.length == 0) {
@@ -2446,12 +2455,12 @@ function ValidationChk() {
             else if (PermanentPincode.length != 6) {
                 swal("TDH", "Customer invalid permanent pincode.", "error");
             }
-            else if (CibilScore.length == 0) {
-                swal("TDH", "Please enter customer cibil score.", "error");
-            }
-            else if (CibilScore > 900 && CibilScore < 200) {
-                swal("TDH", "Cibil score must be betweeen 200 to 900.", "error");
-            }
+            //else if (CibilScore.length == 0) {
+            //    swal("TDH", "Please enter customer cibil score.", "error");
+            //}
+            //else if (CibilScore > 900 && CibilScore < 200) {
+            //    swal("TDH", "Cibil score must be betweeen 200 to 900.", "error");
+            //}
             else if (MobileNumber1.length == 0) {
                 swal("TDH", "Please enter customer mobile number.", "error");
             }
@@ -2581,8 +2590,7 @@ function ValidationChk() {
                     "CenterId": CenterID,
                     "PLLoanBranch": PLBranchID,
                     "AAdharverfiy": hdn_customer_aadhar_verify,
-
-
+                    "CustLandMark": Cust_LandMark,
                     "CO_Prefix": "",
                     "CO_FirstName": "",
                     "CO_MiddleName": "",
@@ -2608,7 +2616,7 @@ function ValidationChk() {
                     "CO_Adhaar": "",
                     "CO_CIBIL": "",
                     "Co_OwnerShip": "",
-
+                    "Co_LandMark": "",
                     "ReuestedLoanAmount": ReuestedLoanAmount,
                     "ReuestedLoanTenure": ReuestedLoanTenure,
                     "EstValueViechle": EstValueViechle,
@@ -2745,12 +2753,12 @@ function ValidationChk() {
             else if (PermanentPincode.length != 6) {
                 swal("TDH", "Customer invalid permanent pincode.", "error");
             }
-            else if (CibilScore.length == 0) {
-                swal("TDH", "Please enter customer cibil score.", "error");
-            }
-            else if (CibilScore > 900 && CibilScore < 200) {
-                swal("TDH", "Cibil score must be betweeen 200 to 900.", "error");
-            }
+            //else if (CibilScore.length == 0) {
+            //    swal("TDH", "Please enter customer cibil score.", "error");
+            //}
+            //else if (CibilScore > 900 && CibilScore < 200) {
+            //    swal("TDH", "Cibil score must be betweeen 200 to 900.", "error");
+            //}
             else if (MobileNumber1.length == 0) {
                 swal("TDH", "Please enter customer mobile number.", "error");
             }
@@ -2937,7 +2945,9 @@ function ValidationChk() {
                     "DSAId": DSAId,
                     "RepaymentType": RepaymentType,
                     "CO_FatherName": CO_FatherName,
-                    "CO_MotherName": CO_MotherName
+                    "CO_MotherName": CO_MotherName,
+                    "Co_LandMark": Co_LandMark,
+                    "CustLandMark": Cust_LandMark
                 }
 
                 filedata.append('AllDataArray', JSON.stringify(AllDataArray));

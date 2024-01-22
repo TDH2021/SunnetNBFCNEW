@@ -638,7 +638,7 @@ namespace Sunnet_NBFC.Models
         public string PanClientScreate { get; set; }
         public string PanISAPICHeck { get; set; }
         public string DealerName { get; set; }
-
+        public string CustLandMark { get; set; } = "";
 
         public string CO_Mobile_No { get; set; }
         public string CO_Email_Id { get; set; }
@@ -648,6 +648,7 @@ namespace Sunnet_NBFC.Models
         public string Co_OwnerShip { get; set; } = "";
         public string G_CIF { get; set; } = "";
         public string CO_ElectricBill { get; set; } = "";
+        public string Co_LandMark { get; set; } = "";
         public string G_Prefix { get; set; }
         public string G_FirstName { get; set; }
         public string G_MiddleName { get; set; }
@@ -670,7 +671,9 @@ namespace Sunnet_NBFC.Models
         public string G_PermanentCityId { get; set; } = "";
         public string G_PermanentVillage { get; set; } = "";
         public string G_PermanentDistrict { get; set; } = "";
-
+        public string G_FatherName { get; set; } = "";
+        public string G_SpouseName { get; set; } = "";
+        public string G_LandMark { get; set; } = "";
         public string G_Mobile_No { get; set; } = "";
         public string G_Email_Id { get; set; } = "";
         public string G_PAN { get; set; } = "";
@@ -821,6 +824,9 @@ namespace Sunnet_NBFC.Models
         public int G_CreatedBy { get; set; }
         public string G_OwnerShip { get; set; }
         public string G_PrefixName { get; set; } = "";
+        public string G_FatherName { get; set; } = "";
+        public string G_SpouseName { get; set; } = "";
+        public string G_LandMark { get; set; } = "";
     }
     public class clsRoleMaster : clsRoleSubMenu
     {

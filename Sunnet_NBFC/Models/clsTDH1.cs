@@ -745,6 +745,10 @@ namespace Sunnet_NBFC.Models
         public string ContactNo { get; set; }
         public decimal ReqLoanAmt { get; set; } = 0;
         public int MiscId { get; set; } // for payment mode by misc master
+        public string SanctionLetter_fileName { get; set; }
+        public string WelcomeLetter_fileName { get; set; }
+        public string RepyamentLetter_fileName { get; set; }
+
     }
     public class clsEmi
     {
