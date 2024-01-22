@@ -1699,6 +1699,10 @@ function ValidationChk() {
                 debugger
                 swal("TDH", "PAN not verify of Customer.", "error");
             }
+            else if (Cust_LandMark.length == 0) {
+                debugger
+                swal("TDH", "Please Enter Customer Land Mark.", "error");
+            }
             else if (CO_Prefix.length == 0) {
                 swal("TDH", "Please select co applicant prefix.", "error");
             }
@@ -1756,6 +1760,9 @@ function ValidationChk() {
             }
             else if (CO_MObileNO.length == 0) {
                 swal("TDH", "Please enter co applicant mobile no.", "error");
+            }
+            else if (Co_LandMark.length == 0) {
+                swal("TDH", "Please enter co applicant Land Mark.", "error");
             }
 
             else if (CO_PanNo.length != 10) {
@@ -2058,7 +2065,10 @@ function ValidationChk() {
             else if (MartialStatus == "Married" && SpouseMobileNumber.length == 0) {
                 swal("TDH", "Please enter spouse mobile number.", "error");
             }
-
+            else if (Cust_LandMark.length == 0) {
+                debugger
+                swal("TDH", "Please Enter Customer Land Mark.", "error");
+            }
             else if (extension.length == 0) {
                 debugger;
                 swal("TDH", "Please select customer Images.", "error");
@@ -2135,6 +2145,9 @@ function ValidationChk() {
             }
             else if (CO_AadharNo.length != 12) {
                 swal("TDH", "Please enter co applicant Aadhar No.", "error");
+            }
+            else if (Co_LandMark.length == 0) {
+                swal("TDH", "Please enter co applicant Land Mark.", "error");
             }
             else if (CO_AadharNo.charAt(0) == "0" || CO_AadharNo.charAt(0) == "1") {
                 swal("TDH", "Co applicant Adhaar No would not start with 0 & 1.", "error");
@@ -2475,6 +2488,10 @@ function ValidationChk() {
             else if (extension.length == 0) {
                 swal("TDH", "Please select correct file customer.", "error");
             }
+            else if (Cust_LandMark.length == 0) {
+                debugger
+                swal("TDH", "Please Enter Customer Land Mark.", "error");
+            }
             else if (hdn_customer_aadhar_verify != "Y" && $(".btnAadharVerify").is(":disabled") == false) {
                 debugger
                 swal("TDH", "Aadhar not verify of Customer.", "error");
@@ -2806,6 +2823,10 @@ function ValidationChk() {
             }
             else if (LoanPurpose.length == 0) {
                 swal("TDH", "Please enter purpose of loan.", "error");
+            }
+            else if (Cust_LandMark.length == 0) {
+                debugger
+                swal("TDH", "Please Enter Customer Land Mark.", "error");
             }
             else if (MainProductText != "Individual Loan" && RefernceName.length == 0) {
                 swal("TDH", "Please enter refrence person Person Name.", "error");
