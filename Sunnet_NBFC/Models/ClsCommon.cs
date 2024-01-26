@@ -14,6 +14,7 @@ using Microsoft.Ajax.Utilities;
 using System.Text.RegularExpressions;
 using System.Configuration;
 using System.Runtime.InteropServices;
+using Newtonsoft.Json;
 
 namespace Sunnet_NBFC.App_Code
 {
@@ -273,6 +274,18 @@ namespace Sunnet_NBFC.App_Code
                 }
             }
 
+        }
+
+        public static DataTable ConvertJsonToDataTable(string jsonData)
+        {
+            try
+            {
+                return JsonConvert.DeserializeObject<DataTable>(jsonData);
+            }
+            catch
+            {
+                return null;
+            }
         }
     }
 

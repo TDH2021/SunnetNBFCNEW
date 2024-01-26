@@ -72,7 +72,8 @@ namespace Sunnet_NBFC.Controllers
 
 
                 ViewBag.LeadGenerationdataModels = LeadGenerationdataModels;
-                ViewBag.PostalApi = ConfigurationManager.AppSettings["PostalAPI"].ToString();
+                //ViewBag.PostalApi = ConfigurationManager.AppSettings["PostalAPI"].ToString();
+                ViewBag.PostalApi = ConfigurationManager.AppSettings["RapidPostalAPI"].ToString();
                 DataTable dt = DataInterface1.GetKeyMaster();
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {

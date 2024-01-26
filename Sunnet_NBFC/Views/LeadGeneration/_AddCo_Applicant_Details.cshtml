@@ -367,7 +367,7 @@
            @required = "true",
            @id = "CO_PermanentPincode",
            @autocomplete = "off",
-           @onchange = "SetValues6_CO();",
+           @onchange = "GetStateCity_PIN(this.value,CO_permanentstate,CO_permanentcity,this.Id);",
            @onkeypress = "return isNumber(this.value);",
            @maxlength = "10",
 

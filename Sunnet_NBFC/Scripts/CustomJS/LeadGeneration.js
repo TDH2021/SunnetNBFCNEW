@@ -778,59 +778,6 @@ function SetValues() {
     }
 
 }
-function SetValues1() {
-    debugger;
-
-    var yes = document.getElementById("vehicle1").checked;
-
-    var PresentPin = $("#PresentPincode").val();
-
-    $.ajax({
-        url: $("#hdn_postalAPI").val() + PresentPin,
-        type: "Get",
-        dataType: "json",
-        cache: false,
-        processData: false,
-        data: {
-            MainProductId: MainProductId
-        },
-        success: function (result) {
-            debugger
-            if (result[0]["Message"].toUpperCase() == "NO RECORD FOUND") {
-                swal("TDH", result[0]["Message"], "error");
-                return;
-            }
-            else {
-                var citydata = result[0].PostOffice[0].Division;
-                const myArray = citydata.split(" ");
-                let word = myArray[0];
-
-                document.getElementById("customerpresentcity").value = word;
-
-                var statedata = result[0].PostOffice[0].State;
-                document.getElementById("customerpresentState").value = statedata;
-            }
-
-        }
-
-    });
-
-    if (yes == true) {
-        var PresentPincode = $("#PresentPincode").val();
-
-        document.getElementById("PermanentPincode").value = PresentPincode;
-
-        document.getElementById("PermanentPincode").disabled = true;
-
-    } else {
-        document.getElementById("PermanentPincode").value = "";
-        document.getElementById("PermanentPincode").disabled = false;
-
-    }
-
-
-
-}
 function SetValues2() {
     var yes = document.getElementById("vehicle1").checked;
     if (yes == true) {
@@ -843,7 +790,6 @@ function SetValues2() {
         document.getElementById("customerpermanentstate").disabled = false;
 
     }
-
 }
 function SetValues3() {
     debugger
@@ -2093,7 +2039,7 @@ function ValidationChk() {
             //else if (CO_MotherName.length == 0) {
             //    swal("TDH", "Please enter co applicant mother's name.", "error");
             //}
-            
+
             else if (CO_Gender.length == 0) {
                 swal("TDH", "Please enter co applicant gender.", "error");
             }
@@ -2678,7 +2624,7 @@ function ValidationChk() {
                     "PerformaInvoice": PerformaInvoice,
                     "ERikshawMaker": ERikshawMaker,
                     "DSAId": DSAId,
-                    "RepaymentType":RepaymentType
+                    "RepaymentType": RepaymentType
                 }
                 debugger;
                 filedata.append('AllDataArray', JSON.stringify(AllDataArray));
@@ -3023,37 +2969,67 @@ function numberValidation(str) {
 }
 
 
+//function GetStateCity_PIN(PinCode, txtState, txtCity, txtPincode) {
+//    debugger;
+//    $.ajax({
+//        url: $("#hdn_postalAPI").val() + PinCode,
+//        type: "Get",
+//        dataType: "json",
+//        cache: false,
+//        processData: false,
+//        data: {
+//            MainProductId: MainProductId
+//        },
+//        success: function (result) {
+//            debugger
+//            if (result[0]["Message"].toUpperCase() == "NO RECORDS FOUND") {
+//                swal("TDH", result[0]["Message"], "error");
+//                $('#txtPincode').val("");
+//                return;
+//            }
+//            else {
+//                var citydata = result[0].PostOffice[0].Division;
+//                const myArray = citydata.split(" ");
+//                let CityName = myArray[0];
+//                txtCity.value = CityName;
+
+//                var statedata = result[0].PostOffice[0].State;
+//                txtState.value = statedata;
+
+//                /*txtState = statedata;*/
+//            }
+
+//        }
+
+//    });
+
+//}
+
 function GetStateCity_PIN(PinCode, txtState, txtCity, txtPincode) {
     debugger;
     $.ajax({
-        url: $("#hdn_postalAPI").val() + PinCode,
+        url: "/Common/GetPinCode",
         type: "Get",
         dataType: "json",
-        cache: false,
-        processData: false,
         data: {
-            MainProductId: MainProductId
+            PinCode: PinCode
         },
         success: function (result) {
-            debugger
-            if (result[0]["Message"].toUpperCase() == "NO RECORDS FOUND") {
+            debugger;
+
+            if (JSON.parse(result).length <= 1) {
                 swal("TDH", result[0]["Message"], "error");
                 $('#txtPincode').val("");
                 return;
             }
             else {
-                var citydata = result[0].PostOffice[0].Division;
-                const myArray = citydata.split(" ");
-                let CityName = myArray[0];
-                txtCity.value = CityName;
-
-                var statedata = result[0].PostOffice[0].State;
-                txtState.value = statedata;
+                txtCity.value = JSON.parse(result)[0].district;
+                txtState.value = JSON.parse(result)[0].circle;;
 
                 /*txtState = statedata;*/
             }
-
         }
+
 
     });
 

@@ -213,6 +213,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Code\SessionAttribute.cs" />
+    <Compile Include="Controllers\CommonController.cs" />
     <Compile Include="Controllers\LeadCreditController.cs" />
     <Compile Include="Controllers\LeadDisbursementController.cs" />
     <Compile Include="Controllers\LeadGenUpdateController.cs" />
@@ -2949,6 +2950,7 @@
     <Folder Include="Img\GurantorImgs\" />
     <Folder Include="PDF\" />
     <Folder Include="Styles\" />
+    <Folder Include="Views\Common\" />
     <Folder Include="Views\SideMenuBar\" />
     <Folder Include="Views\Test\" />
   </ItemGroup>
