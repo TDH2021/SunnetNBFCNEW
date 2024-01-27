@@ -743,6 +743,7 @@ namespace Sunnet_NBFC.Models
         public string PerformaInvoice { get; set; } = "";
         public string ERikshawMaker { get; set; } = "";
         public string RepaymentType { get; set; } = "";
+        public string InsEndValidityDate { get; set; } = "";
         public int isdelete { get; set; } = 0;
         bool disposed = false;
 

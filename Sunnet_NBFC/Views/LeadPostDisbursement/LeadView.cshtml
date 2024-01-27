@@ -1,6 +1,6 @@
 ﻿@model Sunnet_NBFC.Models.clsLeadGenerationMaster
 @{
-	ViewBag.Title = "LeadView";
+	ViewBag.Title = "Lead Post Disburse";
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -14,7 +14,7 @@
 	<div class="container-fluid">
 		<div class="row mb-2">
 			<div class="col-sm-6">
-				<h1>Lead View</h1>
+				<h1>Lead Post Disbursement </h1>
 			</div>
 			<div class="col-sm-6">
 				<ol class="breadcrumb float-sm-right">
@@ -31,7 +31,7 @@
 	<div class="container-fluid">
 		<div class="col-md-12">
 
-			@using (Html.BeginForm("LeadView", "LeadDisbursement", FormMethod.Post, new { enctype = "multipart/form-data" }))
+			@using (Html.BeginForm("LeadView", "LeadPostDisbursement", FormMethod.Post, new { enctype = "multipart/form-data" }))
 			{
 
 				<div class="form-group">
@@ -140,7 +140,7 @@
 											<td>
 												<div class="d-flex order-actions">
 													<a href="@Url.Action("LeadDisbursement", "LeadDisbursement", new { LeadId = item.LeadId })"
-													   data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Document"><u>Disbursement</u></a>
+													   data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Document"><u>Post Disbursement</u></a>
 												</div>
 
 											</td>
@@ -170,7 +170,7 @@
 							</tfoot>
 						</table>
 						<div class="card-footer">
-							@using (Html.BeginForm("LeadView", "LeadDisbursement", FormMethod.Post, new { enctype = "multipart/form-data" }))
+							@using (Html.BeginForm("LeadView", "LeadPostDisbursement", FormMethod.Post, new { enctype = "multipart/form-data" }))
 							{
 
 								@Html.ActionLink("Export to Excel", "ExportToExcel", new { @class = "btn btn-primary" })

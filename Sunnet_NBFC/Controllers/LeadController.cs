@@ -235,6 +235,7 @@ namespace Sunnet_NBFC.Controllers
                                     model.EstFamilyIncome = Convert.ToString(ds.Tables[0].Rows[i]["EstFamilyIncome"]);
                                     model.PerformaInvoice = Convert.ToString(ds.Tables[0].Rows[i]["PerformaInvoice"]);
                                     model.RepaymentType = Convert.ToString(ds.Tables[0].Rows[i]["RepaymentType"]);
+                                    model.InsEndValidityDate = Convert.ToString(ds.Tables[0].Rows[i]["InsEndValidityDate"]);
                                     //model.EstValueofscurity = Convert.ToString(ds.Tables[0].Rows[i]["EstValueofscurity"]);
                                     ViewBag.CUSTYPEREUIRED = Convert.ToString(ds.Tables[0].Rows[i]["CustTypeRequried"]);
                                     ViewBag.Status1 = Convert.ToString(ds.Tables[0].Rows[i]["Status1"]);
@@ -344,6 +345,7 @@ namespace Sunnet_NBFC.Controllers
                                     gurantor.G_CibilScore = Convert.ToString(ds.Tables[1].Rows[i]["CibilScore"]);
                                     gurantor.G_EmailId = Convert.ToString(ds.Tables[1].Rows[i]["EmailId"]);
                                     gurantor.G_OwnerShip = Convert.ToString(ds.Tables[1].Rows[i]["OwnerShip"]);
+                                    gurantor.G_LandMark = Convert.ToString(ds.Tables[1].Rows[i]["LandMark"]);
                                     gurantorslist.Add(gurantor);
 
                                 }

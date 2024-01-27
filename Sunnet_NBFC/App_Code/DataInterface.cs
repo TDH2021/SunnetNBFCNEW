@@ -529,7 +529,7 @@ public class DataInterface : IDisposable
                 sqlCommand.Parameters.AddWithValue("@ERikshawMaker", cls.ERikshawMaker);
                 sqlCommand.Parameters.AddWithValue("@PerformaInvoice", cls.PerformaInvoice);
                 sqlCommand.Parameters.AddWithValue("@RepaymentType", cls.RepaymentType);
-
+                sqlCommand.Parameters.AddWithValue("@InsEndValidityDate", cls.InsEndValidityDate);
                 dt = db.FillTableProc(sqlCommand, "USP_Lead");
             }
 

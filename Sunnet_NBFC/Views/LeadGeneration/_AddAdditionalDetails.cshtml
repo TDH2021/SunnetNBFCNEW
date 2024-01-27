@@ -103,7 +103,20 @@
 
        })
         </div>
-       
+        <div class="col-md-3">
+            <label for="exampleInputEmail1">Number of Dependent</label>
+            @Html.TextBoxFor(model => model.NoofDependent, new
+       {
+           @class = "form-control",
+           @placeholder = "No of Dependent",
+           @name = "MName",
+           @required = "true",
+           @onkeypress = "return isNumber(this.value);",
+           @maxlength = "2",
+           @id = "txtVchNoofDependent"
+
+       })
+        </div>
     </div>
 
     <div class="row" id="divRef1">

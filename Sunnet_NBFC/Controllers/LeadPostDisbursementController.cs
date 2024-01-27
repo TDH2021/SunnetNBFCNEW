@@ -47,7 +47,7 @@ namespace Sunnet_NBFC.Controllers
 
                         using (clsLeadGenerationMaster cls = new clsLeadGenerationMaster())
                         {
-                            cls.ReqType = "GetLeadAllData";
+                            cls.ReqType = "GetLeadAllDataPostDisburse";
                             cls.CompanyId = ClsSession.CompanyID;
                             cls.BranchID = ClsSession.BranchId;
                             cls.MainProductId = clss.MainProductId;
@@ -196,36 +196,35 @@ namespace Sunnet_NBFC.Controllers
         }
 
 
-     
+
         [Sunnet_NBFC.App_Code.SessionAttribute]
         public ActionResult LeadPostDisbursement(int? leadid)
         {
-            clsDisbursement M = new clsDisbursement();
+            clsLeadPostDisburse cls = new clsLeadPostDisburse();
             try
             {
                 DataSet ds = new DataSet();
                 DataTable dtLeadDoc = new DataTable();
                 if (leadid > 0)
                 {
-                    M.ReqType = "Get";
-
-                    M.ShortStage_Name = "Disburse";
-                    M.LeadId = Convert.ToInt32("0" + leadid.ToString());
-                    M.CompanyId = ClsSession.CompanyID;
-                    ds = DataInterface1.dbDisbursement(M);
+                    cls.ReqType = "Get";
+                    //cls.ShortStage_Name = "Disburse";
+                    cls.LeadId = Convert.ToInt32("0" + leadid.ToString());
+                    cls.CompanyId = ClsSession.CompanyID;
+                    ds = DataInterface1.dbPostDisbursement(cls);
                     if (ds != null && ds.Tables.Count > 0)
                         dtLeadDoc = ds.Tables[0];
                 }
 
                 if (dtLeadDoc != null && dtLeadDoc.Rows.Count > 0)
-                    M = DataInterface.GetItem<clsDisbursement>(dtLeadDoc.Rows[0]);
+                    cls = DataInterface.GetItem<clsLeadPostDisburse>(dtLeadDoc.Rows[0]);
 
-                List<clsEmi> Lead = new List<clsEmi>();
-                if (ds.Tables.Count > 1)
-                {
-                    Lead = DataInterface.ConvertDataTable<clsEmi>(ds.Tables[1]);
-                }
-                return View(M);
+                //List<clsEmi> Lead = new List<clsEmi>();
+                //if (ds.Tables.Count > 1)
+                //{
+                //    Lead = DataInterface.ConvertDataTable<clsEmi>(ds.Tables[1]);
+                //}
+                return View(cls);
             }
             catch (Exception ex)
             {
@@ -236,7 +235,7 @@ namespace Sunnet_NBFC.Controllers
 
         [Sunnet_NBFC.App_Code.SessionAttribute]
         [HttpPost]
-        public ActionResult LeadDisbursement(clsDisbursement M, FormCollection frm)
+        public ActionResult LeadPostDisbursement(clsLeadPostDisburse M, FormCollection frm)
         {
             ClsReturnData clsRtn = new ClsReturnData();
             clsRtn.MsgType = (int)MessageType.Fail;
@@ -252,7 +251,7 @@ namespace Sunnet_NBFC.Controllers
                     ViewBag.Error = "Invalid Model";
                     return View(M);
                 }
-                if (M.DisbursementId <= 0)
+                if (M.Id <= 0)
                 {
                     M.ReqType = "Insert";
                 }
@@ -261,7 +260,7 @@ namespace Sunnet_NBFC.Controllers
                     M.ReqType = "Update";
                 }
 
-                ds = DataInterface1.dbDisbursement(M);
+                ds = DataInterface1.dbPostDisbursement(M);
                 dt = ds.Tables[0];
                 if (dt != null && dt.Rows.Count > 0)
                 {
@@ -274,10 +273,10 @@ namespace Sunnet_NBFC.Controllers
 
                 if (IsSave)
                 {
-                    
-                    M.ReqType = "UpdateStatus";
-                    M.Status = "A";
-                    dt = DataInterface1.UpdateLeadStatusDisburse(M);
+
+                    //M.ReqType = "UpdateStatus";
+                    //M.Status = "A";
+                    //dt = DataInterface1.UpdateLeadStatusDisburse(M);
                     if (dt != null && dt.Rows.Count > 0)
                     {
                         clsRtn.ID = Convert.ToInt64("0" + Convert.ToString(dt.Rows[0]["ReturnID"]));
@@ -301,38 +300,38 @@ namespace Sunnet_NBFC.Controllers
                     clse.ReqType = "InsertUpdate";
                     clse.Mode = "WEB";
                     clse.ErrorDescrption = e1.Message;
-                    clse.FunctionName = "LeadDisbursement";
-                    clse.Link = "Lead/Lead Disbursement";
-                    clse.PageName = "LeadDisbursement Controller";
+                    clse.FunctionName = "LeadPostDisbursement";
+                    clse.Link = "Lead/Lead Post Disbursement";
+                    clse.PageName = "LeadPostDisbursement Controller";
                     clse.UserId = ClsSession.UserID.ToString();
                     DataInterface.PostError(clse);
                 }
             }
             if (IsSave)
             {
-                TempData["Success"] = !string.IsNullOrEmpty(clsRtn.Message) ? clsRtn.Message : "Saved/Updated";
-                return RedirectToAction("LeadView", "LeadDisbursement");
+                TempData["Success"] = !string.IsNullOrEmpty(clsRtn.Message) ? clsRtn.Message : "Saved / Updated";
+                return RedirectToAction("LeadView", "LeadPostDisbursement");
             }
             else
             {
-                ViewBag.Error = !string.IsNullOrEmpty(clsRtn.Message) ? clsRtn.Message : "Error: Data Not Saved/Updated";
-                return RedirectToAction("LeadDisbursement", new { leadid = M.LeadId });
+                ViewBag.Error = !string.IsNullOrEmpty(clsRtn.Message) ? clsRtn.Message : "Error: Data Not Saved / Updated";
+                return RedirectToAction("LeadPostDisbursement", new { leadid = M.LeadId });
             }
         }
 
         [Sunnet_NBFC.App_Code.SessionAttribute]
-        public ActionResult LeadDisbursementView(clsDisbursement M)
+        public ActionResult LeadPostDisbursementView(clsLeadPostDisburse M)
         {
-            List<clsDisbursement> lst = new List<clsDisbursement>();
+            List<clsLeadPostDisburse> lst = new List<clsLeadPostDisburse>();
             try
             {
                 DataSet ds = new DataSet();
                 DataTable dtLeadDoc = new DataTable();
                 M.ReqType = "View";
                 M.CompanyId = ClsSession.CompanyID;
-                ds = DataInterface1.dbDisbursement(M);
+                ds = DataInterface1.dbPostDisbursement(M);
                 dtLeadDoc = ds.Tables[0];
-                lst = DataInterface.ConvertDataTable<clsDisbursement>(dtLeadDoc);
+                lst = DataInterface.ConvertDataTable<clsLeadPostDisburse>(dtLeadDoc);
 
             }
             catch (Exception ex)
@@ -342,9 +341,9 @@ namespace Sunnet_NBFC.Controllers
                     clse.ReqType = "View";
                     clse.Mode = "WEB";
                     clse.ErrorDescrption = ex.Message;
-                    clse.FunctionName = "LeadDisbursementView";
-                    clse.Link = "LeadDisbursement/LeadDisbursementView";
-                    clse.PageName = "LeadDisbursement Controller";
+                    clse.FunctionName = "LeadPostDisbursementView";
+                    clse.Link = "LeadPostDisbursement/LeadPostDisbursementView";
+                    clse.PageName = "LeadPostDisbursement Controller";
                     clse.UserId = "1";
                     DataInterface.PostError(clse);
                 }
@@ -354,9 +353,9 @@ namespace Sunnet_NBFC.Controllers
         }
 
 
-       
-       
-        
-      
+
+
+
+
     }
 }

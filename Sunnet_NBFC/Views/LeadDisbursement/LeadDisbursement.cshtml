@@ -347,7 +347,7 @@
 	function fnCreateEmi() {
 		debugger;
 		var ra = $('#ReqLoanAmt').val();
-		var loan = $('#txtNetDisbursementAmount').val();
+        var nba = $('#txtNetDisbursementAmount').val();
 		var tenure = $('#txtTenure').val();
 		var roi = $('#txtROI').val();
 		var startdate = $('#txtLoanStartDate').val();
@@ -356,7 +356,7 @@
 		//alert(roi);
 		//alert(startdate);
 
-		if (parseFloat(loan) == 0) {
+        if (parseFloat(nba) == 0) {
 			//alert("Please Enter Net Disbursement Amount");
 			swal("TDH", "Please Enter Net Disbursement Amount", "error");
 			return false;
@@ -385,7 +385,7 @@
 			return false;
 		}
 
-		var data = { "_loan": loan, "_roi": roi, "_tenure": tenure, "_startdate": startdate };
+        var data = { "_loan": nba, "_roi": roi, "_tenure": tenure, "_startdate": startdate };
 
 		$.ajax({
 			type: "POST",

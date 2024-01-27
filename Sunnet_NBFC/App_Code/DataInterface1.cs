@@ -1639,6 +1639,53 @@ public class DataInterface1 : IDisposable
 
         return dt;
     }
+    public static DataSet dbPostDisbursement(clsLeadPostDisburse cls)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            using (DBOperation db = new DBOperation())
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@ReqType", SqlDbType.VarChar).Value = cls.ReqType;
+                    cmd.Parameters.Add("@Id", SqlDbType.Int).Value = cls.Id;
+                    cmd.Parameters.Add("@LeadId", SqlDbType.Int).Value = cls.LeadId;
+                    cmd.Parameters.AddWithValue("@LeadNo", cls.LeadNo);
+                    cmd.Parameters.AddWithValue("@OrgDocNo", cls.OrgDocNo);
+                    cmd.Parameters.AddWithValue("@DocType", cls.DocType);
+                    cmd.Parameters.AddWithValue("@DocDate", cls.DocDate);
+                    cmd.Parameters.AddWithValue("@PagesFrom", cls.PagesFrom);
+                    cmd.Parameters.AddWithValue("@PagesTo", cls.PagesTo);
+                    cmd.Parameters.AddWithValue("@AnyOther", cls.AnyOther);
+                    cmd.Parameters.AddWithValue("@RegistrationCertificate", cls.RegistrationCertificate);
+                    cmd.Parameters.AddWithValue("@InsuredHPEndorse", cls.InsuredHPEndorse);
+                    cmd.Parameters.AddWithValue("@InvoiceHPEndorse", cls.InvoiceHPEndorse);
+                    cmd.Parameters.AddWithValue("@MarginMoneyEndorse", cls.MarginMoneyEndorse);
+                    cmd.Parameters.AddWithValue("@NOC", cls.NOC);
+                    cmd.Parameters.AddWithValue("@RTOSlip", cls.RTOSlip);
+                    cmd.Parameters.AddWithValue("@EndorsedRC", cls.EndorsedRC);
+                    cmd.Parameters.AddWithValue("@CreatedBy", cls.CreatedBy);
+                    cmd.Parameters.AddWithValue("@UpdatedBy", cls.UpdatedBy);
+                    //cmd.Parameters.AddWithValue("@IsDelete", cls.IsDelete);
+                    cmd.Parameters.Add("@CompanyId", SqlDbType.Int).Value = ClsSession.CompanyID;
+                    //cmd.Parameters.AddWithValue("@Remarks", cls.Remarks);
+                    cmd.Parameters.AddWithValue("@BranchId", cls.BranchId);
+                    ds = db.FillDsProc(cmd, "USP_LeadPostDisburse");
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        finally
+        {
+            ds.Dispose();
+        }
+        return ds;
+    }
 
     //commom fun
     public static T GetItem<T>(DataRow dr)

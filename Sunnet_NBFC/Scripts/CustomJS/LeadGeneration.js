@@ -1,7 +1,6 @@
 ﻿var CompanyID = $("#hdnCompanyId").val();
 $('#MainProductId').change(function () {
 
-
     var MainProductId = $("#MainProductId option:selected").val();
     var MainProducttext = $("#MainProductId option:selected").text();
     if (MainProductId.length == 0) {
@@ -41,6 +40,8 @@ $('#MainProductId').change(function () {
                     $('#divRef2').show();
                 }
                 var data = JSON.parse(result);
+                $('#ProductId').empty();
+
                 for (var i = 0; i < data.length; i++) {
                     var opt = new Option(data[i].ProductName, data[i].ProdId);
                     $('#ProductId').append(opt);
@@ -1445,6 +1446,7 @@ function ValidationChk() {
     var RepaymentType = $("#ddlRepaymentType :selected").val();
     var Co_LandMark = $("#txtCoLandMark").val();
     var Cust_LandMark = $("#txtCustLandMark").val();
+    var InsEndValidityDate = $("#txtEndValidityDate").val();
     if (MainProductText != "Individual Loan") {
         RepaymentType = "";
     }
@@ -1782,9 +1784,10 @@ function ValidationChk() {
             else if (MainProductText != "Individual Loan" && RefenceRelation1.length == 0) {
                 swal("TDH", "Please enter refrence 1 with relationship.", "error");
             }
-            else if (MainProductText != "Individual Loan" && RefenceMobileNo1.length == 0) {
-                swal("TDH", "Please enter refrence 1 person mobile no.", "error");
+            else if (MainProductText != "Individual Loan" && FORecomedAmt == 0) {
+                swal("TDH", "Please enter FO Recomended Amount/Loan Recomended by FO.", "error");
             }
+           
 
             else {
 
@@ -1908,7 +1911,8 @@ function ValidationChk() {
                     "CO_FatherName": CO_FatherName,
                     "CO_MotherName": CO_MotherName,
                     "Co_LandMark": Co_LandMark,
-                    "CustLandMark": Cust_LandMark
+                    "CustLandMark": Cust_LandMark,
+                    "InsEndValidityDate": InsEndValidityDate
                 }
 
                 filedata.append('AllDataArray', JSON.stringify(AllDataArray));
@@ -2162,6 +2166,9 @@ function ValidationChk() {
             else if (LoanPurpose.length == 0 && (MainProductText == "Individual Loan" || MainProductText == "Bussiness Loan" || MainProductText == "Commercial Vehicle" || MainProductText == "Two Wheeler Loan")) {
                 swal("TDH", "Please enter purpose of loan.", "error");
             }
+            else if (MainProductText != "Individual Loan" && FORecomedAmt==0) {
+                swal("TDH", "Please enter FO Recomended Amount/Loan Recomended by FO.", "error");
+            }
             else {
 
                 AllDataArray = {
@@ -2280,7 +2287,8 @@ function ValidationChk() {
                     "CO_FatherName": CO_FatherName,
                     "CO_MotherName": CO_MotherName,
                     "Co_LandMark": Co_LandMark,
-                    "CustLandMark": Cust_LandMark
+                    "CustLandMark": Cust_LandMark,
+                    "InsEndValidityDate":InsEndValidityDate
                 }
 
                 filedata.append('AllDataArray', JSON.stringify(AllDataArray));
@@ -2507,6 +2515,9 @@ function ValidationChk() {
 
                 swal("TDH", "Please Select Branch and Center in case of Individual Loan.", "error");
             }
+            else if (MainProductText != "Individual Loan" && FORecomedAmt == 0) {
+                swal("TDH", "Please enter FO Recomended Amount/Loan Recomended by FO.", "error");
+            }
             else {
 
 
@@ -2624,7 +2635,8 @@ function ValidationChk() {
                     "PerformaInvoice": PerformaInvoice,
                     "ERikshawMaker": ERikshawMaker,
                     "DSAId": DSAId,
-                    "RepaymentType": RepaymentType
+                    "RepaymentType": RepaymentType,
+                    "InsEndValidityDate": InsEndValidityDate
                 }
                 debugger;
                 filedata.append('AllDataArray', JSON.stringify(AllDataArray));
@@ -2792,6 +2804,9 @@ function ValidationChk() {
             else if (MainProductText != "Individual Loan" && RefenceMobileNo1.length != 10) {
                 swal("TDH", "Please enter refrence 1 person mobile no.", "error");
             }
+            else if (MainProductText != "Individual Loan" && FORecomedAmt == 0) {
+                swal("TDH", "Please enter FO Recomended Amount/Loan Recomended by FO.", "error");
+            }
 
             else {
 
@@ -2941,18 +2956,9 @@ function ValidationChk() {
                         }
                     }
 
-
-
                 })
-
             }
-
-
         }
-        debugger
-
-
-
     }
 
 }
@@ -3005,7 +3011,7 @@ function numberValidation(str) {
 
 //}
 
-function GetStateCity_PIN(PinCode, txtState, txtCity, txtPincode) {
+function GetStateCity_PIN(txtEndDate, txtState, txtCity, txtPincode) {
     debugger;
     $.ajax({
         url: "/Common/GetPinCode",
@@ -3033,4 +3039,31 @@ function GetStateCity_PIN(PinCode, txtState, txtCity, txtPincode) {
 
     });
 
+}
+function FindEndInsdate() {
+    var inputDateValue = $("#txtValidityDate").val();
+   
+    // Check if a date is entered
+    if (inputDateValue) {
+        // Convert the input value to a JavaScript Date object using moment.js
+        var inputDate = moment(inputDateValue, "DD/MM/YYYY", true);
+
+        // Check if the date is valid
+        if (inputDate.isValid()) {
+            // Add 365 days to the input date
+            inputDate.add(365, 'days');
+
+            // Format the new date as a string in dd/mm/yyyy format
+            var newDate = inputDate.format("DD/MM/YYYY");
+
+            // Update the input field with the new date
+            $("#txtEndValidityDate").val(newDate);
+        } else {
+            alert("Please enter a valid date in dd/mm/yyyy format.");
+        }
+    } else {
+        alert("Please enter a date first.");
+    }
+    // Check if a date is selected
+    
 }

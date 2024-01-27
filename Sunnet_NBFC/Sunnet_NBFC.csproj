@@ -217,7 +217,7 @@
     <Compile Include="Controllers\LeadCreditController.cs" />
     <Compile Include="Controllers\LeadDisbursementController.cs" />
     <Compile Include="Controllers\LeadGenUpdateController.cs" />
-    <Compile Include="Controllers\LeadPostDisbursement.cs" />
+    <Compile Include="Controllers\LeadPostDisbursementController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Models\ClsCommon.cs" />
     <Compile Include="App_Code\ClsReturnData.cs" />
