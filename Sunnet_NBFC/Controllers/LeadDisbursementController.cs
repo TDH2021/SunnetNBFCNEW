@@ -686,5 +686,20 @@ namespace Sunnet_NBFC.Controllers
             }
             return "";
         }
+        public FileResult DownloadFileByFileName(string namestr)
+        {
+            byte[] bytes = Array.Empty<byte>();
+            //Build the File Path.
+            string path = Server.MapPath("~/" + ConfigurationManager.AppSettings["GenLetterPath"].ToString() + "/" + namestr);
+            if (System.IO.File.Exists(path))
+            {
+                //Read the File data into Byte Array.
+                bytes = System.IO.File.ReadAllBytes(path);
+                //return File(namestr, "application/pdf");
+                //Send the File to Download.
+            }
+            return File(bytes, "application/octet-stream", namestr);
+
+        }
     }
 }
