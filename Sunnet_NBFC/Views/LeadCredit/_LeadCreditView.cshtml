@@ -35,7 +35,6 @@
                                         <label for="exampleInputEmail1" class="required">ROI</label>
                                         @Html.TextBoxFor(model => model.ROI, new { @class = "form-control", @disabled = "disabled" })
 
-
                                     </div>
                                 </div>
                             </div>
@@ -43,12 +42,12 @@
                             <div class="form-group">
                                 <div class="row">
 
-                                    <div class="col-md-3" style="margin-top:3px;">
+                                    <div class="col-md-4" style="margin-top:3px;">
                                         @Html.CheckBox("chkCIBILVerification", (Model.clsLeadCredit.CIBILVerification ?? "") == "Yes" ? true : false, new { @disabled = "disabled" })
                                         <span>@Html.LabelFor(model => model.clsLeadCredit.CIBILVerification, new { @class = "control-label" }) : </span>
                                     </div>
 
-                                    <div class="col-md-3">
+                                    <div class="col-md-2">
                                         @*<input type="file" name="clsLeadCredit.CibilDocPostedFile" id="CibilDocPostedFile" accept="image/png, image/jpg, image/jpeg" @((Model.clsLeadCredit.CIBILVerification ?? "") == "Yes" ? "" : "disabled='disabled'") />*@
                                         @Html.HiddenFor(model => model.clsLeadCredit.CibilDoc)
                                         @if (string.IsNullOrEmpty(Model.clsLeadCredit.CibilDoc) == false)
@@ -69,15 +68,40 @@
                                 </div>
                             </div>
 
+                            @if (Model.CustomerType == "c")
+                            {
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-4" style="margin-top:3px;">
+                                            @Html.CheckBox("chkCBCIBILVerification", (Model.clsLeadCredit.CBCIBILVerification ?? "") == "Yes" ? true : false, new { @disabled = "disabled" })
+                                            <span>@Html.LabelFor(model => model.clsLeadCredit.CBCIBILVerification, new { @class = "control-label" }) : </span>
+                                        </div>
+                                        <div class="col-md-2">
+                                            @*<input type="file" name="clsLeadCredit.CBCibilDocPostedFile" id="CBCibilDocPostedFile" accept="image/png, image/jpg, image/jpeg" @((Model.clsLeadCredit.CBCIBILVerification ?? "") == "Yes" ? "" : "disabled='disabled'") />*@
+                                            @Html.HiddenFor(model => model.clsLeadCredit.CBCibilDoc)
+                                            @if (string.IsNullOrEmpty(Model.clsLeadCredit.CBCibilDoc) == false)
+                                            {
+                                                @Html.ActionLink("Download", "Download", "LeadCredit", new { FileType = Model.clsLeadCredit.CBCIBILCode, ImageName = Model.clsLeadCredit.CBCibilDoc }, new { @target = "_blank" })
+                                            }
+                                        </div>
+                                        <div class="col-md-1">
+                                            <span>Remark:</span>
+                                        </div>
+                                        <div class="col-md-5">
+                                            @Html.TextBoxFor(model => model.clsLeadCredit.CBCibilRemarks, @getHtmlAttributes(((Model.clsLeadCredit.CBCIBILVerification ?? "") == "Yes" ? false : true), "form-control"))
+                                        </div>
+                                    </div>
+                                </div>
+                            }
                             <div class="form-group">
                                 <div class="row">
 
-                                    <div class="col-md-3" style="margin-top:3px;">
+                                    <div class="col-md-4" style="margin-top:3px;">
                                         @Html.CheckBox("chkCAMVerification", (Model.clsLeadCredit.CamVerification ?? "") == "Yes" ? true : false, new { @disabled = "disabled" })
                                         <span>@Html.LabelFor(model => model.clsLeadCredit.CamVerification, new { @class = "control-label" }) : </span>
                                     </div>
 
-                                    <div class="col-md-3">
+                                    <div class="col-md-2">
                                         @*<input type="file" name="clsLeadCredit.CAMDocPostedFile" id="CAMDocPostedFile" accept="image/png, image/jpg, image/jpeg" @((Model.clsLeadCredit.CamVerification ?? "") == "Yes" ? "" : "disabled='disabled'") />*@
                                         @Html.HiddenFor(model => model.clsLeadCredit.CAMDoc)
                                         @if (string.IsNullOrEmpty(Model.clsLeadCredit.CAMDoc) == false)
@@ -105,12 +129,12 @@
                                 <div class="form-group">
                                     <div class="row">
 
-                                        <div class="col-md-3" style="margin-top:3px;">
+                                        <div class="col-md-4" style="margin-top:3px;">
                                             @Html.CheckBox("chkFIVerification", (Model.clsLeadCredit.FIVerification ?? "") == "Yes" ? true : false, new { @disabled = "disabled" })
                                             <span>@Html.LabelFor(model => model.clsLeadCredit.FIVerification, new { @class = "control-label" }) : </span>
                                         </div>
 
-                                        <div class="col-md-3">
+                                        <div class="col-md-2">
                                             @*<input type="file" name="clsLeadCredit.FIDocPostedFile" id="FIDocPostedFile" required accept="image/png, image/jpg, image/jpeg" @((Model.clsLeadCredit.FIVerification ?? "") == "Yes" ? "" : "disabled='disabled'") />*@
                                             @Html.HiddenFor(model => model.clsLeadCredit.FIDoc)
                                             @Html.HiddenFor(model => model.clsLeadCredit.FICode)
@@ -139,12 +163,12 @@
                                 <div class="form-group">
                                     <div class="row">
 
-                                        <div class="col-md-3" style="margin-top:3px;">
+                                        <div class="col-md-4" style="margin-top:3px;">
                                             @Html.CheckBox("chkTVRVerification", (Model.clsLeadCredit.TVRVerification ?? "") == "Yes" ? true : false, new { @disabled = "disabled" })
                                             <span>@Html.LabelFor(model => model.clsLeadCredit.TVRVerification, new { @class = "control-label" }) : </span>
                                         </div>
 
-                                        <div class="col-md-3">
+                                        <div class="col-md-2">
                                             @*<input type="file" name="clsLeadCredit.TVRDocPostedFile" id="TVRDocPostedFile" required accept="image/png, image/jpg, image/jpeg" @((Model.clsLeadCredit.TVRVerification ?? "") == "Yes" ? "" : "disabled='disabled'") />*@
                                             @Html.HiddenFor(model => model.clsLeadCredit.TVRDoc)
                                             @Html.HiddenFor(model => model.clsLeadCredit.TVRCode)
@@ -174,12 +198,12 @@
                                 <div class="form-group">
                                     <div class="row">
 
-                                        <div class="col-md-3" style="margin-top:3px;">
+                                        <div class="col-md-4" style="margin-top:3px;">
                                             @Html.CheckBox("chkDependentFamilyAssessmentVerification", (Model.clsLeadCredit.DependentFamilyAssessmentVerification ?? "") == "Yes" ? true : false, new { @disabled = "disabled" })
                                             <span>@Html.LabelFor(model => model.clsLeadCredit.DependentFamilyAssessmentVerification, new { @class = "control-label" }) : </span>
                                         </div>
 
-                                        <div class="col-md-3">
+                                        <div class="col-md-2">
                                             @*<input type="file" name="clsLeadCredit.DependentFamilyAssessmentDocPostedFile" id="DependentFamilyAssessmentDocPostedFile" accept="image/png, image/jpg, image/jpeg" @((Model.clsLeadCredit.DependentFamilyAssessmentVerification ?? "") == "Yes" ? "" : "disabled='disabled'") />*@
                                             @Html.HiddenFor(model => model.clsLeadCredit.DependentFamilyAssessmentDoc)
                                             @*@Html.HiddenFor(model => model.clsLeadCredit.DependentFamilyAssessmentVerificationCode)*@
@@ -208,12 +232,12 @@
                                 <div class="form-group">
                                     <div class="row">
 
-                                        <div class="col-md-3" style="margin-top:3px;">
+                                        <div class="col-md-4" style="margin-top:3px;">
                                             @Html.CheckBox("chkCashFlowVerification", (Model.clsLeadCredit.CashFlowVerification ?? "") == "Yes" ? true : false, new { })
                                             <span>@Html.LabelFor(model => model.clsLeadCredit.CashFlowVerification, new { @class = "control-label" }) : </span>
                                         </div>
 
-                                        <div class="col-md-3">
+                                        <div class="col-md-2">
                                             @*<input type="file" name="clsLeadCredit.CashFlowDocPostedFile" id="CashFlowDocPostedFile" required accept="image/png, image/jpg, image/jpeg" @((Model.clsLeadCredit.CashFlowVerification ?? "") == "Yes" ? "" : "disabled='disabled'") />*@
                                             @Html.HiddenFor(model => model.clsLeadCredit.CashFlowDoc)
                                             @Html.HiddenFor(model => model.clsLeadCredit.CashFlowCode)
@@ -241,12 +265,12 @@
                                 <div class="form-group">
                                     <div class="row">
 
-                                        <div class="col-md-3" style="margin-top:3px;">
+                                        <div class="col-md-4" style="margin-top:3px;">
                                             @Html.CheckBox("chkViechleValVerfication", (Model.clsLeadCredit.ViechleValVerfication ?? "") == "Yes" ? true : false, new { @disabled = "disabled" })
                                             <span>@Html.LabelFor(model => model.clsLeadCredit.ViechleValVerfication, new { @class = "control-label" }) : </span>
                                         </div>
 
-                                        <div class="col-md-3">
+                                        <div class="col-md-2">
                                             @*<input type="file" name="clsLeadCredit.ViechleDocPostedFile" id="ViechleDocPostedFile" required accept="image/png, image/jpg, image/jpeg" @((Model.clsLeadCredit.ViechleValVerfication ?? "") == "Yes" ? "" : "disabled='disabled'") />*@
                                             @Html.HiddenFor(model => model.clsLeadCredit.ViechleDoc)
                                             @Html.HiddenFor(model => model.clsLeadCredit.ViechleCode)
@@ -274,12 +298,12 @@
                                 <div class="form-group">
                                     <div class="row">
 
-                                        <div class="col-md-3" style="margin-top:3px;">
+                                        <div class="col-md-4" style="margin-top:3px;">
                                             @Html.CheckBox("chkBankStmtVerification", (Model.clsLeadCredit.BankStmtVerification ?? "") == "Yes" ? true : false, new { @disabled = "disabled" })
                                             <span>@Html.LabelFor(model => model.clsLeadCredit.BankStmtVerification, new { @class = "control-label" }) : </span>
                                         </div>
 
-                                        <div class="col-md-3">
+                                        <div class="col-md-2">
                                             @*<input type="file" name="clsLeadCredit.BankStmtDocPostedFile" id="BankStmtDocPostedFile" required accept="image/png, image/jpg, image/jpeg" @((Model.clsLeadCredit.BankStmtVerification ?? "") == "Yes" ? "" : "disabled='disabled'") />*@
                                             @Html.HiddenFor(model => model.clsLeadCredit.BankStmtDoc)
                                             @Html.HiddenFor(model => model.clsLeadCredit.BankStmtCode)
@@ -308,12 +332,12 @@
                                 <div class="form-group">
                                     <div class="row">
 
-                                        <div class="col-md-3" style="margin-top:3px;">
+                                        <div class="col-md-4" style="margin-top:3px;">
                                             @Html.CheckBox("chkIncomeStmtVerification", (Model.clsLeadCredit.IncomeStmtVerification ?? "") == "Yes" ? true : false, new { @disabled = "disabled" })
                                             <span>@Html.LabelFor(model => model.clsLeadCredit.IncomeStmtVerification, new { @class = "control-label" }) : </span>
                                         </div>
 
-                                        <div class="col-md-3">
+                                        <div class="col-md-2">
                                             @*<input type="file" name="clsLeadCredit.IncomeStmtDocPostedFile" id="IncomeStmtDocPostedFile" required accept="image/png, image/jpg, image/jpeg" @((Model.clsLeadCredit.IncomeStmtVerification ?? "") == "Yes" ? "" : "disabled='disabled'") />*@
                                             @Html.HiddenFor(model => model.clsLeadCredit.IncomeStmtDoc)
                                             @Html.HiddenFor(model => model.clsLeadCredit.IncomeStmtCode)
@@ -342,12 +366,12 @@
                                 <div class="form-group">
                                     <div class="row">
 
-                                        <div class="col-md-3" style="margin-top:3px;">
+                                        <div class="col-md-4" style="margin-top:3px;">
                                             @Html.CheckBox("chkPersonalDiscussVerification", (Model.clsLeadCredit.PersonalDiscussVerification ?? "") == "Yes" ? true : false, new { @disabled = "disabled" })
                                             <span>@Html.LabelFor(model => model.clsLeadCredit.PersonalDiscussVerification, new { @class = "control-label" }) : </span>
                                         </div>
 
-                                        <div class="col-md-3">
+                                        <div class="col-md-2">
                                             @*<input type="file" name="clsLeadCredit.PersonalDiscussDocPostedFile" id="PersonalDiscussDocPostedFile" required accept="image/png, image/jpg, image/jpeg" @((Model.clsLeadCredit.PersonalDiscussVerification ?? "") == "Yes" ? "" : "disabled='disabled'") />*@
                                             @Html.HiddenFor(model => model.clsLeadCredit.PersonalDiscussDoc)
                                             @Html.HiddenFor(model => model.clsLeadCredit.PersonalDiscussCode)
@@ -376,12 +400,12 @@
                                 <div class="form-group">
                                     <div class="row">
 
-                                        <div class="col-md-3" style="margin-top:3px;">
+                                        <div class="col-md-4" style="margin-top:3px;">
                                             @Html.CheckBox("chkEligiblity", (Model.clsLeadCredit.Eligiblity ?? "") == "Yes" ? true : false, new { @disabled = "disabled" })
                                             <span>@Html.LabelFor(model => model.clsLeadCredit.Eligiblity, new { @class = "control-label" }) : </span>
                                         </div>
 
-                                        <div class="col-md-3">
+                                        <div class="col-md-2">
                                             @*<input type="file" name="clsLeadCredit.EligiblityDocPostedFile" id="EligiblityDocPostedFile" required accept="image/png, image/jpg, image/jpeg" @((Model.clsLeadCredit.Eligiblity ?? "") == "Yes" ? "" : "disabled='disabled'") />*@
                                             @Html.HiddenFor(model => model.clsLeadCredit.EligiblityDoc)
                                             @Html.HiddenFor(model => model.clsLeadCredit.EligiblityCode)
@@ -426,12 +450,12 @@
                                 <div class="form-group">
                                     <div class="row">
 
-                                        <div class="col-md-3" style="margin-top:3px;">
+                                        <div class="col-md-4" style="margin-top:3px;">
                                             @Html.CheckBox("chkPropertyDocVerification", (Model.clsLeadCredit.PropertyDocVerification ?? "") == "Yes" ? true : false, new { @disabled = "disabled" })
                                             <span>@Html.LabelFor(model => model.clsLeadCredit.PropertyDocVerification, new { @class = "control-label" }) : </span>
                                         </div>
 
-                                        <div class="col-md-3">
+                                        <div class="col-md-2">
                                             @*<input type="file" name="clsLeadCredit.PropertyDocPostedFile" id="PropertyDocPostedFile" required accept="image/png, image/jpg, image/jpeg" @((Model.clsLeadCredit.PropertyDocVerification ?? "") == "Yes" ? "" : "disabled='disabled'") />*@
                                             @Html.HiddenFor(model => model.clsLeadCredit.PropertyDoc)
                                             @Html.HiddenFor(model => model.clsLeadCredit.PropertyCode)
@@ -772,6 +796,41 @@
 
                             @if (Model.MainProdType == "I")
                             {
+                                if (Model.clsCreditCheckList != null)
+                                {
+                                    int Index = 1;
+                                    <hr />
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <label for="example"> Credit Check List:-</label>
+                                            </div>
+                                        </div>
+                                        @foreach (var item in Model.clsCreditCheckList)
+                                        {
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        @*@Html.Label(item.QuestionId.ToString(), new { @class = "control-label" })*@
+                                                        <b> @Index. </b> &nbsp; @Html.Label(item.CheckListName.ToString())
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        @Html.Label(item.Answer.ToString())
+
+                                                    </div>
+                                                    <div class="col-md-1">
+                                                        <span>Remark:</span>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        @Html.TextBox("Rmk_" + item.Id.ToString() + "_" + item.CheckListId.ToString(), item.Remarks, new { @class = "form-control", @id = "CLRemark",@disabled = "disabled" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            Index++;
+                                        }
+                                    </div>
+                                }
+                                <hr />
 
                                 @*<div class="form-group">
                                         <div class="row">

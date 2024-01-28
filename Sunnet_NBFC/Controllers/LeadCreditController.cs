@@ -242,6 +242,8 @@ namespace Sunnet_NBFC.Controllers
                 //else
                 //    M.clsLeadCredit = new clsLeadCredit();
 
+                //-------------------Checklist-------------------------------
+
                 clsCreditCheckList CFilter = new clsCreditCheckList();
                 CFilter.ReqType = "Edit";
                 CFilter.LeadId = M.LeadId;
@@ -272,6 +274,7 @@ namespace Sunnet_NBFC.Controllers
                     }
 
                 }
+                //-------------------Checklist-------------------------------
 
                 ViewBag.StatusListDDL = ClsCommon.StatusDDL("CreditApprove");
                 ViewBag.CrditCheckListDDL = ClsCommon.ToSelectList(DataInterface2.GetMiscForDDL("CreditCheckList"), "MiscId", "MiscName");
@@ -1012,6 +1015,41 @@ namespace Sunnet_NBFC.Controllers
                 }
                 else
                     M.clsLeadCredit = new clsLeadCredit();
+
+
+                //-------------------Checklist-------------------------------
+
+                clsCreditCheckList CFilter = new clsCreditCheckList();
+                CFilter.ReqType = "Edit";
+                CFilter.LeadId = M.LeadId;
+                CFilter.LeadCreditId = M.clsLeadCredit == null ? 0 : M.clsLeadCredit.CrId;
+
+                using (DataTable dtCreditCheckList = DataInterface2.GetCreditCheckList(CFilter))
+                {
+                    if (dtCreditCheckList != null)
+                    {
+                        //List<clsLeadCredit> list = new List<clsLeadCredit>();
+                        List<clsCreditCheckList> Multilist = new List<clsCreditCheckList>();
+                        Multilist = (from DataRow row in dtCreditCheckList.Rows
+                                     select new clsCreditCheckList()
+                                     {
+                                         ReqType = "Edit",
+                                         Id = int.Parse("0" + Convert.ToString(row["Id"])),
+                                         LeadId = int.Parse("0" + Convert.ToString(row["LeadId"])),
+                                         LeadCreditId = int.Parse("0" + Convert.ToString(row["LeadCreditId"])),
+                                         CheckListId = int.Parse("0" + Convert.ToString(row["CheckListId"])),
+                                         CheckListName = Convert.ToString(row["CheckListName"]),
+                                         Answer = Convert.ToString(row["Answer"]),
+                                         Remarks = Convert.ToString(row["Remarks"])
+
+                                     }).ToList();
+
+                        if (Multilist != null)
+                            M.clsCreditCheckList = Multilist;
+                    }
+
+                }
+                //-------------------Checklist-------------------------------
 
                 ViewBag.StatusListDDL = ClsCommon.StatusDDL("CreditApprove");
 
