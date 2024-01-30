@@ -3011,7 +3011,7 @@ function numberValidation(str) {
 
 //}
 
-function GetStateCity_PIN(txtEndDate, txtState, txtCity, txtPincode) {
+function GetStateCity_PIN(PinCode, txtState, txtCity, txtPincode) {
     debugger;
     $.ajax({
         url: "/Common/GetPinCode",

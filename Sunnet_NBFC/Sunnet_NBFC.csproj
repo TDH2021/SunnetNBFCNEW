@@ -2462,7 +2462,6 @@
     <Content Include="Scripts\CustomJS\Customer.js" />
     <Content Include="Scripts\CustomJS\DSA.js" />
     <Content Include="Scripts\CustomJS\LeadGenView.js" />
-    <Content Include="Scripts\CustomJS\LeadUpdate.js" />
     <Content Include="Scripts\CustomJS\Login.js" />
     <Content Include="Scripts\CustomJS\Question.js" />
     <Content Include="Scripts\CustomJS\RoleMaster.js" />
