@@ -8,13 +8,9 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Misc</h1>
+                <h1>Misc Master</h1>
             </div>
-            <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
-                    @Html.ActionLink("Back to List", "MiscView")
-                </ol>
-            </div>
+            
         </div>
     </div><!-- /.container-fluid -->
 </section>
@@ -69,7 +65,8 @@
                                         new SelectListItem { Value = "Relation" , Text = "Reference" },
                                          new SelectListItem { Value = "CreditCheckList" , Text = "CreditCheckList" },
                                           new SelectListItem { Value = "Colletral" , Text = "Colletral" },
-                                          new SelectListItem { Value = "PayMode" , Text = "PayMode" }
+                                          new SelectListItem { Value = "PayMode" , Text = "PayMode" },
+                                          new SelectListItem { Value = "DocumentType" , Text = "DocumentType" }
                                         },
                                         new { @class = "form-control", @id = "ddlMiscType1" })
 
