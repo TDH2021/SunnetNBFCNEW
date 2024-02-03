@@ -879,7 +879,7 @@ public class DataInterface1 : IDisposable
                 sqlCommand.Parameters.Add("@ContactNo2", SqlDbType.VarChar).Value = cls.ContactNo2;
                 sqlCommand.Parameters.Add("@WhatsAppNo", SqlDbType.VarChar).Value = cls.WhatsAppNo;
                 sqlCommand.Parameters.Add("@Email", SqlDbType.VarChar).Value = cls.Email;
-                sqlCommand.Parameters.Add("@DOB", SqlDbType.Date).Value = cls.DOB == null ? (object)DBNull.Value : cls.DOB;
+                sqlCommand.Parameters.Add("@DOB", SqlDbType.VarChar).Value = cls.DOB == null ? (object)DBNull.Value : cls.DOB;
                 sqlCommand.Parameters.Add("@PAN", SqlDbType.VarChar).Value = cls.PAN;
                 sqlCommand.Parameters.Add("@AadhaarNo", SqlDbType.VarChar).Value = cls.AadhaarNo;
                 sqlCommand.Parameters.Add("@MaritalStatus", SqlDbType.VarChar).Value = cls.MaritalStatus;

@@ -1,6 +1,6 @@
 ﻿@model Sunnet_NBFC.Models.clsLeadGenerationMaster
 @{
-	ViewBag.Title = "Lead Post Disburse";
+	ViewBag.Title = "To Be Post Disburse";
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -139,7 +139,7 @@
 
 											<td>
 												<div class="d-flex order-actions">
-													<a href="@Url.Action("LeadDisbursement", "LeadDisbursement", new { LeadId = item.LeadId })"
+													<a href="@Url.Action("LeadPostDisbursement", "LeadPostDisbursement", new { LeadId = item.LeadId })"
 													   data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Document"><u>Post Disbursement</u></a>
 												</div>
 

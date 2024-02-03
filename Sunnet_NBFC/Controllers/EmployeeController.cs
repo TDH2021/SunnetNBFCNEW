@@ -13,6 +13,7 @@ using Sunnet_NBFC.App_Code;
 using System.Runtime.InteropServices;
 using Newtonsoft.Json;
 using System.Diagnostics;
+using System.Globalization;
 
 namespace Sunnet_NBFC.Controllers
 {
@@ -34,7 +35,41 @@ namespace Sunnet_NBFC.Controllers
                     dt = DataInterface1.dbEmployee(cls);
                 }
                 if (dt != null && dt.Rows.Count > 0)
-                    M = DataInterface1.GetItem<clsEmployee>(dt.Rows[0]);
+
+                {
+                    List<clsEmployee> lst = new List<clsEmployee>();
+                    lst = (from DataRow row in dt.Rows
+
+                           select new clsEmployee()
+                           {
+                               EmpID = int.Parse(row["EmpID"].ToString()),
+                               EmpCode = row["EmpCode"].ToString(),
+                               EmpName = row["EmpName"].ToString(),
+                               ContactNo1 = row["ContactNo1"].ToString(),
+                               FatherName = row["FatherName"].ToString(),
+                               MotherName = row["MotherName"].ToString(),
+                               Address = row["Address"].ToString(),
+                               StateID = int.Parse(row["StateID"].ToString()),
+                               CityID = int.Parse(row["CityID"].ToString()),
+                               ZipCode = row["ZipCode"].ToString(),
+                               ContactNo2 = row["ContactNo2"].ToString(),
+                               WhatsAppNo = row["WhatsAppNo"].ToString(),
+                               DOB = Convert.ToDateTime(row["DOB"]).Date.ToString("dd/MM/yyyy"),
+                               PAN = row["PAN"].ToString(),
+                               AadhaarNo = row["AadhaarNo"].ToString(),
+                               MaritalStatus = row["MaritalStatus"].ToString(),
+                               ImageName = row["ImageName"].ToString(),
+                               Longtitute = row["Longtitute"].ToString(),
+                               Langtiute = row["Langtiute"].ToString(),
+                               BranchId = int.Parse(row["BranchId"].ToString()),
+                               RoleId = int.Parse(row["RoleId"].ToString())
+
+
+                           }).ToList();
+
+                    M = lst.Cast<clsEmployee>().FirstOrDefault();
+                }
+
                 return View(M);
             }
             catch (Exception ex)
@@ -73,7 +108,7 @@ namespace Sunnet_NBFC.Controllers
                         ViewBag.Error = " Please Upload Photo in jpg,jpeg,png format.";
                         return View(M);
                     }
-                   
+
                 }
 
 
@@ -153,8 +188,23 @@ namespace Sunnet_NBFC.Controllers
                 clsEmployee cls = new clsEmployee();
                 cls.ReqType = "view";
                 cls.IsDelete = 0;
+                cls.CompId = ClsSession.CompanyID;
                 dt = DataInterface1.dbEmployee(cls);
-                lst = DataInterface.ConvertDataTable<clsEmployee>(dt);
+
+
+                if (dt != null)
+                {
+
+                    lst = (from DataRow row in dt.Rows
+
+                           select new clsEmployee()
+                           {
+                               EmpID = int.Parse(row["EmpID"].ToString()),
+                               EmpCode = row["EmpCode"].ToString(),
+                               EmpName = row["EmpName"].ToString(),
+                               ContactNo1 = row["ContactNo1"].ToString(),
+                           }).ToList();
+                }
 
             }
             catch (Exception e1)
@@ -228,7 +278,7 @@ namespace Sunnet_NBFC.Controllers
                     clsE.UserId = ClsSession.EmpId.ToString();
                     DataInterface.PostError(clsE);
                 }
-                
+
                 return RedirectToAction("EmployeeView", "Employee");
             }
 
@@ -298,7 +348,7 @@ namespace Sunnet_NBFC.Controllers
                 {
                     M.ReqType = "Update";
                 }
-                
+
                 dt = DataInterface1.dbEmployeeDetails(M);
                 if (dt != null && dt.Rows.Count > 0)
                 {
@@ -377,7 +427,7 @@ namespace Sunnet_NBFC.Controllers
             {
 
                 clsEmployee cls = new clsEmployee();
-                    cls.ReqType = "View";
+                cls.ReqType = "View";
                 cls.EmpID = int.Parse(EmpId);
                 using (DataTable dt = DataInterface1.dbEmployee(cls))
                 {
@@ -399,7 +449,7 @@ namespace Sunnet_NBFC.Controllers
                     cls.FunctionName = "GetEmpdtl";
                     cls.Link = "Employee/GetEmpdtl";
                     cls.PageName = "Employee Controller";
-                    cls.UserId =ClsSession.EmpId.ToString();
+                    cls.UserId = ClsSession.EmpId.ToString();
                     DataInterface.PostError(cls);
                 }
             }

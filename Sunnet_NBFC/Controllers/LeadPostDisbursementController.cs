@@ -136,7 +136,7 @@ namespace Sunnet_NBFC.Controllers
 
             using (clsLeadGenerationMaster cls = new clsLeadGenerationMaster())
             {
-                cls.ReqType = "GetLeadAllData";
+                cls.ReqType = "GetLeadAllDataPostDisburse";
                 cls.CompanyId = ClsSession.CompanyID;
                 cls.BranchID = ClsSession.BranchId;
                 cls.MainProductId = clss.MainProductId;
@@ -349,7 +349,7 @@ namespace Sunnet_NBFC.Controllers
                 }
             }
 
-            return View(lst);
+            return PartialView("LeadPostDisbursementView", lst);
         }
 
 

@@ -1268,18 +1268,44 @@ namespace Sunnet_NBFC.Models
         public int Id { get; set; } = 0;
         public int LeadId { get; set; } = 0;
         public string LeadNo { get; set; } = "";
+
+        [DisplayName("Original Documents No")]
         public string OrgDocNo { get; set; } = "";
+
+        [DisplayName("Document Type")]
         public string DocType { get; set; } = "";
+
+        [DisplayName("Document Date")]
         public string DocDate { get; set; } = "";
+
+        [DisplayName("Page No From")]
         public int PagesFrom { get; set; } = 0;
+
+        [DisplayName("Page No To")]
         public int PagesTo { get; set; } = 0;
+
+        [DisplayName("Any Other Document")]
         public string AnyOther { get; set; } = "";
+
+        [DisplayName("Registration Certificate")]
         public string RegistrationCertificate { get; set; }
+
+        [DisplayName("Insured HP Endorse")]
         public string InsuredHPEndorse { get; set; }
+
+        [DisplayName("Invoice HP Endorse")]
         public string InvoiceHPEndorse { get; set; }
+
+        [DisplayName("Margin Money Endorse")]
         public string MarginMoneyEndorse { get; set; }
+
+        [DisplayName("NOC")]
         public string NOC { get; set; }
+
+        [DisplayName("RTO Slip")]
         public string RTOSlip { get; set; }
+
+        [DisplayName("Endorsed RC")]
         public string EndorsedRC { get; set; }
         public int CreatedBy { get; set; }
         public int UpdatedBy { get; set; }
@@ -1287,6 +1313,11 @@ namespace Sunnet_NBFC.Models
         public int BranchId { get; set; }
         public int isDelete { get; set; }
 
+        public string MainProdName { get; set; }
+        public string ProdName { get; set; }
+        public string CustomerName { get; set; }
+        public string ContactNo { get; set; }
+        public decimal ReqLoanAmt { get; set; } = 0;
 
         bool disposed = false;
 

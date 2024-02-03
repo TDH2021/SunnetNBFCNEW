@@ -3,7 +3,7 @@
 @using Sunnet_NBFC.Models
 
 @{
-	ViewBag.Title = "LeadPostDisbursement";
+	ViewBag.Title = "Post Disbursement";
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -86,7 +86,7 @@
 									</div>
 									<div class="col-md-3">
 										@Html.LabelFor(model => model.DocDate, new { @class = "control-label" })
-										@Html.TextBoxFor(model => model.DocDate, new { @class = "form-control date", @id = "txtDocDate" })
+										@Html.TextBoxFor(model => model.DocDate, new { @class = "form-control datestyle", @id = "txtDocDate" })
 									</div>
 
 									<div class="col-md-3">
@@ -131,48 +131,26 @@
 								<div class="row">
 									<div class="col-md-3">
 										@Html.LabelFor(model => model.MarginMoneyEndorse, new { @class = "control-label" })
-										@Html.TextBoxFor(model => model.MarginMoneyEndorse, new { @class = "form-control", @id = "txtUtrNo" })
+										@Html.TextBoxFor(model => model.MarginMoneyEndorse, new { @class = "form-control", @id = "txtMarginMoneyEndorse" })
 									</div>
 									<div class="col-md-3">
 										@Html.LabelFor(model => model.NOC, new { @class = "control-label" })
-										@Html.TextBoxFor(model => model.NOC, new { @class = "form-control datestyle", @id = "txtLoanStartDate" })
+										@Html.TextBoxFor(model => model.NOC, new { @class = "form-control", @id = "txtNOC" })
 										@*@Html.ValidationMessageFor(model => model.NOC, "", new { @class = "text-danger" })*@
 
 									</div>
 									<div class="col-md-3">
 										@Html.LabelFor(model => model.RTOSlip, new { @class = "control-label" })
-										@Html.TextBoxFor(model => model.RTOSlip, new { @class = "form-control datestyle", @id = "txtLoanStartDate" })
+										@Html.TextBoxFor(model => model.RTOSlip, new { @class = "form-control", @id = "txtRTOSlip" })
 
 									</div>
 									<div class="col-md-3">
 										@Html.LabelFor(model => model.EndorsedRC, new { @class = "control-label" })
-										@Html.TextBoxFor(model => model.EndorsedRC, new { @class = "form-control datestyle", @id = "txtLoanStartDate" })
+										@Html.TextBoxFor(model => model.EndorsedRC, new { @class = "form-control", @id = "txtEndorsedRC" })
 
 									</div>
 								</div>
-								<div class="row">
-									<div class="col-md-3">
-										@Html.LabelFor(model => model.MarginMoneyEndorse, new { @class = "control-label" })
-										@Html.TextBoxFor(model => model.MarginMoneyEndorse, new { @class = "form-control", @id = "txtUtrNo" })
-									</div>
-									<div class="col-md-3">
-										@Html.LabelFor(model => model.NOC, new { @class = "control-label" })
-										@Html.TextBoxFor(model => model.NOC, new { @class = "form-control datestyle", @id = "txtLoanStartDate" })
-										@*@Html.ValidationMessageFor(model => model.NOC, "", new { @class = "text-danger" })*@
-
-									</div>
-									<div class="col-md-3">
-										@Html.LabelFor(model => model.RTOSlip, new { @class = "control-label" })
-										@Html.TextBoxFor(model => model.RTOSlip, new { @class = "form-control datestyle", @id = "txtLoanStartDate" })
-
-									</div>
-									<div class="col-md-3">
-										@Html.LabelFor(model => model.EndorsedRC, new { @class = "control-label" })
-										@Html.TextBoxFor(model => model.EndorsedRC, new { @class = "form-control datestyle", @id = "txtLoanStartDate" })
-
-									</div>
-								</div>
-
+								
 
 								<div class="card-footer">
 									<input type="submit" value="Update" class="btn btn-primary" />

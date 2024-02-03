@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<Sunnet_NBFC.Models.clsLeadPostDisburse>
 @{
-	ViewBag.Title = "Lead Disbursement View";
-	Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewBag.Title = "Lead Post Disbursement View";
+	//Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <section class="content-header">
 	<div class="container-fluid">
 		<div class="row mb-2">
 			<div class="col-sm-6">
-				<h1>Lead Post Disbursement View</h1>
+				<h1>Lead Post Disbursement Detail</h1>
 			</div>
 			<div class="col-sm-6">
 				<ol class="breadcrumb float-sm-right">
@@ -31,61 +31,109 @@
 				<div class="card">
 					<!-- /.card-header -->
 					<div class="card-body">
-						<table id="example1" class="table table-bordered table-striped">
-							<thead>
+						<table id="example1"  class="table table-striped table-bordered table-hover table-responsive" style="display:table;">
+							@foreach (var item in Model)
+							{
 								<tr>
 									<th>
-										Lead No
+										@Html.DisplayNameFor(model => model.OrgDocNo)
 									</th>
+									<td>
+										@Html.DisplayFor(modelItem => item.OrgDocNo)
+									</td>
 									<th>
-										@Html.DisplayNameFor(model => model.NetDisbursementAmount)
+										@Html.DisplayNameFor(model => model.DocType)
 									</th>
-									<th>
-										@Html.DisplayNameFor(model => model.IfscCode)
-									</th>
-									<th>
-										@Html.DisplayNameFor(model => model.BeneficiaryAccountNo)
-									</th>
-									<th>
-										@Html.DisplayNameFor(model => model.BeneficiaryName)
-									</th>
-									<th>
-										@Html.DisplayNameFor(model => model.DRemark)
-									</th>
+									<td>
+										@Html.DisplayFor(modelItem => item.DocType)
+									</td>
 								</tr>
-							</thead>
-							<tbody>
-								@foreach (var item in Model)
-								{
-									<tr>
-										<td>
-											@Html.DisplayFor(modelItem => item.LeadNo)
-										</td>
-										<td>
-											@Html.DisplayFor(modelItem => item.NetDisbursementAmount)
-										</td>
-										<td>
-											@Html.DisplayFor(modelItem => item.IfscCode)
-										</td>
-										<td>
-											@Html.DisplayFor(modelItem => item.BeneficiaryAccountNo)
-										</td>
-										<td>
-											@Html.DisplayFor(modelItem => item.BeneficiaryName)
-										</td>
-										<td>
-											@Html.DisplayFor(modelItem => item.DRemark)
-										</td>
-										<td>
-											<div class="d-flex order-actions">
-												<a href="@Url.Action("DownloadSanctionLetter", "LeadDisbursement", new { LeadId = item.LeadId })" class="btn btn-info"
-												   data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Document"><u>SanctionLetter</u></a>
-											</div>
+								<tr>
+									<th>
+										@Html.DisplayNameFor(model => model.DocDate)
+									</th>
 
-										</td>
-									</tr>
-								}
-							</tbody>
+									<td>
+										@Html.DisplayFor(modelItem => item.DocDate)
+									</td>
+									<th>
+										@Html.DisplayNameFor(model => model.PagesFrom)
+									</th>
+
+									<td>
+										@Html.DisplayFor(modelItem => item.PagesFrom)
+									</td>
+								</tr>
+								<tr>
+									<th>
+										@Html.DisplayNameFor(model => model.PagesTo)
+									</th>
+									<td>
+										@Html.DisplayFor(modelItem => item.PagesTo)
+									</td>
+									<th>
+										@Html.DisplayNameFor(model => model.AnyOther)
+									</th>
+									<td>
+										@Html.DisplayFor(modelItem => item.AnyOther)
+									</td>
+								</tr>
+								<tr>
+									<th>
+										@Html.DisplayNameFor(model => model.RegistrationCertificate)
+									</th>
+									<td>
+										@Html.DisplayFor(modelItem => item.RegistrationCertificate)
+									</td>
+									<th>
+										@Html.DisplayNameFor(model => model.InsuredHPEndorse)
+									</th>
+									<td>
+										@Html.DisplayFor(modelItem => item.InsuredHPEndorse)
+									</td>
+								</tr>
+								<tr>
+									<th>
+										@Html.DisplayNameFor(model => model.InvoiceHPEndorse)
+									</th>
+									<td>
+										@Html.DisplayFor(modelItem => item.InvoiceHPEndorse)
+									</td>
+									<th>
+										@Html.DisplayNameFor(model => model.MarginMoneyEndorse)
+									</th>
+									<td>
+										@Html.DisplayFor(modelItem => item.MarginMoneyEndorse)
+									</td>
+								</tr>
+								<tr>
+									<th>
+										@Html.DisplayNameFor(model => model.NOC)
+									</th>
+									<td>
+										@Html.DisplayFor(modelItem => item.NOC)
+									</td>
+									<th>
+										@Html.DisplayNameFor(model => model.RTOSlip)
+									</th>
+									<td>
+										@Html.DisplayFor(modelItem => item.RTOSlip)
+									</td>
+								</tr>
+								<tr>
+									<th>
+										@Html.DisplayNameFor(model => model.EndorsedRC)
+									</th>
+									<td>
+										@Html.DisplayFor(modelItem => item.EndorsedRC)
+									</td>
+									<th>
+									</th>
+									<td>
+									</td>
+								</tr>
+							}
+
 						</table>
 						@*<div class="card-footer">
 								@Html.ActionLink("Export to Excel", "ExportToExcel", new { @class = "btn btn-primary" })
@@ -105,9 +153,9 @@
 </section>
 
 
-<script src="~/plugins/jquery/jquery.min.js"></script>
+@*<script src="~/plugins/jquery/jquery.min.js"></script>
 <script src="~/plugins/jquery/jquery.validate.min.js"></script>
-<script src="~/plugins/jquery/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/plugins/jquery/jquery.validate.unobtrusive.min.js"></script>*@
 
 @if (ViewBag.Error != null && ViewBag.Error != "")
 {

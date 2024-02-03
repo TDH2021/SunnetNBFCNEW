@@ -2457,6 +2457,7 @@
     <Content Include="Scripts\CustomJS\CompanyJS.js" />
     <Content Include="Scripts\CustomJS\Branch.js" />
     <Content Include="Scripts\CustomJS\LeadCredit.js" />
+    <Content Include="Scripts\CustomJS\LeadGenUpdate.js" />
     <Content Include="Scripts\CustomJS\LeadGeneration.js" />
     <Content Include="Scripts\CustomJS\Employee.js" />
     <Content Include="Scripts\CustomJS\Customer.js" />

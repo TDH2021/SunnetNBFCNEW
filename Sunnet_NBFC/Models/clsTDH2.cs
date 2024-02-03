@@ -244,7 +244,7 @@ namespace Sunnet_NBFC.Models
         [DisplayName("Date of Birth")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [StringLength(10)]
-        public DateTime? DOB { get; set; }
+        public string DOB { get; set; }
         [DisplayName("PAN")]
         public string PAN { get; set; }
         [DisplayName("Aadhaar No")]

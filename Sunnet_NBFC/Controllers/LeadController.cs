@@ -45,7 +45,11 @@ namespace Sunnet_NBFC.Controllers
                         {
                             cls.ReqType = "ViewLead";
                             cls.CompanyId = ClsSession.CompanyID;
-                            cls.BranchID = ClsSession.BranchId;
+                            if(ClsSession.UserType.ToUpper()!="ADMIN" && ClsSession.UserType.ToUpper() != "SUPERADMIN")
+                            {
+
+                                cls.BranchID = ClsSession.BranchId;
+                            }
                             cls.MainProductId = clss.MainProductId;
                             cls.ProductId = clss.ProductId;
                             cls.LeadNo = clss.LeadNo;

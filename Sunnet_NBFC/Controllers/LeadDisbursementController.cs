@@ -357,10 +357,13 @@ namespace Sunnet_NBFC.Controllers
                     {
 
                     }
-                    downloadZipFile(M.LeadNo, slname, wlname, rlname);
+                    // 28 Jan 2024  redirect after save is not working due to download file
+                    //downloadZipFile(M.LeadNo, slname, wlname, rlname);
+
                     M.ReqType = "UpdateStatus";
                     M.Status = "A";
                     dt = DataInterface1.UpdateLeadStatusDisburse(M);
+                    
                     if (dt != null && dt.Rows.Count > 0)
                     {
                         clsRtn.ID = Convert.ToInt64("0" + Convert.ToString(dt.Rows[0]["ReturnID"]));
@@ -461,7 +464,6 @@ namespace Sunnet_NBFC.Controllers
 
             return PartialView("LeadDisbursementView", lst);
         }
-
 
         [Sunnet_NBFC.App_Code.SessionAttribute]
         public JsonResult GetEmijson(decimal _loan, decimal _roi, int _tenure, string _startdate)
@@ -649,21 +651,6 @@ namespace Sunnet_NBFC.Controllers
             //return File(bytes, "application/octet-stream", fileName);
         }
 
-        public FileResult DownloadFileByFileName(string namestr)
-        {
-            byte[] bytes = Array.Empty<byte>();
-            //Build the File Path.
-            string path = Server.MapPath("~/" + ConfigurationManager.AppSettings["GenLetterPath"].ToString() + "/" + namestr);
-            if (System.IO.File.Exists(path))
-            {
-                //Read the File data into Byte Array.
-                bytes = System.IO.File.ReadAllBytes(path);
-                //return File(namestr, "application/pdf");
-                //Send the File to Download.
-            }
-            return File(bytes, "application/octet-stream", namestr);
-
-        }
 
         //
         public string downloadZipFile(string leadno, string sl, string wl, string rl)
@@ -704,5 +691,22 @@ namespace Sunnet_NBFC.Controllers
             }
             return "";
         }
+        public FileResult DownloadFileByFileName(string namestr)
+        {
+            byte[] bytes = Array.Empty<byte>();
+            //Build the File Path.
+            string path = Server.MapPath("~/" + ConfigurationManager.AppSettings["GenLetterPath"].ToString() + "/" + namestr);
+            if (System.IO.File.Exists(path))
+            {
+                //Read the File data into Byte Array.
+                bytes = System.IO.File.ReadAllBytes(path);
+                //return File(namestr, "application/pdf");
+                //Send the File to Download.
+            }
+            return File(bytes, "application/octet-stream", namestr);
+
+        }
+
+
     }
 }
