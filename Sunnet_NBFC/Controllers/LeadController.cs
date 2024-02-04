@@ -33,9 +33,6 @@ namespace Sunnet_NBFC.Controllers
                 }
                 else
                 {
-                    JavaScriptSerializer jss = new JavaScriptSerializer();
-
-
                     List<clsLeadGenerationMaster> lst = new List<clsLeadGenerationMaster>();
                     try
                     {
@@ -45,7 +42,7 @@ namespace Sunnet_NBFC.Controllers
                         {
                             cls.ReqType = "ViewLead";
                             cls.CompanyId = ClsSession.CompanyID;
-                            if(ClsSession.UserType.ToUpper()!="ADMIN" && ClsSession.UserType.ToUpper() != "SUPERADMIN")
+                            if (ClsSession.UserType.ToUpper() != "ADMIN" && ClsSession.UserType.ToUpper() != "SUPERADMIN")
                             {
 
                                 cls.BranchID = ClsSession.BranchId;
@@ -57,7 +54,6 @@ namespace Sunnet_NBFC.Controllers
                             cls.MobileNo1 = clss.MobileNo1;
                             cls.PanNo = clss.PanNo;
                             cls.AadharNo = clss.AadharNo;
-                            cls.ReqType = "ViewLead";
                             cls.isdelete = 0;
                             cls.LeadNo = clss.LeadNo;
                             cls.LeadId = 0;
@@ -234,8 +230,8 @@ namespace Sunnet_NBFC.Controllers
                                     model.PropertyType = Convert.ToString(ds.Tables[0].Rows[i]["PropertyType"]);
                                     model.Propertyarea = Convert.ToString(ds.Tables[0].Rows[i]["Propertyarea"]);
                                     model.FORemarks = Convert.ToString(ds.Tables[0].Rows[i]["Remarks"]);
-                                    model.DealerName= Convert.ToString(ds.Tables[0].Rows[i]["DealerName"]);
-                                    model.ERikshawMaker= Convert.ToString(ds.Tables[0].Rows[i]["ERikshawMaker"]);
+                                    model.DealerName = Convert.ToString(ds.Tables[0].Rows[i]["DealerName"]);
+                                    model.ERikshawMaker = Convert.ToString(ds.Tables[0].Rows[i]["ERikshawMaker"]);
                                     model.EstFamilyIncome = Convert.ToString(ds.Tables[0].Rows[i]["EstFamilyIncome"]);
                                     model.PerformaInvoice = Convert.ToString(ds.Tables[0].Rows[i]["PerformaInvoice"]);
                                     model.RepaymentType = Convert.ToString(ds.Tables[0].Rows[i]["RepaymentType"]);
@@ -244,7 +240,7 @@ namespace Sunnet_NBFC.Controllers
                                     ViewBag.CUSTYPEREUIRED = Convert.ToString(ds.Tables[0].Rows[i]["CustTypeRequried"]);
                                     ViewBag.Status1 = Convert.ToString(ds.Tables[0].Rows[i]["Status1"]);
                                     ViewBag.Short_StageName = Convert.ToString(ds.Tables[0].Rows[i]["ShortStage_Name"]);
-                                    ViewBag.MainProductName= Convert.ToString(ds.Tables[0].Rows[i]["MainProductName"]).ToUpper();
+                                    ViewBag.MainProductName = Convert.ToString(ds.Tables[0].Rows[i]["MainProductName"]).ToUpper();
                                 }
 
                             }
@@ -394,7 +390,7 @@ namespace Sunnet_NBFC.Controllers
                                     model.Co_OwnerShip = Convert.ToString(ds.Tables[1].Rows[i]["OwnerShip"]);
                                     model.CO_FatherName = Convert.ToString(ds.Tables[1].Rows[i]["FatherName"]);
                                     model.Co_LandMark = Convert.ToString(ds.Tables[1].Rows[i]["LandMark"]);
-                                    
+
                                     if (System.IO.File.Exists(Server.MapPath("~/Img/COApplicantImgs/" + Convert.ToString(ds.Tables[1].Rows[i]["CustImage"]))))
                                     {
                                         model.CO_image = Server.MapPath("~/Img/COApplicantImgs/") + Convert.ToString(ds.Tables[1].Rows[i]["CustImage"]);
@@ -514,7 +510,7 @@ namespace Sunnet_NBFC.Controllers
             string JSONresult = "";
             try
             {
-              
+
                 JavaScriptSerializer jss = new JavaScriptSerializer();
                 ViewBag.CompanyId = ClsSession.CompanyID;
                 clsLeadGenerationMaster cls = jss.Deserialize<clsLeadGenerationMaster>(Request.Form["AllDataArray"]);
@@ -532,7 +528,7 @@ namespace Sunnet_NBFC.Controllers
                         }
                     }
                 }
-               
+
             }
             catch (Exception e1)
             {

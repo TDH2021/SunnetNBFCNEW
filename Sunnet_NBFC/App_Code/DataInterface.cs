@@ -1173,5 +1173,35 @@ public class DataInterface : IDisposable
         }
         return dt;
     }
+    public static DataTable LeadReport(clsLeadGenerationMaster cls)
+    {
+        DataTable dt = new DataTable();
+        using (DBOperation db = new DBOperation())
+        {
+            using (SqlCommand sqlCommand = new SqlCommand())
+            {
+                sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                sqlCommand.Parameters.AddWithValue("@RequestType", cls.ReqType);
+                sqlCommand.Parameters.AddWithValue("@CompanyID", cls.CompanyId);
+                sqlCommand.Parameters.AddWithValue("@BranchId", cls.BranchID);
+                sqlCommand.Parameters.AddWithValue("@EMPId", cls.Empid);
+                sqlCommand.Parameters.AddWithValue("@LeadNo", cls.LeadNo);
+                sqlCommand.Parameters.AddWithValue("@LeadStatus", cls.LeadStatus);
+                sqlCommand.Parameters.AddWithValue("@MainProdId", cls.MainProductId);
+                sqlCommand.Parameters.AddWithValue("@ProductId", cls.ProductId);
+                sqlCommand.Parameters.AddWithValue("@CustomerName", cls.CustomerName);
+                sqlCommand.Parameters.AddWithValue("@MobileNo1", cls.MobileNo1);
+                sqlCommand.Parameters.AddWithValue("@CreatedBy", cls.CreatedBy);
+                sqlCommand.Parameters.AddWithValue("@FromDate", cls.FromDate);
+                sqlCommand.Parameters.AddWithValue("@ToDate", cls.ToDate);
+
+
+                dt = db.FillTableProc(sqlCommand, "USP_LeadReport");
+            }
+
+
+        }
+        return dt;
+    }
 
 }

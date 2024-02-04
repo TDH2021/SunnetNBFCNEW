@@ -1,33 +1,32 @@
-﻿//$('#MainProductId').change(function () {
-//    var MainProductId = $("#MainProductId option:selected").val();
-//    if (MainProductId.length == 0) {
-//        var s = '<option value="">- Select Product -</option>'
-//        $('#ProductId').html(s);
-//    } else {
+﻿$('#ddlMainProduct').change(function () {
+    var MainProductId = $("#ddlMainProduct option:selected").val();
+    if (MainProductId.length == 0) {
+        var s = '<option value="">- Select Product -</option>'
+        $('#ddProduct').html(s);
+    } else {
+        $('#ddProduct').empty();
+        var s = '<option value="">- Select Product -</option>'
+        $('#ddProduct').html(s);
+        $.ajax({
+            url: "/Product/GetProduct",
+            type: "Get",
+            dataType: "json",
+            data: {
+                MainProductId: MainProductId
+            },
+            success: function (result) {
 
-//        var s = '<option value="">- Select Product -</option>'
-//        $('#ProductId').html(s);
-//        $.ajax({
-//            url: "/Product/GetProduct",
-//            type: "Get",
-//            dataType: "json",
-//            data: {
-//                MainProductId: MainProductId
-//            },
-//            success: function (result) {
+                var data = JSON.parse(result);
+                for (var i = 0; i < data.length; i++) {
+                    var opt = new Option(data[i].ProductName, data[i].ProdId);
+                    $('#ddProduct').append(opt);
 
-//                var data = JSON.parse(result);
-//                $('#ProductId').empty();
-//                for (var i = 0; i < data.length; i++) {
-//                    var opt = new Option(data[i].ProductName, data[i].ProdId);
-//                    $('#ProductId').append(opt);
+                }
+            }
 
-//                }
-//            }
-
-//        });
-//    }
-//});
+        });
+    }
+});
 
 
 $('#ddlBranch').change(function () {

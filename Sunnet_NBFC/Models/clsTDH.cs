@@ -6,6 +6,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Runtime.Serialization;
+using Org.BouncyCastle.Bcpg.OpenPgp;
+
 namespace Sunnet_NBFC.Models
 {
 
@@ -744,6 +746,9 @@ namespace Sunnet_NBFC.Models
         public string ERikshawMaker { get; set; } = "";
         public string RepaymentType { get; set; } = "";
         public string InsEndValidityDate { get; set; } = "";
+        public string Updatedate { get; set; } = "";
+        public string DisburseDate { get; set; } = "";
+         public string LeadStatus { get; set; } = "";
         public int isdelete { get; set; } = 0;
         bool disposed = false;
 
