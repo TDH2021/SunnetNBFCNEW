@@ -435,7 +435,7 @@ namespace Sunnet_NBFC.Controllers
             JavaScriptSerializer jss = new JavaScriptSerializer();
             clsLeadMain master = jss.Deserialize<clsLeadMain>(Request.Form["AllDataArray"]);
 
-
+            master.CompanyId = ClsSession.CompanyID;
             DataTable dt = DataInterface2.UpdateLeadStatus(master);
             JSONresult = JsonConvert.SerializeObject(dt);
             return Json(JSONresult, JsonRequestBehavior.AllowGet);

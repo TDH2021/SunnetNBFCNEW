@@ -1557,6 +1557,9 @@ function ValidationChk() {
                 customer.G_PanVerify = row.find("TD").eq(25).html();
                 customer.G_CIF = row.find("TD").eq(26).html();
                 customer.G_OwnerShip = row.find("TD").eq(27).html();
+                customer.G_FatherName = row.find("TD").eq(28).html();
+                customer.G_SpouseName = row.find("TD").eq(29).html();
+                customer.G_LandMark = row.find("TD").eq(30).html();
                 customers.push(customer);
 
             });

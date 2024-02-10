@@ -322,7 +322,7 @@ namespace Sunnet_NBFC.Controllers
         [Sunnet_NBFC.App_Code.SessionAttribute]
         public ActionResult LeadPostDisbursementView(clsLeadPostDisburse M)
         {
-            List<clsLeadPostDisburse> lst = new List<clsLeadPostDisburse>();
+            clsLeadPostDisburse model = new clsLeadPostDisburse();
             try
             {
                 DataSet ds = new DataSet();
@@ -331,7 +331,33 @@ namespace Sunnet_NBFC.Controllers
                 M.CompanyId = ClsSession.CompanyID;
                 ds = DataInterface1.dbPostDisbursement(M);
                 dtLeadDoc = ds.Tables[0];
-                lst = DataInterface.ConvertDataTable<clsLeadPostDisburse>(dtLeadDoc);
+
+                using (DataTable dt = dtLeadDoc)
+                {
+                    if (dt != null)
+                    {
+
+                        model.MainProdId = int.Parse(dt.Rows[0]["MainProdId"].ToString());
+                        model.MainProdName = dt.Rows[0]["ProductName"].ToString();
+                        model.OrgDocNo = dt.Rows[0]["OrgDocNo"].ToString();
+                        model.DocType = dt.Rows[0]["DocType"].ToString();
+                        model.DocDate = dt.Rows[0]["DocDate"].ToString();
+                        model.PagesFrom = int.Parse(dt.Rows[0]["PagesFrom"].ToString());
+                        model.PagesTo = int.Parse(dt.Rows[0]["PagesTo"].ToString());
+                        model.AnyOther = dt.Rows[0]["AnyOther"].ToString();
+                        model.RegistrationCertificate = dt.Rows[0]["RegistrationCertificate"].ToString();
+                        model.LeadId = int.Parse(dt.Rows[0]["LeadId"].ToString());
+                        model.InsuredHPEndorse = dt.Rows[0]["InsuredHPEndorse"].ToString();
+                        model.MarginMoneyEndorse = dt.Rows[0]["MarginMoneyEndorse"].ToString();
+                        model.NOC = dt.Rows[0]["NOC"].ToString();
+                        model.RTOSlip = dt.Rows[0]["RTOSlip"].ToString();
+                        model.EndorsedRC = dt.Rows[0]["EndorsedRC"].ToString();
+                        model.DocTypeName = dt.Rows[0]["DocTypeName"].ToString();
+
+                    }
+                }
+
+
 
             }
             catch (Exception ex)
@@ -349,7 +375,7 @@ namespace Sunnet_NBFC.Controllers
                 }
             }
 
-            return PartialView("LeadPostDisbursementView", lst);
+            return PartialView("LeadPostDisbursementView", model);
         }
 
 

@@ -14,9 +14,9 @@
 				<h1>Lead Post Disbursement</h1>
 			</div>
 			<div class="col-sm-6">
-				<ol class="breadcrumb float-sm-right">
-					@Html.ActionLink("Back to List", "LeadView", "Lead")
-				</ol>
+				@*<ol class="breadcrumb float-sm-right">
+						@Html.ActionLink("Back to List", "LeadView", "Lead")
+					</ol>*@
 			</div>
 		</div>
 	</div><!-- /.container-fluid -->
@@ -24,8 +24,8 @@
 
 @using (Html.BeginForm("LeadPostDisbursement", "LeadPostDisbursement", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-	@*@Html.AntiForgeryToken()
-		@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
+	@Html.AntiForgeryToken()
+	@Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
 
 	<section class="content">
@@ -41,6 +41,7 @@
 										@Html.HiddenFor(model => model.ReqType)
 										@Html.HiddenFor(model => model.Id)
 										@Html.HiddenFor(model => model.LeadId)
+										@Html.HiddenFor(model => model.MainProdId, new { @id = "hdnMainProdId" })
 									</div>
 								</div>
 							</div>
@@ -79,83 +80,97 @@
 									</div>
 								</div>
 								<hr />
-								<div class="row">
-									<div class="col-md-3">
-										@Html.LabelFor(model => model.DocType, new { @class = "control-label" })
-										@Html.TextBoxFor(model => model.DocType, new { @class = "form-control", @id = "txtDocType" })
-									</div>
-									<div class="col-md-3">
-										@Html.LabelFor(model => model.DocDate, new { @class = "control-label" })
-										@Html.TextBoxFor(model => model.DocDate, new { @class = "form-control datestyle", @id = "txtDocDate" })
-									</div>
 
-									<div class="col-md-3">
-										@Html.LabelFor(model => model.PagesFrom, new { @class = "control-label" })
-										@Html.TextBoxFor(model => model.PagesFrom, new { @class = "form-control", @id = "txtPagesFrom", @Maxlength = "5", @onkeypress = "return isNumber(this.value);" })
-									</div>
+								@{ if (Model.MainProdId == 4)
+									{
 
-									<div class="col-md-3">
-										@Html.LabelFor(model => model.PagesTo, new { @class = "control-label" })
-										@Html.TextBoxFor(model => model.PagesTo, new { @class = "form-control", @id = "txtPagesTo", @Maxlength = "5", @onkeypress = "return isNumber(this.value);" })
-									</div>
-								</div>
-								<div class="row">
+										<div class="row">
+											<div class="col-md-3">
+												@Html.LabelFor(model => model.DocType, new { @class = "control-label" })
+												@Html.DropDownListFor(model => model.DocType, clsMiscDDL.GetMiscDDL("DocumentType"), "Select", new { @class = "form-control", @id = "ddlDocType" })
 
-									<div class="col-md-3">
-										@Html.LabelFor(model => model.AnyOther, new { @class = "control-label" })
-										@Html.TextBoxFor(model => model.AnyOther, new { @class = "form-control", @id = "txtAnyOther" })
+											</div>
+											<div class="col-md-3">
+												@Html.LabelFor(model => model.DocDate, new { @class = "control-label" })
+												@Html.TextBoxFor(model => model.DocDate, new { @class = "form-control datestyle", @id = "txtDocDate" })
+											</div>
 
-									</div>
-									<div class="col-md-3">
-										@Html.LabelFor(model => model.RegistrationCertificate, new { @class = "control-label" })
-										@Html.TextBoxFor(model => model.RegistrationCertificate, new { @class = "form-control", @id = "txtRegistrationCertificate" })
+											<div class="col-md-3">
+												@Html.LabelFor(model => model.PagesFrom, new { @class = "control-label" })
+												@Html.TextBoxFor(model => model.PagesFrom, new { @class = "form-control", @id = "txtPagesFrom", @Maxlength = "5", @onkeypress = "return isNumber(this.value);" })
+											</div>
 
-									</div>
-									<div class="col-md-3">
-										@Html.LabelFor(model => model.InsuredHPEndorse, new { @class = "control-label" })
-										@Html.TextBoxFor(model => model.InsuredHPEndorse, new { @class = "form-control", @id = "txtInsuredHPEndorse" })
+											<div class="col-md-3">
+												@Html.LabelFor(model => model.PagesTo, new { @class = "control-label" })
+												@Html.TextBoxFor(model => model.PagesTo, new { @class = "form-control", @id = "txtPagesTo", @Maxlength = "5", @onkeypress = "return isNumber(this.value);" })
+											</div>
+										</div>
+										<div class="row">
+
+											<div class="col-md-3">
+												@Html.LabelFor(model => model.AnyOther, new { @class = "control-label" })
+												@Html.TextBoxFor(model => model.AnyOther, new { @class = "form-control", @id = "txtAnyOther" })
+
+											</div>
+										</div>
+									}
+								}
+
+								@{ if (Model.MainProdId == 2 || Model.MainProdId == 3 || Model.MainProdId == 5)
+									{
+										<div class="row">
+
+											<div class="col-md-3">
+												@Html.LabelFor(model => model.RegistrationCertificate, new { @class = "control-label" })
+												@Html.TextBoxFor(model => model.RegistrationCertificate, new { @class = "form-control", @id = "txtRegistrationCertificate" })
+
+											</div>
+											<div class="col-md-3">
+												@Html.LabelFor(model => model.InsuredHPEndorse, new { @class = "control-label" })
+												@Html.TextBoxFor(model => model.InsuredHPEndorse, new { @class = "form-control", @id = "txtInsuredHPEndorse" })
 
 
-									</div>
+											</div>
 
-									<div class="col-md-3">
-										@Html.LabelFor(model => model.InvoiceHPEndorse, new { @class = "control-label" })
-										@Html.TextBoxFor(model => model.InvoiceHPEndorse, new { @class = "form-control", @id = "txtInvoiceHPEndorse" })
+											<div class="col-md-3">
+												@Html.LabelFor(model => model.InvoiceHPEndorse, new { @class = "control-label" })
+												@Html.TextBoxFor(model => model.InvoiceHPEndorse, new { @class = "form-control", @id = "txtInvoiceHPEndorse" })
 
-									</div>
+											</div>
+											<div class="col-md-3">
+												@Html.LabelFor(model => model.MarginMoneyEndorse, new { @class = "control-label" })
+												@Html.TextBoxFor(model => model.MarginMoneyEndorse, new { @class = "form-control", @id = "txtMarginMoneyEndorse" })
+											</div>
+
+										</div>
 
 
-								</div>
+										<div class="row">
 
+											<div class="col-md-3">
+												@Html.LabelFor(model => model.NOC, new { @class = "control-label" })
+												@Html.TextBoxFor(model => model.NOC, new { @class = "form-control", @id = "txtNOC" })
+												@*@Html.ValidationMessageFor(model => model.NOC, "", new { @class = "text-danger" })*@
 
-								<div class="row">
-									<div class="col-md-3">
-										@Html.LabelFor(model => model.MarginMoneyEndorse, new { @class = "control-label" })
-										@Html.TextBoxFor(model => model.MarginMoneyEndorse, new { @class = "form-control", @id = "txtMarginMoneyEndorse" })
-									</div>
-									<div class="col-md-3">
-										@Html.LabelFor(model => model.NOC, new { @class = "control-label" })
-										@Html.TextBoxFor(model => model.NOC, new { @class = "form-control", @id = "txtNOC" })
-										@*@Html.ValidationMessageFor(model => model.NOC, "", new { @class = "text-danger" })*@
+											</div>
+											<div class="col-md-3">
+												@Html.LabelFor(model => model.RTOSlip, new { @class = "control-label" })
+												@Html.TextBoxFor(model => model.RTOSlip, new { @class = "form-control", @id = "txtRTOSlip" })
 
-									</div>
-									<div class="col-md-3">
-										@Html.LabelFor(model => model.RTOSlip, new { @class = "control-label" })
-										@Html.TextBoxFor(model => model.RTOSlip, new { @class = "form-control", @id = "txtRTOSlip" })
+											</div>
+											<div class="col-md-3">
+												@Html.LabelFor(model => model.EndorsedRC, new { @class = "control-label" })
+												@Html.TextBoxFor(model => model.EndorsedRC, new { @class = "form-control", @id = "txtEndorsedRC" })
 
-									</div>
-									<div class="col-md-3">
-										@Html.LabelFor(model => model.EndorsedRC, new { @class = "control-label" })
-										@Html.TextBoxFor(model => model.EndorsedRC, new { @class = "form-control", @id = "txtEndorsedRC" })
-
-									</div>
-								</div>
-								
+											</div>
+										</div>
+									}
+								}
 
 								<div class="card-footer">
-									<input type="submit" value="Update" class="btn btn-primary" />
+									<input type="submit" value="Update" class="btn btn-primary" onclick="return SaveValidation();" />
 									@*@Html.ActionLink("Cancel", "LeadView", "LeadDisbursement", null, new { @class = "btn btn-danger btn-large" })*@
-									@Html.ActionLink("Cancel", "GoToStage", "Lead", new { StageName = ViewBag.ComeFrom }, new { @class = "btn btn-danger btn-large" })
+									@Html.ActionLink("Cancel", "LeadView", "LeadPostDisbursement", new { @class = "btn btn-danger btn-large" })
 								</div>
 
 
@@ -171,9 +186,7 @@
 
 }
 <script src="~/Scripts/CustomJS/CommonFunction.js"></script>
-@*<script src="~/plugins/jquery/jquery.min.js"></script>
-	<script src="~/plugins/jquery/jquery.validate.min.js"></script>
-	<script src="~/plugins/jquery/jquery.validate.unobtrusive.min.js"></script>*@
+<script src="~/Scripts/CustomJS/LeadPostDisburse.js"></script>
 
 @if (ViewBag.Error != null && ViewBag.Error != "")
 {
@@ -195,63 +208,4 @@
             };
 	</script>
 }
-
-<script type="text/javascript">
-	function fnCreateEmi() {
-		debugger;
-		var loan = $('#txtNetDisbursementAmount').val();
-		var tenure = $('#txtTenure').val();
-		var roi = $('#txtROI').val();
-		var startdate = $('#txtLoanStartDate').val();
-		//alert(loan);
-		//alert(tenure);
-		//alert(roi);
-		//alert(startdate);
-
-		if (parseFloat(loan) == 0) {
-			alert("Please Enter Net Disbursement Amount");
-			return false;
-		}
-		if (parseFloat(roi) == 0) {
-			alert("Please Enter Rate Of Interest");
-			return false;
-		}
-		if (parseFloat(tenure) == 0) {
-			alert("Please Enter Tenure");
-			return false;
-		}
-
-		if (startdate == "") {
-			alert("Please Enter Loan start date");
-			return false;
-		}
-
-		var data = { "_loan": loan, "_roi": roi, "_tenure": tenure, "_startdate": startdate };
-
-		$.ajax({
-			type: "POST",
-			url: "/LeadDisbursement/GetEmijson",
-			contentType: "application/json;charset=utf-8",
-			data: JSON.stringify(data),
-			dataType: "json",
-			success: function (result) {
-				var aData = JSON.parse(result);
-				var fragment = "";
-				for (var i = 0; i < aData.length; i++) {
-					fragment += "<tr><td> " + aData[i].PERIOD + " </td><td> " + aData[i].PAYDATE + "</td><td> " + aData[i].PAYMENT + "</td><td> " + aData[i].CURRENT_BALANCE + "</td> <td> " + aData[i].INTEREST + "</td><td> " + aData[i].PRINCIPAL + "</td></tr>";
-				}
-				fragment = fragment != "" ? fragment : "<tr ><td colspan='6'> Sorry ! data not found</td></tr>";
-
-				$("table#tblemi").html("");
-				$("table#tblemi").append("<tr><th>Sr. No.</th><th>Emi Date</th><th> Emi Amount</th><th>Current Balance</th><th>Interest</th><th>Principal</th> </tr>");
-				$("table#tblemi").append(fragment);
-				$("table#tblemi").show();
-			}
-		});
-	}
-</script>
-
-
-
-
 

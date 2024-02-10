@@ -306,7 +306,7 @@
 	}
 
 	function ValUpdate() {
-		//debugger;
+		debugger;
 		var ra = $('#ReqLoanAmt').val();
 		var loan = $('#txtNetDisbursementAmount').val();
 		var tenure = $('#txtTenure').val();
@@ -345,7 +345,7 @@
 
 
 	function fnCreateEmi() {
-		debugger;
+		//debugger;
 		var ra = $('#ReqLoanAmt').val();
         var nba = $('#txtNetDisbursementAmount').val();
 		var tenure = $('#txtTenure').val();
@@ -397,7 +397,7 @@
 				var aData = JSON.parse(result);
 				var fragment = "";
 				for (var i = 0; i < aData.length; i++) {
-					fragment += "<tr><td> " + aData[i].PERIOD + " </td><td> " + aData[i].PAYDATE + "</td><td> " + aData[i].PAYMENT + "</td><td> " + aData[i].CURRENT_BALANCE + "</td> <td> " + aData[i].INTEREST + "</td><td> " + aData[i].PRINCIPAL + "</td></tr>";
+					fragment += "<tr><td> " + aData[i].PERIOD + " </td><td> " + aData[i].EmiDate + "</td><td> " + aData[i].PAYMENT + "</td><td> " + aData[i].CURRENT_BALANCE + "</td> <td> " + aData[i].INTEREST + "</td><td> " + aData[i].PRINCIPAL + "</td></tr>";
 				}
 				fragment = fragment != "" ? fragment : "<tr ><td colspan='6'> Sorry ! data not found</td></tr>";
 

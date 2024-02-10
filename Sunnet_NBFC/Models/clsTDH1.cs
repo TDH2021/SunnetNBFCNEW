@@ -1317,8 +1317,10 @@ namespace Sunnet_NBFC.Models
         public string ProdName { get; set; }
         public string CustomerName { get; set; }
         public string ContactNo { get; set; }
+        [DisplayName("Document Type")]
+        public string DocTypeName { get; set; }
         public decimal ReqLoanAmt { get; set; } = 0;
-
+        public int MainProdId { get; set; }
         bool disposed = false;
 
         // Public implementation of Dispose pattern callable by consumers.
@@ -1350,6 +1352,7 @@ namespace Sunnet_NBFC.Models
             Dispose(false);
         }
     }
+
 
 
     //===

@@ -77,7 +77,7 @@
                                         <th>Sanction Letter</th>
                                         <td>
                                             <div class="d-flex order-actions">
-                                                @if (item.SanctionLetter_fileName != "" && item.SanctionLetter_fileName != null)
+                                                @if (item.SanctionLetter_fileName != "")
                                                 {
                                                     <a href="@Url.Action("DownloadFileByFileName", "LeadDisbursement", new { namestr = item.SanctionLetter_fileName })" class="btn btn-info"
                                                        data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Document"><u>Download</u></a>
@@ -87,7 +87,7 @@
                                         <th>Welcome Letter</th>
                                         <td>
                                             <div class="d-flex order-actions">
-                                                @if (item.WelcomeLetter_fileName != "" && item.WelcomeLetter_fileName != null)
+                                                @if (item.WelcomeLetter_fileName != "")
                                                 {
                                                     <a href="@Url.Action("DownloadFileByFileName", "LeadDisbursement", new { namestr = item.WelcomeLetter_fileName })" class="btn btn-info"
                                                        data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Document"><u>Download</u></a>
@@ -99,7 +99,7 @@
                                         <th>Repayment Letter</th>
                                         <td>
                                             <div class="d-flex order-actions">
-                                                @if (item.RepyamentLetter_fileName != "" && item.RepyamentLetter_fileName != null)
+                                                @if (item.RepyamentLetter_fileName != "")
                                                 {
                                                     <a href="@Url.Action("DownloadFileByFileName", "LeadDisbursement", new { namestr = item.RepyamentLetter_fileName })" class="btn btn-info"
                                                        data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Document"><u>Download</u></a>
@@ -135,32 +135,4 @@
     <!-- /.container-fluid -->
 </section>
 
-
-@*<script src="~/plugins/jquery/jquery.min.js"></script>
-    <script src="~/plugins/jquery/jquery.validate.min.js"></script>
-    <script src="~/plugins/jquery/jquery.validate.unobtrusive.min.js"></script>*@
-
-@if (ViewBag.Error != null && ViewBag.Error != "")
-{
-    <script type="text/javascript">
-
-            window.onload = function () {
-               // alert("@ViewBag.Error");
-				swal("TDH", "@ViewBag.Error", "error");
-
-            };
-    </script>
-}
-@if (ViewBag.Success != null && ViewBag.Success != "")
-{
-    <script type="text/javascript">
-            window.onload = function () {
-                //alert("@ViewBag.Success");
-				swal("TDH", "@ViewBag.Success", "Success");
-            };
-    </script>
-}
-
-
-
-
+ @{ Html.RenderAction("LeadPostDisbursementView", "LeadPostDisbursement"); }
