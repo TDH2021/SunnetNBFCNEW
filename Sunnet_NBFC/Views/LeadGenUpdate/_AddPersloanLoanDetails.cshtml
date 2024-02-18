@@ -5,7 +5,7 @@
     <div class="row">
 
         <div class="col-md-3">
-            <label class="required"   for="exampleInputEmail1">
+            <label class="required" for="exampleInputEmail1">
                 Purpose of Loan
             </label>
             @Html.TextBoxFor(model => model.LoanPurpose, new
@@ -19,13 +19,24 @@
 
        })
         </div>
+
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">
+                Repayment Type
+            </label>
+            <select class="form-control" id="ddlRepaymentType">
+                <option>Monthly</option>
+                <option>Fornightly</option>
+            </select>
+            @Html.HiddenFor(model => model.RepaymentType, new { @class = "form-control", @id = "hfRepayment" })
+        </div>
     </div>
 
 </div>
 
-    
 
- 
+
+
 
 
 

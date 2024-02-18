@@ -272,7 +272,7 @@
     <Compile Include="Controllers\CommonController.cs" />
     <Compile Include="Controllers\LeadCreditController.cs" />
     <Compile Include="Controllers\LeadDisbursementController.cs" />
-    <Compile Include="Controllers\LeadGenUpdateController.cs" />
+    <Compile Include="Controllers\LeadGenUpdate.cs" />
     <Compile Include="Controllers\LeadPostDisbursementController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\TestController.cs" />
@@ -2985,14 +2985,6 @@
     <Content Include="Views\Foreclosure\LedgerMasterView.cshtml" />
     <Content Include="Views\SearchForeclosure\SearchForeclosure.cshtml" />
     <Content Include="Views\Foreclosure\ForeclosureView.cshtml" />
-    <Content Include="Views\LeadGenUpdate\LeadGenUpdate.cshtml" />
-    <Content Include="Views\LeadGenUpdate\_AddAdditionalDetails.cshtml" />
-    <Content Include="Views\LeadGenUpdate\_AddBusinessLoanDetails.cshtml" />
-    <Content Include="Views\LeadGenUpdate\_AddCo_Applicant_Details.cshtml" />
-    <Content Include="Views\LeadGenUpdate\_AddCustomerDetails.cshtml" />
-    <Content Include="Views\LeadGenUpdate\_AddGuranterDetails.cshtml" />
-    <Content Include="Views\LeadGenUpdate\_AddPersloanLoanDetails.cshtml" />
-    <Content Include="Views\LeadGenUpdate\_AddVechicalLoanDetails.cshtml" />
     <Content Include="Views\Branch\EditBranch.cshtml" />
     <Content Include="Views\LeadPostDisbursement\LeadPostDisbursement.cshtml" />
     <Content Include="Views\LeadPostDisbursement\LeadPostDisbursementView.cshtml" />
@@ -3001,6 +2993,15 @@
     <Content Include="Views\UserRole\RoleMaster_Empwise.cshtml" />
     <Content Include="Views\Login\FirstTimeLogin.cshtml" />
     <Content Include="Views\Report\LeadReport.cshtml" />
+    <Content Include="Views\LeadGenUpdate\_AddAdditionalDetails.cshtml" />
+    <Content Include="Views\LeadGenUpdate\_AddBusinessLoanDetails.cshtml" />
+    <Content Include="Views\LeadGenUpdate\_AddCo_Applicant_Details.cshtml" />
+    <Content Include="Views\LeadGenUpdate\_AddCustomerDetails.cshtml" />
+    <Content Include="Views\LeadGenUpdate\_AddGuranterDetails.cshtml" />
+    <Content Include="Views\LeadGenUpdate\_AddPersloanLoanDetails.cshtml" />
+    <Content Include="Views\LeadGenUpdate\_AddVechicalLoanDetails.cshtml" />
+    <Content Include="Views\LeadGenUpdate\LeadGenUpdate.cshtml" />
+    <Content Include="Views\LeadGenUpdate\_AddGuranterDetailsUpdate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

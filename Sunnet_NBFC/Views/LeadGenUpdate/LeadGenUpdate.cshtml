@@ -2,24 +2,6 @@
 @{ ViewBag.Title = "Lead Generation";
     Layout = "~/Views/Shared/_Layout.cshtml"; }
 
-<style>
-    .required:after {
-        content: " *";
-        color: red;
-    }
-
-    input::-webkit-outer-spin-button,
-    input::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-    }
-
-    input[type=number] {
-        -moz-appearance: textfield;
-        /* Firefox */
-    }
-</style>
-
 
 
 <section class="content-header">
@@ -49,36 +31,24 @@
                             </div>
                             <hr>
                             <div class="row">
-
-                                <div class="col-md-6">
-                                    <label class="required" for="exampleInputEmail1">Main Product</label>
-
-                                    @Html.DisplayFor(model => model.MainProductName, new
-                                    {
-                                        @class = "form-control",
-                                        @placeholder = "MainProdName",
-                                   @name = "MainProdName",
-                                   @required = "true",
-                                        @id = "txtMainProduct",
-                                        @readonly = "true"
-                                    })
+                                <div class="col-md-4">
+                                    <label class="required" for="exampleInputEmail1">Lead No</label>
+                                    @Html.TextBoxFor(model => model.LeadNo, new { @class = "form-control", @disabled = "true",@id="txtLeadNo" })
 
                                 </div>
+                                <div class="col-md-4">
+                                    <label for="exampleInputEmail1">Main Product</label>
+                                    @Html.TextBoxFor(model => model.MainProductName, new { @class = "form-control", @id="txtMainProdName",@disabled="true" })
+                                    @Html.HiddenFor(model => model.MainProductId, new { @class = "form-control", @id = "hfMainProdId" })
+                                </div>
 
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <label class="required" for="exampleInputEmail1">Sub Product</label>
-                                    @Html.DisplayFor(model => model.ProductName, new
-                                    {
-                                        @class = "form-control",
-                                        @placeholder = "ProdName",
-                                        @name = "ProdName",
-                                        @required = "true",
-                                        @id = "txtProduct",
-                                        @readonly = "true"
-                                    })
+                                    @Html.TextBoxFor(model => model.ProductName, new { @class = "form-control", @disabled ="true",@id="txtProdName" })
+                                    @Html.HiddenFor(model => model.ProductId, new { @class = "form-control", @id = "hfProdId" })
 
-
-                                    @Html.HiddenFor(model => model.Hdn_type, new { @class = "form-control", @id = "hdn_type" })
+                                    @Html.HiddenFor(model => model.LeadId, new { @class = "form-control", @id = "hdnLeadId" })
+                                    @Html.HiddenFor(model => model.CustTypeRequried, new { @class = "form-control", @id = "hdn_type" })
                                     <input type="hidden" value="@ViewBag.CompanyId" id="hdnCompanyId" />
                                     <input type="hidden" value="@ViewBag.PostalApi" id="hdn_postalAPI" />
 
@@ -87,42 +57,25 @@
 
                             </div>
                             <div class="row" id="divPersonal">
+                                <div class="col-md-6">
+                                    <label class="required" for="exampleInputEmail1">Branch</label>
+                                    @Html.DropDownListFor(model => model.PLLoanBranch, ViewBag.BranchList as SelectList, "- Select Branch- ",
+                                   new { @class = "form-control", @id = "ddlBranch" })
+                                    @Html.HiddenFor(model => model.PLLoanBranch, new { @class = "form-control", @id = "hdnPLBranchId" })
+
+                                </div>
 
                                 <div class="col-md-6">
                                     <label class="required" for="exampleInputEmail1">Center</label>
 
-                                    @Html.DisplayFor(model => model.CenterName, new
-                                  {
-                                      @class = "form-control",
-                                      @placeholder = "Center",
-                                      @name = "Center",
-                                      @required = "true",
-                                      @id = "txtCenter",
-                                      @readonly = "true"
-                                  })
+                                    @Html.DropDownListFor(model => model.CenterId,
+                                       new SelectList(Enumerable.Empty<SelectListItem>(), "CenterId", "CenterName"),
+                                       "Select Center", new { @class = "form-control", @id = "ddlCenter" })
 
-                                    @*@Html.DropDownListFor(model => model.CenterId, ViewBag.CenterList as SelectList, "- Select Center- ",
-                                        new { @class = "form-control select2", @id = "ddlCenter" })*@
+                                    @Html.HiddenFor(model => model.CenterId, new { @class = "form-control", @id = "hdnCenterId" })
 
 
                                 </div>
-
-                                <div class="col-md-6">
-                                    <label class="required" for="exampleInputEmail1">Branch</label>
-
-
-                                    @Html.DisplayFor(model => model.PLBranchName, new
-                                  {
-                                      @class = "form-control",
-                                      @placeholder = "Center",
-                                      @name = "PLBranchName",
-                                      @required = "true",
-                                      @id = "txtPLBranch",
-                                      @readonly = "true"
-                                  })
-
-                                </div>
-
 
                             </div>
 
@@ -144,6 +97,11 @@
                                 }
                             </div>
 
+                            <div style="display:none" class="container-fluid" id="vechical_div">
+                                @{
+                                    Html.RenderPartial("_AddVechicalLoanDetails");
+                                }
+                            </div>
 
                             <div>
                                 @{
@@ -157,11 +115,6 @@
                                 }
                             </div>
 
-                            <div style="display:none" class="container-fluid" id="vechical_div">
-                                @{
-                                    Html.RenderPartial("_AddVechicalLoanDetails");
-                                }
-                            </div>
 
                             <div style="display:none" class="container-fluid" id="personal_div">
                                 @{
@@ -171,12 +124,13 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <label for="exampleInputEmail1">Remarks</label>
-                                    <input type="text" id="txtRemarks" maxlength="200" class="form-control" />
+                                    @Html.TextAreaFor(model => model.UserRemarks, new { @id= "txtRemarks",@class= "form-control",@maxlength="200" })
+                                   
                                 </div>
                             </div>
 
                             <div class="card-footer" style="margin-top:10px;">
-                                <button type="submit" class="btn btn-primary" onclick="ValidationChk();"> Submit </button>
+                                <button type="submit" class="btn btn-primary" onclick="UpdateDetails();"> Submit </button>
 
                             </div>
                         </div>
@@ -192,8 +146,9 @@
 
 </section>
 
-<script src="~/Scripts/CustomJS/LeadUpdate.js"></script>
-
+<!-- Modal -->
+<script src="~/Scripts/CustomJS/LeadGenUpdate.js"></script>
+<script src="~/Scripts/CustomJS/CommonFunction.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         $('#example').DataTable({

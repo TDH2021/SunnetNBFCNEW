@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Runtime.Serialization;
 using Org.BouncyCastle.Bcpg.OpenPgp;
+using System.Web.UI;
 
 namespace Sunnet_NBFC.Models
 {
@@ -532,8 +533,13 @@ namespace Sunnet_NBFC.Models
 
     }
 
+
     public class clsLeadGenerationMaster : IDisposable
     {
+        public clsLeadGenerationMaster()
+        {
+            GuList = new List<Gurantor>();
+        }
         public string ReqType { get; set; }
         public string MainProductId { get; set; }
         public string MainProductName { get; set; }
@@ -601,7 +607,7 @@ namespace Sunnet_NBFC.Models
         public string CO_MiddleName { get; set; }
         public string CO_LastName { get; set; }
         public string CO_Adress { get; set; }
-
+        public string CO_LeadCustomerId { get; set; } = "0";
         public string CO_FatherName { get; set; }
 
         public string CO_MotherName { get; set; }
@@ -641,7 +647,7 @@ namespace Sunnet_NBFC.Models
         public string PanISAPICHeck { get; set; }
         public string DealerName { get; set; }
         public string CustLandMark { get; set; } = "";
-
+        public string LeadCustomerId { get; set; } = "0";
         public string CO_Mobile_No { get; set; }
         public string CO_Email_Id { get; set; }
 
@@ -748,8 +754,15 @@ namespace Sunnet_NBFC.Models
         public string InsEndValidityDate { get; set; } = "";
         public string Updatedate { get; set; } = "";
         public string DisburseDate { get; set; } = "";
-         public string LeadStatus { get; set; } = "";
+        public string LeadStatus { get; set; } = "";
+        public string CustTypeRequried { get; set; } = "";
+        public int Cust_IsSameCurrentperadd { get; set; } = 0;
+        public bool bCust_IsSameCurrentperadd { get; set; } = false;
+        public int CO_IsSameCurrentperadd { get; set; } = 0;
+        public bool bCO_IsSameCurrentperadd { get; set; } = false;
         public int isdelete { get; set; } = 0;
+
+        public List<Gurantor> GuList { get; set; }
         bool disposed = false;
 
         // Public implementation of Dispose pattern callable by consumers.
@@ -782,6 +795,8 @@ namespace Sunnet_NBFC.Models
 
     public class Gurantor
     {
+        public string G_Reqtype { get; set; } = "";
+        public string G_LeadCustomerId { get; set; }
         public string G_CIF { get; set; }
         public string G_Prefix { get; set; }
         public string G_FirstName { get; set; }
@@ -833,7 +848,12 @@ namespace Sunnet_NBFC.Models
         public string G_FatherName { get; set; } = "";
         public string G_SpouseName { get; set; } = "";
         public string G_LandMark { get; set; } = "";
+        public int G_UpdatedBy { get; set; } = 0;
+        public int G_IsSameCurrentperadd { get; set; } = 1;
+        public bool bG_IsSameCurrentperadd { get; set; } = true;
     }
+
+
     public class clsRoleMaster : clsRoleSubMenu
     {
         public string RoleId { get; set; } = "0";

@@ -10,69 +10,37 @@
     <div class="row">
 
         <div class="col-md-3">
-            <label class="required" for="exampleInputEmail1">No of Dependent</label>
-            @Html.TextBoxFor(model => model.NoofDependent, new
-       {
-           @class = "form-control",
-           @placeholder = "No of Dependent",
-           @name = "MName",
-           @required = "true",
-           @onkeypress = "return isNumber(this.value);",
-           @maxlength = "2",
-           @id = "txtVchNoofDependent"
-
-       })
-        </div>
-        <div class="col-md-3">
-            <label class="required" for="exampleInputEmail1">For Recomended Amt</label>
-            @Html.TextBoxFor(model => model.FORecomedAmt, new
-       {
-           @class = "form-control",
-           @placeholder = "FORecomed Amt",
-           @name = "FName",
-           @required = "true",
-           @onkeypress = "return isNumber(this.value);",
-           @maxlength = "10",
-           @id = "txtFORecomedAmt",
-           @autocomplete = "off"
-       })
-
-        </div>
-
-    </div>
-
-    <div class="row">
-
-        <div class="col-md-3">
-            <label for="exampleInputEmail1">Vehicle No</label>
+            <label for="exampleInputEmail1">Vehicle Number</label>
             @Html.TextBoxFor(model => model.ViechleNo, new
             {
                 @class = "form-control",
-                @placeholder = "Viechle No",
+                @placeholder = "Vehicle No",
                 @name = "MName",
                 @required = "true",
-                @id = "ViechleNo"
+                @id = "ViechleNo",
+                @maxlength = "15"
 
             })
         </div>
         <div class="col-md-3">
             <label class="required" for="exampleInputEmail1">Model</label>
             @Html.TextBoxFor(model => model.ViechleModel, new
-            {
-                @class = "form-control",
-                @placeholder = "Viechle Model",
-                @name = "MName",
-                @required = "true",
-                @id = "ViechleModel"
+       {
+           @class = "form-control",
+           @placeholder = "Vehicle Model",
+           @name = "MName",
+           @required = "true",
+           @id = "ViechleModel",
+           @maxlength = "80",
 
-            })
+       })
         </div>
         <div class="col-md-3">
             <label class="required" for="exampleInputEmail1">Color</label>
             @Html.TextBoxFor(model => model.ViechleColor, new
             {
                 @class = "form-control",
-                @placeholder = "Viechle Color",
+                @placeholder = "Vehicle Color",
                 @name = "FName",
                 @required = "true",
                 @maxlength = "50",
@@ -82,27 +50,24 @@
 
 
         </div>
-
         <div class="col-md-3">
-            <label class="required" for="exampleInputEmail1">Viechle Reg Year</label>
-            @Html.TextBoxFor(model => model.ViechleRegYear, new
-       {
-           @class = "form-control",
-           @placeholder = "Viechle Reg Year",
-           @name = "FName",
-           @required = "true",
-           @onkeypress = "return isNumber(this.value);",
-           @maxlength = "5",
-           @id = "ViechleRegYear",
-           @autocomplete = "off"
-       })
+            <label class="required" for="exampleInputEmail1">Vehicle Make</label>
+            @Html.TextBoxFor(model => model.ViechleCompany, new
+            {
+                @class = "form-control",
+                @placeholder = "Vechile Company",
+                @name = "MName",
+                @required = "true",
+                @id = "ViechleCompany"
+
+            })
         </div>
 
     </div>
 
     <div class="row">
         <div class="col-md-3">
-            <label class="required" for="exampleInputEmail1">Manufactring Year</label>
+            <label class="required" for="exampleInputEmail1">Manufacturing Year</label>
             @Html.TextBoxFor(model => model.MFGYear, new
        {
            @class = "form-control",
@@ -116,30 +81,73 @@
        })
         </div>
         <div class="col-md-3">
-            <label class="required" for="exampleInputEmail1">Viechle Company</label>
-            @Html.TextBoxFor(model => model.ViechleCompany, new
-            {
-                @class = "form-control",
-                @placeholder = "Viechle Company",
-                @name = "MName",
-                @required = "true",
-                @id = "ViechleCompany"
+            <label class="required" for="exampleInputEmail1">Vehicle Registration Year</label>
+            @Html.TextBoxFor(model => model.ViechleRegYear, new
+       {
+           @class = "form-control",
+           @placeholder = "Vehicle Reg Year",
+           @name = "FName",
+           @required = "true",
+           @onkeypress = "return isNumber(this.value);",
+           @maxlength = "4",
+           @id = "ViechleRegYear",
+           @autocomplete = "off"
+       })
+        </div>
+        <div class="col-md-3">
+            <label for="exampleInputEmail1">Registration Date as per RC</label>
+            @Html.TextBoxFor(model => model.RegistrationDate, new
+       {
+           @class = "form-control datestyle",
+           @placeholder = "Vehicle Reg Year",
+           @name = "FName",
+           @required = "true",
+           @onkeypress = "return isNumber(this.value);",
+           @maxlength = "10",
+           @id = "txtRegDate",
+           @autocomplete = "off"
+       })
 
-            })
         </div>
 
-
         <div class="col-md-3">
-            <label class="required" for="exampleInputEmail1">Viechle Owner</label>
+            <label class="required" for="exampleInputEmail1">Name as per RC</label>
             @Html.TextBoxFor(model => model.ViechleOwner, new
             {
                 @class = "form-control",
-                @placeholder = "Viechle Owner",
+                @placeholder = "RC Name Owner",
                 @name = "MName",
                 @required = "true",
                 @id = "ViechleOwner"
 
             })
+        </div>
+
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">Fuel Type</label>
+            <select class="form-control" id="ddlFualType">
+                <option>Petrol</option>
+                <option>Diesel</option>
+                <option>CNG Factory fitted</option>
+                <option>CNG Outside fitted</option>
+                <option>Electric</option>
+            </select>
+            @Html.HiddenFor(model => model.FuelType, new { @class = "form-control", @id = "hfFualType" })
+        </div>
+
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">Owner</label>
+            <select class="form-control" id="ddlOwner">
+                @*<option>0</option>*@
+                <option>1</option>
+                @*<option>2</option>
+                    <option>3</option>
+                    <option>4</option>*@
+            </select>
         </div>
 
         <div class="col-md-3">
@@ -157,81 +165,161 @@
        })
         </div>
 
-    </div>
-
-    <div class="row">
-        <div class="col-md-3">
-            <label class="required" for="exampleInputEmail1">Fual Type</label>
-            <select class="form-control" id="ddlFualType">
-                <option>Petrol</option>
-                <option>Diesel</option>
-                <option>CNG Factory fitted</option>
-                <option>CNG Outside fitted</option>
-            </select>
-        </div>
-
-        <div class="col-md-3">
-            <label class="required" for="exampleInputEmail1">Owner</label>
-            <select class="form-control" id="ddlOwner">
-                <option>0</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-            </select>
-        </div>
-
         <div class="col-md-3">
             <label for="exampleInputEmail1">Insurance Status</label>
             <select class="form-control" id="ddlInsuranceStatus">
-                <option>New</option>
                 <option>Lapesd</option>
                 <option>Valid</option>
             </select>
-        </div>
-        <div class="col-md-3">
-            <label for="exampleInputEmail1">Insurance Type</label>
-            <select class="form-control" id="ddlInsuranceType">
-                <option>New</option>
-                <option>Comprehensive</option>
-                <option>Third Party</option>
-            </select>
+            @Html.HiddenFor(model => model.InsuranceStatus, new { @class = "form-control", @id = "hfInsuranceStatus" })
         </div>
     </div>
     <div class="row">
         <div class="col-md-3">
-            <label for="exampleInputEmail1">Validity Date</label>
-            <input type="text" class="form-control datestyle" id="txtValidityDate" />
+            <label for="exampleInputEmail1">Insurance Type</label>
+            <select class="form-control" id="ddlInsuranceType">
+                <option>Comprehensive</option>
+                <option>Third Party</option>
+            </select>
+            @Html.HiddenFor(model => model.InsuranceType, new { @class = "form-control", @id = "hfInsuranceType" })
         </div>
         <div class="col-md-3">
+            <label for="exampleInputEmail1">Insurer Name</label>
+            @Html.TextBoxFor(model => model.Insurer, new
+     {
+         @class = "form-control",
+         @placeholder = "Insurer Name",
+         @name = "FName",
+         @maxlength = "50",
+         @id = "txtInsuar",
+         @autocomplete = "off"
+     })
+
+        </div>
+        <div class="col-md-3">
+            <label for="exampleInputEmail1">Policy Number</label>
+            @Html.TextBoxFor(model => model.PolicyNo, new
+     {
+         @class = "form-control",
+         @placeholder = "Policy Number",
+         @name = "FName",
+         @maxlength = "80",
+         @id = "txtPolicyNo",
+         @autocomplete = "off"
+     })
+        </div>
+
+        <div class="col-md-3">
+            <label for="exampleInputEmail1">Insurance Start Date</label>
+            @Html.TextBoxFor(model => model.ValidityDate, new
+       {
+           @class = "form-control datestyle",
+           @placeholder = "Policy Number",
+           @name = "FName",
+           @maxlength = "80",
+           @id = "txtValidityDate",
+           @autocomplete = "off",
+           @onchange = "return FindEndInsdate();"
+       })
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <label for="exampleInputEmail1">Insurance End Date</label>
+            @Html.TextBoxFor(model => model.InsEndValidityDate, new
+       {
+           @class = "form-control datestyle",
+           @placeholder = "Insurance End Date",
+           @name = "FName",
+           @maxlength = "80",
+           @id = "txtEndValidityDate",
+           @autocomplete = "off",
+           @disabled = "true"
+       })
+
+        </div>
+
+        <div class="col-md-3">
             <label for="exampleInputEmail1">Ex ShowRoom Price</label>
-            <input type="text" class="form-control" id="txtExShowRoomPrice" onkeypress="return isNumber(this.value);" />
+            @Html.TextBoxFor(model => model.ExShowRoomPrice, new
+       {
+           @class = "form-control",
+           @placeholder = "Insurance End Date",
+           @name = "FName",
+           @maxlength = "80",
+           @id = "txtExShowRoomPrice",
+           @autocomplete = "off",
+           @onkeypress = "return isNumber(this.value);"
+       })
         </div>
         <div class="col-md-3">
             <label for="exampleInputEmail1">On Road Price</label>
-            <input type="text" class="form-control" id="txtOnRoadPrice" onkeypress="return isNumber(this.value);" />
+            @Html.TextBoxFor(model => model.OnRoadPrice, new
+    {
+        @class = "form-control",
+        @placeholder = "Insurance End Date",
+        @name = "FName",
+        @maxlength = "80",
+        @id = "txtOnRoadPrice",
+        @autocomplete = "off",
+        @onkeypress = "return isNumber(this.value);"
+    })
         </div>
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">FO Recommended Amount</label>
+            @Html.TextBoxFor(model => model.FORecomedAmt, new
+       {
+           @class = "form-control",
+           @placeholder = "FORecomed Amt",
+           @name = "FName",
+           @onkeypress = "return isNumber(this.value);",
+           @maxlength = "10",
+           @id = "txtFORecomedAmtcomedAmt",
+           @autocomplete = "off"
+       })
+        </div>
+    </div>
+    <div class="row">
         <div class="col-md-3">
             <label for="exampleInputEmail1">Dealer</label>
             @Html.DropDownListFor(model => model.DSAId, ViewBag.Dealer as SelectList, "- Select Dealer- ",
                                    new { @class = "form-control", @id = "ddlDealer" })
+            @Html.HiddenFor(model => model.DSAId, new { @id = "hfDealer" })
         </div>
-    </div>
-    <div class="row">
+
         <div class="col-md-3">
-            <label for="exampleInputEmail1">Insurer</label>
-            <input type="text" class="form-control" id="txtInsuar" />
+            <label for="exampleInputEmail1">E-Rikshaw Maker</label>
+            @Html.TextBoxFor(model => model.ERikshawMaker, new
+     {
+         @class = "form-control",
+         @placeholder = "E-Rikshaw Maker",
+         @name = "FName",
+         @required = "true",
+         @maxlength = "100",
+         @id = "txtERikshawMaker",
+         @autocomplete = "off"
+     })
         </div>
+
         <div class="col-md-3">
-            <label for="exampleInputEmail1">Policy No</label>
-            <input type="text" class="form-control" id="txtPolicyNo" />
-        </div>
-        <div class="col-md-3">
-            <label for="exampleInputEmail1">Registation Date</label>
-            <input type="text" class="form-control datestyle" id="txtRegDate" />
+            <label for="exampleInputEmail1">Performa Invoice</label>
+            @Html.TextBoxFor(model => model.PerformaInvoice, new
+   {
+       @class = "form-control",
+       @placeholder = "Performa Invoice",
+       @name = "FName",
+       @required = "true",
+       @maxlength = "100",
+       @id = "txtPerformaInvoice",
+       @autocomplete = "off"
+   })
         </div>
     </div>
 
+
 </div>
+
+
 
 

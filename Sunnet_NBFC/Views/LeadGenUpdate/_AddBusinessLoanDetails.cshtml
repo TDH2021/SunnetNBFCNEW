@@ -32,6 +32,7 @@
                 <option value="Commercial">Commercial</option>
                 <option value="Vacant">Vacant</option>
             </select>
+            @Html.HiddenFor(model => model.ColletralSecurityType, new { @class = "form-control", @id = "hfCollertal" })
         </div>
         <div class="col-md-3">
             <label class="required" for="exampleInputEmail1">
@@ -77,6 +78,7 @@
                 <option value="Constructed">Constructed</option>
                 <option value="Flat">Flat</option>
             </select>
+            @Html.HiddenFor(model => model.PropertyType, new { @class = "form-control", @id = "hfPropertyType" })
         </div>
 
         <div class="col-md-3">
@@ -87,11 +89,21 @@
                 <option value="Square feet">Square feet</option>
 
             </select>
+            @Html.HiddenFor(model => model.Propertyarea, new { @class = "form-control", @id = "hfPropertyArea" })
         </div>
-        
+
         <div class="col-md-3">
             <label class="required" for="exampleInputEmail1">Property Address</label>
-           <input id="txtPropertyAddress" maxlength="100" type="text" class="form-control" />
+            @Html.TextBoxFor(model => model.PropertyAddress, new
+     {
+         @class = "form-control",
+         @placeholder = "Vehicle Reg Year",
+         @name = "FName",
+         @required = "true",
+         @maxlength = "100",
+         @id = "txtPropertyAddress",
+         @autocomplete = "off"
+     })
         </div>
     </div>
 </div>

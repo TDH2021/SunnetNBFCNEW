@@ -33,33 +33,13 @@
            @required = "true",
            @id = "AadharNo",
            @maxlength = "12",
-           @onkeypress= "return isNumber(this.value);"
+           @onkeypress = "return isNumber(this.value);"
 
        })
             @Html.HiddenFor(model => model.AAdharverfiy, new { @class = "form-control", @id = "hdn_customer_aadhar_verify" })
-
-
-        </div>
-
-
-        <div class="col-md-1">
-
-
-            @if (ViewBag.AAdharIsAPICheck == "1")
-            {
-                <button style="margin-top: 35px;" onclick="AAdharVerification();" class="btnAadharVerify"> Verify </button>
-
-            }
-            else
-            {
-                <button style="margin-top: 35px;" onclick="AAdharVerification();" disabled class="btnAadharVerify"> Verify </button>
-
-            }
-
+            @Html.HiddenFor(model => model.LeadCustomerId, new { @id = "hfCustLeadCustomerID" })
 
         </div>
-
-
 
         <div class="col-md-3">
             <label class="required" for="exampleInputEmail1"> Pan No </label>
@@ -70,56 +50,26 @@
            @name = "PanNo",
            @required = "true",
            @id = "PanNo",
-           @maxlength = "10"
-
-
+           @maxlength = "10",
+           @onblur = "return ValidatePAN(this.value,id);"
        })
             @Html.HiddenFor(model => model.PanVerify, new { @class = "form-control", @id = "hdn_customer_PanVerify" })
         </div>
-
-
-
-
-
-
-        <div class="col-md-2">
-
-
-
-            @if (ViewBag.PANIsAPICheck == "1")
-            {
-                <button style="margin-top: 35px;" onclick="PanVerification();" class="btnPanVerify"> Verify </button>
-
-            }
-            else
-            {
-                <button style="margin-top: 35px;" onclick="PanVerification();" disabled class="btnPanVerify"> Verify </button>
-
-            }
-            <button style="margin-top: 35px;" onclick="GetCustomerData();"> Get Data </button>
-
-        </div>
-
-
     </div>
 
     <div class="row">
         <div class="col-md-1">
             <label class="required" for="exampleInputEmail1">Prefix</label>
 
-            @Html.DropDownListFor(model => model.Prefix,
+            @Html.DropDownListFor(model => model.PrefixName,
       new List<SelectListItem> {
-    new SelectListItem { Value = "" , Text = "- Select Prefix -" },
-    new SelectListItem { Value = "Mr" , Text = "Mr." },
-    new SelectListItem { Value = "Mrs" , Text = "Mrs." },
+    new SelectListItem { Value = "0" , Text = "- Select Prefix -" },
+    new SelectListItem { Value = "Mr." , Text = "Mr." },
+    new SelectListItem { Value = "Mrs." , Text = "Mrs." },
     //new SelectListItem { Value = "Smt" , Text = "Smt." }
     },
       new { @class = "form-control", @id = "Prefix" })
-
-
-
-
-
+            @Html.HiddenFor(model => model.PrefixName, new { @class = "form-control", @id = "hdnPrefix" })
         </div>
 
 
@@ -167,6 +117,63 @@
         </div>
 
         <div class="col-md-2">
+            <label class="required" for="exampleInputEmail1">Gender</label>
+            @Html.DropDownListFor(model => model.Gender,
+            new List<SelectListItem> {
+            new SelectListItem { Value = "0" , Text = "- Select Gender -" },
+            new SelectListItem { Value = "Male" , Text = "Male" },
+            new SelectListItem { Value = "Female" , Text = "Female" },
+            new SelectListItem { Value = "Transgender" , Text = "Transgender" }
+            },
+            new { @class = "form-control", @id = "Gender" })
+
+        </div>
+
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">Date of Birth</label>
+            @Html.TextBoxFor(model => model.DateofBirth, new
+            {
+                @class = "form-control datestyle",
+                @placeholder = "Date of Birth",
+                @name = "Dob",
+                @required = "true",
+                @id = "Dob",
+
+            })
+        </div>
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">Marital Status</label>
+
+            @Html.DropDownListFor(model => model.MartialStatus,
+      new List<SelectListItem> {
+ new SelectListItem { Value = "" , Text = "- Select Marital -" },
+ new SelectListItem { Value = "Single" , Text = "Single" },
+ new SelectListItem { Value = "Married" , Text = "Married" },
+ new SelectListItem { Value = "Divorce" , Text = "Divorce" },
+ new SelectListItem { Value = "Widow" , Text = "Widow" }
+  },
+      new { @class = "form-control", @id = "MartialStatus" })
+
+        </div>
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">Spouse Name</label>
+            @Html.TextBoxFor(model => model.SpouseName, new
+       {
+           @class = "form-control",
+           @placeholder = "Spouse Name",
+           @name = "SpouseName",
+           @required = "true",
+           @autocomplete = "off",
+           @id = "SpouseName"
+
+       })
+        </div>
+
+        <div class="col-md-3">
             <label class="required" for="exampleInputEmail1">Father Name</label>
             @Html.TextBoxFor(model => model.FatherName, new
             {
@@ -180,11 +187,10 @@
             })
         </div>
 
+
     </div>
 
-
     <div class="row">
-
         <div class="col-md-3">
             <label for="exampleInputEmail1">Mother Name</label>
             @Html.TextBoxFor(model => model.MotherName, new
@@ -200,73 +206,7 @@
         </div>
 
         <div class="col-md-3">
-            <label class="required" for="exampleInputEmail1">Spouse Name</label>
-            @Html.TextBoxFor(model => model.SpouseName, new
-       {
-           @class = "form-control",
-           @placeholder = "Spouse Name",
-           @name = "SpouseName",
-           @required = "true",
-           @autocomplete = "off",
-           @id = "SpouseName"
-
-       })
-        </div>
-
-
-
-
-        <div class="col-md-3">
-            <label class="required" for="exampleInputEmail1">Gender</label>
-            @Html.DropDownListFor(model => model.Gender,
-            new List<SelectListItem> {
-            new SelectListItem { Value = "0" , Text = "- Select Gender -" },
-            new SelectListItem { Value = "Male" , Text = "Male" },
-            new SelectListItem { Value = "Female" , Text = "Female" },
-            new SelectListItem { Value = "Transgender" , Text = "Transgender" }
-            },
-            new { @class = "form-control", @id = "Gender" })
-
-        </div>
-
-        <div class="col-md-3">
-            <label class="required" for="exampleInputEmail1">Date of Birth</label>
-            @Html.TextBoxFor(model => model.DateofBirth, new
-            {
-                @class = "form-control datestyle",
-                @placeholder = "Date of Birth",
-                @name = "Dob",
-                @required = "true",
-                @id = "Dob",
-
-            })
-        </div>
-
-
-
-    </div>
-
-    <div class="row">
-        <div class="col-md-3">
-            <label class="required" for="exampleInputEmail1">Martial Status</label>
-
-            @Html.DropDownListFor(model => model.MartialStatus,
-      new List<SelectListItem> {
- new SelectListItem { Value = "" , Text = "- Select Marital -" },
- new SelectListItem { Value = "Single" , Text = "Single" },
- new SelectListItem { Value = "Married" , Text = "Married" },
- new SelectListItem { Value = "Divorce" , Text = "Divorce" },
- new SelectListItem { Value = "Widow" , Text = "Widow" }
-  },
-      new { @class = "form-control", @id = "MartialStatus" })
-
-        </div>
-
-
-
-
-        <div class="col-md-3">
-            <label class="required" for="exampleInputEmail1">Corrospondance Address</label>
+            <label class="required" for="exampleInputEmail1">Correspondence Address</label>
             @Html.TextBoxFor(model => model.PresentAddress, new
        {
            @class = "form-control",
@@ -274,17 +214,13 @@
            @name = "PresentAddress",
            @required = "true",
            @id = "PresentAddress",
-           @autocomplete = "off",
-           @onchange = "SetValues();"
+           @autocomplete = "off"
 
        })
         </div>
 
-
-
-
         <div class="col-md-3">
-            <label class="required" for="exampleInputEmail1">Corrospondance Pincode</label>
+            <label class="required" for="exampleInputEmail1">Correspondence Pincode</label>
             @Html.TextBoxFor(model => model.PresentPincode, new
        {
            @class = "form-control",
@@ -295,12 +231,12 @@
            @autocomplete = "off",
            @onchange = "GetStateCity_PIN(this.value,customerpresentState,customerpresentcity);",
            @onkeypress = "return isNumber(this.value);",
-           @maxlength="6"
+           @maxlength = "6"
        })
         </div>
 
         <div class="col-md-3">
-            <label class="required" for="exampleInputEmail1">Corrospondance State</label>
+            <label class="required" for="exampleInputEmail1">Correspondence State</label>
             @Html.TextBoxFor(model => model.PresentStateId, new
        {
            @class = "form-control",
@@ -310,7 +246,6 @@
            @type = "text",
            @id = "customerpresentState",
            @autocomplete = "off",
-           @onchange = "SetValues2();",
            @readonly = "true"
        })
             @Html.ValidationMessageFor(model => model.PresentStateId, "", new { @class = "text-danger" })
@@ -324,7 +259,7 @@
 
 
         <div class="col-md-3">
-            <label class="required" for="exampleInputEmail1">Corrospondance City</label>
+            <label class="required" for="exampleInputEmail1">Correspondence City</label>
             @Html.TextBoxFor(model => model.PresentCityId, new
        {
            @class = "form-control",
@@ -333,7 +268,6 @@
            @required = "true",
            @type = "text",
            @id = "customerpresentcity",
-           @onchange = "SetValues3();",
            @autocomplete = "off",
            @readonly = "true"
 
@@ -346,29 +280,27 @@
 
 
         <div class="col-md-3">
-            <label class="required" for="exampleInputEmail1">Corrospondance Village</label>
+            <label class="required" for="exampleInputEmail1">Correspondence Village</label>
             @Html.TextBoxFor(model => model.PresentVillage, new
        {
            @class = "form-control",
            @placeholder = "Present Village",
            @name = "Present Village",
            @required = "true",
-           @id = "PresentVillage",
-           @onchange = "SetValues4();"
+           @id = "PresentVillage"
 
        })
         </div>
 
         <div class="col-md-3">
-            <label class="required" for="exampleInputEmail1">Corrospondance District</label>
+            <label class="required" for="exampleInputEmail1">Correspondence District</label>
             @Html.TextBoxFor(model => model.PresentDistrict, new
        {
            @class = "form-control",
            @placeholder = "Present District",
            @name = "Present District",
            @required = "true",
-           @id = "PresentDistrict",
-           @onchange = "SetValues5();"
+           @id = "PresentDistrict"
 
        })
         </div>
@@ -380,8 +312,14 @@
 
     <div class="row" style="margin-bottom:10px; margin-top:10px;">
         <div class="col-md-12">
-            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" onchange="mytest();">
-            <label for="vehicle1"> Permanent Address As Same As Corrospondance Address</label><br>
+            @Html.CheckBoxFor(model => model.bCust_IsSameCurrentperadd, new
+       {
+           @id = "chkSameCurper",
+           @onchange = "mytest();",
+           @name = "vehicle1",
+           @value = "Bike"
+       })
+            <label for="vehicle1"> Permanent Address As Same As Correspondence Address</label><br>
         </div>
 
     </div>
@@ -413,7 +351,7 @@
            @autocomplete = "off",
            @onchange = "GetStateCity_PIN(this.value,customerpermanentstate,customerpermanentcity);",
            @onkeypress = "return isNumber(this.value);",
-           @maxlength=6
+           @maxlength = 6
        })
         </div>
         <div class="col-md-3">
@@ -490,7 +428,7 @@
 
 
         <div class="col-md-3">
-            <label class="required" for="exampleInputEmail1">Cibil Score</label>
+            <label for="exampleInputEmail1">Cibil Score</label>
             @Html.TextBoxFor(model => model.CibilScore, new
        {
            @class = "form-control",
@@ -514,12 +452,16 @@
            @id = "MobileNumber1",
            @maxlength = "10",
            @onkeypress = "return isNumber(this.value);"
-           
+
 
        })
         </div>
+
+
+    </div>
+    <div class="row">
         <div class="col-md-3">
-            <label class="required" for="exampleInputEmail1">Father Number</label>
+            <label for="exampleInputEmail1">Father Mobile Number</label>
             @Html.TextBoxFor(model => model.FatherMobileNo, new
        {
            @class = "form-control",
@@ -549,10 +491,6 @@
 
        })
         </div>
-
-
-    </div>
-    <div class="row">
 
         <div class="col-md-3">
             <label class="required" for="exampleInputEmail1">
@@ -586,10 +524,59 @@
         </div>
 
 
+
+    </div>
+    <div class="row">
         <div class="col-md-3">
-            <label for="exampleInputEmail1">Applicant Image</label>
+            <label class="required" for="exampleInputEmail1">OwnerShip</label>
+            <select class="form-control" id="ddlCustOwnerShip">
+                <option>Owned</option>
+                <option>Rented</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">Land Mark</label>
+            @Html.TextBoxFor(model => model.CustLandMark, new
+       {
+           @class = "form-control",
+           @placeholder = "Land Mark",
+           @name = "EmailId",
+           @autocomplete = "off",
+           @id = "txtCustLandMark"
+
+       })
+        </div>
+
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">Applicant Image</label><br />
             <input type="file" id="fileuploadapplicantimg" accept="image/x-png,image/jpeg" />
         </div>
+        <div class="col-md-3">
+            @if (Model.CustImage.Trim() != "")
+            {
+                var img = Sunnet_NBFC.App_Code.ClsCommon.PreviewImage(Model.CustImage.Trim());
+                <img src=@img alt="" height=100 width=200 />
+            }
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">Electicity Bill</label><br />
+            <input type="file" id="fileuploadElectricBill" accept="image/x-png,image/jpeg" />
+        </div>
+        <div class="col-md-3">
+            @if (Model.ElectricBill.Trim() != "")
+            {
+                var img = Sunnet_NBFC.App_Code.ClsCommon.PreviewImage(Model.ElectricBill.Trim());
+                <img src=@img alt="" height=100 width=200 />
+            }
+
+        </div>
+    </div>
+    <div class="card-footer" style="margin-top:10px;">
+        <button type="submit" class="btn btn-primary" id="btnAdd" onclick="UpdateCustomer();" value="Update"> Update </button>
+
     </div>
 
 </div>

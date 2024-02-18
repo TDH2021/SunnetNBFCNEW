@@ -605,6 +605,7 @@ public class DataInterface : IDisposable
                 sqlCommand.Parameters.AddWithValue("@PermanentVillage", cls.PermanentVillage);
                 sqlCommand.Parameters.AddWithValue("@EmailId", cls.EmailId);
                 sqlCommand.Parameters.AddWithValue("@LandMark", cls.CustLandMark);
+                sqlCommand.Parameters.AddWithValue("@LeadCustomerId", cls.LeadCustomerId);
 
                 dt = db.FillTableProc(sqlCommand, "USP_LeadCustomer");
             }
@@ -757,7 +758,212 @@ public class DataInterface : IDisposable
         return dt;
     }
 
+    public static DataTable UpdateCustomer(clsLeadGenerationMaster cls)
+    {
+        DataTable dt = new DataTable();
+        using (DBOperation db = new DBOperation())
+        {
+            using (SqlCommand sqlCommand = new SqlCommand())
+            {
+                sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                sqlCommand.Parameters.AddWithValue("@ReqType",cls.ReqType);
+                sqlCommand.Parameters.AddWithValue("@LeadCustomerId", cls.LeadCustomerId);
+                sqlCommand.Parameters.AddWithValue("@Cif", cls.CIFID);
+                sqlCommand.Parameters.AddWithValue("@PrefixName", cls.PrefixName);
+                sqlCommand.Parameters.AddWithValue("@FirstName", cls.FirstName);
+                sqlCommand.Parameters.AddWithValue("@MiddleName", cls.MiddleName);
+                sqlCommand.Parameters.AddWithValue("@LastName", cls.LastName);   
+                sqlCommand.Parameters.AddWithValue("@FatherName", cls.FatherName);
+                sqlCommand.Parameters.AddWithValue("@MotherName", cls.MotherName);
+                sqlCommand.Parameters.AddWithValue("@SpouseName", cls.SpouseName);
+                sqlCommand.Parameters.AddWithValue("@Gender", cls.Gender);
+                sqlCommand.Parameters.AddWithValue("@DateofBirth", cls.DateofBirth);
+                sqlCommand.Parameters.AddWithValue("@MartialStatus", cls.MartialStatus);
+                sqlCommand.Parameters.AddWithValue("@PresentAddress", cls.PresentAddress);
+                sqlCommand.Parameters.AddWithValue("@PresentPincode", cls.PresentPincode);
 
+                sqlCommand.Parameters.AddWithValue("@PermanentAddress", cls.PermanentAddress);
+                sqlCommand.Parameters.AddWithValue("@PermanentPincode", cls.PermanentPincode);
+
+                sqlCommand.Parameters.AddWithValue("@CibilScore", cls.CibilScore);
+                sqlCommand.Parameters.AddWithValue("@PresentStateId", cls.PresentStateId);
+                sqlCommand.Parameters.AddWithValue("@PresentCityId", cls.PresentCityId);
+                sqlCommand.Parameters.AddWithValue("@PermanentStateId", cls.PermanentStateId);
+                sqlCommand.Parameters.AddWithValue("@PermanentCityId", cls.PermanentCityId);
+
+                sqlCommand.Parameters.AddWithValue("@MobileNo1", cls.MobileNo1);
+                sqlCommand.Parameters.AddWithValue("@MobileNo2", cls.MobileNo2);
+                sqlCommand.Parameters.AddWithValue("@FatherMobileNo", cls.FatherMobileNo);
+                sqlCommand.Parameters.AddWithValue("@MotherMobileNo", cls.MotherMobileNo);
+                sqlCommand.Parameters.AddWithValue("@SpouseMobileNo", cls.SpouseMobileNo);
+                sqlCommand.Parameters.AddWithValue("@EmailId", cls.EmailId);
+
+
+                sqlCommand.Parameters.AddWithValue("@AadharNo", cls.AadharNo);
+                sqlCommand.Parameters.AddWithValue("@AAdharverfiy", Convert.ToInt32(cls.AAdharverfiy));
+                sqlCommand.Parameters.AddWithValue("@PanNo", cls.PanNo);
+                sqlCommand.Parameters.AddWithValue("@PanVerify", Convert.ToInt32(cls.PanVerify));
+                sqlCommand.Parameters.AddWithValue("@CustRelation", cls.CustRelation);
+                sqlCommand.Parameters.AddWithValue("@BranchID", cls.BranchID);
+
+                sqlCommand.Parameters.AddWithValue("@LeadID", cls.LeadId);
+                sqlCommand.Parameters.AddWithValue("@CompanyId", cls.CompanyId);
+                sqlCommand.Parameters.AddWithValue("@CreatedBy", cls.CreatedBy);
+                sqlCommand.Parameters.AddWithValue("@UpdatedBy", cls.UpdatedBy);
+                sqlCommand.Parameters.AddWithValue("@OwnerShip", cls.OwnerShip);
+               
+                sqlCommand.Parameters.AddWithValue("@PresentDistrict", cls.PresentDistrict);
+                sqlCommand.Parameters.AddWithValue("@PresentVillage", cls.PresentVillage);
+                sqlCommand.Parameters.AddWithValue("@PermanentDistrict", cls.PermanentDistrict);
+                sqlCommand.Parameters.AddWithValue("@PermanentVillage", cls.PermanentVillage);
+                sqlCommand.Parameters.AddWithValue("@LandMark", cls.CustLandMark);
+                sqlCommand.Parameters.AddWithValue("@IsSameCurrentperadd", cls.Cust_IsSameCurrentperadd);
+                sqlCommand.Parameters.AddWithValue("@ElectricBill", cls.ElectricBill);
+                sqlCommand.Parameters.AddWithValue("@CustImage", cls.CustImage);
+                dt = db.FillTableProc(sqlCommand, "USP_LeadCustomer");
+            }
+
+
+        }
+        return dt;
+    }
+
+    public static DataTable UpdateCoBorrower(clsLeadGenerationMaster cls)
+    {
+        DataTable dt = new DataTable();
+        using (DBOperation db = new DBOperation())
+        {
+            using (SqlCommand sqlCommand = new SqlCommand())
+            {
+                sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                sqlCommand.Parameters.AddWithValue("@ReqType", cls.ReqType);
+                sqlCommand.Parameters.AddWithValue("@LeadCustomerId", cls.CO_LeadCustomerId);
+                sqlCommand.Parameters.AddWithValue("@Cif", cls.Co_CIF);
+                sqlCommand.Parameters.AddWithValue("@PrefixName", cls.Co_PrefixName);
+                sqlCommand.Parameters.AddWithValue("@FirstName", cls.CO_FirstName);
+                sqlCommand.Parameters.AddWithValue("@MiddleName", cls.CO_MiddleName);
+                sqlCommand.Parameters.AddWithValue("@LastName", cls.CO_LastName);
+                sqlCommand.Parameters.AddWithValue("@FatherName", cls.CO_FatherName);
+                sqlCommand.Parameters.AddWithValue("@MotherName", cls.CO_MotherName);
+                sqlCommand.Parameters.AddWithValue("@SpouseName", "");
+                sqlCommand.Parameters.AddWithValue("@Gender", cls.CO_Gender);
+                sqlCommand.Parameters.AddWithValue("@DateofBirth", cls.CO_DOB);
+                sqlCommand.Parameters.AddWithValue("@MartialStatus", cls.CO_Marital_Status);
+                sqlCommand.Parameters.AddWithValue("@PresentAddress", cls.CO_PresentAddress);
+                sqlCommand.Parameters.AddWithValue("@PresentPincode", cls.CO_PresentPinCode);
+
+                sqlCommand.Parameters.AddWithValue("@PermanentAddress", cls.CO_PermanentAddress);
+                sqlCommand.Parameters.AddWithValue("@PermanentPincode", cls.CO_PermanentPincode);
+
+                sqlCommand.Parameters.AddWithValue("@CibilScore", cls.CO_CIBIL);
+                sqlCommand.Parameters.AddWithValue("@PresentStateId", cls.CO_PresentStateId);
+                sqlCommand.Parameters.AddWithValue("@PresentCityId", cls.CO_PresentCityId);
+                sqlCommand.Parameters.AddWithValue("@PresentDistrict", cls.CO_PresentDistrict);
+                sqlCommand.Parameters.AddWithValue("@PresentVillage", cls.CO_PresentVillage);
+              
+                sqlCommand.Parameters.AddWithValue("@PermanentStateId", cls.CO_PermanentStateId);
+                sqlCommand.Parameters.AddWithValue("@PermanentCityId", cls.CO_PermanentCityId);
+                sqlCommand.Parameters.AddWithValue("@PermanentDistrict", cls.CO_PermanentDistrict);
+                sqlCommand.Parameters.AddWithValue("@PermanentVillage", cls.CO_PermanentVillage);
+                sqlCommand.Parameters.AddWithValue("@MobileNo1", cls.CO_Mobile_No);
+                sqlCommand.Parameters.AddWithValue("@MobileNo2", "");
+                sqlCommand.Parameters.AddWithValue("@FatherMobileNo", "");
+                sqlCommand.Parameters.AddWithValue("@MotherMobileNo", "");
+                sqlCommand.Parameters.AddWithValue("@SpouseMobileNo", "");
+                sqlCommand.Parameters.AddWithValue("@EmailId", cls.CO_Email_Id);
+                sqlCommand.Parameters.AddWithValue("@AadharNo", cls.CO_Adhaar);
+                sqlCommand.Parameters.AddWithValue("@AAdharverfiy", Convert.ToInt32(cls.CO_AAdharverfiy));
+                sqlCommand.Parameters.AddWithValue("@PanNo", cls.CO_PAN);
+                sqlCommand.Parameters.AddWithValue("@PanVerify", Convert.ToInt32(cls.CO_Panverfiy));
+                sqlCommand.Parameters.AddWithValue("@CustRelation", "");
+                sqlCommand.Parameters.AddWithValue("@BranchID", cls.BranchID);
+
+                sqlCommand.Parameters.AddWithValue("@LeadID", cls.LeadId);
+                sqlCommand.Parameters.AddWithValue("@CompanyId", cls.CompanyId);
+                sqlCommand.Parameters.AddWithValue("@CreatedBy", cls.CreatedBy);
+                sqlCommand.Parameters.AddWithValue("@UpdatedBy", cls.UpdatedBy);
+                sqlCommand.Parameters.AddWithValue("@OwnerShip", cls.OwnerShip);
+                sqlCommand.Parameters.AddWithValue("@ElectricBill", cls.ElectricBill);
+                sqlCommand.Parameters.AddWithValue("@CustImage", cls.CustImage);
+                sqlCommand.Parameters.AddWithValue("@LandMark", cls.Co_LandMark);
+                sqlCommand.Parameters.AddWithValue("@IsSameCurrentperadd", cls.CO_IsSameCurrentperadd);
+                dt = db.FillTableProc(sqlCommand, "USP_LeadCustomer");
+            }
+
+
+        }
+        return dt;
+    }
+
+    public static DataTable UpdateGurrenter(Gurantor cls)
+    {
+        DataTable dt = new DataTable();
+        using (DBOperation db = new DBOperation())
+        {
+            using (SqlCommand sqlCommand = new SqlCommand())
+            {
+                sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                sqlCommand.Parameters.AddWithValue("@ReqType", cls.G_Reqtype);
+                sqlCommand.Parameters.AddWithValue("@LeadCustomerId", cls.G_LeadCustomerId);
+                sqlCommand.Parameters.AddWithValue("@Cif", cls.G_CIF);
+                sqlCommand.Parameters.AddWithValue("@FirstName", cls.G_FirstName);
+                sqlCommand.Parameters.AddWithValue("@MiddleName", cls.G_MiddleName);
+                sqlCommand.Parameters.AddWithValue("@LastName", cls.G_LastName);
+
+                sqlCommand.Parameters.AddWithValue("@FatherName", cls.G_FatherName);
+                sqlCommand.Parameters.AddWithValue("@MotherName", "");
+                sqlCommand.Parameters.AddWithValue("@SpouseName", cls.G_SpouseName);
+                sqlCommand.Parameters.AddWithValue("@Gender", cls.G_Gender);
+
+
+                sqlCommand.Parameters.AddWithValue("@DateofBirth", cls.G_DOB);
+                sqlCommand.Parameters.AddWithValue("@MartialStatus", cls.G_Marital_Status);
+                sqlCommand.Parameters.AddWithValue("@PresentAddress", cls.G_PresentAddress);
+                sqlCommand.Parameters.AddWithValue("@PresentPincode", cls.G_PresentPinCode);
+
+                sqlCommand.Parameters.AddWithValue("@PermanentAddress", cls.G_PermanentAddress);
+                sqlCommand.Parameters.AddWithValue("@PermanentPincode", cls.G_PermanentPincode);
+
+                sqlCommand.Parameters.AddWithValue("@CibilScore", cls.G_CibilScore);
+                sqlCommand.Parameters.AddWithValue("@PresentStateId", cls.G_PresentStateId);
+                sqlCommand.Parameters.AddWithValue("@PresentCityId", cls.G_PresentCityId);
+                sqlCommand.Parameters.AddWithValue("@PermanentStateId", cls.G_P_State);
+                sqlCommand.Parameters.AddWithValue("@PermanentCityId", cls.G_P_City);
+
+                sqlCommand.Parameters.AddWithValue("@MobileNo1", cls.G_Mobile_No);
+                sqlCommand.Parameters.AddWithValue("@MobileNo2", "");
+                sqlCommand.Parameters.AddWithValue("@FatherMobileNo", "");
+                sqlCommand.Parameters.AddWithValue("@MotherMobileNo", "");
+                sqlCommand.Parameters.AddWithValue("@SpouseMobileNo", "");
+                sqlCommand.Parameters.AddWithValue("@EmailId", cls.G_EmailId);
+
+
+                sqlCommand.Parameters.AddWithValue("@AadharNo", cls.G_AadharNo);
+                sqlCommand.Parameters.AddWithValue("@AAdharverfiy", Convert.ToInt32(cls.G_AadharVerify));
+                sqlCommand.Parameters.AddWithValue("@PanNo", cls.G_PanNo);
+                sqlCommand.Parameters.AddWithValue("@PanVerify", Convert.ToInt32(cls.G_PanVerify));
+                sqlCommand.Parameters.AddWithValue("@CustRelation", "");
+                sqlCommand.Parameters.AddWithValue("@BranchID", cls.G_BranchID);
+
+                sqlCommand.Parameters.AddWithValue("@LeadID", cls.G_LeadId);
+                sqlCommand.Parameters.AddWithValue("@CompanyId", cls.G_CompanyId);
+                sqlCommand.Parameters.AddWithValue("@CreatedBy", cls.G_CreatedBy);
+                sqlCommand.Parameters.AddWithValue("@UpdatedBy", cls.G_UpdatedBy);
+                sqlCommand.Parameters.AddWithValue("@OwnerShip", cls.G_OwnerShip);
+                sqlCommand.Parameters.AddWithValue("@PrefixName", cls.G_PrefixName);
+                sqlCommand.Parameters.AddWithValue("@PresentDistrict", cls.G_PresentDistrict);
+                sqlCommand.Parameters.AddWithValue("@PresentVillage", cls.G_PresentVillage);
+                sqlCommand.Parameters.AddWithValue("@PermanentDistrict", cls.G_PermanentDistrict);
+                sqlCommand.Parameters.AddWithValue("@PermanentVillage", cls.G_PermanentVillage);
+                sqlCommand.Parameters.AddWithValue("@LandMark", cls.G_LandMark);
+                sqlCommand.Parameters.AddWithValue("@IsSameCurrentperadd", cls.G_IsSameCurrentperadd);
+                dt = db.FillTableProc(sqlCommand, "USP_LeadCustomer");
+            }
+
+
+        }
+        return dt;
+    }
     public DataTable GetTicket(clsTicket cls)
     {
         DataTable dt = new DataTable();

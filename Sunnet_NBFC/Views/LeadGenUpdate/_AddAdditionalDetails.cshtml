@@ -41,24 +41,43 @@
         </div>
 
         <div class="col-md-3">
-            <label class="required" for="exampleInputEmail1">Est Month Income</label>
+            <label class="required" for="exampleInputEmail1">Monthly Self Income</label>
             @Html.TextBoxFor(model => model.EstMonthIncome, new
+       {
+           @class = "form-control",
+           @placeholder = "Est Month Income",
+           @name = "FName",
+           @required = "true",
+           @type = "number",
+           @id = "EstMonthIncome",
+           @autocomplete = "off",
+           @onkeypress = "return isNumber(this.value);",
+       })
+
+
+        </div>
+        <div class="col-md-3">
+            <label class="required" for="exampleInputEmail1">Monthly Family Income</label>
+            @Html.TextBoxFor(model => model.EstFamilyIncome, new
             {
                 @class = "form-control",
-                @placeholder = "Est Month Income",
-                @name = "FName",
+                @placeholder = "Est Family Income",
+                @name = "txtFName",
                 @required = "true",
-                @maxlength = "50",
-                @type = "number",
-                @id = "EstMonthIncome",
-                @autocomplete = "off"
+                @id = "txtEstFamilyIncome",
+                @autocomplete = "off",
+                @onkeypress = "return isNumber(this.value);",
             })
 
 
         </div>
 
+
+
+    </div>
+    <div class="row">
         <div class="col-md-3">
-            <label class="required" for="exampleInputEmail1">Est Month Expense</label>
+            <label class="required" for="exampleInputEmail1">Estimated Month Expense</label>
             @Html.TextBoxFor(model => model.EstMonthExpense, new
        {
            @class = "form-control",
@@ -70,12 +89,8 @@
            @maxlength = "10",
        })
         </div>
-
-
-    </div>
-    <div class="row">
         <div class="col-md-3">
-            <label class="required" for="exampleInputEmail1">Cur Month Obligation</label>
+            <label class="required" for="exampleInputEmail1">Current Month Obligation</label>
             @Html.TextBoxFor(model => model.CurMonthObligation, new
        {
            @class = "form-control",
@@ -88,11 +103,25 @@
 
        })
         </div>
+        <div class="col-md-3">
+            <label for="exampleInputEmail1">Number of Dependent</label>
+            @Html.TextBoxFor(model => model.NoofDependent, new
+       {
+           @class = "form-control",
+           @placeholder = "No of Dependent",
+           @name = "MName",
+           @required = "true",
+           @onkeypress = "return isNumber(this.value);",
+           @maxlength = "2",
+           @id = "txtVchNoofDependent"
+
+       })
+        </div>
     </div>
 
     <div class="row" id="divRef1">
         <div class="col-md-3">
-            <label class="required" for="exampleInputEmail1">Refernce Name</label>
+            <label class="required" for="exampleInputEmail1">Refernce Name-1</label>
             @Html.TextBoxFor(model => model.RefernceName, new
             {
                 @class = "form-control",
@@ -109,12 +138,13 @@
 
 
         <div class="col-md-3">
-            <label class="required" for="exampleInputEmail1">Refence Relation</label>
+            <label class="required" for="exampleInputEmail1">Refernce Relation-1</label>
             @Html.DropDownListFor(model => model.RefenceRelation, ViewBag.RelationList as SelectList, "- Select Relation- ",
                                    new { @class = "form-control", @id = "RefenceRelation" })
+            @Html.HiddenFor(model => model.RefenceRelation, new { @class = "form-control", @id = "hfReleation1" })
         </div>
         <div class="col-md-3">
-            <label class="required" for="exampleInputEmail1">Refence MobileNo</label>
+            <label class="required" for="exampleInputEmail1">Refernce MobileNo-1</label>
             @Html.TextBoxFor(model => model.RefenceMobileNo, new
        {
            @class = "form-control",
@@ -127,7 +157,7 @@
        })
         </div>
         <div class="col-md-3">
-            <label class="required" for="exampleInputEmail1">Refernce Name1</label>
+            <label class="required" for="exampleInputEmail1">Reference Name-2</label>
             @Html.TextBoxFor(model => model.RefernceName1, new
             {
                 @class = "form-control",
@@ -145,15 +175,16 @@
     </div>
     <div class="row" id="divRef2">
         <div class="col-md-3">
-            <label class="required" for="exampleInputEmail1">Refence Relation1</label>
+            <label class="required" for="exampleInputEmail1">Refernce Relation-2</label>
             @Html.DropDownListFor(model => model.RefenceRelation1, ViewBag.RelationList as SelectList, "- Select Relation- ",
                                   new { @class = "form-control", @id = "RefenceRelation1" })
+            @Html.HiddenFor(model => model.RefenceRelation1, new { @class = "form-control", @id = "hfReleation2" })
 
         </div>
 
 
         <div class="col-md-3">
-            <label class="required" for="exampleInputEmail1">Refence MobileNo1</label>
+            <label class="required" for="exampleInputEmail1">Refernce MobileNo-2</label>
             @Html.TextBoxFor(model => model.RefenceMobileNo1, new
        {
            @class = "form-control",
@@ -166,9 +197,6 @@
        })
         </div>
     </div>
-
-
-
 
 </div>
 

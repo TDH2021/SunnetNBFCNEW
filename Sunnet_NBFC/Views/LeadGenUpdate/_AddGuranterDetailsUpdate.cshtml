@@ -1,0 +1,505 @@
+﻿@model Sunnet_NBFC.Models.Gurantor
+
+<style>
+    .table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+        .table td, th {
+        }
+</style>
+
+<div class="modal-dialog" style="max-width: 1000px;" id="GurUpdate">
+    <div class="modal-content" style="overflow-y: scroll; height:550px; width: 1050px;">
+        <div class="modal-header">
+            <h4 class="modal-title">Gurrenter Details</h4>
+
+        </div>
+        <div class="modal-body" id="GurUpdate1">
+            <div class="panel-body">
+                <div class="form-group">
+                    <div class="container-fluid" style="margin-top:20px;">
+
+
+                        <div class="row">
+
+                            <div class="col-md-3">
+                                <label for="exampleInputEmail1">CIF Id</label>
+                                @Html.TextBoxFor(model => model.G_CIF, new
+                           {
+                               @class = "form-control",
+                               @placeholder = "CIFID",
+                               @name = "CIFID",
+                               @required = "true",
+                               @id = "txtGCIF",
+                               @maxlength = "10"
+                           })
+                                @Html.HiddenFor(model => model.G_LeadCustomerId, new { @id = "hfLeadCustomerID" })
+                            </div>
+                            <div class="col-md-3">
+                                <label class="required" for="exampleInputEmail1"> Aadhar No </label>
+                                @Html.TextBoxFor(model => model.G_AadharNo, new
+                           {
+                               @class = "form-control",
+                               @placeholder = "Aadhar No",
+                               @name = "G_AadharNo",
+                               @required = "true",
+                               @autocomplete = "off",
+                               @id = "G_AadharNo",
+                               @onkeypress = "return isNumber(this.value);",
+                               @maxlength = "12",
+                               @readonly = "true"
+                           })
+                            </div>
+
+                            <div class="col-md-3">
+                                <label class="required" for="exampleInputEmail1"> Pan No </label>
+                                @Html.TextBoxFor(model => model.G_PanNo, new
+                           {
+                               @class = "form-control",
+                               @placeholder = "PanNo",
+                               @name = "G_PanNo",
+                               @required = "true",
+                               @autocomplete = "off",
+                               @id = "G_PanNo",
+                               @maxlength = "10",
+                               @readonly = "true"
+
+                           })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label class="required" for="exampleInputEmail1">Prefix</label>
+
+                                    @Html.DropDownListFor(model => model.G_Prefix,
+                              new List<SelectListItem> {
+                            new SelectListItem { Value = "" , Text = "- Select Prefix -" },
+                            new SelectListItem { Value = "Mr" , Text = "Mr." },
+                            new SelectListItem { Value = "Mrs" , Text = "Mrs." },
+                            //new SelectListItem { Value = "Smt" , Text = "Smt." }
+                            },
+                              new { @class = "form-control", @id = "GPrefix" })
+                                </div>
+
+                                <div class="col-md-3">
+                                    <label class="required" for="exampleInputEmail1">First Name</label>
+                                    @Html.TextBoxFor(model => model.G_FirstName, new
+                                    {
+                                        @class = "form-control",
+                                        @placeholder = "First Name",
+                                        @name = "FName",
+                                        @required = "true",
+                                        @maxlength = "50",
+                                        @id = "G_FName",
+                                        @autocomplete = "off"
+                                    })
+
+
+                                </div>
+
+                                <div class="col-md-3">
+                                    <label for="exampleInputEmail1">Middle Name</label>
+                                    @Html.TextBoxFor(model => model.G_MiddleName, new
+                                    {
+                                        @class = "form-control",
+                                        @placeholder = "Middle Name",
+                                        @name = "MName",
+                                        @id = "G_MName"
+
+                                    })
+                                </div>
+
+                                <div class="col-md-3">
+                                    <label for="exampleInputEmail1">Last Name</label>
+                                    @Html.TextBoxFor(model => model.G_LastName, new
+                                    {
+                                        @class = "form-control",
+                                        @placeholder = "Last Name",
+                                        @name = "LName",
+                                        @id = "G_LName"
+
+                                    })
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label for="exampleInputEmail1">Father Name</label>
+                                    @Html.TextBoxFor(model => model.G_FatherName, new
+                               {
+                                   @class = "form-control",
+                                   @placeholder = "Last Name",
+                                   @name = "FatherName",
+                                   @id = "G_FatherName"
+                               })
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="exampleInputEmail1">Spouse Name</label>
+                                    @Html.TextBoxFor(model => model.G_SpouseName, new
+                               {
+                                   @class = "form-control",
+                                   @placeholder = "Last Name",
+                                   @name = "SpouseName",
+                                   @id = "G_SpouseName"
+                               })
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="required" for="exampleInputEmail1">Gender</label>
+                                    @Html.DropDownListFor(model => model.G_Gender,
+                                         new List<SelectListItem> {
+                                    new SelectListItem { Value = "0" , Text = "- Select Gender -" },
+                                    new SelectListItem { Value = "Male" , Text = "Male" },
+                                    new SelectListItem { Value = "Female" , Text = "Female" },
+                                    new SelectListItem { Value = "Transgender" , Text = "Transgender" }
+                                     },
+                                         new { @class = "form-control", @id = "G_Gender" })
+
+
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="required" for="exampleInputEmail1">Date of Birth</label>
+                                    @Html.TextBoxFor(model => model.G_DOB, new
+                               {
+                                   @class = "form-control datestyle",
+                                   @placeholder = "Date of Birth",
+                                   @name = "Dob",
+                                   @autocomplete = "off",
+                                   @required = "true",
+                                   @id = "G_Dob"
+
+                               })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+
+
+                                <div class="col-md-3">
+                                    <label class="required" for="exampleInputEmail1">Marital Status</label>
+
+                                    @Html.DropDownListFor(model => model.G_Marital_Status,
+                              new List<SelectListItem> {
+                         new SelectListItem { Value = "" , Text = "- Select Marital -" },
+                         new SelectListItem { Value = "Single" , Text = "Single" },
+                         new SelectListItem { Value = "Married" , Text = "Married" },
+                         new SelectListItem { Value = "Divorce" , Text = "Divorce" },
+                         new SelectListItem { Value = "Widow" , Text = "Widow" }
+                          },
+                              new { @class = "form-control", @id = "G_MartialStatus" })
+
+                                </div>
+
+                                <div class="col-md-3">
+                                    <label class="required" for="exampleInputEmail1">Correspondence Address</label>
+                                    @Html.TextBoxFor(model => model.G_PresentAddress, new
+                               {
+                                   @class = "form-control",
+                                   @placeholder = "Present Address",
+                                   @name = "PresentAddress",
+                                   @required = "true",
+                                   @id = "G_PresentAddress",
+                                   @autocomplete = "off",
+                                   @onchange = "SetValues_G();"
+
+                               })
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="required" for="exampleInputEmail1">Correspondence Pincode</label>
+                                    @Html.TextBoxFor(model => model.G_PresentPinCode, new
+                               {
+                                   @class = "form-control",
+                                   @placeholder = "Present Pincode",
+                                   @name = "PresentPincode",
+                                   @required = "true",
+                                   @autocomplete = "off",
+                                   @id = "txtGPresentPincode",
+                                   @onchange = "GetStateCity_PIN(this.value,G_C_State,G_C_City);",
+                                   @onkeypress = "return isNumber(this.value);",
+                                   @maxlength = "6",
+
+                               })
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="required" for="exampleInputEmail1">Correspondence State</label>
+
+
+                                    @Html.TextBoxFor(model => model.G_PresentStateId, new
+                               {
+                                   @class = "form-control",
+                                   @placeholder = "- Select State -",
+                                   @name = "- Select State -",
+                                   @required = "true",
+                                   @autocomplete = "off",
+                                   @type = "text",
+                                   @id = "G_C_State",
+                                   @readonly = "true"
+
+
+                               })
+
+                                    @Html.ValidationMessageFor(model => model.G_PresentStateId, "", new { @class = "text-danger" })
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+
+                                <div class="col-md-3">
+                                    <label class="required" for="exampleInputEmail1">Correspondence City</label>
+
+
+                                    @Html.TextBoxFor(model => model.G_PresentCityId, new
+                               {
+                                   @class = "form-control",
+                                   @placeholder = "- Select City -",
+                                   @name = "- Select City -",
+                                   @required = "true",
+                                   @type = "text",
+                                   @autocomplete = "off",
+                                   @id = "G_C_City",
+                                   @readonly = "true"
+
+                               })
+                                    @Html.ValidationMessageFor(model => model.G_PresentCityId, "", new { @class = "text-danger" })
+
+
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="required" for="exampleInputEmail1">Correspondence Village</label>
+                                    @Html.TextBoxFor(model => model.G_PresentVillage, new
+                               {
+                                   @class = "form-control",
+                                   @placeholder = "Present Village",
+                                   @name = "Present Village",
+                                   @required = "true",
+                                   @id = "G_PresentVillage",
+                                   @autocomplete = "off",
+                                   @onchange = "SetValues4_G();"
+
+                               })
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="required" for="exampleInputEmail1">Correspondence District</label>
+                                    @Html.TextBoxFor(model => model.G_PresentDistrict, new
+                               {
+                                   @class = "form-control",
+                                   @placeholder = "Present District",
+                                   @name = "Present District",
+                                   @required = "true",
+                                   @id = "G_PresentDistrict",
+                                   @onchange = "SetValues5_G();",
+                                   @autocomplete = "off"
+
+                               })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-bottom:10px; margin-top:10px;">
+                            <div class="col-md-12">
+                                @Html.CheckBoxFor(model => model.bG_IsSameCurrentperadd, new
+                           {
+                               @id = "G_chlpercorr",
+                               @onchange = "G_Applicantpermascorr();",
+                               @name = "G_chlpercorr",
+                               @value = "Yes"
+                           })
+                                <label class="required" for="co_chlpercorr"> Permanent Address As Same As Correspondence Address</label><br>
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label class="required" for="exampleInputEmail1">Permanent Address</label>
+                                    @Html.TextBoxFor(model => model.G_PermanentAddress, new
+                               {
+                                   @class = "form-control",
+                                   @placeholder = "Permanent Address",
+                                   @name = "PermanentAddress",
+                                   @required = "true",
+                                   @autocomplete = "off",
+                                   @id = "G_PermanentAddress"
+
+                               })
+                                </div>
+
+                                <div class="col-md-3">
+                                    <label class="required" for="exampleInputEmail1">Permanent Pincode</label>
+                                    @Html.TextBoxFor(model => model.G_PermanentPincode, new
+                               {
+                                   @class = "form-control",
+                                   @placeholder = "Permanent Pincode",
+                                   @name = "PermanentPincode",
+                                   @required = "true",
+                                   @id = "G_PermanentPincode",
+                                   @autocomplete = "off",
+                                   @onchange = "GetStateCity_PIN(this.value,G_P_State,G_P_City);",
+                                   @onkeypress = "return isNumber(this.value);",
+                                   @maxlength = "6",
+
+                               })
+                                </div>
+
+                                <div class="col-md-3">
+                                    <label class="required" for="exampleInputEmail1">Permanent State</label>
+
+                                    @Html.TextBoxFor(model => model.G_PermanentStateId, new
+                               {
+                                   @class = "form-control",
+                                   @placeholder = "State",
+                                   @required = "true",
+                                   @type = "text",
+                                   @autocomplete = "off",
+                                   @id = "G_P_State",
+                                   @readonly = "true"
+
+
+                               })
+
+                                    @Html.ValidationMessageFor(model => model.G_PermanentStateId, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="col-md-3">
+                                    <label class="required" for="exampleInputEmail1">Permanent City</label>
+
+                                    @Html.TextBoxFor(model => model.G_PermanentStateId, new
+                               {
+                                   @class = "form-control",
+                                   @required = "true",
+                                   @type = "text",
+                                   @autocomplete = "off",
+                                   @id = "G_P_City",
+                                   @readonly = "true"
+                               })
+
+
+                                    @Html.ValidationMessageFor(model => model.G_PermanentCityId, "", new { @class = "text-danger" })
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label class="required" for="exampleInputEmail1">Permanent Village</label>
+                                    @Html.TextBoxFor(model => model.G_PermanentDistrict, new
+                               {
+                                   @class = "form-control",
+                                   @placeholder = "Permanent Village",
+                                   @name = "Permanent Village",
+                                   @required = "true",
+                                   @autocomplete = "off",
+                                   @id = "G_PermanentVillage"
+
+                               })
+                                </div>
+
+                                <div class="col-md-3">
+                                    <label class="required" for="exampleInputEmail1">Permanent District</label>
+                                    @Html.TextBoxFor(model => model.G_PermanentDistrict, new
+                               {
+                                   @class = "form-control",
+                                   @placeholder = "Permanent District",
+                                   @name = "Permanent District",
+                                   @required = "true",
+                                   @autocomplete = "off",
+                                   @id = "G_PermanentDistrict"
+
+                               })
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="required" for="exampleInputEmail1">Mobile No</label>
+                                    @Html.TextBoxFor(model => model.G_Mobile_No, new
+                               {
+                                   @class = "form-control",
+                                   @placeholder = "Mobile No",
+                                   @name = "MobileNo",
+                                   @autocomplete = "off",
+                                   @required = "true",
+                                   @id = "G_Mobile_No",
+                                   @onkeypress = "return isNumber(this.value);",
+                                   @maxlength = "10",
+
+
+                               })
+                                </div>
+
+                                <div class="col-md-3">
+                                    <label for="exampleInputEmail1">Email Id</label>
+                                    @Html.TextBoxFor(model => model.G_EmailId, new
+                               {
+                                   @class = "form-control",
+                                   @placeholder = "Email Id",
+                                   @autocomplete = "off",
+                                   @name = "CO_EmailId",
+                                   @id = "G_EmailId"
+
+                               })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+
+                                <div class="col-md-3">
+                                    <label for="exampleInputEmail1">
+                                        Cibil Score
+                                    </label>
+                                    @Html.TextBoxFor(model => model.G_CibilScore, new
+                               {
+                                   @class = "form-control",
+                                   @placeholder = "Cibil Score",
+                                   @autocomplete = "off",
+                                   @required = "true",
+                                   @id = "G_CibilScore",
+                                   @onkeypress = "return isNumber(this.value);",
+                                   @maxlength = "3",
+
+                               })
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="required" for="exampleInputEmail1">OwnerShip</label>
+                                    <select class="form-control" id="ddlGOwnerShip">
+                                        <option>Owned</option>
+                                        <option>Rented</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="exampleInputEmail1">Land Mark</label>
+                                    @Html.TextBoxFor(model => model.G_LandMark, new
+                {
+                @class = "form-control",
+                @placeholder = "Land Mark",
+                @autocomplete = "off",
+                @id = "txtLandMark",
+                @maxlength = "100",
+                })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer" style="margin-top:10px;">
+                        <button type="submit" class="btn btn-primary" id="btnAdd" onclick="UpdateGurnter();" value="Update"> Update </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/CustomJS/LeadGenUpdate.js"></script>
