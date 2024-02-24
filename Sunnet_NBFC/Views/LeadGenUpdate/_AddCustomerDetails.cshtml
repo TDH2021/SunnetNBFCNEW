@@ -533,6 +533,8 @@
                 <option>Owned</option>
                 <option>Rented</option>
             </select>
+
+            @Html.HiddenFor(model => model.OwnerShip, new { @class = "form-control", @id = "hdnOwneShip" })
         </div>
         <div class="col-md-3">
             <label class="required" for="exampleInputEmail1">Land Mark</label>
@@ -540,10 +542,10 @@
        {
            @class = "form-control",
            @placeholder = "Land Mark",
-           @name = "EmailId",
+           @name = "LandMark",
            @autocomplete = "off",
-           @id = "txtCustLandMark"
-
+           @id = "txtCustLandMark",
+           @maxlength="100"
        })
         </div>
 

@@ -730,6 +730,7 @@ namespace Sunnet_NBFC.Models
         public string DSAId { get; set; } = "";
         public int CenterId { get; set; } = 0;
         public int PLLoanBranch { get; set; } = 0;/// for Personal Loan Branch
+        public string SearchPLBranch { get; set; } = "";
         public string CenterName { get; set; } = "";
         public string PLBranchName { get; set; } = "";
         public string UserRemarks { get; set; } = "";

@@ -10,6 +10,7 @@ using System.Data;
 using System.Web.UI.WebControls;
 using System.Web.UI;
 using Sunnet_NBFC.App_Code;
+using ClosedXML.Excel;
 
 namespace Sunnet_NBFC.Controllers
 {
@@ -28,14 +29,14 @@ namespace Sunnet_NBFC.Controllers
 
                 if (Id != null && Id > 0)
                     M = DataInterface2.GetMisc(Convert.ToInt32("0" + Id.ToString()));
-               if (M != null)
+                if (M != null)
                 {
                     M.tmpMiscType = M.MiscType;
                 }
                 return View(M);
-                
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -78,10 +79,10 @@ namespace Sunnet_NBFC.Controllers
             }
         }
 
-        [HttpGet]
         [SessionAttribute]
-        public ActionResult MiscView()
+        public ActionResult MiscView(clsMisc cls)
         {
+            List<clsMisc> list = new List<clsMisc>();
             try
             {
 
@@ -90,21 +91,42 @@ namespace Sunnet_NBFC.Controllers
                 if (TempData["Success"] != null)
                     ViewBag.Success = TempData["Success"];
                 TempData.Clear();
+                cls.ReqType = "View";
+                using (DataTable dt = DataInterface2.ViewMisc(cls))
+                {
+                    if (dt != null)
+                    {
+                        list = (from DataRow row in dt.Rows
 
-                DataTable dt = new DataTable();
-                List<clsMisc> lst = new List<clsMisc>();
-                lst = DataInterface2.ViewMisc();
-                //ViewBag.LeadDetails = lst;
-                return View(lst);
+                                select new clsMisc()
+                                {
+                                    MiscId = int.Parse(row["MiscId"].ToString()),
+                                    MiscName = row["MiscName"].ToString(),
+                                    MiscType = row["MiscType"].ToString(),
+                                }).ToList();
+                    }
+                }
             }
             catch (Exception ex)
             {
-                throw ex;
+                using (clsError clsE = new clsError())
+                {
+                    clsE.ReqType = "Insert";
+                    clsE.Mode = "WEB";
+                    clsE.ErrorDescrption = ex.Message;
+                    clsE.FunctionName = "LeadReport";
+                    clsE.Link = "Misc/MiscView";
+                    clsE.PageName = "Misc Controller";
+                    clsE.UserId = ClsSession.UserID.ToString();
+                    DataInterface.PostError(clsE);
+                }
             }
             finally
             {
 
             }
+            ViewBag.lst = list;
+            return View();
         }
 
         [SessionAttribute]
@@ -112,7 +134,7 @@ namespace Sunnet_NBFC.Controllers
         {
             try
             {
-                
+
                 if (Id <= 0)
                 {
                     TempData["Error"] = "Misc not exists";
@@ -131,7 +153,7 @@ namespace Sunnet_NBFC.Controllers
                 }
                 else
                 {
-                    TempData["Error"]  = !string.IsNullOrEmpty(clsRetData.Message) ? clsRetData.Message : "Error: Data Not Deleted";
+                    TempData["Error"] = !string.IsNullOrEmpty(clsRetData.Message) ? clsRetData.Message : "Error: Data Not Deleted";
                 }
 
                 return RedirectToAction("MiscView", "Misc");
@@ -144,8 +166,45 @@ namespace Sunnet_NBFC.Controllers
             }
 
         }
-        
-      
-     
+        [SessionAttribute]
+        public ActionResult ExportToExcel(clsMisc clss)
+        {
+
+            clss.ReqType = "View";
+
+            using (DataTable dt = DataInterface2.ViewMisc(clss))
+            {
+                if (dt != null)
+                {
+
+                    var workbook = new XLWorkbook();
+
+                    // Add a worksheet
+                    var worksheet = workbook.Worksheets.Add("MiscReport");
+
+                    // Add data from DataTable to the worksheet
+                    worksheet.Cell(1, 1).InsertTable(dt.AsEnumerable(), "MiscDatatable", true);
+                    worksheet.Columns().AdjustToContents();
+                    // Save the workbook to a MemoryStream
+                    var stream = new MemoryStream();
+                    workbook.SaveAs(stream);
+
+                    // Set the position of the stream back to the beginning
+                    stream.Seek(0, SeekOrigin.Begin);
+
+                    // Return the Excel file for download
+                    return File(stream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "LeadReport.xlsx");
+                }
+
+
+                return RedirectToAction("MiscView");
+
+            }
+
+
+        }
+
+
+
     }
 }

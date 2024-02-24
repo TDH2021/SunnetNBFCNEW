@@ -6,139 +6,146 @@
     }
 </style>
 <div class="form-group">
-    <div class="container-fluid" style="margin-top:20px;">
+    <div class="container-fluid">
         <div class="col-md-12">
             <h5> Guarantor Details</h5>
         </div>
 
-        <div class="card-body">
-            <table class="table table-striped table-bordered" id="example1">
-                <thead>
-                    <tr>
-                        <th>Prefix</th>
-                        <th>F Name</th>
-                        <th>M Name</th>
-                        <th>L Name</th>
-                        <th>Gender</th>
-                        <th>Dob</th>
-                        <th>MartialStatus</th>
-                        <th>Current Address</th>
-                        <th>Pincode</th>
-                        <th>State</th>
-                        <th>City</th>
-                        <th>Village</th>
-                        <th>District</th>
-                        <th>Permanent Address</th>
-                        <th>Pincode</th>
-                        <th>State</th>
-                        <th>City</th>
-                        <th>Village</th>
-                        <th>District</th>
-                        <th>Mobile No</th>
-                        <th>Email No</th>
-                        <th>Pan No</th>
-                        <th>Aadhar No</th>
-                        <th>Cibil Score</th>
-                        <th>Aadhar Check</th>
-                        <th>PAN Check</th>
-                        <th>CIF</th>
-                        <th>OwnerShip</th>
-                        <th>Father's Name</th>
-                        <th>Spouse Name</th>
-                        <th>LandMark</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tr>
-                    @foreach (var item in Model.GuList)
-                    {
 
-                        <td>@item.G_PrefixName </td>
-                        <td>@item.G_FirstName </td>
-                        <td>@item.G_MiddleName </td>
-                        <td>@item.G_LastName </td>
-                        <td>@item.G_Gender </td>
-                        <td>@item.G_DOB </td>
-                        <td>@item.G_Marital_Status </td>
-                        <td>@item.G_PresentAddress </td>
-                        <td>@item.G_PresentPinCode </td>
-                        <td>@item.G_PresentStateId </td>
-                        <td>@item.G_PresentCityId </td>
-                        <td>@item.G_PresentVillage </td>
-                        <td>@item.G_PresentDistrict </td>
-                        <td>@item.G_PermanentAddress </td>
-                        <td>@item.G_PermanentPincode </td>
-                        <td>@item.G_PresentStateId </td>
-                        <td>@item.G_PermanentCityId </td>
-                        <td>@item.G_PermanentVillage </td>
-                        <td>@item.G_PermanentDistrict </td>
-                        <td>@item.G_Mobile_No </td>
-                        <td>@item.G_EmailId </td>
-                        <td>@item.G_PanNo </td>
-                        <td>@item.G_AadharNo </td>
-                        <td>@item.G_CibilScore </td>
-                        <td>@item.G_AadharVerify </td>
-                        <td>@item.G_PanVerify </td>
-                        <td>@item.G_CIF </td>
-                        <td>@item.G_OwnerShip </td>
-                        <td>@item.G_FatherName </td>
-                        <td>@item.G_SpouseName </td>
-                        <td>@item.G_LandMark </td>
-                        <td>
-                            <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#GurUpdate1" onclick="return CallPickData('@item.G_LeadNo','@item.G_LeadCustomerId');"> <b> Edit  </b> </button>
-                        </td>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Prefix</th>
+                            <th>F Name</th>
+                            <th>M Name</th>
+                            <th>L Name</th>
+                            <th>Gender</th>
+                            <th>Dob</th>
+                            <th>MartialStatus</th>
+                            <th>Current Address</th>
+                            <th>Pincode</th>
+                            <th>State</th>
+                            <th>City</th>
+                            <th>Village</th>
+                            <th>District</th>
+                            <th>Permanent Address</th>
+                            <th>Pincode</th>
+                            <th>State</th>
+                            <th>City</th>
+                            <th>Village</th>
+                            <th>District</th>
+                            <th>Mobile No</th>
+                            <th>Email No</th>
+                            <th>Pan No</th>
+                            <th>Aadhar No</th>
+                            <th>Cibil Score</th>
+                            <th>Aadhar Check</th>
+                            <th>PAN Check</th>
+                            <th>CIF</th>
+                            <th>OwnerShip</th>
+                            <th>Father's Name</th>
+                            <th>Spouse Name</th>
+                            <th>LandMark</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.GuList)
+                        {
+                            <tr>
 
-                    }
-                </tr>
-                <tbody>
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <th>Prefix</th>
-                        <th>F Name</th>
-                        <th>M Name</th>
-                        <th>L Name</th>
-                        <th>Gender</th>
-                        <th>Dob</th>
-                        <th>MartialStatus</th>
-                        <th>Current Address</th>
-                        <th>Pincode</th>
-                        <th>State</th>
-                        <th>City</th>
-                        <th>Village</th>
-                        <th>District</th>
-                        <th>Permanent Address</th>
-                        <th>Pincode</th>
-                        <th>State</th>
-                        <th>City</th>
-                        <th>Village</th>
-                        <th>District</th>
-                        <th>Mobile No</th>
-                        <th>Email No</th>
-                        <th>Pan No</th>
-                        <th>Aadhar No</th>
-                        <th>Cibil Score</th>
-                        <th>Aadhar Check</th>
-                        <th>PAN Check</th>
-                        <th>CIF</th>
-                        <th>OwnerShip</th>
-                        <th>Father's Name</th>
-                        <th>Spouse Name</th>
-                        <th>LandMark</th>
-                        <th>Action</th>
-                    </tr>
-                </tfoot>
-            </table>
+
+                                <td>@item.G_PrefixName </td>
+                                <td>@item.G_FirstName </td>
+                                <td>@item.G_MiddleName </td>
+                                <td>@item.G_LastName </td>
+                                <td>@item.G_Gender </td>
+                                <td>@item.G_DOB </td>
+                                <td>@item.G_Marital_Status </td>
+                                <td>@item.G_PresentAddress </td>
+                                <td>@item.G_PresentPinCode </td>
+                                <td>@item.G_PresentStateId </td>
+                                <td>@item.G_PresentCityId </td>
+                                <td>@item.G_PresentVillage </td>
+                                <td>@item.G_PresentDistrict </td>
+                                <td>@item.G_PermanentAddress </td>
+                                <td>@item.G_PermanentPincode </td>
+                                <td>@item.G_PresentStateId </td>
+                                <td>@item.G_PermanentCityId </td>
+                                <td>@item.G_PermanentVillage </td>
+                                <td>@item.G_PermanentDistrict </td>
+                                <td>@item.G_Mobile_No </td>
+                                <td>@item.G_EmailId </td>
+                                <td>@item.G_PanNo </td>
+                                <td>@item.G_AadharNo </td>
+                                <td>@item.G_CibilScore </td>
+                                <td>@item.G_AadharVerify </td>
+                                <td>@item.G_PanVerify </td>
+                                <td>@item.G_CIF </td>
+                                <td>@item.G_OwnerShip </td>
+                                <td>@item.G_FatherName </td>
+                                <td>@item.G_SpouseName </td>
+                                <td>@item.G_LandMark </td>
+                                <td>
+                                    <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#GurUpdate1" onclick="return CallPickData('@item.G_LeadNo','@item.G_LeadCustomerId');"> <b> Edit  </b> </button>
+                                </td>
+
+                            </tr>
+                        }
+                        </tbody>
+                    
+                        <tfoot>
+                            <tr>
+                                <th>Prefix</th>
+                                <th>F Name</th>
+                                <th>M Name</th>
+                                <th>L Name</th>
+                                <th>Gender</th>
+                                <th>Dob</th>
+                                <th>MartialStatus</th>
+                                <th>Current Address</th>
+                                <th>Pincode</th>
+                                <th>State</th>
+                                <th>City</th>
+                                <th>Village</th>
+                                <th>District</th>
+                                <th>Permanent Address</th>
+                                <th>Pincode</th>
+                                <th>State</th>
+                                <th>City</th>
+                                <th>Village</th>
+                                <th>District</th>
+                                <th>Mobile No</th>
+                                <th>Email No</th>
+                                <th>Pan No</th>
+                                <th>Aadhar No</th>
+                                <th>Cibil Score</th>
+                                <th>Aadhar Check</th>
+                                <th>PAN Check</th>
+                                <th>CIF</th>
+                                <th>OwnerShip</th>
+                                <th>Father's Name</th>
+                                <th>Spouse Name</th>
+                                <th>LandMark</th>
+                                <th>Action</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                </div>
+                <!-- /.card-body -->
+            
+
+            <div class="modal fade in" id="GurUpdate1" tabindex="1" role="dialog" aria-hidden="false" data-keyboard="false" data-backdrop="static"></div>
+
 
         </div>
-        <div class="modal fade in" id="GurUpdate1" tabindex="1" role="dialog" aria-hidden="false" data-keyboard="false" data-backdrop="static"></div>
-
-
     </div>
-</div>
 
 
-<script type="text/javascript">
+    <script type="text/javascript">
     function CallPickData(LeadNo, LeadId) {
         debugger;
 
@@ -162,4 +169,4 @@
 
 
     };
-</script>
+    </script>

@@ -18,8 +18,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">Lead View</li>
+                   
                 </ol>
             </div>
         </div>
@@ -40,20 +39,20 @@
                         <div class="col-md-3">
                             <label>Main Product</label>
                             @Html.DropDownListFor(model => model.MainProductId, ViewBag.MainProductList as SelectList, "- Select Main Product- ",
-                                       new { @class = "form-control", @id = "MainProductId" })
+                                       new { @class = "form-control", @id = "ddlMainProduct" })
                         </div>
                         <div class="col-md-3">
                             <label>Product</label>
                             @Html.DropDownListFor(model => model.ProductId,
                                            new SelectList(Enumerable.Empty<SelectListItem>(), "ProdId", "ProductName"),
-                                           "- Select Product -", new { @class = "form-control", @id = "ProductId" })
+                                           "- Select Product -", new { @class = "form-control", @id = "ddProduct" })
                         </div>
                         <div class="col-md-3">
                             <label>Lead Number</label>
                             @Html.TextBoxFor(model => model.LeadNo, new { @class = "form-control", @id = "txtLeadNo" })
                         </div>
                         <div class="col-md-3">
-                            <label>Customer Name</label>
+                            <label>Branch</label>
                             @Html.TextBoxFor(model => model.CustomerName, new { @class = "form-control", @id = "txtCustName" })
                         </div>
                     </div>
@@ -73,9 +72,30 @@
                             <label>Aadhar No</label>
                             @Html.TextBoxFor(model => model.AadharNo, new { @class = "form-control", @id = "txtAadharNo" })
                         </div>
+                        <div class="col-md-3">
+                            <label>Branch</label>
+                            @Html.DropDownListFor(model => model.SearchPLBranch, ViewBag.BranchList as SelectList, "- Select Branch- ",
+                                new { @class = "form-control", @id = "ddlBranch" })
+
+                        </div>
 
                     </div>
                 </div>
+                <div class="form-group">
+                    <div class="row">
+
+                        <div class="col-md-3">
+                            <label>From Date</label>
+                            @Html.TextBoxFor(model => model.FromDate, new { @class = "form-control datestyle", @id = "txtFromDate", @autocomplete = "off", })
+                        </div>
+                        <div class="col-md-3">
+                            <label>To Date</label>
+                            @Html.TextBoxFor(model => model.ToDate, new { @class = "form-control datestyle", @id = "txtToDate", @autocomplete = "off", })
+                        </div>
+
+                    </div>
+                </div>
+
 
                 <div class="form-group">
                     <div class="row">

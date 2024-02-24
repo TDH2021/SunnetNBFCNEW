@@ -1,130 +1,155 @@
-﻿@model IEnumerable<Sunnet_NBFC.Models.clsProduct>
+﻿@model Sunnet_NBFC.Models.clsProduct
 @{
-	ViewBag.Title = "ProductView";
-	Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "ProductView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <section class="content-header">
-	<div class="container-fluid">
-		<div class="row mb-2">
-			<div class="col-sm-6">
-				<h1>Product View</h1>
-			</div>
-			<div class="col-sm-6">
-				<ol class="breadcrumb float-sm-right">
-					@*<li class="breadcrumb-item"><a href="#">Home</a></li>
-						<li class="breadcrumb-item active">Branch View</li>*@
-					@*<h4> @Html.ActionLink("Create New", "AddProduct")</h4>*@
-				</ol>
-			</div>
-		</div>
-	</div><!-- /.container-fluid -->
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Product View</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
 </section>
 
 
 <section class="content">
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-12">
+    <div class="container-fluid">
+        @using (Html.BeginForm("ProductView", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
 
-				<!-- /.card -->
-				<div class="card">
-					<!-- /.card-header -->
-					<div class="card-body">
-						<table id="example1" class="table table-bordered table-striped">
-							<thead>
-								<tr>
-									<th>
-										Main Product
-									</th>
-									<th>
-										Product
-									</th>
-									<th>
-										Customer Type
-									</th>
-									<th></th>
-								</tr>
-							</thead>
-							<tbody>
-								@foreach (var item in ViewBag.ProductDetails)
-								{
-									<tr>
-										<td>
-											@item.MainProduct
-										</td>
-										<td>
-											@item.ProductName
+            <div class="form-group">
+                <div class="row">
 
-										</td>
-										<td>
-											@item.CustTypeName
+                    <div class="col-md-3">
+                        <label>Main Product </label>
+                        @Html.DropDownListFor(model => model.SearchMainProdId, ViewBag.MainProductList as SelectList, "- Select Main Product- ",
+                                       new { @class = "form-control", @id = "ddlMainProduct" })
 
-										</td>
-										<td>
-											<div class="d-flex order-actions">
-												@*<a href="@Url.Action("EditProduct","Product",new{Id=item.ProdId})"
-													   data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Edit"><u>Edit</u></a>
+                    </div>
+                    <div class="col-md-3">
+                        <label>Product </label>
+                        @Html.DropDownListFor(model => model.SerarchProdId,
+                                       new SelectList(Enumerable.Empty<SelectListItem>(), "ProdId", "ProductName"),
+                                       "- Select Product -", new { @class = "form-control", @id = "ddProduct" })
+                    </div>
+                    <div class="col-md-3">
+                    </div>
+                    <div class="col-md-3">
+                    </div>
+                </div>
+            </div>
 
 
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-3">
+                        <button type="submit" class="btn btn-secondary">Search</button>
 
-													<a href="@Url.Action("DeleteProduct","AddProduct",new{Id=item.ProdId})"
-													   data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Delete"
-													   style="margin-left:10px;"><u>Delete</u></a>*@
+                    </div>
+                    <div class="col-md-3">
+                        @Html.ActionLink("Export to Excel", "ExportToExcel", null, new { @class = "btn btn-primary" })
 
-												@Html.ActionLink("Edit", "EditProduct", new { prodid = @item.ProdId })
+                    </div>
+                </div>
+            </div>
+        }
 
-												@*@Html.ActionLink("Delete", "DeleteProduct", new { prodid = @item.ProdId })*@
+        <div class="row">
+            <div class="col-12">
 
-												@*@Html.ActionLink("Branch", "Branch", new { Id = @item.BranchId })
-													@Html.ActionLink("Delete", "Branch", new { Id = @item.BranchId })*@
+                <!-- /.card -->
+                <div class="card">
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Main Product
+                                    </th>
+                                    <th>
+                                        Product
+                                    </th>
+                                    <th>
+                                        Customer Type
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (ViewBag.ProductDetails != null)
+                                {
+                                    foreach (var item in ViewBag.ProductDetails)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @item.MainProduct
+                                            </td>
+                                            <td>
+                                                @item.ProductName
 
-											</div>
+                                            </td>
+                                            <td>
+                                                @item.CustTypeName
 
-										</td>
-									</tr>
-								}
-							</tbody>
-						</table>
-						<div class="card-footer">
-							@Html.ActionLink("Export to Excel", "ExportToExcel", new { @class = "btn btn-primary" })
-						</div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex order-actions">
 
+                                                    @Html.ActionLink("Edit", "EditProduct", new { prodid = @item.ProdId })
 
-					</div>
-					<!-- /.card-body -->
-				</div>
-				<!-- /.card -->
-			</div>
-			<!-- /.col -->
-		</div>
-		<!-- /.row -->
-	</div>
-	<!-- /.container-fluid -->
+                                                    @*@Html.ActionLink("Delete", "DeleteProduct", new { prodid = @item.ProdId })*@
+
+                                                    @*@Html.ActionLink("Branch", "Branch", new { Id = @item.BranchId })
+                                                        @Html.ActionLink("Delete", "Branch", new { Id = @item.BranchId })*@
+
+                                                </div>
+
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
 </section>
-
-
-<script src="~/plugins/jquery/jquery.min.js"></script>
-<script src="~/plugins/jquery/jquery.validate.min.js"></script>
-<script src="~/plugins/jquery/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/CustomJS/CommonFunction.js"></script>
 
 @if (ViewBag.Error != null && ViewBag.Error != "")
 {
-	<script type="text/javascript">
+    <script type="text/javascript">
 
             window.onload = function () {
                // alert("@ViewBag.Error");
 				swal("TDH", "@ViewBag.Error", "error");
 
             };
-	</script>
+    </script>
 }
 @if (ViewBag.Success != null && ViewBag.Success != "")
 {
-	<script type="text/javascript">
+    <script type="text/javascript">
             window.onload = function () {
                 //alert("@ViewBag.Success");
 				swal("TDH", "@ViewBag.Success", "Success");
             };
-	</script>
+    </script>
 }

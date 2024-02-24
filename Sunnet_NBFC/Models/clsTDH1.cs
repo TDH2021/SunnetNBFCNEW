@@ -102,23 +102,26 @@ namespace Sunnet_NBFC.Models
     public class clsProduct : IDisposable
     {
 
-        public string ReqType { get; set; }
-        public int ProdId { get; set; }
 
+        public string ReqType { get; set; }
         [Required(ErrorMessage = "Main Product is required.")]
         [DisplayName("Main Product")]
-        public int MainProdId { get; set; }
+        public int MainProdId { get; set; } = 0;
+        public int ProdId { get; set; } = 0;
+
 
         [Required(ErrorMessage = "Product Name is required.")]
         [DisplayName("Product Name")]
         public string ProductName { get; set; }
         public int IsDelete { get; set; }
         public string CustTypeRequried { get; set; }
-        public DateTime CreateDate { get; set; }
         public int CompanyId { get; set; }
 
         [DisplayName("Main Product")]
         public string MainProduct { get; set; }
+        public string SearchMainProdId { get; set; }
+        public string SerarchProdId { get; set; }
+
         public string CustTypeName { get; set; }
         public string ReportProductName { get; set; }
         bool disposed = false;

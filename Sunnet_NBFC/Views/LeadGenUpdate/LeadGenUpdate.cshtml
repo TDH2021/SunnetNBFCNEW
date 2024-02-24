@@ -12,8 +12,6 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">Lead Generation</li>
                 </ol>
             </div>
         </div>
@@ -59,20 +57,23 @@
                             <div class="row" id="divPersonal">
                                 <div class="col-md-6">
                                     <label class="required" for="exampleInputEmail1">Branch</label>
-                                    @Html.DropDownListFor(model => model.PLLoanBranch, ViewBag.BranchList as SelectList, "- Select Branch- ",
+                                    @Html.TextBoxFor(model => model.PLBranchName, new { @class = "form-control", @disabled = "true", @id = "txtBranch" })
+
+                                    @*@Html.DropDownListFor(model => model.PLLoanBranch, ViewBag.BranchList as SelectList, "- Select Branch- ",
                                    new { @class = "form-control", @id = "ddlBranch" })
-                                    @Html.HiddenFor(model => model.PLLoanBranch, new { @class = "form-control", @id = "hdnPLBranchId" })
+                                    @Html.HiddenFor(model => model.PLLoanBranch, new { @class = "form-control", @id = "hdnPLBranchId" })*@
 
                                 </div>
 
                                 <div class="col-md-6">
                                     <label class="required" for="exampleInputEmail1">Center</label>
+                                    @Html.TextBoxFor(model => model.CenterName, new { @class = "form-control", @disabled = "true", @id = "txtCenter" })
 
-                                    @Html.DropDownListFor(model => model.CenterId,
+                                    @*@Html.DropDownListFor(model => model.CenterId,
                                        new SelectList(Enumerable.Empty<SelectListItem>(), "CenterId", "CenterName"),
                                        "Select Center", new { @class = "form-control", @id = "ddlCenter" })
 
-                                    @Html.HiddenFor(model => model.CenterId, new { @class = "form-control", @id = "hdnCenterId" })
+                                    @Html.HiddenFor(model => model.CenterId, new { @class = "form-control", @id = "hdnCenterId" })*@
 
 
                                 </div>

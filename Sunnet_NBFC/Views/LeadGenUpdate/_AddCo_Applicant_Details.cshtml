@@ -451,6 +451,8 @@
                 <option>Owned</option>
                 <option>Rented</option>
             </select>
+
+            @Html.HiddenFor(model => model.Co_OwnerShip, new { @class = "form-control", @id = "hdnCoOwneShip" })
         </div>
         <div class="col-md-3">
             <label for="exampleInputEmail1">

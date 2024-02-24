@@ -1248,7 +1248,9 @@ public class DataInterface : IDisposable
                 sqlCommand.Parameters.AddWithValue("@isdelete", cls.isdelete);
                 sqlCommand.Parameters.AddWithValue("@CreatedBy", cls.CreatedBy);
                 sqlCommand.Parameters.AddWithValue("@BranchId", cls.BranchID);
-
+                sqlCommand.Parameters.AddWithValue("@PLLoanBranch", cls.PLLoanBranch);
+                sqlCommand.Parameters.AddWithValue("@FromDate", cls.FromDate);
+                sqlCommand.Parameters.AddWithValue("@ToDate", cls.ToDate);
                 dt = db.FillTableProc(sqlCommand, "USP_Lead");
             }
 

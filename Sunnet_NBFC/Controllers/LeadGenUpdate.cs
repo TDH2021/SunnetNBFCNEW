@@ -111,7 +111,8 @@ namespace Sunnet_NBFC.Controllers
                             clslead.BranchID = row["BranchID"].ToString() == "" ? 0 : int.Parse(row["BranchID"].ToString());
                             clslead.CenterId = row["CenterId"].ToString() == "" ? 0 : int.Parse(row["CenterId"].ToString());
                             clslead.PLLoanBranch = row["PLLoanBranch"].ToString() == "" ? 0 : int.Parse(row["PLLoanBranch"].ToString());
-
+                            clslead.PLBranchName = row["PersonalLoanBranch"].ToString();
+                            clslead.CenterName = row["CenterName"].ToString();
                             clslead.ReuestedLoanAmount = row["ReuestedLoanAmount"].ToString();
                             clslead.ReuestedLoanTenure = row["ReuestedLoanTenure"].ToString();
                             clslead.EstMonthIncome = row["EstMonthIncome"].ToString();
@@ -269,7 +270,7 @@ namespace Sunnet_NBFC.Controllers
                                     clslead.Co_CIF = dtcust.Rows[i]["CIF"].ToString();
                                     clslead.CO_image = dtcust.Rows[i]["CustImage"].ToString();
                                     clslead.CO_ElectricBill = dtcust.Rows[i]["ElectricBill"].ToString();
-                                    clslead.CO_IsSameCurrentperadd = int.Parse(dtcust.Rows[0]["IsSameCurrentperadd"].ToString());
+                                    clslead.CO_IsSameCurrentperadd = int.Parse(dtcust.Rows[i]["IsSameCurrentperadd"].ToString());
                                     clslead.bCO_IsSameCurrentperadd = clslead.CO_IsSameCurrentperadd == 1 ? true : false;
                                     if (System.IO.File.Exists(Server.MapPath("~/Img/COApplicantImgs/" + Convert.ToString(clslead.CO_image))))
                                     {
@@ -317,7 +318,7 @@ namespace Sunnet_NBFC.Controllers
                                     gurantor.G_EmailId = dtcust.Rows[i]["EmailID"].ToString();
                                     gurantor.G_CIF = dtcust.Rows[i]["CIF"].ToString();
                                     gurantor.G_LeadNo = clslead.LeadNo;
-                                    gurantor.G_IsSameCurrentperadd = int.Parse(dtcust.Rows[0]["IsSameCurrentperadd"].ToString());
+                                    gurantor.G_IsSameCurrentperadd = int.Parse(dtcust.Rows[i]["IsSameCurrentperadd"].ToString());
                                     gurantor.bG_IsSameCurrentperadd = gurantor.G_IsSameCurrentperadd == 1 ? true : false;
                                     clslead.GuList.Add(gurantor);
                                 }
@@ -544,7 +545,7 @@ namespace Sunnet_NBFC.Controllers
                         HttpPostedFileBase file = null;
                         if (Request.Files.Count > 0)
                         {
-                            if (Request.Files[0] != null)
+                            if (Request.Files[0] != null && Request.Files.AllKeys[0]== "ApplicantImg")
                             {
                                 file = Request.Files["ApplicantImg"];
                                 //Extract Image File Name.
@@ -561,7 +562,23 @@ namespace Sunnet_NBFC.Controllers
 
                             }
 
-                            if (Request.Files[1] != null)
+                            if (Request.Files.AllKeys[0] == "AppElectricBill")
+                            {
+                                file = Request.Files["AppElectricBill"];
+                                //Extract Image File Name.
+                                string fileName = System.IO.Path.GetFileName(file.FileName);
+
+                                fileName = master.LeadNo + "_ElectricBill_" + fileName;
+
+                                //Set the Image File Path.
+                                string filePath = Server.MapPath("~/Img/ApplicantImgs");
+
+                                //Save the Image File in Folder.
+                                file.SaveAs(filePath + "\\" + fileName);
+                                master.ElectricBill = fileName;
+
+                            }
+                            else if (Request.Files.AllKeys[1] == "AppElectricBill")
                             {
                                 file = Request.Files["AppElectricBill"];
                                 //Extract Image File Name.
@@ -650,7 +667,7 @@ namespace Sunnet_NBFC.Controllers
                 if (Request.Files.Count > 0)
                 {
 
-                    if (Request.Files[0] != null)
+                    if (Request.Files[0] != null && Request.Files.AllKeys[0] == "COApplicantImg")
                     {
                         file = Request.Files["COApplicantImg"];
                         //Extract Image File Name.
@@ -666,7 +683,22 @@ namespace Sunnet_NBFC.Controllers
                         master.CustImage = fileName;
                     }
 
-                    if (Request.Files[1] != null)
+                    if (Request.Files.AllKeys[0] == "COElectricBill")
+                    {
+                        file = Request.Files["COElectricBill"];
+                        //Extract Image File Name.
+                        string fileName = System.IO.Path.GetFileName(file.FileName);
+
+                        fileName = master.LeadNo + "_CO_ElectricBill_" + fileName;
+
+                        //Set the Image File Path.
+                        string filePath = Server.MapPath("~/Img/COApplicantImgs");
+
+                        //Save the Image File in Folder.
+                        file.SaveAs(filePath + "\\" + fileName);
+                        master.ElectricBill = fileName;
+                    }
+                    else if (Request.Files.AllKeys[1] == "COElectricBill")
                     {
                         file = Request.Files["COElectricBill"];
                         //Extract Image File Name.

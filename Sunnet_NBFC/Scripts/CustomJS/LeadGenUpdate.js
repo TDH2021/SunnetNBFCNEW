@@ -1,43 +1,43 @@
 ﻿var CompanyID = $("#hdnCompanyId").val();
 
 $(function () {
-    var PlBranchId = $('#hdnPLBranchId').val();
-    $("[id*=ddlBranch] option").each(function () {
-        if ($(this).val() == PlBranchId) {
-            $(this).attr('selected', 'selected');
-        }
-    });
-    $('#ddlCenter').empty();
-    if (PlBranchId.length == 0) {
-        var s = '<option value="">- Select Center -</option>'
-        $('#ddlCenter').html(s);
-    } else {
-        var s = '<option value="0">- Select Center-</option>'
-        $('#ddlCenter').html(s);
-        $.ajax({
-            url: "/Center/GetCenter",
-            type: "Get",
-            dataType: "json",
-            data: {
-                BranchId: PlBranchId
-            },
-            success: function (result) {
+    //var PlBranchId = $('#hdnPLBranchId').val();
+    //$("[id*=ddlBranch] option").each(function () {
+    //    if ($(this).val() == PlBranchId) {
+    //        $(this).attr('selected', 'selected');
+    //    }
+    //});
+    //$('#ddlCenter').empty();
+    //if (PlBranchId.length == 0) {
+    //    var s = '<option value="">- Select Center -</option>'
+    //    $('#ddlCenter').html(s);
+    //} else {
+    //    var s = '<option value="0">- Select Center-</option>'
+    //    $('#ddlCenter').html(s);
+    //    $.ajax({
+    //        url: "/Center/GetCenter",
+    //        type: "Get",
+    //        dataType: "json",
+    //        data: {
+    //            BranchId: PlBranchId
+    //        },
+    //        success: function (result) {
 
-                var data = JSON.parse(result);
+    //            var data = JSON.parse(result);
 
-                for (var i = 0; i < data.length; i++) {
-                    var opt = new Option(data[i].CenterName, data[i].CenterId);
-                    $('#ddlCenter').append(opt);
-                }
-            }
-        });
-    }
-    var CenterId = $('#hdnCenterId').val();
-    $("[id*=ddlCenter] option").each(function () {
-        if ($(this).val() == CenterId) {
-            $(this).attr('selected', 'selected');
-        }
-    });
+    //            for (var i = 0; i < data.length; i++) {
+    //                var opt = new Option(data[i].CenterName, data[i].CenterId);
+    //                $('#ddlCenter').append(opt);
+    //            }
+    //        }
+    //    });
+    //}
+    //var CenterId = $('#hdnCenterId').val();
+    //$("[id*=ddlCenter] option").each(function () {
+    //    if ($(this).val() == CenterId) {
+    //        $(this).attr('selected', 'selected');
+    //    }
+    //});
 
 
     var CustPrefix = $('#hdnPrefix').val();
@@ -119,6 +119,18 @@ $(function () {
             $(this).attr('selected', 'selected');
         }
     });
+    var CustOwnerShip = $('#hdnOwneShip').val();
+    $("[id*=ddlCustOwnerShip] option").each(function () {
+        if ($(this).text() == CustOwnerShip) {
+            $(this).attr('selected', 'selected');
+        }
+    });
+    var CoCustOwnerShip = $('#hdnCoOwneShip').val();
+    $("[id*=ddlCoOwnerShip] option").each(function () {
+        if ($(this).text() == CoCustOwnerShip) {
+            $(this).attr('selected', 'selected');
+        }
+    });
     if ($('#txtMainProdName').val() == "Individual Loan") {
         $('#business_div').hide();
         $('#vechical_div').hide();
@@ -156,6 +168,15 @@ $(function () {
         $("#co_guranter_div").show();
         //    document.getElementById("ProductId").value = data;
     }
+    if (document.getElementById("chkSameCurper").checked = -true) {
+
+        mytest();
+    }
+    if (document.getElementById("co_chlpercorr").checked = -true) {
+
+        Co_Applicantpermascorr();
+    }
+    
 });
 
 function underAgeValidate(birthday) {
@@ -347,14 +368,14 @@ function UpdateDetails() {
     var MainProductText = $("#txtMainProdName").val();
     var ProductId = $("#hfProdId").val();
     var ProductName = $("#txtProdName").val();
-    var CenterID = $("#ddlCenter option:selected").val();
-    var PLBranchID = $("#ddlBranch option:selected").val();
-    if (PLBranchID.length == 0) {
-        PLBranchID = 0;
-    }
-    if (CenterID.length == 0) {
-        CenterID = 0;
-    }
+    //var CenterID = $("#ddlCenter option:selected").val();
+    //var PLBranchID = $("#ddlBranch option:selected").val();
+    //if (PLBranchID.length == 0) {
+    //    PLBranchID = 0;
+    //}
+    //if (CenterID.length == 0) {
+    //    CenterID = 0;
+    //}
     var ReuestedLoanAmount = $("#ReuestedLoanAmount").val();
     var ReuestedLoanTenure = $("#ReuestedLoanTenure").val();
     var EstValueViechle = $("#EstValueViechle").val();
@@ -516,8 +537,6 @@ function UpdateDetails() {
             "Propertyarea": Propertyarea,
             "PropertyType": PropertyType,
             "PropertyAddress": PropertyAddress,
-            "CenterId": CenterID,
-            "PLLoanBranch": PLBranchID,
             "UserRemarks": UserRemarks,
             "FuelType": FuelType,
             "Owner": Owner,

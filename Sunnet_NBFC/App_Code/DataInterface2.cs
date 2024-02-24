@@ -305,32 +305,27 @@ public class DataInterface2 : DataInterface, IDisposable
     #endregion
 
     #region View Misc
-    public static List<clsMisc> ViewMisc()
+    public static DataTable ViewMisc(clsMisc cls)
     {
-        //DBHelper dBHlper = new DBHelper();
-        List<clsMisc> lst = new List<clsMisc>();
         DataTable dt = new DataTable();
         try
         {
-            //DBOperation db = new DBOperation();
-            //SqlCommand cmd = new SqlCommand();
-
+        
             using (DBOperation db = new DBOperation())
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
 
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add("@ReqType", SqlDbType.VarChar).Value = "View";
+                    cmd.Parameters.Add("@ReqType", SqlDbType.VarChar).Value = cls.ReqType;
                     cmd.Parameters.Add("@CompanyId", SqlDbType.Int).Value = ClsSession.CompanyID;
                     cmd.Parameters.Add("@IsDelete", SqlDbType.Int).Value = 0;
+                    cmd.Parameters.Add("@MiscType", SqlDbType.VarChar).Value = cls.MiscType;
                     dt = db.FillTableProc(cmd, "USP_MiscMaster");
 
                 }
             }
-
-            lst = DataInterface.ConvertDataTable<clsMisc>(dt);
-
+            return dt;
 
         }
         catch (Exception ex)
@@ -342,7 +337,6 @@ public class DataInterface2 : DataInterface, IDisposable
             dt.Dispose();
         }
 
-        return lst;
     }
     #endregion
 

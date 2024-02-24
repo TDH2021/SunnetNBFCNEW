@@ -17,20 +17,41 @@ namespace Sunnet_NBFC.Controllers
     public class ProductController : Controller
     {
 
-        [HttpGet]
         [SessionAttribute]
-        public ActionResult ProductView()
+        public ActionResult ProductView(clsProduct clss)
         {
 
             try
             {
-                clsProduct cls = new clsProduct();
-                cls.ReqType = "view";
-                DataTable dt = new DataTable();
-                List<clsProduct> Lead = new List<clsProduct>();
-                dt = DataInterface1.GetProduct(cls);
-                Lead = DataInterface.ConvertDataTable<clsProduct>(dt);
-                ViewBag.ProductDetails = Lead;
+                ViewBag.MainProductList = ClsCommon.ToSelectList(DataInterface1.GetMainProductddl("View"), "MainProdId", "ProductName");
+                clss.ReqType = "view";
+                List<clsProduct> list = new List<clsProduct>();
+                if (clss.SerarchProdId != null)
+                {
+
+                    clss.ProdId = int.Parse(clss.SerarchProdId);
+                }
+                if (clss.SearchMainProdId != null)
+                {
+
+                    clss.MainProdId = int.Parse(clss.SearchMainProdId);
+                }
+                using (DataTable dt = DataInterface1.GetProduct(clss))
+                {
+                    if(dt != null)
+                    {
+                        list = (from DataRow row in dt.Rows
+
+                                select new clsProduct()
+                                {
+                                    ProdId = int.Parse(row["ProdId"].ToString()),
+                                    ProductName = row["ProductName"].ToString(),
+                                    MainProduct = row["MainProduct"].ToString(),
+                                    CustTypeName = row["CustTypeName"].ToString()
+                                }).ToList();
+                    }
+                }
+                ViewBag.ProductDetails = list;
             }
             catch (Exception e1)
             {
@@ -61,7 +82,7 @@ namespace Sunnet_NBFC.Controllers
 
                     cls.ReqType = "Insert";
                     cls.CompanyId = ClsSession.CompanyID;
-                    
+
                     cls.IsDelete = 0;
                     using (DataTable dt = DataInterface1.GetProduct(cls))
                     {
@@ -199,7 +220,7 @@ namespace Sunnet_NBFC.Controllers
 
         //    DataTable dt = new DataTable();
         //    dt = DataInterface1.GetProduct(cls);
-           
+
         //    cls = null;
         //    return dt;
         //}
@@ -286,6 +307,7 @@ namespace Sunnet_NBFC.Controllers
                 {
                     cls.ReqType = "View";
                     cls.MainProdId = int.Parse(MainProductId);
+                    cls.IsDelete = 0;
                     using (DataTable dt = DataInterface1.GetProduct(cls))
                     {
                         result = this.Json(JsonConvert.SerializeObject(dt), JsonRequestBehavior.AllowGet);

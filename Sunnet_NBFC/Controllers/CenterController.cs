@@ -55,6 +55,7 @@ namespace Sunnet_NBFC.Controllers
                                     M.MaxNo = int.Parse(dt.Rows[0]["MaxNo"].ToString());
                                     M.IsDelete = int.Parse(dt.Rows[0]["IsDELETE"].ToString());
                                     M.BranchId= int.Parse(dt.Rows[0]["BranchId"].ToString());
+                                    M.BranchName = dt.Rows[0]["BranchName"].ToString();
                                     if (dt.Rows[0]["CreatedBy"].ToString() != "")
                                     {
                                         M.CreatedBy = int.Parse(dt.Rows[0]["CreatedBy"].ToString());
@@ -153,6 +154,7 @@ namespace Sunnet_NBFC.Controllers
                                      MaxNo = int.Parse(row["MaxNo"].ToString()),
                                      CenterHead = row["CenterHead"].ToString(),
                                      BranchId = int.Parse(row["BranchId"].ToString()),
+                                     BranchName = row["BranchName"].ToString(),
                                  }).ToList();
                         }
                     }

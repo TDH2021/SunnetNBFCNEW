@@ -50,6 +50,10 @@ namespace Sunnet_NBFC.Controllers
                 {
                     cls.ReqType = "View";
                     cls.CompanyID = ClsSession.CompanyID;
+                    if (ClsSession.UserType == "E")
+                    {
+                        cls.BranchId = ClsSession.BranchId;
+                    }
                     cls.IsDelete = 0;
                     ViewBag.BranchList = ClsCommon.ToSelectList(DataInterface2.ViewBranch(cls), "BranchId", "BranchName");
                 }
