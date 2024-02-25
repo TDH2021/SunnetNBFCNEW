@@ -379,7 +379,8 @@ namespace Sunnet_NBFC.Models
         public string DSARemarks { get; set; }
         public int CreatedBy { get; set; }
         public int UpdatedBy { get; set; }
-
+        public string SearchStateId { get; set; } = "";
+        public string SearchCityId { get; set; } = "";
         [Required(ErrorMessage = "DSA Account No is required.")]
         public string DSAccountNo { get; set; }
         [Required(ErrorMessage = "DSA Bank is required.")]
@@ -398,6 +399,10 @@ namespace Sunnet_NBFC.Models
         [Required(ErrorMessage = "DSA Aadhar is required.")]
         [RegularExpression("^[2-9]{1}[0-9]{3}[0-9]{4}[0-9]{4}$", ErrorMessage = "Invalid Aadhar Number")]
         public string AAdharNo { get; set; } = "";
+        public string SearchPAN { get; set; }
+        public string SearchAadhar { get; set; }
+        public string SearchContNo { get; set; }
+        public string SearchPinCode { get; set; }
         bool disposed = false;
 
         // Public implementation of Dispose pattern callable by consumers.
@@ -450,7 +455,8 @@ namespace Sunnet_NBFC.Models
         public int CreatedBy { get; set; }
         public int IsDelete { get; set; }
         public int CompanyId { get; set; }
-
+        public string SerarchProdId { get; set; }
+        public string SearchMainProdId { get; set; }
         bool disposed = false;
 
         // Public implementation of Dispose pattern callable by consumers.

@@ -10,13 +10,75 @@
             <div class="col-sm-6">
                 <h1>DSA View</h1>
             </div>
-            
+
         </div>
     </div><!-- /.container-fluid -->
 </section>
 
 <section class="content">
     <div class="container-fluid">
+
+        @using (Html.BeginForm("ViewDSA", "DSA", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label>DSA Code</label>
+                        @Html.TextBoxFor(model => model.DSACode, new { @class = "form-control", @id = "txtDSACode" })
+                    </div>
+                    <div class="col-md-3">
+                        <label>PAN</label>
+                        @Html.TextBoxFor(model => model.SearchPAN, new { @class = "form-control", @id = "txtPAN" })
+                    </div>
+                    <div class="col-md-3">
+                        <label>Aadhar</label>
+                        @Html.TextBoxFor(model => model.SearchAadhar, new { @class = "form-control", @id = "txtAadhar" })
+                    </div>
+                    <div class="col-md-3">
+                        <label>PIN Code</label>
+                        @Html.TextBoxFor(model => model.SearchPinCode, new { @class = "form-control", @id = "txtPinCode" })
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label>State </label>
+                        @Html.DropDownListFor(model => model.SearchStateId, ViewBag.StateList as SelectList, "- Select State- ",
+                                       new { @class = "form-control", @id = "DSAState" })
+
+                    </div>
+                    <div class="col-md-3">
+                        <label>City </label>
+                        @Html.DropDownListFor(model => model.SearchCityId,
+                                       new SelectList(Enumerable.Empty<SelectListItem>(), "CityId", "CityName"),
+                                       "Select city", new { @class = "form-control", @id = "DSACity" })
+                    </div>
+                    <div class="col-md-3">
+                        <label>Contact No</label>
+                        @Html.TextBoxFor(model => model.SearchContNo, new { @class = "form-control", @id = "txtContactNo" })
+                    </div>
+                    <div class="col-md-3">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-3">
+                        <button type="submit" class="btn btn-secondary">Search</button>
+
+                    </div>
+                    <div class="col-md-3">
+                        @Html.ActionLink("Export to Excel", "ExportToExcel", null, new { @class = "btn btn-primary" })
+
+                    </div>
+                </div>
+            </div>
+        }
+
         <div class="row">
             <div class="col-12">
 
@@ -54,42 +116,42 @@
                                     foreach (var item in ViewBag.lst)
                                     {
 
-                                <tr>
-                                    <td>@item.DSACode</td>
-                                    <td>@item.DSAName</td>
-                                    <td>@item.DSAContactNo</td>
-                                    <td>@item.DSAAddress</td>
-                                    <td>@item.CityName</td>
-                                    <td>@item.StateName</td>
-                                    <td>@item.DSAPincode</td>
-                                    <td>@item.DSAEmail</td>
-                                    <td>@item.PAN</td>
-                                    <td>@item.AAdharNo</td>
-                                    <td>@item.DSAWhatsUpNo</td>
-                                    <td>@item.DSAGSTNo</td>
-                                    <td>@item.DSAccountNo</td>
-                                    <td>@item.DSABankName</td>
-                                    <td>@item.DSABranch</td>
-                                    <td>@item.DSAIFSCCode</td>
-                                    <td>@item.DSACommision</td>
-                                    <td>@item.DSARemarks</td>
+                                        <tr>
+                                            <td>@item.DSACode</td>
+                                            <td>@item.DSAName</td>
+                                            <td>@item.DSAContactNo</td>
+                                            <td>@item.DSAAddress</td>
+                                            <td>@item.CityName</td>
+                                            <td>@item.StateName</td>
+                                            <td>@item.DSAPincode</td>
+                                            <td>@item.DSAEmail</td>
+                                            <td>@item.PAN</td>
+                                            <td>@item.AAdharNo</td>
+                                            <td>@item.DSAWhatsUpNo</td>
+                                            <td>@item.DSAGSTNo</td>
+                                            <td>@item.DSAccountNo</td>
+                                            <td>@item.DSABankName</td>
+                                            <td>@item.DSABranch</td>
+                                            <td>@item.DSAIFSCCode</td>
+                                            <td>@item.DSACommision</td>
+                                            <td>@item.DSARemarks</td>
 
-                                    <td>
-                                        <div class="d-flex order-actions">
-                                            <a href="@Url.Action("EditDSA","DSA",new{Id=item.DSAId})"
-                                               data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Edit"><u>Edit</u></a>
-
-
-
-                                            <a href="@Url.Action("DeleteDSA","DSA",new{Id=item.DSAId})"
-                                               data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Delete"
-                                               onclick="return Submit();" style="margin-left:10px;"><u>Delete</u></a>
+                                            <td>
+                                                <div class="d-flex order-actions">
+                                                    <a href="@Url.Action("EditDSA","DSA",new{Id=item.DSAId})"
+                                                       data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Edit"><u>Edit</u></a>
 
 
-                                        </div>
 
-                                    </td>
-                                </tr>
+                                                    <a href="@Url.Action("DeleteDSA","DSA",new{Id=item.DSAId})"
+                                                       data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Delete"
+                                                       onclick="return Submit();" style="margin-left:10px;"><u>Delete</u></a>
+
+
+                                                </div>
+
+                                            </td>
+                                        </tr>
                                     }
                                 }
 
@@ -118,9 +180,7 @@
                                 </tr>
                             </tfoot>
                         </table>
-                        <div class="card-footer">
-                            @Html.ActionLink("Export to Excel", "ExportToExcel", new { @class = "btn btn-primary" })
-                        </div>
+                        
                     </div>
                     <!-- /.card-body -->
                 </div>
@@ -132,6 +192,7 @@
     </div>
     <!-- /.container-fluid -->
 </section>
+<script src="~/Scripts/CustomJS/DSA.js"></script>
 <script type="text/javascript">
     function Submit() {
         if (confirm("Are you sure you want to delete ?")) {

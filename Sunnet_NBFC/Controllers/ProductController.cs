@@ -11,6 +11,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI;
 using Sunnet_NBFC.App_Code;
 using Newtonsoft.Json;
+using ClosedXML.Excel;
 
 namespace Sunnet_NBFC.Controllers
 {
@@ -38,7 +39,7 @@ namespace Sunnet_NBFC.Controllers
                 }
                 using (DataTable dt = DataInterface1.GetProduct(clss))
                 {
-                    if(dt != null)
+                    if (dt != null)
                     {
                         list = (from DataRow row in dt.Rows
 
@@ -273,28 +274,46 @@ namespace Sunnet_NBFC.Controllers
 
         //}
         [SessionAttribute]
-        public ActionResult ExportToExcel()
+        public ActionResult ExportToExcel(clsProduct clss)
         {
-            var gv = new GridView();
-            //gv.DataSource = this.GetProduct(0);
-            gv.DataBind();
+            if (clss.SerarchProdId != null)
+            {
 
-            Response.ClearContent();
-            Response.Buffer = true;
-            Response.AddHeader("content-disposition", "attachment; filename=ProductView.xls");
-            Response.ContentType = "application/ms-excel";
+                clss.ProdId = int.Parse(clss.SerarchProdId);
+            }
+            if (clss.SearchMainProdId != null)
+            {
 
-            Response.Charset = "";
-            StringWriter objStringWriter = new StringWriter();
-            HtmlTextWriter objHtmlTextWriter = new HtmlTextWriter(objStringWriter);
+                clss.MainProdId = int.Parse(clss.SearchMainProdId);
+            }
+            using (DataTable dt = DataInterface1.GetProduct(clss))
+            {
+                if (dt != null)
+                {
 
-            gv.RenderControl(objHtmlTextWriter);
+                    var workbook = new XLWorkbook();
 
-            Response.Output.Write(objStringWriter.ToString());
-            Response.Flush();
-            Response.End();
+                    // Add a worksheet
+                    var worksheet = workbook.Worksheets.Add("Product Report");
 
-            return RedirectToAction("ProductView");
+                    // Add data from DataTable to the worksheet
+                    worksheet.Cell(1, 1).InsertTable(dt.AsEnumerable(), "LeadDatatable", true);
+                    worksheet.Columns().AdjustToContents();
+                    // Save the workbook to a MemoryStream
+                    var stream = new MemoryStream();
+                    workbook.SaveAs(stream);
+
+                    // Set the position of the stream back to the beginning
+                    stream.Seek(0, SeekOrigin.Begin);
+
+                    // Return the Excel file for download
+                    return File(stream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "ProductReport.xlsx");
+                }
+
+
+                return RedirectToAction("ProductView");
+
+            }
         }
         public JsonResult GetProduct(string MainProductId)
         {
@@ -369,7 +388,7 @@ namespace Sunnet_NBFC.Controllers
                     cls.FunctionName = "GetProduct";
                     cls.Link = "Company/GetProduct";
                     cls.PageName = "Product Controller";
-                    cls.UserId = "1";
+                    cls.UserId = ClsSession.EmpId.ToString();
                     DataInterface.PostError(cls);
                 }
             }
@@ -378,6 +397,5 @@ namespace Sunnet_NBFC.Controllers
 
         }
     }
-
 
 }
