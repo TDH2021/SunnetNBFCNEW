@@ -142,7 +142,7 @@ namespace Sunnet_NBFC.Controllers
                     clse.FunctionName = "DSA View";
                     clse.Link = "DSA/DSAView";
                     clse.PageName = "DSA Controller";
-                    clse.UserId = "1";
+                    clse.UserId = ClsSession.EmpId.ToString();
                     DataInterface.PostError(clse);
                 }
             }

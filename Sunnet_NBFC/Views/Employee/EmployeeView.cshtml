@@ -1,154 +1,198 @@
-﻿@model IEnumerable<Sunnet_NBFC.Models.clsEmployee>
-
+﻿@model Sunnet_NBFC.Models.clsEmployee
+@using Sunnet_NBFC.Models
 @{
-	ViewBag.Title = "Employee View";
-	Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Employee View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <section class="content-header">
-	<div class="container-fluid">
-		<div class="row mb-2">
-			<div class="col-sm-6">
-				<h1>Employee View</h1>
-			</div>
-			<div class="col-sm-6">
-				<ol class="breadcrumb float-sm-right">
-					@*<li class="breadcrumb-item"><a href="#">Home</a></li>
-						<li class="breadcrumb-item active">Employee View</li>*@
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Employee View</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    @*<li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Employee View</li>*@
 
-					@*<h4>@Html.ActionLink("Create New", "Employee")</h4>*@
-				</ol>
-			</div>
-		</div>
-	</div><!-- /.container-fluid -->
+                    @*<h4>@Html.ActionLink("Create New", "Employee")</h4>*@
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
 </section>
 
 <section class="content">
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-12">
+    <div class="container-fluid">
+        @using (Html.BeginForm("EmployeeView", "Employee", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
 
-				<!-- /.card -->
-				<div class="card">
-					<!-- /.card-header -->
-					<div class="card-body">
-						<table id="example1" class="table table-bordered table-striped">
-							
-							<thead>
-								<tr>
-									<th>Sr No</th>
-									<th>
-										@Html.DisplayNameFor(model => model.EmpCode)
-									</th>
-									<th>
-										@Html.DisplayNameFor(model => model.EmpName)
-									</th>
-									<th>
-										@Html.DisplayNameFor(model => model.ContactNo1)
-									</th>
-									<th></th>
-									<th></th>
-								</tr>
-							</thead>
-							<tbody>
-								@{int rowNo=1;}
-								@foreach (var item in Model)
-								{
-									<tr>
-										<td>@(rowNo++)</td>
-										<td>
-											
-											@Html.DisplayFor(modelItem => item.EmpCode)
-										</td>
-										<td>
-											@Html.DisplayFor(modelItem => item.EmpName)
-										</td>
-										<td>
-											@Html.DisplayFor(modelItem => item.ContactNo1)
-										</td>
-										<td>
-											<div class="d-flex order-actions">
-												<a href="@Url.Action("EmployeeDetail","Employee",new{Id=item.EmpID})" class="btn btn-info"
-												   data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Edit"><u>Add Details</u></a>
-											</div>
-										</td>
-										<td>
-											<div class="d-flex order-actions">
-												<a href="@Url.Action("Employee","Employee",new{Id=item.EmpID})" class="btn btn-primary"
-												   data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Edit"><u>Edit</u></a>
+            <div class="form-group">
+                <div class="row">
+
+                    <div class="col-md-3">
+                        <label>Employee Code </label>
+                        @Html.TextBoxFor(model => model.EmpCode, new { @class = "form-control", @id = "EmpID" })
+
+                    </div>
+                    <div class="col-md-3">
+                        <label>Employee Name </label>
+                        @Html.TextBoxFor(model => model.SerchEmpName, new { @class = "form-control",@id="txtEmpName" })
+
+                    </div>
+                    <div class="col-md-3">
+                        <label>Branch</label>
+                        @Html.DropDownListFor(model => model.SearchBranch, clsBranchDDL.GetBranchDDL(), "Select", new { @class = "form-control", @id = "BranchId" })
+
+                    </div>
+                    <div class="col-md-3">
+                        <label>PAN</label>
+                        @Html.TextBoxFor(model => model.PAN, new { @class = "form-control", @id = "txtEmpName" })
+
+                    </div>
+                </div>
+            </div>
 
 
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-3">
+                        <button type="submit" class="btn btn-secondary">Search</button>
 
-												<a href="@Url.Action("DeleteEmployee","Employee",new{Id=item.EmpID})" class="btn btn-danger"
-												   data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Delete"
-												   style="margin-left:10px;"><u>Delete</u></a>
+                    </div>
+                    <div class="col-md-3">
+                        @*@Html.ActionLink("Export to Excel", "ExportToExcel", null, new { @class = "btn btn-primary" })*@
 
-												@*@Html.ActionLink("Employee", "Employee", new { Id = @item.DocId })
-				@Html.ActionLink("Delete", "Employee", new { Id = @item.DocID })*@
+                    </div>
+                </div>
+            </div>
+        }
 
-											</div>
+        <div class="row">
+            <div class="col-12">
 
-										</td>
-									</tr>
-								}
-							</tbody>
-						</table>
-						<div class="card-footer">
-							@Html.ActionLink("Export to Excel", "ExportToExcel", new { @class = "btn btn-primary" })
-						</div>
+                <!-- /.card -->
+                <div class="card">
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="example1" class="table table-bordered table-striped">
+
+                            <thead>
+                                <tr>
+                                    <th>Sr No</th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.EmpCode)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.EmpName)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.ContactNo1)
+                                    </th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{int rowNo = 1;}
+                                @if (ViewBag.lst != null)
+                                {
+
+                                    foreach (var item in ViewBag.lst)
+                                    {
+                                        <tr>
+                                            <td>@(rowNo++)</td>
+                                            <td>
+                                                @item.EmpCode
+                                            </td>
+                                            <td>
+                                                @item.EmpName
+                                            </td>
+                                            <td>
+                                                @item.ContactNo1
+                                            </td>
+                                            <td>
+                                                <div class="d-flex order-actions">
+                                                    <a href="@Url.Action("EmployeeDetail","Employee",new{Id=item.EmpID})" class="btn btn-info"
+                                                       data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Edit"><u>Add Details</u></a>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex order-actions">
+                                                    <a href="@Url.Action("Employee","Employee",new{Id=item.EmpID})" class="btn btn-primary"
+                                                       data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Edit"><u>Edit</u></a>
 
 
-					</div>
-					<!-- /.card-body -->
-				</div>
-				<!-- /.card -->
-			</div>
-			<!-- /.col -->
-		</div>
-		<!-- /.row -->
-	</div>
-	<!-- /.container-fluid -->
+
+                                                    <a href="@Url.Action("DeleteEmployee","Employee",new{Id=item.EmpID})" class="btn btn-danger"
+                                                       data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Delete"
+                                                       style="margin-left:10px;"><u>Delete</u></a>
+
+                                                    @*@Html.ActionLink("Employee", "Employee", new { Id = @item.DocId })
+                                                    @Html.ActionLink("Delete", "Employee", new { Id = @item.DocID })*@
+
+                                                </div>
+
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                        
+
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
 </section>
 
 
 
 @if (ViewBag.Error != null && ViewBag.Error != "")
 {
-	<script type="text/javascript">
+    <script type="text/javascript">
 
             window.onload = function () {
                 alert("@ViewBag.Error");
             };
-	</script>
+    </script>
 }
 @*@if (ViewBag.Success != null && ViewBag.Success != "")
-	{
-		<script type="text/javascript">
+    {
+        <script type="text/javascript">
 
-				window.onload = function () {
-					alert("@ViewBag.Success");
-				};
-		</script>
-	}*@
+                window.onload = function () {
+                    alert("@ViewBag.Success");
+                };
+        </script>
+    }*@
 @if (ViewBag.Error != null && ViewBag.Error != "")
 {
-	<script type="text/javascript">
+    <script type="text/javascript">
 
             window.onload = function () {
                // alert("@ViewBag.Error");
 				swal("TDH", "@ViewBag.Error", "error");
 
             };
-	</script>
+    </script>
 }
 @if (ViewBag.Success != null && ViewBag.Success != "")
 {
-	<script type="text/javascript">
+    <script type="text/javascript">
             window.onload = function () {
                 //alert("@ViewBag.Success");
 				swal("TDH", "@ViewBag.Success", "Success");
             };
-	</script>
+    </script>
 }
 
 

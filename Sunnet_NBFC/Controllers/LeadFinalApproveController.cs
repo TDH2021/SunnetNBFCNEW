@@ -426,7 +426,7 @@ namespace Sunnet_NBFC.Controllers
                     clse.FunctionName = "ViewLeadFinalApprove";
                     clse.Link = "LeadFinalApprove/LeadFinalApproveView";
                     clse.PageName = "LeadFinalApprove Controller";
-                    clse.UserId = "1";
+                    clse.UserId = ClsSession.EmpId.ToString();
                     DataInterface.PostError(clse);
                 }
             }

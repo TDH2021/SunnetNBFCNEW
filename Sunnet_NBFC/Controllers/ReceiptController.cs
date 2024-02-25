@@ -40,7 +40,7 @@ namespace Sunnet_NBFC.Controllers
                     clse.FunctionName = "GetReceiptView";
                     clse.Link = "Receipt/ReceiptView";
                     clse.PageName = "Receipt Controller";
-                    clse.UserId = "1";
+                    clse.UserId = ClsSession.EmpId.ToString();
                     DataInterface.PostError(clse);
                 }
             }
@@ -137,7 +137,7 @@ namespace Sunnet_NBFC.Controllers
                     clse.FunctionName = "Receipt";
                     clse.Link = "Receipt/AddReceipt";
                     clse.PageName = "Receipt Controller";
-                    clse.UserId = "1";
+                    clse.UserId = ClsSession.EmpId.ToString();
                     DataInterface.PostError(clse);
                 }
             }

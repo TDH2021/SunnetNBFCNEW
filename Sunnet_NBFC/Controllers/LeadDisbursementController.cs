@@ -457,7 +457,7 @@ namespace Sunnet_NBFC.Controllers
                     clse.FunctionName = "LeadDisbursementView";
                     clse.Link = "LeadDisbursement/LeadDisbursementView";
                     clse.PageName = "LeadDisbursement Controller";
-                    clse.UserId = "1";
+                    clse.UserId = ClsSession.EmpId.ToString();
                     DataInterface.PostError(clse);
                 }
             }

@@ -68,7 +68,7 @@ namespace Sunnet_NBFC.Controllers
                     clsE.FunctionName = "AddRequestCustomer";
                     clsE.Link = "Customer/AddRequestCustomer";
                     clsE.PageName = "Customer Controller";
-                    clsE.UserId = "1";
+                    clsE.UserId = ClsSession.EmpId.ToString();
                     DataInterface.PostError(clsE);
                 }
                 return Json(JSONresult, JsonRequestBehavior.AllowGet);
@@ -126,7 +126,7 @@ namespace Sunnet_NBFC.Controllers
                     clse.FunctionName = "Customer View";
                     clse.Link = "Customer/CustomerView";
                     clse.PageName = "Customer Controller";
-                    clse.UserId = "1";
+                    clse.UserId = ClsSession.EmpId.ToString();
                     DataInterface.PostError(clse);
                 }
             }
@@ -161,7 +161,7 @@ namespace Sunnet_NBFC.Controllers
                     clsE.FunctionName = "Company Status";
                     clsE.Link = "Company/Companydelete";
                     clsE.PageName = "Compnay Controller";
-                    clsE.UserId = "1";
+                    clsE.UserId = ClsSession.EmpId.ToString();
                     DataInterface.PostError(clsE);
                 }
                 return Json(JSONresult, JsonRequestBehavior.AllowGet);

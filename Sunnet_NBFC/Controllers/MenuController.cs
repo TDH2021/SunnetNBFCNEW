@@ -85,7 +85,7 @@ namespace Sunnet_NBFC.Controllers
                     clse.FunctionName = "Add Menu";
                     clse.Link = "Menu/AddMenu";
                     clse.PageName = "Menu Controller";
-                    clse.UserId = "1";
+                    clse.UserId = ClsSession.EmpId.ToString();
                     DataInterface.PostError(clse);
                 }
             }
@@ -158,7 +158,7 @@ namespace Sunnet_NBFC.Controllers
                     clse.FunctionName = "Edit Menu";
                     clse.Link = "Menu/EditMenu";
                     clse.PageName = "Menu Controller";
-                    clse.UserId = "1";
+                    clse.UserId = ClsSession.EmpId.ToString();
                     DataInterface.PostError(clse);
                 }
             }

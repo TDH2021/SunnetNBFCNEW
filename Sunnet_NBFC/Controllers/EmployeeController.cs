@@ -167,9 +167,8 @@ namespace Sunnet_NBFC.Controllers
             }
         }
 
-        [HttpGet]
         [SessionAttribute]
-        public ActionResult EmployeeView()
+        public ActionResult EmployeeView(clsEmployee clss)
         {
             List<clsEmployee> lst = new List<clsEmployee>();
             try
@@ -181,30 +180,44 @@ namespace Sunnet_NBFC.Controllers
                 //    ViewBag.Success = TempData["Success"];
                 TempData.Clear();
 
-                DataTable dt = new DataTable();
 
                 //lst = DataInterface2.GetEmployeeNew();
 
-                clsEmployee cls = new clsEmployee();
-                cls.ReqType = "view";
-                cls.IsDelete = 0;
-                cls.CompId = ClsSession.CompanyID;
-                dt = DataInterface1.dbEmployee(cls);
-
-
-                if (dt != null)
+                using (clsEmployee cls = new clsEmployee())
                 {
+                    cls.ReqType = "view";
+                    cls.IsDelete = 0;
+                    cls.CompId = ClsSession.CompanyID;
+                    cls.EmpCode = clss.EmpCode;
+                    if (clss.SerchEmpName != null)
+                    {
+                        cls.EmpName = clss.SerchEmpName.ToString();
+                    }
+                    if(clss.SearchBranch!=null&& cls.SearchBranch != "")
+                    {
+                        cls.BranchId = int.Parse(clss.SearchBranch);
+                    }
+                    cls.PAN = clss.PAN;
+                    using (DataTable dt = DataInterface1.dbEmployee(cls))
+                    {
+                        if (dt != null)
+                        {
 
-                    lst = (from DataRow row in dt.Rows
+                            lst = (from DataRow row in dt.Rows
 
-                           select new clsEmployee()
-                           {
-                               EmpID = int.Parse(row["EmpID"].ToString()),
-                               EmpCode = row["EmpCode"].ToString(),
-                               EmpName = row["EmpName"].ToString(),
-                               ContactNo1 = row["ContactNo1"].ToString(),
-                           }).ToList();
+                                   select new clsEmployee()
+                                   {
+                                       EmpID = int.Parse(row["EmpID"].ToString()),
+                                       EmpCode = row["EmpCode"].ToString(),
+                                       EmpName = row["EmpName"].ToString(),
+                                       ContactNo1 = row["ContactNo1"].ToString(),
+                                   }).ToList();
+                        }
+
+                    }
+
                 }
+                ViewBag.lst= lst;
 
             }
             catch (Exception e1)
@@ -225,7 +238,7 @@ namespace Sunnet_NBFC.Controllers
             {
 
             }
-            return View(lst);
+            return View();
         }
 
         [SessionAttribute]

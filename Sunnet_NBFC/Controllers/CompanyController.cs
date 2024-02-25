@@ -170,7 +170,7 @@ namespace Sunnet_NBFC.Controllers
                     clse.FunctionName = "Company Status";
                     clse.Link = "Company/Companydelete";
                     clse.PageName = "Compnay Controller";
-                    clse.UserId = "1";
+                    clse.UserId = ClsSession.EmpId.ToString();
                     DataInterface.PostError(clse);
                 }
                 return Json(JSONresult, JsonRequestBehavior.AllowGet);

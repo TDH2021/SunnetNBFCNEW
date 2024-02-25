@@ -94,7 +94,7 @@ namespace Sunnet_NBFC.Controllers
                     clse.FunctionName = "LedgerMaster";
                     clse.Link = "LedgerMaster/LedgerMaster";
                     clse.PageName = "LedgerMaster Controller";
-                    clse.UserId = "1";
+                    clse.UserId = ClsSession.EmpId.ToString();
                     DataInterface.PostError(clse);
                 }
             }
@@ -146,7 +146,7 @@ namespace Sunnet_NBFC.Controllers
                     clse.FunctionName = "LedgerMasterView";
                     clse.Link = "LedgerMaster/LedgerMaster";
                     clse.PageName = "LedgerMaster Controller";
-                    clse.UserId = "1";
+                    clse.UserId = ClsSession.EmpId.ToString();
                     DataInterface.PostError(clse);
                 }
             }

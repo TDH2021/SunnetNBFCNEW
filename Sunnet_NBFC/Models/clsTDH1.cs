@@ -160,6 +160,7 @@ namespace Sunnet_NBFC.Models
         {
             clsProduct cls = new clsProduct();
             cls.ReqType = "View";
+            cls.IsDelete = 0;
             return ClsCommon.ToSelectList(DataInterface1.GetProduct(cls), "ProdId", "ProductName");
         }
 
@@ -361,7 +362,7 @@ namespace Sunnet_NBFC.Models
         }
     }
 
-    public class clsStageRole
+    public class clsStageRole:IDisposable
     {
         public string ReqType { get; set; }
         public int StageRoleId { get; set; }
@@ -382,7 +383,8 @@ namespace Sunnet_NBFC.Models
 
         [DisplayName("CreatedBy")]
         public int CreatedBy { get; set; }
-
+        public string SearchEmpId { get; set; }
+        public string SerachRoleName { get; set; }
         public int CompanyID { get; set; }
         public int IsDelete { get; set; }
 

@@ -99,7 +99,7 @@ namespace Sunnet_NBFC.Controllers
                     clse.FunctionName = "ChargesMaster";
                     clse.Link = "ChargesMaster/ChargesMaster";
                     clse.PageName = "ChargesMaster Controller";
-                    clse.UserId = "1";
+                    clse.UserId = ClsSession.EmpId.ToString();
                     DataInterface.PostError(clse);
                 }
             }
@@ -150,7 +150,7 @@ namespace Sunnet_NBFC.Controllers
                     clse.FunctionName = "ChargesMaster";
                     clse.Link = "ChargesMaster/ChargesMaster";
                     clse.PageName = "ChargesMaster Controller";
-                    clse.UserId = "1";
+                    clse.UserId = ClsSession.EmpId.ToString();
                     DataInterface.PostError(clse);
                 }
             }

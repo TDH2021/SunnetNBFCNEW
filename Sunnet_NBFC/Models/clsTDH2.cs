@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using iText.Commons.Utils;
 using Sunnet_NBFC.App_Code;
 
 
@@ -159,7 +160,7 @@ namespace Sunnet_NBFC.Models
         public bool IsRequried { get; set; }
         public int IsDelete { get; set; }
         public int CompanyID { get; set; }
-
+        public string SerachProdId { get; set; }
         //public DateTime UpdateDate { get; set; }
         //public int UpdatedBy { get; set; }
         //public int CreatedBy { get; set; }
@@ -192,7 +193,7 @@ namespace Sunnet_NBFC.Models
 
     }
 
-    public class clsEmployee
+    public class clsEmployee:IDisposable
     {
         public string ReqType { get; set; }
         public int EmpID { get; set; }
@@ -261,7 +262,7 @@ namespace Sunnet_NBFC.Models
         public string Langtiute { get; set; }
         public int? EmployeeAttnStatus { get; set; }
         public DateTime? AttnDate { get; set; }
-
+        
         [Required(ErrorMessage = "Branch is required.")]
         [DisplayName("Branch")]
         public int BranchId { get; set; }
@@ -269,7 +270,8 @@ namespace Sunnet_NBFC.Models
         [Required(ErrorMessage = "Role is required.")]
         [DisplayName("Role")]
         public int RoleId { get; set; }
-
+        public string SerchEmpName { get; set; } = "";
+        public string SearchBranch { get; set; }
 
         bool disposed = false;
 

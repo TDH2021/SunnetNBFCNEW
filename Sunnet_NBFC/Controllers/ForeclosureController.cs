@@ -136,7 +136,7 @@ namespace Sunnet_NBFC.Controllers
                     clse.FunctionName = "Foreclosure";
                     clse.Link = "Foreclosure/Foreclosure";
                     clse.PageName = "Foreclosure Controller";
-                    clse.UserId = "1";
+                    clse.UserId = ClsSession.EmpId.ToString();
                     DataInterface.PostError(clse);
                 }
             }
@@ -187,7 +187,7 @@ namespace Sunnet_NBFC.Controllers
                     clse.FunctionName = "ForeclosureView";
                     clse.Link = "Foreclosure/ForeclosureView";
                     clse.PageName = "Foreclosure Controller";
-                    clse.UserId = "1";
+                    clse.UserId = ClsSession.EmpId.ToString();
                     DataInterface.PostError(clse);
                 }
             }

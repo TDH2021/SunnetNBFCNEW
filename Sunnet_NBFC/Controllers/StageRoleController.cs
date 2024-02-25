@@ -95,7 +95,7 @@ namespace Sunnet_NBFC.Controllers
                     clse.FunctionName = "StageRole";
                     clse.Link = "StageRole/StageRole";
                     clse.PageName = "StageRole Controller";
-                    clse.UserId = "1";
+                    clse.UserId = ClsSession.EmpId.ToString();
                     DataInterface.PostError(clse);
                 }
             }
@@ -112,30 +112,44 @@ namespace Sunnet_NBFC.Controllers
             }
         }
 
-        [HttpGet]
         [SessionAttribute]
-        public ActionResult StageRoleView()
+        public ActionResult StageRoleView(clsStageRole clss)
         {
             List<clsStageRole> lst = new List<clsStageRole>();
             try
             {
 
-                //if (TempData["Error"] != null)
-                //    ViewBag.Error = TempData["Error"];
-                //if (TempData["Success"] != null)
-                //    ViewBag.Success = TempData["Success"];
                 TempData.Clear();
 
-                DataTable dt = new DataTable();
+                using (clsStageRole cls = new clsStageRole())
+                {
+                    cls.ReqType = "view";
+                    cls.IsDelete = 0;
+                    cls.StageRoleName = clss.SerachRoleName;
+                    if(clss.SearchEmpId!=null && clss.SearchEmpId != "")
+                    {
 
-                //lst = DataInterface2.GetEmployeeNew();
+                        cls.StageRoleEmpId = int.Parse(clss.SearchEmpId);
+                    }
+                    using (DataTable dt = DataInterface1.dbStageRole(cls))
+                    {
+                        if (dt != null)
+                        {
+                            lst = (from DataRow row in dt.Rows
 
-                clsStageRole cls = new clsStageRole();
-                cls.ReqType = "view";
-                cls.IsDelete = 0;
-                dt = DataInterface1.dbStageRole(cls);
-                lst = DataInterface.ConvertDataTable<clsStageRole>(dt);
-
+                                    select new clsStageRole()
+                                    {
+                                        StageRoleId = int.Parse(row["StageRoleId"].ToString()),
+                                        StageRoleEmpCode = row["StageRoleEmpCode"].ToString(),
+                                        StageRoleEmpName = row["StageRoleEmpName"].ToString(),
+                                        StageRoleName = row["StageRoleName"].ToString()
+                                    }).ToList();
+                        }
+                    }
+                }
+                    
+                ViewBag.lst= lst;
+                
             }
             catch (Exception e1)
             {
@@ -147,7 +161,7 @@ namespace Sunnet_NBFC.Controllers
                     clse.FunctionName = "StageRoleView";
                     clse.Link = "StageRole/StageRole";
                     clse.PageName = "StageRole Controller";
-                    clse.UserId = "1";
+                    clse.UserId = ClsSession.EmpId.ToString();
                     DataInterface.PostError(clse);
                 }
             }
@@ -155,7 +169,7 @@ namespace Sunnet_NBFC.Controllers
             {
 
             }
-            return View(lst);
+            return View();
         }
 
 
@@ -278,7 +292,7 @@ namespace Sunnet_NBFC.Controllers
                     clse.FunctionName = "Employee";
                     clse.Link = "Employee/Employee";
                     clse.PageName = "Employee Controller";
-                    clse.UserId = "1";
+                    clse.UserId = ClsSession.EmpId.ToString();
                     DataInterface.PostError(clse);
                 }
             }

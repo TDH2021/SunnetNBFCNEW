@@ -539,33 +539,28 @@ public class DataInterface2 : DataInterface, IDisposable
     #endregion
 
     #region View Document
-    public static List<clsDocument> ViewDocument()
+    public static DataTable ViewDocument(clsDocument cls)
     {
-        //DBHelper dBHlper = new DBHelper();
-        List<clsDocument> lst = new List<clsDocument>();
         DataTable dt = new DataTable();
         try
         {
-            //DBOperation db = new DBOperation();
-            //SqlCommand cmd = new SqlCommand();
-
+         
             using (DBOperation db = new DBOperation())
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
 
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add("@ReqType", SqlDbType.VarChar).Value = "View";
+                    cmd.Parameters.Add("@ReqType", SqlDbType.VarChar).Value = cls.ReqType;
                     cmd.Parameters.Add("@CompanyId", SqlDbType.Int).Value = ClsSession.CompanyID;
-                    cmd.Parameters.Add("@IsDelete", SqlDbType.Int).Value = 0;
+                    cmd.Parameters.Add("@IsDelete", SqlDbType.Int).Value = cls.IsDelete;
+                    cmd.Parameters.Add("@ProdId", SqlDbType.Int).Value = cls.ProdID;
                     dt = db.FillTableProc(cmd, "USP_Document");
 
                 }
             }
 
-            lst = DataInterface.ConvertDataTable<clsDocument>(dt);
-
-
+            
         }
         catch (Exception ex)
         {
@@ -573,10 +568,9 @@ public class DataInterface2 : DataInterface, IDisposable
         }
         finally
         {
-            dt.Dispose();
         }
 
-        return lst;
+        return dt;
     }
     #endregion
 

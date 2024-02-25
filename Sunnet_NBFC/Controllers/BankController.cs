@@ -90,7 +90,7 @@ namespace Sunnet_NBFC.Controllers
                     clse.FunctionName = "Bank";
                     clse.Link = "Bank/Bank";
                     clse.PageName = "Bank Controller";
-                    clse.UserId = "1";
+                    clse.UserId = ClsSession.EmpId.ToString();
                     DataInterface.PostError(clse);
                 }
             }
@@ -138,7 +138,7 @@ namespace Sunnet_NBFC.Controllers
                     clse.FunctionName = "Bank";
                     clse.Link = "Bank/Bank";
                     clse.PageName = "Bank Controller";
-                    clse.UserId = "1";
+                    clse.UserId = ClsSession.EmpId.ToString();
                     DataInterface.PostError(clse);
                 }
             }

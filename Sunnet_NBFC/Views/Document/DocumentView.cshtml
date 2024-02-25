@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Sunnet_NBFC.Models.clsDocument>
+﻿@model Sunnet_NBFC.Models.clsDocument
 
 @{
     ViewBag.Title = "Document View";
@@ -14,9 +14,8 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     @*<li class="breadcrumb-item"><a href="#">Home</a></li>
-        <li class="breadcrumb-item active">Document View</li>*@
+                        <li class="breadcrumb-item active">Document View</li>*@
 
-                    <h4>@Html.ActionLink("Create New", "Document")</h4>
                 </ol>
             </div>
         </div>
@@ -25,6 +24,25 @@
 
 <section class="content">
     <div class="container-fluid">
+        @using (Html.BeginForm("DocumentView", "Document", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Product</label>
+                        @Html.DropDownListFor(model => model.ProdID, Sunnet_NBFC.Models.clsProduct.GetProductDDL(), "- Select -", new { @class = "form-control", @id = "ddlProduct" })
+                    </div>
+                    <div class="col-md-6">
+                        <br />  
+                        <button type="submit" class="btn btn-secondary">Search</button>
+                    </div>
+
+                </div>
+            </div>
+
+        }
+
         <div class="row">
             <div class="col-12">
 
@@ -36,49 +54,42 @@
                             <thead>
                                 <tr>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.DocumentName)
+                                        Product Name
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.ProductName)
+                                        Document Name
                                     </th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var item in Model)
+                                @if (ViewBag.lst != null)
                                 {
-                                    <tr>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.DocumentName)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.ProductName)
-                                        </td>
-                                        <td>
-                                            <div class="d-flex order-actions">
-                                                <a href="@Url.Action("Document","Document",new{Id=item.DocID})"
-                                                   data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Edit"><u>Edit</u></a>
+                                    foreach (var item in ViewBag.lst)
+                                    {
+                                        <tr>
+                                            <td>@item.ProductName</td>
+                                            <td>@item.DocumentName</td>
+                                            <td>
+                                                <div class="d-flex order-actions">
+                                                    <a href="@Url.Action("Document", "Document", new { Id = item.DocID })"
+                                                       data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Edit"><u>Edit</u></a>
 
 
 
-                                                <a href="@Url.Action("DeleteDocument","Document",new{Id=item.DocID})"
-                                                   data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Delete"
-                                                   style="margin-left:10px;"><u>Delete</u></a>
+                                                    <a href="@Url.Action("DeleteDocument", "Document", new { Id = item.DocID })"
+                                                       data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Delete"
+                                                       style="margin-left:10px;"><u>Delete</u></a>
 
-                                                @*@Html.ActionLink("Document", "Document", new { Id = @item.DocId })
-        @Html.ActionLink("Delete", "Document", new { Id = @item.DocID })*@
+                                                </div>
 
-                                            </div>
-
-                                        </td>
-                                    </tr>
+                                            </td>
+                                        </tr>
+                                    }
                                 }
-                            </tbody>
+                                    </tbody>
                         </table>
-                        <div class="card-footer">
-                            @Html.ActionLink("Export to Excel", "ExportToExcel", new { @class = "btn btn-primary" })
-                        </div>
-
+                        
 
                     </div>
                     <!-- /.card-body -->

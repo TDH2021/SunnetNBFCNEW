@@ -28,9 +28,9 @@ namespace Sunnet_NBFC.Controllers
                 if (Id != null && Id > 0)
                     M = DataInterface2.GetDocument(Convert.ToInt32("0" + Id.ToString()));
                 return View(M);
-                
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -65,9 +65,9 @@ namespace Sunnet_NBFC.Controllers
             {
                 ModelState.Clear();
                 ViewBag.Success = !string.IsNullOrEmpty(clsRetData.Message) ? clsRetData.Message : "Saved/Updated";
-               // return RedirectToAction("DocumentView", "Document");
+                // return RedirectToAction("DocumentView", "Document");
                 return View(M);
-                
+
             }
             else
             {
@@ -77,9 +77,8 @@ namespace Sunnet_NBFC.Controllers
             //return RedirectToAction("Document");
         }
 
-        [HttpGet]
         [SessionAttribute]
-        public ActionResult DocumentView()
+        public ActionResult DocumentView(clsDocument cls)
         {
             try
             {
@@ -89,12 +88,28 @@ namespace Sunnet_NBFC.Controllers
                 if (TempData["Success"] != null)
                     ViewBag.Success = TempData["Success"];
                 TempData.Clear();
+                cls.ReqType = "View";
+                cls.IsDelete = 0;
+                if (cls.SerachProdId != null && cls.SerachProdId != "")
+                {
+                    cls.ProdID = int.Parse(cls.SerachProdId);
+                }
+                using (DataTable dt = DataInterface2.ViewDocument(cls))
+                {
 
-                DataTable dt = new DataTable();
-                List<clsDocument> lst = new List<clsDocument>();
-                lst = DataInterface2.ViewDocument();
-                //ViewBag.LeadDetails = lst;
-                return View(lst);
+                    List<clsDocument> list = new List<clsDocument>();
+                    list = (from DataRow row in dt.Rows
+
+                            select new clsDocument()
+                            {
+                                DocID = int.Parse(row["DocID"].ToString()),
+                                ProductName = row["ProductName"].ToString(),
+                                DocumentName = row["DocumentName"].ToString(),
+                            }).ToList();
+                    ViewBag.lst = list;
+
+                }
+                return View();
             }
             catch (Exception ex)
             {
@@ -111,7 +126,7 @@ namespace Sunnet_NBFC.Controllers
         {
             try
             {
-                
+
                 if (Id <= 0)
                 {
                     TempData["Error"] = "Document not exists";
@@ -130,7 +145,7 @@ namespace Sunnet_NBFC.Controllers
                 }
                 else
                 {
-                    TempData["Error"]  = !string.IsNullOrEmpty(clsRetData.Message) ? clsRetData.Message : "Error: Data Not Deleted";
+                    TempData["Error"] = !string.IsNullOrEmpty(clsRetData.Message) ? clsRetData.Message : "Error: Data Not Deleted";
                 }
 
                 return RedirectToAction("DocumentView", "Document");
@@ -143,8 +158,8 @@ namespace Sunnet_NBFC.Controllers
             }
 
         }
-        
-      
-     
+
+
+
     }
 }

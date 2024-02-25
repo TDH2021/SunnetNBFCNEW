@@ -561,7 +561,7 @@ namespace Sunnet_NBFC.Controllers
                     clse.FunctionName = "LeadDocumentSigningView";
                     clse.Link = "LeadDocumentSigning/LeadDocumentSigningView";
                     clse.PageName = "LeadDocumentSigning Controller";
-                    clse.UserId = "1";
+                    clse.UserId = ClsSession.EmpId.ToString();
                     DataInterface.PostError(clse);
                 }
             }

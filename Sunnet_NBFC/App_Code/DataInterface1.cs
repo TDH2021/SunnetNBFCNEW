@@ -868,6 +868,7 @@ public class DataInterface1 : IDisposable
                 sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
                 sqlCommand.Parameters.AddWithValue("@ReqType", cls.ReqType);
                 sqlCommand.Parameters.Add("@EmpID", SqlDbType.Int).Value = cls.EmpID;
+                sqlCommand.Parameters.Add("@EmpCode", SqlDbType.VarChar).Value = cls.EmpCode;
                 sqlCommand.Parameters.Add("@EmpName", SqlDbType.VarChar).Value = cls.EmpName;
                 sqlCommand.Parameters.Add("@FatherName", SqlDbType.VarChar).Value = cls.FatherName;
                 sqlCommand.Parameters.Add("@MotherName", SqlDbType.VarChar).Value = cls.MotherName;

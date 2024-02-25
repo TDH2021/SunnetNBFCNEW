@@ -502,7 +502,7 @@ namespace Sunnet_NBFC.Controllers
                     clse.FunctionName = "LeadDocumentView";
                     clse.Link = "LeadDocument/LeadDocumentView";
                     clse.PageName = "LeadDocument Controller";
-                    clse.UserId = "1";
+                    clse.UserId = ClsSession.EmpId.ToString();
                     DataInterface.PostError(clse);
                 }
             }

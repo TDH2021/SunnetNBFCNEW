@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Sunnet_NBFC.Models.clsStageRole>
+﻿@model Sunnet_NBFC.Models.clsStageRole
+@using Sunnet_NBFC.App_Code
+@using Sunnet_NBFC.Models
 
 @{
     ViewBag.Title = "StageRole View";
@@ -13,10 +15,6 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    @*<li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Employee View</li>*@
-
-                    @*<h4>@Html.ActionLink("Create New", "StageRole")</h4>*@
                 </ol>
             </div>
         </div>
@@ -25,6 +23,44 @@
 
 <section class="content">
     <div class="container-fluid">
+        @using (Html.BeginForm("StageRoleView", "StageRole", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+
+            <div class="form-group">
+                <div class="row">
+
+                    <div class="col-md-3">
+                        <label>Employee Code </label>
+                        @Html.DropDownListFor(model => model.SearchEmpId, clsEmoloyeeDDL.GetEmoloyeeDDL(), "Select", new { @class = "form-control", @id = "EmpID" })
+
+                    </div>
+                    <div class="col-md-3">
+                        <label>Stage Role </label>
+                        @Html.DropDownListFor(model => model.SerachRoleName, clsRoleDDL.GetRoleDDL(), "Select", new { @class = "form-control" })
+
+                    </div>
+                    <div class="col-md-3">
+                    </div>
+                    <div class="col-md-3">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-3">
+                        <button type="submit" class="btn btn-secondary">Search</button>
+
+                    </div>
+                    <div class="col-md-3">
+                        @*@Html.ActionLink("Export to Excel", "ExportToExcel", null, new { @class = "btn btn-primary" })*@
+
+                    </div>
+                </div>
+            </div>
+        }
+
         <div class="row">
             <div class="col-12">
 
@@ -36,53 +72,53 @@
                             <thead>
                                 <tr>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.StageRoleEmpCode)
+                                        Employee Code
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.StageRoleEmpName)
+                                        Employee Name
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.StageRoleName)
+                                        Role Name
                                     </th>
                                     <th></th>
 
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var item in Model)
+
+                                @if (ViewBag.lst != null)
                                 {
-                                    <tr>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.StageRoleEmpCode)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.StageRoleEmpName)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.StageRoleName)
-                                        </td>
 
-                                        <td>
-                                            <div class="d-flex order-actions">
-                                                <a href="@Url.Action("StageRole","StageRole",new{Id=item.StageRoleId})"
-                                                   data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Edit"><u>Edit</u></a>
+                                    foreach (var item in ViewBag.lst)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @item.StageRoleEmpCode
+                                            </td>
+                                            <td>
+                                                @item.StageRoleEmpName
+                                            </td>
+                                            <td>
+                                                @item.StageRoleName
+                                            </td>
 
-                                                <a href="@Url.Action("DeleteStageRole","StageRole",new{Id=item.StageRoleId})"
-                                                   data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Delete"
-                                                   style="margin-left:10px;"><u>Delete</u></a>
+                                            <td>
+                                                <div class="d-flex order-actions">
+                                                    <a href="@Url.Action("StageRole", "StageRole", new { Id = item.StageRoleId })"
+                                                       data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Edit"><u>Edit</u></a>
 
-                                            </div>
+                                                    <a href="@Url.Action("DeleteStageRole", "StageRole", new { Id = item.StageRoleId })"
+                                                       data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Delete"
+                                                       style="margin-left:10px;"><u>Delete</u></a>
 
-                                        </td>
-                                    </tr>
+                                                </div>
+
+                                            </td>
+                                        </tr>
+                                    }
                                 }
                             </tbody>
                         </table>
-                        @*<div class="card-footer">
-                                @Html.ActionLink("Export to Excel", "ExportToExcel", new { @class = "btn btn-primary" })
-                            </div>*@
-
-
                     </div>
                     <!-- /.card-body -->
                 </div>
