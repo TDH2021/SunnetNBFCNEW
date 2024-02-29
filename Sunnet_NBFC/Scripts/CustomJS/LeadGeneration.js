@@ -3,6 +3,7 @@ $('#MainProductId').change(function () {
 
     var MainProductId = $("#MainProductId option:selected").val();
     var MainProducttext = $("#MainProductId option:selected").text();
+    $('#ProductId').empty();
     if (MainProductId.length == 0) {
         var s = '<option value="">- Select Product -</option>'
         $('#ProductId').html(s);
@@ -40,7 +41,6 @@ $('#MainProductId').change(function () {
                     $('#divRef2').show();
                 }
                 var data = JSON.parse(result);
-                $('#ProductId').empty();
 
                 for (var i = 0; i < data.length; i++) {
                     var opt = new Option(data[i].ProductName, data[i].ProdId);
@@ -90,6 +90,44 @@ $('#ProductId').change(function () {
     });
 
 });
+
+function Changeproduct () {
+    debugger;
+    $("#ProductId")[0].selectedIndex = 0;
+    var MainProductId = $("#MainProductId option:selected").val();
+    var ProductId = $("#ProductId option:selected").val();
+
+
+    $.ajax({
+        url: "/Product/GetSubProduct",
+        type: "Get",
+
+        dataType: "json",
+        data: {
+            MainProductId: MainProductId,
+            ProductId: ProductId
+        },
+        success: function (result) {
+            debugger
+            var data = JSON.parse(result)[0].CustTypeRequried;
+            document.getElementById("hdn_type").value = data;
+            if (data == "c") {
+                $("#co_applicant_div").show();
+                $("#co_guranter_div").hide();
+
+            } else if (data == "g") {
+                $("#co_applicant_div").hide();
+                $("#co_guranter_div").show();
+                //    document.getElementById("ProductId").value = data;
+            } else if (data == "b") {
+                $("#co_applicant_div").show();
+                $("#co_guranter_div").show();
+                //    document.getElementById("ProductId").value = data;
+            }
+        }
+    });
+}
+
 
 function underAgisapicheckeValidate(birthday) {
 
@@ -1397,12 +1435,11 @@ function ValidationChk() {
     var PropertyAddress = $("#txtPropertyAddress").val();
     var ColletralSecurityType = "";
 
+    NoofDependent = $("#txtNoofDependent").val();
     if (MainProductText == "Vehicle Loan" || MainProductText == "Commercial Vehicle" || MainProductText == "Two Wheeler Loan") {
-        NoofDependent = $("#txtVchNoofDependent").val();
         FORecomedAmt = $("#txtFORecomedAmtcomedAmt").val();
     }
     else {
-        NoofDependent = $("#txtNoofDependent").val();
         FORecomedAmt = $("#BusinessFORecomedAmt").val();
     }
     if (MainProductText == "Bussiness Loan") {
@@ -1414,6 +1451,7 @@ function ValidationChk() {
     if (FORecomedAmt == "") {
         FORecomedAmt = 0;
     }
+    
     var ViechleNo = $("#ViechleNo").val();
     var ViechleRegYear = $("#ViechleRegYear").val();
     var MFGYear = $("#MFGYear").val();
@@ -1528,7 +1566,7 @@ function ValidationChk() {
             $("#example10 TBODY TR").each(function () {
                 var row = $(this);
                 var customer = {};
-                customer.G_Prefix = row.find("TD").eq(0).html();
+                customer.G_PrefixName = row.find("TD").eq(0).html();
                 customer.G_FirstName = row.find("TD").eq(1).html();
                 customer.G_MiddleName = row.find("TD").eq(2).html();
                 customer.G_LastName = row.find("TD").eq(3).html();
@@ -1630,6 +1668,9 @@ function ValidationChk() {
             else if (MobileNumber1.length == 0) {
                 swal("TDH", "Please enter customer mobile number.", "error");
             }
+            else if (MobileNumber1.length != 10) {
+                swal("TDH", "Invalid customer mobile number.", "error");
+            }
             //else if (FatherMobileNumber.length == 0) {
             //    swal("TDH", "Please enter father mobile number.", "error");
             //}
@@ -1711,6 +1752,9 @@ function ValidationChk() {
             }
             else if (CO_MObileNO.length == 0) {
                 swal("TDH", "Please enter co applicant mobile no.", "error");
+            }
+            else if (CO_MObileNO.trim() != "" && CO_MObileNO.length!=10) {
+                swal("TDH", "Co applicant mobile no must be 10 digit.", "error");
             }
             else if (Co_LandMark.length == 0) {
                 swal("TDH", "Please enter co applicant Land Mark.", "error");
@@ -2012,9 +2056,22 @@ function ValidationChk() {
             else if (MobileNumber1.length == 0) {
                 swal("TDH", "Please enter customer mobile number.", "error");
             }
+            else if (MobileNumber1.length != 10) {
+                swal("TDH", "Invalid customer mobile number.", "error");
+            }
             //else if (FatherMobileNumber.length == 0) {
             //    swal("TDH", "Please enter father mobile number.", "error");
             //}
+
+            else if (FatherMobileNumber.length != 10 && FatherMobileNumber.trim() != "") {
+                swal("TDH", "Father mobile number Not Valid.", "error");
+            }
+            else if (MotherMobileNumber.length != 10 && MotherMobileNumber.trim() != "") {
+                swal("TDH", "Mother mobile number Not Valid.", "error");
+            }
+            else if (SpouseMobileNumber.length != 10 && SpouseMobileNumber.trim() != "") {
+                swal("TDH", "Spouse mobile number Not Valid.", "error");
+            }
             else if (MartialStatus == "Married" && SpouseMobileNumber.length == 0) {
                 swal("TDH", "Please enter spouse mobile number.", "error");
             }
@@ -2091,6 +2148,9 @@ function ValidationChk() {
             }
             else if (CO_MObileNO.length == 0) {
                 swal("TDH", "Please enter co applicant mobile no.", "error");
+            }
+            else if (CO_MObileNO.trim() != "" && CO_MObileNO.length != 10) {
+                swal("TDH", "Co applicant mobile no must be 10 digit.", "error");
             }
 
             else if (CO_PanNo.length != 10) {
@@ -2332,7 +2392,7 @@ function ValidationChk() {
             $("#example10 TBODY TR").each(function () {
                 var row = $(this);
                 var customer = {};
-                customer.G_Prefix = row.find("TD").eq(0).html();
+                customer.G_PrefixName = row.find("TD").eq(0).html();
                 customer.G_FirstName = row.find("TD").eq(1).html();
                 customer.G_MiddleName = row.find("TD").eq(2).html();
                 customer.G_LastName = row.find("TD").eq(3).html();
@@ -2434,10 +2494,22 @@ function ValidationChk() {
             else if (MobileNumber1.length == 0) {
                 swal("TDH", "Please enter customer mobile number.", "error");
             }
+            else if (MobileNumber1.length != 10) {
+                swal("TDH", "Invalid customer mobile number.", "error");
+            }
             //else if (FatherMobileNumber.length == 0) {
             //    swal("TDH", "Please enter father mobile number.", "error");
             //}
 
+            else if (FatherMobileNumber.length != 10 && FatherMobileNumber.trim() != "") {
+                swal("TDH", "Father mobile number Not Valid.", "error");
+            }
+            else if (MotherMobileNumber.length != 10 && MotherMobileNumber.trim() != "") {
+                swal("TDH", "Mother mobile number Not Valid.", "error");
+            }
+            else if (SpouseMobileNumber.length != 10 && SpouseMobileNumber.trim() != "") {
+                swal("TDH", "Spouse mobile number Not Valid.", "error");
+            }
             else if (MartialStatus == "Married" && SpouseMobileNumber.length == 0) {
                 swal("TDH", "Please enter spouse mobile number.", "error");
             }
@@ -2740,9 +2812,22 @@ function ValidationChk() {
             else if (MobileNumber1.length == 0) {
                 swal("TDH", "Please enter customer mobile number.", "error");
             }
+            else if (MobileNumber1.length != 10) {
+                swal("TDH", "Invalid customer mobile number.", "error");
+            }
             //else if (FatherMobileNumber.length == 0) {
             //    swal("TDH", "Please enter father mobile number.", "error");
             //}
+
+            else if (FatherMobileNumber.length != 10 && FatherMobileNumber.trim() != "") {
+                swal("TDH", "Father mobile number Not Valid.", "error");
+            }
+            else if (MotherMobileNumber.length != 10 && MotherMobileNumber.trim() != "") {
+                swal("TDH", "Mother mobile number Not Valid.", "error");
+            }
+            else if (SpouseMobileNumber.length != 10 && SpouseMobileNumber.trim() != "") {
+                swal("TDH", "Spouse mobile number Not Valid.", "error");
+            }
 
             else if (MartialStatus == "Married" && SpouseMobileNumber.length == 0) {
                 swal("TDH", "Please enter spouse mobile number.", "error");

@@ -56,14 +56,14 @@ $(function () {
 
     var Relation1 = $('#hfReleation1').val();
     $("[id*=RefenceRelation] option").each(function () {
-        if ($(this).val() == Relation1) {
+        if ($(this).text() == Relation1) {
             $(this).attr('selected', 'selected');
         }
     });
 
     var Relation2 = $('#hfReleation2').val();
     $("[id*=RefenceRelation1] option").each(function () {
-        if ($(this).val() == Relation2) {
+        if ($(this).text() == Relation2) {
             $(this).attr('selected', 'selected');
         }
     });
@@ -695,6 +695,9 @@ function UpdateGurnter() {
     else if (G_Mobile_No.length == 0) {
         swal("TDH", "Please enter Guarantor mobile number.", "error");
     }
+    else if (G_Mobile_No!="" && G_Mobile_No.length!=10) {
+        swal("TDH", "Guarantor mobile number Not valid.", "error");
+    }
     else {
         var filedata = new FormData();
         AllDataArray = {
@@ -921,6 +924,19 @@ function UpdateCustomer() {
     else if (MobileNumber1.length == 0) {
         swal("TDH", "Please enter customer mobile number.", "error");
     }
+    else if (MobileNumber1.length != 10) {
+        swal("TDH", "Invalid customer mobile number.", "error");
+    }
+    else if (FatherMobileNumber.length != 10 && FatherMobileNumber.trim()!="") {
+        swal("TDH", "Father mobile number Not Valid.", "error");
+    }
+    else if (MotherMobileNumber.length != 10 && MotherMobileNumber.trim() != "") {
+        swal("TDH", "Mother mobile number Not Valid.", "error");
+    }
+    else if (SpouseMobileNumber.length != 10 && SpouseMobileNumber.trim() != "") {
+        swal("TDH", "Spouse mobile number Not Valid.", "error");
+    }
+
     //else if (FatherMobileNumber.length == 0) {
     //    swal("TDH", "Please enter father mobile number.", "error");
     //}
@@ -1105,6 +1121,9 @@ function UpdateCoBorrower() {
     }
     else if (CO_Dob.length == 0) {
         swal("TDH", "Please enter co applicant DOB.", "error");
+    }
+    else if (CO_MObileNO.length != 10 && CO_MObileNO.trim() != "") {
+        swal("TDH", "Co applicant Contact No not Valid.", "error");
     }
     else if (underAgeValidate(CO_Dob) < 18 || underAgeValidate(CO_Dob) > 60) {
         swal("TDH", "Co applicant Age between 18 and 60 years.", "error");

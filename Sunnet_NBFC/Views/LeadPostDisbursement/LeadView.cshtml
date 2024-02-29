@@ -18,8 +18,6 @@
 			</div>
 			<div class="col-sm-6">
 				<ol class="breadcrumb float-sm-right">
-					<li class="breadcrumb-item"><a href="#">Home</a></li>
-					<li class="breadcrumb-item active">Lead View</li>
 				</ol>
 			</div>
 		</div>
@@ -40,13 +38,13 @@
 						<div class="col-md-3">
 							<label>Main Product</label>
 							@Html.DropDownListFor(model => model.MainProductId, ViewBag.MainProductList as SelectList, "- Select Main Product- ",
-									   new { @class = "form-control", @id = "MainProductId" })
+									   new { @class = "form-control", @id = "ddlMainProduct" })
 						</div>
 						<div class="col-md-3">
 							<label>Product</label>
 							@Html.DropDownListFor(model => model.ProductId,
 										   new SelectList(Enumerable.Empty<SelectListItem>(), "ProdId", "ProductName"),
-										   "- Select Product -", new { @class = "form-control", @id = "ProductId" })
+										   "- Select Product -", new { @class = "form-control", @id = "ddProduct" })
 						</div>
 						<div class="col-md-3">
 							<label>Lead Number</label>

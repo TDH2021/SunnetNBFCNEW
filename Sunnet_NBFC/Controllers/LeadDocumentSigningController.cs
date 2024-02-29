@@ -40,7 +40,17 @@ namespace Sunnet_NBFC.Controllers
                     try
                     {
                         ViewBag.MainProductList = ClsCommon.ToSelectList(DataInterface1.GetMainProductddl("View"), "MainProdId", "ProductName");
-
+                        using (clsBranch cls = new clsBranch())
+                        {
+                            cls.ReqType = "View";
+                            cls.CompanyID = ClsSession.CompanyID;
+                            if (ClsSession.UserType == "E")
+                            {
+                                cls.BranchId = ClsSession.BranchId;
+                            }
+                            cls.IsDelete = 0;
+                            ViewBag.BranchList = ClsCommon.ToSelectList(DataInterface2.ViewBranch(cls), "BranchId", "BranchName");
+                        }
                         using (clsLeadGenerationMaster cls = new clsLeadGenerationMaster())
                         {
                             cls.ReqType = "GetLeadAllData";
@@ -63,6 +73,10 @@ namespace Sunnet_NBFC.Controllers
                                 cls.ShortStage_Name = Request.QueryString["ShortStage_Name"].ToString();
                                 cls.StageEmpId = int.Parse(Session["EmpId"].ToString());
                                 cls.Empid = 0;
+                            }
+                            if (clss.SearchPLBranch != "" && clss.SearchPLBranch != null)
+                            {
+                                cls.PLLoanBranch = int.Parse(clss.SearchPLBranch);
                             }
 
                             using (DataTable dt = DataInterface.GetLeadGenerationData(cls))

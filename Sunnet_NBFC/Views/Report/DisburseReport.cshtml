@@ -1,6 +1,6 @@
 ﻿@model Sunnet_NBFC.Models.clsLeadGenerationMaster
 @{
-    ViewBag.Title = "LeadReport";
+    ViewBag.Title = "DisburseReport";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -8,7 +8,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Lead Report</h1>
+                <h1>Disburse Report</h1>
             </div>
             <div class="col-sm-6">
             </div>
@@ -20,7 +20,7 @@
     <div class="container-fluid">
         <div class="col-md-12">
 
-            @using (Html.BeginForm("LeadReport", "Report", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            @using (Html.BeginForm("DisburseReport", "Report", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
 
                 <div class="form-group">
@@ -69,7 +69,7 @@
 
                         </div>
                         <div class="col-md-3">
-                            @Html.ActionLink("Export to Excel", "ExportToExcel", new {ReqType = "LeadReport" }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("Export to Excel", "ExportToExcel",new { Reqtype = "DisburseReport" }, new { @class = "btn btn-primary" })
                         </div>
                     </div>
                 </div>

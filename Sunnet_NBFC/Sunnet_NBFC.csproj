@@ -3002,6 +3002,7 @@
     <Content Include="Views\LeadGenUpdate\_AddVechicalLoanDetails.cshtml" />
     <Content Include="Views\LeadGenUpdate\LeadGenUpdate.cshtml" />
     <Content Include="Views\LeadGenUpdate\_AddGuranterDetailsUpdate.cshtml" />
+    <Content Include="Views\Report\DisburseReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
